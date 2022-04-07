@@ -132,6 +132,14 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 - [小样本学习实践](https://www.yuque.com/easyx/easynlp/vgbopy)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
+# License
+This project licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyCV/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open source licenses. See the [NOTICE](https://github.com/alibaba/EasyCV/blob/master/NOTICE) file for more information.
+
+# ChangeLog
+
+- EasyNLP v0.0.3 was release in 01/04/2022. Please refer to [tag_v0.0.3](https://github.com/alibaba/EasyNLP/releases/tag/v0.0.3) for more details and history.
+
+
 # Contact Us
 
 Scan the following QR codes to join Dingtalk discussion group. The group discussions are most in Chinese, but English is also welcomed.
