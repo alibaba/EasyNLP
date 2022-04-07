@@ -145,18 +145,4 @@ from rapidformer import HuggingFaceTrainer, RapidformerEngine
 
 ## Examples
 
-The [run_rapidformer_no_trainer.sh](examples/nlp/run_rapidformer_no_trainer.sh) script is a simple example to train a Bert model on a classification task ([GLUE's MRPC](https://www.microsoft.com/en-us/download/details.aspx?id=52398)).
-
-The [run_rapidformer_no_trainer.sh](examples/cv/run_rapidformer_no_trainer.sh) script is a simple example to fine-tune a ResNet-50 on a classification task ([Ofxord-IIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)).
-
-Prior to running it you should install timm and torchvision:
-```bash
-pip install timm torchvision
-```
-
-and you should download the data with the following commands:
-
-```bash
-wget https://www.robots.ox.ac.uk/~vgg/data/pets/data/images.tar.gz
-tar -xzf images.tar.gz
-```
+The [run_finetune_easynlp_bert.sh](examples/nlp/run_rapidformer_no_trainer.sh) script is a simple example to train a Bert model on a classification task ([GLUE's MRPC](https://www.microsoft.com/en-us/download/details.aspx?id=52398)).
