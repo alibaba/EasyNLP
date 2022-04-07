@@ -7,7 +7,6 @@
 .idea
 easytexminer.egg-info
 build
-tools
 xflow_deploy
 dist
 .DS_Store
