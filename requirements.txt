@@ -8,8 +8,8 @@ regex
 sacremoses
 scikit-learn
 sentencepiece
+tensorboard
 tokenizers==0.10.1
 torch==1.8.1
 rouge
-tensorboard
 tqdm
