@@ -16,7 +16,6 @@
 
 
 import math
-from tkinter.messagebox import NO
 import warnings
 from dataclasses import dataclass
 from typing import Optional, Tuple
