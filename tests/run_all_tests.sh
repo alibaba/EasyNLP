@@ -14,7 +14,7 @@ sh run_vectorization.sh
 # Install easynlp cli
 cd ../
 pip uninstall easynlp -y
-python setup.py install
+python setup.py install --user
 cd tests/
 
 if [ ! -d ./tmp ]; then
