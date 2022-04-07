@@ -2,10 +2,10 @@
 
 <p align="center">
     <br>
-    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="200"/>
+    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649317417481-d20971cd-cd4f-4e29-8587-c342a128b762.png" width="200"/>
     <br>
 <p>
-
+    
 <p align="center"> <b> EasyNLP is designed to make it easy to develp NLP applications. </b> </p>
 <p align="center">
     <a href="https://www.yuque.com/easyx/easynlp/iobg30">
