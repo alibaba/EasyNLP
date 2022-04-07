@@ -143,7 +143,7 @@ This project licensed under the [Apache License (Version 2.0)](https://github.co
 
 Scan the following QR codes to join Dingtalk discussion group. The group discussions are most in Chinese, but English is also welcomed.
 
-<img src="https://cdn.nlark.com/yuque/0/2020/png/2480469/1600310258842-d7121051-32f1-494b-a7a5-a35ede74b6c4.png#align=left&display=inline&height=352&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1178&originWidth=1016&size=312154&status=done&style=none&width=304" width="300"/>
+<img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649324662278-fe178523-6b14-4eff-8f50-7abbf468f751.png?x-oss-process=image%2Fresize%2Cw_357%2Climit_0" width="300"/>
 
 # Reference
 
