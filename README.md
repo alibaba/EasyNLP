@@ -2,7 +2,7 @@
 
 <p align="center">
     <br>
-    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="200"/>
+    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="300"/>
     <br>
 <p>
 
