@@ -1,6 +1,6 @@
 bs4
 filelock
-importlib_metadata
+importlib_metadata==4.5
 jieba
 numpy
 packaging
