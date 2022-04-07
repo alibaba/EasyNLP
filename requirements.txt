@@ -1,0 +1,13 @@
+sentencepiece
+jieba
+scikit-learn
+tqdm
+bs4
+rouge
+packaging
+regex
+sacremoses
+filelock
+importlib_metadata
+tokenizers==0.10.1
+numpy
