@@ -2,7 +2,7 @@
 
 <p align="center">
     <br>
-    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="300"/>
+    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="200"/>
     <br>
 <p>
 
@@ -24,13 +24,11 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 - **Compatible with open-source libraries:** EasyNLP has APIs to support the training of models from Huggingface/Transformers with the PAI distributed framework. It also supports the pre-trained models in EasyTransfer ModelZoo.
 - **Knowledge-injected pre-training:** The PAI team has a lot of research on knowledge-injected pre-training, and builds a knowledge-injected model that wins the first place in the CCF knowledge pre-training competition. EasyNLP integrates these cutting-edge knowledge pre-trained models, including DKPLM and KGBERT.
 - **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to faciliate online deployment.
-- **Seamless integration to PAI products:** It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-coding model training.
-
-
+- **Seamless integration to PAI products::** It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-coding model training.
 
 # Installation
 
-You can either install from pip 
+You can either install from pip
 
 ```bash
 $ pip install pai-easynlp (to be released)
@@ -43,11 +41,12 @@ $ git clone https://github.com/alibaba/EasyNLP.git
 $ cd EasyNLP
 $ python setup.py install
 ```
+
 This repo is tested on Python3.6, PyTorch >= 1.8.
 
-
 # Quick Start
-Now let's show how to use just a few lines of code to build a text classification model based on BERT. 
+
+Now let's show how to use just a few lines of code to build a text classification model based on BERT.
 
 ```python
 from easynlp.core import Trainer
@@ -71,6 +70,7 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 ```
 
 Then you can run the code:
+
 ```bash
 python main.py \
   --mode train \
@@ -85,7 +85,7 @@ python main.py \
   --user_defined_parameters='pretrain_model_name_or_path=bert-tiny-uncased'
 ```
 
-You can also use AppZoo Command Line Tools to quickly train an App model. Take text classification on SST-2 dataset as an example. First you can download the [train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv), and [dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv), then start training: 
+You can also use AppZoo Command Line Tools to quickly train an App model. Take text classification on SST-2 dataset as an example. First you can download the [train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv), and [dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv), then start training:
 
 ```bash
 $ easynlp \
@@ -117,9 +117,8 @@ $ easynlp \
   --checkpoint_path=./classification_model \
   --app_name=text_classify
 ```
+
 To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/psm6fr).
-
-
 
 # Tutorials
 
@@ -133,8 +132,8 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 - [小样本学习实践](https://www.yuque.com/easyx/easynlp/vgbopy)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
-
 # Contact Us
+
 Scan the following QR codes to join Dingtalk discussion group. The group discussions are most in Chinese, but English is also welcomed.
 
 <img src="https://cdn.nlark.com/yuque/0/2020/png/2480469/1600310258842-d7121051-32f1-494b-a7a5-a35ede74b6c4.png#align=left&display=inline&height=352&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1178&originWidth=1016&size=312154&status=done&style=none&width=304" width="300"/>
