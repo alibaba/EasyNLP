@@ -18,7 +18,7 @@ limitations under the License.
 
 <p align="center">
     <br>
-    <img src="https://intranetproxy.alipay.com/skylark/lark/0/2021/png/226643/1640775649237-0774a818-e97d-4a35-884d-b36f298f17cc.png?x-oss-process=image%2Fresize%2Cw_1324%2Climit_0" width="800" height="500"/>
+    <img src="https://img.alicdn.com/imgextra/i3/O1CN01P3JMTs1dZXzGmKisb_!!6000000003750-2-tps-1361-1201.png" width="800" height="500"/>
     <br>
 <p>
 
