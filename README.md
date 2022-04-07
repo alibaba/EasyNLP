@@ -133,7 +133,7 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
 # License
-This project licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyCV/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open source licenses. See the [NOTICE](https://github.com/alibaba/EasyCV/blob/master/NOTICE) file for more information.
+This project licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
 
 # ChangeLog
 
