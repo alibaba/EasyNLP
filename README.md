@@ -121,6 +121,10 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 
 # Tutorials
 
+- [自定义文本分类示例](https://www.yuque.com/easyx/easynlp/ds35qn)
+- [QuickStart-文本分类](https://www.yuque.com/easyx/easynlp/rxne07)
+- [QuickStart-PAI DSW](https://www.yuque.com/easyx/easynlp/gvat1o)
+- [QuickStart-MaxCompute/ODPS数据](https://www.yuque.com/easyx/easynlp/vdt5ze)
 - [AppZoo-文本向量化](https://www.yuque.com/easyx/easynlp/ts4czl)
 - [AppZoo-文本分类/匹配](https://www.yuque.com/easyx/easynlp/vgbopy)
 - [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/vgbopy)
