@@ -1,4 +1,4 @@
-# EasyNLP: An Easy-to-use NLP Toolkit
+# EasyNLP: A Comprehensive and Easy-to-use NLP Toolkit
 
 <p align="center">
     <br>
@@ -6,7 +6,7 @@
     <br>
 <p>
     
-<p align="center"> <b> EasyNLP is designed to make it easy to develp NLP applications. </b> </p>
+<p align="center"> <b> EasyNLP is a Comprehensive and Easy-to-use NLP Toolkit </b> </p>
 <p align="center">
     <a href="https://www.yuque.com/easyx/easynlp/iobg30">
         <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258840-bfe6302e-d934-409d-917c-8eab455675c1.svg" height="24">
