@@ -5,7 +5,6 @@ if [ ! -f ./tmp/train.tsv ]; then
 fi
 
 cd ../../
-pip uninstall easynlp -y
 python setup.py develop
 
 cd examples/quick_start/
