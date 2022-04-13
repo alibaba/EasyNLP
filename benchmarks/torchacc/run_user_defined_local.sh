@@ -24,7 +24,7 @@ if [ ! -f ./tmp/train.tsv ]; then
 fi
 DISTRIBUTED_ARGS="--nproc_per_node 1 --nnodes 1 --node_rank 0 --master_addr localhost --master_port 6009"
 xlarun \
-  $DISTRIBUTED_ARGS examples/benchmark/main.py \
+  $DISTRIBUTED_ARGS main.py \
   --mode train \
   --tables=./tmp/train.tsv,./tmp/dev.tsv \
   --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
