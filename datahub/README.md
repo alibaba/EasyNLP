@@ -33,6 +33,24 @@ EasyNLP提供常见的中文数据集的下载，同时提供脚本处理中文�
 | yf_dianping([链接](https://github.com/SophonPlus/ChineseNlpCorpus/blob/master/datasets/yf_dianping/intro.ipynb)) | 24 万家餐馆，54 万用户，440 万条评论/评分数据 |  |
 | yf_amazon([链接](https://github.com/SophonPlus/ChineseNlpCorpus/blob/master/datasets/yf_amazon/intro.ipynb)) | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 |  |
 
+# 中文文本摘要任务
+以下数据大部分来自[liucongg/GPT2-NewsTitle](https://github.com/liucongg/GPT2-NewsTitle)收集整理
+| **数据** | **描述** | **备注** |
+| --- | --- | --- |
+| 清华新闻数据 [百度云盘](https://pan.baidu.com/s/1a-CUtTc5xQFB9_EJaxDklA) 提取码： vhol |标题生成任务（短文本生成式摘要)清华新闻（THUCNews）数据是清华大学自然语言处理实验室整理，根据新浪新闻RSS订阅频道2005~2011年间的历史数据筛选过滤生成.利用其正文与标题，可以构成新闻标题生成数据总数量：830749个样本；标题：平均字数 19； 正文：平均字数 892 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| 搜狗新闻数据 [百度云盘](https://pan.baidu.com/s/1vgfa5gnIHTYpoYptuHo6gQ) 提取码：ode6 | 标题生成任务（短文本生成式摘要)搜狗新闻（SogouCS）数据是搜狗实验室整理，来自搜狐新闻2012年6月—7月利用其正文与标题，可以构成新闻标题生成数据。整理后数据信息如下：总数量：1245835个样本；标题：平均字数 17 正文：平均字数 494 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| nlpcc2017摘要数据 [百度云盘](https://pan.baidu.com/s/1v7QFJ3hl_ALb2DEEq0umRQ) 提取码：e0zq  | 标题生成任务（短文本生成式摘要) 神策杯2018摘要数据是“神策杯”2018高校算法大师赛的比赛数据 总数量：108089个样本；摘要：平均字数 24 正文：平均字数 1055 | son格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| csl摘要数据 [百度云盘](https://pan.baidu.com/s/1qrzhsWq8SGQ1-W8VizSY9w) 提取码：0qot  | 计算机领域的论文摘要和标题数据，可用于短文本摘要生成。总数量：3500个样本；标题：平均字数 18，正文：平均字数 200，字数标准差 63，最大字数 631，最小数字 41  | json格式包括title，content.其中content为科研论文的摘要 title为科研论文的标题 |
+| 教育培训行业摘要数据 [百度云盘](https://pan.baidu.com/s/1sjOkp8LKGVmY6h0QXl5m7g) 提取码：kjz3  | 标题生成任务（短文本生成式摘要）教育培训行业摘要数据是github作者wonderfulsuccess整理，数据主要由教育培训行业主流垂直媒体的历史文章 总数量：24423个样本；摘要：平均字数 52 正文：平均字数 2016 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
+| lcsts摘要数据 [百度云盘](https://pan.baidu.com/s/1J2NcMfxpGGG_BG1Wx0lHGA) 提取码：bzov | 标题生成任务（短文本生成式摘要) lcsts摘要数据是哈尔滨工业大学整理，基于新闻媒体在微博上发布的新闻摘要创建了该数据集 总数量：2108915个样本；摘要：平均字数 18 正文：平均字数 104 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
+| 神策杯2018摘要数据 [百度云盘](https://pan.baidu.com/s/1WFimCGk6y-nfSdPRbCrV8Q) 提取码：6f4f | 标题生成任务（短文本生成式摘要) 神策杯2018摘要数据是“神策杯”2018高校算法大师赛的比赛数据 总数量：108089个样本；摘要：平均字数 24 正文：平均字数 1055 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| 万方摘要数据 [百度云盘](https://pan.baidu.com/s/1RFNFagKnxf2JKnjwBDecPA) 提取码： p69g | 标题生成任务（短文本生成式摘要）万方摘要数据是github作者EachenKuang整理，数据是从万方数据库爬取的文献摘要数据 总数量：3590个样本；摘要（论文标题）：平均字数 30 正文（论文摘要）：平均字数 295 | json格式包括title，content.其中content为科研论文的摘要 title为科研论文的标题 |
+| 微信公众号摘要数据 [百度云盘](https://pan.baidu.com/s/1OBn8kyZEsUeiV_kw4OJYnQ) 提取码： 5has | 标题生成任务（短文本生成式摘要) 微信公众号摘要数据是github作者nonamestreet整理
+整理后数据信息如下：总数量：712826个样本；标题：平均字数 22 正文：平均字数 1499 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
+| news2016zh新闻数据 [百度云盘](https://pan.baidu.com/s/1S3YhetbEZuSfYbfSLeRfSg) 提取码： qsj1 | 标题生成任务（短文本生成式摘要) news2016zh新闻数据是 CLUEbenchmark整理 总数量：2317427个样本；标题：平均字数 20 正文：平均字数 1250 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+|CLTS-Dataset  [百度云盘](https://pan.baidu.com/s/1skhl1HKUfRyFa7z3t8dH-g)提取码：请联系liuxiaojun@iie.ac.cn|文本摘要任务 CLTS 是一个新的中文长文本摘要数据集，提取自中文新闻网站 ThePaper.cn。生成的数据集版本包含超过 180,000 个长序列对，其中每篇文章由多个段落组成，每个摘要由多个句子组成。| |
+|CN-Fin [TaskSumm](https://github.com/TangMoming/TaskSumm)|工业场景，金融文本摘要数据集||
+
 # 其他数据（TODO）
 # Acknowledge
 以上数据收集自网上公开的数据，包括如下几个来源（如有侵权，烦请告知）：
