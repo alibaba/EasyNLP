@@ -40,7 +40,7 @@ class GEEPClassificationDataset(BaseDataset):
                  label_name=None,
                  second_sequence=None,
                  label_enumerate_values=None,
-                 multi_label=False,
+                #  multi_label=False,
                  *args,
                  **kwargs):
         super().__init__(data_file,
@@ -52,7 +52,9 @@ class GEEPClassificationDataset(BaseDataset):
         # assert ".easynlp/modelzoo/" in pretrained_model_name_or_path
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
         self.max_seq_length = max_seq_length
-        self.multi_label = multi_label
+        # self.multi_label = multi_label
+        user_defined_parameters = kwargs.get('user_defined_parameters', {})
+        self.multi_label = user_defined_parameters.get('app_parameters', {}).get('multi_label', False)
         if label_enumerate_values is None:
             self._label_enumerate_values = "0,1".split(",")
         else:

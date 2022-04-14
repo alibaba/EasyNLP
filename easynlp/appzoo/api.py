@@ -21,41 +21,40 @@ sys.path.append("./")
 sys.path.append("../")
 sys.path.append("../../")
 
-from easynlp.appzoo.sequence_classification.model import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
-from easynlp.appzoo.text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
-from easynlp.appzoo.sequence_labeling.model import SequenceLabeling
-from easynlp.appzoo.language_modeling.model import LanguageModeling
-from easynlp.appzoo.feature_vectorization.model import FeatureVectorization
-from easynlp.appzoo.data_augmentation.model import DataAugmentation
-from easynlp.appzoo.geep_classification.model import GEEPClassification
+from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
+from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
+from easynlp.appzoo import SequenceLabeling
+from easynlp.appzoo import LanguageModeling
+from easynlp.appzoo import FeatureVectorization
+from easynlp.appzoo import DataAugmentation
+from easynlp.appzoo import GEEPClassification
 # from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSingleTowerTextMatchEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSingleTowerTextMatchEvaluator
+from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
+from easynlp.appzoo import SequenceLabelingEvaluator
+from easynlp.appzoo import LanguageModelingEvaluator
+from easynlp.appzoo import TextMatchEvaluator
+from easynlp.appzoo import GEEPClassificationEvaluator
+# from easynlp.appzoo import SequenceGenerationEvaluator
 
-from easynlp.appzoo.sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
-from easynlp.appzoo.sequence_labeling.evaluator import SequenceLabelingEvaluator
-from easynlp.appzoo.sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
-from easynlp.appzoo.language_modeling.evaluator import LanguageModelingEvaluator
-from easynlp.appzoo.text_match.evaluator import TextMatchEvaluator
-from easynlp.appzoo.geep_classification.evaluator import GEEPClassificationEvaluator
-# from easynlp.appzoo.sequence_generation.evaluator import SequenceGenerationEvaluator
+from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
+from easynlp.appzoo import SequenceLabelingPredictor
+from easynlp.appzoo import FeatureVectorizationPredictor
+from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
+from easynlp.appzoo import DataAugmentationPredictor
+from easynlp.appzoo import GEEPClassificationPredictor
+# from easynlp.appzoo import SequenceGenerationPredictor
 
-from easynlp.appzoo.sequence_labeling.predictor import SequenceLabelingPredictor
-from easynlp.appzoo.feature_vectorization.predictor import FeatureVectorizationPredictor
-from easynlp.appzoo.text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
-from easynlp.appzoo.data_augmentation.predictor import DataAugmentationPredictor
-from easynlp.appzoo.geep_classification.predictor import GEEPClassificationPredictor
-# from easynlp.appzoo.sequence_generation.predictor import SequenceGenerationPredictor
-
-from easynlp.appzoo.sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
-from easynlp.appzoo.sequence_labeling.data import SequenceLabelingDataset
-from easynlp.appzoo.language_modeling.data import LanguageModelingDataset
-from easynlp.appzoo.text_match.data import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
-# from easynlp.appzoo.sequence_generation.data import SequenceGenerationDataset
-from easynlp.appzoo.geep_classification.data import GEEPClassificationDataset
+from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
+from easynlp.appzoo import SequenceLabelingDataset
+from easynlp.appzoo import LanguageModelingDataset
+from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
+# from easynlp.appzoo import SequenceGenerationDataset
+from easynlp.appzoo import GEEPClassificationDataset
 
 from easynlp.core import PredictorManager
 from easynlp.core import Trainer
@@ -66,7 +65,101 @@ from easynlp.utils import initialize_easynlp, get_args
 from easynlp.core import DistillatoryTrainer
 
 
-def get_application_dataset(app_name,
+Dataset_Mapping = {
+    'text_classify': {
+        'enable_distillation': DistillatoryClassificationDataset,
+        'enable_fewshot': FewshotSequenceClassificationDataset,
+        'others': ClassificationDataset,
+    },
+    'text_match': {
+        'two_tower.siamese': ClassificationDataset,
+        'two_tower.others': TwoTowerDataset,
+        'enable_distillation': DistillatorySingleTowerDataset,
+        'enable_fewshot': FewshotSingleTowerTextMatchDataset,
+        'others': SingleTowerDataset,
+    },
+    'sequence_labeling': SequenceLabelingDataset,
+    'language_modeling': LanguageModelingDataset,
+    'geep_classify': GEEPClassificationDataset,
+}
+
+ModelMapping = {
+    'text_classify': {
+        'multi_label': SequenceMultiLabelClassification,
+        'enable_distillation': DistillatorySequenceClassification,
+        'enable_fewshot.pet_fewshot': FewshotSequenceClassification,
+        'enable_fewshot.cpt_fewshot': CptFewshotSequenceClassification,
+        'others': SequenceClassification
+    },
+    'text_match': {
+        'two_tower': TextMatchTwoTower,
+        'enable_distillation': DistillatoryTextMatch,
+        'enable_fewshot.pet_fewshot': FewshotSingleTowerTextMatch,
+        'enable_fewshot.cpt_fewshot': CptFewshotSingleTowerTextMatch,
+        'others': TextMatch
+    },
+    'language_modeling': LanguageModeling,
+    'sequence_labeling': SequenceLabeling,
+    'vectorization': FeatureVectorization,
+    'data_augmentation': DataAugmentation,
+    'geep_classify': GEEPClassification,
+}
+
+Eval_Model_Mapping = {
+    'text_classify': {
+        'multi_label': SequenceMultiLabelClassification,
+        'enable_fewshot.pet_fewshot': FewshotSequenceClassification,
+        'enable_fewshot.cpt_fewshot': CptFewshotSequenceClassification,
+        'others': SequenceClassification
+    },
+    'text_match': {
+        'enable_fewshot.pet_fewshot': FewshotSingleTowerTextMatch,
+        'enable_fewshot.cpt_fewshot': CptFewshotSingleTowerTextMatch,
+        'others': TextMatch
+    },
+    'sequence_labeling': SequenceLabeling,
+    'geep_classify': GEEPClassification,
+}
+
+Evaluator_Mapping = {
+    'text_classify': {
+        'multi_label': SequenceMultiLabelClassificationEvaluator,
+        'enable_fewshot.pet_fewshot': FewshotSequenceClassificationEvaluator,
+        'enable_fewshot.cpt_fewshot': CptFewshotSequenceClassificationEvaluator,
+        'others': SequenceClassificationEvaluator
+    },
+    'text_match': {
+        'enable_fewshot.pet_fewshot': FewshotSingleTowerTextMatchEvaluator,
+        'enable_fewshot.cpt_fewshot': CptFewshotSingleTowerTextMatchEvaluator,
+        'others': TextMatchEvaluator
+    },
+    'language_modeling': LanguageModelingEvaluator,
+    'sequence_labeling': SequenceLabelingEvaluator,
+    'geep_classify': GEEPClassificationEvaluator,
+}
+
+Predictor_Mapping = {
+    'text_classify': {
+        'enable_fewshot.pet_fewshot': [FewshotSequenceClassificationPredictor, FewshotSequenceClassification],
+        'enable_fewshot.cpt_fewshot': [CptFewshotSequenceClassificationPredictor, CptFewshotSequenceClassification],
+        'others': [SequenceClassificationPredictor, SequenceClassification]
+    },
+    'text_match': {
+        'two_tower': [TextMatchTwoTowerPredictor, TextMatchTwoTower],
+        'enable_fewshot.pet_fewshot': [FewshotSingleTowerTextMatchPredictor, FewshotSequenceClassification],
+        'enable_fewshot.cpt_fewshot': [CptFewshotSingleTowerTextMatchPredictor, CptFewshotSequenceClassification],
+        'others': [TextMatchPredictor, TextMatch]
+    },
+    'sequence_labeling': [SequenceLabelingPredictor, SequenceLabeling],
+    'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
+    'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
+    'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
+}
+
+
+
+
+def get_application_dataset(app_name, 
                             pretrained_model_name_or_path,
                             data_file,
                             max_seq_length,
@@ -78,345 +171,165 @@ def get_application_dataset(app_name,
                             user_defined_parameters=None,
                             *args,
                             **kwargs):
-
-    if app_name.startswith("text_classify"):
-        if user_defined_parameters.get('app_parameters', {}).get('enable_distillation', False) \
-            and kwargs.get('is_training', False):
-            return DistillatoryClassificationDataset(
-                data_file=data_file,
-                pretrained_model_name_or_path=pretrained_model_name_or_path,
-                max_seq_length=max_seq_length,
-                input_schema=input_schema,
-                first_sequence=first_sequence,
-                second_sequence=second_sequence,
-                label_name=label_name,
-                label_enumerate_values=label_enumerate_values,
-                user_defined_parameters=user_defined_parameters,
-                *args,
-                **kwargs)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            return FewshotSequenceClassificationDataset(
-                data_file=data_file,
-                pretrained_model_name_or_path=pretrained_model_name_or_path,
-                max_seq_length=max_seq_length,
-                input_schema=input_schema,
-                first_sequence=first_sequence,
-                second_sequence=second_sequence,
-                label_name=label_name,
-                label_enumerate_values=label_enumerate_values,
-                user_defined_parameters=user_defined_parameters,
-                *args,
-                **kwargs
-            )
-        else:
-            multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
-            return ClassificationDataset(
-                data_file=data_file,
-                pretrained_model_name_or_path=pretrained_model_name_or_path,
-                max_seq_length=max_seq_length,
-                input_schema=input_schema,
-                first_sequence=first_sequence,
-                second_sequence=second_sequence,
-                label_name=label_name,
-                label_enumerate_values=label_enumerate_values,
-                multi_label=multi_label,
-                *args,
-                **kwargs)
-    elif app_name.startswith("text_match"):
-        if user_defined_parameters.get('app_parameters', False).get('two_tower', False) is True:
-            if user_defined_parameters.get('app_parameters', False).get('siamese', False) is True:
-                multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
-                cls_dataset = ClassificationDataset(
-                    data_file=data_file,
-                    pretrained_model_name_or_path=pretrained_model_name_or_path,
-                    max_seq_length=max_seq_length,
-                    input_schema=input_schema,
-                    first_sequence=first_sequence,
-                    second_sequence=second_sequence,
-                    label_name=label_name,
-                    label_enumerate_values=label_enumerate_values,
-                    multi_label=multi_label,
-                    prefetch_all=True,
-                    *args,
-                    **kwargs)
-
+    for name, dataset in Dataset_Mapping.items():
+        if app_name.startswith(name):
+            if type(dataset) != dict:
+                return dataset(data_file=data_file,
+                                pretrained_model_name_or_path=pretrained_model_name_or_path,
+                                max_seq_length=max_seq_length,
+                                input_schema=input_schema,
+                                first_sequence=first_sequence,
+                                second_sequence=second_sequence,
+                                label_name=label_name,
+                                label_enumerate_values=label_enumerate_values,
+                                user_defined_parameters=user_defined_parameters,
+                                *args,
+                                **kwargs)
+            app_parameters = user_defined_parameters.get('app_parameters')
+            dataset_keys = set([key.split('.')[0] for key in dataset.keys()])
+            union_name = list(dataset_keys & set(app_parameters.keys()))
+            assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
+            if len(union_name) == 0:
+                return dataset['others'](data_file=data_file,
+                                        pretrained_model_name_or_path=pretrained_model_name_or_path,
+                                        max_seq_length=max_seq_length,
+                                        input_schema=input_schema,
+                                        first_sequence=first_sequence,
+                                        second_sequence=second_sequence,
+                                        label_name=label_name,
+                                        label_enumerate_values=label_enumerate_values,
+                                        user_defined_parameters=user_defined_parameters,
+                                        *args,
+                                        **kwargs)
+            elif union_name[0] == 'two_tower':
+                key = 'two_tower.siamese' if 'siamese' in app_parameters else 'two_tower.others'
+                cls_dataset = dataset[key](data_file=data_file,
+                                    pretrained_model_name_or_path=pretrained_model_name_or_path,
+                                    max_seq_length=max_seq_length,
+                                    input_schema=input_schema,
+                                    first_sequence=first_sequence,
+                                    second_sequence=second_sequence,
+                                    label_name=label_name,
+                                    label_enumerate_values=label_enumerate_values,
+                                    user_defined_parameters=user_defined_parameters,
+                                    *args,
+                                    **kwargs)
                 return SiameseDataset(cls_dataset, *args, **kwargs)
-
+                    
+            elif union_name[0] == 'enable_distillation' and kwargs.get('is_training', False):
+                return dataset['enable_distillation'](data_file=data_file,
+                                                    pretrained_model_name_or_path=pretrained_model_name_or_path,
+                                                    max_seq_length=max_seq_length,
+                                                    input_schema=input_schema,
+                                                    first_sequence=first_sequence,
+                                                    second_sequence=second_sequence,
+                                                    label_name=label_name,
+                                                    label_enumerate_values=label_enumerate_values,
+                                                    user_defined_parameters=user_defined_parameters,
+                                                    *args,
+                                                    **kwargs)
             else:
-                return TwoTowerDataset(data_file=data_file,
-                                       pretrained_model_name_or_path=pretrained_model_name_or_path,
-                                       max_seq_length=max_seq_length,
-                                       input_schema=input_schema,
-                                       first_sequence=first_sequence,
-                                       second_sequence=second_sequence,
-                                       label_name=label_name,
-                                       label_enumerate_values=label_enumerate_values,
-                                       *args,
-                                       **kwargs)
-        else:
-            if user_defined_parameters.get('app_parameters', {}).get('enable_distillation', False) \
-                and kwargs.get('is_training', False):
-                return DistillatorySingleTowerDataset(
-                    data_file=data_file,
-                    pretrained_model_name_or_path=pretrained_model_name_or_path,
-                    max_seq_length=max_seq_length,
-                    input_schema=input_schema,
-                    first_sequence=first_sequence,
-                    second_sequence=second_sequence,
-                    label_name=label_name,
-                    label_enumerate_values=label_enumerate_values,
-                    user_defined_parameters=user_defined_parameters,
-                    *args,
-                    **kwargs)
-            elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-                return FewshotSingleTowerTextMatchDataset(
-                    data_file=data_file,
-                    pretrained_model_name_or_path=pretrained_model_name_or_path,
-                    max_seq_length=max_seq_length,
-                    input_schema=input_schema,
-                    first_sequence=first_sequence,
-                    second_sequence=second_sequence,
-                    label_name=label_name,
-                    label_enumerate_values=label_enumerate_values,
-                    user_defined_parameters=user_defined_parameters,
-                    *args,
-                    **kwargs
-                )
-            else:
-                return SingleTowerDataset(
-                    data_file=data_file,
-                    pretrained_model_name_or_path=pretrained_model_name_or_path,
-                    max_seq_length=max_seq_length,
-                    input_schema=input_schema,
-                    first_sequence=first_sequence,
-                    second_sequence=second_sequence,
-                    label_name=label_name,
-                    label_enumerate_values=label_enumerate_values,
-                    *args,
-                    **kwargs)
-    elif app_name.startswith("sequence_labeling"):
-        return SequenceLabelingDataset(data_file=data_file,
-                                       pretrained_model_name_or_path=pretrained_model_name_or_path,
-                                       max_seq_length=max_seq_length,
-                                       input_schema=input_schema,
-                                       first_sequence=first_sequence,
-                                       label_name=label_name,
-                                       label_enumerate_values=label_enumerate_values,
-                                       *args,
-                                       **kwargs)
-    elif app_name.startswith("language_modeling"):
-        return LanguageModelingDataset(data_file=data_file,
-                                       pretrained_model_name_or_path=pretrained_model_name_or_path,
-                                       user_defined_parameters=user_defined_parameters,
-                                       max_seq_length=max_seq_length)
-    elif app_name.startswith("geep_classify"):
-        multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
-        return GEEPClassificationDataset(
-                data_file=data_file,
-                pretrained_model_name_or_path=pretrained_model_name_or_path,
-                max_seq_length=max_seq_length,
-                input_schema=input_schema,
-                first_sequence=first_sequence,
-                second_sequence=second_sequence,
-                label_name=label_name,
-                label_enumerate_values=label_enumerate_values,
-                multi_label=multi_label,
-                *args,
-                **kwargs)
-    # elif app_name.startswith("sequence_generation"):
-    #     return SequenceGenerationDataset(data_file=data_file,
-    #                                     pretrained_model_name_or_path=pretrained_model_name_or_path,
-    #                                     max_seq_length=max_seq_length,
-    #                                     input_schema=input_schema,
-    #                                     first_sequence=first_sequence,
-    #                                     second_sequence=second_sequence,
-    #                                     user_defined_parameters=user_defined_parameters,
-    #                                     *args,
-    #                                     **kwargs)
+                return dataset[union_name[0]](data_file=data_file,
+                                            pretrained_model_name_or_path=pretrained_model_name_or_path,
+                                            max_seq_length=max_seq_length,
+                                            input_schema=input_schema,
+                                            first_sequence=first_sequence,
+                                            second_sequence=second_sequence,
+                                            label_name=label_name,
+                                            label_enumerate_values=label_enumerate_values,
+                                            user_defined_parameters=user_defined_parameters,
+                                            *args,
+                                            **kwargs)
+    raise NotImplementedError("application model %s is not implemented" % app_name)
+            
 
 def get_application_model(app_name, pretrained_model_name_or_path, user_defined_parameters, **kwargs):
-    if app_name.startswith("text_classify"):
-        if user_defined_parameters.get('app_parameters', False).get('multi_label', False) is True:
-            return SequenceMultiLabelClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_distillation', False) is True:
-            return DistillatorySequenceClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSequenceClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSequenceClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+    for name, model in ModelMapping.items():
+        if app_name.startswith(name):
+            if type(model) != dict:
+                return model(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+            app_parameters = user_defined_parameters.get('app_parameters')
+            model_keys = set([key.split('.')[0] for key in model.keys()])
+            union_name = list(model_keys & set(app_parameters.keys()))
+            assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
+            if len(union_name) == 0:
+                return model['others'](pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+            elif union_name[0] == 'enable_fewshot':
+                fewshot_type = app_parameters.get('type')
+                assert fewshot_type in ['pet_fewshot', 'cpt_fewshot'], "This fewshot model is not implemented!"
+                key = union_name[0] + '.' + fewshot_type
+                return model[key](pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
             else:
-                raise ValueError('This fewshot model is not implemented!')
-        else:
-            return SequenceClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("text_match"):
-        if user_defined_parameters.get('app_parameters', False).get('two_tower', False) is True:
-            return TextMatchTwoTower(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-        else:
-            if user_defined_parameters.get('app_parameters', False).get('enable_distillation', False) is True:
-                return DistillatoryTextMatch(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-            elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-                few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-                if few_shot_model_name == 'pet_fewshot':
-                    return FewshotSingleTowerTextMatch(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-                elif few_shot_model_name == 'cpt_fewshot':
-                    return CptFewshotSingleTowerTextMatch(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-                else:
-                    raise ValueError('This few shot model is not implemented!')
-            else:
-                return TextMatch(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("language_modeling"):
-        return LanguageModeling(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("sequence_labeling"):
-        return SequenceLabeling(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("vectorization"):
-        return FeatureVectorization(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith('data_augmentation'):
-        return DataAugmentation(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith('geep_classify'):
-        return GEEPClassification(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
-    # elif app_name.startswith("sequence_generation"):
-    #     return SequenceGeneration(pretrained_model_name_or_path,user_defined_parameters=user_defined_parameters, **kwargs)
-    else:
-        raise NotImplementedError("application model %s is not implemented" % app_name)
+                return model[union_name[0]](pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+    raise NotImplementedError("application model %s is not implemented" % app_name)
 
 
 def get_application_model_for_evaluation(app_name, pretrained_model_name_or_path, user_defined_parameters, **kwargs):
-    if app_name.startswith("text_classify"):
-        if user_defined_parameters.get('app_parameters', False).get('multi_label', False) is True:
-            return SequenceMultiLabelClassification.from_pretrained(pretrained_model_name_or_path)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSequenceClassification.from_pretrained(pretrained_model_name_or_path, **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSequenceClassification.from_pretrained(pretrained_model_name_or_path, **kwargs)
+    for name, model in Eval_Model_Mapping.items():
+        if app_name.startswith(name):
+            if type(model) != dict:
+                return model.from_pretrained(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+            app_parameters = user_defined_parameters.get('app_parameters')
+            model_keys = set([key.split('.')[0] for key in model.keys()])
+            union_name = list(model_keys & set(app_parameters.keys()))
+            assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
+            if len(union_name) == 0:
+                return model['others'].from_pretrained(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+            elif union_name[0] == 'enable_fewshot':
+                fewshot_type = app_parameters.get('type')
+                assert fewshot_type in ['pet_fewshot', 'cpt_fewshot'], "This fewshot model is not implemented!"
+                key = union_name[0] + '.' + fewshot_type
+                return model[key].from_pretrained(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
             else:
-                raise ValueError('This fewshot model is not implemented!')
-        else:
-            return SequenceClassification.from_pretrained(pretrained_model_name_or_path)
-    elif app_name.startswith("text_match"):
-        if user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSingleTowerTextMatch.from_pretrained(pretrained_model_name_or_path, **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSingleTowerTextMatch.from_pretrained(pretrained_model_name_or_path, **kwargs)
-            else:
-                raise ValueError('This fewshot model is not implemented!')
-        else:
-            return TextMatch.from_pretrained(pretrained_model_name_or_path)
-    elif app_name.startswith("sequence_labeling"):
-        return SequenceLabeling.from_pretrained(pretrained_model_name_or_path)
-    elif app_name.startswith("geep_classify"):
-        return GEEPClassification.from_pretrained(pretrained_model_name_or_path,user_defined_parameters=user_defined_parameters, **kwargs)
-    # elif app_name.startswith("sequence_generation"):
-    #     return SequenceGeneration.from_pretrained(pretrained_model_name_or_path,user_defined_parameters)
-    else:
-        raise NotImplementedError("application model %s is not implemented" % app_name)
+                return model[union_name[0]].from_pretrained(pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, **kwargs)
+    raise NotImplementedError("application model %s is not implemented" % app_name)     
 
 
 def get_application_evaluator(app_name, valid_dataset, user_defined_parameters, **kwargs):
-    if app_name.startswith("text_classify"):
-        if user_defined_parameters.get('app_parameters', False).get('multi_label', False) is True:
-            return SequenceMultiLabelClassificationEvaluator(valid_dataset=valid_dataset, **kwargs)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSequenceClassificationEvaluator(valid_dataset=valid_dataset, **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSequenceClassificationEvaluator(valid_dataset=valid_dataset, **kwargs)
+    for name, evaluator in Evaluator_Mapping.items():
+        if app_name.startswith(name):
+            if type(evaluator) != dict:
+                return evaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
+            app_parameters = user_defined_parameters.get('app_parameters')
+            evaluator_keys = set([key.split('.')[0] for key in evaluator.keys()])
+            union_name = list(evaluator_keys & set(app_parameters.keys()))
+            assert len(union_name) <= 1, "Only one evaluator can be invoked, but more than one is specified in the app_parameters!"
+            if len(union_name) == 0:
+                return evaluator['others'](valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
+            elif union_name[0] == 'enable_fewshot':
+                fewshot_type = app_parameters.get('type')
+                assert fewshot_type in ['pet_fewshot', 'cpt_fewshot'], "This fewshot evaluator is not implemented!"
+                key = union_name[0] + '.' + fewshot_type
+                return evaluator[key](valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
             else:
-                raise ValueError('This fewshot model is not implemented!')
-        else:
-            return SequenceClassificationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("text_match"):
-        if user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSingleTowerTextMatchEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSingleTowerTextMatchEvaluator(valid_dataset=valid_dataset, **kwargs)
-            else:
-                raise ValueError('This fewshot model is not implemented!')
-        else:
-            return TextMatchEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("sequence_labeling"):
-        return SequenceLabelingEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("language_modeling"):
-        return LanguageModelingEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-    elif app_name.startswith("geep_classify"):
-        return GEEPClassificationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-    # elif app_name.startswith("sequence_generation"):
-    #     return SequenceGenerationEvaluator(valid_dataset=valid_dataset, **kwargs)
-    else:
-        raise NotImplementedError("application evaluator %s is not implemented" % app_name)
+                return evaluator[union_name[0]](valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
+    raise NotImplementedError("application evaluator %s is not implemented" % app_name)  
 
 
 def get_application_predictor(app_name, model_dir, user_defined_parameters, **kwargs):
-    if app_name.startswith("text_classify"):
-        if user_defined_parameters == 'None':
-            return SequenceClassificationPredictor(model_dir=model_dir,
-                                                model_cls=SequenceClassification,
-                                                **kwargs)
-        elif user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-            few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-            if few_shot_model_name == 'pet_fewshot':
-                return FewshotSequenceClassificationPredictor(model_dir=model_dir,
-                                                            model_cls=FewshotSequenceClassification,
-                                                            user_defined_parameters=user_defined_parameters,
-                                                            **kwargs)
-            elif few_shot_model_name == 'cpt_fewshot':
-                return CptFewshotSequenceClassificationPredictor(model_dir=model_dir,
-                                                            model_cls=CptFewshotSequenceClassification,
-                                                            user_defined_parameters=user_defined_parameters,
-                                                            **kwargs)
+    for name, predictor in Predictor_Mapping.items():
+        if app_name.startswith(name):
+            if type(predictor) != dict:
+                return predictor[0](model_dir=model_dir, model_cls=predictor[1],
+                                user_defined_parameters=user_defined_parameters, **kwargs)
+            app_parameters = user_defined_parameters.get('app_parameters')
+            predictor_keys = set([key.split('.')[0] for key in predictor.keys()])
+            union_name = list(predictor_keys & set(app_parameters.keys()))
+            assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
+            if len(union_name) == 0:
+                return predictor['others'][0](model_dir=model_dir, model_cls=predictor['others'][1],
+                                        user_defined_parameters=user_defined_parameters, **kwargs)
+            elif union_name[0] == 'enable_fewshot':
+                fewshot_type = app_parameters.get('type')
+                assert fewshot_type in ['pet_fewshot', 'cpt_fewshot'], "This fewshot predictor is not implemented!"
+                key = union_name[0] + '.' + fewshot_type
+                return predictor[key][0](model_dir=model_dir, model_cls=predictor[key][1],
+                                        user_defined_parameters=user_defined_parameters, **kwargs)
             else:
-                raise ValueError("This fewshot model is not implemented!")
-        else:
-            return SequenceClassificationPredictor(model_dir=model_dir,
-                                                model_cls=SequenceClassification,
-                                                **kwargs)
-    elif app_name.startswith("text_match"):
-        if user_defined_parameters.get('app_parameters', False).get('two_tower', False) is True:
-            return TextMatchTwoTowerPredictor(model_dir=model_dir, model_cls=TextMatchTwoTower, **kwargs)
-        else:
-            if user_defined_parameters.get('app_parameters', False).get('enable_fewshot', False) is True:
-                few_shot_model_name = user_defined_parameters.get('app_parameters').get('type')
-                if few_shot_model_name == 'pet_fewshot':
-                    return FewshotSingleTowerTextMatchPredictor(model_dir=model_dir,
-                                                                model_cls=FewshotSequenceClassification,
-                                                                user_defined_parameters=user_defined_parameters,
-                                                                **kwargs)
-                elif few_shot_model_name == 'cpt_fewshot':
-                    return CptFewshotSingleTowerTextMatchPredictor(model_dir=model_dir,
-                                                                model_cls=CptFewshotSequenceClassification,
-                                                                user_defined_parameters=user_defined_parameters,
-                                                                **kwargs)
-                else:
-                    raise ValueError("This fewshot model is not implemented!")
-            else:
-                return TextMatchPredictor(model_dir=model_dir, model_cls=TextMatch, **kwargs)
-    elif app_name.startswith("sequence_labeling"):
-        return SequenceLabelingPredictor(model_dir=model_dir, model_cls=SequenceLabeling, **kwargs)
-    elif app_name.startswith("vectorization"):
-        return FeatureVectorizationPredictor(model_dir=model_dir,
-                                             model_cls=FeatureVectorization,
-                                             **kwargs)
-    elif app_name.startswith('data_augmentation'):
+                return predictor[union_name[0]][0](model_dir=model_dir, model_cls=predictor[union_name[0]][1],
+                                                    user_defined_parameters=user_defined_parameters, **kwargs)
+    raise NotImplementedError("application predictor %s is not implemented" % app_name)
 
-        return DataAugmentationPredictor(model_dir=model_dir,
-                                         model_cls=DataAugmentation,
-                                         user_defined_parameters=user_defined_parameters,
-                                         **kwargs)
-    elif app_name.startswith("geep_classify"):
-        return GEEPClassificationPredictor(model_dir=model_dir, model_cls=GEEPClassification, user_defined_parameters=user_defined_parameters,**kwargs)
-    # elif app_name.startswith("sequence_generation"):
-    #     return SequenceGenerationPredictor(model_dir=model_dir, model_cls=SequenceGeneration, user_defined_parameters=user_defined_parameters,**kwargs)
-
-    else:
-        raise NotImplementedError("application predictor %s is not implemented" % app_name)
 
 def default_main_fn():
     start_time = time.time()
@@ -453,6 +366,7 @@ def default_main_fn():
     if args.mode != 'train' and args.checkpoint_dir:
         args.pretrained_model_name_or_path = args.checkpoint_dir
 
+    multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
     valid_dataset = get_application_dataset(
         app_name=args.app_name,
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
@@ -465,6 +379,7 @@ def default_main_fn():
         label_name=args.label_name,
         label_enumerate_values=args.label_enumerate_values,
         user_defined_parameters=user_defined_parameters,
+        multi_label=multi_label,
         is_training=False)
 
     # pretrained_model_name_or_path = args.pretrained_model_name_or_path \
@@ -489,6 +404,7 @@ def default_main_fn():
             label_name=args.label_name,
             label_enumerate_values=args.label_enumerate_values,
             user_defined_parameters=user_defined_parameters,
+            multi_label=multi_label,
             is_training=True)
 
         evaluator = get_application_evaluator(app_name=args.app_name,
