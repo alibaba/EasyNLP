@@ -7,10 +7,10 @@ packaging
 regex
 sacremoses
 scikit-learn
-scipy==1.5.4
+scipy>=1.5.4
 sentencepiece
 tensorboard
 tokenizers==0.10.1
-torch==1.8.1
+torch>=1.8.0, <1.10
 rouge
 tqdm
