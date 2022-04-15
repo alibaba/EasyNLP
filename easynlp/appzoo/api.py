@@ -414,17 +414,12 @@ def default_main_fn():
                                               user_defined_parameters=user_defined_parameters)
         enable_distillation = user_defined_parameters.get('app_parameters', False).get('enable_distillation', False)
         # Training
-        if enable_distillation:
-            trainer = DistillatoryTrainer(model=model,
-                                          train_dataset=train_dataset,
-                                          user_defined_parameters=user_defined_parameters,
-                                          evaluator=evaluator)
-        else:
-            trainer = Trainer(model=model,
-                              train_dataset=train_dataset,
-                              user_defined_parameters=user_defined_parameters,
-                              evaluator=evaluator)
-
+        default_trainer = DistillatoryTrainer if enable_distillation else Trainer
+        trainer = default_trainer(model=model,
+                                train_dataset=train_dataset,
+                                user_defined_parameters=user_defined_parameters,
+                                evaluator=evaluator)
+        
         if args.save_checkpoint_steps is None:
             args.save_checkpoint_steps = trainer._optimizer.total_training_steps // args.epoch_num
         trainer.train()
