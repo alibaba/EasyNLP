@@ -38,7 +38,7 @@ class Application(nn.Module):
         raise NotImplementedError
 
     @classmethod
-    def from_pretrained(cls, pretrained_model_name_or_path):
+    def from_pretrained(cls, pretrained_model_name_or_path, **kwargs):
         # Instantiate model.
         if "modelzoo" in pretrained_model_name_or_path:
             return cls(pretrained_model_name_or_path)

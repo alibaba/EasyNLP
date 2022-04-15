@@ -17,48 +17,60 @@ from typing import TYPE_CHECKING
 from ..modelzoo.file_utils import _BaseLazyModule
 
 _import_structure = {
-    "sequence_classification.model": ["SequenceClassification", "SequenceMultiLabelClassification"],
+    "sequence_classification.model": ["SequenceClassification", "SequenceMultiLabelClassification", "DistillatorySequenceClassification", "FewshotSequenceClassification", "CptFewshotSequenceClassification"],
     "sequence_labeling.model": ['SequenceLabeling'],
     "language_modeling.model": ['LanguageModeling'],
     "feature_vectorization.model": ['FeatureVectorization'],
-    "text_match.model": ['TextMatch', 'TextMatchTwoTower'],
+    "text_match.model": ['TextMatch', 'TextMatchTwoTower', 'DistillatoryTextMatch', 'FewshotSingleTowerTextMatch', 'CptFewshotSingleTowerTextMatch'],
+    "data_augmentation.model": ["DataAugmentation"],
+    "geep_classification.model": ["GEEPClassification"],
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
     "language_modeling.evaluator": ['LanguageModelingEvaluator'],
     "text_match.evaluator": ['TextMatchEvaluator'],
-    "sequence_classification.predictor": ['SequenceClassificationPredictor'],
+    "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
+    "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
     "feature_vectorization.predictor": ['FeatureVectorizationPredictor'],
-    "text_match.predictor": ['TextMatchPredictor'],
-    "sequence_classification.data": ['ClassificationDataset'],
+    "text_match.predictor": ['TextMatchPredictor', 'TextMatchTwoTowerPredictor', 'FewshotSingleTowerTextMatchPredictor', 'CptFewshotSingleTowerTextMatchPredictor'],
+    "data_augmentation.predictor": ['DataAugmentationPredictor'],
+    "geep_classification.predictor": ['GEEPClassificationPredictor'],
+
+    "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
-    "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset'],
-    "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation'],
-    "api": ['get_application_evaluator', 'get_application_predictor'],
+    "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
+    "geep_classification.data": ['GEEPClassificationDataset'],
+    "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
 
 if TYPE_CHECKING:
-    from .sequence_classification.model import SequenceClassification, SequenceMultiLabelClassification
+    from .sequence_classification.model import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
     from .sequence_labeling.model import SequenceLabeling
     from .language_modeling.model import LanguageModeling
     from .feature_vectorization.model import FeatureVectorization
-    from .text_match.model import TextMatch, TextMatchTwoTower
+    from .text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
+    from .data_augmentation.model import DataAugmentation
+    from .geep_classification.model import GEEPClassification
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
     from .language_modeling.evaluator import LanguageModelingEvaluator
     from .text_match.evaluator import TextMatchEvaluator
+    from .geep_classification.evaluator import GEEPClassificationEvaluator
 
-    from .sequence_classification.predictor import SequenceClassificationPredictor
+    from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
     from .feature_vectorization.predictor import FeatureVectorizationPredictor
-    from .text_match.predictor import TextMatchPredictor
+    from .text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
+    from .data_augmentation.predictor import DataAugmentationPredictor
+    from .geep_classification.predictor import GEEPClassificationPredictor
 
-    from .sequence_classification.data import ClassificationDataset
+    from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset
     from .language_modeling.data import LanguageModelingDataset
-    from .text_match.data import TwoTowerDataset, SingleTowerDataset
+    from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
+    from .geep_classification.data import GEEPClassificationDataset
 
     from .api import get_application_dataset, get_application_model, get_application_model_for_evaluation
     from .api import get_application_evaluator, get_application_predictor
