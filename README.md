@@ -134,6 +134,7 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 - [知识蒸馏实践](https://www.yuque.com/easyx/easynlp/ffu6p9)
 - [跨任务知识蒸馏实践](https://www.yuque.com/easyx/easynlp/izbfqt)
 - [小样本学习实践](https://www.yuque.com/easyx/easynlp/ochmnf)
+- [Rapidformer模型训练加速实践](https://www.yuque.com/easyx/easynlp/bi6nzc)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
 # License
