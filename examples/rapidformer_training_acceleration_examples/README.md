@@ -22,8 +22,7 @@ limitations under the License.
     <br>
 <p>
 
-## Easy to integrate with No Trainer code
-Here is an example:
+## Easy to integrate with No Trainer code, Below is an example:
 
 ```diff
   import torch
@@ -94,51 +93,59 @@ Here is an example:
 
 As you can see in this example, by adding 5-lines to any standard PyTorch training script you can now run on any kind of single or distributed node setting as well as with mixed precision (fp16), zero optimizer or other accelerate tricks.
 
+## Leveraging rapidformer preTrainer & finetuner to accelerate your training process.
 
-## Simple and easily customisable Trainer for acceleration
+### Accererating pretraining for easynlp models, below is code template, you can find more details in [rf_pretrain_easynlp_bert.py](rf_pretrain_easynlp_bert.py).
+
 ```python
-from datasets import load_dataset, load_metric
-from transformers import (
-    AutoModelForSequenceClassification,
-    AutoTokenizer
-)
+from rapidformer import RapidformerEngine, PreTrainer
 
-from rapidformer import HuggingFaceTrainer, RapidformerEngine
-
+class EasyNLPRoBertaPreTrainer(PreTrainer):
+    
+    def train_valid_test_datasets_provider(self):
+        pass
+    
+    def model_optimizer_lr_scheduler_provider(self):
+        pass
+    
+    def run_forward_step(self, batch, model):
+        pass
+    
+if __name__ == "__main__":
     engine = RapidformerEngine()
-
-    tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
-    datasets = load_dataset("glue", "mrpc")
-    metric = load_metric("glue", "mrpc")
-
-    def tokenize_function(examples):
-        # max_length=None => use the model max length (it's actually the default)
-        outputs = tokenizer(examples["sentence1"], examples["sentence2"], truncation=True, max_length=None)
-        return outputs
-
-    # Apply the method we just defined to all the examples in all the splits of the dataset
-    tokenized_datasets = datasets.map(
-        tokenize_function,
-        batched=True,
-        remove_columns=["idx", "sentence1", "sentence2"],
-    )
-    tokenized_datasets.rename_column_("label", "labels")
-
-    model = AutoModelForSequenceClassification.from_pretrained("bert-base-cased", return_dict=True)
-
-    def collate_fn(examples):
-        return tokenizer.pad(examples, padding="longest", return_tensors="pt")
-
-    trainer = HuggingFaceTrainer(
-        engine=engine,
-        model=model,
-        train_dataset=tokenized_datasets["train"],
-        eval_dataset=tokenized_datasets['validation'],
-        compute_metrics=metric,
-        data_collator=collate_fn
-    )
-
+    trainer = EasyNLPRoBertaPreTrainer(engine=engine)
     trainer.train()
-        
+
+```
+
+### Editing speedup arguments such as mixed_precision training or zero optimizer in script [run_pretrain_easynlp_bert.sh](run_pretrain_easynlp_bert.sh). you can fine more rapidformer configuration details in [Rapidformer Documents](https://help.aliyun.com/document_detail/406377.html).
+
+### After done that, just run your script on your GPU devices for distributed pretraining.
+```bash
+bash run_pretrain_easynlp_bert.sh
+```
+
+### Accererating finetuning is as simple as pretraining, below is the code template.  
+```python
+from rapidformer import RapidformerEngine, Finetuner
+
+class EasyNLPFintuner(Finetuner):
+    
+    def train_valid_test_datasets_provider(self):
+        pass
+    
+    def model_optimizer_lr_scheduler_provider(self):
+        pass
+    
+    def run_forward_step(self, batch, model):
+        pass
+    
+    def run_compute_metrics(self, model, eval_dataloader):
+        pass
+
+if __name__ == "__main__":
+    engine = RapidformerEngine()
+    trainer = EasyNLPFintuner(engine=engine)
+    trainer.train()
 
 ```
