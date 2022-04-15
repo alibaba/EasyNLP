@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-# 🤗 Rapidformer was created for PyTorch users who want to simply use accleration tricks powerd by DeepSpeed and Megatron.
+# Rapidformer was created for PyTorch users who want to simply use accleration tricks powerd by DeepSpeed and Megatron.
 
 <p align="center">
     <br>

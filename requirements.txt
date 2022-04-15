@@ -1,0 +1,16 @@
+bs4
+filelock
+importlib_metadata==4.5
+jieba
+numpy
+packaging
+regex
+sacremoses
+scikit-learn
+scipy==1.5.4
+sentencepiece
+tensorboard
+tokenizers==0.10.1
+torch==1.8.1
+rouge
+tqdm

@@ -1,12 +1,12 @@
-# EasyNLP: An Easy-to-use NLP Toolkit
+# EasyNLP: A Comprehensive and Easy-to-use NLP Toolkit
 
 <p align="center">
     <br>
-    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649297935073-2fce0ec9-ec8c-490f-bc25-a8cf50d9918f.png" width="200"/>
+    <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649317417481-d20971cd-cd4f-4e29-8587-c342a128b762.png" width="200"/>
     <br>
 <p>
-
-<p align="center"> <b> EasyNLP is designed to make it easy to develp NLP applications. </b> </p>
+    
+<p align="center"> <b> EasyNLP is a Comprehensive and Easy-to-use NLP Toolkit </b> </p>
 <p align="center">
     <a href="https://www.yuque.com/easyx/easynlp/iobg30">
         <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258840-bfe6302e-d934-409d-917c-8eab455675c1.svg" height="24">
@@ -16,18 +16,18 @@
     </a>
 </p>
 
-EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, first released inside Alibaba in 2021. It is built with scalable distributed training strategies, and supports a comprehensive suite of NLP algorithms for various NLP applications. EasyNLP integrates knowledge distillation and few-shot learning for landing large pre-trained models, and provides a unified framework of model training, inference, and deployment for real-world applications. It has powered more than 10 BUs and more than 20 business scenarios within the Alibaba group. It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, includeing PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-code model training.
+EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, first released inside Alibaba in 2021. It is built with scalable distributed training strategies and supports a comprehensive suite of NLP algorithms for various NLP applications. EasyNLP integrates knowledge distillation and few-shot learning for landing large pre-trained models and provides a unified framework of model training, inference, and deployment for real-world applications. It has powered more than 10 BUs and more than 20 business scenarios within the Alibaba group. It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-code model training.
 
 # Main Features
 
-- **Easy to use and highly customizable:** In addition to providing easy-to-use and concise commands to call cutting-edge models, it also abstracts certain custom modules such as AppZoo and ModelZoo to make it easy to build NLP applications. It is equiped with the PAI PyTorch distributed training framework TorchAccelerator to speed up distributed training.
+- **Easy to use and highly customizable:** In addition to providing easy-to-use and concise commands to call cutting-edge models, it also abstracts certain custom modules such as AppZoo and ModelZoo to make it easy to build NLP applications. It is equipped with the PAI PyTorch distributed training framework TorchAccelerator to speed up distributed training.
 - **Compatible with open-source libraries:** EasyNLP has APIs to support the training of models from Huggingface/Transformers with the PAI distributed framework. It also supports the pre-trained models in [EasyTransfer](https://github.com/alibaba/EasyTransfer) ModelZoo.
-- **Knowledge-injected pre-training:** The PAI team has a lot of research on knowledge-injected pre-training, and builds a knowledge-injected model that wins the first place in the CCF knowledge pre-training competition. EasyNLP integrates these cutting-edge knowledge pre-trained models, including DKPLM and KGBERT.
-- **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to faciliate online deployment.
+- **Knowledge-injected pre-training:** The PAI team has a lot of research on knowledge-injected pre-training, and builds a knowledge-injected model that wins first place in the CCF knowledge pre-training competition. EasyNLP integrates these cutting-edge knowledge pre-trained models, including DKPLM and KGBERT.
+- **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to facilitate online deployment.
 
 # Installation
 
-You can either install from pip
+You can either install it from pip
 
 ```bash
 $ pip install pai-easynlp (to be released)
@@ -121,27 +121,32 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 
 # Tutorials
 
+- [自定义文本分类示例](https://www.yuque.com/easyx/easynlp/ds35qn)
+- [QuickStart-文本分类](https://www.yuque.com/easyx/easynlp/rxne07)
+- [QuickStart-PAI DSW](https://www.yuque.com/easyx/easynlp/gvat1o)
+- [QuickStart-MaxCompute/ODPS数据](https://www.yuque.com/easyx/easynlp/vdt5ze)
 - [AppZoo-文本向量化](https://www.yuque.com/easyx/easynlp/ts4czl)
 - [AppZoo-文本分类/匹配](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [AppZoo-GEEP文本分类](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [基础预训练实践](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [知识预训练实践](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [知识蒸馏实践](https://www.yuque.com/easyx/easynlp/vgbopy)
-- [小样本学习实践](https://www.yuque.com/easyx/easynlp/vgbopy)
+- [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/qkwqmb)
+- [AppZoo-GEEP文本分类](https://www.yuque.com/easyx/easynlp/lepm0q)
+- [基础预训练实践](https://www.yuque.com/easyx/easynlp/lm1a5t)
+- [知识预训练实践](https://www.yuque.com/easyx/easynlp/za7ywp)
+- [知识蒸馏实践](https://www.yuque.com/easyx/easynlp/ffu6p9)
+- [跨任务知识蒸馏实践](https://www.yuque.com/easyx/easynlp/izbfqt)
+- [小样本学习实践](https://www.yuque.com/easyx/easynlp/ochmnf)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
 # License
-This project licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
+This project is licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open-source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
 
 # ChangeLog
 
-- EasyNLP v0.0.3 was release in 01/04/2022. Please refer to [tag_v0.0.3](https://github.com/alibaba/EasyNLP/releases/tag/v0.0.3) for more details and history.
+- EasyNLP v0.0.3 was released in 01/04/2022. Please refer to [tag_v0.0.3](https://github.com/alibaba/EasyNLP/releases/tag/v0.0.3) for more details and history.
 
 
 # Contact Us
 
-Scan the following QR codes to join Dingtalk discussion group. The group discussions are most in Chinese, but English is also welcomed.
+Scan the following QR codes to join Dingtalk discussion group. The group discussions are mostly in Chinese, but English is also welcomed.
 
 <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649324662278-fe178523-6b14-4eff-8f50-7abbf468f751.png?x-oss-process=image%2Fresize%2Cw_357%2Climit_0" width="300"/>
 
