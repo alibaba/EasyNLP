@@ -127,7 +127,7 @@ EasyNLP provide few-shot learning and knowledge distillation to help land large 
 3. [CP-Tuning (from Alibaba PAI)](https://github.com/alibaba/EasyNLP/blob/master/examples/fewshot_learning/run_fewshot_cpt.sh): released with the paper [Making Pre-trained Language Models End-to-end Few-shot Learners with Contrastive Prompt Tuning](https://arxiv.org/pdf/2204.00166.pdf) by Ziyun Xu, Chengyu Wang, Minghui Qiu, Fuli Luo, Runxin Xu, Songfang Huang and Jun Huang.
 4. [Vanilla KD (from Alibaba PAI)](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation): distilling the logits of large BERT-style models to smaller ones.
 5. [Meta KD (from Alibaba PAI)](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation): released with the paper [Meta-KD: A Meta Knowledge Distillation Framework for Language Model Compression across Domains](https://aclanthology.org/2021.acl-long.236.pdf) by Haojie Pan, Chengyu Wang, Minghui Qiu, Yichang Zhang, Yaliang Li and Jun Huang.
-6. [Data Augmentation (from Alibaba PAI)](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation/test_data_aug.py): augmentating the data based on the MLM head of pre-trained language models.
+6. [Data Augmentation (from Alibaba PAI)](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation/test_data_aug.sh): augmentating the data based on the MLM head of pre-trained language models.
 
 # ModelZoo Model Architecture
 EasyNLP currently provides the following models in ModelZoo:
