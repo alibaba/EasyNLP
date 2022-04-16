@@ -27,3 +27,31 @@
 | roberta-base-en | L=12,H=768,A=12 |  |
 | roberta-large-en | L=24,H=1024,A=16 |  |
 
+# cli使用方式
+```bash
+$ easynlp \
+   --mode=train \
+   --worker_gpu=1 \
+   --tables=train.tsv,dev.tsv \
+   --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
+   --first_sequence=sent1 \
+   --label_name=label \
+   --label_enumerate_values=0,1 \
+   --checkpoint_dir=./classification_model \
+   --epoch_num=1  \
+   --sequence_length=128 \
+   --app_name=text_classify \
+   --user_defined_parameters='pretrain_model_name_or_path=bert-small-uncased'
+```
+
+# 代码使用方式
+
+```python
+args = initialize_easynlp()
+train_dataset = ClassificationDataset(xxx)
+model = SequenceClassification(pretrained_model_name_or_path='bert-small-uncased')
+Trainer(model=model,  train_dataset=train_dataset).train()
+```
+
+
+
