@@ -122,25 +122,26 @@ To learn more about the usage of AppZoo, please refer to our [documentation](htt
 # Landing Pre-trained Models
 EasyNLP provide few-shot learning and knowledge distillation to help land large pre-trained models.
 
-1. PET
-2. CP-Tuning
-3. Vanilla KD
-4. Meta KD
-5. Data Augmentation
+1. PET (from LMU Munich and Sulzer GmbH): released with the paper [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](https://aclanthology.org/2021.eacl-main.20.pdf) by Timo Schick and Hinrich Schutze. We have made some slight modifications to make the algorithm suitable for the Chinese language.
+2. P-Tuning (from Tsinghua University, Beijing Academy of Artificial Intelligence, Massachusetts Institute of Technology and Recurrent AI, Ltd.): released with the paper [GPT Understands, Too](https://arxiv.org/pdf/2103.10385.pdf) by Xiao Liu, Yanan Zheng, Zhengxiao Du, Ming Ding, Yujie Qian, Zhilin Yang and Jie Tang. We have made some slight modifications to make the algorithm suitable for the Chinese language.
+3. CP-Tuning (from Alibaba PAI): released with the paper [Making Pre-trained Language Models End-to-end Few-shot Learners with Contrastive Prompt Tuning](https://arxiv.org/pdf/2204.00166.pdf) by Ziyun Xu, Chengyu Wang, Minghui Qiu1, Fuli Luo, Runxin Xu, Songfang Huang and Jun Huang.
+4. Vanilla KD (from Alibaba PAI): distilling the logits of large BERT-style models to smaller ones.
+5. Meta KD (from Alibaba PAI): released with the paper [Meta-KD: A Meta Knowledge Distillation Framework for Language Model Compression across Domains](https://aclanthology.org/2021.acl-long.236.pdf) by Haojie Pan, Chengyu Wang, Minghui Qiu, Yichang Zhang, Yaliang Li and Jun Huang.
+6. Data Augmentation (from Alibaba PAI): augmentating the data based on the MLM head of pre-trained language models.
 
 # ModelZoo Model Architecture
 EasyNLP currently provides the following models in ModelZoo:
 
-1. PAI-BERT-zh (from Alibaba PAI): pretrain BERT with a large Chinese corpus
-1. DKPLM (from Alibaba PAI): pretrain BERT with Decomposable Knowledge
-1. KGBERT (from Alibaba): pretrain BERT with Knowledge
-1. BERT (from Google): Original BERT
-1. RoBERTa (from Facebook)
-1. Chinese RoBERTa (from HFL)
-1. MacBERT (from HFL)
-1. WOBERT 
-1. FashionBERT (from Alibaba PAI): In progress.
-1. GEEP (from Alibaba PAI): In progress.
+1. PAI-BERT-zh (from Alibaba PAI): pre-trained BERT models with a large Chinese corpus.
+2. DKPLM (from Alibaba PAI): released with the paper [DKPLM: Decomposable Knowledge-enhanced Pre-trained Language Model for Natural Language Understanding](https://arxiv.org/pdf/2112.01047.pdf) by Taolin Zhang, Chengyu Wang, Nan Hu, Minghui Qiu, Chengguang Tang, Xiaofeng He and Jun Huang.
+3. KGBERT (from Alibaba): pre-train BERT models with knowledge graph embeddings injected.
+4. BERT (from Google): released with the paper [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://aclanthology.org/N19-1423.pdf) by Jacob Devlin, Ming-Wei Chang, Kenton Lee and Kristina Toutanova.
+5. RoBERTa (from Facebook): released with the paper [RoBERTa: A Robustly Optimized BERT Pretraining Approach](https://arxiv.org/pdf/1907.11692.pdf) by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer and Veselin Stoyanov.
+6. Chinese RoBERTa (from HFL): the Chinese version of RoBERTa.
+7. MacBERT (from HFL): released with the paper [Revisiting Pre-trained Models for Chinese Natural Language Processing](https://aclanthology.org/2020.findings-emnlp.58.pdf) by Yiming Cui, Wanxiang Che, Ting Liu, Bing Qin, Shijin Wang and Guoping Hu.
+8. WOBERT (from ZhuiyiTechnology): the word-based BERT for the Chinese language.
+9. FashionBERT (from Alibaba PAI): In progress.
+10. GEEP (from Alibaba PAI): In progress.
 
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
