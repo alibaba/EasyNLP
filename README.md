@@ -119,6 +119,32 @@ $ easynlp \
 
 To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/psm6fr).
 
+# Landing Pre-trained Models
+EasyNLP provide few-shot learning and knowledge distillation to help land large pre-trained models.
+
+1. PET
+2. CP-Tuning
+3. Vanilla KD
+4. Meta KD
+5. Data Augmentation
+
+# ModelZoo Model Architecture
+EasyNLP currently provides the following models in ModelZoo:
+
+1. PAI-BERT-zh (from Alibaba PAI): pretrain BERT with a large Chinese corpus
+1. DKPLM (from Alibaba PAI): pretrain BERT with Decomposable Knowledge
+1. KGBERT (from Alibaba): pretrain BERT with Knowledge
+1. BERT (from Google): Original BERT
+1. RoBERTa (from Facebook)
+1. Chinese RoBERTa (from HFL)
+1. MacBERT (from HFL)
+1. WOBERT 
+1. FashionBERT (from Alibaba PAI): In progress.
+1. GEEP (from Alibaba PAI): In progress.
+
+Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
+Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
+
 # Tutorials
 
 - [自定义文本分类示例](https://www.yuque.com/easyx/easynlp/ds35qn)
