@@ -19,6 +19,7 @@ import os
 import sys
 import time
 from ast import literal_eval
+from matplotlib.pyplot import text
 
 import torch
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
@@ -404,6 +405,7 @@ class Trainer(object):
         with io.open(output_config_file, 'w') as f:
             f.write(self.model_module.config.to_json_string())
 
+        '''
         # Save vocab.txt
         if os.path.exists(
                 os.path.join(
@@ -448,6 +450,7 @@ class Trainer(object):
                 spiece_path,
                 os.path.join(get_dir_name(self.args.checkpoint_dir),
                              'spiece.model'))
+        '''
 
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
@@ -523,9 +526,12 @@ class Trainer(object):
                             for key, val in batch.items()
                         }
 
-                    label_ids = batch.pop('label_ids')
+                    # label_ids = batch.pop('label_ids')
+                    # with self.autocast_context_manager():
+                    #     forward_outputs = self._model(batch)
+                    # todo: split vqgan and mingpt, preprocess label_ids in data.py 
                     with self.autocast_context_manager():
-                        forward_outputs = self._model(batch)
+                        forward_outputs, label_ids = self._model(batch)
                         if batch.get('insert_know_labels') is not None:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids,
