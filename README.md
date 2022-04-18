@@ -117,7 +117,7 @@ $ easynlp \
   --app_name=text_classify
 ```
 
-To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/psm6fr).
+To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/kkhkai).
 
 # ModelZoo
 EasyNLP currently provides the following models in ModelZoo:
