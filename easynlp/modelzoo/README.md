@@ -26,6 +26,9 @@
 | hfl/chinese-roberta-wwm-ext-large | L=24,H=1024,A=16 |  |
 | roberta-base-en | L=12,H=768,A=12 |  |
 | roberta-large-en | L=24,H=1024,A=16 |  |
+| **MacBERT** |  |  |
+| hfl/macbert-base-zh | L=12,H=768,A=12 |  |
+| hfl/macbert-large-zh | L=24,H=1024,A=16 |  |
 
 # cli使用方式
 ```bash
