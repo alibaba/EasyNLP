@@ -14,7 +14,7 @@ class flickr30k_train(Dataset):
         image_root (string): Root directory of images (e.g. flickr30k/)
         ann_root (string): directory to store the annotation file
         '''        
-        url = 'https://storage.googleapis.com/sfr-vision-language-research/datasets/flickr30k_train.json'
+        url = 'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/blip/flickr30k/annotation/flickr30k_train.json'
         download_url(url,ann_root)
         
         self.annotation = json.load(open(os.path.join(ann_root,filename),'r'))
@@ -54,8 +54,8 @@ class flickr30k_retrieval_eval(Dataset):
         ann_root (string): directory to store the annotation file
         split (string): val or test
         '''
-        urls = {'val':'https://storage.googleapis.com/sfr-vision-language-research/datasets/flickr30k_val.json',
-                'test':'https://storage.googleapis.com/sfr-vision-language-research/datasets/flickr30k_test.json'}        
+        urls = {'val':'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/blip/flickr30k/annotation/flickr30k_val.json',
+                'test':'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/blip/flickr30k/annotation/flickr30k_test.json'}        
         download_url(urls[split],ann_root)
         
         self.annotation = json.load(open(os.path.join(ann_root, filename),'r'))
