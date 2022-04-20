@@ -15,7 +15,7 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS train_retrieval.py \
     --train_file='flickr30k_train.json' \
     --val_file='flickr30k_val.json' \
     --test_file='flickr30k_test.json' \
-    --pretrained='http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/blip/pretrained/model_large_retrieval_flickr.pth' \
+    --pretrained='http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/blip/pretrained/model_base_retrieval_flickr.pth' \
     --vit='base' \
     --batch_size_train=32 \
     --batch_size_test=64 \
