@@ -130,7 +130,7 @@ EasyNLP currently provides the following models in ModelZoo:
 6. Chinese RoBERTa (from HFL): the Chinese version of RoBERTa.
 7. MacBERT (from HFL): released with the paper [Revisiting Pre-trained Models for Chinese Natural Language Processing](https://aclanthology.org/2020.findings-emnlp.58.pdf) by Yiming Cui, Wanxiang Che, Ting Liu, Bing Qin, Shijin Wang and Guoping Hu.
 8. WOBERT (from ZhuiyiTechnology): the word-based BERT for the Chinese language.
-9. FashionBERT (from Alibaba PAI): in progress.
+9. FashionBERT (from Alibaba PAI & ICBU): in progress.
 10. GEEP (from Alibaba PAI): in progress.
 
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
