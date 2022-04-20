@@ -212,7 +212,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'text_match', 'text_match_two_tower',
                            'vectorization', 'language_modeling',
                            'sequence_labeling', 'data_augmentation',
-                           'sequence_generation', 'geep_classify'
+                           'sequence_generation', 'geep_classify', 'clip'
                        ],
                        help='name of the application')
 
