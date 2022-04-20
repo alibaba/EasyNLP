@@ -50,6 +50,9 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS ../examples/application_tut
     '
 ```
 
+
+## Reference
+
 If you use this code, please help to cite the paper. Thanks.
 
 ```
