@@ -13,15 +13,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ast import literal_eval
+
+import os
+
 from typing import List
 import numpy as np
 import torch
 import torch.distributed as dist
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, dataset
 
-from ..utils import io, parse_row_by_schema
+from datasets import load_dataset as hf_load_dataset
+from ast import literal_eval
+
+from ..utils import io, parse_row_by_schema, get_dir_name
 from ..utils.logger import logger
+from ..modelzoo import AutoTokenizer
 
 
 class BaseDataset(Dataset):
@@ -282,3 +288,96 @@ class BaseDataset(Dataset):
         rst_schema = ",".join(col_with_schemas)
         print("Input Schema: ", rst_schema)
         return rst_schema
+
+class DataProcessor(Dataset):
+    def __init__(self, 
+                 datasets:dataset, 
+                 pretrained_model_name_or_path:str,
+                 max_seq_length:int,
+                 sentence_col_names:str=None,
+                 label_col_name:str=None,
+                 label_enumerate_value:str=None,
+                 ) -> None:
+        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+        self.max_seq_length = max_seq_length
+        self.sent1 = self.sent2 = self.label_col_name = self.num_label = self.label_enumerate_value \
+            = self.label_mapping = None
+        # Loaded data is from huggingface or EASYNLP
+        dataset_info = getattr(datasets, "info", None)
+        assert dataset_info is not None, "DataProcessor supports only huggingface_datasets input."
+        self.data_sourse = "hub" if dataset_info.description != "" else "user"
+        self.datasets = datasets
+        if self.data_sourse == "hub":
+            data_features = dataset_info.features
+            feature_list = list(data_features)
+            self.sent1 = feature_list[0]
+            if feature_list[1] != "label":
+                self.sent2 = feature_list[1]
+            else:
+                self.sent2 = None
+            self.label_col_name = "label"
+            self.num_label = data_features["label"].num_classes
+            self.label_enumerate_value = data_features["label"].names
+            self.label_mapping = {label: i for i, label in enumerate(self.label_enumerate_value)}
+        # Loaded data is user-defined
+        else:
+            self.label_col_name = label_col_name.replace(" ", "")
+            assert self.label_col_name in datasets.features, f"Can't find the col name of {self.label_col_name}. \
+                When using a custom dataset, you need to specify all optional parameters"
+            sentence_col_name_list = sentence_col_names.replace(" ", "").split(",")
+            self.sent1 = sentence_col_name_list[0]
+            assert self.sent1 in datasets.features, f"Can't find the name of col name of {self.sent1}."
+            if len(sentence_col_name_list) != 1:
+                self.sent2 = sentence_col_name_list[1]
+                assert self.sent2 in datasets.features, f"Can't find the name of col name of {self.sent2}."
+            self.label_enumerate_value = label_enumerate_value.replace(" ", "").split(",")
+            self.num_label = len(self.label_enumerate_value)
+            self.label_mapping = {label: i for i, label in enumerate(self.label_enumerate_value)}
+            
+    def process(self):
+        encoded_dataset = self.datasets.map(self.convert_sentence_to_features, batched=True)
+        colums = [colum for colum in encoded_dataset.column_names if colum not in self.datasets.column_names]
+        encoded_dataset.set_format(type='torch', columns=colums)
+        return encoded_dataset
+    
+    def convert_sentence_to_features(self, datasets):
+        if self.sent2 is not None:
+            encoding =  self.tokenizer(datasets[self.sent1],
+                                  datasets[self.sent2],
+                                  truncation=True, 
+                                  padding='max_length',
+                                  max_length=self.max_seq_length)
+        else:
+            encoding = self.tokenizer(datasets[self.sent1],
+                            truncation=True, 
+                            padding='max_length',
+                            max_length=self.max_seq_length)
+    
+        # Adding extra data process
+        if self.data_sourse == "hub":
+            encoding["label_ids"] = datasets[self.label_col_name]
+        elif self.data_sourse == "user":
+            encoding["label_ids"] = [self.label_mapping[str(label)] for label in datasets[self.label_col_name]]
+        return encoding
+
+def load_dataset(path, name=None, data_files=None):
+    # Local Data
+    support_data_format = ["json", "csv", "text", "parquet"]
+    if data_files is not None and path in support_data_format:
+        return hf_load_dataset(path, data_files=data_files)
+    
+    # Huggingface data and Clue data
+    datahub_base_dir = os.path.join(os.environ["HOME"], ".easynlp", "datahub")
+    if not io.isdir(datahub_base_dir):
+            io.makedirs(datahub_base_dir)
+    assert io.isdir(datahub_base_dir), "%s is not a existing directory" % datahub_base_dir
+    data_script_dir = os.path.join(datahub_base_dir, path)
+    if not io.isdir(data_script_dir):
+            io.makedirs(data_script_dir)
+    if not io.exists(os.path.join(data_script_dir, f"{path}.py")):
+        remote_root = "https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/script/"
+        remote_url = os.path.join(remote_root, path, f"{path}.py")
+        os.system("wget " + remote_url + " -P " + get_dir_name(data_script_dir))
+    assert io.exists(os.path.join(data_script_dir, f"{path}.py"))
+    data = hf_load_dataset(data_script_dir, name)
+    return data
