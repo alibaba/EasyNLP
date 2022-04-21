@@ -15,6 +15,7 @@
 
 import sys
 import os
+import torch
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
 sys.path.append("./")
 sys.path.append("../")
@@ -27,6 +28,7 @@ from examples.benchmarks.clue.application import CLUEApp
 from examples.benchmarks.clue.utils import load_dataset
 from preprocess import tasks2processor
 
+
 if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
@@ -35,7 +37,7 @@ if __name__ == "__main__":
     print('log: starts to process user params...\n')
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
     if args.mode != 'train' and args.checkpoint_dir:
-        args.pretrained_model_name_or_path = args.checkpoint_dir
+        args.checkpoint_dir = args.pretrained_model_name_or_path
 
     print('pretrained_model_name_or_path', args.pretrained_model_name_or_path)
 
@@ -55,15 +57,7 @@ if __name__ == "__main__":
         preprocessor=preprocessor
     )
 
-    model = CLUEApp(
-        args=args,
-        task_name=task_name,
-        app_name=args.app_name,
-        pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-        user_defined_parameters=user_defined_parameters,
-        is_training=args.mode == "train",
-        num_labels=len(preprocessor.get_labels()),
-    )
+    model = CLUEApp.from_pretrained(args.checkpoint_dir)
 
     evaluator = get_application_evaluator(
         app_name=args.app_name,
@@ -71,12 +65,8 @@ if __name__ == "__main__":
         user_defined_parameters=user_defined_parameters,
         eval_batch_size=args.micro_batch_size
     )
-    # Training
-    trainer = Trainer(
-        model=model,
-        train_dataset=dataset["train"],
-        evaluator=evaluator
-    )
-    trainer.train()
+    # Evaluate
+    model.to(torch.cuda.current_device())
+    evaluator.evaluate(model=model)
 
 

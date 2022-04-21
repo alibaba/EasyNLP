@@ -15,27 +15,25 @@
 
 import sys
 import os
+import torch
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
 sys.path.append("./")
 sys.path.append("../")
 sys.path.append("../../")
 from easynlp.appzoo.api import get_application_evaluator
-from easynlp.core.trainer import Trainer
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
-from examples.benchmarks.clue.application import CLUEApp
+from examples.benchmarks.clue.application import CLUEApp, CLUEPredictor
 from examples.benchmarks.clue.utils import load_dataset
 from preprocess import tasks2processor
-
 if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
-    print('args.learning_rate=', args.learning_rate)
 
     print('log: starts to process user params...\n')
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
-    if args.mode != 'train' and args.checkpoint_dir:
-        args.pretrained_model_name_or_path = args.checkpoint_dir
+    if args.mode != 'train' and not args.checkpoint_dir:
+        args.checkpoint_dir = args.pretrained_model_name_or_path
 
     print('pretrained_model_name_or_path', args.pretrained_model_name_or_path)
 
@@ -44,15 +42,18 @@ if __name__ == "__main__":
     num_labels = int(user_defined_parameters.get("num_labels", 2))
     assert task_name in tasks2processor.keys()
 
+
     preprocessor = tasks2processor[task_name](
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-        max_seq_length=args.sequence_length
+        max_seq_length=args.sequence_length,
+        is_training=False,
     )
 
     dataset = load_dataset(
         clue_name=clue_name,
         task_name=task_name,
-        preprocessor=preprocessor
+        preprocessor=preprocessor,
+        is_training=False,
     )
 
     model = CLUEApp(
@@ -61,22 +62,21 @@ if __name__ == "__main__":
         app_name=args.app_name,
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         user_defined_parameters=user_defined_parameters,
-        is_training=args.mode == "train",
+        is_training=False,
         num_labels=len(preprocessor.get_labels()),
     )
 
-    evaluator = get_application_evaluator(
-        app_name=args.app_name,
-        valid_dataset=dataset["dev"],
-        user_defined_parameters=user_defined_parameters,
-        eval_batch_size=args.micro_batch_size
-    )
-    # Training
-    trainer = Trainer(
+    model.to(torch.cuda.current_device())
+
+    predictor = CLUEPredictor(
+        args=args,
         model=model,
-        train_dataset=dataset["train"],
-        evaluator=evaluator
+        task_name=task_name,
+        datatset=dataset["test"],
+        id2label=preprocessor.id2label
     )
-    trainer.train()
+
+    predictor.predict()
+
 
 
