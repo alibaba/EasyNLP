@@ -17,6 +17,7 @@ import torch
 import torch.nn as nn
 from ...modelzoo.models.roberta.modeling_roberta import RobertaModel
 from ...modelzoo.models.clip.modeling_clip import CLIPModel
+from ...modelzoo.models.clip.configuration_clip import CLIPConfig
 from ...modelzoo import AutoConfig
 from ...utils import losses, get_pretrain_model_path, get_args
 from ..application import Application
@@ -28,64 +29,50 @@ class MultiModal(Application):
 
     @classmethod
     def from_pretrained(self, pretrained_model_name_or_path, user_defined_parameters={},**kwargs):
-        instance=MultiModal(None,user_defined_parameters)
-        instance.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
-        instance.args = get_args()
-        pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
-        pretrained_model_name_or_path_vision = get_pretrain_model_path(user_defined_parameters['pretrain_model_name_or_path_vision'])
-        if not hasattr(user_defined_parameters,'mode'):
-            user_defined_parameters['mode']='finetune'
-        if user_defined_parameters['mode']=='finetune':
-            instance.clip = CLIPModel.from_pretrained(pretrained_model_name_or_path_vision) 
-            for param in instance.clip.parameters():
-                param.requires_grad = False
-        model_state_dict = torch.load(pretrained_model_name_or_path+'/pytorch_model.bin',
-                                            map_location=torch.device('cpu'))
-        instance.logit_scale = nn.Parameter(torch.ones([]) * model_state_dict['logit_scale'].item())
-        instance.text_projection = nn.Linear(1024, 768, bias=False)
-        instance.text_projection.weight.data=model_state_dict['text_projection.weight']
-        roberta_params={}
-        for key, value in model_state_dict.items():
-            if 'bertish.' in key:
-                key=key.replace('bertish.','')
-                roberta_params[key] = value
-        instance.bertish=RobertaModel.from_pretrained(pretrained_model_name_or_path,state_dict=roberta_params)
-        instance.bertish.train()
+        instance=MultiModal(pretrained_model_name_or_path,user_defined_parameters)
         return instance
 
     def pseudo_state_dict(self):
         verbose_dict=self._state_dict()
         not_clip_params={}
         for key, value in verbose_dict.items():
-            if 'clip.' not in key:
+            # print(key)
+            if 'clip.text_model' not in key:
                 not_clip_params[key] = value
         return not_clip_params
 
     def __init__(self, pretrained_model_name_or_path=None,user_defined_parameters=None, **kwargs):
         super().__init__()
         if pretrained_model_name_or_path is not None:
+            if not hasattr(user_defined_parameters,'mode'):
+                user_defined_parameters['mode']='finetune'
             self._state_dict=self.state_dict
             self.state_dict=self.pseudo_state_dict
             self.args = get_args()
             # 预训练模式从odps读取预生成的clip feature,finetune模式需要即时生成clip feature
             pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
-            pretrained_model_name_or_path_vision = get_pretrain_model_path(user_defined_parameters['pretrain_model_name_or_path_vision'])
-            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
-            roberta_model_state_dict = torch.load(pretrained_model_name_or_path+'/pytorch_model.bin',
+            all_model_state_dict = torch.load(pretrained_model_name_or_path+'/pytorch_model.bin',
                                             map_location=torch.device('cpu'))
             roberta_params={}
-            for key, value in roberta_model_state_dict.items():
+            clip_params={}
+            for key, value in all_model_state_dict.items():
                 if ('bert.' in key) or ('bertish.' in key):
                     key=key.replace('bert.','').replace('bertish.','')
                     roberta_params[key] = value
-            self.bertish=RobertaModel.from_pretrained(pretrained_model_name_or_path,state_dict=roberta_params)
+                if 'clip.' in key:
+                    clip_params[key] = value
+            if 'alibaba-pai' in pretrained_model_name_or_path:
+                text_config_path=pretrained_model_name_or_path+'/text_config.json'
+                self.config = AutoConfig.from_pretrained(text_config_path)
+            else:
+                self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            vision_config_path=get_pretrain_model_path('clip_chinese_roberta_large_with_vit_large')+'/vision_config.json'
+            self.bertish=RobertaModel.from_pretrained(pretrained_model_name_or_path,config=self.config,state_dict=roberta_params)
             self.bertish.train()
             self.text_projection = nn.Linear(1024, 768, bias=False)
             self.logit_scale = nn.Parameter(torch.ones([]) * 2.6592)
-            if not hasattr(user_defined_parameters,'mode'):
-                user_defined_parameters['mode']='finetune'
             if user_defined_parameters['mode']=='finetune':
-                self.clip = CLIPModel.from_pretrained(pretrained_model_name_or_path_vision) 
+                self.clip = CLIPModel.from_pretrained(pretrained_model_name_or_path,config=CLIPConfig.from_pretrained(vision_config_path),state_dict=clip_params) 
                 for param in self.clip.parameters():
                     param.requires_grad = False
 

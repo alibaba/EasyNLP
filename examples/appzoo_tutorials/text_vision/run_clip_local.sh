@@ -28,15 +28,15 @@ if [ "$mode" = "train" ]; then
   --second_sequence=image \
   --checkpoint_dir=./clip_model/ \
   --learning_rate=1e-4  \
-  --epoch_num=10  \
+  --epoch_num=1  \
   --random_seed=42 \
   --logging_steps=100 \
-  --save_checkpoint_steps 500 \
+  --save_checkpoint_steps 200 \
   --sequence_length=32 \
   --micro_batch_size=32 \
   --app_name=clip \
   --save_all_checkpoints \
-  --user_defined_parameters='pretrain_model_name_or_path=CLIP_chinese_roberta pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14 fix_vision=True mode=finetune'  
+  --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large fix_vision=True mode=finetune'  
   
 elif [ "$mode" = "evaluate" ]; then
   easynlp \
@@ -47,14 +47,12 @@ elif [ "$mode" = "evaluate" ]; then
   --first_sequence=text \
   --second_sequence=image \
   --checkpoint_dir=./clip_model/ \
-  --learning_rate=1e-4  \
   --random_seed=42 \
   --logging_steps=100 \
   --save_checkpoint_steps=500 \
   --sequence_length=32 \
   --micro_batch_size=32 \
-  --app_name=clip \
-  --user_defined_parameters='pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14'
+  --app_name=clip 
 
 elif [ "$mode" = "predict" ]; then
     easynlp \
@@ -66,14 +64,12 @@ elif [ "$mode" = "predict" ]; then
       --outputs ./text_feat.tsv \
       --first_sequence=text \
       --checkpoint_dir=./clip_model/ \
-      --learning_rate=1e-4  \
       --random_seed=42 \
       --logging_steps=100 \
       --save_checkpoint_steps=500 \
       --sequence_length=32 \
       --micro_batch_size=2 \
-      --app_name=clip \
-      --user_defined_parameters='pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14'
+      --app_name=clip 
 
 # elif [ "$mode" = "predict" ]; then
 #     easynlp \
@@ -85,13 +81,10 @@ elif [ "$mode" = "predict" ]; then
 #       --outputs ./image_feat.tsv \
 #       --first_sequence=image \
 #       --checkpoint_dir=./clip_model/ \
-#       --learning_rate=1e-4  \
 #       --random_seed=42 \
 #       --logging_steps=100 \
 #       --save_checkpoint_steps=500 \
 #       --sequence_length=32 \
 #       --micro_batch_size=2 \
-#       --app_name=clip \
-#       --user_defined_parameters='pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14'
-
+#       --app_name=clip 
 fi
