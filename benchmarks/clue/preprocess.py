@@ -1,9 +1,18 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2022/04/13 10:15 下午
-# @Author  : Jianing Wang
-# @File    : preprocess.py
-# !/usr/bin/env python
 # coding=utf-8
+# Copyright (c) 2020 Alibaba PAI team.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 from typing import Dict, Union, List
 from easynlp.appzoo.api import get_application_model, get_application_dataset, get_application_evaluator
@@ -260,7 +269,7 @@ class CslProcessor(DatasetPreprocessor):
     def get_column_name(self) -> Dict:
         if self.is_training:
             return {'text': ['abst'], 'candidate': ['keyword'], 'label': ['label'], 'other': ['id']}
-        return {'text': ['abst'], 'candidate': ['keyword'], 'other': ['id']}
+        return {'text': ['abst'], 'candidate': ['keyword'], 'other': []}
 
     def get_app_name(self) -> str:
         return "text_match"

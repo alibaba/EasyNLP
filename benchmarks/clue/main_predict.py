@@ -16,15 +16,15 @@
 import sys
 import os
 import torch
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
 sys.path.append("./")
 sys.path.append("../")
 sys.path.append("../../")
 from easynlp.appzoo.api import get_application_evaluator
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
-from examples.benchmarks.clue.application import CLUEApp, CLUEPredictor
-from examples.benchmarks.clue.utils import load_dataset
+from benchmarks.clue.application import CLUEApp, CLUEPredictor
+from benchmarks.clue.utils import load_dataset
 from preprocess import tasks2processor
 if __name__ == "__main__":
     initialize_easynlp()
@@ -32,8 +32,10 @@ if __name__ == "__main__":
 
     print('log: starts to process user params...\n')
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
-    if args.mode != 'train' and not args.checkpoint_dir:
-        args.checkpoint_dir = args.pretrained_model_name_or_path
+    if args.mode == "train" or not args.checkpoint_dir:
+        args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+    else:
+        args.pretrained_model_name_or_path = args.checkpoint_dir
 
     print('pretrained_model_name_or_path', args.pretrained_model_name_or_path)
 

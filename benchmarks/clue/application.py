@@ -1,3 +1,18 @@
+# coding=utf-8
+# Copyright (c) 2020 Alibaba PAI team.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 import sys
 import time
@@ -9,17 +24,11 @@ from tqdm import tqdm
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from torch.utils.data.distributed import DistributedSampler
 
-from ast import literal_eval
-from easynlp.appzoo.api import get_application_model, \
-    get_application_dataset, get_application_evaluator, \
-    get_application_model_for_evaluation, get_application_predictor
 from easynlp.appzoo.application import Application
-from easynlp.core.trainer import Trainer
-from easynlp.utils import (exporter, get_args, get_dir_name, get_pretrain_model_path,io, is_torchx_available)
 from easynlp.modelzoo import AutoConfig, AutoModel
 from easynlp.utils import losses
 from easynlp.utils.logger import logger
-from utils import CLUEDataset, DatasetPreprocessor
+from utils import CLUEDataset
 
 
 class CLUEApp(Application):
@@ -61,9 +70,8 @@ class CLUEApp(Application):
             self.load_state_dict(torch.load(os.path.join(self.args.checkpoint_dir, 'pytorch_model.bin')))
 
     def init_weights(self):
-        # self.classifier.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
-        # self.classifier.bias.data.zero_()
-        pass
+        self.classifier.weight.data.normal_(mean=0.0, std=self.config.initializer_range)
+        self.classifier.bias.data.zero_()
 
     def forward(self, inputs):
         outputs = self.backbone(**inputs)
@@ -179,10 +187,6 @@ class CLUEPredictor:
                     preds = np.append(preds, logits.detach().cpu().numpy(), axis=0)
         print(' ')
         predict_label = np.argmax(preds, axis=1)
-        # if args.output_mode == "classification":
-        #     predict_label = np.argmax(preds, axis=1)
-        # elif args.output_mode == "regression":
-        #     predict_label = np.squeeze(preds)
 
         if self.task_name == 'copa':
             predict_label = []
@@ -195,13 +199,10 @@ class CLUEPredictor:
                     predict_label.append(1)
                 i += 2
         output_submit_file = os.path.join(self.pred_output_dir, "test_prediction.json")
-        # output_logits_file = os.path.join(self.pred_output_dir, "test_logits")
-        # 保存标签结果
+        # save the predicted result
         with open(output_submit_file, "w") as writer:
             for i, pred in enumerate(predict_label):
                 json_d = {}
                 json_d['id'] = i
                 json_d['label'] = str(self.id2label[pred])
                 writer.write(json.dumps(json_d) + '\n')
-        # 保存中间预测结果
-        # save_numpy(file_path=output_logits_file, data=preds)

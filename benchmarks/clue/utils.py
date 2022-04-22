@@ -1,9 +1,18 @@
-# -*- coding: utf-8 -*-
-# @Time    : 2022/04/12 9:05 下午
-# @Author  : Jianing Wang
-# @File    : utils.py
-# !/usr/bin/env python
 # coding=utf-8
+# Copyright (c) 2020 Alibaba PAI team.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 import torch
 import numpy as np
@@ -162,7 +171,7 @@ def load_dataset(
         task_name: str = 'csl',
         is_training: bool = True,
 )-> CLUEDataset:
-    data_dir = os.path.join('examples/benchmarks', clue_name, "data/{}".format(task_name))
+    data_dir = os.path.join('benchmarks', clue_name, "data/{}".format(task_name))
     if task_name == "cmnli":
         data_dir = os.path.join(data_dir, "cmnli_public")
     data_files = {}
