@@ -46,7 +46,7 @@ We provide default hyper-parameters for each task, you can reset them by your se
 
 ### Results
 
-We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone we choose is bert-base-chinese
+We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone we choose is bert-base-chinese.
 The results of dev set can be found in the follow:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
