@@ -146,6 +146,15 @@ EasyNLP provide few-shot learning and knowledge distillation to help land large 
 5. [Meta KD](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation) (from Alibaba PAI): released with the paper [Meta-KD: A Meta Knowledge Distillation Framework for Language Model Compression across Domains](https://aclanthology.org/2021.acl-long.236.pdf) by Haojie Pan, Chengyu Wang, Minghui Qiu, Yichang Zhang, Yaliang Li and Jun Huang.
 6. [Data Augmentation](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation/test_data_aug.sh) (from Alibaba PAI): augmentating the data based on the MLM head of pre-trained language models.
 
+
+# [EasyNLP for CLUE Benchmark](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)
+
+
+Here is the [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)
+
+You can find more benchmarks in [https://www.yuque.com/easytransfer/cn/rkm4p7](https://www.yuque.com/easytransfer/itfpm9/rkm4p7)
+
+
 # Tutorials
 
 - [自定义文本分类示例](https://www.yuque.com/easyx/easynlp/ds35qn)
