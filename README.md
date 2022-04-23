@@ -149,7 +149,16 @@ EasyNLP provide few-shot learning and knowledge distillation to help land large 
 
 # [CLUE Benchmark](https://www.cluebenchmarks.com/)
 
-EasyNLP provides [a simple toolkit](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue) to benchmark clue datasets. You can use the script to achieve relatively good results on the leaderboard. Below we train a bert model (bert-base-chinese) on the datasets, the results of dev set are:
+EasyNLP provides [a simple toolkit](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue) to benchmark clue datasets. You can simply use just this command to benchmark CLUE dataset.
+
+```bash
+# Format: bash run_clue.sh device_id train/predict dataset
+# e.g.: 
+bash run_clue.sh 0 train csl
+```
+
+
+We've tested a bert model (bert-base-chinese) on the datasets, the results of dev set are:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
