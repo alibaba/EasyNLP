@@ -147,12 +147,17 @@ EasyNLP provide few-shot learning and knowledge distillation to help land large 
 6. [Data Augmentation](https://github.com/alibaba/EasyNLP/tree/master/examples/knowledge_distillation/test_data_aug.sh) (from Alibaba PAI): augmentating the data based on the MLM head of pre-trained language models.
 
 
-# [EasyNLP for CLUE Benchmark](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)
+# [CLUE Benchmark](https://www.cluebenchmarks.com/)
 
+We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone is bert-base-chinese.
+The results of dev set can be found in the follow:
 
-Here is the [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)
+| Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
+|------|--------|--------|--------|---------|--------|--------|--------|
+| P    | 72.17% | 79.10% | 80.93% | 60.22%  | 78.31% | 57.52% | 63.49% |
+| F1   | 52.96% | 79.10% | 81.71% | 60.22%  | 78.30% | 57.52% | 77.67% |
 
-You can find more benchmarks in [https://www.yuque.com/easytransfer/cn/rkm4p7](https://www.yuque.com/easytransfer/itfpm9/rkm4p7)
+Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)
 
 
 # Tutorials
