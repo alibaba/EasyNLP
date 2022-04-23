@@ -12,11 +12,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import os
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 import sys
-
+import os
+import torch
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7"
 sys.path.append("./")
 sys.path.append("../")
 sys.path.append("../../")
@@ -27,6 +27,7 @@ from easynlp.utils.global_vars import parse_user_defined_parameters
 from benchmarks.clue.application import CLUEApp
 from benchmarks.clue.utils import load_dataset
 from preprocess import tasks2processor
+
 
 if __name__ == "__main__":
     initialize_easynlp()
@@ -49,13 +50,13 @@ if __name__ == "__main__":
 
     preprocessor = tasks2processor[task_name](
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-        max_seq_length=args.sequence_length
+        max_seq_length=args.sequence_length,
     )
 
     dataset = load_dataset(
         clue_name=clue_name,
         task_name=task_name,
-        preprocessor=preprocessor
+        preprocessor=preprocessor,
     )
 
     model = CLUEApp(
@@ -64,9 +65,11 @@ if __name__ == "__main__":
         app_name=args.app_name,
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         user_defined_parameters=user_defined_parameters,
-        is_training=args.mode == "train",
+        is_training=False,
         num_labels=len(preprocessor.get_labels()),
     )
+
+    model.to(torch.cuda.current_device())
 
     evaluator = get_application_evaluator(
         app_name=args.app_name,
@@ -74,12 +77,7 @@ if __name__ == "__main__":
         user_defined_parameters=user_defined_parameters,
         eval_batch_size=args.micro_batch_size
     )
-    # Training
-    trainer = Trainer(
-        model=model,
-        train_dataset=dataset["train"],
-        evaluator=evaluator
-    )
-    trainer.train()
+
+    evaluator.evaluate(model=model)
 
 
