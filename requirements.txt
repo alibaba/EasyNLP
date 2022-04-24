@@ -14,3 +14,4 @@ tokenizers==0.10.1
 torch>=1.8.0, <1.10
 rouge
 tqdm
+pillow
