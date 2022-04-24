@@ -290,7 +290,7 @@ class BaseDataset(Dataset):
         print("Input Schema: ", rst_schema)
         return rst_schema
 
-# /root/.easynlp/modelzoo/bert-base-uncased
+
 class GeneralDataset(BaseDataset):
     def __init__(self, data_file, pretrained_model_name_or_path:str, max_seq_length:int):
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
@@ -365,7 +365,3 @@ def load_dataset(path, name=None, data_files=None):
     assert io.exists(os.path.join(data_script_dir, f"{path}.py"))
     data = hf_load_dataset(data_script_dir, name)
     return data
-
-class UserGeneralDataset(GeneralDataset):
-    def convert_single_row_to_example(self, row):
-        return super().convert_single_row_to_example(row)
