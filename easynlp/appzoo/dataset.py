@@ -21,6 +21,7 @@ import numpy as np
 import torch
 import torch.distributed as dist
 from torch.utils.data import Dataset, dataset
+from datasets import DatasetDict
 
 from datasets import load_dataset as hf_load_dataset
 from ast import literal_eval
@@ -289,77 +290,60 @@ class BaseDataset(Dataset):
         print("Input Schema: ", rst_schema)
         return rst_schema
 
-class DataProcessor(Dataset):
-    def __init__(self, 
-                 datasets:dataset, 
-                 pretrained_model_name_or_path:str,
-                 max_seq_length:int,
-                 sentence_col_names:str=None,
-                 label_col_name:str=None,
-                 label_enumerate_value:str=None,
-                 ) -> None:
+# /root/.easynlp/modelzoo/bert-base-uncased
+class GeneralDataset(BaseDataset):
+    def __init__(self, data_file, pretrained_model_name_or_path:str, max_seq_length:int):
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
         self.max_seq_length = max_seq_length
-        self.sent1 = self.sent2 = self.label_col_name = self.num_label = self.label_enumerate_value \
-            = self.label_mapping = None
-        # Loaded data is from huggingface or EASYNLP
-        dataset_info = getattr(datasets, "info", None)
-        assert dataset_info is not None, "DataProcessor supports only huggingface_datasets input."
-        self.data_sourse = "hub" if dataset_info.description != "" else "user"
-        self.datasets = datasets
-        if self.data_sourse == "hub":
+        self.first_sequence = self.second_sequence = self.label_name = self.num_label = self.label_enumerate_value \
+            = self.label_mapping = self.data_rows = None
+        # Required by BaseDataset
+        self.data_source = "local"
+        if type(data_file) != str:
+            dataset_info = getattr(data_file, "info", None)
             data_features = dataset_info.features
-            feature_list = list(data_features)
-            self.sent1 = feature_list[0]
-            if feature_list[1] != "label":
-                self.sent2 = feature_list[1]
-            else:
-                self.sent2 = None
-            self.label_col_name = "label"
+            self.column_names = list(data_file.features.keys())
+
+            self.data_rows = [data_file[i] for i in range(data_file.num_rows)]
+            self.first_sequence = self.column_names[0]
+
+            if self.column_names[1] != "label":
+                self.second_sequence = self.column_names[1]
+            self.label_name = "label"
             self.num_label = data_features["label"].num_classes
             self.label_enumerate_value = data_features["label"].names
-            self.label_mapping = {label: i for i, label in enumerate(self.label_enumerate_value)}
-        # Loaded data is user-defined
-        else:
-            self.label_col_name = label_col_name.replace(" ", "")
-            assert self.label_col_name in datasets.features, f"Can't find the col name of {self.label_col_name}. \
-                When using a custom dataset, you need to specify all optional parameters"
-            sentence_col_name_list = sentence_col_names.replace(" ", "").split(",")
-            self.sent1 = sentence_col_name_list[0]
-            assert self.sent1 in datasets.features, f"Can't find the name of col name of {self.sent1}."
-            if len(sentence_col_name_list) != 1:
-                self.sent2 = sentence_col_name_list[1]
-                assert self.sent2 in datasets.features, f"Can't find the name of col name of {self.sent2}."
-            self.label_enumerate_value = label_enumerate_value.replace(" ", "").split(",")
-            self.num_label = len(self.label_enumerate_value)
-            self.label_mapping = {label: i for i, label in enumerate(self.label_enumerate_value)}
-            
-    def process(self):
-        encoded_dataset = self.datasets.map(self.convert_sentence_to_features, batched=True)
-        colums = [colum for colum in encoded_dataset.column_names if colum not in self.datasets.column_names]
-        encoded_dataset.set_format(type='torch', columns=colums)
-        return encoded_dataset
+            self.label_map = {label: i for i, label in enumerate(self.label_enumerate_value)}
+
+    def __len__(self):
+        return len(self.data_rows)
     
-    def convert_sentence_to_features(self, datasets):
-        if self.sent2 is not None:
-            encoding =  self.tokenizer(datasets[self.sent1],
-                                  datasets[self.sent2],
-                                  truncation=True, 
+    def __getitem__(self, item):
+        row = self.data_rows[item]
+        return self.convert_single_row_to_example(row)
+
+    def convert_single_row_to_example(self, row):
+
+        text_a = row[self.first_sequence]
+        text_b = row[self.second_sequence] if self.second_sequence else None
+        label = row[self.label_name] if self.label_name else None
+
+        encoding = self.tokenizer(text_a,
+                                  text_b,
                                   padding='max_length',
+                                  truncation=True,
                                   max_length=self.max_seq_length)
+        if label in self.label_map.values():
+            encoding['label_ids'] = label
         else:
-            encoding = self.tokenizer(datasets[self.sent1],
-                            truncation=True, 
-                            padding='max_length',
-                            max_length=self.max_seq_length)
-    
-        # Adding extra data process
-        if self.data_sourse == "hub":
-            encoding["label_ids"] = datasets[self.label_col_name]
-        elif self.data_sourse == "user":
-            encoding["label_ids"] = [self.label_mapping[str(label)] for label in datasets[self.label_col_name]]
+            encoding['label_ids'] = self.label_map[label]
         return encoding
 
+    def batch_fn(self, features):
+        """
+            Divide examples into batches.
+        """
+        return {k: torch.tensor([dic[k] for dic in features]) for k in features[0]}
+            
 def load_dataset(path, name=None, data_files=None):
     # Local Data
     support_data_format = ["json", "csv", "text", "parquet"]
@@ -381,3 +365,7 @@ def load_dataset(path, name=None, data_files=None):
     assert io.exists(os.path.join(data_script_dir, f"{path}.py"))
     data = hf_load_dataset(data_script_dir, name)
     return data
+
+class UserGeneralDataset(GeneralDataset):
+    def convert_single_row_to_example(self, row):
+        return super().convert_single_row_to_example(row)
