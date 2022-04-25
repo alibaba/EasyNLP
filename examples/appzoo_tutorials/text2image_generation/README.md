@@ -2,6 +2,7 @@
 ## 数据准备
 
 1. 下载数据
+```shell
 if [ ! -f ./tmp/T2I_train.txt ]; then
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_train.txt
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_val.txt
@@ -9,6 +10,7 @@ if [ ! -f ./tmp/T2I_train.txt ]; then
     mkdir tmp/
     mv *.txt tmp/
 fi
+```
 
 2. 数据格式
 数据是以 \t 分隔的 .txt 文件，包含三个字段：idx, text, imgbase64
