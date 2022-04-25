@@ -94,12 +94,13 @@ def parse_row_by_schema(row: str, input_schema: str) -> dict:
 
 def get_pretrain_model_path(pretrained_model_name_or_path,
                             disable_auto_download=False):
-    if pretrained_model_name_or_path is None or pretrained_model_name_or_path.strip(
-    ) == '':
-        return
+    if pretrained_model_name_or_path is None or  \
+        pretrained_model_name_or_path.strip() == '':
+        return None
 
-    if pretrained_model_name_or_path.startswith(
-            './') or pretrained_model_name_or_path.startswith('/'):
+    if pretrained_model_name_or_path.startswith('./') or \
+        pretrained_model_name_or_path.startswith('/') or \
+        pretrained_model_name_or_path.startswith('oss://'):
         return pretrained_model_name_or_path
 
     # Use default $HOME/.easynlp_modelzoo as the modelzoo directory
