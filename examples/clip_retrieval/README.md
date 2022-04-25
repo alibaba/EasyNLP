@@ -13,6 +13,7 @@
 其中0是所用显卡编号，含义同CUDA_VISIBLE_DEVICES=0
 
 示例输出
+```
 Training Time: 45.49571466445923, rank 0, gsteps 32
 127 280 334 500
 [49.400000000000006, 25.4, 56.00000000000001, 66.8]
@@ -21,15 +22,18 @@ Training Time: 45.49571466445923, rank 0, gsteps 32
 [2022-04-25 10:58:14,532 INFO] Best score: 0.49400000000000005
 [2022-04-25 10:58:14,534 INFO] Training Time: 113.8211259841919
 [2022-04-25 10:58:14,535 INFO] Duration time: 167.77124881744385 s
+```
 
 ### evaluate
 执行命令 sh run_clip_local.sh 0 evaluate
 
 示例输出
+```
 143 295 360 500 # r1个数 r5个数 r10个数 总评估样本数
 [53.19999999999999, 28.599999999999998, 59.0, 72.0] # [mean recall, recall@1, recall@5, recall@10]
 [2022-04-25 11:00:09,800 INFO] Inference time = 1.77s, [3.5340 ms / sample] 
 [2022-04-25 11:00:09,800 INFO] Duration time: 92.21781587600708 s
+```
 
 ### predict
 predict用于生成测试数据的CLIP特征
