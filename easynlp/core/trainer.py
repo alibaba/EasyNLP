@@ -116,7 +116,7 @@ class Trainer(object):
         model_file = args.resume_from_checkpoint + '.bin'
         if 'oss::' in args.resume_from_checkpoint:
             local_file = 'easynlp_resume_pytorch_model.meta.bin'
-            io.download(model_file, local_file)
+            io.download(meta_file, local_file)
             meta_file = local_file
 
             local_file = 'easynlp_resume_pytorch_model.bin'
@@ -405,7 +405,7 @@ class Trainer(object):
         with io.open(output_config_file, 'w') as f:
             f.write(self.model_module.config.to_json_string())
 
-        if self.args.app_name != 'text2image_generation': 
+        if self.args.pretrained_model_name_or_path is not None: 
             # Save vocab.txt
             if os.path.exists(
                     os.path.join(

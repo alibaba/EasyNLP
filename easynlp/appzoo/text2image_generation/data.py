@@ -22,6 +22,7 @@ import albumentations
 from io import BytesIO
 import base64
 from PIL import Image, ImageFile
+from easynlp.utils import get_pretrain_model_path
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
@@ -40,7 +41,7 @@ class TextImageDataset(BaseDataset):
         multi_label: set as True if perform multi-label classification, otherwise False
     """
     def __init__(self,
-                 tokenizer_name_or_path,
+                 pretrained_model_name_or_path,
                  data_file,
                  max_seq_length,
                  input_schema,
@@ -54,8 +55,9 @@ class TextImageDataset(BaseDataset):
                          output_format="dict",
                          *args,
                          **kwargs)
-        
-        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path)
+        if pretrained_model_name_or_path is None:
+            pretrained_model_name_or_path = get_pretrain_model_path('hfl/chinese-roberta-wwm-ext')
+        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
         self.size = int(user_defined_parameters.get('size', 256))
         self.random_crop = bool(user_defined_parameters.get('random_crop', False))
         self.text_len = int(user_defined_parameters.get('text_len', 32))

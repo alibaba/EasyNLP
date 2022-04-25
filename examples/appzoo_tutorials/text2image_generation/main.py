@@ -34,11 +34,8 @@ if __name__ == "__main__":
         args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
     else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
-    args.tokenizer_name_or_path = user_defined_parameters.get('tokenizer_name_or_path', 'hfl/chinese-roberta-wwm-ext')
 
     pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
-    tokenizer_name_or_path = get_pretrain_model_path(args.tokenizer_name_or_path)
-    user_defined_parameters["tokenizer_name_or_path"] = tokenizer_name_or_path
 
     transformer_config = {
         "vocab_size": 37512,
@@ -68,7 +65,7 @@ if __name__ == "__main__":
     print('log: starts to process dataset...\n')
 
     train_dataset = TextImageDataset(
-        tokenizer_name_or_path=tokenizer_name_or_path,
+        pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[0],
         max_seq_length=args.sequence_length,
         input_schema=args.input_schema,
@@ -78,7 +75,7 @@ if __name__ == "__main__":
         is_training=True)
 
     valid_dataset = TextImageDataset(
-        tokenizer_name_or_path=tokenizer_name_or_path,
+        pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
         max_seq_length=args.sequence_length,
         input_schema=args.input_schema,
@@ -90,7 +87,6 @@ if __name__ == "__main__":
     
     model = TextImageGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
     evaluator = TextImageGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
-    # evaluator = None
 
     trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
                       evaluator=evaluator)

@@ -43,8 +43,7 @@ class TextImageGenerationPredictor(Predictor):
             os.makedirs(local_dir, exist_ok=True)
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
-        tokenizer_name_or_path = user_defined_parameters.get('tokenizer_name_or_path')
-        self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
         self.MUTEX = Lock()
         
         model = model_cls(pretrained_model_name_or_path=model_dir).cuda()
