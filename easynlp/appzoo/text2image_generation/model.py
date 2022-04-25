@@ -15,16 +15,18 @@ class TextImageGeneration(Application):
         self.first_stage_key = "image"
         self.cond_stage_key = "text"
         
-        if kwargs.get('from_config'):
-            vqgan_ckpt_path = user_defined_parameters.get('vqgan_ckpt_path')
-            self.first_stage_model = VQModel(ckpt_path=vqgan_ckpt_path).eval()
-            self.config = ARTISTConfig(**(kwargs.get('from_config')))
-            self.transformer = GPT(self.config)
-        else: 
+        if pretrained_model_name_or_path is not None: 
             self.first_stage_model = VQModel()
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             self.transformer = GPT(self.config)
             self.init_from_ckpt(pretrained_model_name_or_path)
+        elif kwargs.get('from_config'):
+            vqgan_ckpt_path = user_defined_parameters.get('vqgan_ckpt_path')
+            self.first_stage_model = VQModel(ckpt_path=vqgan_ckpt_path).eval()
+            self.config = ARTISTConfig(**(kwargs.get('from_config')))
+            self.transformer = GPT(self.config)
+        else:
+            raise RuntimeError("Both pretrained_model_name_or_path and from_config are None, it's not allowed!")
         self.pkeep = kwargs.get('pkeep', 1.0)
 
 

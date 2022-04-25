@@ -17,8 +17,7 @@ from easynlp.appzoo.text2image_generation.predictor import TextImageGenerationPr
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from easynlp.core import PredictorManager
-
-# from easynlp.utils import get_pretrain_model_path
+from easynlp.utils import get_pretrain_model_path
 
 
 if __name__ == "__main__":
@@ -31,10 +30,15 @@ if __name__ == "__main__":
 
     print('log: starts to process user params...\n')
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
-    if args.mode != 'train' and args.checkpoint_dir:
+    if args.mode == "train" or not args.checkpoint_dir:
+        args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+    else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
-    args.tokenizer_name_or_path = user_defined_parameters.get('tokenizer_name_or_path', 'bert-base-uncased')
-    # print('pretrained_model_name_or_path', args.pretrained_model_name_or_path)
+    args.tokenizer_name_or_path = user_defined_parameters.get('tokenizer_name_or_path', 'hfl/chinese-roberta-wwm-ext')
+
+    pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+    tokenizer_name_or_path = get_pretrain_model_path(args.tokenizer_name_or_path)
+    user_defined_parameters["tokenizer_name_or_path"] = tokenizer_name_or_path
 
     transformer_config = {
         "vocab_size": 37512,
@@ -64,7 +68,7 @@ if __name__ == "__main__":
     print('log: starts to process dataset...\n')
 
     train_dataset = TextImageDataset(
-        tokenizer_name_or_path=args.tokenizer_name_or_path,
+        tokenizer_name_or_path=tokenizer_name_or_path,
         data_file=args.tables.split(",")[0],
         max_seq_length=args.sequence_length,
         input_schema=args.input_schema,
@@ -74,7 +78,7 @@ if __name__ == "__main__":
         is_training=True)
 
     valid_dataset = TextImageDataset(
-        tokenizer_name_or_path=args.tokenizer_name_or_path,
+        tokenizer_name_or_path=tokenizer_name_or_path,
         data_file=args.tables.split(",")[-1],
         max_seq_length=args.sequence_length,
         input_schema=args.input_schema,
@@ -84,7 +88,7 @@ if __name__ == "__main__":
         is_training=False)
     
     
-    model = TextImageGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
+    model = TextImageGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
     evaluator = TextImageGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
     # evaluator = None
 

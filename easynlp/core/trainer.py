@@ -405,52 +405,51 @@ class Trainer(object):
         with io.open(output_config_file, 'w') as f:
             f.write(self.model_module.config.to_json_string())
 
-        '''
-        # Save vocab.txt
-        if os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.txt'))
-        # Save vocab.json
-        elif os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.json'))
-        else:
-            raise FileNotFoundError
+        if self.args.app_name != 'text2image_generation': 
+            # Save vocab.txt
+            if os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.txt'))
+            # Save vocab.json
+            elif os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.json'))
+            else:
+                raise FileNotFoundError
 
-        # Save spiece.model
-        spiece_path = os.path.join(
-            get_dir_name(
-                get_pretrain_model_path(
-                    self.args.pretrained_model_name_or_path,
-                    disable_auto_download=True)), 'spiece.model')
-        if os.path.exists(spiece_path):
-            io.copy(
-                spiece_path,
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'spiece.model'))
-        '''
+            # Save spiece.model
+            spiece_path = os.path.join(
+                get_dir_name(
+                    get_pretrain_model_path(
+                        self.args.pretrained_model_name_or_path,
+                        disable_auto_download=True)), 'spiece.model')
+            if os.path.exists(spiece_path):
+                io.copy(
+                    spiece_path,
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'spiece.model'))
 
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
@@ -526,12 +525,12 @@ class Trainer(object):
                             for key, val in batch.items()
                         }
 
-                    # label_ids = batch.pop('label_ids')
-                    # with self.autocast_context_manager():
-                    #     forward_outputs = self._model(batch)
-                    # todo: split vqgan and mingpt, preprocess label_ids in data.py 
+                    label_ids = batch.pop('label_ids', None)
                     with self.autocast_context_manager():
-                        forward_outputs, label_ids = self._model(batch)
+                        if label_ids is not None:
+                            forward_outputs = self._model(batch)
+                        else:
+                            forward_outputs, label_ids = self._model(batch)
                         if batch.get('insert_know_labels') is not None:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids,

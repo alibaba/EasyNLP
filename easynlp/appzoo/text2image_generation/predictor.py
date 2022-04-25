@@ -111,34 +111,23 @@ class TextImageGenerationPredictor(Predictor):
         new_results = list()
         for b in range(len(idx)):
             text = self.tokenizer.decode(text_ids[b], skip_special_tokens=True)
-            gen_img_base64 = img_tensor_to_base64(gen_imgs[b])
+            gen_image = tensor2img(gen_imgs[b])
+            gen_img_base64 = img2base64(gen_image)
             new_results.append({
                 "idx": idx[b],
                 "text": text,
                 "gen_imgbase64": gen_img_base64,
             })
-             
-            # save_image(gen_imgs[b], outdir+str(idx[b])+".png")
-        
         return new_results
 
-def img_tensor_to_base64(x):
-    c,h,w = x.shape
-    assert c==3
-    x = ((x.detach().cpu().numpy().transpose(1,2,0)+1.0)*127.5).clip(0,255).astype(np.uint8)
-    image = Image.fromarray(x)
+def tensor2img(tensor):
+    topil = transforms.ToPILImage('RGB')
+    img = topil(tensor)
+    return img
+
+def img2base64(img):
     img_buffer = BytesIO()
-    image.save(img_buffer, format='PNG')
+    img.save(img_buffer, format=img.format if img.format else 'PNG')
     byte_data = img_buffer.getvalue()
     base64_str = str(base64.b64encode(byte_data), 'utf-8')
-    return base64_str
-
-
-# def save_image(x, path):
-#     c,h,w = x.shape
-#     assert c==3
-#     x = ((x.detach().cpu().numpy().transpose(1,2,0)+1.0)*127.5).clip(0,255).astype(np.uint8)
-#     Image.fromarray(x).save(path)   
-
-
-
+    return base64_str  

@@ -67,10 +67,10 @@ class TextImageGenerationEvaluator(Evaluator):
             total_spent_time, total_spent_time * 1000 / total_samples))
 
         eval_loss = total_loss / total_steps
-
+        logger.info("Eval loss: {}".format(eval_loss))
 
         eval_outputs = list()
-        eval_outputs.append(("eval_loss", eval_loss))
+        eval_outputs.append(("eval_loss", -eval_loss))
 
         return eval_outputs
 
