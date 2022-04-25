@@ -5,6 +5,7 @@ from torchvision.transforms.functional import InterpolationMode
 
 from data.retrieval_dataset import retrieval_train, retrieval_eval
 from data.flickr30k_dataset import flickr30k_train, flickr30k_retrieval_eval
+from data.retrieval_oss_dataset import retrieval_train_oss, retrieval_eval_oss
 from transform.randaugment import RandomAugment
 
 def create_dataset(dataset, config, min_scale=0.5):
@@ -35,6 +36,14 @@ def create_dataset(dataset, config, min_scale=0.5):
         train_dataset = retrieval_train(transform_train, config['image_root'], config['ann_root'], config['train_file'])
         val_dataset = retrieval_eval(transform_test, config['image_root'], config['ann_root'], config['val_file'], 'val') 
         test_dataset = retrieval_eval(transform_test, config['image_root'], config['ann_root'], config['test_file'], 'test')          
+        return train_dataset, val_dataset, test_dataset
+    
+    elif dataset == 'retrieval_custom_oss':
+        oss_config = {'access_id': config['access_id'], 'access_key': config['access_key'], 'endpoint': config['endpoint'], 'bucket_name': config['bucket_name']}
+
+        train_dataset = retrieval_train_oss(transform_train, oss_config, config['image_root'], config['ann_root'], config['train_file'])
+        val_dataset = retrieval_eval_oss(transform_test, oss_config, config['image_root'], config['ann_root'], config['val_file'], 'val') 
+        test_dataset = retrieval_eval_oss(transform_test, oss_config, config['image_root'], config['ann_root'], config['test_file'], 'test')          
         return train_dataset, val_dataset, test_dataset
     
     
