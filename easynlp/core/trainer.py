@@ -115,7 +115,7 @@ class Trainer(object):
         model_file = args.resume_from_checkpoint + '.bin'
         if 'oss://' in args.resume_from_checkpoint:
             local_file = 'easynlp_resume_pytorch_model.meta.bin'
-            io.download(model_file, local_file)
+            io.download(meta_file, local_file)
             meta_file = local_file
 
             local_file = 'easynlp_resume_pytorch_model.bin'
