@@ -2,7 +2,7 @@
 
 ### 准备工作
 * 安装好EasyNLP
-* 进入目录 ./examples/appzoo_tutorials/text_vision
+* 进入目录 ./examples/clip_retrieval
 
 ### 数据格式
 对于train与evaluate 数据格式为制表符分隔的两列 文本\t图片base64编码
