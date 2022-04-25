@@ -113,7 +113,7 @@ class Trainer(object):
             return
         meta_file = args.resume_from_checkpoint + '.meta.bin'
         model_file = args.resume_from_checkpoint + '.bin'
-        if 'oss::' in args.resume_from_checkpoint:
+        if 'oss://' in args.resume_from_checkpoint:
             local_file = 'easynlp_resume_pytorch_model.meta.bin'
             io.download(model_file, local_file)
             meta_file = local_file
