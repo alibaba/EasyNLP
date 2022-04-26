@@ -3,8 +3,8 @@ export CUDA_VISIBLE_DEVICES=$1
 
 # Local training example
 # cur_path=/tmp/EasyNLP
-# cur_path=/apsarapangu/disk3/minghui.qmh/EasyNLP/
-cur_path=/wjn/EasyNLP
+ cur_path=/apsarapangu/disk3/minghui.qmh/EasyNLP/
+#cur_path=/wjn/EasyNLP
 mode=$2
 task=$3
 
