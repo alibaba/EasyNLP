@@ -36,11 +36,6 @@ except:
     #EAS need this
     from tensorboardX import SummaryWriter
 
-
-from transformers.trainer import Trainer
-from transformers.optimization import AdamW
-
-
 class Trainer(object):
     def __init__(self, model, train_dataset, evaluator=None, **kwargs):
         self.args = get_args()
