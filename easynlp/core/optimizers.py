@@ -18,11 +18,13 @@ import abc
 import logging
 import math
 import sys
-
+import warnings
 import torch
 from torch.nn.utils import clip_grad_norm_
 from torch.optim import Adam, Optimizer
 from torch.optim.optimizer import required
+from torch.optim.lr_scheduler import LambdaLR
+from typing import Union, Tuple, Iterable, List
 
 from ..utils import is_torchx_available
 
@@ -183,6 +185,24 @@ class WarmupLinearSchedule(_LRSchedule):
         if progress < self.warmup:
             return progress / self.warmup
         return max((progress - 1.) / (self.warmup - 1.), 0.)
+
+
+
+class EasyNLPWarmupLinearSchedule(LambdaLR):
+    """ Linear warmup and then linear decay.
+        Linearly increases learning rate from 0 to 1 over `warmup_steps` training steps.
+        Linearly decreases learning rate from 1. to 0. over remaining `t_total - warmup_steps` steps.
+    """
+    def __init__(self, optimizer, warmup_steps, t_total, last_epoch=-1):
+        self.warmup_steps = warmup_steps
+        self.t_total = t_total
+        super(EasyNLPWarmupLinearSchedule, self).__init__(optimizer, self.lr_lambda, last_epoch=last_epoch)
+
+    def lr_lambda(self, step):
+        if step < self.warmup_steps:
+            return float(step) / float(max(1, self.warmup_steps))
+        return max(0.0, float(self.t_total - step) / float(max(1.0, self.t_total - self.warmup_steps)))
+
 
 
 SCHEDULES = {
@@ -356,6 +376,99 @@ class BertAdam(Optimizer):
         return loss
 
 
+
+
+class AdamW(Optimizer):
+    # add by ruihan.wjn
+    """ Implements Adam algorithm with weight decay fix.
+
+    Parameters:
+        lr (float): learning rate. Default 1e-3.
+        betas (tuple of 2 floats): Adams beta parameters (b1, b2). Default: (0.9, 0.999)
+        eps (float): Adams epsilon. Default: 1e-6
+        weight_decay (float): Weight decay. Default: 0.0
+        correct_bias (bool): can be set to False to avoid correcting bias in Adam (e.g. like in Bert TF repository). Default True.
+    """
+    def __init__(self, params, lr=1e-3, betas=(0.9, 0.999), eps=1e-6, weight_decay=0.0, correct_bias=True):
+        if lr < 0.0:
+            raise ValueError("Invalid learning rate: {} - should be >= 0.0".format(lr))
+        if not 0.0 <= betas[0] < 1.0:
+            raise ValueError("Invalid beta parameter: {} - should be in [0.0, 1.0[".format(betas[0]))
+        if not 0.0 <= betas[1]  < 1.0:
+            raise ValueError("Invalid beta parameter: {} - should be in [0.0, 1.0[".format(betas[1]))
+        if not 0.0 <= eps:
+            raise ValueError("Invalid epsilon value: {} - should be >= 0.0".format(eps))
+        defaults = dict(lr=lr, betas=betas, eps=eps, weight_decay=weight_decay,
+                        correct_bias=correct_bias)
+        super(AdamW, self).__init__(params, defaults)
+
+    def step(self, closure=None):
+        """Performs a single optimization step.
+
+        Arguments:
+            closure (callable, optional): A closure that reevaluates the model
+                and returns the loss.
+        """
+        loss = None
+        if closure is not None:
+            loss = closure()
+
+        for group in self.param_groups:
+            for p in group['params']:
+                if p.grad is None:
+                    continue
+                grad = p.grad.data
+                if grad.is_sparse:
+                    raise RuntimeError('Adam does not support sparse gradients, please consider SparseAdam instead')
+
+                state = self.state[p]
+
+                # State initialization
+                if len(state) == 0:
+                    state['step'] = 0
+                    # Exponential moving average of gradient values
+                    state['exp_avg'] = torch.zeros_like(p.data)
+                    # Exponential moving average of squared gradient values
+                    state['exp_avg_sq'] = torch.zeros_like(p.data)
+
+                exp_avg, exp_avg_sq = state['exp_avg'], state['exp_avg_sq']
+                beta1, beta2 = group['betas']
+
+                state['step'] += 1
+
+                # Decay the first and second moment running average coefficient
+                # In-place operations to update the averages at the same time
+                exp_avg.mul_(beta1).add_(1.0 - beta1, grad)
+                exp_avg_sq.mul_(beta2).addcmul_(1.0 - beta2, grad, grad)
+                denom = exp_avg_sq.sqrt().add_(group['eps'])
+
+                step_size = group['lr']
+                if group['correct_bias']:  # No bias correction for Bert
+                    bias_correction1 = 1.0 - beta1 ** state['step']
+                    bias_correction2 = 1.0 - beta2 ** state['step']
+                    step_size = step_size * math.sqrt(bias_correction2) / bias_correction1
+
+                p.data.addcdiv_(-step_size, exp_avg, denom)
+
+                # Just adding the square of the weights to the loss function is *not*
+                # the correct way of using L2 regularization/weight decay with Adam,
+                # since that will interact with the m and v parameters in strange ways.
+                #
+                # Instead we want to decay the weights in a manner that doesn't interact
+                # with the m/v parameters. This is equivalent to adding the square
+                # of the weights to the loss with plain (non-momentum) SGD.
+                # Add weight decay at the end (fixed version)
+                if group['weight_decay'] > 0.0:
+                    p.data.add_(-group['lr'] * group['weight_decay'], p.data)
+
+        return loss
+
+
+    def get_current_lr(self, scheduler: Union[EasyNLPWarmupLinearSchedule, None] = None):
+        if scheduler:
+            return scheduler.get_lr()[0]
+        return 0.0
+
 def get_optimizer(
     optimizer_type='BertAdam',
     schedule='warmup_linear',
@@ -366,7 +479,10 @@ def get_optimizer(
     num_steps_per_epoch=100,
     max_grad_norm=1.0,
     epoch_num=3,
+    weight_decay=0.01, # add by ruihan.wjn
 ):
+    logger.info("optimizer type: {}".format(optimizer_type)) # add by ruihan.wjn
+    print("optimizer type: {}".format(optimizer_type)) # add by ruihan.wjn
     num_train_optimization_steps = int(
         math.ceil(num_steps_per_epoch / gradient_accumulation_steps *
                   epoch_num))
@@ -379,15 +495,18 @@ def get_optimizer(
         optimizer_grouped_parameters.append({
             'params': [p],
             'weight_decay':
-            0.0 if any(nd in n for nd in no_decay) else 0.01
+            0.0 if any(nd in n for nd in no_decay) else weight_decay
         })
     if optimizer_type == 'BertAdam':
-        optimizer = BertAdam(optimizer_grouped_parameters,
-                             schedule=schedule,
-                             lr=learning_rate,
-                             warmup=warmup_proportion,
-                             max_grad_norm=max_grad_norm,
-                             t_total=num_train_optimization_steps)
+        optimizer = BertAdam(
+            optimizer_grouped_parameters,
+            schedule=schedule,
+            lr=learning_rate,
+            warmup=warmup_proportion,
+            max_grad_norm=max_grad_norm,
+            t_total=num_train_optimization_steps
+        )
+        scheduler = None
     elif optimizer_type == 'Adam':
         if is_torchx_available():
             from torchacc.torch_xla.amp import syncfree
@@ -395,6 +514,26 @@ def get_optimizer(
                                       lr=learning_rate)
         else:
             optimizer = Adam(optimizer_grouped_parameters, lr=learning_rate)
+        scheduler = None
+    elif optimizer_type == 'AdamW': # add by ruihan.wjn
+        optimizer_grouped_parameters = [
+            {'params': [p for n, p in named_parameters if not any(nd in n for nd in no_decay)],
+             'weight_decay': weight_decay},
+            {'params': [p for n, p in named_parameters if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
+        ]
+        optimizer = AdamW(
+            optimizer_grouped_parameters,
+            lr=learning_rate,
+            weight_decay=weight_decay,
+        )
+        scheduler = EasyNLPWarmupLinearSchedule(
+            optimizer,
+            warmup_steps=int(warmup_proportion * num_train_optimization_steps),
+            t_total=num_train_optimization_steps
+        )
+    elif optimizer_type == 'SGD':
+        optimizer = torch.optim.SGD(named_parameters, lr=learning_rate, momentum=0.9)
+        scheduler = None
     else:
         raise NotImplementedError
-    return optimizer
+    return optimizer, scheduler

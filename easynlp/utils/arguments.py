@@ -286,6 +286,16 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        type=float,
                        help='Max grad norm')
 
+    group.add_argument('--optimizer_type',
+                       '--optimizer',
+                       default='BertAdam',
+                       type=str,
+                       choices=[
+                           'BertAdam', 'Adam',
+                           'AdamW', 'SGD',
+                       ],
+                       help='name of the optimizer')
+
     group.add_argument(
         '--warmup_proportion',
         default=0.1,

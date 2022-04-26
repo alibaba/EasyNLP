@@ -22,11 +22,11 @@ sys.path.append("../")
 sys.path.append("../../")
 from easynlp.appzoo.api import get_application_evaluator
 from easynlp.core.trainer import Trainer
-from easynlp.utils import initialize_easynlp, get_args
+from easynlp.utils import initialize_easynlp, get_args, get_pretrain_model_path
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from benchmarks.clue.application import CLUEApp
 from benchmarks.clue.utils import load_dataset
-from preprocess import tasks2processor
+from benchmarks.clue.preprocess import tasks2processor
 
 if __name__ == "__main__":
     initialize_easynlp()
@@ -39,6 +39,7 @@ if __name__ == "__main__":
         args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
     else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
+    args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
 
     print('pretrained_model_name_or_path', args.pretrained_model_name_or_path)
 

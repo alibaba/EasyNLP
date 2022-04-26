@@ -21,7 +21,7 @@ from easynlp.appzoo.api import get_application_model, get_application_dataset, g
 from datasets import load_dataset as hf_load_dataset
 from datasets import DatasetDict, Dataset
 from easynlp.modelzoo import AutoConfig, AutoTokenizer
-from preprocess import tasks2processor, DatasetPreprocessor
+from benchmarks.clue_fewshot.preprocess import tasks2processor, DatasetPreprocessor
 from easynlp.appzoo.dataset import BaseDataset
 from easynlp.utils import io, parse_row_by_schema
 from easynlp.utils.logger import logger
@@ -43,7 +43,6 @@ class CLUEDataset(Dataset):
         self.output_format = output_format
         self.data_source = "local"
         self.cnt = 0
-
 
         self.tokenizer = preprocessor.tokenizer
         self.max_seq_length = preprocessor.max_seq_length
