@@ -213,7 +213,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'vectorization', 'language_modeling',
                            'sequence_labeling', 'data_augmentation',
                            'sequence_generation', 'geep_classify',
-                           "text2image_generation",
+                           "text2image_generation", 'clip'
                        ],
                        help='name of the application')
 
