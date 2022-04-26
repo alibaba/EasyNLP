@@ -22,7 +22,7 @@ if [ "$mode" = "train" ]; then
 
   python -m torch.distributed.launch $DISTRIBUTED_ARGS benchmarks/clue/main.py \
     --mode=$mode \
-    --app_name=text_match \
+    --app_name=text_match \e
     --tables=tmp/train.tsv,tmp/dev.tsv \
     --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
     --first_sequence=sent1 \
