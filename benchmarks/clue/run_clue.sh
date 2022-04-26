@@ -11,7 +11,7 @@ task=$3
 cd ${cur_path}
 
 MASTER_ADDR=localhost
-MASTER_PORT=6012
+MASTER_PORT=6011
 GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
@@ -30,12 +30,13 @@ if [ "$mode" = "train" ]; then
     --label_name=label \
     --label_enumerate_values=0,1 \
     --checkpoint_dir=./tmp/benchmarks/clue/$task \
+    --optimizer_type=AdamW \
     --learning_rate=5e-5  \
-    --epoch_num=5  \
+    --epoch_num=10  \
     --random_seed=42 \
     --logging_steps=10 \
     --save_checkpoint_steps=500 \
-    --sequence_length=128 \
+    --sequence_length=256 \
     --micro_batch_size=32 \
     --user_defined_parameters="clue_name=clue task_name=$task pretrain_model_name_or_path=bert-base-chinese"
 
