@@ -19,7 +19,6 @@ import os
 import sys
 import time
 from ast import literal_eval
-from matplotlib.pyplot import text
 
 import torch
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
