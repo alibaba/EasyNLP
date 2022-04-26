@@ -43,7 +43,8 @@ from .configuration_auto import (
     GPT2Config,
     RobertaConfig,
     replace_list_option_in_docstrings,
-    TextCNNConfig
+    TextCNNConfig,
+    ARTISTConfig,
 )
 
 if is_tokenizers_available():
@@ -69,7 +70,8 @@ TOKENIZER_MAPPING = OrderedDict(
         (BertConfig, (BertTokenizer, BertTokenizerFast)),
         (DkplmConfig, (DkplmTokenizer, DkplmTokenizerFast)),
         (GPT2Config, (GPT2Tokenizer, GPT2TokenizerFast)),
-        (TextCNNConfig, (TextCNNTokenizer, None))
+        (TextCNNConfig, (TextCNNTokenizer, None)),
+        (ARTISTConfig, (BertTokenizer, BertTokenizerFast))
     ]
 )
 
