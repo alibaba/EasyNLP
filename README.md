@@ -8,12 +8,12 @@
     
 <p align="center"> <b> EasyNLP is a Comprehensive and Easy-to-use NLP Toolkit </b> </p>
 <div align="center">
-    <a href="https://www.yuque.com/easyx/easynlp/iobg30">
-        <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258840-bfe6302e-d934-409d-917c-8eab455675c1.svg" height="24">
-    </a>
-    <a href="https://dsw-dev.data.aliyun.com/#/?fileUrl=https://raw.githubusercontent.com/alibaba/EasyTransfer/master/examples/easytransfer-quick_start.ipynb&fileName=easytransfer-quick_start.ipynb">
-        <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258886-ad896af5-b7da-4ca6-8369-4b14c23cb7a3.svg" height="24">
-    </a>
+<a href="https://www.yuque.com/easyx/easynlp/iobg30">
+    <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258840-bfe6302e-d934-409d-917c-8eab455675c1.svg" height="24">
+</a>
+<a href="https://dsw-dev.data.aliyun.com/#/?fileUrl=https://raw.githubusercontent.com/alibaba/EasyTransfer/master/examples/easytransfer-quick_start.ipynb&fileName=easytransfer-quick_start.ipynb">
+    <img src="https://cdn.nlark.com/yuque/0/2020/svg/2480469/1600310258886-ad896af5-b7da-4ca6-8369-4b14c23cb7a3.svg" height="24">
+</a>
 [![open issues](http://isitmaintained.com/badge/open/alibaba/EasyNLP.svg)](https://github.com/alibaba/EasyNLP/issues)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/alibaba/EasyNLP.svg)](https://GitHub.com/alibaba/EasyNLP/pull/)
 [![GitHub latest commit](https://badgen.net/github/last-commit/alibaba/EasyNLP)](https://GitHub.com/alibaba/EasyNLP/commit/)
