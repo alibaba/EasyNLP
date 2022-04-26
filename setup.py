@@ -13,7 +13,7 @@ setup(
     python_requires='>=2.7,>=3.6',
     author='PAI NLP',
     author_email='easynlp@list.alibaba-inc.com',
-    url='http://gitlab.alibaba-inc.com/groups/PAI-TL',
+    url='https://github.com/alibaba/EasyNLP',
     description='PAI EasyNLP Toolkit',
     long_description=readme,
     entry_points={'console_scripts': ['easynlp=easynlp.cli:main']},
