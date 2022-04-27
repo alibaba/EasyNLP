@@ -212,7 +212,8 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'text_match', 'text_match_two_tower',
                            'vectorization', 'language_modeling',
                            'sequence_labeling', 'data_augmentation',
-                           'sequence_generation', 'geep_classify'
+                           'sequence_generation', 'geep_classify',
+                           "text2image_generation", 'clip'
                        ],
                        help='name of the application')
 
@@ -284,6 +285,16 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        default=1.0,
                        type=float,
                        help='Max grad norm')
+
+    group.add_argument('--optimizer_type',
+                       '--optimizer',
+                       default='BertAdam',
+                       type=str,
+                       choices=[
+                           'BertAdam', 'Adam',
+                           'AdamW', 'SGD',
+                       ],
+                       help='name of the optimizer')
 
     group.add_argument(
         '--warmup_proportion',

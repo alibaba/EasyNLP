@@ -24,6 +24,7 @@ from ..gpt2.configuration_gpt2 import GPT2Config
 
 from ..roberta.configuration_roberta import RobertaConfig
 from ..cnn.configuration_cnn import TextCNNConfig
+from ..artist.configuration_artist import ARTISTConfig
 
 
 CONFIG_MAPPING = OrderedDict(
@@ -32,7 +33,8 @@ CONFIG_MAPPING = OrderedDict(
         ("bert", BertConfig),
         ("dkplm", DkplmConfig),
         ("gpt2", GPT2Config),
-        ("cnn", TextCNNConfig)
+        ("cnn", TextCNNConfig),
+        ("artist", ARTISTConfig)
     ]
 )
 
@@ -42,7 +44,8 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("bert", "BERT"),
         ("dkplm", "DKPLM"),
         ("gpt2", "OpenAI GPT-2"),
-        ("cnn", 'TextCNN')
+        ("cnn", 'TextCNN'),
+        ("artist", "ARTIST")
     ]
 )
 

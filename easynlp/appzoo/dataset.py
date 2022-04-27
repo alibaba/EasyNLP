@@ -184,7 +184,7 @@ class BaseDataset(Dataset):
                 self.cnt = 1
                 print("[Pid %d] Read success" % self.slice_id)
 
-            row = "\t".join([t.decode("utf-8") for t in row[0]])
+            row = "\t".join([t.decode("utf-8") if isinstance(t, bytes) else str(t) for t in row[0]])
         else:
             raise NotImplementedError
 
