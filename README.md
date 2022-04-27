@@ -123,7 +123,20 @@ $ easynlp \
   --checkpoint_path=./classification_model \
   --app_name=text_classify
 ```
+You can also load the data using only the dataset name.
+```python
+from easynlp.core import Trainer
+from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
+from easynlp.utils import initialize_easynlp
 
+args = initialize_easynlp()
+
+row_data = load_dataset('glue', 'qnli')["train"]
+train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
+
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+Trainer(model=model,  train_dataset=train_dataset).train()
+```
 To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/kkhkai).
 
 # ModelZoo
