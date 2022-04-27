@@ -23,6 +23,7 @@ sys.path.append("../../")
 from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
+from easynlp.appzoo import MultiModal
 # from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
@@ -31,12 +32,14 @@ from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as Fewsho
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSingleTowerTextMatchEvaluator
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
+from easynlp.appzoo import MultiModalEvaluator
 # from easynlp.appzoo import SequenceGenerationEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
+from easynlp.appzoo import MultiModalPredictor
 # from easynlp.appzoo import SequenceGenerationPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -44,6 +47,7 @@ from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
 from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
 # from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
+from easynlp.appzoo import MultiModalDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -67,6 +71,7 @@ Dataset_Mapping = {
     'sequence_labeling': SequenceLabelingDataset,
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
+    'clip': MultiModalDataset,
 }
 
 ModelMapping = {
@@ -89,6 +94,7 @@ ModelMapping = {
     'vectorization': FeatureVectorization,
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
+    'clip': MultiModal,
 }
 
 Eval_Model_Mapping = {
@@ -105,6 +111,7 @@ Eval_Model_Mapping = {
     },
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
+    'clip': MultiModal,
 }
 
 Evaluator_Mapping = {
@@ -122,6 +129,7 @@ Evaluator_Mapping = {
     'language_modeling': LanguageModelingEvaluator,
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
+    'clip': MultiModalEvaluator
 }
 
 Predictor_Mapping = {
@@ -140,6 +148,7 @@ Predictor_Mapping = {
     'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
+    'clip': [MultiModalPredictor, MultiModal]
 }
 
 

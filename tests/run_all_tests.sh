@@ -64,6 +64,24 @@ rm -rf *.tsv *.csv *.txt
 # python test_geep_classification.py
 # rm -rf classification_model
 
+# echo "================== Test clip =================="
+# if [ ! -f ./MUGE_MR_train_base64_part.tsv ]; then
+#   wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/MUGE_MR_train_base64_part.tsv
+# fi
+
+# if [ ! -f ./MUGE_MR_valid_base64_part.tsv ]; then
+#   wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/MUGE_MR_valid_base64_part.tsv
+# fi
+
+# if [ ! -f ./MUGE_MR_test_base64_part_text.tsv ]; then
+#   wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/MUGE_MR_test_base64_part_text.tsv
+# fi
+
+# python test_clip.py
+# rm -rf modelzoo_alibaba.json
+# rm -rf clip_model
+# rm -rf *.tsv
+
 # echo "================== Test user defined example =================="
 # python test_classification_self_defined.py
 # rm -rf *.tsv

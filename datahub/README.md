@@ -50,6 +50,7 @@ EasyNLP提供常见的中文数据集的下载，同时提供脚本处理中文�
 |CLTS-Dataset  [百度云盘](https://pan.baidu.com/s/1skhl1HKUfRyFa7z3t8dH-g)提取码：请联系liuxiaojun@iie.ac.cn|文本摘要任务 CLTS 是一个新的中文长文本摘要数据集，提取自中文新闻网站 ThePaper.cn。生成的数据集版本包含超过 180,000 个长序列对，其中每篇文章由多个段落组成，每个摘要由多个句子组成。| |
 |CN-Fin [TaskSumm](https://github.com/TangMoming/TaskSumm)|工业场景，金融文本摘要数据集||
 
+
 # 其他数据（TODO）
 # Acknowledge
 以上数据收集自网上公开的数据，包括如下几个来源（如有侵权，烦请告知）：
@@ -59,3 +60,16 @@ EasyNLP提供常见的中文数据集的下载，同时提供脚本处理中文�
 - Wudao数据：[https://git.openi.org.cn/BAAI/WuDao-Data](https://git.openi.org.cn/BAAI/WuDao-Data)
 - Wukong数据：[https://readpaper.com/paper/653639982984556544](https://readpaper.com/paper/653639982984556544)
 - SophonPlus：[https://github.com/SophonPlus/ChineseNlpCorpus](https://github.com/SophonPlus/ChineseNlpCorpus)
+
+# 使用DataHub数据进行训练
+对于已经过huggingface或easynlp预处理的数据，您可以直接使用以下方式加载与训练:
+```python
+from easynlp.core import Trainer
+from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
+from easynlp.utils import initialize_easynlp
+args = initialize_easynlp()
+row_data = load_dataset('clue', 'afqmc')["train"]
+train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+Trainer(model=model,  train_dataset=train_dataset).train()
+```

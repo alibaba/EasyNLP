@@ -36,7 +36,6 @@ except:
     #EAS need this
     from tensorboardX import SummaryWriter
 
-
 class Trainer(object):
     def __init__(self, model, train_dataset, evaluator=None, **kwargs):
         self.args = get_args()
@@ -54,8 +53,11 @@ class Trainer(object):
             else:
                 self._scaler = torch.cuda.amp.GradScaler()
 
+        self.optimizer_type = self.args.optimizer_type
+        self.max_grad_norm = self.args.max_grad_norm # add by ruihan.wjn
         self._model = None
         self._optimizer = None
+        self._lr_scheduler = None # add by ruihan.wjn
         self._train_loader = None
         self._start_epoch = 0
         self._start_global_step = 0
@@ -98,24 +100,26 @@ class Trainer(object):
             raise Exception('CPU Training is not supported.')
 
         # Build Optimizer
-        self._optimizer = get_optimizer(
-            optimizer_type='BertAdam',
+        self._optimizer, self._lr_scheduler = get_optimizer(
+            optimizer_type=self.optimizer_type,
             learning_rate=args.learning_rate,
             warmup_proportion=args.warmup_proportion,
-            max_grad_norm=args.max_grad_norm,
+            max_grad_norm=self.max_grad_norm,
             named_parameters=list(self.model_module.named_parameters()),
             gradient_accumulation_steps=args.gradient_accumulation_steps,
             num_steps_per_epoch=len(self._train_loader),
-            epoch_num=args.epoch_num)
+            epoch_num=args.epoch_num,
+            weight_decay=args.weight_decay,
+        )
 
     def resume_from_ckpt(self, model_module, args):
         if args.resume_from_checkpoint is None:
             return
         meta_file = args.resume_from_checkpoint + '.meta.bin'
         model_file = args.resume_from_checkpoint + '.bin'
-        if 'oss::' in args.resume_from_checkpoint:
+        if 'oss://' in args.resume_from_checkpoint:
             local_file = 'easynlp_resume_pytorch_model.meta.bin'
-            io.download(model_file, local_file)
+            io.download(meta_file, local_file)
             meta_file = local_file
 
             local_file = 'easynlp_resume_pytorch_model.bin'
@@ -127,13 +131,18 @@ class Trainer(object):
         self._start_epoch = meta_data['epoch']
         self._start_global_step = meta_data['global_step'] + 1
         self._optimizer.load_state_dict(meta_data['optimizer'])
-
+        try:
+            self._lr_scheduler.load_state_dict(meta_data['scheduler']) # add by ruihan.wjn
+        except:
+            self._lr_scheduler = None
         logger.info('Resume from checkpoint {}'.format(
             args.resume_from_checkpoint))
         logger.info('Start epoch {}'.format(self._start_epoch))
         logger.info('Start step {}'.format(self._start_global_step))
         logger.info('Start learning rate {:.6f}'.format(
-            self._optimizer.get_current_lr()))
+                self._optimizer.get_current_lr(self._lr_scheduler) if self._lr_scheduler else self._optimizer.get_current_lr()
+            )
+        )
         with io.open(model_file, 'rb') as f:
             model_module.load_state_dict(torch.load(f, map_location='cpu'))
         logger.info('Resume checkpoint Done'.format(
@@ -298,7 +307,24 @@ class Trainer(object):
             self._scaler.step(self._optimizer)
             self._scaler.update()
         else:
+            if self._lr_scheduler:
+                # If use AdamW, it should explicit use clip grad
+                if hasattr(self._optimizer, "clip_grad_norm"):
+                    # Some optimizers (like the sharded optimizer) have a specific way to do gradient clipping
+                    self._optimizer.clip_grad_norm(self.max_grad_norm)
+                elif hasattr(self.model_module, "clip_grad_norm_"):
+                    # Some models (like FullyShardedDDP) have a specific way to do gradient clipping
+                    self.model_module.clip_grad_norm_(self.max_grad_norm)
+                else:
+                    # Revert to normal clipping otherwise, handling Apex or full precision
+                    # torch.nn.utils.clip_grad_norm_(
+                    #     amp.master_params(self.optimizer) if self.use_apex else self.model_module.named_parameters(),
+                    #     args.max_grad_norm,
+                    # )
+                    torch.nn.utils.clip_grad_norm_(self.model_module.parameters(), self.max_grad_norm)
             self._optimizer.step()
+            if self._lr_scheduler:
+                self._lr_scheduler.step()
             self._optimizer.zero_grad()
 
     def after_iter(self, _step, _epoch, loss_dict):
@@ -404,50 +430,51 @@ class Trainer(object):
         with io.open(output_config_file, 'w') as f:
             f.write(self.model_module.config.to_json_string())
 
-        # Save vocab.txt
-        if os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.txt'))
-        # Save vocab.json
-        elif os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.json'))
-        else:
-            raise FileNotFoundError
+        if self.args.pretrained_model_name_or_path is not None: 
+            # Save vocab.txt
+            if os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.txt'))
+            # Save vocab.json
+            elif os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.json'))
+            else:
+                raise FileNotFoundError
 
-        # Save spiece.model
-        spiece_path = os.path.join(
-            get_dir_name(
-                get_pretrain_model_path(
-                    self.args.pretrained_model_name_or_path,
-                    disable_auto_download=True)), 'spiece.model')
-        if os.path.exists(spiece_path):
-            io.copy(
-                spiece_path,
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'spiece.model'))
+            # Save spiece.model
+            spiece_path = os.path.join(
+                get_dir_name(
+                    get_pretrain_model_path(
+                        self.args.pretrained_model_name_or_path,
+                        disable_auto_download=True)), 'spiece.model')
+            if os.path.exists(spiece_path):
+                io.copy(
+                    spiece_path,
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'spiece.model'))
 
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
@@ -523,9 +550,12 @@ class Trainer(object):
                             for key, val in batch.items()
                         }
 
-                    label_ids = batch.pop('label_ids')
+                    label_ids = batch.pop('label_ids', None)
                     with self.autocast_context_manager():
-                        forward_outputs = self._model(batch)
+                        if label_ids is not None:
+                            forward_outputs = self._model(batch)
+                        else:
+                            forward_outputs, label_ids = self._model(batch)
                         if batch.get('insert_know_labels') is not None:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids,
