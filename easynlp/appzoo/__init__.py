@@ -41,6 +41,7 @@ _import_structure = {
     "language_modeling.data": ['LanguageModelingDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
     "geep_classification.data": ['GEEPClassificationDataset'],
+    "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
 
@@ -72,8 +73,13 @@ if TYPE_CHECKING:
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
 
+    from .dataset import BaseDataset, GeneralDataset
+    from .dataset import load_dataset
+
     from .api import get_application_dataset, get_application_model, get_application_model_for_evaluation
     from .api import get_application_evaluator, get_application_predictor
+    
+    
 
 else:
     import importlib
