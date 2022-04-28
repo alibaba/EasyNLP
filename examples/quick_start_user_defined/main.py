@@ -19,7 +19,6 @@ from easynlp.utils import get_pretrain_model_path
 
 
 if __name__ == "__main__":
-    print('log: starts to init...\n')
     # os.environ["NCCL_DEBUG_SUBSYS"] = "ALL"
     # os.environ["NCCL_DEBUG"] = "INFO"
 
