@@ -9,7 +9,6 @@ print('*'*50)
 print('running local main...\n')
 from easynlp.core import Trainer
 from easynlp.appzoo import get_application_evaluator
-# from easynlp.core.trainer_vanilla import VanillaTrainer as Trainer
 
 from easynlp.appzoo import ClassificationDataset
 from easynlp.appzoo.sequence_classification.model import SequenceClassification
@@ -60,6 +59,10 @@ if __name__ == "__main__":
 
     model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
     evaluator = None
+    # evaluator = get_application_evaluator(
+    #     app_name=args.app_name, valid_dataset=valid_dataset,
+    #     user_defined_parameters=user_defined_parameters, eval_batch_size=args.micro_batch_size)
+
 
     trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
                       evaluator=evaluator)

@@ -89,6 +89,7 @@ class Trainer(object):
         if self.args.use_torchacc:
             self._model = model.to(self._device)
         elif self.args.n_gpu == 1:
+            self._device = self.args.local_rank
             self._model = model.to(self.args.local_rank)
         elif self.args.n_gpu > 1:
             self._model = torch.nn.parallel.DistributedDataParallel(
@@ -97,7 +98,10 @@ class Trainer(object):
                 output_device=self.args.local_rank,
                 find_unused_parameters=True)
         else:
-            raise Exception('CPU Training is not supported.')
+            logger.warn("Use CPU Training.")
+            logger.warn("Make sure worker_gpu is set up correctly.")
+            self._device = "cpu"
+            self._model = model.to(self._device)
 
         # Build Optimizer
         self._optimizer, self._lr_scheduler = get_optimizer(
