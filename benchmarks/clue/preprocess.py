@@ -319,6 +319,64 @@ class WscProcessor(DatasetPreprocessor):
     def get_app_name(self) -> str:
         return "text_classify"
 
+    def convert_examples_to_features(self, examples):
+        '''
+        unified features convertor
+        :param examples: datasets examples
+        :return: features
+        '''
+        column_name_dict = self.column_name_dict
+        input_text1, input_text2 = list(), None
+        text_column_name = column_name_dict['text'][0]
+        span_column_name = column_name_dict['span'][0]
+        input_text1 = list()
+
+        for ei, text_a in enumerate(examples[text_column_name]):
+            if len(text_a) == 0:
+                continue
+            text_a_list = list(text_a)
+            target = examples[span_column_name][ei]
+            query = target['span1_text']
+            query_idx = target['span1_index']
+            pronoun = target['span2_text']
+            pronoun_idx = target['span2_index']
+            assert text_a[pronoun_idx: (pronoun_idx + len(pronoun))] == pronoun, "pronoun: {}".format(pronoun)
+            assert text_a[query_idx: (query_idx + len(query))] == query, "query: {}".format(query)
+            if pronoun_idx > query_idx:
+                text_a_list.insert(query_idx, "_")
+                text_a_list.insert(query_idx + len(query) + 1, "_")
+                text_a_list.insert(pronoun_idx + 2, "[")
+                text_a_list.insert(pronoun_idx + len(pronoun) + 2 + 1, "]")
+            else:
+                text_a_list.insert(pronoun_idx, "[")
+                text_a_list.insert(pronoun_idx + len(pronoun) + 1, "]")
+                text_a_list.insert(query_idx + 2, "_")
+                text_a_list.insert(query_idx + len(query) + 2 + 1, "_")
+            text_a = "".join(text_a_list)
+            input_text1.append(text_a)
+
+        features = self.tokenizer(
+            input_text1,
+            text_pair=input_text2,
+            padding=self.padding,
+            truncation=True,
+            max_length=self.max_seq_length,
+            return_special_tokens_mask=False,
+        )
+        # print('features.keys()=', features.keys()
+
+        if 'label' in column_name_dict.keys() or self.is_training:
+            label_column_name = column_name_dict['label'][0]
+            # print('label_column_name=', label_column_name)
+            try:
+                label_ids = [
+                    self.label2id[value] for value in examples[label_column_name] if len(value) > 0 and not None
+                ]
+                features['label_ids'] = label_ids
+            except:
+                print('This could be test example.')
+
+        return features
 
 
 tasks2processor = {

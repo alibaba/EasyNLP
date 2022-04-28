@@ -3,15 +3,15 @@ export CUDA_VISIBLE_DEVICES=$1
 
 # Local training example
 # cur_path=/tmp/EasyNLP
- cur_path=/apsarapangu/disk3/minghui.qmh/EasyNLP/
-#cur_path=/wjn/EasyNLP
+# cur_path=/apsarapangu/disk3/minghui.qmh/EasyNLP/
+cur_path=/wjn/EasyNLP
 mode=$2
 task=$3
 
 cd ${cur_path}
 
 MASTER_ADDR=localhost
-MASTER_PORT=6011
+MASTER_PORT=6012
 GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
