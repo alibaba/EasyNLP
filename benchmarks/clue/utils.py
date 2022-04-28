@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import os
+import time
 import torch
 import numpy as np
 from typing import Union, List
@@ -21,7 +22,7 @@ from easynlp.appzoo.api import get_application_model, get_application_dataset, g
 from datasets import load_dataset as hf_load_dataset
 from datasets import DatasetDict, Dataset
 from easynlp.modelzoo import AutoConfig, AutoTokenizer
-from benchmarks.clue_fewshot.preprocess import tasks2processor, DatasetPreprocessor
+from benchmarks.clue.preprocess import tasks2processor, DatasetPreprocessor
 from easynlp.appzoo.dataset import BaseDataset
 from easynlp.utils import io, parse_row_by_schema
 from easynlp.utils.logger import logger
@@ -164,15 +165,49 @@ class CLUEDataset(Dataset):
        pass
 
 
+
+def download_data():
+    '''
+    default saved in the root directory of the project.
+    '''
+    data_base_dir = os.path.join(os.environ['HOME'], '.benchmark', 'clue')
+    if not io.exists(data_base_dir):
+        io.makedirs(data_base_dir)
+    assert io.isdir(data_base_dir), '%s is not a existing directory' % data_base_dir
+    if not io.exists(data_base_dir + 'CLUEdatasets1.1.tar.gz'):
+        # Use the remote mapping file
+        """with urllib.request.urlopen("https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CLUEdatasets1.1.tar.gz") as f:
+
+        model_name_mapping = json.loads(f.read().decode('utf-8'))
+        """
+        while True:
+            try:
+                if os.path.exists('CLUEdatasets1.1.tar.gz'):
+                    break
+                print('Trying downloading CLUEdatasets1.1.tar.gz')
+                os.system(
+                    'wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CLUEdatasets1.1.tar.gz'
+                )
+                os.system(
+                    'tar -zxvf CLUEdatasets1.1.tar.gz'
+                )
+                print('Success')
+            except Exception:
+                time.sleep(2)
+
+
+
 def load_dataset(
         preprocessor: DatasetPreprocessor,
         clue_name: str = 'clue',
         task_name: str = 'csl',
         is_training: bool = True,
+        cache_dir: str = './tmp'
 )-> CLUEDataset:
-    data_dir = os.path.join('benchmarks', clue_name, "data/{}".format(task_name))
-    if task_name == "cmnli":
-        data_dir = os.path.join(data_dir, "cmnli_public")
+    download_data()
+    if not os.path.exists:
+        os.makedirs(cache_dir)
+    data_dir = os.path.join('CLUEdatasets', "{}".format(task_name))
     data_files = {}
     if is_training:
         data_files["train"] = os.path.join(data_dir, "train.json")
@@ -181,13 +216,8 @@ def load_dataset(
         data_files["test"] = os.path.join(data_dir, "test.json")
     print('data_files=', data_files)
     extension = "json"
-    # 获得huggingface dataset
-    datasets = hf_load_dataset(extension, data_files=data_files, cache_dir='/wjn/cache')
-    # 根据对应的task进行预处理
-    # preprocessor = tasks2processor[task_name](
-    #     pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-    #     max_seq_length=args.sequence_length
-    # )
+    # 获得huggingface dataset（待datahub开发完毕则转为datahub）
+    datasets = hf_load_dataset(extension, data_files=data_files, cache_dir=cache_dir)
     hf_datasets = datasets.map(
         preprocessor.convert_examples_to_features,
         batched=True,

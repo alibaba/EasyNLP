@@ -53,7 +53,7 @@ class Trainer(object):
             else:
                 self._scaler = torch.cuda.amp.GradScaler()
 
-        self.optimizer_type = self.args.optimizer_type
+        self.optimizer_type = self.args.optimizer_type # add by ruihan.wjn
         self.max_grad_norm = self.args.max_grad_norm # add by ruihan.wjn
         self._model = None
         self._optimizer = None
@@ -83,7 +83,7 @@ class Trainer(object):
 
     @property
     def learning_rate(self):
-        return self._optimizer.get_current_lr()
+        return self._optimizer.get_current_lr(self._lr_scheduler) if self._lr_scheduler else self._optimizer.get_current_lr()
 
     def set_model_and_optimizer(self, model, args):
         if self.args.use_torchacc:
@@ -372,7 +372,9 @@ class Trainer(object):
                     logger.info('Best score: {}'.format(
                         self.evaluator.best_valid_score))
                     logger.info('Learning rate: {:.8f}'.format(
-                        self._optimizer.get_current_lr()))
+                        self._optimizer.get_current_lr(
+                            self._lr_scheduler) if self._lr_scheduler else self._optimizer.get_current_lr()
+                    ))
                     self._epoch_stats.log_tensorboard(
                         writer=self.tensorboard,
                         learning_rate=self.learning_rate,
