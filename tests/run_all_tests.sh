@@ -139,4 +139,4 @@ rm -rf *.tsv *.csv *.txt
 #
 # uninstall easynlp
 #
-pip uninstall easynlp -y
+# pip uninstall easynlp -y
