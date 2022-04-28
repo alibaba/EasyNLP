@@ -1,9 +1,8 @@
 export CUDA_VISIBLE_DEVICES=0
 
 # Local training example
-# cur_path=/tmp/EasyNLP
-# cur_path=/apsarapangu/disk3/minghui.qmh/EasyNLP/
-cur_path=$PWD/../../
+basepath=$PWD
+cur_path=$basepath/../../
 
 cd ${cur_path}
 
@@ -15,7 +14,7 @@ if [ ! -f ./tmp/train.tsv ]; then
 fi
   
 DISTRIBUTED_ARGS="--nproc_per_node 1 --nnodes 1 --node_rank 0 --master_addr localhost --master_port 6009"
-python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/self_defined_examples/main.py \
+python -m torch.distributed.launch $DISTRIBUTED_ARGS $basepath/main.py \
   --mode train \
   --tables=tmp/train.tsv,tmp/dev.tsv \
   --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \

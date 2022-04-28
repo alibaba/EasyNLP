@@ -12,12 +12,12 @@ First, you can jump into the directory:
 > cd benchmarks/clue
 
 #### Step1: Training Stage
-You can choose one task, and run the script. For example, you can train the task csl on cuda device 0:
-> bash run_clue.sh 0 train csl
+You can choose one task, and run the script. For example, you can train the task csl with AdamW optimizer on cuda device 0:
+> bash run_clue_adamw.sh 0 train csl
 
 #### Step2: Predicting Stage
 After the training stage, you will obtain the trained model in default directory ``./tmp/benchmarks/clue/csl``. You can directly run the script for prediction over test set:
-> bash run_clue.sh 0 test csl
+> bash run_clue_adamw.sh 0 test csl
 
 Then, the result will be saved in ``./tmp/predict/clue/csl/test_prediction.json``. You can directly upload this file on the leaderboard.
 
@@ -48,11 +48,12 @@ We provide default hyper-parameters for each task, you can reset them by your se
 
 ### Results
 
-We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone we choose is bert-base-chinese
+We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone we choose is bert-base-chinese.
 The results of dev set can be found in the follow:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
 | P    | 72.17% | 75.74% | 80.93% | 60.22%  | 78.31% | 57.52% | 75.33% |
 | F1   | 52.96% | 75.74% | 81.71% | 60.22%  | 78.30% | 57.52% | 80.82% |
+
 

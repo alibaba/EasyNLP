@@ -17,7 +17,7 @@
 import argparse
 import importlib
 import os
-
+import torch
 
 def is_torchx_available():
     return importlib.util.find_spec('torchacc') is not None
@@ -82,7 +82,8 @@ def parse_args(extra_args_provider=None,
     if is_torchx_available():
         args.n_gpu = 0
     else:
-        args.n_gpu = args.world_size
+        args.n_gpu = args.world_size if torch.cuda.is_available() else 0
+        
     args.n_cpu = args.worker_cpu if args.worker_cpu > 0 else 1
     if args.rank == 0:
         args.is_master_node = True
@@ -212,7 +213,8 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'text_match', 'text_match_two_tower',
                            'vectorization', 'language_modeling',
                            'sequence_labeling', 'data_augmentation',
-                           'sequence_generation', 'geep_classify'
+                           'sequence_generation', 'geep_classify',
+                           "text2image_generation", 'clip'
                        ],
                        help='name of the application')
 
