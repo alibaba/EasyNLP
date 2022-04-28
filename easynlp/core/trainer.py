@@ -549,7 +549,7 @@ class Trainer(object):
 
                     if not self.args.use_torchacc:
                         batch = {
-                            key: val.to(args.local_rank) if isinstance(
+                            key: val.to(self._device) if isinstance(
                                 val, torch.Tensor) else val
                             for key, val in batch.items()
                         }

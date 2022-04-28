@@ -72,5 +72,8 @@ if __name__ == "__main__":
                                                      multi_label=args.multi_label)
         evaluator = get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,
                                              eval_batch_size=args.micro_batch_size, multi_label=args.multi_label)
-        model.to(torch.cuda.current_device())
+        if args.n_gpu > 0:
+            model.to(torch.cuda.current_device())
+        else:
+            model.to("cpu")
         evaluator.evaluate(model=model)

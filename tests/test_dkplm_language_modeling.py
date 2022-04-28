@@ -28,7 +28,7 @@ class TestClassification(unittest.TestCase):
                     --logging_steps=100 \
                     --save_checkpoint_steps=500 \
                     --sequence_length=128 \
-                    --train_batch_size=32 \
+                    --train_batch_size=16 \
                     --app_name=language_modeling \
                     --checkpoint_dir=./tmp \
                     --user_defined_parameters='pretrain_model_name_or_path=alibaba-pai/pai-dkplm-medical-base-zh entity_emb_file=entity_emb.txt rel_emb_file=rel_emb.txt' \

@@ -36,7 +36,7 @@ class TestClassification(unittest.TestCase):
                 --random_seed=42 \
                 --save_checkpoint_steps=50 \
                 --sequence_length=128 \
-                --micro_batch_size=32 \
+                --micro_batch_size=4 \
                 --app_name=geep_classify \
                 --user_defined_parameters='geep_exit_num=8 pretrain_model_name_or_path=geep-base-uncased' \
                 "

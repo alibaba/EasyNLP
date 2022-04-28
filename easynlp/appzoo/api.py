@@ -450,7 +450,11 @@ def default_main_fn():
             few_shot_anchor_args=args,
             eval_batch_size=args.micro_batch_size,
             user_defined_parameters=user_defined_parameters)
-        model.to(torch.cuda.current_device())
+        
+        if args.n_gpu > 0:
+            model.to(torch.cuda.current_device())
+        else:
+            model.to("cpu")
         evaluator.evaluate(model=model)
 
     logger.info("Duration time: {} s".format(time.time() - start_time))

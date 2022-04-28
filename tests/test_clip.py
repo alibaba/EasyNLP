@@ -35,10 +35,10 @@ class TestCLIP(unittest.TestCase):
                 --logging_steps=100 \
                 --save_checkpoint_steps 500 \
                 --sequence_length=32 \
-                --micro_batch_size=32 \
+                --micro_batch_size=4 \
                 --app_name=clip \
                 --save_all_checkpoints \
-                --user_defined_parameters='pretrain_model_name_or_path=CLIP_chinese_roberta pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14 fix_vision=True mode=finetune' \
+                --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large fix_vision=True mode=finetune' \
                 "
 
         print(argvs)
@@ -83,7 +83,7 @@ class TestCLIP(unittest.TestCase):
                     --sequence_length=32 \
                     --micro_batch_size=32 \
                     --app_name=clip \
-                    --user_defined_parameters='pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14' \
+                    --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large' \
                  "
 
         print(argvs)
@@ -123,7 +123,7 @@ class TestCLIP(unittest.TestCase):
                     --sequence_length=32 \
                     --micro_batch_size=2 \
                     --app_name=clip \
-                    --user_defined_parameters='pretrain_model_name_or_path_vision=openai_clip_vit_large_patch14' \
+                    --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large' \
                  "
 
         print(argvs)
