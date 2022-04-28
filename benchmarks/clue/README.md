@@ -8,6 +8,9 @@ This project is very easy for you to train a model and submit your predicted res
 
 ### Quick Start
 
+First, you can jump into the directory:
+> cd benchmarks/clue
+
 #### Step1: Training Stage
 You can choose one task, and run the script. For example, you can train the task csl with AdamW optimizer on cuda device 0:
 > bash run_clue_adamw.sh 0 train csl
@@ -17,7 +20,6 @@ After the training stage, you will obtain the trained model in default directory
 > bash run_clue_adamw.sh 0 test csl
 
 Then, the result will be saved in ``./tmp/predict/clue/csl/test_prediction.json``. You can directly upload this file on the leaderboard.
-
 
 ### Statistics
 
@@ -51,6 +53,7 @@ The results of dev set can be found in the follow:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
-| P    | 72.17% | 79.10% | 80.93% | 60.22%  | 78.31% | 57.52% | 63.49% |
-| F1   | 52.96% | 79.10% | 81.71% | 60.22%  | 78.30% | 57.52% | 77.67% |
+| P    | 72.17% | 75.74% | 80.93% | 60.22%  | 78.31% | 57.52% | 75.33% |
+| F1   | 52.96% | 75.74% | 81.71% | 60.22%  | 78.30% | 57.52% | 80.82% |
+
 
