@@ -303,6 +303,7 @@ class Trainer(object):
                 xm.all_reduce('sum',
                               gradients,
                               scale=1.0 / xm.xrt_world_size())
+
         if self.args.use_amp:
             self._scaler.step(self._optimizer)
             self._scaler.update()
@@ -317,15 +318,11 @@ class Trainer(object):
                     self.model_module.clip_grad_norm_(self.max_grad_norm)
                 else:
                     # Revert to normal clipping otherwise, handling Apex or full precision
-                    # torch.nn.utils.clip_grad_norm_(
-                    #     amp.master_params(self.optimizer) if self.use_apex else self.model_module.named_parameters(),
-                    #     args.max_grad_norm,
-                    # )
                     torch.nn.utils.clip_grad_norm_(self.model_module.parameters(), self.max_grad_norm)
             self._optimizer.step()
-            if self._lr_scheduler:
-                self._lr_scheduler.step()
-            self._optimizer.zero_grad()
+        if self._lr_scheduler:
+            self._lr_scheduler.step()
+        self._optimizer.zero_grad()
 
     def after_iter(self, _step, _epoch, loss_dict):
         args = self.args
