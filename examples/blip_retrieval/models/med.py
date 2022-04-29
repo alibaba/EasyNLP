@@ -20,7 +20,7 @@ from torch.nn import CrossEntropyLoss
 import torch.nn.functional as F
 
 import sys
-sys.path.append("../..")
+sys.path.append("./")
 
 from easynlp.modelzoo.activations import ACT2FN
 
