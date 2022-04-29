@@ -182,12 +182,22 @@ bash run_clue.sh 0 train csl
 ```
 
 
-We've tested a bert model (bert-base-chinese) on the datasets, the results of dev set are:
+We've tested chiese bert and roberta modelson the datasets, the results of dev set are:
+
+(1) bert-base-chinese
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
 | P    | 72.17% | 75.74% | 80.93% | 60.22%  | 78.31% | 57.52% | 75.33% |
 | F1   | 52.96% | 75.74% | 81.71% | 60.22%  | 78.30% | 57.52% | 80.82% |
+
+(2) chinese-roberta-wwm-ext:
+
+| Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
+|------|--------|--------|--------|---------|--------|--------|--------|
+| P    | 73.10% | 80.75% | 80.07% | 60.98%  | 80.75% | 57.93% | 86.84% |
+| F1   | 56.04% | 80.75% | 81.50% | 60.98%  | 80.75% | 57.93% | 89.58% |
+
 
 Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue).
 
