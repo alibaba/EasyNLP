@@ -1,3 +1,10 @@
+import sys
+import os
+
+sys.path.append('./')
+sys.path.append('./easynlp/appzoo/')
+sys.path.append('./examples/hf_adapter_easynlp/')
+
 from easynlp.appzoo import ClassificationDataset
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
@@ -36,7 +43,9 @@ if __name__ == "__main__":
             args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
         else:
             args.pretrained_model_name_or_path = args.checkpoint_dir
-
+        args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+        pretrained_model_name_or_path = args.pretrained_model_name_or_path \
+            if args.pretrained_model_name_or_path else args.checkpoint_dir
         valid_dataset = ClassificationDataset(
             pretrained_model_name_or_path=args.pretrained_model_name_or_path,
             data_file=args.tables.split(",")[-1],
@@ -48,12 +57,8 @@ if __name__ == "__main__":
             label_enumerate_values=args.label_enumerate_values,
             is_training=False)
 
-        pretrained_model_name_or_path = args.pretrained_model_name_or_path \
-            if args.pretrained_model_name_or_path else args.checkpoint_dir
-        pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
-
         if args.mode == "train":
-            model = BertForSequenceClassification.from_pretrained('/root/.easynlp/modelzoo/bert-base-uncased/')
+            model = BertForSequenceClassification.from_pretrained(args.pretrained_model_name_or_path)
             train_dataset = ClassificationDataset(
                 pretrained_model_name_or_path=args.pretrained_model_name_or_path,
                 data_file=args.tables.split(",")[0],
