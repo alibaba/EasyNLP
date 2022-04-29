@@ -186,8 +186,8 @@ We've tested a bert model (bert-base-chinese) on the datasets, the results of de
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
-| P    | 72.17% | 79.10% | 80.93% | 60.22%  | 78.31% | 57.52% | 63.49% |
-| F1   | 52.96% | 79.10% | 81.71% | 60.22%  | 78.30% | 57.52% | 77.67% |
+| P    | 72.17% | 75.74% | 80.93% | 60.22%  | 78.31% | 57.52% | 75.33% |
+| F1   | 52.96% | 75.74% | 81.71% | 60.22%  | 78.30% | 57.52% | 80.82% |
 
 Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue).
 
