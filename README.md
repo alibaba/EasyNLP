@@ -68,6 +68,7 @@ train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args
 model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
 Trainer(model=model,  train_dataset=train_dataset).train()
 ```
+For more datasets, please check it out in [DataHub](https://github.com/alibaba/EasyNLP/tree/master/datahub).
 
 Alternatively, you can use the classification dataset api to support new classification datasets.
 ```python
