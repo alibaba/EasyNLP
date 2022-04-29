@@ -1,4 +1,18 @@
-EasyNLP提供常见的中文数据集的下载，同时提供脚本处理中文数据。
+EasyNLP提供常见的中文数据集的下载，同时提供如下接口加载和处理中文数据。
+
+# 使用DataHub数据进行训练
+对于已经过huggingface或easynlp预处理的数据，您可以直接使用以下方式加载与训练:
+```python
+from easynlp.core import Trainer
+from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
+from easynlp.utils import initialize_easynlp
+args = initialize_easynlp()
+row_data = load_dataset('clue', 'afqmc')["train"]
+train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+Trainer(model=model,  train_dataset=train_dataset).train()
+```
+
 # 预训练数据
 | **数据** | **描述** | **数据格式** |
 | --- | --- | --- |
@@ -161,16 +175,3 @@ title为新闻的标题 |
 - Wudao数据：[https://git.openi.org.cn/BAAI/WuDao-Data](https://git.openi.org.cn/BAAI/WuDao-Data)
 - Wukong数据：[https://readpaper.com/paper/653639982984556544](https://readpaper.com/paper/653639982984556544)
 - SophonPlus：[https://github.com/SophonPlus/ChineseNlpCorpus](https://github.com/SophonPlus/ChineseNlpCorpus)
-
-# 使用DataHub数据进行训练
-对于已经过huggingface或easynlp预处理的数据，您可以直接使用以下方式加载与训练:
-```python
-from easynlp.core import Trainer
-from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
-from easynlp.utils import initialize_easynlp
-args = initialize_easynlp()
-row_data = load_dataset('clue', 'afqmc')["train"]
-train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
-```
