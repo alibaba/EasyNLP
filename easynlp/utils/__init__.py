@@ -16,7 +16,6 @@ import json
 import os
 import tarfile
 import time
-import urllib.request
 from collections import defaultdict
 
 import torch
@@ -28,6 +27,12 @@ from .initializer import initialize_easynlp
 from .io_utils import IO, OSSIO, TFOSSIO, DefaultIO, io, parse_oss_buckets
 from .logger import init_logger
 
+easynlp_default_path = os.path.join(os.environ["HOME"], ".easynlp")
+EASYNLP_REMOTE_ROOT = "https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp"
+EASYNLP_REMOTE_MODELZOO = "http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/"
+EASYNLP_CACHE_ROOT = os.getenv("EASYNLP_CACHE_ROOT", easynlp_default_path)
+EASYNLP_LOCAL_MODELZOO = os.path.join(EASYNLP_CACHE_ROOT, "modelzoo")
+EASYNLP_LOCAL_DATAHUB = os.path.join(EASYNLP_CACHE_ROOT, "datahub")
 
 def copy_weights_for_same_module(copied_module, copying_module):
     if isinstance(copied_module, nn.Parameter):
@@ -105,8 +110,7 @@ def get_pretrain_model_path(pretrained_model_name_or_path,
 
     # Use default $HOME/.easynlp_modelzoo as the modelzoo directory
     n_gpu = int(os.environ.get('EASYNLP_N_GPUS', '0'))
-    modelzoo_base_dir = os.path.join(os.environ['HOME'], '.easynlp',
-                                     'modelzoo')
+    modelzoo_base_dir = EASYNLP_LOCAL_MODELZOO
     is_master_node = (os.environ.get('EASYNLP_IS_MASTER',
                                      'true').lower() == 'true')
 
@@ -181,12 +185,8 @@ def get_pretrain_model_path(pretrained_model_name_or_path,
                 if n_gpu > 1:
                     torch.distributed.barrier()
 
-            # pretrained_model_name: hfl/chinese-roberta-wwm-ext
-            # pretrained_model_name_or_path: /path/.easynlp_modelzoo/hfl/chinese-roberta-wwm-ext.tgz
-            model_root_dir = os.path.join(os.environ['HOME'], '.easynlp',
-                                          'modelzoo')
             pretrained_model_name_or_path = os.path.join(
-                model_root_dir,
+                EASYNLP_LOCAL_MODELZOO,
                 model_name_mapping[pretrained_model_name].replace('.tgz', ''))
         return pretrained_model_name_or_path
     else:
@@ -237,3 +237,4 @@ def get_cnn_vocab(args):
                                     disable_auto_download=True), 'vocab.txt')
     else:
         raise ValueError('Language not supported')
+
