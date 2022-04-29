@@ -47,11 +47,11 @@ class TestClassificationDistillation(unittest.TestCase):
             cwd.joinpath('logs').mkdir(exist_ok=True)
             if not cwd.joinpath('train.tsv').exists():
                 cls.download_file(
-                    'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/classification/train.tsv'
+                    'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv'
                 )
             if not cwd.joinpath('dev.tsv').exists():
                 cls.download_file(
-                    'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/classification/dev.tsv'
+                    'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv'
                 )
 
     # @classmethod

@@ -89,6 +89,7 @@ class Trainer(object):
         if self.args.use_torchacc:
             self._model = model.to(self._device)
         elif self.args.n_gpu == 1:
+            self._device = self.args.local_rank
             self._model = model.to(self.args.local_rank)
         elif self.args.n_gpu > 1:
             self._model = torch.nn.parallel.DistributedDataParallel(
@@ -97,7 +98,10 @@ class Trainer(object):
                 output_device=self.args.local_rank,
                 find_unused_parameters=True)
         else:
-            raise Exception('CPU Training is not supported.')
+            logger.warn("Use CPU Training.")
+            logger.warn("Make sure worker_gpu is set up correctly.")
+            self._device = "cpu"
+            self._model = model.to(self._device)
 
         # Build Optimizer
         self._optimizer, self._lr_scheduler = get_optimizer(
@@ -117,9 +121,9 @@ class Trainer(object):
             return
         meta_file = args.resume_from_checkpoint + '.meta.bin'
         model_file = args.resume_from_checkpoint + '.bin'
-        if 'oss::' in args.resume_from_checkpoint:
+        if 'oss://' in args.resume_from_checkpoint:
             local_file = 'easynlp_resume_pytorch_model.meta.bin'
-            io.download(model_file, local_file)
+            io.download(meta_file, local_file)
             meta_file = local_file
 
             local_file = 'easynlp_resume_pytorch_model.bin'
@@ -429,50 +433,51 @@ class Trainer(object):
         with io.open(output_config_file, 'w') as f:
             f.write(self.model_module.config.to_json_string())
 
-        # Save vocab.txt
-        if os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.txt'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.txt'))
-        # Save vocab.json
-        elif os.path.exists(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json')):
-            io.copy(
-                os.path.join(
-                    get_dir_name(
-                        get_pretrain_model_path(
-                            self.args.pretrained_model_name_or_path,
-                            disable_auto_download=True)), 'vocab.json'),
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'vocab.json'))
-        else:
-            raise FileNotFoundError
+        if self.args.pretrained_model_name_or_path is not None: 
+            # Save vocab.txt
+            if os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.txt'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.txt'))
+            # Save vocab.json
+            elif os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'vocab.json'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'vocab.json'))
+            else:
+                raise FileNotFoundError
 
-        # Save spiece.model
-        spiece_path = os.path.join(
-            get_dir_name(
-                get_pretrain_model_path(
-                    self.args.pretrained_model_name_or_path,
-                    disable_auto_download=True)), 'spiece.model')
-        if os.path.exists(spiece_path):
-            io.copy(
-                spiece_path,
-                os.path.join(get_dir_name(self.args.checkpoint_dir),
-                             'spiece.model'))
+            # Save spiece.model
+            spiece_path = os.path.join(
+                get_dir_name(
+                    get_pretrain_model_path(
+                        self.args.pretrained_model_name_or_path,
+                        disable_auto_download=True)), 'spiece.model')
+            if os.path.exists(spiece_path):
+                io.copy(
+                    spiece_path,
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'spiece.model'))
 
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
@@ -543,14 +548,17 @@ class Trainer(object):
 
                     if not self.args.use_torchacc:
                         batch = {
-                            key: val.to(args.local_rank) if isinstance(
+                            key: val.to(self._device) if isinstance(
                                 val, torch.Tensor) else val
                             for key, val in batch.items()
                         }
 
-                    label_ids = batch.pop('label_ids')
+                    label_ids = batch.pop('label_ids', None)
                     with self.autocast_context_manager():
-                        forward_outputs = self._model(batch)
+                        if label_ids is not None:
+                            forward_outputs = self._model(batch)
+                        else:
+                            forward_outputs, label_ids = self._model(batch)
                         if batch.get('insert_know_labels') is not None:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids,

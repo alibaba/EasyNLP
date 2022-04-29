@@ -13,15 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ast import literal_eval
+
+import os
+
 from typing import List
 import numpy as np
 import torch
 import torch.distributed as dist
 from torch.utils.data import Dataset
 
-from ..utils import io, parse_row_by_schema
+import datasets
+from datasets import list_datasets
+from datasets import load_dataset as hf_load_dataset
+
+from ..utils import io, parse_row_by_schema, get_dir_name
 from ..utils.logger import logger
+from ..modelzoo import AutoTokenizer
 
 
 class BaseDataset(Dataset):
@@ -282,3 +289,86 @@ class BaseDataset(Dataset):
         rst_schema = ",".join(col_with_schemas)
         print("Input Schema: ", rst_schema)
         return rst_schema
+
+
+class GeneralDataset(BaseDataset):
+    def __init__(self, data_file, pretrained_model_name_or_path:str, max_seq_length:int):    
+        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+        self.max_seq_length = max_seq_length
+        self.first_sequence = self.second_sequence = self.label_name = self.num_label = self.label_enumerate_value \
+            = self.label_mapping = self.data_rows = None
+        # Required by BaseDataset
+        self.data_source = "local"
+        assert isinstance(data_file, datasets.arrow_dataset.Dataset), "The inputs data format must be datasets.arrow_dataset.Dataset from load_dataset()."
+        dataset_info = getattr(data_file, "info", None)
+        data_features = dataset_info.features
+        self.column_names = list(data_file.features.keys())
+        self.data_rows = [data_file[i] for i in range(data_file.num_rows)]
+        self.first_sequence = self.column_names[0]
+        if self.column_names[1] != "label":
+            self.second_sequence = self.column_names[1]
+        self.label_name = "label"
+        self.num_label = data_features["label"].num_classes
+        self.label_enumerate_value = data_features["label"].names
+        self.label_map = {label: i for i, label in enumerate(self.label_enumerate_value)}
+
+    def __len__(self):
+        return len(self.data_rows)
+    
+    def __getitem__(self, item):
+        row = self.data_rows[item]
+        return self.convert_single_row_to_example(row)
+
+    def convert_single_row_to_example(self, row):
+
+        text_a = row[self.first_sequence]
+        text_b = row[self.second_sequence] if self.second_sequence else None
+        label = row[self.label_name] if self.label_name else None
+
+        encoding = self.tokenizer(text_a,
+                                  text_b,
+                                  padding='max_length',
+                                  truncation=True,
+                                  max_length=self.max_seq_length)
+        if label in self.label_map.values():
+            encoding['label_ids'] = label
+        else:
+            encoding['label_ids'] = self.label_map[label]
+        return encoding
+
+    def batch_fn(self, features):
+        """
+            Divide examples into batches.
+        """
+        return {k: torch.tensor([dic[k] for dic in features]) for k in features[0]}
+
+def load_dataset(path, name=None, data_files=None):
+    # Local Data
+    support_data_format = ["json", "csv", "text", "parquet"]
+    if data_files is not None and path in support_data_format:
+        return hf_load_dataset(path, data_files=data_files)
+
+    datahub_base_dir = os.path.join(os.environ["HOME"], ".easynlp", "datahub")
+    if not io.isdir(datahub_base_dir):
+        io.makedirs(datahub_base_dir)
+    assert io.isdir(datahub_base_dir), "%s is not a existing directory" % datahub_base_dir
+
+    data_script_dir = os.path.join(datahub_base_dir, path)
+    if not io.isdir(data_script_dir):
+            io.makedirs(data_script_dir)
+    if not io.exists(os.path.join(data_script_dir, f"{path}.py")):
+        # Loading Huggingface Datasets list
+        hug_datasets_list = list_datasets()
+        remote_base = "https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/"
+        if path in hug_datasets_list or f"{path}/{name}" in hug_datasets_list:
+            remote_root = os.path.join(remote_base, "script")
+        else:
+            remote_root = os.path.join(remote_base, "easynlp_script")
+        remote_url = os.path.join(remote_root, path, f"{path}.py")
+        try:
+            os.system("wget " + remote_url + " -P " + get_dir_name(data_script_dir))
+        except:
+            raise RuntimeError
+    assert io.exists(os.path.join(data_script_dir, f"{path}.py"))
+    data = hf_load_dataset(data_script_dir, name)
+    return data

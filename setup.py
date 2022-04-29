@@ -12,10 +12,8 @@ setup(
     version='0.0.3',
     python_requires='>=2.7,>=3.6',
     author='PAI NLP',
-    author_email='minghui.qmh@alibaba-inc.com'
-    'chengyu.wcy@alibaba-inc.com'
-    'huangjun.hj@alibaba-inc.com',
-    url='http://gitlab.alibaba-inc.com/groups/PAI-TL',
+    author_email='easynlp@list.alibaba-inc.com',
+    url='https://github.com/alibaba/EasyNLP',
     description='PAI EasyNLP Toolkit',
     long_description=readme,
     entry_points={'console_scripts': ['easynlp=easynlp.cli:main']},

@@ -24,23 +24,30 @@ _import_structure = {
     "text_match.model": ['TextMatch', 'TextMatchTwoTower', 'DistillatoryTextMatch', 'FewshotSingleTowerTextMatch', 'CptFewshotSingleTowerTextMatch'],
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
+    "multi_modal.model": ["MultiModal"],
+
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
     "language_modeling.evaluator": ['LanguageModelingEvaluator'],
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
+    "multi_modal.evaluator": ['MultiModalEvaluator'],
+
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
     "feature_vectorization.predictor": ['FeatureVectorizationPredictor'],
     "text_match.predictor": ['TextMatchPredictor', 'TextMatchTwoTowerPredictor', 'FewshotSingleTowerTextMatchPredictor', 'CptFewshotSingleTowerTextMatchPredictor'],
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
+    "multi_modal.predictor": ['MultiModalPredictor'],
 
+    "geep_classification.data": ['GEEPClassificationDataset'],
+    "language_modeling.data": ['LanguageModelingDataset'],
+    "multi_modal.data": ['MultiModalDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset'],
-    "language_modeling.data": ['LanguageModelingDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
-    "geep_classification.data": ['GEEPClassificationDataset'],
+    "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
 
@@ -52,12 +59,14 @@ if TYPE_CHECKING:
     from .text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
+    from .multi_modal.model import MultiModal
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
     from .language_modeling.evaluator import LanguageModelingEvaluator
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
+    from .multi_modal.evaluator import MultiModalEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -65,15 +74,22 @@ if TYPE_CHECKING:
     from .text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
+    from .multi_modal.predictor import MultiModalPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset
     from .language_modeling.data import LanguageModelingDataset
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
+    from .multi_modal.data import MultiModalDataset
+
+    from .dataset import BaseDataset, GeneralDataset
+    from .dataset import load_dataset
 
     from .api import get_application_dataset, get_application_model, get_application_model_for_evaluation
     from .api import get_application_evaluator, get_application_predictor
+    
+    
 
 else:
     import importlib
