@@ -43,6 +43,7 @@ class BaseDataset(Dataset):
                  output_format="line",
                  *args,
                  **kwargs):
+        self.selected_columns = selected_columns
         self.data_source = self.identify_data_source(data_file)
         self.input_schema = input_schema
         self.output_format = output_format
@@ -73,7 +74,7 @@ class BaseDataset(Dataset):
             slice_id = 0
             slice_count = 1
         self.table_reader = common_io.table.TableReader(data_file,
-                                                        selected_cols=selected_columns,
+                                                        selected_cols=self.selected_columns,
                                                         slice_id=slice_id,
                                                         slice_count=slice_count,
                                                         capacity=reader_buffer_size)
