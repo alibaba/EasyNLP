@@ -49,11 +49,27 @@ We provide default hyper-parameters for each task, you can reset them by your se
 ### Results
 
 We simply train for only 5 epoch for each task (50 epoch for WSC), the backbone we choose is bert-base-chinese.
+
 The results of dev set can be found in the follow:
+
+(1) bert-base-chinese:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
-| P    | 72.17% | 75.74% | 80.93% | 60.22%  | 78.31% | 57.52% | 75.33% |
-| F1   | 52.96% | 75.74% | 81.71% | 60.22%  | 78.30% | 57.52% | 80.82% |
+| P    | 72.17% | 75.74% | 81.9%  | 60.22%  | 78.31% | 57.52% | 75.33% |
+| F1   | 52.96% | 75.74% | 82.68% | 60.22%  | 78.30% | 57.52% | 80.82% |
 
 
+(2) macbert-base:
+
+| Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
+|------|--------|--------|--------|---------|--------|--------|--------|
+| P    | 74.23% | 80.65% | 81.70% | 61.14%  | 80.65% | 57.65% | 80.26% |
+| F1   | 55.77% | 80.65% | 82.43% | 61.14%  | 80.65%  | 57.65% | 84.54% |
+
+(3) chinese-roberta-wwm-ext:
+
+| Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
+|------|--------|--------|--------|---------|--------|--------|--------|
+| P    | 73.10% | 80.75% | 80.07% | 60.98%  | 80.75% | 57.93% | 86.84% |
+| F1   | 56.04% | 80.75% | 81.50% | 60.98%  | 80.75% | 57.93% | 89.58% |
