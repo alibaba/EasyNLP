@@ -67,13 +67,12 @@ def parse_args(extra_args_provider=None,
             setattr(args, key, defaults[key])
 
     assert args.mode is not None
-    assert args.tables is not None
 
     # Batch size.
     assert args.micro_batch_size is not None
     assert args.micro_batch_size > 0
 
-    if 'odps://' in args.tables:
+    if args.tables is not None and 'odps://' in args.tables:
         args.read_odps = True
     else:
         args.read_odps = False
