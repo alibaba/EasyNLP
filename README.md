@@ -245,7 +245,7 @@ Scan the following QR codes to join Dingtalk discussion group. The group discuss
 We have [an arxiv paper](https://arxiv.org/abs/2205.00258) for you to cite for the EasyNLP library:
 
 ```
-@misc{easynlp,
+@article{easynlp,
   doi = {10.48550/ARXIV.2205.00258},  
   url = {https://arxiv.org/abs/2205.00258},  
   author = {Wang, Chengyu and Qiu, Minghui and Zhang, Taolin and Liu, Tingting and Li, Lei and Wang, Jianing and Wang, Ming and Huang, Jun and Lin, Wei},
