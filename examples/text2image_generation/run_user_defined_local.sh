@@ -1,7 +1,7 @@
 export CUDA_VISIBLE_DEVICES=$1
 
 # Local training example
-cur_path=$PWD/../../../
+cur_path=$PWD/../../
 cd ${cur_path}
 
 MASTER_ADDR=localhost
@@ -29,7 +29,7 @@ if [ "$mode" = "pretrain" ]; then
     mv vqgan_f16_16384.bin tmp/
   fi
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/text2image_generation/main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/text2image_generation/main.py \
     --mode=train \
     --tables=./tmp/T2I_train.txt,./tmp/T2I_val.txt \
     --input_schema=idx:str:1,text:str:1,imgbase64:str:1 \

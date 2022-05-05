@@ -92,6 +92,7 @@ class Trainer(object):
             self._device = self.args.local_rank
             self._model = model.to(self.args.local_rank)
         elif self.args.n_gpu > 1:
+            self._device = self.args.local_rank
             self._model = torch.nn.parallel.DistributedDataParallel(
                 model.to(self.args.local_rank),
                 device_ids=[self.args.local_rank],
