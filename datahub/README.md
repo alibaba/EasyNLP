@@ -13,6 +13,31 @@ model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_mod
 Trainer(model=model,  train_dataset=train_dataset).train()
 ```
 
+对于新的数据集，您可以使用下面方式加载（以文本分类为例）：
+```python
+from easynlp.core import Trainer
+from easynlp.appzoo import ClassificationDataset, SequenceClassification
+from easynlp.utils import initialize_easynlp
+
+args = initialize_easynlp()
+
+train_dataset = ClassificationDataset(
+    pretrained_model_name_or_path=args.pretrained_model_name_or_path,
+    data_file=args.tables,
+    max_seq_length=args.sequence_length,
+    input_schema=args.input_schema,
+    first_sequence=args.first_sequence,
+    label_name=args.label_name,
+    label_enumerate_values=args.label_enumerate_values,
+    is_training=True)
+
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+Trainer(model=model,  train_dataset=train_dataset).train()
+```
+
+具体的例子详见[quick start](https://github.com/alibaba/EasyNLP/blob/master/examples/quick_start_user_defined/main.py)。
+
+
 # 预训练数据
 | **数据** | **描述** | **数据格式** |
 | --- | --- | --- |
