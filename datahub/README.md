@@ -130,9 +130,9 @@ title为新闻的标题 |
 | **数据** | **描述** | **数据格式** | 
 | --- | --- | --- |
 | CN-DBpedia([2015版dump数据和mention2entity](http://openkg.cn/dataset/cndbpedia))([开放API](http://kw.fudan.edu.cn/apis/cndbpedia/)) | 中文通用知识图谱 来源：中文百科（如百度百科、互动百科、中文维基百科等）包含900万+的百科实体以及6700万+的三元组关系。 | txt格式，每行一条数据，每条数据是一个(实体名称，属性名称，属性值)的三元组，中间用tab分隔: 实体名称 \\t 属性名称 \\t 属性值 |
-| AliOpenKG([下载链接-需申请](https://kg.alibaba.com/index.html)) | 开放数字商业知识图谱 包含18亿的三元组，多达67万的核心概念，2681类关系。 | subject \\t predicate \\t objec 例如：<http://ali.openkg.cn/alischema#Product/pid_2dd3c5230529e64cb772177b775e056e>  \\t <http://ali.openkg.cn/alischema#Property/产品名称>  \\t 正装长袖衬衫 |
-| Zhishi.me([dump-turtle格式和jsonld格式](http://openkg.cn/dataset/zhishi-me-dump)) | 中文通用知识图谱 来源：中文百科（如百度百科、互动百科、中文维基百科等）|  |
-| XLore([开放API](https://xloreapi.docs.apiary.io/#reference/0/0)) | 多语言通用知识图谱 来源：中英文维基和百度百科 包含2615万实例，235万概念，51万属性。 |  | 
+| AliOpenKG([下载链接-需申请](https://kg.alibaba.com/index.html)) | 开放数字商业知识图谱 包含18亿的三元组，多达67万的核心概念，2681类关系。 | subject \\t predicate \\t objec 例如：link1  \\t link2 \\t 正装长袖衬衫 |
+| Zhishi.me([dump-turtle格式和jsonld格式](http://openkg.cn/dataset/zhishi-me-dump)) | 中文通用知识图谱 来源：中文百科（如百度百科、互动百科、中文维基百科等）| json或者turtle格式|
+| XLore([开放API](https://xloreapi.docs.apiary.io/#reference/0/0)) | 多语言通用知识图谱 来源：中英文维基和百度百科 包含2615万实例，235万概念，51万属性。 | api接口 | 
 
 # 知识任务数据
 | **数据** | **描述** | **数据格式** | 
