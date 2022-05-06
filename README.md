@@ -63,7 +63,7 @@ from easynlp.utils import initialize_easynlp
 args = initialize_easynlp()
 
 row_data = load_dataset('glue', 'qnli')["train"]
-train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
+train_dataset = GeneralDataset(row_data, args.pretrained_model_name_or_path, args.sequence_length)
 
 model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
 Trainer(model=model,  train_dataset=train_dataset).train()
