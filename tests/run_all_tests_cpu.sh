@@ -46,15 +46,15 @@ fi
 python test_vectorization.py
 rm -rf *.tsv
 
-# Unit tests
-echo "================== Test classification =================="
-if [ ! -f ./train.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv
-fi
-
-python test_classification.py
-rm -rf classification_model
+# # Unit tests
+# echo "================== Test classification =================="
+# if [ ! -f ./train.tsv ]; then
+#   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv
+#   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv
+# fi
+# 
+# python test_classification.py
+# rm -rf classification_model
 
 # echo "================== Test geep classification =================="
 # if [ ! -f ./train_toy.tsv ]; then
