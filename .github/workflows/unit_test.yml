@@ -34,9 +34,15 @@ jobs:
         run: |
           pwd
           ls
-          pip install -r requirements.txt
+          conda create -n myenv python=3.6 
+          conda activate myenv
+
+          which python
+          python --version
+          
+          # pip install -r requirements.txt
           # python setup.py install --user
-          cd tests/
+          # cd tests/
           # sh run_all_tests.sh
-          sh run_all_tests_cpu.sh
+          # sh run_all_tests_cpu.sh
 
