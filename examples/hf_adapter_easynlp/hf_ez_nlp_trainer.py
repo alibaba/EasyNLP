@@ -36,12 +36,15 @@ class HfTrainer(Trainer):
     def __init__(self, model, train_dataset, evaluator, **kwargs):
         self.args = get_args()
         self._model = None
+        self.optimizer_type = self.args.optimizer_type
+        self.max_grad_norm = self.args.max_grad_norm
         self._optimizer = None
         self._train_loader = None
         self._start_epoch = 0
         self._start_global_step = 0
         self._start_time = time.time()
         self._current_loss = 0.
+        self._lr_scheduler = None
         self._current_epoch = self._start_epoch
         self.set_train_loader(train_dataset, self.args)
         self.set_model_and_optimizer(model, self.args)
