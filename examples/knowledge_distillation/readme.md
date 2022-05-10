@@ -202,7 +202,7 @@ Meta-KD算法的细节可以参考论文_Meta-KD: A Meta Knowledge Distillation 
 ```bash
 cd data
 if [ ! -f ./SENTI/dev.tsv ];then
-wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/datasets/domain_data/domain_sentiment_data.tar.gz
+wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/domain_sentiment_data.tar.gz
 tar -zxvf domain_sentiment_data.tar.gz
 fi
 cd ..
