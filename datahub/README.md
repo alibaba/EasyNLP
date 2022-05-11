@@ -44,10 +44,10 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | Wudao（中文）（[链接](https://resource.wudaoai.cn/home?ind&name=WuDaoCorpora%202.0&id=1394901288847716352)） | 5900万文本数据 | json格式，包括Topic（标题），Text（正文） |
 | WuDaoMM-base（[链接](https://resource.wudaoai.cn/home )） | WuDao大数据的一个子数据集，共500万图文对。支持了文澜、Cogview 等中文多模态预训练） | json格式，数据包含19个大类，分别为：能源、表情、工业、医疗、风景、动物、新闻、花卉、教育、艺术、人物、科学、大海、树木、汽车、社交、科技、运动等，单类别数据约7万~40万左右。每个json文件包括name，tag，图片url，和captions。 |
 | CLUE-news2016（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/news2016zh.zip)） | CLUE社区收集的250万篇新闻，含关键词和描述 | 8G新闻语料，分成两个上下两部分，总共有2000个小文件 |
-| CLUE-webText2019（[直接下载](https://github.com/brightmart/webtext2019zh.zip)） | CLUE社区收集的419万个高质量社区问答，适合训练通用预训练模型或者问答模型 | 社区互动3G语料，包含3G文本，总共有900多个小文件 |
-| CLUE-wiki2019（[直接下载](https://github.com/brightmart/wiki_zh_2019.zip)） | CLUE社区的维基百科语料，104万个结构良好的中文词条 | 1.1G左右文本，包含300左右小文件 |
-| CLUE-baike2018qa（[直接下载](https://github.com/brightmart/baike2018qa.zip)） | CLUE社区收集的百科问答数据，150万个问答数据，包括问答数据和问题类型。数据集划分：数据去重并分成三个部分。训练集：142.5万；验证集：4.5万，测试集无。 | 含有150万个预先过滤过的、高质量问题和答案，每个问题属于一个类别。总共有492个类别，其中频率达到或超过10次的类别有434个。 |
-| CLUE-translation2019（[直接下载](https://github.com/brightmart/baike2018qa.zip)） | CLUE社区收集的中文机器翻译数据，520万个中英文句子对。数据集划分：数据去重并分成三个部分。训练集：516万；验证集：3.9万 | 每一个对，包含一个英文和对应的中文。中文或英文，多数情况是一句带标点符号的完整的话。对于一个平行的中英文对，中文平均有36个字，英文平均有19个单词 |
+| CLUE-webText2019（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/webtext2019zh.zip)） | CLUE社区收集的419万个高质量社区问答，适合训练通用预训练模型或者问答模型 | 社区互动3G语料，包含3G文本，总共有900多个小文件 |
+| CLUE-wiki2019（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/wiki_zh_2019.zip)） | CLUE社区的维基百科语料，104万个结构良好的中文词条 | 1.1G左右文本，包含300左右小文件 |
+| CLUE-baike2018qa（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/baike2018qa.zip)） | CLUE社区收集的百科问答数据，150万个问答数据，包括问答数据和问题类型。数据集划分：数据去重并分成三个部分。训练集：142.5万；验证集：4.5万，测试集无。 | 含有150万个预先过滤过的、高质量问题和答案，每个问题属于一个类别。总共有492个类别，其中频率达到或超过10次的类别有434个。 |
+| CLUE-translation2019（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/translation2019zh.zip)） | CLUE社区收集的中文机器翻译数据，520万个中英文句子对。数据集划分：数据去重并分成三个部分。训练集：516万；验证集：3.9万 | 每一个对，包含一个英文和对应的中文。中文或英文，多数情况是一句带标点符号的完整的话。对于一个平行的中英文对，中文平均有36个字，英文平均有19个单词 |
 | 互联网图片库2.0（SogouP2.0）（[链接](http://www.sogou.com/labs/resource/p2.php)） | 来自搜狗识图搜[http://pic.sogou.com/shitu/index.html](http://pic.sogou.com/shitu/index.html) 索引的部分数据。其中收集了包括人物、动物、建筑、机械、风景、运动等类别，总数高达1000万张图片。图片库还包括了一个识图搜索结果人工标注集合，用于训练和评测。 | 共包括三个文件：Meta_Data,Original_Pic,Evaluation_Data。其中Meta_Data存储图片的相关元数据；Original_Pic中存储图片的原图；Evaluation_Data是识图搜索结果的人工标注集合。对于每张图片，搜狗给出了图片的原图文件、图片的URL、图片所在网页的URL、图片所在网页中的Surrounding Text文本、同主题系列图片等信息。 |
 
 # 通用NLU数据
