@@ -17,18 +17,21 @@
 import os
 
 from typing import List
+import urllib
+
 import numpy as np
 import torch
 import torch.distributed as dist
 from torch.utils.data import Dataset
 
 import datasets
-from datasets import list_datasets
+from datasets import list_datasets as hf_list_datasets
 from datasets import load_dataset as hf_load_dataset
 
 from ..utils import io, parse_row_by_schema, get_dir_name
 from ..utils.logger import logger
 from ..modelzoo import AutoTokenizer
+from ..utils import EASYNLP_LOCAL_DATAHUB, EASYNLP_REMOTE_ROOT
 
 
 class BaseDataset(Dataset):
@@ -348,7 +351,7 @@ def load_dataset(path, name=None, data_files=None):
     if data_files is not None and path in support_data_format:
         return hf_load_dataset(path, data_files=data_files)
 
-    datahub_base_dir = os.path.join(os.environ["HOME"], ".easynlp", "datahub")
+    datahub_base_dir = EASYNLP_LOCAL_DATAHUB
     if not io.isdir(datahub_base_dir):
         io.makedirs(datahub_base_dir)
     assert io.isdir(datahub_base_dir), "%s is not a existing directory" % datahub_base_dir
@@ -358,8 +361,8 @@ def load_dataset(path, name=None, data_files=None):
             io.makedirs(data_script_dir)
     if not io.exists(os.path.join(data_script_dir, f"{path}.py")):
         # Loading Huggingface Datasets list
-        hug_datasets_list = list_datasets()
-        remote_base = "https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/"
+        hug_datasets_list = hf_list_datasets()
+        remote_base = EASYNLP_REMOTE_ROOT
         if path in hug_datasets_list or f"{path}/{name}" in hug_datasets_list:
             remote_root = os.path.join(remote_base, "script")
         else:
@@ -372,3 +375,20 @@ def load_dataset(path, name=None, data_files=None):
     assert io.exists(os.path.join(data_script_dir, f"{path}.py"))
     data = hf_load_dataset(data_script_dir, name)
     return data
+
+def list_datasets():
+    remote_base = EASYNLP_REMOTE_ROOT
+    datahub_base_dir = EASYNLP_LOCAL_DATAHUB
+    remote_url = os.path.join(remote_base, "easynlp_script", "datasets_list.txt")
+    try:
+        # os.system("wget " + remote_url + " -P " + get_dir_name(datahub_base_dir))
+        urllib.request.urlretrieve(remote_url, os.path.join(datahub_base_dir, "datasets_list.txt"))
+    except:
+        raise RuntimeError
+    local_file = os.path.join(datahub_base_dir, "datasets_list.txt")
+    assert os.path.isfile(local_file)
+    with open(local_file, "r") as f:
+        file_stream = f.readlines()
+    datasets_list = [data_name.strip() for data_name in file_stream]
+    return datasets_list + hf_list_datasets()
+    

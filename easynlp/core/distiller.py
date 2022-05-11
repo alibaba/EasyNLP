@@ -150,7 +150,7 @@ class MetaDistillationTrainer(Trainer):
                 'The distill_stage flag must be one of [first, second]')
 
     def set_teacher_model(self, model):
-        if self.args.use_torchxla:
+        if self.args.use_torchacc:
             self._teacher = model.to(self._device)
         elif self.args.n_gpu == 1:
             self._teacher = model.to(self.args.local_rank)
