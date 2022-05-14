@@ -236,13 +236,12 @@ Scan the following QR codes to join Dingtalk discussion group. The group discuss
 
 # Reference
 
-- EasyTransfer: https://github.com/alibaba/EasyTransfer
-- DKPLM: https://arxiv.org/abs/2112.01047
-- MetaKD: https://arxiv.org/abs/2012.01266
-- CP-Tuning: https://arxiv.org/abs/2204.00166
-- FashionBERT: https://arxiv.org/abs/2005.09801
+- DKPLM: https://paperswithcode.com/paper/dkplm-decomposable-knowledge-enhanced-pre
+- MetaKD: https://paperswithcode.com/paper/meta-kd-a-meta-knowledge-distillation
+- CP-Tuning: https://paperswithcode.com/paper/making-pre-trained-language-models-end-to-end-1
+- FashionBERT: https://paperswithcode.com/paper/fashionbert-text-and-image-matching-with
 
-We have [an arxiv paper](https://arxiv.org/abs/2205.00258) for you to cite for the EasyNLP library:
+We have [an arxiv paper](https://paperswithcode.com/paper/easynlp-a-comprehensive-and-easy-to-use) for you to cite for the EasyNLP library:
 
 ```
 @article{easynlp,
