@@ -40,7 +40,7 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 
 # 预训练数据
 | **数据** | **描述** | **数据格式** |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Wudao（中文）（[链接](https://resource.wudaoai.cn/home?ind&name=WuDaoCorpora%202.0&id=1394901288847716352)） | 5900万文本数据 | json格式，包括Topic（标题），Text（正文） |
 | WuDaoMM-base（[链接](https://resource.wudaoai.cn/home )） | WuDao大数据的一个子数据集，共500万图文对。支持了文澜、Cogview 等中文多模态预训练） | json格式，数据包含19个大类，分别为：能源、表情、工业、医疗、风景、动物、新闻、花卉、教育、艺术、人物、科学、大海、树木、汽车、社交、科技、运动等，单类别数据约7万~40万左右。每个json文件包括name，tag，图片url，和captions。 |
 | CLUE-news2016（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/pretrain_corpus/news2016zh.zip)） | CLUE社区收集的250万篇新闻，含关键词和描述 | 8G新闻语料，分成两个上下两部分，总共有2000个小文件 |
