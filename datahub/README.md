@@ -51,48 +51,46 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | 互联网图片库2.0（SogouP2.0）（[链接](http://www.sogou.com/labs/resource/p2.php)） | 来自搜狗识图搜[http://pic.sogou.com/shitu/index.html](http://pic.sogou.com/shitu/index.html) 索引的部分数据。其中收集了包括人物、动物、建筑、机械、风景、运动等类别，总数高达1000万张图片。图片库还包括了一个识图搜索结果人工标注集合，用于训练和评测。 | 共包括三个文件：Meta_Data,Original_Pic,Evaluation_Data。其中Meta_Data存储图片的相关元数据；Original_Pic中存储图片的原图；Evaluation_Data是识图搜索结果的人工标注集合。对于每张图片，搜狗给出了图片的原图文件、图片的URL、图片所在网页的URL、图片所在网页中的Surrounding Text文本、同主题系列图片等信息。 |
 
 # 通用NLU数据
-| **数据** | **描述** | **数据格式** |
-| --- | --- | --- |
-| AFQMC ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/afqmc.zip)) | 蚂蚁金融语义相似度 数据量：训练集（34334）验证集（4316）测试集（3861) | 任务：文本分类， json格式，包括句子1，句子2，和标签，样例：{"sentence1": "xxx", "sentence2": "xxx", "label": "0"} |
-| TNEWS1.1 id: clue/tnews ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/tnews.zip)) | 今日头条中文新闻（短文本）分类 数据量：训练集(53,360)，验证集(10,000)，测试集(10,000) | 任务：文本分类，json格式，包括id，sentence，和label |
-| IFLYTEK([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/iflytek.zip)) |  长文本分类 数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)  | json格式，包括分类ID，分类名称，和新闻文本，样例：{"label": "102", "label_des": "news_entertainment", "sentence": "xxx"} |
-| WSC1.1([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cluewsc.zip)) | 代词消歧 （小样本文本分类）数据量：训练集(1000)，验证集(300)，测试集(300)  | json格式，包括span2_index, span1_index, span2_text, span1_text, id, text （原始文本），span2为原始文本中的指代词，span1为指代的内容 |
-| CSL([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/csl.zip)) | 论文关键词识别（文本分类）数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)  | json格式，包括id，abst，label, 和keyword，其中label取值为0/1 |
-| CMNLI([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmnli.zip)) | 语言推断任务 CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。每一条数据有三个属性 | json格式，包括sentence1，sentence2，和label，其中label标签有三种：neutral，entailment，contradiction |
+| **数据** | **id** | **描述** | **数据格式** |
+| --- | --- | --- | --- |
+| AFQMC ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/afqmc.zip)) | clue/afqmc | 蚂蚁金融语义相似度 数据量：训练集（34334）验证集（4316）测试集（3861) | 任务：文本分类， json格式，包括句子1，句子2，和标签，样例：{"sentence1": "xxx", "sentence2": "xxx", "label": "0"} |
+| TNEWS1.1 ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/tnews.zip)) | clue/tnews | 今日头条中文新闻（短文本）分类 数据量：训练集(53,360)，验证集(10,000)，测试集(10,000) | 任务：文本分类，json格式，包括id，sentence，和label |
+| IFLYTEK ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/iflytek.zip)) | clue/iflytek | 长文本分类 数据量：训练集(12,133)，验证集(2,599)，测试集(2,600)  | json格式，包括分类ID，分类名称，和新闻文本，样例：{"label": "102", "label_des": "news_entertainment", "sentence": "xxx"} |
+| WSC1.1 ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cluewsc.zip)) | clue/cluewsc2020 | 代词消歧 （小样本文本分类）数据量：训练集(1000)，验证集(300)，测试集(300)  | json格式，包括span2_index, span1_index, span2_text, span1_text, id, text （原始文本），span2为原始文本中的指代词，span1为指代的内容 |
+| CSL ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/csl.zip)) | clue/csl | 论文关键词识别（文本分类）数据量：训练集(20,000)，验证集(3,000)，测试集(3,000)  | json格式，包括id，abst，label, 和keyword，其中label取值为0/1 |
+| CMNLI ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmnli.zip)) | clue/cmnli | 语言推断任务 CMNLI数据由两部分组成：XNLI和MNLI。数据来自于fiction，telephone，travel，government，slate等。该数据集可用于判断给定的两个句子之间属于蕴涵、中立、矛盾关系。每一条数据有三个属性 | json格式，包括sentence1，sentence2，和label，其中label标签有三种：neutral，entailment，contradiction |
 
 # 中文文本匹配/问答数据
-| **数据** | **描述** | **数据格式** |
-| --- | --- | --- |
-| OCNLI_50k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_50k.zip)） | 中文自然语言推理 50k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
-| OCNLI_30k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_30k.zip)） | 中文自然语言推理 30k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
-| QBQTC（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/qbqtc.zip)） | QQ浏览器搜索匹配数据 200k data | json域为: id, query, title, label |
-| CMNLI（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmnli.zip)） | XNLI和MNLI (多领域数据）400k data | json域为: sentence1, sentence2, label |
-| cMedQA2（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmedqa2.zip)） | 医疗问答数据 10.8k | 分为正文内容和索引，正文(问题)(问题)格式为csv(question_id, conten回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable)t), 回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable) |
-| CAIL2019相似案例匹配大赛([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CAIL2019-SCM.zip)) | 文书事实描述匹配数据集 | json域为: A， B，C, label |
-| CAIL2019相似案例匹配大赛([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CAIL2019-SCM.zip)) | 文书事实描述匹配数据集 | json域为: A， B，C, label |
-| ChineseTextualInference([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesetextualinference.zip)) | 中文文本推断项目,包括88万文本蕴含中文文本蕴含数据集的翻译与构建 | tsv格式，三个域为sentence1，sentence2，label |
-| ChineseSTS([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesests.zip)) | STS 中文文本语义相似度语料库建设，相似度为0-5，数值越高相似度越高 | tsv格式，5个域为：index1，sentence1， index2， sentence2， 相似度 |
+| **数据** | **id** | **描述** | **数据格式** |
+| --- | --- | --- | --- |
+| OCNLI_50k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_50k.zip)）| clue/ocnli | 中文自然语言推理 50k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
+| OCNLI_30k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_30k.zip)）| clue/ocnli | 中文自然语言推理 30k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
+| QBQTC（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/qbqtc.zip)） | qbqtc<br>(easynlp) | QQ浏览器搜索匹配数据 200k data | json域为: id, query, title, label |
+| CMNLI（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmnli.zip)） | clue/cmnli | XNLI和MNLI (多领域数据）400k data | json域为: sentence1, sentence2, label |
+| cMedQA2（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmedqa2.zip)） | none | 医疗问答数据 10.8k | 分为正文内容和索引，正文(问题)(问题)格式为csv(question_id, conten回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable)t), 回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable) |
+| CAIL2019相似案例匹配大赛([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CAIL2019-SCM.zip)) | cail2018<br>(2018version) | 文书事实描述匹配数据集 | json域为: A， B，C, label |
+| ChineseTextualInference([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesetextualinference.zip)) | none | 中文文本推断项目,包括88万文本蕴含中文文本蕴含数据集的翻译与构建 | tsv格式，三个域为sentence1，sentence2，label |
+| ChineseSTS([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesests.zip)) | none | STS 中文文本语义相似度语料库建设，相似度为0-5，数值越高相似度越高 | tsv格式，5个域为：index1，sentence1， index2， sentence2， 相似度 |
 
 # 中文文本分类
-| **数据** | **描述** | **数据格式** |
-| --- | --- | --- |
-| TNEWS1.1 id: clue/tnews | 详见通用NLU任务 |  |
-| IFLYTEK id: clue/iflytek | 详见通用NLU任务 |  |
-| AFQMC id: clue/afqmc | 详见通用NLU任务 |  |
-| WSC1.1 id: clue/wsc | 详见通用NLU任务 |  |
-| CSL id: clue/csl | 详见通用NLU任务 |  |
-| tc-corpus-answer id: tc_corpus_answer ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/tc-corpus-answer.rar)) | 复旦大学计算机信息与技术系国际数据库中心自然语言处理小组，训练9804篇（train），测试9833篇（answer），标签为20个类别 | 压缩包，包括train.rar, answer.rar |
-| Sogou-CA([链接](http://www.sogou.com/labs/resource/ca.php)) | 数据来自若干新闻站点2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
-| Sogou-CS([链接](http://www.sogou.com/labs/resource/cs.php)) | 数据来源为搜狐新闻2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
-| online_shopping([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/online_shopping.rar)) | 10 个类别，共 6 万多条评论数据，正、负向评论各约 3 万条，包括书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店。来源：SophonPlus | rar格式，10 个类别（书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店），共 6 万多条评论数据，正、负向评论各约 3 万条，包括label和review两个字段 |
-| weibo_senti([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/weibo_senti.rar)) | 10 万多条，带情感标注 新浪微博 | csv格式，正负向评论约各 5 万条 |
-| simplifyweibo([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/weibo-mode.rar)) | 36 万多条，带情感标注 新浪微博 | csv格式，包含 4 种情感，其中喜悦约 20 万条，愤怒、厌恶、低落各约 5 万条 |
-| dmsc_v2([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/douban.rar)) | 28 部电影，超 70 万 用户，超 200 万条 评分/评论 数据 | csv格式，包含movieid，title，和tile cn，即id和中英文标题 |
-| yf_dianping([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/dianping.rar)) | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, commenet |
-| yf_amazon([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/amazon_review.rar)) | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, commenet |
-| ChnSentiCorp([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/chn_hotel_review.rar)) | 7000 多条酒店评论数据，5000 多条正向评论，2000 多条负向评论，来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向。
-数据来源：携程网, 原数据集由谭松波 老师整理的一份数据集 |
-| waimai([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/waimai.rar)) | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
+| **数据** | **id** | **描述** | **数据格式** |
+| --- | --- | --- | --- |
+| TNEWS1.1 | clue/tnews | 详见通用NLU任务 |  |
+| IFLYTEK | clue/iflytek | 详见通用NLU任务 |  |
+| AFQMC | clue/afqmc | 详见通用NLU任务 |  |
+| WSC1.1 | clue/wsc | 详见通用NLU任务 |  |
+| CSL | clue/csl | 详见通用NLU任务 |  |
+| tc-corpus-answer ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/tc-corpus-answer.rar)) | none | 复旦大学计算机信息与技术系国际数据库中心自然语言处理小组，训练9804篇（train），测试9833篇（answer），标签为20个类别 | 压缩包，包括train.rar, answer.rar |
+| Sogou-CA([链接](http://www.sogou.com/labs/resource/ca.php)) | sogou_news<br>(ca+cs) | 数据来自若干新闻站点2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
+| Sogou-CS([链接](http://www.sogou.com/labs/resource/cs.php)) | sogou_news<br>(ca+cs) | 数据来源为搜狐新闻2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
+| online_shopping | none | 10 个类别，共 6 万多条评论数据，正、负向评论各约 3 万条，包括书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店。来源：SophonPlus | rar格式，10 个类别（书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店），共 6 万多条评论数据，正、负向评论各约 3 万条，包括label和review两个字段 |
+| weibo_senti | none | 10 万多条，带情感标注 新浪微博 | csv格式，正负向评论约各 5 万条 |
+| simplifyweibo | none | 36 万多条，带情感标注 新浪微博 | csv格式，包含 4 种情感，其中喜悦约 20 万条，愤怒、厌恶、低落各约 5 万条 |
+| dmsc_v2 | none | 28 部电影，超 70 万 用户，超 200 万条 评分/评论 数据 | csv格式，包含movieid，title，和tile cn，即id和中英文标题 |
+| yf_dianping | none | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, commenet |
+| yf_amazon | none | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, commenet |
+| ChnSentiCorp | seamew/ChnSentiCorp | 7000 多条酒店评论数据，5000 多条正向评论，2000 多条负向评论，来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向。数据来源：携程网, 原数据集由谭松波 老师整理的一份数据集 |
+| waimai | XiangPan/waimai_10k | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
 
 # 中文序列标注
 | **数据** | **描述** | **数据格式** |
@@ -105,8 +103,7 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | CCKS2019数据**(**[**链接**](http://openkg.cn/dataset/yidu-s4k)**)** | 识别中文医学命名实体 | json |
 | SRL**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文语义角色标注任务(OntoNotes Release 5.0一部分) | 需要进一步处理 |
 | OntoNotes**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文命名实体识别任务 总共 15740 | 有18种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
-| MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文命名实体识别任务
-训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
+| MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文命名实体识别任务训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 
 # 文本生成/摘要数据
 | **数据** | **描述** | **数据格式** |
