@@ -65,10 +65,10 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | --- | --- | --- | --- |
 | OCNLI_50k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_50k.zip)）| clue/ocnli | 中文自然语言推理 50k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
 | OCNLI_30k（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/ocnli_30k.zip)）| clue/ocnli | 中文自然语言推理 30k | json域为：level，sentence1, sentence2, label, label0, label1, label2, label3, label4, genre, prem_id, id |
-| QBQTC（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/qbqtc.zip)） | qbqtc(only easynlp) | QQ浏览器搜索匹配数据 200k data | json域为: id, query, title, label |
+| QBQTC（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/qbqtc.zip)） | qbqtc<br>(easynlp) | QQ浏览器搜索匹配数据 200k data | json域为: id, query, title, label |
 | CMNLI（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmnli.zip)） | clue/cmnli | XNLI和MNLI (多领域数据）400k data | json域为: sentence1, sentence2, label |
 | cMedQA2（[下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/cmedqa2.zip)） | none | 医疗问答数据 10.8k | 分为正文内容和索引，正文(问题)(问题)格式为csv(question_id, conten回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable)t), 回答(ans_id, question_id,content)索引为csv(question_id, ans_id, cnt, lable) |
-| CAIL2019相似案例匹配大赛([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CAIL2019-SCM.zip)) | cail2018(2018version) | 文书事实描述匹配数据集 | json域为: A， B，C, label |
+| CAIL2019相似案例匹配大赛([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/CAIL2019-SCM.zip)) | cail2018<br>(2018version) | 文书事实描述匹配数据集 | json域为: A， B，C, label |
 | ChineseTextualInference([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesetextualinference.zip)) | none | 中文文本推断项目,包括88万文本蕴含中文文本蕴含数据集的翻译与构建 | tsv格式，三个域为sentence1，sentence2，label |
 | ChineseSTS([下载链接](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue/chinesests.zip)) | none | STS 中文文本语义相似度语料库建设，相似度为0-5，数值越高相似度越高 | tsv格式，5个域为：index1，sentence1， index2， sentence2， 相似度 |
 
@@ -81,16 +81,16 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | WSC1.1 | clue/wsc | 详见通用NLU任务 |  |
 | CSL | clue/csl | 详见通用NLU任务 |  |
 | tc-corpus-answer ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/tc-corpus-answer.rar)) | none | 复旦大学计算机信息与技术系国际数据库中心自然语言处理小组，训练9804篇（train），测试9833篇（answer），标签为20个类别 | 压缩包，包括train.rar, answer.rar |
-| Sogou-CA([链接](http://www.sogou.com/labs/resource/ca.php)) | sogou_news(ca+cs) | 数据来自若干新闻站点2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
-| Sogou-CS([链接](http://www.sogou.com/labs/resource/cs.php)) | sogou_news | 数据来源为搜狐新闻2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
-| online_shopping([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/online_shopping.rar)) | none | 10 个类别，共 6 万多条评论数据，正、负向评论各约 3 万条，包括书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店。来源：SophonPlus | rar格式，10 个类别（书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店），共 6 万多条评论数据，正、负向评论各约 3 万条，包括label和review两个字段 |
-| weibo_senti([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/weibo_senti.rar)) | none | 10 万多条，带情感标注 新浪微博 | csv格式，正负向评论约各 5 万条 |
-| simplifyweibo([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/weibo-mode.rar)) | none | 36 万多条，带情感标注 新浪微博 | csv格式，包含 4 种情感，其中喜悦约 20 万条，愤怒、厌恶、低落各约 5 万条 |
-| dmsc_v2([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/douban.rar)) | none | 28 部电影，超 70 万 用户，超 200 万条 评分/评论 数据 | csv格式，包含movieid，title，和tile cn，即id和中英文标题 |
-| yf_dianping([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/dianping.rar)) | none | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, commenet |
-| yf_amazon([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/amazon_review.rar)) | none | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, commenet |
-| ChnSentiCorp([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/chn_hotel_review.rar)) | seamew/ChnSentiCorp | 7000 多条酒店评论数据，5000 多条正向评论，2000 多条负向评论，来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向。数据来源：携程网, 原数据集由谭松波 老师整理的一份数据集 |
-| waimai([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_classification/waimai.rar)) | XiangPan/waimai_10k | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
+| Sogou-CA([链接](http://www.sogou.com/labs/resource/ca.php)) | sogou_news<br>(ca+cs) | 数据来自若干新闻站点2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
+| Sogou-CS([链接](http://www.sogou.com/labs/resource/cs.php)) | sogou_news<br>(ca+cs) | 数据来源为搜狐新闻2012年6月—7月期间国内，国际，体育，社会，娱乐等18个频道的新闻数据 | 压缩包 |
+| online_shopping | none | 10 个类别，共 6 万多条评论数据，正、负向评论各约 3 万条，包括书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店。来源：SophonPlus | rar格式，10 个类别（书籍、平板、手机、水果、洗发水、热水器、蒙牛、衣服、计算机、酒店），共 6 万多条评论数据，正、负向评论各约 3 万条，包括label和review两个字段 |
+| weibo_senti | none | 10 万多条，带情感标注 新浪微博 | csv格式，正负向评论约各 5 万条 |
+| simplifyweibo | none | 36 万多条，带情感标注 新浪微博 | csv格式，包含 4 种情感，其中喜悦约 20 万条，愤怒、厌恶、低落各约 5 万条 |
+| dmsc_v2 | none | 28 部电影，超 70 万 用户，超 200 万条 评分/评论 数据 | csv格式，包含movieid，title，和tile cn，即id和中英文标题 |
+| yf_dianping | none | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, commenet |
+| yf_amazon | none | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, commenet |
+| ChnSentiCorp | seamew/ChnSentiCorp | 7000 多条酒店评论数据，5000 多条正向评论，2000 多条负向评论，来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向。数据来源：携程网, 原数据集由谭松波 老师整理的一份数据集 |
+| waimai | XiangPan/waimai_10k | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
 
 # 中文序列标注
 | **数据** | **描述** | **数据格式** |
