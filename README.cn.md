@@ -139,10 +139,10 @@ $ easynlp \
   --app_name=text_classify
 ```
 
-To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/kkhkai).
+AppZoo更多示例，详见：[AppZoo文档](https://www.yuque.com/easyx/easynlp/kkhkai).
 
 # ModelZoo
-EasyNLP currently provides the following models in ModelZoo:
+EasyNLP的ModelZoo目前支持如下预训练模型。
 
 1. PAI-BERT-zh (from Alibaba PAI): pre-trained BERT models with a large Chinese corpus.
 2. DKPLM (from Alibaba PAI): released with the paper [DKPLM: Decomposable Knowledge-enhanced Pre-trained Language Model for Natural Language Understanding](https://arxiv.org/pdf/2112.01047.pdf) by Taolin Zhang, Chengyu Wang, Nan Hu, Minghui Qiu, Chengguang Tang, Xiaofeng He and Jun Huang.
@@ -158,8 +158,8 @@ EasyNLP currently provides the following models in ModelZoo:
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
 
-# Landing Large Pre-trained Models
-EasyNLP provide few-shot learning and knowledge distillation to help land large pre-trained models.
+# 预训练大模型的落地
+EasyNLP提供小样本学习和知识蒸馏，方便用户落地超大预训练模型。
 
 1. [PET](https://github.com/alibaba/EasyNLP/blob/master/examples/fewshot_learning/run_fewshot_pet.sh) (from LMU Munich and Sulzer GmbH): released with the paper [Exploiting Cloze Questions for Few Shot Text Classification and Natural Language Inference](https://aclanthology.org/2021.eacl-main.20.pdf) by Timo Schick and Hinrich Schutze. We have made some slight modifications to make the algorithm suitable for the Chinese language.
 2. [P-Tuning](https://github.com/alibaba/EasyNLP/blob/master/examples/fewshot_learning/run_fewshot_ptuning.sh) (from Tsinghua University, Beijing Academy of AI, MIT and Recurrent AI, Ltd.): released with the paper [GPT Understands, Too](https://arxiv.org/pdf/2103.10385.pdf) by Xiao Liu, Yanan Zheng, Zhengxiao Du, Ming Ding, Yujie Qian, Zhilin Yang and Jie Tang. We have made some slight modifications to make the algorithm suitable for the Chinese language.
@@ -171,7 +171,7 @@ EasyNLP provide few-shot learning and knowledge distillation to help land large 
 
 # [CLUE Benchmark](https://www.cluebenchmarks.com/)
 
-EasyNLP provides [a simple toolkit](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue) to benchmark clue datasets. You can simply use just this command to benchmark CLUE dataset.
+EasyNLP提供 [CLUE评测代码](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue)，方便用户快速评测[CLUE数据](https://www.cluebenchmarks.com/classification.html)上的模型效果。
 
 ```bash
 # Format: bash run_clue.sh device_id train/predict dataset
@@ -180,7 +180,7 @@ bash run_clue.sh 0 train csl
 ```
 
 
-We've tested chiese bert and roberta modelson the datasets, the results of dev set are:
+根据我们的脚本，可以获得BERT，RoBERTa等模型的评测效果（dev数据）：
 
 (1) bert-base-chinese
 
@@ -197,7 +197,7 @@ We've tested chiese bert and roberta modelson the datasets, the results of dev s
 | F1   | 56.04% | 80.75% | 81.50% | 60.98%  | 80.75% | 57.93% | 89.58% |
 
 
-Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue).
+详细的例子，请参考[CLUE评测示例](https://github.com/alibaba/EasyNLP/tree/master/benchmarks/clue).
 
 
 # Tutorials
