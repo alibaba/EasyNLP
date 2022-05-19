@@ -18,7 +18,7 @@
 </div>
  
 
-# EasyNLP
+# EasyNLP [中文介绍](https://github.com/alibaba/EasyNLP/blob/master/README.cn.md)
   
 EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, first released inside Alibaba in 2021. It is built with scalable distributed training strategies and supports a comprehensive suite of NLP algorithms for various NLP applications. EasyNLP integrates knowledge distillation and few-shot learning for landing large pre-trained models and provides a unified framework of model training, inference, and deployment for real-world applications. It has powered more than 10 BUs and more than 20 business scenarios within the Alibaba group. It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-code model training.
 
