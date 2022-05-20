@@ -10,6 +10,7 @@
 | alibaba-pai/pai-bert-small-zh | L=4,H=312,A=12 |  |
 | alibaba-pai/pai-bert-tiny-zh | L=2,H=128,A=2 |  |
 | langboat/mengzi-bert-base | L=12,H=768,A=12| Pretrain BERT w/ Chinese datasets|
+| langboat/mengzi-bert-base-fin | L=12,H=768,A=12 | Pretrain BERT w/ Finance datasets
 | **DKPLM（知识预训练）** |  |  |
 | alibaba-pai/pai-dkplm-medical-small-zh | L=4,H=768,A=12 | Pretrain BERT w/ Medical KG|
 | alibaba-pai/pai-dkplm-medical-base-zh | L=12,H=768,A=12 |  |
