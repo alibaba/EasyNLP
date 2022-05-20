@@ -157,7 +157,7 @@ EasyNLP currently provides the following models in ModelZoo:
 9. FashionBERT (from Alibaba PAI & ICBU): in progress.
 10. GEEP (from Alibaba PAI): in progress.
 11. Mengzi (from Langboat): released with the paper [Mengzi: Towards Lightweight yet Ingenious
-Pre-trained Models for Chinese](https://arxiv.org/pdf/2110.06696.pdf) by Zhuosheng Zhang, Hanqing Zhang, Keming Chen, Yuhang Guo, Jingyun Hua, Yulong Wang and Ming Zhou. Pretrained model on 300G Chinese corpus. Masked language modeling(MLM), part-of-speech(POS) tagging and sentence order prediction(SOP) are used as training task.
+Pre-trained Models for Chinese](https://arxiv.org/pdf/2110.06696.pdf) by Zhuosheng Zhang, Hanqing Zhang, Keming Chen, Yuhang Guo, Jingyun Hua, Yulong Wang and Ming Zhou.
 
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
