@@ -309,22 +309,26 @@ class Trainer(object):
                               gradients,
                               scale=1.0 / xm.xrt_world_size())
 
+        if self._lr_scheduler:
+            # If use AdamW, it should explicit use clip grad
+            if hasattr(self._optimizer, "clip_grad_norm"):
+                # Some optimizers (like the sharded optimizer) have a specific way to do gradient clipping
+                self._optimizer.clip_grad_norm(self.max_grad_norm)
+            elif hasattr(self.model_module, "clip_grad_norm_"):
+                # Some models (like FullyShardedDDP) have a specific way to do gradient clipping
+                self.model_module.clip_grad_norm_(self.max_grad_norm)
+            else:
+                # Revert to normal clipping otherwise, handling Apex or full precision
+                torch.nn.utils.clip_grad_norm_(self.model_module.parameters(), self.max_grad_norm)
+
         if self.args.use_amp:
             self._scaler.step(self._optimizer)
             self._scaler.update()
         else:
             if self._lr_scheduler:
-                # If use AdamW, it should explicit use clip grad
-                if hasattr(self._optimizer, "clip_grad_norm"):
-                    # Some optimizers (like the sharded optimizer) have a specific way to do gradient clipping
-                    self._optimizer.clip_grad_norm(self.max_grad_norm)
-                elif hasattr(self.model_module, "clip_grad_norm_"):
-                    # Some models (like FullyShardedDDP) have a specific way to do gradient clipping
-                    self.model_module.clip_grad_norm_(self.max_grad_norm)
-                else:
-                    # Revert to normal clipping otherwise, handling Apex or full precision
-                    torch.nn.utils.clip_grad_norm_(self.model_module.parameters(), self.max_grad_norm)
-            self._optimizer.step()
+                # If use AdamW, it should explicit perform self._optimizer.step()
+                # If not, it means use bertadam, which consists of inherent schedular.
+                self._optimizer.step()
         if self._lr_scheduler:
             self._lr_scheduler.step()
         self._optimizer.zero_grad()
