@@ -19,9 +19,10 @@ import logging
 import json
 import tarfile
 from typing import Any, List, Optional
-from ..appzoo import SequenceClassification
+from ..appzoo import SequenceClassification, TextMatch, SequenceLabeling
 from ..utils.io_utils import io
-from .implementation import Pipeline, SequenceClassificationPipeline
+from .implementation import Pipeline, SequenceClassificationPipeline, \
+        TextMatchPipeline, SequenceLabelingPipeline
 
 from ..utils import EASYNLP_CACHE_ROOT, EASYNLP_REMOTE_MODELZOO, EASYNLP_LOCAL_APPZOO
 
@@ -30,6 +31,7 @@ logger = logging.getLogger(__name__)
 # Some tasks with different names but the same processing flow are mapped here.
 TASK_ALIASES = {
     "sentiment-analysis": "text-classification",
+    "question-answer": "text_match",
 }
 
 SUPPORTED_TASKS = {
@@ -38,8 +40,16 @@ SUPPORTED_TASKS = {
         'model_cls': SequenceClassification,
         'default': 'bert-base-sst', 
     }, 
-    'text_match': {},
-    'sequence_labeling': {},
+    'text_match': {
+        'impl': TextMatchPipeline,
+        'model_cls': TextMatch,
+        'default': 'bert-small-qnli', 
+    },
+    'sequence_labeling': {
+        'impl': SequenceLabelingPipeline,
+        'model_cls': SequenceLabeling,
+        'default': 'chinese-roberta-basener',
+    },
 }
 
 def pipeline(
@@ -97,8 +107,8 @@ def get_remote_app_model_mapping() -> dict:
     """
     remote_base = EASYNLP_REMOTE_MODELZOO
     cache_root = EASYNLP_CACHE_ROOT
-    remote_file_path = os.path.join(remote_base, 'easynlp_trained_model_config.json')
-    local_file_path = os.path.join(cache_root, "easynlp_trained_model_config.json")
+    remote_file_path = os.path.join(remote_base, 'appzoo_config.json')
+    local_file_path = os.path.join(cache_root, "appzoo_config.json")
     try:
         urllib.request.urlretrieve(remote_file_path, local_file_path)
     except:
@@ -167,10 +177,8 @@ def get_app_model_path(model_name, disable_auto_download=False):
                         os.system('wget ' + remote_url + ' -P ' +
                                   os.path.dirname(local_tar_file_path))
                     tar = tarfile.open(local_tar_file_path, 'r:gz')
-                    local_app_model_path = os.path.join(
-                        appzoo_base_dir, remote_app_model_path.split('/')[1])
-                    tar.extractall(
-                        get_dir_name(local_app_model_path))
+                    local_app_model_path = local_tar_file_path.replace('.tgz', '')
+                    tar.extractall(os.path.dirname(local_tar_file_path))
                     tar.close()
                     os.remove(local_tar_file_path)
         return local_app_model_path
@@ -180,9 +188,3 @@ def get_app_model_path(model_name, disable_auto_download=False):
         for key in easynlp_app_mapping.keys():
             error_msg += '\t' + key + '\n'
         raise RuntimeError(error_msg)
-
-def get_dir_name(file_path):
-    if io.isdir(file_path):
-        return file_path
-    else:
-        return os.path.dirname(file_path)

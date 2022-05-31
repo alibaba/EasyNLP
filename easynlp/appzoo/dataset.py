@@ -295,6 +295,20 @@ class BaseDataset(Dataset):
 
 
 class GeneralDataset(BaseDataset):
+    """ 
+    Dataset is implemented for input data from 'load_dataset'.
+
+    The default setting of 'GeneralDataset' is implemented for SequenceClassification, 
+        so you need to choose the correct 'convert_single_row_to_example' and 'batch_fn' base on your application.
+
+    In some special cases, you need to override the '__init__' function.
+
+    Args:
+        pretrained_model_name_or_path: for init tokenizer.
+        data_file: input data file from 'load_dataset'
+        max_seq_length: max sequence length of each input instance.
+        
+    """
     def __init__(self, data_file, pretrained_model_name_or_path:str, max_seq_length:int):    
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
         self.max_seq_length = max_seq_length
@@ -302,18 +316,34 @@ class GeneralDataset(BaseDataset):
             = self.label_mapping = self.data_rows = None
         # Required by BaseDataset
         self.data_source = "local"
-        assert isinstance(data_file, datasets.arrow_dataset.Dataset), "The inputs data format must be datasets.arrow_dataset.Dataset from load_dataset()."
+        assert isinstance(data_file, datasets.arrow_dataset.Dataset), \
+            "The inputs data format must be datasets.arrow_dataset.Dataset from load_dataset()."
         dataset_info = getattr(data_file, "info", None)
         data_features = dataset_info.features
         self.column_names = list(data_file.features.keys())
         self.data_rows = [data_file[i] for i in range(data_file.num_rows)]
-        self.first_sequence = self.column_names[0]
-        if self.column_names[1] != "label":
-            self.second_sequence = self.column_names[1]
-        self.label_name = "label"
-        self.num_label = data_features["label"].num_classes
-        self.label_enumerate_value = data_features["label"].names
-        self.label_map = {label: i for i, label in enumerate(self.label_enumerate_value)}
+        
+        if "ner_tags" in self.column_names:
+            self.first_sequence = self.column_names[1]
+            self.label_name = "ner_tags"
+            if hasattr(data_features[self.label_name], 'num_classes'):
+                self.num_label = data_features[self.label_name].num_classes
+                self._label_enumerate_values = data_features[self.label_name].names
+            elif hasattr(data_features[self.label_name], 'feature') and \
+                hasattr(data_features[self.label_name].feature, 'num_classes'):
+                self.num_label = data_features[self.label_name].feature.num_classes
+                self._label_enumerate_values = data_features[self.label_name].feature.names
+            else:
+                raise RuntimeError("Can't auto inference the label, \
+                            please check your 'ner_tags' in your dataset")
+        else:
+            self.first_sequence = self.column_names[0]
+            if self.column_names[1] != "label":
+                self.second_sequence = self.column_names[1]
+            self.label_name = "label"
+            self.num_label = data_features[self.label_name].num_classes
+            self._label_enumerate_values = data_features[self.label_name].names
+        self.label_map = {label: i for i, label in enumerate(self.label_enumerate_values)}
 
     def __len__(self):
         return len(self.data_rows)
@@ -321,6 +351,16 @@ class GeneralDataset(BaseDataset):
     def __getitem__(self, item):
         row = self.data_rows[item]
         return self.convert_single_row_to_example(row)
+
+    def __del__(self):
+        pass
+            
+    @property
+    def label_enumerate_values(self):
+        """
+            Returns the label enumerate values.
+        """
+        return self._label_enumerate_values
 
     def convert_single_row_to_example(self, row):
 

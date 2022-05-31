@@ -17,6 +17,7 @@ import torch
 
 from ..dataset import BaseDataset
 from ...modelzoo import AutoTokenizer
+from ..dataset import GeneralDataset
 
 
 class InputExample(object):
@@ -193,3 +194,66 @@ class SequenceLabelingDataset(BaseDataset):
             "tok_to_orig_index": [f.tok_to_orig_index for f in features]
         }
         return inputs
+    
+class SequenceLabelingAutoDataset(GeneralDataset):
+    """ Sequence Labeling Dataset base on GeneralDataset
+
+    Args:
+        pretrained_model_name_or_path: for init tokenizer.
+        data_file: input data file from 'load_dataset'
+        max_seq_length: max sequence length of each input instance.
+    
+        The default setting of 'GeneralDataset' is implemented for SequenceClassification, 
+            so you need to choose the correct 'convert_single_row_to_example' and 'batch_fn' base on your application.
+
+        In some special cases, you need to override the '__init__' function.
+
+    """
+
+    def convert_single_row_to_example(self, row):
+        content_tokens = row[self.first_sequence]
+        label_tags = row[self.label_name] if self.label_name else None
+        all_tokens = ['[CLS]']
+        all_labels = ['']
+        tok_to_orig_index = [-100]
+        for i, token in enumerate(content_tokens):
+            sub_tokens = self.tokenizer.tokenize(token)
+            if not sub_tokens:
+                sub_tokens = ['[UNK]']
+            all_tokens.extend(sub_tokens)
+            tok_to_orig_index.extend([i] * len(sub_tokens))
+            if label_tags is None:
+                all_labels.extend(["" for _ in range(len(sub_tokens))])
+            else:
+                all_labels.extend([label_tags[i] for _ in range(len(sub_tokens))])
+        all_tokens = all_tokens[:self.max_seq_length - 1]
+        all_labels = all_labels[:self.max_seq_length - 1]
+        all_tokens.append("[SEP]")
+        all_labels.append("")
+        tok_to_orig_index.append(-100)
+
+        input_ids = self.tokenizer.convert_tokens_to_ids(all_tokens)
+        segment_ids = [0] * len(input_ids)
+        input_mask = [1] * len(input_ids)
+        label_ids = [label if label != '' else -100 for label in all_labels]
+
+        while len(input_ids) < self.max_seq_length:
+            input_ids.append(0)
+            input_mask.append(0)
+            segment_ids.append(0)
+            label_ids.append(-100)
+
+        feature = LabelingFeatures(input_ids=input_ids,
+                                    input_mask=input_mask,
+                                    segment_ids=segment_ids,
+                                    label_ids=label_ids,
+                                    all_tokens=all_tokens,
+                                    seq_length=self.max_seq_length,
+                                    tok_to_orig_index=tok_to_orig_index,
+                                    guid=None)
+
+        return feature
+    
+    def batch_fn(self, features):
+        return SequenceLabelingDataset.batch_fn(self, features)
+    

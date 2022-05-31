@@ -45,9 +45,9 @@ _import_structure = {
     "language_modeling.data": ['LanguageModelingDataset'],
     "multi_modal.data": ['MultiModalDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
-    "sequence_labeling.data": ['SequenceLabelingDataset'],
+    "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
-    "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset'],
+    "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
 
@@ -77,14 +77,14 @@ if TYPE_CHECKING:
     from .multi_modal.predictor import MultiModalPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
-    from .sequence_labeling.data import SequenceLabelingDataset
+    from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
     from .language_modeling.data import LanguageModelingDataset
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
     from .multi_modal.data import MultiModalDataset
 
     from .dataset import BaseDataset, GeneralDataset
-    from .dataset import load_dataset
+    from .dataset import load_dataset, list_datasets
 
     from .api import get_application_dataset, get_application_model, get_application_model_for_evaluation
     from .api import get_application_evaluator, get_application_predictor
