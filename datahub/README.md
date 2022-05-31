@@ -93,17 +93,17 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 | waimai | XiangPan/waimai_10k | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
 
 # 中文序列标注
-| **数据** | **描述** | **数据格式** |
-| --- | --- | --- |
-| Chinese Treebank**(**[**链接**](https://verbs.colorado.edu/chinese/ctb.html)**)** | 词性标注任务 | 每个单词对应的词性信息 |
-| ResumeNER**(**[**链接**](https://github.com/jiesutd/LatticeLSTM/tree/master/ResumeNER)**)** | 中文命名实体标注任务，微博数据构造（ACL2018） | 每个字对应一行，同时包含标签，句子以空行间隔 |
-| People's Daily**(**[**链接**](https://github.com/zjy-ucas/ChineseNER/tree/master/data)**)** | 中文命名实体标注任务，人民日报 | 每个字对应一行，同时包含标签，句子以空行间隔 |
-| CNMER**(**[**链接**](https://github.com/yhzbit/CNMER/tree/master/data)**)** | 中文医学实体识别数据集，实体包括身体部位、症状体征、检查、疾病以及治疗。 | 每个字对应一行，同时包含标签，句子以空行间隔 |
-| CCKS2018数据**(**[**链接**](https://github.com/MenglinLu/Chinese-clinical-NER/tree/master/data)**)** | 识别疾病和诊断、解剖部位、影像检查、实验室检验、手术和药物6种命名实体 | 例句与标注文件分开 |
-| CCKS2019数据**(**[**链接**](http://openkg.cn/dataset/yidu-s4k)**)** | 识别中文医学命名实体 | json |
-| SRL**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文语义角色标注任务(OntoNotes Release 5.0一部分) | 需要进一步处理 |
-| OntoNotes**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文命名实体识别任务 总共 15740 | 有18种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
-| MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | 中文命名实体识别任务训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
+| **数据** | **id** | **描述** | **数据格式** |
+| --- | --- | --- | --- |
+| Chinese Treebank**(**[**链接**](https://verbs.colorado.edu/chinese/ctb.html)**)** |  | 词性标注任务 | 每个单词对应的词性信息 |
+| ResumeNER**(**[**链接**](https://github.com/jiesutd/LatticeLSTM/tree/master/ResumeNER)**)** | msra_ner |中文命名实体标注任务，微博数据构造（ACL2018） | 每个字对应一行，同时包含标签，句子以空行间隔 |
+| People's Daily**(**[**链接**](https://github.com/zjy-ucas/ChineseNER/tree/master/data)**)** | chinese_ner<br>(easynlp) |中文命名实体标注任务，人民日报 | 每个字对应一行，同时包含标签，句子以空行间隔 |
+| CNMER**(**[**链接**](https://github.com/yhzbit/CNMER/tree/master/data)**)** | 中文医学实体识别数据集，实体包括身体部位、症状体征、检查、疾病以及治疗。 | cnmer<br>(easynlp)| 每个字对应一行，同时包含标签，句子以空行间隔 |
+| CCKS2018数据**(**[**链接**](https://github.com/MenglinLu/Chinese-clinical-NER/tree/master/data)**)** | | 识别疾病和诊断、解剖部位、影像检查、实验室检验、手术和药物6种命名实体 | 例句与标注文件分开 |
+| CCKS2019数据**(**[**链接**](http://openkg.cn/dataset/yidu-s4k)**)** | | 识别中文医学命名实体 | json |
+| SRL**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | | 中文语义角色标注任务(OntoNotes Release 5.0一部分) | 需要进一步处理 |
+| OntoNotes**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | | 中文命名实体识别任务 总共 15740 | 有18种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
+| MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | msra_ner | 中文命名实体识别任务训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 
 # 文本生成/摘要数据
 | **数据** | **描述** | **数据格式** |
