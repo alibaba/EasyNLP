@@ -153,15 +153,15 @@ Trainer(model=model,  train_dataset=train_dataset).train()
 # 小样本学习
 | **数据** | **描述 & 数据格式** |
 | --- | --- |
-| EPRSTMT， id: eprstmt_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/eprstmt.zip)) | 同上 |
-| CSLDCP， id: csldcp_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/csldcp.zip)) | 同上 |
-| TNEWS， id: tnews_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/tnews.zip)) | 同上 |
-| IFLYTEK， id: iflytek_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/iflytek.zip)) | 同上 |
-| OCNLI， id: ocnli_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/ocnli.zip)) | 同上 |
-| BUSTM， id: bustm_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/bustm.zip)) | 同上 |
-| ChID， id: chid_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/chid.zip)) | 同上 |
-| CSL， id: csl_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/csl.zip)) | 同上 |
-| CLUEWSC， id: cluewsc_fs， ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/cluewsc.zip)) | 同上 |
+| EPRSTMT ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/eprstmt.zip)) | 同上 |
+| CSLDCP ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/csldcp.zip)) | 同上 |
+| TNEWS ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/tnews.zip)) | 同上 |
+| IFLYTEK ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/iflytek.zip)) | 同上 |
+| OCNLI ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/ocnli.zip)) | 同上 |
+| BUSTM ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/bustm.zip)) | 同上 |
+| ChID ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/chid.zip)) | 同上 |
+| CSL ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/csl.zip)) | 同上 |
+| CLUEWSC ([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/clue_fewshot/cluewsc.zip)) | 同上 |
 
 # 多模态-检索数据
 包括图文检索和文图检索
