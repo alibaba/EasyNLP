@@ -1,4 +1,4 @@
-# Pipeline [中文介绍](https://github.com/alibaba/EasyNLP/tree/master/README.cn.md)
+# Pipeline [中文介绍](https://github.com/alibaba/EasyNLP/blob/master/easynlp/pipelines/README.cn.md)
 You can use `pipelines` to quickly deploy models trained based on EasyNLP.
 
 ## Instruction
