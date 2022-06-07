@@ -52,7 +52,6 @@ if __name__ == "__main__":
     pretrained_model_name_or_path = args.pretrained_model_name_or_path \
         if args.pretrained_model_name_or_path else args.checkpoint_dir
     pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
-
     if args.mode == "train":
 
         model = get_application_model(app_name=args.app_name,
