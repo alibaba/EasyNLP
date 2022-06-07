@@ -8,9 +8,9 @@ if [ ! -f ./dev.tsv ]; then
 fi
 
 MODE=train
-DIR=/apsarapangu/disk3/minghui.qmh/EasyNLP
-TRAIN=$DIR/examples/application_tutorials/sequence_classification/bert_classify/train.tsv
-DEV=$DIR/examples/application_tutorials/sequence_classification/bert_classify/dev.tsv
+DIR=/apsarapangu/disk3/zhangtaolin.ztl/update_EasyNLP/EasyNLP
+TRAIN=$DIR/examples/appzoo_tutorials/sequence_classification/bert_classify/train.tsv
+DEV=$DIR/examples/appzoo_tutorials/sequence_classification/bert_classify/dev.tsv
 
 DEVICE=$1
 cd $DIR
@@ -38,16 +38,16 @@ if [ $DEVICE == 'cpu' ]; then
       --app_name=text_classify \
       --user_defined_parameters='  pretrain_model_name_or_path=bert-base-uncased'
 else 
-  export CUDA_VISIBLE_DEVICES=5
+  export CUDA_VISIBLE_DEVICES=0,1,2,3
   MASTER_ADDR=localhost
   MASTER_PORT=6010
-  GPUS_PER_NODE=1
+  GPUS_PER_NODE=4
   NNODES=1
   NODE_RANK=0
 
   cd $DIR
   DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
-  SCRIPT=examples/application_tutorials/sequence_classification/bert_classify/main.py
+  SCRIPT=examples/appzoo_tutorials/sequence_classification/bert_classify/main.py
   python -m torch.distributed.launch ./$SCRIPT \
       --mode $MODE \
       --worker_gpu=1 \
@@ -57,15 +57,17 @@ else
       --second_sequence=sent2 \
       --label_name=label \
       --label_enumerate_values=0,1 \
-      --checkpoint_dir=./tmp/classification_model \
+      --checkpoint_dir=./tmp/ \
       --learning_rate=3e-5  \
       --epoch_num=3  \
+      --logging_steps=1 \
       --random_seed=42 \
       --save_checkpoint_steps=50 \
+      --save_all_checkpoints \
       --sequence_length=128 \
-      --micro_batch_size=32 \
+      --micro_batch_size=8 \
       --app_name=text_classify \
-      --user_defined_parameters='  pretrain_model_name_or_path=bert-base-uncased'
+      --user_defined_parameters='pretrain_model_name_or_path=IDEA-CCNL/Erlangshen-MegatronBert-1.3B'
 fi
 
 

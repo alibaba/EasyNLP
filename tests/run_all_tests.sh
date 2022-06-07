@@ -23,6 +23,15 @@ fi
 
 rm -rf *.tsv *.csv *.txt
 
+# echo "================== Test MegatronBERT classification =================="
+# if [ ! -f ./train.tsv ]; then
+#   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv
+#   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv
+# fi
+
+# python test_megatron_bert.py
+# rm -rf classification_model
+
 # echo "================== Test DKPLM =================="
 # if [ ! -f ./train_corpus.txt ]; then
 #   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/language_modeling/dkplm/train_corpus.txt

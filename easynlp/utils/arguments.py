@@ -288,7 +288,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
 
     group.add_argument('--optimizer_type',
                        '--optimizer',
-                       default='BertAdam',
+                       default='AdamW',
                        type=str,
                        choices=[
                            'BertAdam', 'Adam',

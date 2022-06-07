@@ -20,6 +20,7 @@ from collections import OrderedDict
 from ...configuration_utils import PretrainedConfig
 from ..bert.configuration_bert import BertConfig
 from ..dkplm.configuration_dkplm import DkplmConfig
+from ..megatron_bert.configuration_megatron_bert import MegatronBertConfig
 from ..gpt2.configuration_gpt2 import GPT2Config
 
 from ..roberta.configuration_roberta import RobertaConfig
@@ -32,6 +33,7 @@ CONFIG_MAPPING = OrderedDict(
         ("roberta", RobertaConfig),
         ("bert", BertConfig),
         ("dkplm", DkplmConfig),
+        ("megatron-bert", MegatronBertConfig),
         ("gpt2", GPT2Config),
         ("cnn", TextCNNConfig),
         ("artist", ARTISTConfig)
@@ -43,6 +45,7 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("roberta", "RoBERTa"),
         ("bert", "BERT"),
         ("dkplm", "DKPLM"),
+        ("megatron-bert", "MEGATRON-BERT"),
         ("gpt2", "OpenAI GPT-2"),
         ("cnn", 'TextCNN'),
         ("artist", "ARTIST")

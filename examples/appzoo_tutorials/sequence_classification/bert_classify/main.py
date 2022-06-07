@@ -37,7 +37,7 @@ if __name__ == "__main__":
         args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
     else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
-
+    args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
     valid_dataset = ClassificationDataset(
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
