@@ -1,4 +1,4 @@
-# Pipeline [English](https://github.com/alibaba/EasyNLP/tree/master/README.md)
+# Pipeline [English](https://github.com/alibaba/EasyNLP/blob/banzhi_dev/easynlp/pipelines/README.md)
 使用`pipelines` 快速测试或部署您的EasyNLP模型。
 
 ## 介绍
