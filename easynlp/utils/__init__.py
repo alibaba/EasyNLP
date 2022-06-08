@@ -33,6 +33,7 @@ EASYNLP_REMOTE_MODELZOO = "http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/r
 EASYNLP_CACHE_ROOT = os.getenv("EASYNLP_CACHE_ROOT", easynlp_default_path)
 EASYNLP_LOCAL_MODELZOO = os.path.join(EASYNLP_CACHE_ROOT, "modelzoo")
 EASYNLP_LOCAL_DATAHUB = os.path.join(EASYNLP_CACHE_ROOT, "datahub")
+EASYNLP_LOCAL_APPZOO = os.path.join(EASYNLP_CACHE_ROOT, "appzoo")
 
 def copy_weights_for_same_module(copied_module, copying_module):
     if isinstance(copied_module, nn.Parameter):

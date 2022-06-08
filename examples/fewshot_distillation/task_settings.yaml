@@ -1,0 +1,35 @@
+mnli:
+  template: "*cls**sent-_0*?*mask*,*+sentl_1**sep+*"
+  mapping: "{'contradiction':'No','entailment':'Yes','neutral':'Maybe'}"
+  extra: "--max_seq_len=256 --first_sent_limit=240"
+
+snli:
+  template: "*cls**sent-_0*?*mask*,*+sentl_1**sep+*"
+  mapping: "{'contradiction':'No','entailment':'Yes','neutral':'Maybe'}"
+  extra: "--max_seq_len=256 --first_sent_limit=240"
+
+sst-2:
+  template: "*cls**sent_0*_It_was*mask*.*sep+*"
+  mapping: "{'0':'terrible','1':'great'}"
+
+mr:
+  template: "*cls**sent_0*_It_was*mask*.*sep+*"
+  mapping: "{0:'terrible',1:'great'}"
+
+mrpc:
+  template: "*cls**sent_0**mask*,*+sentl_1**sep+*"
+  mapping: "{'0':'No','1':'Yes'}"
+
+qqp:
+  template: "*cls**sent_0**mask*,*+sentl_1**sep+*"
+  mapping: "{'0':'No','1':'Yes'}"
+
+qnli:
+  template: "*cls**sent-_0*?*mask*,*+sentl_1**sep+*"
+  mapping: "{'not_entailment':'No','entailment':'Yes'}"
+  extra: "--max_seq_len=256 --first_sent_limit=240"
+
+rte:
+  template: "*cls**sent-_0*?*mask*,*+sentl_1**sep+*"
+  mapping: "{'not_entailment':'No','entailment':'Yes'}"
+  extra: "--max_seq_len=256 --first_sent_limit=240"
