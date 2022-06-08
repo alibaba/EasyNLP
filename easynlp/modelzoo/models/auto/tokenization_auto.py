@@ -32,6 +32,7 @@ from ...tokenization_utils_base import TOKENIZER_CONFIG_FILE
 from ...utils import logging
 from ..bert.tokenization_bert import BertTokenizer
 from ..dkplm.tokenization_dkplm import DkplmTokenizer
+from ..megatron_bert.tokenization_megatron_bert import MegatronBertTokenizer
 from ..gpt2.tokenization_gpt2 import GPT2Tokenizer
 from ..roberta.tokenization_roberta import RobertaTokenizer
 from ..cnn.tokenization_cnn import TextCNNTokenizer
@@ -39,6 +40,7 @@ from ..cnn.tokenization_cnn import TextCNNTokenizer
 from .configuration_auto import (
     AutoConfig,
     DkplmConfig,
+    MegatronBertConfig,
     BertConfig,
     GPT2Config,
     RobertaConfig,
@@ -51,6 +53,7 @@ if is_tokenizers_available():
     from ...tokenization_utils_fast import PreTrainedTokenizerFast
     from ..bert.tokenization_bert_fast import BertTokenizerFast
     from ..dkplm.tokenization_dkplm_fast import DkplmTokenizerFast
+    from ..megatron_bert.tokenization_modeling_bert_fast import MegatronBertTokenizerFast
     from ..gpt2.tokenization_gpt2_fast import GPT2TokenizerFast
     from ..roberta.tokenization_roberta_fast import RobertaTokenizerFast
 
@@ -59,6 +62,7 @@ else:
     GPT2TokenizerFast = None
     RobertaTokenizerFast = None
     DkplmTokenizerFast = None
+    MegatronBertTokenizerFast = None
     PreTrainedTokenizerFast = None
 
 logger = logging.get_logger(__name__)
@@ -69,6 +73,7 @@ TOKENIZER_MAPPING = OrderedDict(
         (RobertaConfig, (RobertaTokenizer, RobertaTokenizerFast)),
         (BertConfig, (BertTokenizer, BertTokenizerFast)),
         (DkplmConfig, (DkplmTokenizer, DkplmTokenizerFast)),
+        (MegatronBertConfig, (MegatronBertTokenizer, MegatronBertTokenizerFast)),
         (GPT2Config, (GPT2Tokenizer, GPT2TokenizerFast)),
         (TextCNNConfig, (TextCNNTokenizer, None)),
         (ARTISTConfig, (BertTokenizer, BertTokenizerFast))

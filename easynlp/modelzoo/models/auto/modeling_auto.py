@@ -45,7 +45,24 @@ from ..dkplm.modeling_dkplm import (
     DkplmPreTrainedModel,
     DkplmModel,
 )
+
+from ..megatron_bert.modeling_megatron_bert import (
+    MegatronBertForMaskedLM,
+    MegatronBertForMultipleChoice,
+    MegatronBertForNextSentencePrediction,
+    MegatronBertForPreTraining,
+    MegatronBertForQuestionAnswering,
+    MegatronBertForSequenceClassification,
+    MegatronBertForTokenClassification,
+    MegatronBertForCausalLM,
+    MegatronBertPreTrainedModel,
+    MegatronBertModel
+)
+# from ..clip.modeling_clip import CLIPModel
 from ..gpt2.modeling_gpt2 import GPT2ForSequenceClassification, GPT2LMHeadModel, GPT2Model
+
+# from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
+# from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
 from ..roberta.modeling_roberta import (
     RobertaForCausalLM,
     RobertaForMaskedLM,
@@ -63,6 +80,7 @@ from .auto_factory import auto_class_factory
 from .configuration_auto import (
     BertConfig,
     DkplmConfig,
+    MegatronBertConfig,
     GPT2Config,
     RobertaConfig,
     TextCNNConfig
@@ -75,7 +93,8 @@ PRETRAINED_MODEL_MAPPING = OrderedDict(
     [
         # Base model mapping
         (BertConfig, BertPreTrainedModel),
-        (DkplmConfig, DkplmPreTrainedModel)
+        (DkplmConfig, DkplmPreTrainedModel),
+        (MegatronBertConfig, MegatronBertPreTrainedModel)
     ]
 )
 
@@ -83,8 +102,11 @@ MODEL_MAPPING = OrderedDict(
     [
         # Base model mapping
         (RobertaConfig, RobertaModel),
+        # (LayoutLMConfig, LayoutLMModel),
+        # (SqueezeBertConfig, SqueezeBertModel),
         (BertConfig, BertModel),
         (DkplmConfig, DkplmModel),
+        (MegatronBertConfig, MegatronBertModel),
         (GPT2Config, GPT2Model),
         (TextCNNConfig, TextCNNEncoder)
     ]
@@ -97,6 +119,7 @@ MODEL_FOR_PRETRAINING_MAPPING = OrderedDict(
         (BertConfig, BertForPreTraining),
         (DkplmConfig, DkplmForPreTraining),
         (GPT2Config, GPT2LMHeadModel),
+        (MegatronBertConfig, MegatronBertForPreTraining)
     ]
 )
 
@@ -106,6 +129,7 @@ MODEL_WITH_LM_HEAD_MAPPING = OrderedDict(
         (RobertaConfig, RobertaForMaskedLM),
         (BertConfig, BertForMaskedLM),
         (DkplmConfig, DkplmForMaskedLM),
+        (MegatronBertConfig, MegatronBertForMaskedLM),
         (GPT2Config, GPT2LMHeadModel),
     ]
 )
@@ -116,6 +140,7 @@ MODEL_FOR_CAUSAL_LM_MAPPING = OrderedDict(
         (RobertaConfig, RobertaForCausalLM),
         (BertConfig, BertLMHeadModel),
         (DkplmConfig, DkplmLMHeadModel),
+        (MegatronBertConfig, MegatronBertForCausalLM),
         (GPT2Config, GPT2LMHeadModel),
     ]
 )
@@ -125,7 +150,8 @@ MODEL_FOR_MASKED_LM_MAPPING = OrderedDict(
         # Model for Masked LM mapping
         (RobertaConfig, RobertaForMaskedLM),
         (BertConfig, BertForMaskedLM),
-        (DkplmConfig, DkplmForMaskedLM)
+        (DkplmConfig, DkplmForMaskedLM),
+        (MegatronBertConfig, MegatronBertForMaskedLM)
     ]
 )
 
@@ -139,6 +165,7 @@ MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING = OrderedDict(
         # Model for Sequence Classification mapping
         (RobertaConfig, RobertaForSequenceClassification),
         (BertConfig, BertForSequenceClassification),
+        (MegatronBertConfig, MegatronBertForSequenceClassification),
         (DkplmConfig, DkplmForSequenceClassification),
         (GPT2Config, GPT2ForSequenceClassification),
     ]
@@ -149,7 +176,8 @@ MODEL_FOR_QUESTION_ANSWERING_MAPPING = OrderedDict(
         # Model for Question Answering mapping
         (RobertaConfig, RobertaForQuestionAnswering),
         (BertConfig, BertForQuestionAnswering),
-        (DkplmConfig, DkplmForQuestionAnswering)
+        (DkplmConfig, DkplmForQuestionAnswering),
+        (MegatronBertConfig, MegatronBertForQuestionAnswering)
     ]
 )
 
@@ -159,7 +187,8 @@ MODEL_FOR_TOKEN_CLASSIFICATION_MAPPING = OrderedDict(
         # Model for Token Classification mapping
         (RobertaConfig, RobertaForTokenClassification),
         (BertConfig, BertForTokenClassification),
-        (DkplmConfig, DkplmForTokenClassification)
+        (DkplmConfig, DkplmForTokenClassification),
+        (MegatronBertConfig, MegatronBertForTokenClassification)
     ]
 )
 
@@ -168,14 +197,16 @@ MODEL_FOR_MULTIPLE_CHOICE_MAPPING = OrderedDict(
         # Model for Multiple Choice mapping
         (RobertaConfig, RobertaForMultipleChoice),
         (BertConfig, BertForMultipleChoice),
-        (DkplmConfig, DkplmForMultipleChoice)
+        (DkplmConfig, DkplmForMultipleChoice),
+        (MegatronBertConfig, MegatronBertForMultipleChoice)
     ]
 )
 
 MODEL_FOR_NEXT_SENTENCE_PREDICTION_MAPPING = OrderedDict(
     [
         (BertConfig, BertForNextSentencePrediction),
-        (DkplmConfig, DkplmForNextSentencePrediction)
+        (DkplmConfig, DkplmForNextSentencePrediction),
+        (MegatronBertConfig, MegatronBertForNextSentencePrediction)
     ]
 )
 
