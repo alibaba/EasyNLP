@@ -83,7 +83,8 @@ from .configuration_auto import (
     GPT2Config,
     RobertaConfig,
     TextCNNConfig,
-    KBertConfig
+    KBertConfig,
+    MegatronBertConfig
 )
 from ..kbert.modeling_kbert import (
     KBertForMaskedLM,
