@@ -57,6 +57,7 @@ class SequenceLabelingEvaluator(Evaluator):
                 raw_sequence_length = max(tok_to_orig_index) + 1
                 while len(final_pred) < raw_sequence_length:
                     final_pred.append(idx_label_map[len(idx_label_map) - 1])
+                    final_label.append(idx_label_map[len(idx_label_map) - 1])
                 new_preds.extend(final_pred + ["O"])
                 new_labels.extend(final_label + ["O"])
             return new_preds, new_labels
