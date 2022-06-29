@@ -37,7 +37,8 @@ CONFIG_MAPPING = OrderedDict(
         ("megatron-bert", MegatronBertConfig),
         ("gpt2", GPT2Config),
         ("cnn", TextCNNConfig),
-        ("artist", ARTISTConfig)
+        ("artist", ARTISTConfig),
+        ("kbert", KBertConfig)
     ]
 )
 
