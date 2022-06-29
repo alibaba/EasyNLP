@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import torch
+import jieba
 
 from ...distillation.distill_dataset import DistillatoryBaseDataset
 from ...fewshot_learning.fewshot_dataset import FewshotBaseDataset
@@ -45,6 +46,7 @@ class ClassificationDataset(BaseDataset):
                  label_name=None,
                  second_sequence=None,
                  label_enumerate_values=None,
+                 user_defined_parameters=None,
                  *args,
                  **kwargs):
         super().__init__(data_file,
@@ -53,8 +55,15 @@ class ClassificationDataset(BaseDataset):
                          *args,
                          **kwargs)
 
+        self.kbert_model_prefix = True if 'kbert' in pretrained_model_name_or_path else False
+
         # assert ".easynlp/modelzoo/" in pretrained_model_name_or_path
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+
+        if self.kbert_model_prefix:
+            self.tokenizer.add_special_tokens({'additional_special_tokens': ['[ENT]']})
+            kg_file = user_defined_parameters.get('kg_file', '')
+            self.kg = KnowledgeGraph(spo_file=kg_file, predicate=True)
 
         self.max_seq_length = max_seq_length
         user_defined_parameters = kwargs.get('user_defined_parameters', {})
@@ -115,6 +124,11 @@ class ClassificationDataset(BaseDataset):
         text_b = row[self.second_sequence] if self.second_sequence else None
         label = row[self.label_name] if self.label_name else None
 
+        if self.kbert_model_prefix:
+            text_a = self.kg.add_knowledge_to_text(text_a)
+            text_b = self.kg.add_knowledge_to_text(text_b) if self.second_sequence else None
+            self.ent_id = self.tokenizer.convert_tokens_to_ids('[ENT]')
+
         encoding = self.tokenizer(text_a,
                                   text_b,
                                   padding='max_length',
@@ -129,6 +143,10 @@ class ClassificationDataset(BaseDataset):
                 new_label_id[idx] = 1
             encoding['label_ids'] = new_label_id
 
+        if self.kbert_model_prefix:
+            encoding['input_ids'], encoding['token_type_ids'], encoding['attention_mask'], encoding['position_ids'], encoding['visible_matrix'] = self.kbert_row_data_process(encoding['input_ids'], encoding['token_type_ids'], encoding['attention_mask'])
+
+
         return encoding
 
     def batch_fn(self, features):
@@ -136,6 +154,133 @@ class ClassificationDataset(BaseDataset):
             Divide examples into batches.
         """
         return {k: torch.tensor([dic[k] for dic in features]) for k in features[0]}
+
+
+    def kbert_row_data_process(self, input_ids, token_type_ids, attention_mask):
+        """
+            data process for K-BERT
+        """
+
+        ent_input_ids = []
+        ent_token_type_ids = []
+        ent_attention_mask = []
+        ent_pos_ids = []
+        ent_visible_matrix = [[1 for _ in range(self.max_seq_length)] for _ in range(self.max_seq_length)]
+
+        pos_id = 0
+        ent_pos_id = 0
+        ent_map = [] # ent_map is the log of origin_ent_id and external_ent_id
+        ent_token_count = 0
+        start_origin_ent = None
+        start_external_ent = None
+
+        for i in range(len(input_ids)):
+            input_id = input_ids[i]
+            if input_id == self.ent_id:
+                ent_token_count += 1
+                ent_pos_id = 0
+                if ent_token_count % 3 == 1:
+                    start_origin_ent = len(ent_input_ids)
+                elif ent_token_count % 3 == 2:
+                    start_external_ent = len(ent_input_ids)
+                else:
+                    ent_map.append([start_origin_ent, start_external_ent, len(ent_input_ids)])
+            else:
+                ent_input_ids.append(input_id)
+                ent_token_type_ids.append(token_type_ids[i])
+                ent_attention_mask.append(attention_mask[i])
+                if ent_token_count % 3 != 2:
+                    ent_pos_ids.append(pos_id)
+                    pos_id += 1
+                else:
+                    ent_pos_ids.append(pos_id+ent_pos_id)
+                    ent_pos_id += 1
+
+        if len(ent_input_ids) < self.max_seq_length:
+            diff_length = self.max_seq_length-len(ent_input_ids)
+            ent_input_ids.extend([0 for _ in range(diff_length)])
+            ent_token_type_ids.extend(0 for _ in range(diff_length))
+            ent_pos_ids.extend(0 for _ in range(diff_length))
+            ent_attention_mask.extend(0 for _ in range(diff_length))
+
+        for i in range(len(ent_map)):
+            s, m, e = ent_map[i]
+
+            for etn_ent_id in range(m, e):
+                for token_id in range(0, s):
+                    ent_visible_matrix[etn_ent_id][token_id] = 0
+                    ent_visible_matrix[token_id][etn_ent_id] = 0
+                for token_id in range(e, self.max_seq_length):
+                    ent_visible_matrix[etn_ent_id][token_id] = 0
+                    ent_visible_matrix[token_id][etn_ent_id] = 0
+
+        return ent_input_ids, ent_token_type_ids, ent_attention_mask, ent_pos_ids, ent_visible_matrix
+
+
+class KnowledgeGraph():
+    """
+        Construct KG structure for K-BERT
+    """
+    def __init__(self, spo_file, predicate=False, never_split_tag=None):
+        self.predicate = predicate
+        self.spo_file_paths = spo_file
+        self.lookup_table = self._create_lookup_table()
+        if never_split_tag:
+            self.segment_vocab = list(self.lookup_table.keys()) + never_split_tag
+        else:
+            self.segment_vocab = list(self.lookup_table.keys())
+        self.tokenizer = jieba
+        for i in range(len(self.segment_vocab)):
+            self.tokenizer.add_word(self.segment_vocab[i])
+        self.special_tags = set(never_split_tag) if never_split_tag else None
+
+    def _create_lookup_table(self):
+        lookup_table = {}
+        print("[KnowledgeGraph] Loading spo from {}".format(self.spo_file_paths))
+        with open(self.spo_file_paths, 'r', encoding='utf-8') as f:
+            for line in f:
+                try:
+                    subj, pred, obje = line.strip().split("\t")
+                except:
+                    print("[KnowledgeGraph] Bad spo:", line)
+                if self.predicate:
+                    value = pred + obje
+                else:
+                    value = obje
+                if subj in lookup_table.keys():
+                    lookup_table[subj].add(value)
+                else:
+                    lookup_table[subj] = set([value])
+        return lookup_table
+
+    def add_knowledge_to_text(self, sent, max_entities=2):
+        split_sent = self.tokenizer.cut(sent)
+
+        sent_tree = []
+        know_sent = []
+
+        for token in split_sent:
+
+            entities = list(self.lookup_table.get(token, []))[:max_entities]
+            entities = "".join(entities)
+            sent_tree.append((token, entities))
+
+        for i in range(len(sent_tree)):
+            if len(sent_tree[i][1]) == 0:
+                know_sent.append(sent_tree[i][0])
+            elif len(sent_tree[i][1]) > 0:
+                know_sent.append('[ENT]')
+                know_sent.append(sent_tree[i][0])
+                know_sent.append('[ENT]')
+                know_sent.append(sent_tree[i][1])
+                know_sent.append('[ENT]')
+
+        row = "".join(know_sent)
+
+
+        return row
+
+
 
 
 class DistillatoryClassificationDataset(DistillatoryBaseDataset, ClassificationDataset):
