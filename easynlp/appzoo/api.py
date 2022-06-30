@@ -24,6 +24,7 @@ from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassificat
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
 from easynlp.appzoo import MultiModal
+from easynlp.appzoo import TextImageGeneration
 # from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
@@ -33,6 +34,7 @@ from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewsho
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
 from easynlp.appzoo import MultiModalEvaluator
+from easynlp.appzoo import TextImageGenerationEvaluator
 # from easynlp.appzoo import SequenceGenerationEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -40,6 +42,7 @@ from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredic
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
 from easynlp.appzoo import MultiModalPredictor
+from easynlp.appzoo import TextImageGenerationPredictor
 # from easynlp.appzoo import SequenceGenerationPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -48,6 +51,7 @@ from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySing
 # from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
 from easynlp.appzoo import MultiModalDataset
+from easynlp.appzoo import TextImageDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -72,6 +76,7 @@ Dataset_Mapping = {
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
     'clip': MultiModalDataset,
+    'text2image_generation': TextImageDataset,
 }
 
 ModelMapping = {
@@ -95,6 +100,7 @@ ModelMapping = {
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
     'clip': MultiModal,
+    'text2image_generation': TextImageGeneration,
 }
 
 Eval_Model_Mapping = {
@@ -112,6 +118,7 @@ Eval_Model_Mapping = {
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
     'clip': MultiModal,
+    'text2image_generation': TextImageGeneration,
 }
 
 Evaluator_Mapping = {
@@ -129,7 +136,8 @@ Evaluator_Mapping = {
     'language_modeling': LanguageModelingEvaluator,
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
-    'clip': MultiModalEvaluator
+    'clip': MultiModalEvaluator,
+    'text2image_generation': TextImageGenerationEvaluator,
 }
 
 Predictor_Mapping = {
@@ -148,7 +156,8 @@ Predictor_Mapping = {
     'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
-    'clip': [MultiModalPredictor, MultiModal]
+    'clip': [MultiModalPredictor, MultiModal],
+    'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
 }
 
 
@@ -240,7 +249,7 @@ def get_application_dataset(app_name,
                     user_defined_parameters=user_defined_parameters,
                     *args,
                     **kwargs)
-    raise NotImplementedError("application model %s is not implemented" % app_name)
+    raise NotImplementedError("application dataset %s is not implemented" % app_name)
             
 
 def get_application_model(app_name, pretrained_model_name_or_path, user_defined_parameters, **kwargs):

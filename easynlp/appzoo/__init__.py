@@ -25,6 +25,7 @@ _import_structure = {
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
     "multi_modal.model": ["MultiModal"],
+    "text2image_generation.model": ["TextImageGeneration"],
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
@@ -32,6 +33,7 @@ _import_structure = {
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
     "multi_modal.evaluator": ['MultiModalEvaluator'],
+    "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -40,6 +42,7 @@ _import_structure = {
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
     "multi_modal.predictor": ['MultiModalPredictor'],
+    "text2image_generation.predictor": ['TextImageGenerationPredictor'],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
@@ -47,6 +50,7 @@ _import_structure = {
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
+    "text2image_generation.data": ['TextImageDataset'],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -60,6 +64,7 @@ if TYPE_CHECKING:
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
     from .multi_modal.model import MultiModal
+    from .text2image_generation.model import TextImageGeneration
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
@@ -67,6 +72,7 @@ if TYPE_CHECKING:
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
     from .multi_modal.evaluator import MultiModalEvaluator
+    from .text2image_generation.evaluator import TextImageGenerationEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -75,6 +81,7 @@ if TYPE_CHECKING:
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
     from .multi_modal.predictor import MultiModalPredictor
+    from .text2image_generation.predictor import TextImageGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
@@ -82,6 +89,7 @@ if TYPE_CHECKING:
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
     from .multi_modal.data import MultiModalDataset
+    from .text2image_generation.data import TextImageDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets

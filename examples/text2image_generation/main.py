@@ -10,10 +10,10 @@ from easynlp.core import Trainer
 # from easynlp.appzoo import get_application_evaluator
 from easynlp.appzoo.sequence_classification.data import ClassificationDataset
 
-from easynlp.appzoo.text2image_generation.data import TextImageDataset
-from easynlp.appzoo.text2image_generation.model import TextImageGeneration
-from easynlp.appzoo.text2image_generation.evaluator import TextImageGenerationEvaluator
-from easynlp.appzoo.text2image_generation.predictor import TextImageGenerationPredictor
+from easynlp.appzoo import TextImageDataset
+from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import TextImageGenerationEvaluator
+from easynlp.appzoo import TextImageGenerationPredictor
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from easynlp.core import PredictorManager
@@ -37,13 +37,6 @@ if __name__ == "__main__":
 
     pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
 
-    transformer_config = {
-        "vocab_size": 37512,
-        "block_size": 288,
-        "n_layer": 12,
-        "n_head": 12,
-        "n_embd": 768,
-    }
 
     if args.mode == "predict":
         predictor = TextImageGenerationPredictor(model_dir=args.checkpoint_dir, model_cls=TextImageGeneration,
@@ -85,7 +78,7 @@ if __name__ == "__main__":
         is_training=False)
     
     
-    model = TextImageGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
+    model = TextImageGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
     evaluator = TextImageGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
 
     trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
