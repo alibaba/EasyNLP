@@ -39,7 +39,7 @@ CONFIG_MAPPING = OrderedDict(
         ("gpt2", GPT2Config),
         ("cnn", TextCNNConfig),
         ("artist", ARTISTConfig),
-        ("clip", CLIPConfig)
+        ("clip", CLIPConfig),
         ("kbert", KBertConfig)
     ]
 )
