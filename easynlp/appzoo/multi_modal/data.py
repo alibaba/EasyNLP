@@ -166,7 +166,7 @@ class MultiModalDataset(BaseDataset):
 
         self.text_col = first_sequence
         self.image_col=second_sequence
-        self.tokenizer=BertTokenizer.from_pretrained(pretrained_model_name_or_path)
+        self.tokenizer=BertTokenizer.from_pretrained(pretrained_model_name_or_path+'/vocab.txt')
         self.max_text_length=max_seq_length
         self.do_resize=True
         self.size=224
