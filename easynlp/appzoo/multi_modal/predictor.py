@@ -18,7 +18,7 @@ import os
 import torch
 from ...utils import io
 from ...core.predictor import Predictor, get_model_predictor
-from ...modelzoo import AutoTokenizer
+from ...modelzoo import BertTokenizer
 from easynlp.utils import get_pretrain_model_path
 from PIL import Image
 import base64
@@ -37,7 +37,7 @@ class MultiModalPredictor(Predictor):
             os.makedirs(local_dir, exist_ok=True)
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
-        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        self.tokenizer = BertTokenizer.from_pretrained(model_dir)
         self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs)
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.second_sequence = kwargs.pop("second_sequence", "second_sequence")
