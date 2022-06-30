@@ -15,7 +15,7 @@
 
 import torch
 import numpy as np
-from ...modelzoo import AutoTokenizer,AutoConfig
+from ...modelzoo import BertTokenizer
 from ...utils import io
 from ..dataset import BaseDataset
 # from ...modelzoo.models.clip.processing_clip import CLIPProcessor
@@ -166,11 +166,7 @@ class MultiModalDataset(BaseDataset):
 
         self.text_col = first_sequence
         self.image_col=second_sequence
-        if 'alibaba-pai' in pretrained_model_name_or_path:
-            text_config_path=pretrained_model_name_or_path+'/text_config.json'
-            self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, config=AutoConfig.from_pretrained(text_config_path))
-        else:
-            self.tokenizer=AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+        self.tokenizer=BertTokenizer.from_pretrained(pretrained_model_name_or_path)
         self.max_text_length=max_seq_length
         self.do_resize=True
         self.size=224

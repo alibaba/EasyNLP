@@ -17,7 +17,7 @@
 import copy
 import os
 from typing import Union
-
+import json
 from ...configuration_utils import PretrainedConfig
 from ...utils import logging
 
@@ -28,7 +28,6 @@ CLIP_PRETRAINED_CONFIG_ARCHIVE_MAP = {
     "openai/clip-vit-base-patch32": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/config.json",
     # See all CLIP models at https://huggingface.co/models?filter=clip
 }
-
 
 class CLIPTextConfig(PretrainedConfig):
     r"""
@@ -88,21 +87,24 @@ class CLIPTextConfig(PretrainedConfig):
 
     def __init__(
         self,
-        vocab_size=49408,
-        hidden_size=512,
-        intermediate_size=2048,
-        num_hidden_layers=12,
-        num_attention_heads=8,
-        max_position_embeddings=77,
-        hidden_act="quick_gelu",
-        layer_norm_eps=0.00001,
+        vocab_size=21128,
+        hidden_size=1024,
+        intermediate_size=4096,
+        num_hidden_layers=24,
+        num_attention_heads=16,
+        max_position_embeddings=512,
+        hidden_act="gelu",
+        layer_norm_eps=1e-12,
         dropout=0.0,
         attention_dropout=0.0,
         initializer_range=0.02,
         initializer_factor=1.0,
-        pad_token_id=1,
+        pad_token_id=0,
         bos_token_id=0,
         eos_token_id=2,
+        type_vocab_size=2,
+        hidden_dropout_prob=0.1,
+        attention_probs_dropout_prob=0.1,
         **kwargs
     ):
         super().__init__(pad_token_id=pad_token_id, bos_token_id=bos_token_id, eos_token_id=eos_token_id, **kwargs)
@@ -119,6 +121,9 @@ class CLIPTextConfig(PretrainedConfig):
         self.initializer_range = initializer_range
         self.initializer_factor = initializer_factor
         self.attention_dropout = attention_dropout
+        self.type_vocab_size=type_vocab_size
+        self.hidden_dropout_prob=hidden_dropout_prob
+        self.attention_probs_dropout_prob=attention_probs_dropout_prob
 
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path: Union[str, os.PathLike], **kwargs) -> "PretrainedConfig":
@@ -137,6 +142,8 @@ class CLIPTextConfig(PretrainedConfig):
 
         return cls.from_dict(config_dict, **kwargs)
 
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
 
 class CLIPVisionConfig(PretrainedConfig):
     r"""
@@ -241,6 +248,8 @@ class CLIPVisionConfig(PretrainedConfig):
 
         return cls.from_dict(config_dict, **kwargs)
 
+    def toJson(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
 
 class CLIPConfig(PretrainedConfig):
     r"""
@@ -283,9 +292,8 @@ class CLIPConfig(PretrainedConfig):
         if vision_config_dict is None:
             vision_config_dict = {}
             logger.info("vision_config_dict is None. initializing the CLIPVisionConfig with default values.")
-
-        self.text_config = CLIPTextConfig(**text_config_dict)
-        self.vision_config = CLIPVisionConfig(**vision_config_dict)
+        self.text_config = CLIPTextConfig(**text_config_dict).__dict__
+        self.vision_config = CLIPVisionConfig(**vision_config_dict).__dict__
 
         self.projection_dim = projection_dim
         self.logit_scale_init_value = logit_scale_init_value
@@ -303,7 +311,7 @@ class CLIPConfig(PretrainedConfig):
 
         return cls(text_config_dict=text_config.to_dict(), vision_config_dict=vision_config.to_dict(), **kwargs)
 
-    def to_dict(self):
+    def to_json_string(self):
         """
         Serializes this instance to a Python dictionary. Override the default [`~PretrainedConfig.to_dict`].
 
@@ -311,7 +319,7 @@ class CLIPConfig(PretrainedConfig):
             `Dict[str, any]`: Dictionary of all the attributes that make up this configuration instance,
         """
         output = copy.deepcopy(self.__dict__)
-        output["text_config"] = self.text_config.to_dict()
-        output["vision_config"] = self.vision_config.to_dict()
+        output["text_config"] = self.text_config
+        output["vision_config"] = self.vision_config
         output["model_type"] = self.__class__.model_type
-        return output
+        return json.dumps(output)
