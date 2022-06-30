@@ -62,8 +62,8 @@ class MultiModalEvaluator(Evaluator):
         mean_recall = (r1 + r5 + r10) / 3.0
         result = [mean_recall, r1, r5, r10]
         result = [item * 100 for item in result]
-        print(r1_stat,r5_stat,r10_stat,query_len)
-        print(result)
+        print('r1_num:'+str(r1_stat),'r5_num:'+str(r5_stat),'r10_num:'+str(r10_stat),'query_num:'+str(query_len))
+        print('r1(%):'+str(result[1]),'r5(%):'+str(result[2]),'r10(%):'+str(result[3]),'mean_recall(%):'+str(result[0]))
         logger.info("Inference time = {:.2f}s, [{:.4f} ms / sample] ".format(
             total_spent_time, total_spent_time * 1000 / query_len))
         eval_outputs = list()
