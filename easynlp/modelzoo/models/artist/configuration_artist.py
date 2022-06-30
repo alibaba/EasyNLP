@@ -32,7 +32,7 @@ class ARTISTConfig(PretrainedConfig):
 
     def __init__(
         self,
-        vocab_size=30522,
+        vocab_size=37512,
         block_size=288,
         n_layer=12,
         n_head=12,

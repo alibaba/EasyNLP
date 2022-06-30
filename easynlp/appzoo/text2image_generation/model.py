@@ -6,6 +6,7 @@ from ...modelzoo import AutoConfig
 from .vqgan import VQModel
 from ...modelzoo.models.artist.modeling_artist import GPT
 from ...modelzoo.models.artist.configuration_artist import ARTISTConfig
+from easynlp.utils.logger import logger
 
 
 
@@ -20,13 +21,17 @@ class TextImageGeneration(Application):
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             self.transformer = GPT(self.config)
             self.init_from_ckpt(pretrained_model_name_or_path)
-        elif kwargs.get('from_config'):
+        else:
+            logger.info("Train Text2Image model from scratch....")
             vqgan_ckpt_path = user_defined_parameters.get('vqgan_ckpt_path')
             self.first_stage_model = VQModel(ckpt_path=vqgan_ckpt_path).eval()
-            self.config = ARTISTConfig(**(kwargs.get('from_config')))
+            vocab_size = int(user_defined_parameters.get('img_vocab_size', '21128')) + int(user_defined_parameters.get('text_vocab_size', '16384'))
+            block_size = int(user_defined_parameters.get('text_len', '32')) + int(user_defined_parameters.get('img_len', '256'))
+            n_layer = int(user_defined_parameters.get('n_layer', '12'))
+            n_head = int(user_defined_parameters.get('n_head', '12'))
+            n_embd = int(user_defined_parameters.get('n_embd', '768'))
+            self.config = ARTISTConfig(vocab_size=vocab_size, block_size=block_size, n_layer=n_layer, n_head=n_head, n_embd=n_embd)
             self.transformer = GPT(self.config)
-        else:
-            raise RuntimeError("Both pretrained_model_name_or_path and from_config are None, it's not allowed!")
         self.pkeep = kwargs.get('pkeep', 1.0)
 
 
