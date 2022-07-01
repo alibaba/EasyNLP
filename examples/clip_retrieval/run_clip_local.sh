@@ -1,5 +1,11 @@
 export CUDA_VISIBLE_DEVICES=$1
 
+#动态获取GPU数
+OLD_IFS="$IFS"
+IFS="," 
+arr=($1)
+IFS="$OLD_IFS"
+
 if [ ! -f ./MUGE_MR_train_base64_part.tsv ]; then
   wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/MUGE_MR_train_base64_part.tsv
 fi
@@ -21,7 +27,7 @@ mode=$2
 if [ "$mode" = "train" ]; then
   easynlp \
   --mode $mode \
-  --worker_gpu=1 \
+  --worker_gpu=${#arr[@]} \
   --tables=./MUGE_MR_train_base64_part.tsv,./MUGE_MR_valid_base64_part.tsv \
   --input_schema=text:str:1,image:str:1 \
   --first_sequence=text \
@@ -41,7 +47,7 @@ if [ "$mode" = "train" ]; then
 elif [ "$mode" = "evaluate" ]; then
   easynlp \
   --mode $mode \
-  --worker_gpu=1 \
+  --worker_gpu=${#arr[@]} \
   --tables=./MUGE_MR_valid_base64_part.tsv \
   --input_schema=text:str:1,image:str:1 \
   --first_sequence=text \
@@ -57,7 +63,7 @@ elif [ "$mode" = "evaluate" ]; then
 elif [ "$mode" = "predict" ]; then
     easynlp \
       --mode $mode \
-      --worker_gpu=1 \
+      --worker_gpu=${#arr[@]} \
       --tables=./MUGE_MR_test_base64_part_text.tsv \
       --input_schema=text:str:1 \
       --output_schema=text_feat \
@@ -74,7 +80,7 @@ elif [ "$mode" = "predict" ]; then
 # elif [ "$mode" = "predict" ]; then
 #     easynlp \
 #       --mode $mode \
-#       --worker_gpu=1 \
+#       --worker_gpu=${#arr[@]} \
 #       --tables=./MUGE_MR_test_base64_part_image.tsv \
 #       --input_schema=image:str:1 \
 #       --output_schema=image_feat \
