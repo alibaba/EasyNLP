@@ -296,6 +296,16 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        ],
                        help='name of the optimizer')
 
+    group.add_argument('--lr_scheduler',
+                       '--schedule',
+                       default='warmup_linear',
+                       type=str,
+                       choices=[
+                           'warmup_linear', 'warmup_cosine',
+                           'warmup_constant', 'none',
+                       ],
+                       help='name of the learning rate scheduler')
+
     group.add_argument(
         '--warmup_proportion',
         default=0.1,
