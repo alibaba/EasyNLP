@@ -12,13 +12,15 @@ from easynlp.utils import get_pretrain_model_path
 if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
-
+    user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+    
     if args.mode == "predict":
         predictor = get_application_predictor(
             app_name=args.app_name, model_dir=args.checkpoint_dir,
             first_sequence=args.first_sequence,
             second_sequence=args.second_sequence,
-            sequence_length=args.sequence_length)
+            sequence_length=args.sequence_length,
+            user_defined_parameters=user_defined_parameters)
         predictor_manager = PredictorManager(
             predictor=predictor,
             input_file=args.tables.split(",")[-1],
@@ -31,12 +33,12 @@ if __name__ == "__main__":
         predictor_manager.run()
         exit()
 
-    user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
     if args.mode == "train" or not args.checkpoint_dir:
         args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
     else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
-
+    args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+  
     multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
     valid_dataset = ClassificationDataset(
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
@@ -54,7 +56,7 @@ if __name__ == "__main__":
     pretrained_model_name_or_path = args.pretrained_model_name_or_path \
         if args.pretrained_model_name_or_path else args.checkpoint_dir
     pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
-
+    
     model = get_application_model(app_name=args.app_name,
                                   pretrained_model_name_or_path=pretrained_model_name_or_path,
                                   num_labels=len(valid_dataset.label_enumerate_values),
@@ -63,7 +65,7 @@ if __name__ == "__main__":
     if args.mode == "train":
 
         train_dataset = ClassificationDataset(
-            pretrained_model_name_or_path=args.pretrained_model_name_or_path,
+            pretrained_model_name_or_path=pretrained_model_name_or_path,
             data_file=args.tables.split(",")[0],
             max_seq_length=args.sequence_length,
             input_schema=args.input_schema,

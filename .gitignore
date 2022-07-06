@@ -155,3 +155,6 @@ glue_data/
 results/
 logs/
 .vscode/
+
+examples/appzoo_tutorials/sequence_classification/bert_classify/classification_model/
+examples/appzoo_tutorials/sequence_classification_multilabel/multi_label_classification_model/

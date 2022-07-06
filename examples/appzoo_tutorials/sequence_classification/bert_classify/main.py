@@ -13,6 +13,7 @@ if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+    
     if args.mode == "predict":
         predictor = get_application_predictor(
             app_name=args.app_name, model_dir=args.checkpoint_dir,
@@ -32,8 +33,6 @@ if __name__ == "__main__":
         predictor_manager.run()
         exit()
 
-
-    user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
     if args.mode == "train" or not args.checkpoint_dir:
         args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
     else:
