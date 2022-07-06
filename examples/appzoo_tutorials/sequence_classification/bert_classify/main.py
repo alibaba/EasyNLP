@@ -12,13 +12,14 @@ from easynlp.utils import get_pretrain_model_path
 if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
-
+    user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
     if args.mode == "predict":
         predictor = get_application_predictor(
             app_name=args.app_name, model_dir=args.checkpoint_dir,
             first_sequence=args.first_sequence,
             second_sequence=args.second_sequence,
-            sequence_length=args.sequence_length)
+            sequence_length=args.sequence_length,
+            user_defined_parameters=user_defined_parameters)
         predictor_manager = PredictorManager(
             predictor=predictor,
             input_file=args.tables.split(",")[-1],

@@ -37,7 +37,7 @@ class LanguageModelingEvaluator(Evaluator):
         total_num = 0
 
         total_spent_time = 0.0
-        device = "gpu:0" if torch.cuda.is_available() else "cpu"
+        device = "cuda:0" if torch.cuda.is_available() else "cpu"
         for _step, batch in enumerate(self.valid_loader):
             batch = {
                 # key: val.cuda() if isinstance(val, torch.Tensor) else val

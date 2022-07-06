@@ -33,6 +33,8 @@ class ARTISTConfig(PretrainedConfig):
     def __init__(
         self,
         vocab_size=37512,
+        img_vocab_size=16384,
+        text_vocab_size=21128,
         block_size=288,
         n_layer=12,
         n_head=12,
@@ -44,7 +46,10 @@ class ARTISTConfig(PretrainedConfig):
         **kwargs
     ):
         super().__init__(**kwargs)
+
         self.vocab_size = vocab_size
+        self.img_vocab_size = img_vocab_size
+        self.text_vocab_size = text_vocab_size
         self.block_size = block_size
         self.n_layer = n_layer
         self.n_head = n_head
