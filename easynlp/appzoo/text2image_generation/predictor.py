@@ -26,11 +26,19 @@ from ...core.predictor import Predictor, get_model_predictor
 from ...modelzoo import AutoTokenizer
 from ...utils import io
 from PIL import Image
-import time
 import base64
 from io import BytesIO
 from torchvision import transforms
 
+
+def save_image(x):
+    c,h,w = x.shape
+    assert c==3
+    x = ((x.detach().cpu().numpy().transpose(1,2,0)+1.0)*127.5).clip(0,255).astype(np.uint8)
+    buffered = BytesIO()
+    Image.fromarray(x).save(buffered, format="PNG")
+    img_str = base64.b64encode(buffered.getvalue())
+    return str(img_str, 'utf-8')
 
 class TextImageGenerationPredictor(Predictor):
 
@@ -56,7 +64,6 @@ class TextImageGenerationPredictor(Predictor):
         self.img_vocab_size = int(user_defined_parameters.get('img_vocab_size', 16384))
 
     def preprocess(self, in_data):
-        # print("in_data = ", in_data)
         if not in_data:
             raise RuntimeError("Input data should not be None.")
 
@@ -110,8 +117,7 @@ class TextImageGenerationPredictor(Predictor):
         new_results = list()
         for b in range(len(idx)):
             text = self.tokenizer.decode(text_ids[b], skip_special_tokens=True)
-            gen_image = tensor2img(gen_imgs[b])
-            gen_img_base64 = img2base64(gen_image)
+            gen_img_base64 = save_image(gen_imgs[b])
             new_results.append({
                 "idx": idx[b],
                 "text": text,
@@ -119,14 +125,3 @@ class TextImageGenerationPredictor(Predictor):
             })
         return new_results
 
-def tensor2img(tensor):
-    topil = transforms.ToPILImage('RGB')
-    img = topil(tensor)
-    return img
-
-def img2base64(img):
-    img_buffer = BytesIO()
-    img.save(img_buffer, format=img.format if img.format else 'PNG')
-    byte_data = img_buffer.getvalue()
-    base64_str = str(base64.b64encode(byte_data), 'utf-8')
-    return base64_str  
