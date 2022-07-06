@@ -46,7 +46,7 @@ class TextMatchEvaluator(Evaluator):
         y_trues = list()
 
         total_spent_time = 0.0
-        device = "gpu:0" if torch.cuda.is_available() else "cpu"
+        device = "cuda:0" if torch.cuda.is_available() else "cpu"
         for _step, batch in enumerate(self.valid_loader):
             # batch = {key: val.cuda() if isinstance(val, torch.Tensor) else val
             #          for key, val in batch.items()}

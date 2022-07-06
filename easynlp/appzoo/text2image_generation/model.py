@@ -25,12 +25,15 @@ class TextImageGeneration(Application):
             logger.info("Train Text2Image model from scratch....")
             vqgan_ckpt_path = user_defined_parameters.get('vqgan_ckpt_path')
             self.first_stage_model = VQModel(ckpt_path=vqgan_ckpt_path).eval()
-            vocab_size = int(user_defined_parameters.get('img_vocab_size', '21128')) + int(user_defined_parameters.get('text_vocab_size', '16384'))
+            img_vocab_size = int(user_defined_parameters.get('img_vocab_size', '16384'))
+            text_vocab_size = int(user_defined_parameters.get('text_vocab_size', '21128'))
+            vocab_size = img_vocab_size + text_vocab_size
             block_size = int(user_defined_parameters.get('text_len', '32')) + int(user_defined_parameters.get('img_len', '256'))
             n_layer = int(user_defined_parameters.get('n_layer', '12'))
             n_head = int(user_defined_parameters.get('n_head', '12'))
             n_embd = int(user_defined_parameters.get('n_embd', '768'))
-            self.config = ARTISTConfig(vocab_size=vocab_size, block_size=block_size, n_layer=n_layer, n_head=n_head, n_embd=n_embd)
+            self.config = ARTISTConfig(vocab_size=vocab_size, img_vocab_size=img_vocab_size, text_vocab_size=text_vocab_size, \
+                                        block_size=block_size, n_layer=n_layer, n_head=n_head, n_embd=n_embd)
             self.transformer = GPT(self.config)
         self.pkeep = kwargs.get('pkeep', 1.0)
 
