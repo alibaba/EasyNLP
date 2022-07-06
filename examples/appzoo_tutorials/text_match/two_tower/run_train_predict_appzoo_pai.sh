@@ -9,11 +9,11 @@ ini_path='/Users/jerry/Develops/odpscmd/conf/pai_exp_dev_zjk_tn.ini'
 role_arn_and_host=`cat ${ini_path}`
 
 if [ ! -f ./train.csv ]; then
-  wget http://atp-modelzoo.oss-cn-hangzhou.aliyuncs.com/release/ez_text_match/afqmc_public/train.csv
+  wget http://atp-modelzoo.oss-cn-hangzhou.aliyuncs.com/release/tutorials/ez_text_match/afqmc_public/train.csv
 fi
 
 if [ ! -f ./dev.csv ]; then
-  wget http://atp-modelzoo.oss-cn-hangzhou.aliyuncs.com/release/ez_text_match/afqmc_public/dev.csv
+  wget http://atp-modelzoo.oss-cn-hangzhou.aliyuncs.com/release/tutorials/ez_text_match/afqmc_public/dev.csv
 fi
 
 access_key_id_path='../../../../tools/upload_to_oss_key_id'
