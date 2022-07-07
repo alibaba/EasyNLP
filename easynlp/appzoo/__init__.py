@@ -25,6 +25,7 @@ _import_structure = {
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
     "multi_modal.model": ["MultiModal"],
+    "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration"],
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
@@ -33,6 +34,7 @@ _import_structure = {
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
     "multi_modal.evaluator": ['MultiModalEvaluator'],
+    "wukong.evaluator": ['WukongEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
@@ -42,11 +44,13 @@ _import_structure = {
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
     "multi_modal.predictor": ['MultiModalPredictor'],
+    "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor'],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
     "multi_modal.data": ['MultiModalDataset'],
+    "wukong.data": ['WukongDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
@@ -64,6 +68,7 @@ if TYPE_CHECKING:
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
     from .multi_modal.model import MultiModal
+    from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
@@ -72,6 +77,7 @@ if TYPE_CHECKING:
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
     from .multi_modal.evaluator import MultiModalEvaluator
+    from .wukong.evaluator import WukongEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -81,6 +87,7 @@ if TYPE_CHECKING:
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
     from .multi_modal.predictor import MultiModalPredictor
+    from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -89,6 +96,7 @@ if TYPE_CHECKING:
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
     from .multi_modal.data import MultiModalDataset
+    from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset
 
     from .dataset import BaseDataset, GeneralDataset
