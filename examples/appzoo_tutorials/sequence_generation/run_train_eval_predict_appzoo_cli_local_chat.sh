@@ -1,11 +1,11 @@
 export CUDA_VISIBLE_DEVICES=$1
 
 if [ ! -f ./chat_train.tsv ]; then
-  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/generation/chat_train.tsv
+  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/chat_train.tsv
 fi
 
 if [ ! -f ./chat_dev.tsv ]; then
-  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/generation/chat_dev.tsv
+  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/chat_dev.tsv
 fi
 
 mode=$2

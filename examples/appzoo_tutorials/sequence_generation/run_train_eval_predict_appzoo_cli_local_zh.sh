@@ -1,11 +1,11 @@
 export CUDA_VISIBLE_DEVICES=$1
 
 if [ ! -f ./cn_train.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/generation/cn_train.tsv
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/cn_train.tsv
 fi
 
 if [ ! -f ./cn_dev.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/easynlp/tutorials/generation/cn_dev.tsv
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/cn_dev.tsv
 fi
 
 mode=$2

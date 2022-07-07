@@ -158,3 +158,9 @@ logs/
 
 examples/appzoo_tutorials/sequence_classification/bert_classify/classification_model/
 examples/appzoo_tutorials/sequence_classification_multilabel/multi_label_classification_model/
+examples/appzoo_tutorials/knowledge_language_understanding/medical_model/
+examples/appzoo_tutorials/knowledge_language_understanding/ner_model/
+examples/appzoo_tutorials/language_modeling/lm_models/
+examples/appzoo_tutorials/sequence_labeling/labeling_model/
+examples/appzoo_tutorials/text_match/two_tower/text_match_two_tower_model_dir/
+examples/appzoo_tutorials/text_vision/clip_model/
