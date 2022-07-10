@@ -47,7 +47,7 @@ if [ "$mode" = "pretrain" ]; then
     --app_name=image2text_generation \
     --user_defined_parameters='
         pretrain_model_name_or_path=./tmp/artist-i2t-large-zh
-        size=256
+        img_size=256
         text_len=32
         img_len=256
     '
@@ -72,7 +72,7 @@ elif [ "$mode" = "finetune" ]; then
     --app_name=image2text_generation \
     --user_defined_parameters='
         pretrain_model_name_or_path=./tmp/artist_i2t_model_pretrain
-        size=256
+        img_size=256
         text_len=32
         img_len=256
       ' 
@@ -92,7 +92,7 @@ elif [ "$mode" = "predict" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        size=256
+        img_size=256
         text_len=32
         img_len=256
       '
