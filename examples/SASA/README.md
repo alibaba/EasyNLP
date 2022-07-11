@@ -93,4 +93,25 @@ python main.py \
 python evaluator.py -a ./tmp/long_test.jsonl -p ${OUTPUT_DIR}/predictions.txt
 ```
 
+## 相关论文
+
+Tingting Liu, Chengyu Wang, Cen Chen, Ming Gao, Aoying Zhou. Understanding Long Programming Languages with Semantics-Aware Sparse Attention. SIGIR 2022
+
+```
+@inproceedings{sigir2022,
+    author    = {Tingting Liu and
+                Chengyu Wang and
+                Cen Chen and
+                Ming Gao and
+                Aoying Zhou},
+    title     = {Understanding Long Programming Languages with Structure-Aware Sparse Attention},
+    booktitle = {Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+    pages     = {2093–-2098},
+    year      = {2022}
+  }
+```
+
+
+
+
 
