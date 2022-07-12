@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
     requirements = f.read()
 setup(
     # Metadata
-    name='easynlp',
+    name='pai-easynlp',
     version='0.0.5',
     python_requires='>=2.7',
     author='PAI NLP',
