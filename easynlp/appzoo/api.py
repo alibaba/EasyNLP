@@ -25,7 +25,7 @@ from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, 
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
 from easynlp.appzoo import MultiModal
 from easynlp.appzoo import WukongCLIP
-from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import TextImageGeneration, ImageTextGeneration
 # from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
@@ -36,7 +36,7 @@ from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelCl
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
 from easynlp.appzoo import MultiModalEvaluator
 from easynlp.appzoo import WukongEvaluator
-from easynlp.appzoo import TextImageGenerationEvaluator
+from easynlp.appzoo import TextImageGenerationEvaluator, ImageTextGenerationEvaluator
 # from easynlp.appzoo import SequenceGenerationEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -45,7 +45,7 @@ from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, Fewsh
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
 from easynlp.appzoo import MultiModalPredictor
 from easynlp.appzoo import WukongPredictor
-from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import TextImageGenerationPredictor, ImageTextGenerationPredictor
 # from easynlp.appzoo import SequenceGenerationPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -55,7 +55,7 @@ from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySing
 from easynlp.appzoo import GEEPClassificationDataset
 from easynlp.appzoo import MultiModalDataset
 from easynlp.appzoo import WukongDataset
-from easynlp.appzoo import TextImageDataset
+from easynlp.appzoo import TextImageDataset, ImageTextDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -82,6 +82,7 @@ Dataset_Mapping = {
     'clip': MultiModalDataset,
     'wukong': WukongDataset,
     'text2image_generation': TextImageDataset,
+    'image2text_generation': ImageTextDataset,
 }
 
 ModelMapping = {
@@ -107,6 +108,7 @@ ModelMapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
+    'image2text_generation': ImageTextGeneration,
 }
 
 Eval_Model_Mapping = {
@@ -126,6 +128,7 @@ Eval_Model_Mapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
+    'image2text_generation': ImageTextGeneration,
 }
 
 Evaluator_Mapping = {
@@ -146,6 +149,7 @@ Evaluator_Mapping = {
     'clip': MultiModalEvaluator,
     'wukong': WukongEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
+    'image2text_generation': ImageTextGenerationEvaluator,
 }
 
 Predictor_Mapping = {
@@ -167,6 +171,7 @@ Predictor_Mapping = {
     'clip': [MultiModalPredictor, MultiModal],
     'wukong': [WukongPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
+    'image2text_generation': [ImageTextGenerationPredictor, ImageTextGeneration],
 }
 
 
