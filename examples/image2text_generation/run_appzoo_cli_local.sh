@@ -8,11 +8,10 @@ cd ${cur_path}
 mkdir tmp
 
 # Download whl
-if [ ! -f ./tmp/pai_easynlp-0.0.5-py3-none-any-i2t.whl ]; then
-    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/pai_easynlp-0.0.5-py3-none-any-i2t.whl
+if [ ! -f ./tmp/pai_easynlp-0.0.5-py3-none-any.whl ]; then
+    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/pai_easynlp-0.0.5-py3-none-any.whl
 fi
-pip uninstall easynlp
-pip install ./tmp/pai_easynlp-0.0.5-py3-none-any-i2t.whl
+pip install ./tmp/pai_easynlp-0.0.5-py3-none-any.whl --force-reinstall
 
 # Download data
 if [ ! -f ./tmp/IC_train.txt ]; then
@@ -26,7 +25,7 @@ fi
 if [ ! -f ./tmp/artist-i2t-large-zh.tgz ]; then
     wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-i2t-large-zh.tgz
 fi
-tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
+#tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
 
 if [ "$mode" = "pretrain" ]; then
   easynlp \
