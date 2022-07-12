@@ -3,17 +3,16 @@
 
 1. 下载数据
 ```shell
-if [ ! -f ./tmp/T2I_train.txt ]; then
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_train.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_val.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_test.txt
-    mkdir tmp/
+if [ ! -f ./tmp/IC_train.txt ]; then
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_train.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_val.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_test.txt
     mv *.txt tmp/
 fi
 ```
 
 2. 数据格式
-数据是以 \t 分隔的 .txt 文件，包含三个字段：idx, text, imgbase64
+数据是以 \t 分隔的 .txt 文件，包含三个字段：idx, imgbase64, text
 
 3. 准备自己的数据
 将image编码为base64形式：
@@ -46,13 +45,13 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     mv vqgan_f16_16384.bin tmp/
   fi
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/text2image_generation/main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
     --mode=train \
-    --tables=./tmp/T2I_train.txt,./tmp/T2I_val.txt \
-    --input_schema=idx:str:1,text:str:1,imgbase64:str:1 \
-    --first_sequence=text \
-    --second_sequence=imgbase64 \
-    --checkpoint_dir=./tmp/artist_model_pretrain \
+    --tables=./tmp/IC_train.txt,./tmp/IC_val.txt \
+    --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
+    --first_sequence=imgbase64 \
+    --second_sequence=text \
+    --checkpoint_dir=./tmp/artist_i2t_model_pretrain \
     --learning_rate=4e-5 \
     --epoch_num=1 \
     --random_seed=42 \
@@ -60,25 +59,32 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     --save_checkpoint_steps=200 \
     --sequence_length=288 \
     --micro_batch_size=8 \
-    --app_name=text2image_generation \
+    --app_name=image2text_generation \
     --user_defined_parameters='
         vqgan_ckpt_path=./tmp/vqgan_f16_16384.bin
-        size=256
-        text_len=32
+        img_size=256
         img_len=256
+        text_len=32
+        text_tokenizer=bert-base-chinese
+        vocab_size=37513
         img_vocab_size=16384
+        text_vocab_size=21128
+        block_size=288
+        n_layer=24
+        n_head=16
+        n_embd=1024
       ' 
 ```
 
 2. 模型微调
 ```shell
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/text2image_generation/main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
     --mode=train \
-    --tables=./tmp/T2I_train.txt,./tmp/T2I_val.txt \
-    --input_schema=idx:str:1,text:str:1,imgbase64:str:1 \
-    --first_sequence=text \
-    --second_sequence=imgbase64 \
-    --checkpoint_dir=./tmp/artist_model_finetune \
+    --tables=./tmp/IC_train.txt,./tmp/IC_val.txt \
+    --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
+    --first_sequence=imgbase64 \
+    --second_sequence=text \
+    --checkpoint_dir=./tmp/artist_i2t_model_finetune \
     --learning_rate=4e-5 \
     --epoch_num=1 \
     --random_seed=42 \
@@ -86,33 +92,32 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     --save_checkpoint_steps=200 \
     --sequence_length=288 \
     --micro_batch_size=8 \
-    --app_name=text2image_generation \
+    --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=artist-base-zh
-        size=256
-        text_len=32
+        pretrain_model_name_or_path=artist-i2t-large-zh
+        img_size=256
         img_len=256
-        img_vocab_size=16384
+        text_len=32
       ' 
 ```
 
 3. 模型预测
 ```shell
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/text2image_generation/main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
     --mode=predict \
-    --tables=./tmp/T2I_test.txt \
-    --input_schema=idx:str:1,text:str:1 \
-    --first_sequence=text \
-    --outputs=./tmp/T2I_outputs.txt \
-    --output_schema=idx,text,gen_imgbase64 \
-    --checkpoint_dir=./tmp/artist_model_finetune \
+    --tables=./tmp/IC_test.txt \
+    --input_schema=idx:str:1,imgbase64:str:1 \
+    --first_sequence=imgbase64 \
+    --outputs=./tmp/IC_outputs.txt \
+    --output_schema=idx,imgbase64,gen_text \
+    --checkpoint_dir=./tmp/artist_i2t_model_finetune \
     --sequence_length=288 \
     --micro_batch_size=8 \
-    --app_name=text2image_generation \
+    --app_name=image2text_generation \
     --user_defined_parameters='
-        size=256
+        pretrain_model_name_or_path=./tmp/artist_i2t_model_finetune
+        img_size=256
         text_len=32
         img_len=256
-        img_vocab_size=16384
       '
 ```
