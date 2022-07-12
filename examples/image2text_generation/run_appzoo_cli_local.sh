@@ -8,10 +8,10 @@ cd ${cur_path}
 mkdir tmp
 
 # Download whl
-if [ ! -f ./tmp/easynlp-0.0.7-py3-none-any.whl ]; then
-    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/easynlp-0.0.7-py3-none-any.whl
+if [ ! -f ./tmp/pai_easynlp-0.0.5-py3-none-any.whl ]; then
+    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/pai_easynlp-0.0.5-py3-none-any.whl
 fi
-pip install ./tmp/easynlp-0.0.7-py3-none-any.whl 
+pip install ./tmp/pai_easynlp-0.0.5-py3-none-any.whl --force-reinstall
 
 # Download data
 if [ ! -f ./tmp/IC_train.txt ]; then
@@ -25,7 +25,7 @@ fi
 if [ ! -f ./tmp/artist-i2t-large-zh.tgz ]; then
     wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-i2t-large-zh.tgz
 fi
-tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
+#tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
 
 if [ "$mode" = "pretrain" ]; then
   easynlp \
@@ -78,6 +78,7 @@ elif [ "$mode" = "finetune" ]; then
 
 
 elif [ "$mode" = "predict" ]; then
+  rm -rf ./tmp/IC_outputs.txt
   easynlp \
     --mode=predict \
     --worker_gpu=1 \
@@ -85,7 +86,7 @@ elif [ "$mode" = "predict" ]; then
     --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
     --first_sequence=imgbase64 \
     --outputs=./tmp/IC_outputs.txt \
-    --output_schema=idx,imgbase64,gen_text \
+    --output_schema=idx,gen_text \
     --checkpoint_dir=./tmp/artist_i2t_model_finetune \
     --sequence_length=288 \
     --micro_batch_size=8 \

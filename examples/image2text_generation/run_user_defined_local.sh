@@ -82,19 +82,17 @@ elif [ "$mode" = "finetune" ]; then
         img_len=256
         text_len=32
       ' 
-  
-    # pretrain_model_name_or_path=./tmp/artist_model_pretrain
-    # pretrain_model_name_or_path=artist-base-zh
 
 
 elif [ "$mode" = "predict" ]; then
+  rm -rf ./tmp/IC_outputs.txt
   python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
     --mode=predict \
     --tables=./tmp/IC_test.txt \
     --input_schema=idx:str:1,imgbase64:str:1 \
     --first_sequence=imgbase64 \
     --outputs=./tmp/IC_outputs.txt \
-    --output_schema=idx,imgbase64,gen_text \
+    --output_schema=idx,gen_text \
     --checkpoint_dir=./tmp/artist_i2t_model_finetune \
     --sequence_length=288 \
     --micro_batch_size=8 \
@@ -106,6 +104,3 @@ elif [ "$mode" = "predict" ]; then
         img_len=256
       '
 fi
-
-# pretrain_model_name_or_path=./tmp/artist_model_finetune
-# pretrain_model_name_or_path=./tmp/artist_model_pretrain
