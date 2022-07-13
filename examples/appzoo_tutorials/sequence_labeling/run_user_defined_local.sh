@@ -9,7 +9,7 @@ if [ ! -f ./dev.csv ]; then
 fi
 
 MASTER_ADDR=localhost
-MASTER_PORT=6009
+MASTER_PORT=6008
 GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
@@ -27,15 +27,16 @@ if [ "$mode" = "train" ]; then
     --first_sequence=content \
     --label_name=label \
     --label_enumerate_values=B-LOC,B-ORG,B-PER,I-LOC,I-ORG,I-PER,O \
-    --pretrained_model_name_or_path=hfl/chinese-roberta-wwm-ext \
     --checkpoint_dir=./seq_labeling/ \
     --learning_rate=3e-5  \
-    --epoch_num=3  \
-    --seed=42 \
+    --epoch_num=1  \
     --save_checkpoint_steps=50 \
     --sequence_length=128 \
     --micro_batch_size=32 \
-    --app_name=sequence_labeling
+    --app_name=sequence_labeling \
+    --user_defined_parameters='
+        pretrain_model_name_or_path=hfl/chinese-roberta-wwm-ext
+    '
 
 elif [ "$mode" = "evaluate" ]; then
 
@@ -49,7 +50,8 @@ elif [ "$mode" = "evaluate" ]; then
     --checkpoint_dir=./seq_labeling/ \
     --sequence_length=128 \
     --micro_batch_size=32 \
-    --app_name=sequence_labeling
+    --app_name=sequence_labeling \
+
 
 elif [ "$mode" = "predict" ]; then
 
@@ -64,6 +66,6 @@ elif [ "$mode" = "predict" ]; then
     --checkpoint_path=./seq_labeling/ \
     --micro_batch_size 32 \
     --sequence_length=128 \
-    --app_name=sequence_labeling
-    
+    --app_name=sequence_labeling \
+
 fi
