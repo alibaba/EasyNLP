@@ -35,7 +35,7 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 You can either install it from pip
 
 ```bash
-$ pip install pai-easynlp
+$ pip install pai-easynlp (might be out-of-date)
 ```
 
 or setup from the source：
