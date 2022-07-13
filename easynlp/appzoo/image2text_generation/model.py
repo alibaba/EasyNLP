@@ -43,7 +43,10 @@ class ImageTextGeneration(Application):
             self.transformer = GPT(self.config)
         
         # text tokenizer
-        text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        if pretrained_model_name_or_path == None:
+            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        else:
+            text_tokenizer_path = pretrained_model_name_or_path
         self.text_tokenizer = ArtistBERTTokenizer(text_tokenizer_path, start_id = 0)
 
         self.image_token_start_id = len(self.text_tokenizer)
@@ -53,6 +56,7 @@ class ImageTextGeneration(Application):
 
     def init_from_ckpt(self, pretrained_model_name_or_path, **kwargs):
         weight_path = os.path.join(pretrained_model_name_or_path, 'pytorch_model.bin')
+        print (f"weight_path from {weight_path}")
         sd = torch.load(weight_path, map_location='cpu')
         self.load_state_dict(sd, strict=False)
         print(f"Restored from {pretrained_model_name_or_path}")

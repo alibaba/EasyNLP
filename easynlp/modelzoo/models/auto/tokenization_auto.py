@@ -48,6 +48,7 @@ from .configuration_auto import (
     replace_list_option_in_docstrings,
     TextCNNConfig,
     ARTISTConfig,
+    ARTISTI2TConfig,
     KBertConfig,
 )
 
@@ -81,6 +82,7 @@ TOKENIZER_MAPPING = OrderedDict(
         (GPT2Config, (GPT2Tokenizer, GPT2TokenizerFast)),
         (TextCNNConfig, (TextCNNTokenizer, None)),
         (ARTISTConfig, (BertTokenizer, BertTokenizerFast)),
+        (ARTISTI2TConfig, (BertTokenizer, BertTokenizerFast)),
         (KBertConfig, (KBertTokenizer, KBertTokenizerFast)),
     ]
 )

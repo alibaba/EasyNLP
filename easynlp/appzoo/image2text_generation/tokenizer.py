@@ -10,6 +10,7 @@ class ArtistBERTTokenizer(object):
 
         #self.tokenizer = BertTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
+        print (f"tokenizer load from {pretrained_model_name_or_path}")
 
         max_num = -math.inf
         for key in self.tokenizer.vocab.keys():
@@ -52,6 +53,7 @@ class ArtistGPT2Tokenizer(object):
 
         #self.tokenizer = GPT2Tokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
+        print (f"tokenizer load from {pretrained_model_name_or_path}")
         
         max_num = -math.inf
         for key in self.tokenizer.encoder.keys():
