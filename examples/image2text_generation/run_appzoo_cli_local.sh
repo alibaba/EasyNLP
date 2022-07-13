@@ -36,6 +36,7 @@ if [ "$mode" = "pretrain_scratch" ]; then
 
   easynlp \
     --mode=train \
+    --worker_gpu=1 \
     --tables=./tmp/IC_train.txt,./tmp/IC_val.txt \
     --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
     --first_sequence=imgbase64 \
