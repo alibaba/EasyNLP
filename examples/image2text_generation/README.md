@@ -109,7 +109,7 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     --input_schema=idx:str:1,imgbase64:str:1 \
     --first_sequence=imgbase64 \
     --outputs=./tmp/IC_outputs.txt \
-    --output_schema=idx,imgbase64,gen_text \
+    --output_schema=idx,gen_text \
     --checkpoint_dir=./tmp/artist_i2t_model_finetune \
     --sequence_length=288 \
     --micro_batch_size=8 \

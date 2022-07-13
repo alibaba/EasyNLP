@@ -66,7 +66,6 @@ class ImageTextGenerationPredictor(Predictor):
         self.preprocessor = albumentations.Compose([self.rescaler, self.cropper])
 
     def preprocess(self, in_data):
-        # print("in_data = ", in_data)
         if not in_data:
             raise RuntimeError("Input data should not be None.")
 
@@ -81,21 +80,16 @@ class ImageTextGenerationPredictor(Predictor):
                 break
             max_seq_length = max(max_seq_length, record["sequence_length"])
         max_seq_length = self.sequence_length if (max_seq_length == -1) else max_seq_length
-        # print("max_seq_length {}".format(max_seq_length))
 
         for record in in_data:
             img_str = record[self.first_sequence]
 
             try:
                 self.MUTEX.acquire()
-                #print (img_str)
                 image = Image.open(BytesIO(base64.urlsafe_b64decode(img_str))).convert("RGB")
                 image = np.array(image).astype(np.uint8)
-                #print (sum(image == 255))
                 image = self.preprocessor(image=image)["image"]
                 image = (image/127.5 - 1.0).astype(np.float32)
-                #print (image)
-                #exit(0)
             finally:
                 self.MUTEX.release()
 
@@ -107,15 +101,11 @@ class ImageTextGenerationPredictor(Predictor):
 
     def predict(self, in_data):
         idx = in_data["idx"]
-        #imgs = in_data['input_imgs']#.cuda()
-        #print (imgs)
-        #exit(0)
         imgs = torch.Tensor(in_data['input_imgs']).cuda()
         imgs = imgs.permute(0, 3, 1, 2).to(memory_format=torch.contiguous_format)
         print (imgs.shape)
         _, img_ids = self.model.encode_to_c(imgs)
         print (img_ids.shape)
-        #quant_img, img_indices = self.model.encode_to_c(imgs)
 
         gen_token_ids_list = []
         for gen_idx in range(self.max_generated_num):
@@ -126,7 +116,7 @@ class ImageTextGenerationPredictor(Predictor):
 
     def postprocess(self, result):
         idx = result["idx"]
-        imgbase64 = result["img_str"]
+        #imgbase64 = result["img_str"]
         token_ids_list = result["gen_token_ids"]
 
         gen_text_list = []
@@ -138,8 +128,8 @@ class ImageTextGenerationPredictor(Predictor):
         for r_idx in range(len(idx)):
             new_results.append({
                 "idx": idx[r_idx],
-                "imgbase64": imgbase64[r_idx],
-                "gen_text": gen_text_list,
+                #"imgbase64": imgbase64[r_idx],
+                "gen_text": gen_text_list[0][r_idx],
             })
         return new_results
 
