@@ -5,17 +5,21 @@ from easynlp.appzoo import get_application_predictor, get_application_model, get
 from easynlp.appzoo import get_application_model_for_evaluation
 from easynlp.core import PredictorManager
 from easynlp.core import Trainer
-from easynlp.utils import initialize_easynlp, get_args
+from easynlp.utils import initialize_easynlp, get_args, get_pretrain_model_path
+from easynlp.utils.global_vars import parse_user_defined_parameters
 
 if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
+    user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+    
     if args.mode == "predict":
         predictor = get_application_predictor(
             app_name=args.app_name, model_dir=args.checkpoint_dir,
             first_sequence=args.first_sequence,
             second_sequence=args.second_sequence,
-            sequence_length=args.sequence_length)
+            sequence_length=args.sequence_length,
+            user_defined_parameters=user_defined_parameters)
         predictor_manager = PredictorManager(
             predictor=predictor,
             input_file=args.tables.split(",")[-1],
@@ -28,6 +32,9 @@ if __name__ == "__main__":
         predictor_manager.run()
         exit()
 
+    args.pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+    args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+
     valid_dataset = SingleTowerDataset(
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
@@ -36,17 +43,14 @@ if __name__ == "__main__":
         first_sequence=args.first_sequence,
         second_sequence=args.second_sequence,
         label_name=args.label_name,
-        multi_label=args.multi_label,
         label_enumerate_values=args.label_enumerate_values,
         is_training=False)
 
     model = get_application_model(app_name=args.app_name,
                                   pretrained_model_name_or_path=args.pretrained_model_name_or_path,
                                   num_labels=len(valid_dataset.label_enumerate_values),
-                                  multi_label=args.multi_label,
-                                  two_tower=args.two_tower,
-                                  user_defined_parameters=args.user_defined_parameters)
-
+                                  user_defined_parameters=user_defined_parameters)
+   
     if args.mode == "train":
 
         train_dataset = SingleTowerDataset(
@@ -58,21 +62,19 @@ if __name__ == "__main__":
             second_sequence=args.second_sequence,
             label_name=args.label_name,
             label_enumerate_values=args.label_enumerate_values,
-            multi_label=args.multi_label,
             is_training=True)
 
         trainer = Trainer(model=model, train_dataset=train_dataset,
                           evaluator=get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,
-                                                             eval_batch_size=args.micro_batch_size,
-                                                              multi_label=args.multi_label,
-                                                              two_tower=args.two_tower))
+                                                              eval_batch_size=args.micro_batch_size,
+                                                              user_defined_parameters=user_defined_parameters))
         trainer.train()
 
     elif args.mode == "evaluate":
         model = get_application_model_for_evaluation(app_name=args.app_name,
-                                      pretrained_model_name_or_path=args.checkpoint_dir,
-                                                     multi_label=args.multi_label, two_tower=args.two_tower)
+                                                     pretrained_model_name_or_path=args.checkpoint_dir,
+                                                     user_defined_parameters=user_defined_parameters)
         evaluator = get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,
-                                             eval_batch_size=args.micro_batch_size, multi_label=args.multi_label, two_tower=args.two_tower)
+                                              eval_batch_size=args.micro_batch_size, user_defined_parameters=user_defined_parameters)
         model.to(torch.cuda.current_device())
         evaluator.evaluate(model=model)
