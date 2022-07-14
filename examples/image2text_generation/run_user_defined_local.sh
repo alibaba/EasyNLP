@@ -10,7 +10,7 @@ GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
 
-
+# Download data
 if [ ! -f ./tmp/IC_train.txt ]; then
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_train.txt
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_val.txt
@@ -19,11 +19,17 @@ if [ ! -f ./tmp/IC_train.txt ]; then
     mv *.txt tmp/
 fi
 
+# Download artist-large ckpt
+if [ ! -f ./tmp/artist-i2t-large-zh.tgz ]; then
+    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-i2t-large-zh.tgz
+fi
+#tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
+
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 mode=$2
 
-
-if [ "$mode" = "pretrain" ]; then
+# pretrain from scratch
+if [ "$mode" = "pretrain_scratch" ]; then
   if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/vqgan_f16_16384.bin
     mv vqgan_f16_16384.bin tmp/
@@ -59,6 +65,28 @@ if [ "$mode" = "pretrain" ]; then
         n_embd=1024
       ' 
 
+elif [ "$mode" = "pretrain" ]; then
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
+    --mode=train \
+    --tables=./tmp/IC_train.txt,./tmp/IC_val.txt \
+    --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
+    --first_sequence=imgbase64 \
+    --second_sequence=text \
+    --checkpoint_dir=./tmp/artist_i2t_model_pretrain \
+    --learning_rate=4e-5 \
+    --epoch_num=1 \
+    --random_seed=42 \
+    --logging_steps=100 \
+    --save_checkpoint_steps=200 \
+    --sequence_length=288 \
+    --micro_batch_size=8 \
+    --app_name=image2text_generation \
+    --user_defined_parameters='
+        pretrain_model_name_or_path=./tmp/artist-i2t-large-zh
+        img_size=256
+        img_len=256
+        text_len=32
+      ' 
 
 elif [ "$mode" = "finetune" ]; then
   python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/image2text_generation/main.py \
@@ -77,7 +105,7 @@ elif [ "$mode" = "finetune" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=artist-i2t-large-zh
+        pretrain_model_name_or_path=./tmp/artist_i2t_model_pretrain
         img_size=256
         img_len=256
         text_len=32

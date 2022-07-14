@@ -31,7 +31,7 @@ class ImageTextDataset(BaseDataset):
     Classification Dataset
 
     Args:
-        pretrained_model_name_or_path: for init tokenizer.
+        pretrained_model_name_or_path: to init tokenizer.
         data_file: input data file.
         max_seq_length: max sequence length of each input instance.
         first_sequence: input text
@@ -63,7 +63,10 @@ class ImageTextDataset(BaseDataset):
         assert self.max_seq_length == (self.img_len + self.text_len), "max_seq_length thould be equal to the sum of img_seq and text_seq"
         
         # text tokenizer
-        text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        if pretrained_model_name_or_path == None:
+            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        else:
+            text_tokenizer_path = pretrained_model_name_or_path
         self.tokenizer = ArtistBERTTokenizer(text_tokenizer_path, start_id = 0)
         
         # image preprocessor
