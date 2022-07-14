@@ -102,10 +102,8 @@ class ImageTextGenerationPredictor(Predictor):
     def predict(self, in_data):
         idx = in_data["idx"]
         imgs = torch.Tensor(in_data['input_imgs']).cuda()
-        imgs = imgs.permute(0, 3, 1, 2).to(memory_format=torch.contiguous_format)
-        print (imgs.shape)
-        _, img_ids = self.model.encode_to_c(imgs)
-        print (img_ids.shape)
+        imgs = imgs.permute(0, 3, 1, 2).to(memory_format=torch.contiguous_format)  # [B, 3, 256, 256]
+        _, img_ids = self.model.encode_to_c(imgs)   # [B, 256]
 
         gen_token_ids_list = []
         for gen_idx in range(self.max_generated_num):
