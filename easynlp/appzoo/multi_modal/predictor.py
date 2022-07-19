@@ -38,7 +38,7 @@ class MultiModalPredictor(Predictor):
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
         self.tokenizer = BertTokenizer.from_pretrained(model_dir)
-        self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs)
+        self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs).cuda()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.second_sequence = kwargs.pop("second_sequence", "second_sequence")
         self.sequence_length = kwargs.pop("sequence_length", 128)
@@ -101,6 +101,7 @@ class MultiModalPredictor(Predictor):
             output['input_ids']=torch.cat(output['input_ids'],dim=0)
             output['token_type_ids']=torch.cat(output['token_type_ids'],dim=0)
             output['attention_mask']=torch.cat(output['attention_mask'],dim=0)
+        output = output.cuda()
         forward_result=self.multi_modal(output,feat=True)
         return forward_result
 
