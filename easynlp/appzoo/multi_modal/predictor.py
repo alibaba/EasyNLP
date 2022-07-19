@@ -101,20 +101,19 @@ class MultiModalPredictor(Predictor):
             output['input_ids']=torch.cat(output['input_ids'],dim=0)
             output['token_type_ids']=torch.cat(output['token_type_ids'],dim=0)
             output['attention_mask']=torch.cat(output['attention_mask'],dim=0)
-        output = output.cuda()
         forward_result=self.multi_modal(output,feat=True)
         return forward_result
 
     def postprocess(self, result):
         if result['image_embeds'] is not None:
-            image_embeds_arr=result['image_embeds'].detach().numpy()
+            image_embeds_arr=result['image_embeds'].detach().cpu().numpy()
             _tmp_image=[]
             for one_emb in image_embeds_arr:
                 _tmp_image.append({'image_feat':'\t'.join([str(x) for x in one_emb])})
             return _tmp_image
 
         if result['text_embeds'] is not None:
-            text_embeds_arr=result['text_embeds'].detach().numpy()
+            text_embeds_arr=result['text_embeds'].detach().cpu().numpy()
             _tmp_text=[]
             for one_emb in text_embeds_arr:
                 _tmp_text.append({'text_feat':'\t'.join([str(x) for x in one_emb])})
