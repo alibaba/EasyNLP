@@ -42,6 +42,7 @@ if [ "$mode" = "train" ]; then
         loss_type=hinge_loss
         margin=0.45
         gamma=32
+        embedding_size=256
     '
 
 elif [ "$mode" = "evaluate" ]; then  
