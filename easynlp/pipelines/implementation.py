@@ -15,8 +15,11 @@
 
 
 from abc import ABC
+from configparser import InterpolationMissingOptionError
 from typing import Any
-from ..appzoo import SequenceClassificationPredictor, \
+from ..appzoo import ImageTextGenerationPredictor,\
+                    TextImageGenerationPredictor, \
+                    SequenceClassificationPredictor, \
                     TextMatchPredictor, SequenceLabelingPredictor
 
 class Pipeline(ABC):
@@ -47,6 +50,48 @@ class Pipeline(ABC):
         model_outputs = self.predict(model_inputs)
         results = self.postprocess(model_outputs)
         return results
+
+class ImageTextGenerationPipeline(ImageTextGenerationPredictor, Pipeline):
+
+    def format_input(self, inputs):
+        """
+        Preprocess single sentence data.
+        """
+        if type(inputs) != str and type(inputs) != list:
+            raise RuntimeError("Input only supports string or lists of string")
+        if type(inputs) == str:
+            inputs = [inputs]
+
+        return [{'idx': idx, \
+                'first_sequence': inputs[idx]} for idx in range(len(inputs))]
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        You need to post-process the outputs of the __call__ to get the fields you need.
+        """
+        results = super().__call__(*args, **kwds)
+        return [{'gen_text': res['gen_text']} for res in results]
+
+class TextImageGenerationPipeline(TextImageGenerationPredictor, Pipeline):
+
+    def format_input(self, inputs):
+        """
+        Preprocess single sentence data.
+        """
+        if type(inputs) != str and type(inputs) != list:
+            raise RuntimeError("Input only supports string or lists of string")
+        if type(inputs) == str:
+            inputs = [inputs]
+
+        return [{'idx': idx, \
+                'first_sequence': inputs[idx]} for idx in range(len(inputs))]
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        You need to post-process the outputs of the __call__ to get the fields you need.
+        """
+        results = super().__call__(*args, **kwds)
+        return [{'gen_imgbase64': res['gen_imgbase64']} for res in results]
 
 class SequenceClassificationPipeline(SequenceClassificationPredictor, Pipeline):
 
