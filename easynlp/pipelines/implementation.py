@@ -15,7 +15,6 @@
 
 
 from abc import ABC
-from configparser import InterpolationMissingOptionError
 from typing import Any
 from ..appzoo import ImageTextGenerationPredictor,\
                     TextImageGenerationPredictor, \
