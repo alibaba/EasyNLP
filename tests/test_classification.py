@@ -152,8 +152,8 @@ class TestClassification(unittest.TestCase):
                 y_trues.append(int(label))
         print('Accuracy: ', accuracy_score(y_trues, y_preds))
         print('F1: ', f1_score(y_trues, y_preds))
-        self.assertTrue(accuracy_score(y_trues, y_preds) > 0.72)
-        self.assertTrue(f1_score(y_trues, y_preds) > 0.81)
+        self.assertTrue(accuracy_score(y_trues, y_preds) > 0.70)
+        self.assertTrue(f1_score(y_trues, y_preds) > 0.80)
 
 
 if __name__ == '__main__':

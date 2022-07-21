@@ -21,4 +21,8 @@ from . import (
     geep,
     clip,
     wukong,
+    bart,
+    mt5,
+    t5,
+    pegasus
 )

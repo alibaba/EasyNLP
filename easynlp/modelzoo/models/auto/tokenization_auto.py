@@ -37,6 +37,7 @@ from ..gpt2.tokenization_gpt2 import GPT2Tokenizer
 from ..roberta.tokenization_roberta import RobertaTokenizer
 from ..cnn.tokenization_cnn import TextCNNTokenizer
 from ..kbert.tokenization_kbert import KBertTokenizer
+from ..bart.tokenization_bart import BartTokenizer
 
 from .configuration_auto import (
     AutoConfig,
@@ -50,7 +51,20 @@ from .configuration_auto import (
     ARTISTConfig,
     ARTISTI2TConfig,
     KBertConfig,
+    BartConfig,
+    MT5Config,
+    PegasusConfig,
+    T5Config,
 )
+
+if is_sentencepiece_available():
+    from ..mt5 import MT5Tokenizer
+    from ..pegasus.tokenization_pegasus import PegasusTokenizer
+    from ..t5.tokenization_t5 import T5Tokenizer
+else:
+    MT5Tokenizer = None
+    PegasusTokenizer = None
+    T5Tokenizer = None
 
 if is_tokenizers_available():
     from ...tokenization_utils_fast import PreTrainedTokenizerFast
@@ -60,7 +74,10 @@ if is_tokenizers_available():
     from ..gpt2.tokenization_gpt2_fast import GPT2TokenizerFast
     from ..roberta.tokenization_roberta_fast import RobertaTokenizerFast
     from ..kbert.tokenization_kbert_fast import KBertTokenizerFast
-
+    from ..bart.tokenization_bart_fast import BartTokenizerFast
+    from ..mt5 import MT5TokenizerFast
+    from ..pegasus.tokenization_pegasus_fast import PegasusTokenizerFast
+    from ..t5.tokenization_t5_fast import T5TokenizerFast
 else:
     BertTokenizerFast = None
     GPT2TokenizerFast = None
@@ -69,6 +86,9 @@ else:
     MegatronBertTokenizerFast = None
     PreTrainedTokenizerFast = None
     KBertTokenizerFast = None
+    BartTokenizerFast = None
+    PegasusTokenizerFast = None
+    T5TokenizerFast = None
 
 logger = logging.get_logger(__name__)
 
@@ -84,6 +104,10 @@ TOKENIZER_MAPPING = OrderedDict(
         (ARTISTConfig, (BertTokenizer, BertTokenizerFast)),
         (ARTISTI2TConfig, (BertTokenizer, BertTokenizerFast)),
         (KBertConfig, (KBertTokenizer, KBertTokenizerFast)),
+        (T5Config, (T5Tokenizer, T5TokenizerFast)),
+        (MT5Config, (MT5Tokenizer, MT5TokenizerFast)),
+        (PegasusConfig, (PegasusTokenizer, PegasusTokenizerFast)),
+        (BartConfig, (BartTokenizer, BartTokenizerFast))
     ]
 )
 

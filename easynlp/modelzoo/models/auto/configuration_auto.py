@@ -30,6 +30,11 @@ from ..artist_i2t.configuration_artist import ARTISTConfig as ARTISTI2TConfig
 from ..clip.configuration_clip import CLIPConfig
 from ..kbert.configuration_kbert import KBertConfig
 
+from ..bart.configuration_bart import BartConfig
+from ..mt5.configuration_mt5 import MT5Config
+from ..pegasus.configuration_pegasus import PegasusConfig
+from ..t5.configuration_t5 import T5Config
+
 
 CONFIG_MAPPING = OrderedDict(
     [
@@ -42,7 +47,11 @@ CONFIG_MAPPING = OrderedDict(
         ("artist", ARTISTConfig),
         ("artist_i2t", ARTISTI2TConfig),
         ("clip", CLIPConfig),
-        ("kbert", KBertConfig)
+        ("kbert", KBertConfig),
+        ("mt5", MT5Config),
+        ("t5", T5Config),
+        ("pegasus", PegasusConfig),
+        ("bart", BartConfig)
     ]
 )
 
@@ -57,7 +66,11 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("artist", "ARTIST"),
         ("artist_i2t", "ARTISTI2T"),
         ("clip", "CLIP"),
-        ("kbert", "KBERT")
+        ("kbert", "KBERT"),
+        ("t5", "T5"),
+        ("pegasus", "Pegasus"),
+        ("bart", "BART"),
+        ("mt5", "mT5")
     ]
 )
 

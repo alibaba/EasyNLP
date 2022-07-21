@@ -28,6 +28,7 @@ _import_structure = {
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration"],
     "image2text_generation.model": ["ImageTextGeneration"], 
+    "sequence_generation.model": ["SequenceGeneration"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
@@ -38,6 +39,7 @@ _import_structure = {
     "wukong.evaluator": ['WukongEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
+    "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -49,6 +51,8 @@ _import_structure = {
     "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor'],
     "image2text_generation.predictor": ['ImageTextGenerationPredictor'],
+    "sequence_generation.predictor": ['SequenceGenerationPredictor'],
+
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
@@ -59,6 +63,7 @@ _import_structure = {
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
     "text2image_generation.data": ['TextImageDataset'],
     "image2text_generation.data": ['ImageTextDataset'],
+    "sequence_generation.data": ['SequenceGenerationDataset'],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -75,6 +80,7 @@ if TYPE_CHECKING:
     from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration
     from .image2text_generation.model import ImageTextGeneration
+    from .sequence_generation.model import SequenceGeneration
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
@@ -84,7 +90,7 @@ if TYPE_CHECKING:
     from .multi_modal.evaluator import MultiModalEvaluator
     from .wukong.evaluator import WukongEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
-    from .image2text_generation.evaluator import ImageTextGenerationEvaluator
+    from .sequence_generation.evaluator import SequenceGenerationEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -95,7 +101,7 @@ if TYPE_CHECKING:
     from .multi_modal.predictor import MultiModalPredictor
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor
-    from .image2text_generation.predictor import ImageTextGenerationPredictor
+    from .sequence_generation.predictor import SequenceGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
@@ -105,7 +111,7 @@ if TYPE_CHECKING:
     from .multi_modal.data import MultiModalDataset
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset
-    from .image2text_generation.data import ImageTextDataset
+    from .sequence_generation.data import SequenceGenerationDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets
