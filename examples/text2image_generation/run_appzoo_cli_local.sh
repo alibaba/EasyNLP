@@ -86,7 +86,7 @@ elif [ "$mode" = "predict" ]; then
     --first_sequence=text \
     --outputs=./tmp/T2I_outputs.tsv \
     --output_schema=idx,text,gen_imgbase64 \
-    --checkpoint_dir=./tmp/artist_model_finetune \
+    --checkpoint_dir=./tmp/artist_model_finetune\
     --sequence_length=288 \
     --micro_batch_size=8 \
     --app_name=text2image_generation \
@@ -95,5 +95,6 @@ elif [ "$mode" = "predict" ]; then
         text_len=32
         img_len=256
         img_vocab_size=16384
+        max_generated_num=4
       '
 fi

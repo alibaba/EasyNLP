@@ -10,13 +10,19 @@ GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
 
-
+# Download data
 if [ ! -f ./tmp/T2I_train.tsv ]; then
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_train.tsv
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_val.tsv
     wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_text2image/T2I_test.tsv
     mkdir tmp/
     mv *.tsv tmp/
+fi
+
+# Download artist-large ckpt
+if [ ! -f ./tmp/artist-large-zh.tgz ]; then
+    wget -P ./tmp https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-large-zh.tgz
+    tar zxvf ./tmp/artist-large-zh.tgz -C ./tmp
 fi
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
@@ -102,5 +108,6 @@ elif [ "$mode" = "predict" ]; then
         text_len=32
         img_len=256
         img_vocab_size=16384
+        max_generated_num=4
       '
 fi
