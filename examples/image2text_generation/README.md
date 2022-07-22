@@ -119,5 +119,6 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
         img_size=256
         text_len=32
         img_len=256
+        max_generated_num=1
       '
 ```

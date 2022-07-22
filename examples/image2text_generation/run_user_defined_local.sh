@@ -23,7 +23,7 @@ fi
 if [ ! -f ./tmp/artist-i2t-large-zh.tgz ]; then
     wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-i2t-large-zh.tgz
 fi
-#tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
+tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 mode=$2
@@ -130,5 +130,6 @@ elif [ "$mode" = "predict" ]; then
         img_size=256
         text_len=32
         img_len=256
+        max_generated_num=4
       '
 fi

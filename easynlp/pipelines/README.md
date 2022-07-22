@@ -46,11 +46,15 @@ generator = pipeline('text2image_generation')
 results = generator(data)
 
 for text, result in zip(data, results):
-    imgpath = '{}.png'.format(text)
-    imgbase64_str = result['gen_imgbase64']
-    image = base64_to_image(imgbase64_str)
-    image.save(imgpath)
-    print ('text: {}, save generated image: {}'.format(text, imgpath))
+    imgbase64_str_list = result['gen_imgbase64']
+    imgpath_list = []
+    for base64_idx in range(len(imgbase64_str_list)):
+        imgbase64_str = imgbase64_str_list[base64_idx]
+        image = base64_to_image(imgbase64_str)
+        imgpath = '{}_{}.png'.format(text, base64_idx)
+        image.save(imgpath)
+        imgpath_list.append(imgpath)
+    print ('text: {}, save generated image: {}'.format(text, imgpath_list))
 ```
 
 There is an example of image caption.
@@ -77,7 +81,7 @@ data_imgbase64 = [image_to_base64(imgpath) for imgpath in data]
 results = generator(data_imgbase64)
 
 for imgpath, result in zip(data, results):
-    text = result['gen_text']
-    print ('imgpath: {}, generated text: {}'.format(imgpath, text))
+    text_list = result['gen_text']
+    print ('imgpath: {}, generated text: {}'.format(imgpath, text_list))
 ```
 

@@ -134,5 +134,6 @@ elif [ "$mode" = "predict" ]; then
         img_size=256
         text_len=32
         img_len=256
+        max_generated_num=4
       '
 fi

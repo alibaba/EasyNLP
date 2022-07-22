@@ -124,10 +124,14 @@ class ImageTextGenerationPredictor(Predictor):
 
         new_results = list()
         for r_idx in range(len(idx)):
+            gen_multiple_text_list = []
+            for gen_idx in range(self.max_generated_num):
+                gen_multiple_text_list.append(gen_text_list[gen_idx][r_idx])
+
             new_results.append({
                 "idx": idx[r_idx],
                 #"imgbase64": imgbase64[r_idx],
-                "gen_text": gen_text_list[0][r_idx],
+                "gen_text": gen_multiple_text_list,
             })
         return new_results
 

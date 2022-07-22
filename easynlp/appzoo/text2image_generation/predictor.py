@@ -62,6 +62,7 @@ class TextImageGenerationPredictor(Predictor):
         self.sequence_length = self.text_len + self.img_len
         self.pad_id = self.tokenizer.convert_tokens_to_ids('[PAD]')
         self.img_vocab_size = int(user_defined_parameters.get('img_vocab_size', 16384))
+        self.max_generated_num = int(user_defined_parameters.get('max_generated_num', 1))
 
     def preprocess(self, in_data):
         if not in_data:
@@ -102,26 +103,33 @@ class TextImageGenerationPredictor(Predictor):
     def predict(self, in_data):
         idx = in_data["idx"]
         text_ids = torch.LongTensor(in_data['input_ids']).cuda()
-        gen_img_ids = self.model.generate(text_ids)
-        output = {"idx": idx, "text_ids": text_ids, "gen_img_ids": gen_img_ids}
+        gen_img_ids_list = []
+        for gen_idx in range(self.max_generated_num):
+            gen_img_ids_list.append(self.model.generate(text_ids))
+        output = {"idx": idx, "text_ids": text_ids, "gen_img_ids": gen_img_ids_list}
         return output
 
     def postprocess(self, result):
         idx = result["idx"]
         text_ids = result["text_ids"] - self.img_vocab_size    # [B, 32]
-        gen_img_ids = result["gen_img_ids"]
+        gen_img_ids_list = result["gen_img_ids"]  # [max_generated_num, B, 256]
+
         bs = len(idx)
         cshape = torch.tensor([bs, 256, 16, 16])
-        gen_imgs = self.model.decode_to_img(gen_img_ids, cshape)  # [B, 3, 256, 256]
+        #gen_imgs = self.model.decode_to_img(gen_img_ids_list, cshape)  # [B, 3, 256, 256]
 
         new_results = list()
         for b in range(len(idx)):
-            text = self.tokenizer.decode(text_ids[b], skip_special_tokens=True)
-            gen_img_base64 = save_image(gen_imgs[b])
+            text = "".join(self.tokenizer.decode(text_ids[b], skip_special_tokens=True).split(" "))
+            gen_img_base64_list = []
+            for gen_idx in range(self.max_generated_num):
+                gen_imgs = self.model.decode_to_img(gen_img_ids_list[gen_idx], cshape)  # [B, 3, 256, 256]
+                gen_img_base64_list.append(save_image(gen_imgs[b]))
+
             new_results.append({
                 "idx": idx[b],
                 "text": text,
-                "gen_imgbase64": gen_img_base64,
+                "gen_imgbase64": gen_img_base64_list,
             })
         return new_results
 
