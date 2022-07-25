@@ -88,7 +88,7 @@ if [ ! -f ./tmp/vqgan_f16_16384.bin ]; then
     --micro_batch_size=8 \
     --app_name=text2image_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=artist-base-zh
+        pretrain_model_name_or_path=alibaba-pai/pai-shenbi-base-zh
         size=256
         text_len=32
         img_len=256
