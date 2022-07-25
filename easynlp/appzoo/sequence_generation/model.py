@@ -79,7 +79,7 @@ class SequenceGeneration(Application):
             
             state_dict_without_prefix = {}
             for key, value in model_state_dict.items():
-                key=key.replace('_model.transformer.','')
+                key=key.replace('_model.transformer.','').replace('_model.','')
                 state_dict_without_prefix[key] = value
             self._model=GPT2LMHeadModel.from_pretrained(local_path,state_dict=state_dict_without_prefix)
             self.loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)

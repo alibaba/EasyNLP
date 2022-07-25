@@ -15,3 +15,5 @@ AppZoo集成了常用的NLP的应用，包括：
 ## [文本匹配](https://github.com/alibaba/EasyNLP/tree/master/examples/appzoo_tutorials/text_match)
 
 ## [文图检索](https://github.com/alibaba/EasyNLP/tree/master/examples/appzoo_tutorials/text_vision)
+
+## [文本生成](https://github.com/alibaba/EasyNLP/tree/master/examples/appzoo_tutorials/sequence_generation)
