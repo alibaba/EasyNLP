@@ -83,6 +83,7 @@ if TYPE_CHECKING:
             AutoModelForNextSentencePrediction,
             AutoModelForPreTraining,
             AutoModelForQuestionAnswering,
+            AutoModelForSeq2SeqLM,
             AutoModelForSequenceClassification,
             AutoModelForTokenClassification,
             AutoModelWithLMHead,

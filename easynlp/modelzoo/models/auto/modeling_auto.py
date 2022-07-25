@@ -84,7 +84,11 @@ from .configuration_auto import (
     RobertaConfig,
     TextCNNConfig,
     KBertConfig,
-    MegatronBertConfig
+    MegatronBertConfig,
+    BartConfig,
+    MT5Config,
+    PegasusConfig,
+    T5Config,
 )
 from ..kbert.modeling_kbert import (
     KBertForMaskedLM,
@@ -98,6 +102,18 @@ from ..kbert.modeling_kbert import (
     KBertPreTrainedModel,
     KBertModel,
 )
+
+from ..bart.modeling_bart import (
+    BartForCausalLM,
+    BartForConditionalGeneration,
+    BartForQuestionAnswering,
+    BartForSequenceClassification,
+    BartModel,
+)
+
+from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
+from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
+from ..t5.modeling_t5 import T5ForConditionalGeneration, T5Model
 
 logger = logging.get_logger(__name__)
 
@@ -122,7 +138,11 @@ MODEL_MAPPING = OrderedDict(
         (MegatronBertConfig, MegatronBertModel),
         (GPT2Config, GPT2Model),
         (TextCNNConfig, TextCNNEncoder),
-        (KBertConfig, KBertModel)
+        (KBertConfig, KBertModel),
+        (BartConfig, BartModel),
+        (MT5Config, MT5Model),
+        (T5Config, T5Model),
+        (PegasusConfig, PegasusModel),
     ]
 )
 
@@ -134,7 +154,9 @@ MODEL_FOR_PRETRAINING_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForPreTraining),
         (GPT2Config, GPT2LMHeadModel),
         (MegatronBertConfig, MegatronBertForPreTraining),
-        (KBertConfig, KBertForPreTraining)
+        (KBertConfig, KBertForPreTraining),
+        (T5Config, T5ForConditionalGeneration),
+        (BartConfig, BartForConditionalGeneration)
     ]
 )
 
@@ -146,7 +168,9 @@ MODEL_WITH_LM_HEAD_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForMaskedLM),
         (MegatronBertConfig, MegatronBertForMaskedLM),
         (GPT2Config, GPT2LMHeadModel),
-        (KBertConfig, KBertForMaskedLM)
+        (KBertConfig, KBertForMaskedLM),
+        (T5Config, T5ForConditionalGeneration),
+        (BartConfig, BartForConditionalGeneration)
     ]
 )
 
@@ -158,7 +182,9 @@ MODEL_FOR_CAUSAL_LM_MAPPING = OrderedDict(
         (DkplmConfig, DkplmLMHeadModel),
         (MegatronBertConfig, MegatronBertForCausalLM),
         (GPT2Config, GPT2LMHeadModel),
-        (KBertConfig, KBertLMHeadModel)
+        (KBertConfig, KBertLMHeadModel),
+        (BartConfig, BartForCausalLM),
+        (PegasusConfig, PegasusForCausalLM)
     ]
 )
 
@@ -170,11 +196,16 @@ MODEL_FOR_MASKED_LM_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForMaskedLM),
         (MegatronBertConfig, MegatronBertForMaskedLM),
         (KBertConfig, KBertForMaskedLM),
+        (BartConfig, BartForConditionalGeneration)
     ]
 )
 
 MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING = OrderedDict(
     [
+        (MT5Config, MT5ForConditionalGeneration),
+        (T5Config, T5ForConditionalGeneration),
+        (PegasusConfig, PegasusForConditionalGeneration),
+        (BartConfig, BartForConditionalGeneration)
     ]
 )
 
@@ -197,7 +228,8 @@ MODEL_FOR_QUESTION_ANSWERING_MAPPING = OrderedDict(
         (BertConfig, BertForQuestionAnswering),
         (DkplmConfig, DkplmForQuestionAnswering),
         (MegatronBertConfig, MegatronBertForQuestionAnswering),
-        (KBertConfig, KBertForQuestionAnswering)
+        (KBertConfig, KBertForQuestionAnswering),
+        (BartConfig, BartForQuestionAnswering)
     ]
 )
 
@@ -253,6 +285,13 @@ AutoModelForCausalLM = auto_class_factory(
 
 AutoModelForMaskedLM = auto_class_factory(
     "AutoModelForMaskedLM", MODEL_FOR_MASKED_LM_MAPPING, head_doc="masked language modeling"
+)
+
+AutoModelForSeq2SeqLM = auto_class_factory(
+    "AutoModelForSeq2SeqLM",
+    MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING,
+    head_doc="sequence-to-sequence language modeling",
+    checkpoint_for_example="t5-base",
 )
 
 AutoModelForSequenceClassification = auto_class_factory(
