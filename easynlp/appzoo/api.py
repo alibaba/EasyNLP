@@ -318,7 +318,9 @@ def get_application_evaluator(app_name, valid_dataset, user_defined_parameters, 
         if app_name.startswith(name):
             if type(evaluator) != dict:
                 return evaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **kwargs)
-            app_parameters = user_defined_parameters.get('app_parameters')
+            app_parameters = {}
+            if "app_parameters" in user_defined_parameters:
+                app_parameters = user_defined_parameters.get('app_parameters')
             evaluator_keys = set([key.split('.')[0] for key in evaluator.keys()])
             union_name = list(evaluator_keys & set(app_parameters.keys()))
             assert len(union_name) <= 1, "Only one evaluator can be invoked, but more than one is specified in the app_parameters!"
