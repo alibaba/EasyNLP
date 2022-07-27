@@ -9,9 +9,20 @@ from easynlp.utils import initialize_easynlp
 args = initialize_easynlp()
 row_data = load_dataset('clue', 'afqmc')["train"]
 train_dataset = GeneralDataset(dataset, args.pretrained_model_name_or_path, args.sequence_length)
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path, num_labels=train_dataset.num_label)
+Trainer(model=model, train_dataset=train_dataset).train()
 ```
+
+使用DataHub的数据可以大幅度减少输入参数，保存上述代码并使用以下脚本开始训练程序:
+```bash
+python main.py \
+ --mode train \
+ --worker_gpu=1 \
+ --checkpoint_dir=./tmp/ \
+ --epoch_num=1 \
+ --user_defined_parameters='pretrain_model_name_or_path=hfl/chinese-roberta-wwm-ext'
+```
+
 
 对于新的数据集，您可以使用下面方式加载（以文本分类为例）：
 ```python
@@ -31,8 +42,8 @@ train_dataset = ClassificationDataset(
     label_enumerate_values=args.label_enumerate_values,
     is_training=True)
 
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
+model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path, num_labels=train_dataset.num_label)
+Trainer(model=model, train_dataset=train_dataset).train()
 ```
 
 具体的例子详见[quick start](https://github.com/alibaba/EasyNLP/blob/master/examples/quick_start_user_defined/main.py)。
