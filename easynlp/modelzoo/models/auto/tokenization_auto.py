@@ -37,6 +37,7 @@ from ..gpt2.tokenization_gpt2 import GPT2Tokenizer
 from ..roberta.tokenization_roberta import RobertaTokenizer
 from ..cnn.tokenization_cnn import TextCNNTokenizer
 from ..kbert.tokenization_kbert import KBertTokenizer
+from ..kangaroo.tokenization_kangaroo import KangarooTokenizer
 
 from .configuration_auto import (
     AutoConfig,
@@ -49,6 +50,7 @@ from .configuration_auto import (
     TextCNNConfig,
     ARTISTConfig,
     KBertConfig,
+    KangarooConfig
 )
 
 if is_tokenizers_available():
@@ -59,6 +61,7 @@ if is_tokenizers_available():
     from ..gpt2.tokenization_gpt2_fast import GPT2TokenizerFast
     from ..roberta.tokenization_roberta_fast import RobertaTokenizerFast
     from ..kbert.tokenization_kbert_fast import KBertTokenizerFast
+    from ..kangaroo.tokenization_kangaroo_fast import KangarooTokenizerFast
 
 else:
     BertTokenizerFast = None
@@ -68,6 +71,7 @@ else:
     MegatronBertTokenizerFast = None
     PreTrainedTokenizerFast = None
     KBertTokenizerFast = None
+    KangarooTokenizerFast = None
 
 logger = logging.get_logger(__name__)
 
@@ -82,6 +86,7 @@ TOKENIZER_MAPPING = OrderedDict(
         (TextCNNConfig, (TextCNNTokenizer, None)),
         (ARTISTConfig, (BertTokenizer, BertTokenizerFast)),
         (KBertConfig, (KBertTokenizer, KBertTokenizerFast)),
+        (KangarooConfig, (KangarooTokenizer, KangarooTokenizerFast))
     ]
 )
 

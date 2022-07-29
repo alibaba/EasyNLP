@@ -28,6 +28,7 @@ from ..cnn.configuration_cnn import TextCNNConfig
 from ..artist.configuration_artist import ARTISTConfig
 from ..clip.configuration_clip import CLIPConfig
 from ..kbert.configuration_kbert import KBertConfig
+from ..kangaroo.configuration_kangaroo import KangarooConfig
 
 
 CONFIG_MAPPING = OrderedDict(
@@ -40,7 +41,8 @@ CONFIG_MAPPING = OrderedDict(
         ("cnn", TextCNNConfig),
         ("artist", ARTISTConfig),
         ("clip", CLIPConfig),
-        ("kbert", KBertConfig)
+        ("kbert", KBertConfig),
+        ("kangaroo", KangarooConfig)
     ]
 )
 
@@ -54,7 +56,8 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("cnn", 'TextCNN'),
         ("artist", "ARTIST"),
         ("clip", "CLIP"),
-        ("kbert", "KBERT")
+        ("kbert", "KBERT"),
+        ("kangaroo", "KANGAROO")
     ]
 )
 

@@ -1,0 +1,18 @@
+name: poincare
+channels:
+- anaconda
+- pytorch
+- defaults
+dependencies:
+- pip
+- python=3.6
+- nltk
+- scikit-learn
+- pytorch=1.0.0
+- pandas
+- h5py
+- cython
+- tqdm
+- pip:
+  - iopath
+  - git+https://github.com/facebookresearch/hypernymysuite.git
