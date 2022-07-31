@@ -29,6 +29,7 @@ from ..artist.configuration_artist import ARTISTConfig
 from ..artist_i2t.configuration_artist import ARTISTConfig as ARTISTI2TConfig
 from ..clip.configuration_clip import CLIPConfig
 from ..kbert.configuration_kbert import KBertConfig
+from ..kangaroo.configuration_kangaroo import KangarooConfig
 
 from ..bart.configuration_bart import BartConfig
 from ..mt5.configuration_mt5 import MT5Config
@@ -51,7 +52,8 @@ CONFIG_MAPPING = OrderedDict(
         ("mt5", MT5Config),
         ("t5", T5Config),
         ("pegasus", PegasusConfig),
-        ("bart", BartConfig)
+        ("bart", BartConfig),
+        ("kangaroo", KangarooConfig)
     ]
 )
 
@@ -70,7 +72,8 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("t5", "T5"),
         ("pegasus", "Pegasus"),
         ("bart", "BART"),
-        ("mt5", "mT5")
+        ("mt5", "mT5"),
+        ("kangaroo", "KANGAROO")
     ]
 )
 
