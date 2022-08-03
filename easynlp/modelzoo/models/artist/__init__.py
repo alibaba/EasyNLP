@@ -27,6 +27,7 @@ _import_structure = {
 
 if is_torch_available():
     _import_structure["modeling_artist"] = ["GPT"]
+    _import_structure["modeling_artist_knowl"] = ["GPT_knowl"]
 
 
 if TYPE_CHECKING:
@@ -34,6 +35,7 @@ if TYPE_CHECKING:
 
     if is_torch_available():
         from .modeling_artist import (GPT)
+        from .modeling_artist_knowl import (GPT_knowl)
 
 else:
     import importlib
