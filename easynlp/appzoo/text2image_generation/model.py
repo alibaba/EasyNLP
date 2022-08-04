@@ -1,13 +1,14 @@
 import os
 import torch
 import torch.nn.functional as F
+
 from ..application import Application
 from ...modelzoo import AutoConfig
 from .vqgan import VQModel
 from ...modelzoo.models.artist.modeling_artist import GPT
 from ...modelzoo.models.artist.modeling_artist_knowl import GPT_knowl
 from ...modelzoo.models.artist.configuration_artist import ARTISTConfig
-from easynlp.utils.logger import logger
+from ...utils.logger import logger
 
 
 

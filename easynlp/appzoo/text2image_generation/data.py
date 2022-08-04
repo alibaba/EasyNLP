@@ -14,15 +14,18 @@
 # limitations under the License.
 
 import torch
-from ...modelzoo import AutoTokenizer
-from ...utils import io
-from ..dataset import BaseDataset
+
 import numpy as np
 import albumentations
 from io import BytesIO
 import base64
 from PIL import Image, ImageFile
-from easynlp.utils import get_pretrain_model_path
+
+from ...modelzoo import AutoTokenizer
+from ...utils import io
+from ..dataset import BaseDataset
+from ...utils import get_pretrain_model_path
+
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 

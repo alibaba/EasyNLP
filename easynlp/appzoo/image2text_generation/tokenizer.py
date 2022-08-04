@@ -1,5 +1,6 @@
 import math
-from easynlp.utils import get_pretrain_model_path
+
+from ...utils import get_pretrain_model_path
 #from ...modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
 from ...modelzoo import AutoTokenizer
 

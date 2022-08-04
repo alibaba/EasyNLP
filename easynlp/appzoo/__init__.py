@@ -15,6 +15,7 @@
 
 from typing import TYPE_CHECKING
 from ..modelzoo.file_utils import _BaseLazyModule
+TYPE_CHECKING = True
 
 _import_structure = {
     "sequence_classification.model": ["SequenceClassification", "SequenceMultiLabelClassification", "DistillatorySequenceClassification", "FewshotSequenceClassification", "CptFewshotSequenceClassification"],
@@ -90,6 +91,7 @@ if TYPE_CHECKING:
     from .multi_modal.evaluator import MultiModalEvaluator
     from .wukong.evaluator import WukongEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
+    from .image2text_generation.evaluator import ImageTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -101,6 +103,7 @@ if TYPE_CHECKING:
     from .multi_modal.predictor import MultiModalPredictor
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
+    from .image2text_generation.predictor import ImageTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -111,6 +114,7 @@ if TYPE_CHECKING:
     from .multi_modal.data import MultiModalDataset
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
+    from .image2text_generation.data import ImageTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
 
     from .dataset import BaseDataset, GeneralDataset
