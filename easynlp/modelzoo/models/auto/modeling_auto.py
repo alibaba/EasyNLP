@@ -89,6 +89,7 @@ from .configuration_auto import (
     MT5Config,
     PegasusConfig,
     T5Config,
+    KangarooConfig
 )
 from ..kbert.modeling_kbert import (
     KBertForMaskedLM,
@@ -111,6 +112,19 @@ from ..bart.modeling_bart import (
     BartModel,
 )
 
+from ..kangaroo.modeling_kangaroo import (
+    KangarooForMaskedLM,
+    KangarooForMultipleChoice,
+    KangarooForNextSentencePrediction,
+    KangarooForPreTraining,
+    KangarooForQuestionAnswering,
+    KangarooForSequenceClassification,
+    KangarooForTokenClassification,
+    KangarooLMHeadModel,
+    KangarooPreTrainedModel,
+    KangarooModel,
+)
+
 from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
 from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
 from ..t5.modeling_t5 import T5ForConditionalGeneration, T5Model
@@ -123,7 +137,8 @@ PRETRAINED_MODEL_MAPPING = OrderedDict(
         (BertConfig, BertPreTrainedModel),
         (DkplmConfig, DkplmPreTrainedModel),
         (MegatronBertConfig, MegatronBertPreTrainedModel),
-        (KBertConfig, KBertPreTrainedModel)
+        (KBertConfig, KBertPreTrainedModel),
+        (KangarooConfig, KangarooPreTrainedModel)
     ]
 )
 
@@ -139,6 +154,7 @@ MODEL_MAPPING = OrderedDict(
         (GPT2Config, GPT2Model),
         (TextCNNConfig, TextCNNEncoder),
         (KBertConfig, KBertModel),
+        (KangarooConfig, KangarooModel),
         (BartConfig, BartModel),
         (MT5Config, MT5Model),
         (T5Config, T5Model),
@@ -156,7 +172,8 @@ MODEL_FOR_PRETRAINING_MAPPING = OrderedDict(
         (MegatronBertConfig, MegatronBertForPreTraining),
         (KBertConfig, KBertForPreTraining),
         (T5Config, T5ForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (KangarooConfig, KangarooForPreTraining)
     ]
 )
 
@@ -170,7 +187,8 @@ MODEL_WITH_LM_HEAD_MAPPING = OrderedDict(
         (GPT2Config, GPT2LMHeadModel),
         (KBertConfig, KBertForMaskedLM),
         (T5Config, T5ForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (KangarooConfig, KangarooForMaskedLM)
     ]
 )
 
@@ -184,7 +202,8 @@ MODEL_FOR_CAUSAL_LM_MAPPING = OrderedDict(
         (GPT2Config, GPT2LMHeadModel),
         (KBertConfig, KBertLMHeadModel),
         (BartConfig, BartForCausalLM),
-        (PegasusConfig, PegasusForCausalLM)
+        (PegasusConfig, PegasusForCausalLM),
+        (KangarooConfig, KangarooLMHeadModel)
     ]
 )
 
@@ -196,7 +215,8 @@ MODEL_FOR_MASKED_LM_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForMaskedLM),
         (MegatronBertConfig, MegatronBertForMaskedLM),
         (KBertConfig, KBertForMaskedLM),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (KangarooConfig, KangarooForMaskedLM)
     ]
 )
 
@@ -217,7 +237,8 @@ MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING = OrderedDict(
         (MegatronBertConfig, MegatronBertForSequenceClassification),
         (DkplmConfig, DkplmForSequenceClassification),
         (GPT2Config, GPT2ForSequenceClassification),
-        (KBertConfig, KBertForSequenceClassification)
+        (KBertConfig, KBertForSequenceClassification),
+        (KangarooConfig, KangarooForSequenceClassification)
     ]
 )
 
@@ -229,7 +250,8 @@ MODEL_FOR_QUESTION_ANSWERING_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForQuestionAnswering),
         (MegatronBertConfig, MegatronBertForQuestionAnswering),
         (KBertConfig, KBertForQuestionAnswering),
-        (BartConfig, BartForQuestionAnswering)
+        (BartConfig, BartForQuestionAnswering),
+        (KangarooConfig, KangarooForQuestionAnswering)
     ]
 )
 
@@ -241,7 +263,8 @@ MODEL_FOR_TOKEN_CLASSIFICATION_MAPPING = OrderedDict(
         (BertConfig, BertForTokenClassification),
         (DkplmConfig, DkplmForTokenClassification),
         (MegatronBertConfig, MegatronBertForTokenClassification),
-        (KBertConfig, KBertForTokenClassification)
+        (KBertConfig, KBertForTokenClassification),
+        (KangarooConfig, KangarooForTokenClassification)
     ]
 )
 
@@ -252,7 +275,8 @@ MODEL_FOR_MULTIPLE_CHOICE_MAPPING = OrderedDict(
         (BertConfig, BertForMultipleChoice),
         (DkplmConfig, DkplmForMultipleChoice),
         (MegatronBertConfig, MegatronBertForMultipleChoice),
-        (KBertConfig, KBertForTokenClassification)
+        (KBertConfig, KBertForTokenClassification),
+        (KangarooConfig, KangarooForTokenClassification)
     ]
 )
 
@@ -261,7 +285,8 @@ MODEL_FOR_NEXT_SENTENCE_PREDICTION_MAPPING = OrderedDict(
         (BertConfig, BertForNextSentencePrediction),
         (DkplmConfig, DkplmForNextSentencePrediction),
         (MegatronBertConfig, MegatronBertForNextSentencePrediction),
-        (KBertConfig, KBertForNextSentencePrediction)
+        (KBertConfig, KBertForNextSentencePrediction),
+        (KangarooConfig, KangarooForNextSentencePrediction)
     ]
 )
 

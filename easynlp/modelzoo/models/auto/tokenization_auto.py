@@ -38,6 +38,8 @@ from ..roberta.tokenization_roberta import RobertaTokenizer
 from ..cnn.tokenization_cnn import TextCNNTokenizer
 from ..kbert.tokenization_kbert import KBertTokenizer
 from ..bart.tokenization_bart import BartTokenizer
+from ..kangaroo.tokenization_kangaroo import KangarooTokenizer
+
 
 from .configuration_auto import (
     AutoConfig,
@@ -55,6 +57,7 @@ from .configuration_auto import (
     MT5Config,
     PegasusConfig,
     T5Config,
+    KangarooConfig
 )
 
 if is_sentencepiece_available():
@@ -78,6 +81,7 @@ if is_tokenizers_available():
     from ..mt5 import MT5TokenizerFast
     from ..pegasus.tokenization_pegasus_fast import PegasusTokenizerFast
     from ..t5.tokenization_t5_fast import T5TokenizerFast
+    from ..kangaroo.tokenization_kangaroo_fast import KangarooTokenizerFast
 else:
     BertTokenizerFast = None
     GPT2TokenizerFast = None
@@ -89,6 +93,8 @@ else:
     BartTokenizerFast = None
     PegasusTokenizerFast = None
     T5TokenizerFast = None
+    KangarooTokenizerFast = None
+
 
 logger = logging.get_logger(__name__)
 
@@ -107,7 +113,8 @@ TOKENIZER_MAPPING = OrderedDict(
         (T5Config, (T5Tokenizer, T5TokenizerFast)),
         (MT5Config, (MT5Tokenizer, MT5TokenizerFast)),
         (PegasusConfig, (PegasusTokenizer, PegasusTokenizerFast)),
-        (BartConfig, (BartTokenizer, BartTokenizerFast))
+        (BartConfig, (BartTokenizer, BartTokenizerFast)),
+        (KangarooConfig, (KangarooTokenizer, KangarooTokenizerFast))
     ]
 )
 
