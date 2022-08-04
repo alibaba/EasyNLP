@@ -15,7 +15,6 @@
 
 from typing import TYPE_CHECKING
 from ..modelzoo.file_utils import _BaseLazyModule
-TYPE_CHECKING = True
 
 _import_structure = {
     "sequence_classification.model": ["SequenceClassification", "SequenceMultiLabelClassification", "DistillatorySequenceClassification", "FewshotSequenceClassification", "CptFewshotSequenceClassification"],
