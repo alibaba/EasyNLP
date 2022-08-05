@@ -13,24 +13,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from email.mime import base
-import json
+#from email.mime import base
+#import json
 import os
-import uuid
+#import uuid
 import numpy as np
 from threading import Lock
 
-import torch
-import albumentations
-
-from ...core.predictor import Predictor, get_model_predictor
-from ...modelzoo import AutoTokenizer
-from ...utils import io
 from PIL import Image
 import time
 import base64
 from io import BytesIO
 from torchvision import transforms
+
+import torch
+import albumentations
+
+from ...core.predictor import Predictor, get_model_predictor
+# from ...modelzoo import AutoTokenizer
+from ...utils import io
+
 
 
 class ImageTextGenerationPredictor(Predictor):
