@@ -1,3 +1,4 @@
+opencv-python
 bs4
 filelock
 importlib_metadata>=4.2.0

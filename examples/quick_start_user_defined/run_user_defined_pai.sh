@@ -2,14 +2,14 @@
 #!/usr/bin/env bash
 set -e
 
-odpscmd="/Users/zhangtaolin/Desktop/console/bin/odpscmd"
-config="/Users/zhangtaolin/Desktop/console/conf/odps_config.ini"
+odpscmd="/apsarapangu/disk2/zhuxiangru.zxr/application/odps_clt_release_64/bin/odpscmd"
+config="/apsarapangu/disk2/zhuxiangru.zxr/application/odps_clt_release_64/conf/odps_config_pai_new.ini"
 
 train_table=odps://pai_exp_dev/tables/modelzoo_example_train
 dev_table=odps://pai_exp_dev/tables/modelzoo_example_dev
 
 # tar your package to submit local code to odps
-cur_path=/Users/zhangtaolin/Desktop/EasyNLP/
+cur_path=/home/zhuxiangru.zxr/workspace/EasyNLP/
 cd ${cur_path}
 rm -rf entryFile.tar.gz
 tar -zcvf entryFile.tar.gz  ./easynlp/ ./examples/quick_start_user_defined/ ./requirements.txt
@@ -23,6 +23,7 @@ pai -name pytorch180
 -Dtables=${train_table},${dev_table}
 -Dpython='3.6'
 -DenableDockerFusion=false
+-Dbuckets='oss://easynlp-dev/?role_arn=xxxxxxx&host=cn-zhangjiakou.oss.aliyuncs.com'
 -DuserDefinedParameters='--mode=train \
       --worker_gpu=1 \
       --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
@@ -39,10 +40,12 @@ pai -name pytorch180
       --sequence_length=128 \
       --micro_batch_size=32 \
       --app_name=text_classify \
-      --checkpoint_dir=oss://easytransfer-new/311103/test1/ \
-      --buckets=\'oss://easytransfer-new/?access_key_id=XXX&access_key_secret=XXX&host=oss-cn-zhangjiakou.aliyuncs.com\'
-'
+      --checkpoint_dir=/data/oss_bucket_0/362425/tmp_test_user_defined_pai/ 
+      '
 "
 
 echo "${command}"
 ${odpscmd} --config="${config}" -e "${command}"
+
+
+
