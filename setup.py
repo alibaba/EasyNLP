@@ -9,8 +9,8 @@ with open('requirements.txt') as f:
 setup(
     # Metadata
     name='pai-easynlp',
-    version='0.0.6',
-    python_requires='>=2.7',
+    version='0.0.7',
+    python_requires='>=3.6',
     author='PAI NLP',
     author_email='easynlp@list.alibaba-inc.com',
     url='https://github.com/alibaba/EasyNLP',
