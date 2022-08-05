@@ -2,14 +2,14 @@
 #!/usr/bin/env bash
 set -e
 
-odpscmd="/apsarapangu/disk2/zhuxiangru.zxr/application/odps_clt_release_64/bin/odpscmd"
-config="/apsarapangu/disk2/zhuxiangru.zxr/application/odps_clt_release_64/conf/odps_config_pai_new.ini"
+odpscmd="/Users/zhangtaolin/Desktop/console/bin/odpscmd"
+config="/Users/zhangtaolin/Desktop/console/conf/odps_config.ini"
 
 train_table=odps://pai_exp_dev/tables/modelzoo_example_train
 dev_table=odps://pai_exp_dev/tables/modelzoo_example_dev
 
 # tar your package to submit local code to odps
-cur_path=/home/zhuxiangru.zxr/workspace/EasyNLP/
+cur_path=/Users/zhangtaolin/Desktop/EasyNLP/
 cd ${cur_path}
 rm -rf entryFile.tar.gz
 tar -zcvf entryFile.tar.gz  ./easynlp/ ./examples/quick_start_user_defined/ ./requirements.txt
