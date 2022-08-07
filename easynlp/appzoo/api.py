@@ -25,7 +25,8 @@ from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, 
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
 from easynlp.appzoo import MultiModal
 from easynlp.appzoo import WukongCLIP
-from easynlp.appzoo import TextImageGeneration, ImageTextGeneration
+from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
@@ -36,7 +37,8 @@ from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelCl
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
 from easynlp.appzoo import MultiModalEvaluator
 from easynlp.appzoo import WukongEvaluator
-from easynlp.appzoo import TextImageGenerationEvaluator, ImageTextGenerationEvaluator
+from easynlp.appzoo import TextImageGenerationEvaluator
+from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -45,7 +47,8 @@ from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, Fewsh
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
 from easynlp.appzoo import MultiModalPredictor
 from easynlp.appzoo import WukongPredictor
-from easynlp.appzoo import TextImageGenerationPredictor, ImageTextGenerationPredictor
+from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -109,7 +112,7 @@ ModelMapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': ImageTextGeneration,
+    'image2text_generation': CLIPGPTImageTextGeneration,
     'sequence_generation': SequenceGeneration,
 }
 
@@ -130,7 +133,7 @@ Eval_Model_Mapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': ImageTextGeneration,
+    'image2text_generation': CLIPGPTImageTextGeneration, 
     'sequence_generation': SequenceGeneration,
 }
 
@@ -175,7 +178,7 @@ Predictor_Mapping = {
     'clip': [MultiModalPredictor, MultiModal],
     'wukong': [WukongPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
-    'image2text_generation': [ImageTextGenerationPredictor, ImageTextGeneration],
+    'image2text_generation': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
 }
 

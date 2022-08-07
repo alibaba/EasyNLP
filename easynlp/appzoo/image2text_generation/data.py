@@ -16,16 +16,37 @@
 import torch
 import numpy as np
 import albumentations
+from albumentations.pytorch.transforms import ToTensorV2
 from io import BytesIO
 import base64
 from PIL import Image, ImageFile
+from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
 
-from .tokenizer import ArtistBERTTokenizer, ArtistGPT2Tokenizer
+from ...modelzoo.models.mingpt_i2t.modeling_tokenizer import ImageTextBERTTokenizer, ImageTextGPT2Tokenizer
+from ...modelzoo.models.mingpt_i2t.modeling_clip import _transform as build_clip_image_transform
 from ..dataset import BaseDataset
 from ...utils import get_pretrain_model_path
+from ...modelzoo import AutoConfig
+#from .clip import load as CLIPFromPretrained
+#from .clip import load
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+
+def build_general_image_transform(target_image_size, random_crop):
+    """
+        general image transform
+    """
+    rescaler = albumentations.Resize(height = target_image_size, width = target_image_size)
+    if not random_crop:
+        cropper = albumentations.CenterCrop(height = target_image_size, width = target_image_size)
+    else:
+        cropper = albumentations.RandomCrop(height = target_image_size, width = target_image_size)
+    
+    preprocessor = albumentations.Compose([rescaler, cropper])
+
+    return preprocessor
+    
 
 class ImageTextDataset(BaseDataset):
     """
@@ -56,6 +77,7 @@ class ImageTextDataset(BaseDataset):
                          output_format="dict",
                          *args,
                          **kwargs)
+
         # image size and sequence length
         self.img_size = int(user_defined_parameters.get('img_size', 256))
         self.img_len = int(user_defined_parameters.get('img_len', 256))
@@ -64,17 +86,39 @@ class ImageTextDataset(BaseDataset):
         assert self.max_seq_length == (self.img_len + self.text_len), "max_seq_length thould be equal to the sum of img_seq and text_seq"
         
         # text tokenizer
-        if pretrained_model_name_or_path == None:
+        if pretrained_model_name_or_path is None:
             text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
         else:
             text_tokenizer_path = pretrained_model_name_or_path
-        self.tokenizer = ArtistBERTTokenizer(text_tokenizer_path, start_id = 0)
-        
+        self.tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
+
+        # image encoder type
+        if pretrained_model_name_or_path is not None:
+            config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            if config.prefix_encoder_type is not None:
+                self.img_encoder_name = config.prefix_encoder_type
+            else:
+                # for old version artist_i2t pretrained model, img_encoder should be added into user_defined_parameters
+                self.img_encoder_name = user_defined_parameters.get('img_encoder')
+                if config.model_type == 'artist_i2t':
+                    self.img_encoder_name = 'vqgan'
+        else:
+            self.img_encoder_name = user_defined_parameters.get('img_encoder', 'vit')
+
+        assert self.img_encoder_name in ['vqgan', 'vit'], 'img_encoder_name must be in [\'vqgan\', \'vit\']'
+
         # image preprocessor
-        self.random_crop = bool(user_defined_parameters.get('random_crop', False))
-        self.preprocessor = self.setup_transform(self.img_size, self.random_crop)
+        if self.img_encoder_name == 'vqgan': 
+            random_crop = bool(user_defined_parameters.get('random_crop', False))
+            self.preprocessor = build_general_image_transform(self.img_size, random_crop)
 
+        elif self.img_encoder_name == 'vit':
+            self.preprocessor = build_clip_image_transform(self.img_size)
 
+        else:
+            raise Exception("invalid img_encoder_name")
+        
+        # first_sequence and second_sequence
         self.first_sequence = first_sequence
         if second_sequence:
             assert second_sequence in self.column_names, \
@@ -83,19 +127,6 @@ class ImageTextDataset(BaseDataset):
         else:
             self.second_sequence = None
         
-    def setup_transform(self, target_image_size, random_crop):
-        """
-            image transform
-        """
-        rescaler = albumentations.SmallestMaxSize(max_size = target_image_size)
-        if not random_crop:
-            cropper = albumentations.CenterCrop(height = target_image_size, width = target_image_size)
-        else:
-            cropper = albumentations.RandomCrop(height = target_image_size, width = target_image_size)
-
-        preprocessor = albumentations.Compose([rescaler, cropper])
-
-        return preprocessor
 
     def convert_single_row_to_example(self, row):
         """Convert sample token to indices.
@@ -117,18 +148,26 @@ class ImageTextDataset(BaseDataset):
         text = row[self.second_sequence] if self.second_sequence else None
 
         # preprocess image
-        image = Image.open(BytesIO(base64.urlsafe_b64decode(image_str))).convert("RGB")
-        image = np.array(image).astype(np.uint8)
-        image = self.preprocessor(image=image)["image"]
-        image = (image/127.5 - 1.0).astype(np.float32)
-        encoding['image'] = image
+        if self.img_encoder_name == 'vqgan':
+            image = Image.open(BytesIO(base64.urlsafe_b64decode(image_str))).convert("RGB")
+            image = np.array(image).astype(np.uint8) 
+            image = self.preprocessor(image=image)["image"]   # type=numpy.array
+            image = (image/127.5 - 1.0).astype(np.float32)    # shape = (img_size, img_size, 3)
+            image = image.transpose((2,0,1))                  # shape = (3, img_size, img_size)
+            # print ("vqgan_image=", image.shape)
+        elif self.img_encoder_name == 'vit':
+            image = Image.open(BytesIO(base64.urlsafe_b64decode(image_str)))
+            image = self.preprocessor(image)    # type=torch.Tensor , shape = (3, img_size, img_size)
+            # print ("vit_image=", image.shape)
+
+        encoding['image'] = image.tolist()
 
         # preprocess text
         text_ids = self.tokenizer.encode(text)
         text_ids = text_ids[: self.text_len]
         n_pad = self.text_len - len(text_ids)
         text_ids += [self.tokenizer.end_token_id] * n_pad
-        encoding['text'] = np.array(text_ids)
+        encoding['text'] = text_ids        # type=list
 
         return encoding
 
