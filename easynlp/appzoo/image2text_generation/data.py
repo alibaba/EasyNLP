@@ -22,13 +22,11 @@ import base64
 from PIL import Image, ImageFile
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
 
-from ...modelzoo.models.mingpt_i2t.modeling_tokenizer import ImageTextBERTTokenizer, ImageTextGPT2Tokenizer
-from ...modelzoo.models.mingpt_i2t.modeling_clip import _transform as build_clip_image_transform
+from .tokenizer import ImageTextBERTTokenizer, ImageTextGPT2Tokenizer
+from .clip import _transform as build_clip_image_transform
 from ..dataset import BaseDataset
 from ...utils import get_pretrain_model_path
 from ...modelzoo import AutoConfig
-#from .clip import load as CLIPFromPretrained
-#from .clip import load
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 

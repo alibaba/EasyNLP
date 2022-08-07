@@ -4,12 +4,12 @@ import torch.nn.functional as F
 
 from ..application import Application
 from ...modelzoo import AutoConfig
-from ...modelzoo.models.mingpt_i2t.modeling_mingpt import MinGPT
-from ...modelzoo.models.mingpt_i2t.modeling_vqgan import VQModel
-from ...modelzoo.models.mingpt_i2t.modeling_clip import load as CLIPFromPretrained
-from ...modelzoo.models.mingpt_i2t.configuration_mingpt import MinGPTI2TConfig
-from ...modelzoo.models.auto.tokenization_auto import AutoTokenizer
-from ...modelzoo.models.mingpt_i2t.modeling_tokenizer import ImageTextBERTTokenizer
+from ...modelzoo import AutoTokenizer
+from ...modelzoo.models.mingpt_i2t.modeling_mingpt_i2t import MinGPT
+from ...modelzoo.models.mingpt_i2t.configuration_mingpt_i2t import MinGPTI2TConfig
+from .vqgan import VQModel
+from .clip import load as CLIPFromPretrained
+from .tokenizer import ImageTextBERTTokenizer
 from ...utils import get_pretrain_model_path
 from ...utils.logger import logger
 

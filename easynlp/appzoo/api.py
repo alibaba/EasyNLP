@@ -112,7 +112,7 @@ ModelMapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': CLIPGPTImageTextGeneration,
+    'image2text_generation': VQGANGPTImageTextGeneration,
     'sequence_generation': SequenceGeneration,
 }
 
@@ -133,7 +133,7 @@ Eval_Model_Mapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': CLIPGPTImageTextGeneration, 
+    'image2text_generation': VQGANGPTImageTextGeneration, 
     'sequence_generation': SequenceGeneration,
 }
 
@@ -178,7 +178,7 @@ Predictor_Mapping = {
     'clip': [MultiModalPredictor, MultiModal],
     'wukong': [WukongPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
-    'image2text_generation': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
+    'image2text_generation': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
 }
 

@@ -31,7 +31,7 @@ import albumentations
 
 from ...core.predictor import Predictor, get_model_predictor
 # from ...modelzoo import AutoTokenizer
-from ...modelzoo.models.mingpt_i2t.modeling_clip import _transform as build_clip_image_transform
+from .clip import _transform as build_clip_image_transform
 from ...utils import io
 
 

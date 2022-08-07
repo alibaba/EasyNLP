@@ -26,7 +26,7 @@ from ..gpt2.configuration_gpt2 import GPT2Config
 from ..roberta.configuration_roberta import RobertaConfig
 from ..cnn.configuration_cnn import TextCNNConfig
 from ..artist.configuration_artist import ARTISTConfig
-from ..mingpt_i2t.configuration_mingpt import MinGPTI2TConfig
+from ..mingpt_i2t.configuration_mingpt_i2t import MinGPTI2TConfig
 from ..clip.configuration_clip import CLIPConfig
 from ..kbert.configuration_kbert import KBertConfig
 from ..kangaroo.configuration_kangaroo import KangarooConfig

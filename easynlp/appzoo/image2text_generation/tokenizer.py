@@ -1,8 +1,8 @@
 import math
 
-from ....utils import get_pretrain_model_path
+from ...utils import get_pretrain_model_path
 #from ....modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
-from ..auto.tokenization_auto import AutoTokenizer
+from ...modelzoo import AutoTokenizer
 
 class ImageTextBERTTokenizer(object):
     def __init__(self, pretrained_model_name_or_path, start_id, unk_token="[UNK]", end_token="[PAD]"):
