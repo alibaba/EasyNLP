@@ -13,15 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from re import T
 import torch
 import numpy as np
 import albumentations
-from albumentations.pytorch.transforms import ToTensorV2
 from io import BytesIO
 import base64
 from PIL import Image, ImageFile
-from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
 
 from .tokenizer import ImageTextBERTTokenizer, ImageTextGPT2Tokenizer
 from .clip import _transform as build_clip_image_transform

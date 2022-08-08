@@ -236,11 +236,8 @@ def get_application_dataset(app_name,
                     *args,
                     **kwargs)
             app_parameters = user_defined_parameters.get('app_parameters')
-            print (app_parameters)
             dataset_keys = set([key.split('.')[0] for key in dataset.keys()])
-            print (dataset_keys)
             union_name = list(dataset_keys & set(app_parameters.keys()))
-            print ("union_name=", union_name)
             assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
             if len(union_name) == 0:
                 return dataset['others'](
