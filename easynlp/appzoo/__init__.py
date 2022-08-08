@@ -62,7 +62,7 @@ _import_structure = {
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
     "text2image_generation.data": ['TextImageDataset', 'TextImageKnowlDataset'],
-    "image2text_generation.data": ['ImageTextDataset'],
+    "image2text_generation.data": ['CLIPGPTImageTextDataset', 'VQGANGPTImageTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
@@ -113,7 +113,7 @@ if TYPE_CHECKING:
     from .multi_modal.data import MultiModalDataset
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
-    from .image2text_generation.data import ImageTextDataset
+    from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
 
     from .dataset import BaseDataset, GeneralDataset

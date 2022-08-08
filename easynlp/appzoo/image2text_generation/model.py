@@ -22,14 +22,18 @@ class CLIPGPTImageTextGeneration(Application):
         self.pkeep = user_defined_parameters.get('pkeep', 1.0)
         self.device = user_defined_parameters.get('device', 'cuda')
         self.prefix_encoder_type = 'vit'
-        self.img_encoder = user_defined_parameters.get('img_encoder', self.prefix_encoder_type)
-        assert self.img_encoder == self.prefix_encoder_type, 'img_encoder error'
+        if pretrained_model_name_or_path is None:
+            # if image_encoder is not parametered, default image encoder is 'vit'
+            is_clip_encoder = user_defined_parameters.get('app_parameters', True).get('enable_vit', True)
+            assert is_clip_encoder == True, 'wrong image encode settings'
 
         # CLIP & GPT
         if pretrained_model_name_or_path is not None: 
             # gpt config
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             # image encoder
+            assert self.config.prefix_encoder_type == self.prefix_encoder_type, \
+                'This class is not consistent with pretrained model, Please add the user_defined_parameters \"enable_vit=True\"'
             vit_ckpt_path = self.config.prefix_encoder_ckpt_path
             ## openai_clip: float16 if GPU available, float32 if CPU only. so load the clip model on cpu and then turn to gpu
             self.first_stage_model = CLIPFromPretrained(vit_ckpt_path, jit=False, device=torch.device("cpu"))[0].visual.eval()
@@ -250,12 +254,20 @@ class VQGANGPTImageTextGeneration(Application):
         self.prefix_encoder_type = 'vqgan'
         self.pkeep = user_defined_parameters.get('pkeep', 1.0)
         self.device = user_defined_parameters.get('device', 'cuda')
-        self.img_encoder = user_defined_parameters.get('img_encoder', self.prefix_encoder_type)
-        assert self.img_encoder == self.prefix_encoder_type, 'img_encoder error'
+        if pretrained_model_name_or_path is None:
+            # if image_encoder is not parametered, default image encoder is 'vit', not 'vqgan'
+            is_vqgan_encoder = user_defined_parameters.get('app_parameters', False).get('enable_vqgan', False)
+            assert is_vqgan_encoder == True, 'wrong image encode settings'
         
         # VQGAN & GPT
         if pretrained_model_name_or_path is not None: 
+            # gpt config
+            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             # image encoder
+            if self.config.model_type == 'artist_i2t': # for old version artist_i2t pretrained model
+                self.config.prefix_encoder_type = self.prefix_encoder_type
+            assert self.config.prefix_encoder_type == self.prefix_encoder_type, \
+                'This class is not consistent with pretrained model. Please add the user_defined_parameters \"enable_vqgan=True\"'
             self.first_stage_model = VQModel()
             # gpt config
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)

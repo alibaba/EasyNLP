@@ -8,9 +8,8 @@ print('*'*50)
 print('running local main...\n')
 from easynlp.core import Trainer
 # from easynlp.appzoo import get_application_evaluator
-from easynlp.appzoo.sequence_classification.data import ClassificationDataset
 
-from easynlp.appzoo.image2text_generation.data import ImageTextDataset
+from easynlp.appzoo.image2text_generation.data import VQGANGPTImageTextDataset
 from easynlp.appzoo.image2text_generation.model import VQGANGPTImageTextGeneration
 from easynlp.appzoo.image2text_generation.evaluator import ImageTextGenerationEvaluator
 from easynlp.appzoo.image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor
@@ -56,7 +55,7 @@ if __name__ == "__main__":
 
     print('log: starts to process dataset...\n')
 
-    train_dataset = ImageTextDataset(
+    train_dataset = VQGANGPTImageTextDataset(
         pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[0],
         max_seq_length=args.sequence_length,
@@ -66,7 +65,7 @@ if __name__ == "__main__":
         user_defined_parameters=user_defined_parameters,
         is_training=True)
 
-    valid_dataset = ImageTextDataset(
+    valid_dataset = VQGANGPTImageTextDataset(
         pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
         max_seq_length=args.sequence_length,

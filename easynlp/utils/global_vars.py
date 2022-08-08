@@ -51,7 +51,12 @@ _GLOBAL_APP_PARAMETER_NAMES = {
     'enable_fewshot': 'bool',
     'type': 'str',
     'label_desc': 'str',
-    'pattern': 'str'
+    'pattern': 'str', 
+
+    # Image caption
+    'enable_vit': 'bool',
+    'enable_vqgan': 'bool', 
+
 }
 _GLOBAL_MODEL_PARAMETER_NAMES = ['vocab_size', 'hidden_size']
 

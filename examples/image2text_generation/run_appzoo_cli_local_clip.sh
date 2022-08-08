@@ -22,6 +22,7 @@ if [ ! -f ./tmp/IC_train.txt ]; then
 fi
 
 
+# run script
 # pretrain from scratch
 if [ "$mode" = "pretrain" ]; then
   easynlp \
@@ -41,9 +42,8 @@ if [ "$mode" = "pretrain" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        img_encoder=vqgan
-        vqgan_ckpt_path=./tmp/vqgan_f16_16384.bin
-        img_size=256
+        vit_ckpt_path=ViT-L/14
+        img_size=224
         img_len=256
         text_len=32
         text_tokenizer=bert-base-chinese
@@ -75,9 +75,8 @@ elif [ "$mode" = "finetune" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        img_encoder=vqgan
         pretrain_model_name_or_path=./tmp/i2t_model_pretrain
-        img_size=256
+        img_size=224
         img_len=256
         text_len=32
       ' 
@@ -98,9 +97,7 @@ elif [ "$mode" = "predict" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        img_encoder=vqgan
-        pretrain_model_name_or_path=./tmp/i2t_model_finetune
-        img_size=256
+        img_size=224
         text_len=32
         img_len=256
         max_generated_num=4

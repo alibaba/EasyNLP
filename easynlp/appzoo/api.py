@@ -58,7 +58,8 @@ from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
 from easynlp.appzoo import MultiModalDataset
 from easynlp.appzoo import WukongDataset
-from easynlp.appzoo import TextImageDataset, ImageTextDataset
+from easynlp.appzoo import TextImageDataset
+from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -85,7 +86,11 @@ Dataset_Mapping = {
     'clip': MultiModalDataset,
     'wukong': WukongDataset,
     'text2image_generation': TextImageDataset,
-    'image2text_generation': ImageTextDataset,
+    'image2text_generation': {
+        'enable_vit': CLIPGPTImageTextDataset,
+        'enable_vqgan': VQGANGPTImageTextDataset,
+        'others': CLIPGPTImageTextDataset,
+    },
     'sequence_generation': SequenceGenerationDataset,
 }
 
@@ -112,7 +117,12 @@ ModelMapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': VQGANGPTImageTextGeneration,
+    'image2text_generation': {
+        'enable_vit': CLIPGPTImageTextGeneration,
+        'enable_vqgan': VQGANGPTImageTextGeneration,
+        'others': CLIPGPTImageTextGeneration,
+    },
+    'vqgan_image2text_generation': VQGANGPTImageTextGeneration,
     'sequence_generation': SequenceGeneration,
 }
 
@@ -133,7 +143,12 @@ Eval_Model_Mapping = {
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
-    'image2text_generation': VQGANGPTImageTextGeneration, 
+    'image2text_generation': {
+        'enable_vit': CLIPGPTImageTextGeneration, 
+        'enable_vqgan': VQGANGPTImageTextGeneration,
+        'others': CLIPGPTImageTextGeneration
+    },
+    'vqgan_image2text_generation': VQGANGPTImageTextGeneration, 
     'sequence_generation': SequenceGeneration,
 }
 
@@ -155,7 +170,11 @@ Evaluator_Mapping = {
     'clip': MultiModalEvaluator,
     'wukong': WukongEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
-    'image2text_generation': ImageTextGenerationEvaluator,
+    'image2text_generation': {
+        'enable_vit': ImageTextGenerationEvaluator,
+        'enable_vqgan': ImageTextGenerationEvaluator,
+        'others': ImageTextGenerationEvaluator,
+    },
     'sequence_generation': SequenceGenerationEvaluator,
 }
 
@@ -178,7 +197,11 @@ Predictor_Mapping = {
     'clip': [MultiModalPredictor, MultiModal],
     'wukong': [WukongPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
-    'image2text_generation': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
+    'image2text_generation': {
+        'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
+        'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
+        'others': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
+    },
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
 }
 
@@ -213,8 +236,11 @@ def get_application_dataset(app_name,
                     *args,
                     **kwargs)
             app_parameters = user_defined_parameters.get('app_parameters')
+            print (app_parameters)
             dataset_keys = set([key.split('.')[0] for key in dataset.keys()])
+            print (dataset_keys)
             union_name = list(dataset_keys & set(app_parameters.keys()))
+            print ("union_name=", union_name)
             assert len(union_name) <= 1, "Only one model can be invoked, but more than one is specified in the app_parameters!"
             if len(union_name) == 0:
                 return dataset['others'](
