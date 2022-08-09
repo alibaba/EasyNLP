@@ -1,10 +1,10 @@
 import math
 
 from ...utils import get_pretrain_model_path
-#from ...modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
+#from ....modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
 from ...modelzoo import AutoTokenizer
 
-class ArtistBERTTokenizer(object):
+class ImageTextBERTTokenizer(object):
     def __init__(self, pretrained_model_name_or_path, start_id, unk_token="[UNK]", end_token="[PAD]"):
         if pretrained_model_name_or_path is None:
             pretrained_model_name_or_path = get_pretrain_model_path('bert-base-chinese')
@@ -47,7 +47,7 @@ class ArtistBERTTokenizer(object):
     def __len__(self):
         return len(self.tokenizer)
 
-class ArtistGPT2Tokenizer(object):
+class ImageTextGPT2Tokenizer(object):
     def __init__(self, pretrained_model_name_or_path, start_id, unk_token="<|endoftext|>", end_token="<|endoftext|>"):
         if pretrained_model_name_or_path is None:
             pretrained_model_name_or_path = get_pretrain_model_path('gpt2')

@@ -27,7 +27,7 @@ _import_structure = {
     "multi_modal.model": ["MultiModal"],
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
-    "image2text_generation.model": ["ImageTextGeneration"], 
+    "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
@@ -50,7 +50,7 @@ _import_structure = {
     "multi_modal.predictor": ['MultiModalPredictor'],
     "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
-    "image2text_generation.predictor": ['ImageTextGenerationPredictor'],
+    "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
 
 
@@ -62,7 +62,7 @@ _import_structure = {
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
     "text2image_generation.data": ['TextImageDataset', 'TextImageKnowlDataset'],
-    "image2text_generation.data": ['ImageTextDataset'],
+    "image2text_generation.data": ['CLIPGPTImageTextDataset', 'VQGANGPTImageTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
@@ -79,7 +79,7 @@ if TYPE_CHECKING:
     from .multi_modal.model import MultiModal
     from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
-    from .image2text_generation.model import ImageTextGeneration
+    from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
     from .sequence_generation.model import SequenceGeneration
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
@@ -102,7 +102,7 @@ if TYPE_CHECKING:
     from .multi_modal.predictor import MultiModalPredictor
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
-    from .image2text_generation.predictor import ImageTextGenerationPredictor
+    from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -113,7 +113,7 @@ if TYPE_CHECKING:
     from .multi_modal.data import MultiModalDataset
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
-    from .image2text_generation.data import ImageTextDataset
+    from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
 
     from .dataset import BaseDataset, GeneralDataset

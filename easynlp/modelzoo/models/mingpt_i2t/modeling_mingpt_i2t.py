@@ -104,7 +104,7 @@ class Block(nn.Module):
         return x
 
 
-class GPT(nn.Module):
+class MinGPT(nn.Module):
     """  the full GPT language model, with a context size of block_size """
     def __init__(self, config):
         super().__init__()
@@ -138,10 +138,14 @@ class GPT(nn.Module):
 
     def forward(self, idx, embeddings=None, targets=None):
         # forward the GPT model
-        token_embeddings = self.tok_emb(idx) # each index maps to a (learnable) vector
+        assert not (idx is None and embeddings is None)
 
-        if embeddings is not None: # prepend explicit embeddings
-            token_embeddings = torch.cat((embeddings, token_embeddings), dim=1)
+        if idx is None:
+            token_embeddings = embeddings
+        else:
+            token_embeddings = self.tok_emb(idx) # each index maps to a (learnable) vector
+            if embeddings is not None: # prepend explicit embeddings
+                token_embeddings = torch.cat((embeddings, token_embeddings), dim=1)
 
         t = token_embeddings.shape[1]
         assert t <= self.block_size, "Cannot forward, model block size is exhausted."
