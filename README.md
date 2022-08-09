@@ -107,6 +107,8 @@ python main.py \
   --user_defined_parameters='pretrain_model_name_or_path=bert-tiny-uncased'
 ```
 
+The complete example can be found [here](https://github.com/alibaba/EasyNLP/blob/master/examples/appzoo_tutorials/sequence_classification/bert_classify/run_train_eval_predict_user_defined_local.sh).
+
 You can also use AppZoo Command Line Tools to quickly train an App model. Take text classification on SST-2 dataset as an example. First you can download the [train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv), and [dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv), then start training:
 
 ```bash
