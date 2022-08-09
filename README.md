@@ -58,7 +58,7 @@ $ cd EasyNLP
 $ python setup.py install
 ```
 
-This repo is tested on Python3.6, PyTorch >= 1.8.
+This repo is tested on Python 3.6, PyTorch >= 1.8.
 
 # Quick Start
 
