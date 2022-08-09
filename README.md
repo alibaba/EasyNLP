@@ -231,9 +231,14 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 # Technical Articles
 
 - [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
+- [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
+- [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
+- [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
+- [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
 
 
 # License
+
 This project is licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open-source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
 
 # ChangeLog
