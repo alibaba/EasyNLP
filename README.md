@@ -228,6 +228,11 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 - [Rapidformer模型训练加速实践](https://www.yuque.com/easyx/easynlp/bi6nzc)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
+# Technical Articles
+
+- [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
+
+
 # License
 This project is licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open-source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
 
