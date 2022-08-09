@@ -47,7 +47,7 @@ We have a series of technical articles on the functionalities of EasyNLP.
 You can either install it from pip
 
 ```bash
-$ pip install pai-easynlp (might be out-of-date, so it is suggested to setup from the source)
+$ pip install pai-easynlp (may be out-of-date)
 ```
 
 or setup from the source：
@@ -175,9 +175,13 @@ Pre-trained Models for Chinese](https://arxiv.org/pdf/2110.06696.pdf) by Zhuoshe
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
 
-# EasyNLP Goes Multi-modal！
+# EasyNLP Goes Multi-modal
 EasyNLP also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation. 
 
+
+1. [Text-image Matching](https://github.com/alibaba/EasyNLP/blob/master/examples/clip_retrieval/run_clip_local.sh)
+2. [Text-to-image Generation](https://github.com/alibaba/EasyNLP/blob/master/examples/text2image_generation/run_appzoo_cli_local.sh)
+3. [Image-to-text Generation](https://github.com/alibaba/EasyNLP/blob/master/examples/image2text_generation/run_appzoo_cli_local_clip.sh)
 
 
 # Landing Large Pre-trained Models
