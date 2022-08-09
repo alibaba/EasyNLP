@@ -29,6 +29,7 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 - **Compatible with open-source libraries:** EasyNLP has APIs to support the training of models from Huggingface/Transformers with the PAI distributed framework. It also supports the pre-trained models in [EasyTransfer](https://github.com/alibaba/EasyTransfer) ModelZoo.
 - **Knowledge-injected pre-training:** The PAI team has a lot of research on knowledge-injected pre-training, and builds a knowledge-injected model that wins first place in the CCF knowledge pre-training competition. EasyNLP integrates these cutting-edge knowledge pre-trained models, including DKPLM and KGBERT.
 - **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to facilitate online deployment.
+- **Multi-modality pre-trained models:** EasyNLP is not about NLP only. It also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation.
 
 # Installation
 
