@@ -22,18 +22,18 @@ from ...file_utils import (
 
 
 _import_structure = {
-    "configuration_artist": ["ARTISTConfig"],
+    "configuration_mingpt_i2t": ["MinGPTI2TConfig"],
 }
 
 if is_torch_available():
-    _import_structure["modeling_artist"] = ["GPT"]
+    _import_structure["modeling_mingpt_i2t"] = ["MinGPT"]
 
 
 if TYPE_CHECKING:
-    from .configuration_artist import ARTISTConfig
+    from .configuration_mingpt_i2t import MinGPTI2TConfig
 
     if is_torch_available():
-        from .modeling_artist import (GPT)
+        from .modeling_mingpt_i2t import (MinGPT)
 
 else:
     import importlib
