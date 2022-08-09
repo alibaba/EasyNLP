@@ -155,10 +155,6 @@ $ easynlp \
 
 To learn more about the usage of AppZoo, please refer to our [documentation](https://www.yuque.com/easyx/easynlp/kkhkai).
 
-# EasyNLP Goes Multi-modal！
-EasyNLP also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation. 
-
-
 # ModelZoo
 EasyNLP currently provides the following models in ModelZoo:
 
@@ -178,6 +174,11 @@ Pre-trained Models for Chinese](https://arxiv.org/pdf/2110.06696.pdf) by Zhuoshe
 
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
+
+# EasyNLP Goes Multi-modal！
+EasyNLP also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation. 
+
+
 
 # Landing Large Pre-trained Models
 EasyNLP provide few-shot learning and knowledge distillation to help land large pre-trained models.
