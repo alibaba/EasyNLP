@@ -33,6 +33,8 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 
 # Technical Articles
 
+We have a series of technical articles on the functionalities of EasyNLP.
+
 - [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
 - [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
 - [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
