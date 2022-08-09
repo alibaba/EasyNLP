@@ -31,6 +31,15 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 - **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to facilitate online deployment.
 - **Multi-modality pre-trained models:** EasyNLP is not about NLP only. It also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation.
 
+# Technical Articles
+
+- [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
+- [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
+- [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
+- [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
+- [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
+
+
 # Installation
 
 You can either install it from pip
@@ -227,14 +236,6 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 - [小样本学习实践](https://www.yuque.com/easyx/easynlp/ochmnf)
 - [Rapidformer模型训练加速实践](https://www.yuque.com/easyx/easynlp/bi6nzc)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
-
-# Technical Articles
-
-- [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
-- [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
-- [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
-- [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
-- [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
 
 
 # License
