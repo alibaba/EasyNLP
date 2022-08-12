@@ -36,16 +36,21 @@ from PIL import Image
 import base64
 from io import BytesIO
 
+# 直接构建pipeline
+generator = pipeline('text2image_generation')
+
+# base64转换为图像
 def base64_to_image(imgbase64_str):
     image = Image.open(BytesIO(base64.urlsafe_b64decode(imgbase64_str)))
     return image
 
+# 模型预测
 data = ['远处的雪山，表面覆盖着厚厚的积雪']
-generator = pipeline('text2image_generation')
-
 results = generator(data)
 
+# 保存以文本命名的图像
 for text, result in zip(data, results):
+    # 每条文本支持生成多张图片，所以输出是列表。pipeline默认生成1张
     imgbase64_str_list = result['gen_imgbase64']
     imgpath_list = []
     for base64_idx in range(len(imgbase64_str_list)):
@@ -64,6 +69,10 @@ from PIL import Image
 import base64
 from io import BytesIO
 
+# 构建pipeline
+generator = pipeline('image2text_generation')
+
+# 图像转化为base64
 def image_to_base64(img_path):
     img = Image.open(img_path)
     img_buffer = BytesIO()
@@ -73,12 +82,12 @@ def image_to_base64(img_path):
  
     return base64_str
 
+# 模型预测
 data = ['./example.png']
-generator = pipeline('image2text_generation')
-
 data_imgbase64 = [image_to_base64(imgpath) for imgpath in data]
 results = generator(data_imgbase64)
 
+# 显示预测的图像标题
 for imgpath, result in zip(data, results):
     text_list = result['gen_text']
     print ('imgpath: {}, generated text: {}'.format(imgpath, text_list))
