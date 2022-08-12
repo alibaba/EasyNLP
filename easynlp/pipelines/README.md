@@ -36,15 +36,21 @@ from PIL import Image
 import base64
 from io import BytesIO
 
+# init pipeline. The model generates ${max_generated_num} images for each text.
+generator = pipeline('text2image_generation', max_generated_num = 4)
+
+# convert base64 to image
 def base64_to_image(imgbase64_str):
     image = Image.open(BytesIO(base64.urlsafe_b64decode(imgbase64_str)))
     return image
 
+# input data
 data = ['远处的雪山，表面覆盖着厚厚的积雪']
+
+# model generation
 generator = pipeline('text2image_generation')
 
-results = generator(data)
-
+# save images named after text
 for text, result in zip(data, results):
     imgbase64_str_list = result['gen_imgbase64']
     imgpath_list = []
@@ -65,6 +71,10 @@ from PIL import Image
 import base64
 from io import BytesIO
 
+# init pipeline.  The model generates ${max_generated_num} captions for each image.
+generator = pipeline('image2text_generation')
+
+# convert image to base64
 def image_to_base64(img_path):
     img = Image.open(img_path)
     img_buffer = BytesIO()
@@ -74,12 +84,14 @@ def image_to_base64(img_path):
  
     return base64_str
 
+# input data
 data = ['./example.png']
-generator = pipeline('image2text_generation')
 
+# model generation
 data_imgbase64 = [image_to_base64(imgpath) for imgpath in data]
 results = generator(data_imgbase64)
 
+# display the predicted captions
 for imgpath, result in zip(data, results):
     text_list = result['gen_text']
     print ('imgpath: {}, generated text: {}'.format(imgpath, text_list))
