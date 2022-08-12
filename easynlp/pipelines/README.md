@@ -36,7 +36,7 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-# init pipeline. The model generates ${max_generated_num} images for each text.
+# init pipeline. The model generates ${max_generated_num} (setting it to 1 by default) images for each text.
 generator = pipeline('text2image_generation', max_generated_num = 4)
 
 # convert base64 to image
@@ -71,8 +71,8 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-# init pipeline.  The model generates ${max_generated_num} captions for each image.
-generator = pipeline('image2text_generation')
+# init pipeline.  The model generates ${max_generated_num} (setting it to 1 by default) captions for each image.
+generator = pipeline('image2text_generation', max_generated_num = 4)
 
 # convert image to base64
 def image_to_base64(img_path):
