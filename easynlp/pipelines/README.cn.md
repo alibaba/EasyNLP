@@ -36,7 +36,7 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-# 构建pipeline。模型为每个文本生成${max_generated_num}张图片
+# 构建pipeline。模型为每个文本生成${max_generated_num}张图片(该值默认为1)
 generator = pipeline('text2image_generation', max_generated_num = 4)
 
 # base64转换为图像
@@ -70,7 +70,7 @@ from PIL import Image
 import base64
 from io import BytesIO
 
-# 构建pipeline。模型为每张图片生成${max_generated_num}个标题
+# 构建pipeline。模型为每张图片生成${max_generated_num}个标题(该值默认为1)
 generator = pipeline('image2text_generation', max_generated_num = 4)
 
 # 图像转换为base64
