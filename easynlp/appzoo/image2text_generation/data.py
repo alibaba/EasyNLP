@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import torch
 import numpy as np
 import albumentations
@@ -74,30 +75,43 @@ class CLIPGPTImageTextDataset(BaseDataset):
                          *args,
                          **kwargs)
 
+        # when pretraining, the pretrained_model_name_or_path is actually the tokenizer
+        # if we don't set pretrained_model_name_or_path, \
+        # the vocab.txt will not be automatically copied to the new director of pretrained model
+        # Therefore, the pretrained_model_name_or_path should be set in pretraining
+        self.enable_pretraining = False
+        if pretrained_model_name_or_path is None:
+            self.enable_pretraining = True
+        else:
+            config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            if config.model_type in ['bert', 'gpt2']:
+                self.enable_pretraining = True
+
         # image size and sequence length
-        self.img_size = int(user_defined_parameters.get('img_size', 256))
+        self.img_size = int(user_defined_parameters.get('img_size', 224))
         self.img_len = int(user_defined_parameters.get('img_len', 256))
         self.text_len = int(user_defined_parameters.get('text_len', 32))
         self.max_seq_length = max_seq_length
         assert self.max_seq_length == (self.img_len + self.text_len), "max_seq_length thould be equal to the sum of img_seq and text_seq"
         
         # text tokenizer
-        if pretrained_model_name_or_path is None:
-            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        if self.enable_pretraining:
+            text_tokenizer_path = pretrained_model_name_or_path if pretrained_model_name_or_path else 'bert-base-chinese'
+            text_tokenizer_path = get_pretrain_model_path(text_tokenizer_path)
         else:
             text_tokenizer_path = pretrained_model_name_or_path
         self.tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
 
         # image encoder type
-        if pretrained_model_name_or_path is not None:
+        if self.enable_pretraining:
+            # if image_encoder is not parametered, default image encoder is 'vit'
+            is_clip_encoder = user_defined_parameters.get('app_parameters', True).get('enable_vit', True)
+        else:
             config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             if config.prefix_encoder_type == 'vit':
                 is_clip_encoder = True
             else:
                 is_clip_encoder = False
-        else:
-            # if image_encoder is not parametered, default image encoder is 'vit'
-            is_clip_encoder = user_defined_parameters.get('app_parameters', True).get('enable_vit', True)
         
         assert is_clip_encoder == True, 'wrong image encode settings'
 
@@ -114,6 +128,12 @@ class CLIPGPTImageTextDataset(BaseDataset):
         else:
             self.second_sequence = None
         
+        # image input format
+        self.enable_img_path = True if user_defined_parameters.get('enable_img_path', 'false').lower() == 'true' else False
+        self.img_root_dir = user_defined_parameters.get('img_root_dir', None)
+        if self.enable_img_path:
+            assert self.img_root_dir is not None, '\'img_root_dir\' should have value'
+
 
     def convert_single_row_to_example(self, row):
         """Convert sample token to indices.
@@ -135,7 +155,10 @@ class CLIPGPTImageTextDataset(BaseDataset):
         text = row[self.second_sequence] if self.second_sequence else None
 
         # preprocess image
-        image = Image.open(BytesIO(base64.urlsafe_b64decode(image_str)))
+        if self.enable_img_path:
+            image = Image.open(os.path.join(self.img_root_dir, image_str))
+        else:
+            image = Image.open(BytesIO(base64.urlsafe_b64decode(image_str)))
         image = self.preprocessor(image)    # type=torch.Tensor , shape = (3, img_size, img_size)
         # print ("vit_image=", image.shape)
 
@@ -186,6 +209,18 @@ class VQGANGPTImageTextDataset(BaseDataset):
                          *args,
                          **kwargs)
 
+        # when pretraining, the pretrained_model_name_or_path is actually the tokenizer
+        # if we don't set pretrained_model_name_or_path, \
+        # the vocab.txt will not be automatically copied to the new director of pretrained model
+        # Therefore, the pretrained_model_name_or_path should be set in pretraining
+        self.enable_pretraining = False
+        if pretrained_model_name_or_path is None:
+            self.enable_pretraining = True
+        else:
+            config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            if config.model_type in ['bert', 'gpt2']:
+                self.enable_pretraining = True
+
         # image size and sequence length
         self.img_size = int(user_defined_parameters.get('img_size', 256))
         self.img_len = int(user_defined_parameters.get('img_len', 256))
@@ -194,14 +229,18 @@ class VQGANGPTImageTextDataset(BaseDataset):
         assert self.max_seq_length == (self.img_len + self.text_len), "max_seq_length thould be equal to the sum of img_seq and text_seq"
         
         # text tokenizer
-        if pretrained_model_name_or_path is None:
-            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        if self.enable_pretraining:
+            text_tokenizer_path = pretrained_model_name_or_path if pretrained_model_name_or_path else 'bert-base-chinese'
+            text_tokenizer_path = get_pretrain_model_path(text_tokenizer_path)
         else:
             text_tokenizer_path = pretrained_model_name_or_path
         self.tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
 
         # image encoder type
-        if pretrained_model_name_or_path is not None:
+        if self.enable_pretraining:
+            # if image_encoder is not parametered, default image encoder is 'vit', not 'vqgan'
+            is_vqgan_encoder = user_defined_parameters.get('app_parameters', False).get('enable_vqgan', False)
+        else:
             config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             if config.prefix_encoder_type == 'vqgan':
                 is_vqgan_encoder = True
@@ -210,9 +249,7 @@ class VQGANGPTImageTextDataset(BaseDataset):
                 is_vqgan_encoder = True
             else:
                 is_vqgan_encoder = False
-        else:
-            # if image_encoder is not parametered, default image encoder is 'vit', not 'vqgan'
-            is_vqgan_encoder = user_defined_parameters.get('app_parameters', False).get('enable_vqgan', False)
+            
         
         assert is_vqgan_encoder == True, 'wrong image encode settings'
 

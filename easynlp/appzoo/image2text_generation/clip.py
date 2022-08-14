@@ -404,7 +404,7 @@ class VisionTransformer(nn.Module):
         self.transformer = Transformer(width, layers, heads)
 
         self.ln_post = LayerNorm(width)
-        self.proj = nn.Parameter(scale * torch.randn(width, output_dim))
+        self.proj = nn.Parameter(scale * torch.randn(width, output_dim)) 
 
     def forward(self, x: torch.Tensor):
         x = self.conv1(x)  # shape = [*, width, grid, grid]
@@ -426,9 +426,10 @@ class VisionTransformer(nn.Module):
         # x = self.ln_post(x[:, 0, :])
         # #print (x.shape)  #torch.Size([8, 1024])
 
-        # if self.proj is not None:
-        #     x = x @ self.proj
-        #     #print (x.shape)  #torch.Size([8, 768])
+        if self.proj is not None:
+            x = x @ self.proj
+            #print (self.width, self.output_dim)  # 1024 768
+            #print (x.shape)  #torch.Size([8, 256, 768])
         
         # #print ("last: x=", x.shape)  #torch.Size([8, 768])
 
