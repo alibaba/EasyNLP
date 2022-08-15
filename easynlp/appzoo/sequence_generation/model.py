@@ -131,8 +131,6 @@ class SequenceGeneration(Application):
             self.loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
 
     def forward(self, inputs):
-        # print([i for i in inputs["input_ids"]], [i for i in inputs["attention_mask"]])
-        # print(inputs["input_ids"].size(), inputs['decoder_input_ids'].size())
         if self.is_gpt2 or 'bloom' in self.pretrained_model_name_or_path:
             prob = self._model(input_ids=inputs["input_ids"],
                         attention_mask=inputs["attention_mask"])[0]            
@@ -141,7 +139,6 @@ class SequenceGeneration(Application):
                         decoder_input_ids=inputs["decoder_input_ids"],
                         attention_mask=inputs["attention_mask"],
                         decoder_attention_mask=inputs["decoder_attention_mask"])[0]        
-        # print(prob.size())
         slice_len=prob.size()[1]
         label_len=inputs['decoder_attention_mask'].size()[1]
         if label_len<slice_len:
@@ -157,16 +154,10 @@ class SequenceGeneration(Application):
             except TypeError:
                 sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0])[1][::2]
             decoder_input_len = inputs["decoder_attention_mask"][:, 1:slice_len].sum(1)
-            # print(torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id), decoder_input_len)
-            # print(torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0]), decoder_input_len)
-            # print([(sep_pos[i]+1,sep_pos[i]+1+decoder_input_len[i]) for i in range(inputs["input_ids"].size()[0])])
             prob_list = [prob[i, sep_pos[i]+1:sep_pos[i]+1+decoder_input_len[i]] for i in range(inputs["input_ids"].size()[0])]
             prob = torch.cat(prob_list)
             pred_len_list = [i.size(0) for i in prob_list]
             labels = torch.cat([inputs['decoder_input_ids'][i, 1: pred_len_list[i]+1] for i in range(inputs["input_ids"].size()[0])])
-            
-            # mask = inputs['decoder_attention_mask'][:, 1:slice_len].reshape(-1).bool()
-            # labels = inputs['decoder_input_ids'][:, 1:slice_len].reshape(-1)[mask]
             
         return {
             "prob": prob,

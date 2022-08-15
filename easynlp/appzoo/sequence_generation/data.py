@@ -158,7 +158,6 @@ class SequenceGenerationDataset(BaseDataset):
         else:
             input_ids = tokenizer.encode(src_text, max_length=max_seq_len, truncation='only_first')
         
-        # print(tokenizer.sep_token, tokenizer.eos_token, tokenizer.encode(tokenizer.eos_token))
         if tgt_text is None:
             decoder_input_ids = [101]
         else:

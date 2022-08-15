@@ -151,7 +151,6 @@ class SequenceGenerationPredictor(Predictor):
             beams = result["beam_list"][b]
             if self.decoder_only:
                 pred_tokens = [self.tokenizer.decode(t[self.input_len:], skip_special_tokens=True) for t in beams]
-                # pred_tmp=[model._tokenizer.decode(t[batch["attention_mask"][0].sum().item():], skip_special_tokens=True) for t in gen]
             else:
                 pred_tokens = [self.tokenizer.decode(t[1:], skip_special_tokens=True) for t in beams]
             rst.append({
