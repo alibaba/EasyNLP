@@ -28,7 +28,7 @@ mode=$2
 
 if [ "$mode" = "predict" ]; then
   
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode $mode \
     --worker_gpu=1 \
@@ -38,14 +38,14 @@ if [ "$mode" = "predict" ]; then
     --output_schema=predictions,beams \
     --append_cols=second_sen \
     --first_sequence=first_sen \
-    --checkpoint_dir=./finetuned_chat_model \
+    --checkpoint_dir=./finetuned_chat_model/ \
     --micro_batch_size=32 \
-    --sequence_length 512 \
-    --user_defined_parameters 'service=chat copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=256 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --sequence_length 128 \
+    --user_defined_parameters 'service=chat copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=20 no_repeat_ngram_size=1 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "evaluate" ]; then
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
@@ -55,14 +55,14 @@ elif [ "$mode" = "evaluate" ]; then
     --append_cols=second_sen \
     --first_sequence=first_sen \
     --second_sequence=second_sen \
-    --checkpoint_dir=./finetuned_chat_model \
+    --checkpoint_dir=./finetuned_chat_model/ \
     --micro_batch_size=32 \
-    --sequence_length 512 \
-    --user_defined_parameters 'service=chat copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=256 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --sequence_length=512 \
+    --user_defined_parameters 'service=chat copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=20 no_repeat_ngram_size=1 num_beams=5 num_return_sequences=5'
   
 elif [ "$mode" = "train" ]; then
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
@@ -71,12 +71,15 @@ elif [ "$mode" = "train" ]; then
     --first_sequence=first_sen \
     --second_sequence=second_sen \
     --label_name=second_sen \
-    --checkpoint_dir=./finetuned_chat_model \
+    --checkpoint_dir=./finetuned_chat_model/ \
     --micro_batch_size=8 \
-    --sequence_length=512 \
-    --save_checkpoint_steps=3000 \
+    --learning_rate 5e-5 \
+    --sequence_length=256 \
+    --save_checkpoint_steps=1000 \
     --export_tf_checkpoint_type none \
-    --epoch_num 1 \
-    --user_defined_parameters 'service=chat pretrain_model_name_or_path=alibaba-pai/gpt2-chitchat-zh copy=false max_encoder_length=512 min_decoder_length=2 max_decoder_length=256 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
-
+    --epoch_num 3 \
+    --user_defined_parameters 'service=chat pretrain_model_name_or_path=alibaba-pai/gpt2-chitchat-zh copy=false max_encoder_length=512 min_decoder_length=2 max_decoder_length=40 no_repeat_ngram_size=1 num_beams=5 num_return_sequences=5'
+# alibaba-pai/mt5-title-generation-zh
+# hfl/bloom-350m
+# alibaba-pai/gpt2-chitchat-zh
 fi

@@ -51,13 +51,17 @@ class SequenceGenerationPredictor(Predictor):
             local_path=os.environ['HOME']+'/.easytexminer/modelzoo/huggingface/'+model_dir
         self.model_dir=local_path
         config_path=local_path+'/config.json'
-        self.is_gpt2=self.user_defined_parameters.get('service')=='chat'
+        with open(config_path,'r') as load_f:
+            load_dict = json.load(load_f)
+            self.is_gpt2='gpt2' in model_dir or ("architectures" not in load_dict)
+            self.decoder_only = 'gpt2' in model_dir or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+
         if self.is_gpt2:
             self.tokenizer = BertTokenizer(vocab_file=local_path+'/vocab.txt', sep_token="[SEP]", pad_token="[PAD]", cls_token="[CLS]")
         else:
             with open(config_path,'r') as load_f:
                 load_dict = json.load(load_f)
-                if ("architectures" in load_dict) and (load_dict["architectures"][0]=='T5ForConditionalGeneration'):
+                if ("model_type" in load_dict) and (load_dict["model_type"]=='mt5'):
                     tokenizer_class=T5PegasusTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
@@ -67,12 +71,12 @@ class SequenceGenerationPredictor(Predictor):
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir,user_defined_parameters=self.user_defined_parameters).cuda()
         self.MUTEX = Lock()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
-        self.max_encoder_length = int(self.user_defined_parameters.pop("max_encoder_length", 512))
-        self.min_decoder_length = int(self.user_defined_parameters.pop("min_decoder_length", 8))
-        self.max_decoder_length = int(self.user_defined_parameters.pop("max_decoder_length", 128))
-        self.no_repeat_ngram_size = int(self.user_defined_parameters.pop("no_repeat_ngram_size", 2))
-        self.num_beams = int(self.user_defined_parameters.pop("num_beams", 5))
-        self.num_return_sequences = int(self.user_defined_parameters.pop("num_return_sequences", 5))
+        self.max_encoder_length = int(self.user_defined_parameters.get("max_encoder_length", 512))
+        self.min_decoder_length = int(self.user_defined_parameters.get("min_decoder_length", 8))
+        self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
+        self.no_repeat_ngram_size = int(self.user_defined_parameters.get("no_repeat_ngram_size", 2))
+        self.num_beams = int(self.user_defined_parameters.get("num_beams", 5))
+        self.num_return_sequences = int(self.user_defined_parameters.get("num_return_sequences", 5))
 
     def preprocess(self, in_data):
         """
@@ -112,11 +116,16 @@ class SequenceGenerationPredictor(Predictor):
             in_data["input_ids"], padding=self.tokenizer.pad_token_id)).cuda()
         attention_mask = torch.LongTensor(sequence_padding(
             in_data["attention_mask"], padding=0)).cuda()
+        if self.decoder_only:
+            self.input_len = input_ids.size(1)
+            max_decoder_length = self.max_decoder_length + self.input_len
+        else:    
+            max_decoder_length = self.max_decoder_length + input_len
         tmp = self.model.generate(input_ids=input_ids,
                                   attention_mask=attention_mask,
                                   num_beams=self.num_beams,
                                   min_length=self.min_decoder_length,
-                                  max_length=self.max_decoder_length,
+                                  max_length=max_decoder_length,
                                   early_stopping=True,
                                   no_repeat_ngram_size=self.no_repeat_ngram_size,
                                   num_return_sequences=self.num_return_sequences,
@@ -137,9 +146,14 @@ class SequenceGenerationPredictor(Predictor):
             result (`list`): a list of dict of result for writing to file
         """
         rst = list()
+        
         for b in range(len(result["beam_list"])):
             beams = result["beam_list"][b]
-            pred_tokens = [self.tokenizer.decode(t[1:], skip_special_tokens=True) for t in beams]
+            if self.decoder_only:
+                pred_tokens = [self.tokenizer.decode(t[self.input_len:], skip_special_tokens=True) for t in beams]
+                # pred_tmp=[model._tokenizer.decode(t[batch["attention_mask"][0].sum().item():], skip_special_tokens=True) for t in gen]
+            else:
+                pred_tokens = [self.tokenizer.decode(t[1:], skip_special_tokens=True) for t in beams]
             rst.append({
                 "predictions": pred_tokens[0],
                 "beams": "||".join(pred_tokens)

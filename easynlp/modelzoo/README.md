@@ -34,8 +34,9 @@
 | hfl/macbert-large-zh | L=24,H=1024,A=16 |  |
 | **Generation** |  |  |
 | alibaba-pai/gpt2-chitchat-zh | L=10,H=768,A=12 | for Chinese dialogue |
-| alibaba-pai/pegasus-summary-generation-en | L=16,H=1024,A=16 | for English text summarization |
-| alibaba-pai/mt5-title-generation-zh | L=12,H=1024,A=12 | for Chinese News title generation |
+| alibaba-pai/pegasus-summary-generation-en | L=32,H=1024,A=16 | for English text summarization |
+| alibaba-pai/mt5-title-generation-zh | L=12,H=768,A=12 | for Chinese News title generation |
+| hfl/bloom-350m | L=24,H=1024,A=16 | decoder-only text generation model for 59 languages |
 
 # cli使用方式
 ```bash

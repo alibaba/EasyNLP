@@ -61,8 +61,8 @@ from ..megatron_bert.modeling_megatron_bert import (
 # from ..clip.modeling_clip import CLIPModel
 from ..gpt2.modeling_gpt2 import GPT2ForSequenceClassification, GPT2LMHeadModel, GPT2Model
 
-# from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
-# from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
+from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
+from ..randeng.modeling_randeng import RandengForCausalLM, RandengForConditionalGeneration, RandengModel
 from ..roberta.modeling_roberta import (
     RobertaForCausalLM,
     RobertaForMaskedLM,
@@ -89,6 +89,8 @@ from .configuration_auto import (
     MT5Config,
     PegasusConfig,
     T5Config,
+    BloomConfig,
+    RandengConfig
 )
 from ..kbert.modeling_kbert import (
     KBertForMaskedLM,
@@ -114,6 +116,7 @@ from ..bart.modeling_bart import (
 from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
 from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
 from ..t5.modeling_t5 import T5ForConditionalGeneration, T5Model
+from ..bloom.modeling_bloom import BloomForCausalLM, BloomModel, BloomForTokenClassification, BloomForSequenceClassification, BloomPreTrainedModel
 
 logger = logging.get_logger(__name__)
 
@@ -143,6 +146,8 @@ MODEL_MAPPING = OrderedDict(
         (MT5Config, MT5Model),
         (T5Config, T5Model),
         (PegasusConfig, PegasusModel),
+        (BloomConfig, BloomModel),
+        (RandengConfig, RandengModel),
     ]
 )
 
@@ -156,7 +161,8 @@ MODEL_FOR_PRETRAINING_MAPPING = OrderedDict(
         (MegatronBertConfig, MegatronBertForPreTraining),
         (KBertConfig, KBertForPreTraining),
         (T5Config, T5ForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (BloomConfig, BloomPreTrainedModel),
     ]
 )
 
@@ -170,7 +176,7 @@ MODEL_WITH_LM_HEAD_MAPPING = OrderedDict(
         (GPT2Config, GPT2LMHeadModel),
         (KBertConfig, KBertForMaskedLM),
         (T5Config, T5ForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
     ]
 )
 
@@ -184,7 +190,9 @@ MODEL_FOR_CAUSAL_LM_MAPPING = OrderedDict(
         (GPT2Config, GPT2LMHeadModel),
         (KBertConfig, KBertLMHeadModel),
         (BartConfig, BartForCausalLM),
-        (PegasusConfig, PegasusForCausalLM)
+        (PegasusConfig, PegasusForCausalLM),
+        (BloomConfig, BloomForCausalLM),
+        (RandengConfig, RandengForCausalLM),
     ]
 )
 
@@ -205,7 +213,9 @@ MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING = OrderedDict(
         (MT5Config, MT5ForConditionalGeneration),
         (T5Config, T5ForConditionalGeneration),
         (PegasusConfig, PegasusForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (BloomConfig, BloomForCausalLM),
+        (RandengConfig, RandengForConditionalGeneration),
     ]
 )
 
@@ -217,7 +227,8 @@ MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING = OrderedDict(
         (MegatronBertConfig, MegatronBertForSequenceClassification),
         (DkplmConfig, DkplmForSequenceClassification),
         (GPT2Config, GPT2ForSequenceClassification),
-        (KBertConfig, KBertForSequenceClassification)
+        (KBertConfig, KBertForSequenceClassification),
+        (BloomConfig, BloomForSequenceClassification),
     ]
 )
 
@@ -241,7 +252,8 @@ MODEL_FOR_TOKEN_CLASSIFICATION_MAPPING = OrderedDict(
         (BertConfig, BertForTokenClassification),
         (DkplmConfig, DkplmForTokenClassification),
         (MegatronBertConfig, MegatronBertForTokenClassification),
-        (KBertConfig, KBertForTokenClassification)
+        (KBertConfig, KBertForTokenClassification),
+        (BloomConfig, BloomForTokenClassification),
     ]
 )
 
@@ -252,7 +264,8 @@ MODEL_FOR_MULTIPLE_CHOICE_MAPPING = OrderedDict(
         (BertConfig, BertForMultipleChoice),
         (DkplmConfig, DkplmForMultipleChoice),
         (MegatronBertConfig, MegatronBertForMultipleChoice),
-        (KBertConfig, KBertForTokenClassification)
+        (KBertConfig, KBertForTokenClassification),
+        (BloomConfig, BloomForTokenClassification),
     ]
 )
 

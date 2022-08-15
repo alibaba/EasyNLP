@@ -3,7 +3,7 @@ import numpy as np
 import json
 import os
 import re
-from ...modelzoo import AutoConfig, AutoModel,AutoTokenizer,AutoModelForSeq2SeqLM,BertTokenizer,GPT2LMHeadModel
+from ...modelzoo import AutoConfig, AutoModel, AutoTokenizer, AutoModelForSeq2SeqLM, BertTokenizer, GPT2LMHeadModel
 from ..application import Application
 
 def sequence_padding(inputs, length=None, padding=0):
@@ -64,8 +64,16 @@ class SequenceGeneration(Application):
             local_path=os.environ['HOME']+'/.easynlp/modelzoo/huggingface/'+pretrained_model_name_or_path
 
         config_path=local_path+'/config.json'
-        self._is_zh=False
-        self.is_gpt2=self.user_defined_parameters.get('service')=='chat'
+        with open(config_path,'r') as load_f:
+            load_dict = json.load(load_f)
+            self.is_gpt2='gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict)
+            # add self.decoder_only
+            self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+        
+        if 'language' not in self.user_defined_parameters:
+            print('**language** parameter is not provided in user defined parameters, using zh as default.')
+        self._is_zh=self.user_defined_parameters.get('language', 'zh') == 'zh'
+        self.pretrained_model_name_or_path=pretrained_model_name_or_path
         if self.is_gpt2:
             self._tokenizer = BertTokenizer(vocab_file=local_path+'/vocab.txt', sep_token="[SEP]", 
                                             pad_token="[PAD]", cls_token="[CLS]")
@@ -83,25 +91,23 @@ class SequenceGeneration(Application):
                 state_dict_without_prefix[key] = value
             self._model=GPT2LMHeadModel.from_pretrained(local_path,state_dict=state_dict_without_prefix)
             self.loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
-            self._is_zh=True
         else:
             with open(config_path,'r') as load_f:
                 load_dict = json.load(load_f)
-                if ("architectures" in load_dict) and (load_dict["architectures"][0]=='T5ForConditionalGeneration'):
-                    self._is_zh=True
+                if ("model_type" in load_dict) and (load_dict["model_type"]=='mt5'):
                     tokenizer_class=T5PegasusTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  
             self._tokenizer = tokenizer_class.from_pretrained(local_path)
-            if self._is_zh:
+            try:
                 self.vocab_idx={}
                 with open(local_path+'/vocab.txt','r') as voc:
                     for idx,line in enumerate(voc.readlines()):
                         if idx<=105:
                             continue
                         self.vocab_idx[idx]=line.replace("\n",'')
-            else:
+            except:
                 self.vocab_idx={}
                 sp_tokenizer =tokenizer_class.from_pretrained(pretrained_model_name_or_path)
                 sp_vocab=sp_tokenizer.get_vocab()
@@ -119,26 +125,49 @@ class SequenceGeneration(Application):
             for key, value in model_state_dict.items():
                 key=key.replace('xsum.','').replace('mt5.','').replace('_model.','')
                 state_dict_without_prefix[key] = value
+
             self._model=AutoModelForSeq2SeqLM.from_pretrained(local_path,state_dict=state_dict_without_prefix)
+            
             self.loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
 
     def forward(self, inputs):
-        if self.is_gpt2:
+        # print([i for i in inputs["input_ids"]], [i for i in inputs["attention_mask"]])
+        # print(inputs["input_ids"].size(), inputs['decoder_input_ids'].size())
+        if self.is_gpt2 or 'bloom' in self.pretrained_model_name_or_path:
             prob = self._model(input_ids=inputs["input_ids"],
                         attention_mask=inputs["attention_mask"])[0]            
         else:
             prob = self._model(input_ids=inputs["input_ids"],
                         decoder_input_ids=inputs["decoder_input_ids"],
                         attention_mask=inputs["attention_mask"],
-                        decoder_attention_mask=inputs["decoder_attention_mask"])[0]
+                        decoder_attention_mask=inputs["decoder_attention_mask"])[0]        
+        # print(prob.size())
         slice_len=prob.size()[1]
         label_len=inputs['decoder_attention_mask'].size()[1]
         if label_len<slice_len:
             slice_len=label_len
-        prob = prob[:, :slice_len-1]
-        mask = inputs['decoder_attention_mask'][:, 1:slice_len].reshape(-1).bool()
-        prob = prob.reshape((-1, prob.size(-1)))[mask]
-        labels = inputs['decoder_input_ids'][:, 1:slice_len].reshape(-1)[mask]
+        if not self.decoder_only:
+            prob = prob[:, :slice_len-1]
+            mask = inputs['decoder_attention_mask'][:, 1:slice_len].reshape(-1).bool()
+            prob = prob.reshape((-1, prob.size(-1)))[mask]
+            labels = inputs['decoder_input_ids'][:, 1:slice_len].reshape(-1)[mask]
+        else:
+            try:
+                sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id)[1][::2]
+            except TypeError:
+                sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0])[1][::2]
+            decoder_input_len = inputs["decoder_attention_mask"][:, 1:slice_len].sum(1)
+            # print(torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id), decoder_input_len)
+            # print(torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0]), decoder_input_len)
+            # print([(sep_pos[i]+1,sep_pos[i]+1+decoder_input_len[i]) for i in range(inputs["input_ids"].size()[0])])
+            prob_list = [prob[i, sep_pos[i]+1:sep_pos[i]+1+decoder_input_len[i]] for i in range(inputs["input_ids"].size()[0])]
+            prob = torch.cat(prob_list)
+            pred_len_list = [i.size(0) for i in prob_list]
+            labels = torch.cat([inputs['decoder_input_ids'][i, 1: pred_len_list[i]+1] for i in range(inputs["input_ids"].size()[0])])
+            
+            # mask = inputs['decoder_attention_mask'][:, 1:slice_len].reshape(-1).bool()
+            # labels = inputs['decoder_input_ids'][:, 1:slice_len].reshape(-1)[mask]
+            
         return {
             "prob": prob,
             "labels": labels
