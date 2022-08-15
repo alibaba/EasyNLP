@@ -19,16 +19,70 @@ class CLIPGPTImageTextGeneration(Application):
         super().__init__()
         self.cond_stage_key = 'image'
         self.generate_stage_key = 'text'
+        self.prefix_encoder_type = 'vit'
         self.pkeep = user_defined_parameters.get('pkeep', 1.0)
         self.device = user_defined_parameters.get('device', 'cuda')
-        self.prefix_encoder_type = 'vit'
+
+        # when pretraining, the pretrained_model_name_or_path is actually the tokenizer
+        # if we don't set pretrained_model_name_or_path, \
+        # the vocab.txt will not be automatically copied to the new director of pretrained model
+        # Therefore, the pretrained_model_name_or_path should be set in pretraining
+        self.enable_pretraining = False
         if pretrained_model_name_or_path is None:
+            self.enable_pretraining = True
+        else:
+            config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            if config.model_type in ['bert', 'gpt2']:
+                self.enable_pretraining = True
+
+        if self.enable_pretraining:
             # if image_encoder is not parametered, default image encoder is 'vit'
             is_clip_encoder = user_defined_parameters.get('app_parameters', True).get('enable_vit', True)
             assert is_clip_encoder == True, 'wrong image encode settings'
 
         # CLIP & GPT
-        if pretrained_model_name_or_path is not None: 
+        if self.enable_pretraining:
+            logger.info("Train Image2Text model from scratch....")
+
+            # text_tokenizer
+            text_tokenizer_path = pretrained_model_name_or_path if pretrained_model_name_or_path else 'bert-base-chinese'
+            text_tokenizer_path = get_pretrain_model_path(text_tokenizer_path)
+            self.text_tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
+            text_vocab_size = len(self.text_tokenizer)
+  
+            # vision_encoder: vit
+            vit_ckpt_path = user_defined_parameters.get('vit_ckpt_path')
+            # openai_clip: float16 if GPU available, float32 if CPU only. so load the clip model on cpu and then turn to gpu
+            self.first_stage_model = CLIPFromPretrained(vit_ckpt_path, jit=False, device=torch.device("cpu"))[0].visual.eval()
+
+            # gpt config
+            #text_vocab_size = int(user_defined_parameters.get('text_vocab_size', '21128'))
+            #vocab_size = text_vocab_size
+
+            self.text_len = int(user_defined_parameters.get('text_len', '32'))
+            self.img_len = int(user_defined_parameters.get('img_len', '256'))
+            block_size = self.text_len + self.img_len
+            n_layer = int(user_defined_parameters.get('n_layer', '12'))
+            n_head = int(user_defined_parameters.get('n_head', '12'))
+            n_embd = int(user_defined_parameters.get('n_embd', '768'))
+            
+            assert self.prefix_encoder_type in vit_ckpt_path.lower(), 'the prefix encoder type is not consistent with ckpt_path'
+            self.config = MinGPTI2TConfig(vocab_size=text_vocab_size, block_size=block_size, \
+                    n_layer=n_layer, n_head=n_head, n_embd=n_embd, decode_vocab_size=text_vocab_size, \
+                    prefix_encoder_type=self.prefix_encoder_type, prefix_encoder_ckpt_path=vit_ckpt_path)
+            
+            # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
+            if n_embd == self.first_stage_model.width:
+                self.first_stage_model.proj = None
+            
+            # gpt
+            self.transformer = MinGPT(self.config)
+
+        else:
+            # text_tokenizer
+            text_tokenizer_path = pretrained_model_name_or_path
+            self.text_tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
+
             # gpt config
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
             # image encoder
@@ -47,32 +101,7 @@ class CLIPGPTImageTextGeneration(Application):
             self.img_len = int(user_defined_parameters.get('img_len', '256'))
             assert self.transformer.block_size == self.text_len + self.img_len, \
                 'The text_len or img_len is wrong, the sum of the two value should be equal to block_size of gpt'
-        else:
-            logger.info("Train Image2Text model from scratch....")
-  
-            # vision_encoder: vit
-            vit_ckpt_path = user_defined_parameters.get('vit_ckpt_path')
-            # openai_clip: float16 if GPU available, float32 if CPU only. so load the clip model on cpu and then turn to gpu
-            self.first_stage_model = CLIPFromPretrained(vit_ckpt_path, jit=False, device=torch.device("cpu"))[0].visual.eval()
 
-            # gpt config
-            text_vocab_size = int(user_defined_parameters.get('text_vocab_size', '21128'))
-            vocab_size = text_vocab_size
-
-            self.text_len = int(user_defined_parameters.get('text_len', '32'))
-            self.img_len = int(user_defined_parameters.get('img_len', '256'))
-            block_size = self.text_len + self.img_len
-            n_layer = int(user_defined_parameters.get('n_layer', '12'))
-            n_head = int(user_defined_parameters.get('n_head', '12'))
-            n_embd = int(user_defined_parameters.get('n_embd', '768'))
-            
-            assert self.prefix_encoder_type in vit_ckpt_path.lower(), 'the prefix encoder type is not consistent with ckpt_path'
-            self.config = MinGPTI2TConfig(vocab_size=vocab_size, block_size=block_size, \
-                    n_layer=n_layer, n_head=n_head, n_embd=n_embd, decode_vocab_size=text_vocab_size, \
-                    prefix_encoder_type=self.prefix_encoder_type, prefix_encoder_ckpt_path=vit_ckpt_path)
-            
-            # gpt
-            self.transformer = MinGPT(self.config)
         
         # image resize
         img_size = int(user_defined_parameters.get('img_size', '224'))
@@ -84,13 +113,6 @@ class CLIPGPTImageTextGeneration(Application):
         assert self.img_len == ((self.img_size/patch_size) * (self.img_size/patch_size)), \
             'the value of \'img_len\' must be equal to the square of vit.input_resolution/vit.patch_size'
 
-        # text tokenizer
-        if pretrained_model_name_or_path == None:
-            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
-        else:
-            text_tokenizer_path = pretrained_model_name_or_path
-        self.text_tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
-
 
     def init_from_ckpt(self, pretrained_model_name_or_path, **kwargs):
         weight_path = os.path.join(pretrained_model_name_or_path, 'pytorch_model.bin')
@@ -99,6 +121,10 @@ class CLIPGPTImageTextGeneration(Application):
         self.load_state_dict(sd, strict=False)
         print(f"Restored from {pretrained_model_name_or_path}")
         return self
+    
+    @torch.no_grad()
+    def encode_images_to_embeddings(self, image_pixels):
+        return self.first_stage_model(image_pixels) # torch.Size([8, img_len=256, 1024])
 
     def forward(self, inputs):
         text_tokens_ids = inputs['text']    # x: text_token_ids  [B, text_len=32]
@@ -107,7 +133,7 @@ class CLIPGPTImageTextGeneration(Application):
         assert (image_pixels.shape[1] == 3 and image_pixels.shape[2] == self.img_size and \
             image_pixels.shape[3] == self.img_size), 'invalid image shape'
 
-        image_embedding_features = self.first_stage_model(image_pixels) # torch.Size([8, img_len=256, 1024])
+        image_embedding_features = self.encode_images_to_embeddings(image_pixels) # torch.Size([8, img_len=256, 1024])
 
         # text
         token_indices = text_tokens_ids   # z_indices: text_token_ids
@@ -254,34 +280,26 @@ class VQGANGPTImageTextGeneration(Application):
         self.prefix_encoder_type = 'vqgan'
         self.pkeep = user_defined_parameters.get('pkeep', 1.0)
         self.device = user_defined_parameters.get('device', 'cuda')
+
+        # when pretraining, the pretrained_model_name_or_path is actually the tokenizer
+        # if we don't set pretrained_model_name_or_path, \
+        # the vocab.txt will not be automatically copied to the new director of pretrained model
+        # Therefore, the pretrained_model_name_or_path should be set in pretraining
+        self.enable_pretraining = False
         if pretrained_model_name_or_path is None:
+            self.enable_pretraining = True
+        else:
+            config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            if config.model_type in ['bert', 'gpt2']:
+                self.enable_pretraining = True
+
+        if self.enable_pretraining:
             # if image_encoder is not parametered, default image encoder is 'vit', not 'vqgan'
             is_vqgan_encoder = user_defined_parameters.get('app_parameters', False).get('enable_vqgan', False)
             assert is_vqgan_encoder == True, 'wrong image encode settings'
         
         # VQGAN & GPT
-        if pretrained_model_name_or_path is not None: 
-            # gpt config
-            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
-            # image encoder
-            if self.config.model_type == 'artist_i2t': # for old version artist_i2t pretrained model
-                self.config.prefix_encoder_type = self.prefix_encoder_type
-            assert self.config.prefix_encoder_type == self.prefix_encoder_type, \
-                'This class is not consistent with pretrained model. Please add the user_defined_parameters \"enable_vqgan=True\"'
-            self.first_stage_model = VQModel()
-            # gpt config
-            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
-            # gpt
-            self.transformer = MinGPT(self.config)
-            # initialize from pretrained model
-            self.init_from_ckpt(pretrained_model_name_or_path)
-
-            # config
-            if self.config.prefix_encoder_ckpt_path is None:
-                self.config.prefix_encoder_ckpt_path = 'vqgan_artist_i2t'
-                self.config.prefix_encoder_type = 'vqgan'
-
-        else:
+        if self.enable_pretraining:
             logger.info("Train Text2Image model from scratch....")
             # image encoder
             vqgan_ckpt_path = user_defined_parameters.get('vqgan_ckpt_path')
@@ -304,10 +322,33 @@ class VQGANGPTImageTextGeneration(Application):
             
             # gpt
             self.transformer = MinGPT(self.config)
+
+        else:
+            # gpt config
+            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            # image encoder
+            if self.config.model_type == 'artist_i2t': # for old version artist_i2t pretrained model
+                self.config.prefix_encoder_type = self.prefix_encoder_type
+            assert self.config.prefix_encoder_type == self.prefix_encoder_type, \
+                'This class is not consistent with pretrained model. Please add the user_defined_parameters \"enable_vqgan=True\"'
+            self.first_stage_model = VQModel()
+            # gpt config
+            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            # gpt
+            self.transformer = MinGPT(self.config)
+            # initialize from pretrained model
+            self.init_from_ckpt(pretrained_model_name_or_path)
+
+            # config
+            if self.config.prefix_encoder_ckpt_path is None:
+                self.config.prefix_encoder_ckpt_path = 'vqgan_artist_i2t'
+                self.config.prefix_encoder_type = 'vqgan'
+            
         
         # text tokenizer
-        if pretrained_model_name_or_path == None:
-            text_tokenizer_path = get_pretrain_model_path(user_defined_parameters.get('text_tokenizer', 'bert-base-chinese'))
+        if self.enable_pretraining:
+            text_tokenizer_path = pretrained_model_name_or_path if pretrained_model_name_or_path else 'bert-base-chinese'
+            text_tokenizer_path = get_pretrain_model_path(text_tokenizer_path)
         else:
             text_tokenizer_path = pretrained_model_name_or_path
         self.text_tokenizer = ImageTextBERTTokenizer(text_tokenizer_path, start_id = 0)
