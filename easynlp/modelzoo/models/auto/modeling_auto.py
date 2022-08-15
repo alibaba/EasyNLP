@@ -90,7 +90,7 @@ from .configuration_auto import (
     PegasusConfig,
     T5Config,
     BloomConfig,
-    RandengConfig
+    RandengConfig,
     KangarooConfig
 )
 from ..kbert.modeling_kbert import (
