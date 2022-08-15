@@ -15,9 +15,9 @@ pip install ./tmp/pai_easynlp-0.0.7-py3-none-any.whl --force-reinstall -i https:
 
 # Download data
 if [ ! -f ./tmp/IC_train_base64.txt ]; then
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_train_base64.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_val_base64.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_test_base64.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_train_base64.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_val_base64.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_test_base64.txt
     mv *.txt tmp/
 fi
 

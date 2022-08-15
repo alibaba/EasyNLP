@@ -12,18 +12,18 @@ NODE_RANK=0
 
 # Download data
 if [ ! -f ./tmp/IC_train.txt ]; then
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_train.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_val.txt
-    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/artist_image2text/IC_test.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_train.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_val.txt
+    wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/image2text_generation/IC_test.txt
     mkdir tmp/
     mv *.txt tmp/
 fi
 
 # Download i2t_generation_large ckpt -- This is the vqgan+gpt version. 
-if [ ! -f ./tmp/pai-artist-i2t-large-zh.tgz ]; then
-    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/pai-artist-i2t-large-zh.tgz
+if [ ! -f ./tmp/pai-vqgan-gpt-i2t-large-zh.tgz ]; then
+    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/pai-vqgan-gpt-i2t-large-zh.tgz
 fi
-tar zxvf ./tmp/pai-artist-i2t-large-zh.tgz -C ./tmp/
+tar zxvf ./tmp/pai-vqgan-gpt-i2t-large-zh.tgz -C ./tmp/
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 mode=$2
@@ -83,7 +83,7 @@ elif [ "$mode" = "finetune" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=./tmp/pai-artist-i2t-large-zh
+        pretrain_model_name_or_path=./tmp/pai-vqgan-gpt-i2t-large-zh
         img_size=256
         img_len=256
         text_len=32
