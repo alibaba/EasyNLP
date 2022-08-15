@@ -70,13 +70,13 @@ class CLIPGPTImageTextGeneration(Application):
             self.config = MinGPTI2TConfig(vocab_size=text_vocab_size, block_size=block_size, \
                     n_layer=n_layer, n_head=n_head, n_embd=n_embd, decode_vocab_size=text_vocab_size, \
                     prefix_encoder_type=self.prefix_encoder_type, prefix_encoder_ckpt_path=vit_ckpt_path)
-            
-            # gpt
-            self.transformer = MinGPT(self.config)
-
+ 
             # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
             if n_embd == self.first_stage_model.width:
                 self.first_stage_model.proj = None
+           
+            # gpt
+            self.transformer = MinGPT(self.config)
 
         else:
             # text_tokenizer
@@ -85,21 +85,22 @@ class CLIPGPTImageTextGeneration(Application):
 
             # gpt config
             self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            
             # image encoder
             assert self.config.prefix_encoder_type == self.prefix_encoder_type, \
                 'This class is not consistent with pretrained model, Please add the user_defined_parameters \"enable_vit=True\"'
             vit_ckpt_path = self.config.prefix_encoder_ckpt_path
             ## openai_clip: float16 if GPU available, float32 if CPU only. so load the clip model on cpu and then turn to gpu
             self.first_stage_model = CLIPFromPretrained(vit_ckpt_path, jit=False, device=torch.device("cpu"))[0].visual.eval()
+            # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
+            if self.config.n_embd == self.first_stage_model.width:
+                self.first_stage_model.proj = None
+
             # gpt
             self.transformer = MinGPT(self.config)
             # initialize from pretrained model
             self.init_from_ckpt(pretrained_model_name_or_path)
-
-            # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
-            if self.config.n_embd == self.first_stage_model.width:
-                self.first_stage_model.proj = None
-            
+                       
             # sequence length
             self.text_len = int(user_defined_parameters.get('text_len', '32'))
             self.img_len = int(user_defined_parameters.get('img_len', '256'))
