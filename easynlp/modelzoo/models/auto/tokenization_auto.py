@@ -40,6 +40,7 @@ from ..kbert.tokenization_kbert import KBertTokenizer
 from ..bart.tokenization_bart import BartTokenizer
 from ..bloom.tokenization_bloom_fast import BloomTokenizerFast
 from ..randeng.tokenization_randeng import RandengTokenizer
+from ..kangaroo.tokenization_kangaroo import KangarooTokenizer
 
 from .configuration_auto import (
     AutoConfig,
@@ -51,6 +52,7 @@ from .configuration_auto import (
     replace_list_option_in_docstrings,
     TextCNNConfig,
     ARTISTConfig,
+    MinGPTI2TConfig,
     KBertConfig,
     BartConfig,
     MT5Config,
@@ -58,6 +60,7 @@ from .configuration_auto import (
     T5Config,
     BloomConfig,
     RandengConfig
+    KangarooConfig
 )
 
 if is_sentencepiece_available():
@@ -82,6 +85,7 @@ if is_tokenizers_available():
     from ..pegasus.tokenization_pegasus_fast import PegasusTokenizerFast
     from ..t5.tokenization_t5_fast import T5TokenizerFast
     from ..bloom.tokenization_bloom_fast import BloomTokenizerFast
+    from ..kangaroo.tokenization_kangaroo_fast import KangarooTokenizerFast
 else:
     BertTokenizerFast = None
     GPT2TokenizerFast = None
@@ -94,6 +98,7 @@ else:
     PegasusTokenizerFast = None
     T5TokenizerFast = None
     BloomTokenizerFast = None
+    KangarooTokenizerFast = None
 
 
 logger = logging.get_logger(__name__)
@@ -108,6 +113,7 @@ TOKENIZER_MAPPING = OrderedDict(
         (GPT2Config, (GPT2Tokenizer, GPT2TokenizerFast)),
         (TextCNNConfig, (TextCNNTokenizer, None)),
         (ARTISTConfig, (BertTokenizer, BertTokenizerFast)),
+        (MinGPTI2TConfig, (BertTokenizer, BertTokenizerFast)),
         (KBertConfig, (KBertTokenizer, KBertTokenizerFast)),
         (T5Config, (T5Tokenizer, T5TokenizerFast)),
         (MT5Config, (MT5Tokenizer, MT5TokenizerFast)),
@@ -115,6 +121,7 @@ TOKENIZER_MAPPING = OrderedDict(
         (BartConfig, (BartTokenizer, BartTokenizerFast)),
         (BloomConfig, (None, BloomTokenizerFast)),
         (RandengConfig, (RandengTokenizer, None)),
+        (KangarooConfig, (KangarooTokenizer, KangarooTokenizerFast))
     ]
 )
 

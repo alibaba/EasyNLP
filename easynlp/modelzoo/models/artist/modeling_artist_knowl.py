@@ -104,21 +104,20 @@ class Block(nn.Module):
         return x
 
 
-class GPT(nn.Module):
+class GPT_knowl(nn.Module):
     """  the full GPT language model, with a context size of block_size """
     def __init__(self, config):
         super().__init__()
         # input embedding stem
         self.tok_emb = nn.Embedding(config.vocab_size, config.n_embd)
+        self.ent_emb = nn.Linear(100, config.n_embd)
         self.pos_emb = nn.Parameter(torch.zeros(1, config.block_size, config.n_embd))
         self.drop = nn.Dropout(config.embd_pdrop)
         # transformer
         self.blocks = nn.Sequential(*[Block(config) for _ in range(config.n_layer)])
         # decoder head
         self.ln_f = nn.LayerNorm(config.n_embd)
-        # self.head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
-        #self.head = nn.Linear(config.n_embd, 16384, bias=False) 
-        self.head = nn.Linear(config.n_embd, config.decode_vocab_size, bias=False)
+        self.head = nn.Linear(config.n_embd, config.img_vocab_size, bias=False)
         self.block_size = config.block_size
         self.apply(self._init_weights)
         self.config = config
@@ -136,18 +135,32 @@ class GPT(nn.Module):
             module.bias.data.zero_()
             module.weight.data.fill_(1.0)
 
-    def forward(self, idx, embeddings=None, targets=None):
+    def forward(self, idx, words_emb=None, flag=False, targets=None):
         # forward the GPT model
         token_embeddings = self.tok_emb(idx) # each index maps to a (learnable) vector
-
-        if embeddings is not None: # prepend explicit embeddings
-            token_embeddings = torch.cat((embeddings, token_embeddings), dim=1)
 
         t = token_embeddings.shape[1]
         assert t <= self.block_size, "Cannot forward, model block size is exhausted."
         position_embeddings = self.pos_emb[:, :t, :] # each position maps to a (learnable) vector
         x = self.drop(token_embeddings + position_embeddings)
         x = self.blocks(x)
+
+        if words_emb is not None and flag:   # append explicit embeddings
+            text_emb = x[:, :32, :]    # [bsz, text_len, hs]
+            text_emb_f = text_emb.unsqueeze(1)   # [bsz, 1, text_len, hs]
+            text_emb_f = text_emb_f.reshape(text_emb_f.shape[0], text_emb_f.shape[1], -1)  # [bsz, 1, text_len * hs]
+            words_emb = self.ent_emb(words_emb)    # [bsz, ent_num, text_len, hs]
+            words_emb_f = words_emb.reshape(words_emb.shape[0], words_emb.shape[1], -1)    # [bsz, ent_num, text_len * hs]
+            weights = text_emb_f @ words_emb_f.transpose(1,2)   # [bsz, 1, ent_num]
+            # weights = text_emb_f @ words_emb.reshape(words_emb.shape[0], words_emb.shape[1], -1).transpose(1,2)
+            # weights = weights / math.sqrt(text_emb_f.shape[-1])
+            norm_weights = torch.where(weights != 0, weights, torch.tensor(-1e30, dtype=torch.float32).cuda())
+            norm_weights = torch.softmax(norm_weights, dim=-1).squeeze(dim=1)   # [bsz, ent_num]
+            norm_weights = norm_weights[:, :, None, None]  # [bsz, ent_num, 1, 1]
+            words_emb_weighted = torch.sum(words_emb * norm_weights, dim=1)  # [bsz, text_len, hs]
+            text_emb = text_emb + words_emb_weighted
+            x[:, :32, :] = text_emb
+
         x = self.ln_f(x)
         logits = self.head(x)
 

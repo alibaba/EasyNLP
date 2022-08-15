@@ -1,15 +1,17 @@
 import math
-from easynlp.utils import get_pretrain_model_path
-#from ...modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
+
+from ...utils import get_pretrain_model_path
+#from ....modelzoo import AutoTokenizer, BertTokenizer, GPT2Tokenizer
 from ...modelzoo import AutoTokenizer
 
-class ArtistBERTTokenizer(object):
+class ImageTextBERTTokenizer(object):
     def __init__(self, pretrained_model_name_or_path, start_id, unk_token="[UNK]", end_token="[PAD]"):
         if pretrained_model_name_or_path is None:
             pretrained_model_name_or_path = get_pretrain_model_path('bert-base-chinese')
 
         #self.tokenizer = BertTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
+        print (f"tokenizer load from {pretrained_model_name_or_path}")
 
         max_num = -math.inf
         for key in self.tokenizer.vocab.keys():
@@ -45,13 +47,14 @@ class ArtistBERTTokenizer(object):
     def __len__(self):
         return len(self.tokenizer)
 
-class ArtistGPT2Tokenizer(object):
+class ImageTextGPT2Tokenizer(object):
     def __init__(self, pretrained_model_name_or_path, start_id, unk_token="<|endoftext|>", end_token="<|endoftext|>"):
         if pretrained_model_name_or_path is None:
             pretrained_model_name_or_path = get_pretrain_model_path('gpt2')
 
         #self.tokenizer = GPT2Tokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, do_lower_case=True)
+        print (f"tokenizer load from {pretrained_model_name_or_path}")
         
         max_num = -math.inf
         for key in self.tokenizer.encoder.keys():

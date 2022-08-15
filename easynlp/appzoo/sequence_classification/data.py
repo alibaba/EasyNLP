@@ -15,6 +15,9 @@
 
 import torch
 import jieba
+import pandas as pd
+import numpy as np
+import random
 
 from ...distillation.distill_dataset import DistillatoryBaseDataset
 from ...fewshot_learning.fewshot_dataset import FewshotBaseDataset
@@ -56,6 +59,7 @@ class ClassificationDataset(BaseDataset):
                          **kwargs)
 
         self.kbert_model_prefix = True if 'kbert' in pretrained_model_name_or_path else False
+        self.kangaroo_model_prefix = True if 'kangaroo' in pretrained_model_name_or_path else False
 
         # assert ".easynlp/modelzoo/" in pretrained_model_name_or_path
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
@@ -66,6 +70,22 @@ class ClassificationDataset(BaseDataset):
             self.kg = KnowledgeGraph(spo_file=kg_file, predicate=True)
 
         self.max_seq_length = max_seq_length
+
+        if self.kangaroo_model_prefix:
+            entity_file = user_defined_parameters.get('entity_file', '')
+            rel_file = user_defined_parameters.get('rel_file', '')
+            CL_samples_file = user_defined_parameters.get('samples_file', '')
+            concept_emb_file = user_defined_parameters.get('concept_emb_file', '')
+            if entity_file == '' or rel_file == '':
+                raise ValueError('Kangaroo needs knowledge embedding file...')
+
+            rel_df = pd.read_csv(rel_file)
+            # entity_df = pd.read_csv(entity_file)[:500]
+            entity_df = pd.read_csv(entity_file)
+            self.entity_tree, self.tokenid2entityid = self.kangaroo_create_entity_tree(entity_df)
+            self.tokenidVec, self.positionidVec = self.kangaroo_get_contrastive_samples(CL_samples_file)
+            self.conceptEmbVec = self.kangaroo_get_concept_emb(concept_emb_file)
+
         user_defined_parameters = kwargs.get('user_defined_parameters', {})
         self.multi_label = user_defined_parameters.get('app_parameters', {}).get('multi_label', False)
 
@@ -97,6 +117,8 @@ class ClassificationDataset(BaseDataset):
             self.label_name = None
 
         self.label_map = dict({value: idx for idx, value in enumerate(self.label_enumerate_values)})
+
+
 
     @property
     def label_enumerate_values(self):
@@ -146,6 +168,10 @@ class ClassificationDataset(BaseDataset):
         if self.kbert_model_prefix:
             encoding['input_ids'], encoding['token_type_ids'], encoding['attention_mask'], encoding['position_ids'], encoding['visible_matrix'] = self.kbert_row_data_process(encoding['input_ids'], encoding['token_type_ids'], encoding['attention_mask'])
 
+        if self.kangaroo_model_prefix:
+            encoding['entities_position'], encoding['ent_mask'], encoding['sample_token_id'], encoding['sample_position_id'], encoding['sample_mask'], encoding['concept_emb'] = self.kangaroo_row_data_process(encoding['input_ids'])
+
+            encoding['pretrain_model'] = False
 
         return encoding
 
@@ -217,6 +243,144 @@ class ClassificationDataset(BaseDataset):
         return ent_input_ids, ent_token_type_ids, ent_attention_mask, ent_pos_ids, ent_visible_matrix
 
 
+    def kangaroo_row_data_process(self, token_ids, entity_num=3, entity_gap=5):
+        # token_ids = input_ids[1:-1]
+        # if len(token_ids) > self.max_seq_length - 2:
+        #     token_ids = token_ids[:(self.max_seq_length - 2)]
+
+        # entity position
+        entity_pos = []
+        i = 0
+        while i < len(token_ids):
+            search_result = self.entity_tree.search(token_ids, i)
+            if len(search_result) == 0:
+                i = i + 1
+                continue
+            j = search_result[-1]
+            entity = token_ids[i:j]
+            entity_pos.append((i, j))
+            i = j + 1
+
+        # entity id list
+        entities = [-100 for _ in range(len(token_ids))]
+        # entity id list, trasform id to 1,2,3...n
+        entities_position = [0 for _ in range(len(token_ids))]
+        entity_index = 0
+        entity_pos_true = []
+
+        entity_id_list = []
+        entity_head_tail = []
+
+        for pos in entity_pos:
+            close_flag = False
+            h_index = pos[0]
+            t_index = pos[1]
+            for i in range(1, entity_gap+1):
+                if h_index - i < 0:
+                    continue
+                if entities[h_index - i] != -100:
+                    close_flag = True
+            if close_flag:
+                continue
+            entity_id = self.tokenid2entityid[str(token_ids[h_index:t_index])]
+            entity_index += 1
+            entity_pos_true.append(pos)
+
+            entity_id_list.append(entity_id)
+            entity_head_tail.extend([h_index, t_index - 1])
+
+            for ent_index in range(h_index, t_index):
+                entities[ent_index] = entity_id
+                entities_position[ent_index] = entity_index
+
+            if entity_index == entity_num:
+                break
+
+        if entity_index < entity_num:
+            for j in range(entity_num - entity_index):
+                entity_id_list.append(-1)
+                entity_head_tail.extend([-1, -1])
+
+        input_mask = list((np.array(token_ids) != -1) * 1)
+        entities_position = torch.LongTensor(entities_position)
+
+        ent_mask = torch.LongTensor((entities_position != 0) * 1)
+        entity_id_index = torch.LongTensor(entity_id_list) + 1
+        sample_token_id = self.tokenidVec[entity_id_index]
+        sample_position_id = self.positionidVec[entity_id_index]
+        sample_mask = torch.LongTensor((np.array(sample_token_id) != 0) * 1)
+        concept_emb = self.conceptEmbVec[entity_id_index]  # [batch_size, entity_num, concept_size]
+
+        return entities_position.tolist(), ent_mask.tolist(), sample_token_id.tolist(), sample_position_id.tolist(), sample_mask.tolist(), concept_emb.tolist()
+
+    def kangaroo_create_entity_tree(self, entity_df):
+        full_name_to_id = {}
+        for i in range(len(entity_df)):
+            full_name = entity_df.iloc[i]['main_name']
+            name_list = entity_df.iloc[i]['name_list'].split('|')
+            if pd.isna(full_name):
+                name_list = entity_df.iloc[i]['name_list'].split('|')
+            id = int(entity_df.iloc[i]['index'])
+            for name in name_list:
+                full_name_to_id[name] = id
+
+        entities = list(full_name_to_id.keys())
+        entities_tokens_id = []
+        tokenid2entityid = {}
+        for entity in entities:
+            entity_token_id = self.tokenizer.convert_tokens_to_ids([k for k in entity])
+            entities_tokens_id.append(entity_token_id)
+            tokenid2entityid[str(entity_token_id)] = full_name_to_id[entity]
+        entity_tree = KangarooTrieTree()
+        for word in entities_tokens_id:
+            entity_tree.add_word(word)
+        return entity_tree, tokenid2entityid
+
+    def kangaroo_get_contrastive_samples(self, samples_file, max_level=4):
+        samples = np.load(samples_file, allow_pickle=True).item()
+        max_index = np.max(list(samples.keys()))
+        token_id_vec = [[[0 for _ in range(self.max_seq_length)] for _ in range(max_level)] for _ in range(max_index + 2)]
+        pos_id_vec = [[[0 for _ in range(self.max_seq_length)] for _ in range(max_level)] for _ in range(max_index + 2)]
+        # for ind in random.sample(samples.keys(), 500):
+        for ind in samples.keys():
+            try:
+                token_id_list = []
+                pos_id_list = []
+                for le in range(1, max_level+1):
+                    level = "level_%d" % le
+                    if len(samples[ind][level]) == 0:
+                        level = "level_2"
+                    tokens = samples[ind][level][0]['tokens']
+                    token_ids = self.tokenizer.convert_tokens_to_ids(tokens)
+                    pos_ids = samples[ind][level][0]['position_id']
+                    # assert len(token_ids) == len(pos_ids)
+
+                    if len(token_ids) < self.max_seq_length:
+                        token_ids.extend([0]*(self.max_seq_length-len(token_ids)))
+                        pos_ids.extend([0]*(self.max_seq_length-len(pos_ids)))
+
+                    token_id_list.append(token_ids)
+                    pos_id_list.append(pos_ids)
+
+                token_id_vec[ind + 1] = token_id_list
+                pos_id_vec[ind + 1] = pos_id_list
+            except:
+                continue
+
+        return torch.LongTensor(token_id_vec), torch.LongTensor(pos_id_vec)
+
+    def kangaroo_get_concept_emb(self, emb_file, dim=100):
+        entity2emb = np.load(emb_file, allow_pickle=True).item()
+        max_index = np.max(list(entity2emb.keys()))
+        concept_emb_vec = [[0 for _ in range(dim)] for _ in range(int(max_index) + 2)]
+        for ind in entity2emb.keys():
+            concept_emb_vec[int(ind) + 1] = entity2emb[ind]
+        return torch.FloatTensor(concept_emb_vec)
+
+
+
+
+
 class KnowledgeGraph():
     """
         Construct KG structure for K-BERT
@@ -280,8 +444,47 @@ class KnowledgeGraph():
 
         return row
 
+class KangarooTrieTree:
+    """
+        Construct entity prefix structure for KANGAROO
+    """
+    def __init__(self):
+        self.node = [""]
+        self.edge = [{}]
+        self.flag = [False]
 
+    def add_node(self, node):
+        self.node.append(node)
+        self.edge.append({})
+        self.flag.append(False)
+        return len(self.node) - 1
 
+    def add_word(self, word):
+        u = 0
+        for i in word:
+            if i not in self.edge[u]:
+                self.edge[u][i] = self.add_node(i)
+            u = self.edge[u][i]
+        self.flag[u] = True
+
+    def show(self):
+        for i in range(len(self.node)):
+            print(i)
+            print(self.node[i])
+            print(self.edge[i])
+            print(self.flag[i])
+            print()
+
+    def search(self, sentence, start_position):
+        i = start_position
+        u = 0
+        result = []
+        while i < len(sentence) and sentence[i] in self.edge[u]:
+            u = self.edge[u][sentence[i]]
+            i += 1
+            if self.flag[u]:
+                result.append(i)
+        return result
 
 class DistillatoryClassificationDataset(DistillatoryBaseDataset, ClassificationDataset):
     pass

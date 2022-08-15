@@ -13,22 +13,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" ARTIST model configuration """
+""" MinGPT model configuration """
 
 from ...configuration_utils import PretrainedConfig
 from ...utils import logging
 
 logger = logging.get_logger(__name__)
 
-class ARTISTConfig(PretrainedConfig):
+class MinGPTI2TConfig(PretrainedConfig):
     r"""
-    This is the configuration class to store the configuration of a :class:`MinGPTModel`. 
+    This is the configuration class to store the configuration of a :class:`MinGPT`. 
     Args:
         vocab_size (:obj:`int`, `optional`, defaults to 30522):
             Vocabulary size of the GEEP model. Defines the number of different tokens that can be represented by the
             :obj:`inputs_ids` passed when calling :class:`GEEPModel`.
     """
-    model_type = "artist_i2t"
+    model_type = "mingpt_i2t"
 
     def __init__(
         self,
@@ -41,6 +41,10 @@ class ARTISTConfig(PretrainedConfig):
         resid_pdrop = 0.,
         attn_pdrop = 0.,
         n_unmasked=0,
+        decode_vocab_size=21128,
+        model_type = model_type, 
+        prefix_encoder_type = None,
+        prefix_encoder_ckpt_path = None,
         **kwargs
     ):
         super().__init__(**kwargs)
@@ -53,5 +57,9 @@ class ARTISTConfig(PretrainedConfig):
         self.resid_pdrop = resid_pdrop
         self.attn_pdrop = attn_pdrop
         self.n_unmasked = n_unmasked
+        self.decode_vocab_size = decode_vocab_size
+        self.model_type = model_type
+        self.prefix_encoder_type = prefix_encoder_type
+        self.prefix_encoder_ckpt_path = prefix_encoder_ckpt_path
         for k,v in kwargs.items():
             setattr(self, k, v)
