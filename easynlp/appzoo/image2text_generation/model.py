@@ -71,12 +71,12 @@ class CLIPGPTImageTextGeneration(Application):
                     n_layer=n_layer, n_head=n_head, n_embd=n_embd, decode_vocab_size=text_vocab_size, \
                     prefix_encoder_type=self.prefix_encoder_type, prefix_encoder_ckpt_path=vit_ckpt_path)
             
+            # gpt
+            self.transformer = MinGPT(self.config)
+
             # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
             if n_embd == self.first_stage_model.width:
                 self.first_stage_model.proj = None
-            
-            # gpt
-            self.transformer = MinGPT(self.config)
 
         else:
             # text_tokenizer
@@ -96,6 +96,10 @@ class CLIPGPTImageTextGeneration(Application):
             # initialize from pretrained model
             self.init_from_ckpt(pretrained_model_name_or_path)
 
+            # setting the projection of first_stage_model's outputs according to `n_embd` of GPT
+            if self.config.n_embd == self.first_stage_model.width:
+                self.first_stage_model.proj = None
+            
             # sequence length
             self.text_len = int(user_defined_parameters.get('text_len', '32'))
             self.img_len = int(user_defined_parameters.get('img_len', '256'))
