@@ -123,7 +123,7 @@ def get_remote_app_model_mapping() -> dict:
     local_file_path = os.path.join(cache_root, "appzoo_config.json")
     try:
         if not os.path.exists(cache_root):
-            os.mkdirs(cache_root)
+            os.makedirs(cache_root)
         urllib.request.urlretrieve(remote_file_path, local_file_path)
     except:
         if os.path.exists(local_file_path):
