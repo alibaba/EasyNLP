@@ -8,10 +8,10 @@ cd ${cur_path}
 mkdir tmp
 
 # Download whl
-if [ ! -f ./tmp/pai_easynlp-0.0.5-py3-none-any.whl ]; then
-    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/pai_easynlp-0.0.5-py3-none-any.whl
+if [ ! -f ./tmp/pai_easynlp-0.0.7-py3-none-any.whl ]; then
+   wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/image2text/pai_easynlp-0.0.7-py3-none-any.whl
 fi
-pip install ./tmp/pai_easynlp-0.0.5-py3-none-any.whl --force-reinstall
+pip install ./tmp/pai_easynlp-0.0.7-py3-none-any.whl --force-reinstall -i https://pypi.tuna.tsinghua.edu.cn/simple 
 
 # Download data
 if [ ! -f ./tmp/IC_train.txt ]; then
@@ -21,12 +21,8 @@ if [ ! -f ./tmp/IC_train.txt ]; then
     mv *.txt tmp/
 fi
 
-# Download artist-large ckpt
-if [ ! -f ./tmp/artist-i2t-large-zh.tgz ]; then
-    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/geely_app/artist-i2t-large-zh.tgz
-fi
-#tar zxvf ./tmp/artist-i2t-large-zh.tgz -C ./tmp/
 
+# pretrain from scratch
 if [ "$mode" = "pretrain" ]; then
   easynlp \
     --mode=train \
@@ -35,7 +31,7 @@ if [ "$mode" = "pretrain" ]; then
     --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
     --first_sequence=imgbase64 \
     --second_sequence=text \
-    --checkpoint_dir=./tmp/artist_i2t_model_pretrain \
+    --checkpoint_dir=./tmp/i2t_model_pretrain \
     --learning_rate=4e-5 \
     --epoch_num=1 \
     --random_seed=42 \
@@ -45,13 +41,22 @@ if [ "$mode" = "pretrain" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=./tmp/artist-i2t-large-zh
+        enable_vqgan=True
+        vqgan_ckpt_path=./tmp/vqgan_f16_16384.bin
         img_size=256
-        text_len=32
         img_len=256
-    '
+        text_len=32
+        text_tokenizer=bert-base-chinese
+        vocab_size=37513
+        img_vocab_size=16384
+        text_vocab_size=21128
+        block_size=288
+        n_layer=24
+        n_head=16
+        n_embd=1024
+      '
 
-
+# finetune
 elif [ "$mode" = "finetune" ]; then
   easynlp \
     --mode=train \
@@ -60,7 +65,7 @@ elif [ "$mode" = "finetune" ]; then
     --input_schema=idx:str:1,imgbase64:str:1,text:str:1 \
     --first_sequence=imgbase64 \
     --second_sequence=text \
-    --checkpoint_dir=./tmp/artist_i2t_model_finetune \
+    --checkpoint_dir=./tmp/i2t_model_finetune \
     --learning_rate=4e-5 \
     --epoch_num=1 \
     --random_seed=42 \
@@ -70,13 +75,14 @@ elif [ "$mode" = "finetune" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=./tmp/artist_i2t_model_pretrain
+        enable_vqgan=True
+        pretrain_model_name_or_path=./tmp/i2t_model_pretrain
         img_size=256
-        text_len=32
         img_len=256
+        text_len=32
       ' 
 
-
+# predict
 elif [ "$mode" = "predict" ]; then
   rm -rf ./tmp/IC_outputs.txt
   easynlp \
@@ -87,13 +93,15 @@ elif [ "$mode" = "predict" ]; then
     --first_sequence=imgbase64 \
     --outputs=./tmp/IC_outputs.txt \
     --output_schema=idx,gen_text \
-    --checkpoint_dir=./tmp/artist_i2t_model_finetune \
+    --checkpoint_dir=./tmp/i2t_model_finetune \
     --sequence_length=288 \
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
+        enable_vqgan=True
         img_size=256
         text_len=32
         img_len=256
+        max_generated_num=4
       '
 fi

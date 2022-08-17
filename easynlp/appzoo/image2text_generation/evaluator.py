@@ -15,16 +15,16 @@
 
 import time
 import torch
-from torch import nn
-import numpy as np
-from scipy.stats import pearsonr, spearmanr
-from sklearn.metrics import matthews_corrcoef, roc_auc_score, classification_report
-from sklearn.metrics import f1_score, precision_score, recall_score
+# from torch import nn
+# import numpy as np
+# from scipy.stats import pearsonr, spearmanr
+# from sklearn.metrics import matthews_corrcoef, roc_auc_score, classification_report
+# from sklearn.metrics import f1_score, precision_score, recall_score
 
-from ...utils import losses
+# from ...utils import losses
 from ...utils.logger import logger
 from ...core.evaluator import Evaluator
-from ...fewshot_learning.fewshot_evaluator import PromptEvaluator, CPTEvaluator
+# from ...fewshot_learning.fewshot_evaluator import PromptEvaluator, CPTEvaluator
 
 
 class ImageTextGenerationEvaluator(Evaluator):

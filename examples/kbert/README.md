@@ -2,7 +2,7 @@
 
 # K-BERT
 
-This cod is the re-implementation 《K-BERT: Enabling Language Representation with Knowledge Graph》.
+This cod is the re-implementation of K-BERT: Enabling Language Representation with Knowledge Graph.
 
 K-BERT is a knowledge-enabled language representation model with knowledge graphs (KGs), in which triples are injected into the sentences as domain knowledge. K-BERT introduces soft- position and visible matrix to limit the impact of knowledge. It can easily inject domain knowledge into the models by equipped with a KG without pre-training by-self because it is capable of loading model parameters from the pre- trained BERT. 
 

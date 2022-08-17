@@ -70,7 +70,7 @@ if __name__ == "__main__":
     elif args.mode == "evaluate":
         model = get_application_model_for_evaluation(app_name=args.app_name,
                                                      pretrained_model_name_or_path=args.checkpoint_dir,
-                                                     multi_label=args.multi_label, two_tower=args.two_tower)
+                                                     user_defined_parameters=user_defined_parameters)
         evaluator = get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,
                                               eval_batch_size=args.micro_batch_size,
                                               user_defined_parameters=user_defined_parameters)

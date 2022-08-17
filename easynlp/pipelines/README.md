@@ -27,3 +27,73 @@ data = ["Yucaipa owned Dominick's before selling the chain to Safeway \
         having earlier set a record high of A$4.57."]
 print(classifictor(data))
 ```
+
+There is an example of text-image generation.
+
+```python
+from easynlp.pipelines import pipeline
+from PIL import Image
+import base64
+from io import BytesIO
+
+# init pipeline. The model generates ${max_generated_num} (setting it to 1 by default) images for each text.
+generator = pipeline('text2image_generation', max_generated_num = 4)
+
+# convert base64 to image
+def base64_to_image(imgbase64_str):
+    image = Image.open(BytesIO(base64.urlsafe_b64decode(imgbase64_str)))
+    return image
+
+# input data
+data = ['远处的雪山，表面覆盖着厚厚的积雪']
+
+# model generation
+generator = pipeline('text2image_generation')
+
+# save images named after text
+for text, result in zip(data, results):
+    imgbase64_str_list = result['gen_imgbase64']
+    imgpath_list = []
+    for base64_idx in range(len(imgbase64_str_list)):
+        imgbase64_str = imgbase64_str_list[base64_idx]
+        image = base64_to_image(imgbase64_str)
+        imgpath = '{}_{}.png'.format(text, base64_idx)
+        image.save(imgpath)
+        imgpath_list.append(imgpath)
+    print ('text: {}, save generated image: {}'.format(text, imgpath_list))
+```
+
+There is an example of image caption.
+
+```python
+from easynlp.pipelines import pipeline
+from PIL import Image
+import base64
+from io import BytesIO
+
+# init pipeline.  The model generates ${max_generated_num} (setting it to 1 by default) captions for each image.
+generator = pipeline('image2text_generation', max_generated_num = 4)
+
+# convert image to base64
+def image_to_base64(img_path):
+    img = Image.open(img_path)
+    img_buffer = BytesIO()
+    img.save(img_buffer, format=img.format)
+    byte_data = img_buffer.getvalue()
+    base64_str = str(base64.b64encode(byte_data), 'utf-8')
+ 
+    return base64_str
+
+# input data
+data = ['./example.png']
+
+# model generation
+data_imgbase64 = [image_to_base64(imgpath) for imgpath in data]
+results = generator(data_imgbase64)
+
+# display the predicted captions
+for imgpath, result in zip(data, results):
+    text_list = result['gen_text']
+    print ('imgpath: {}, generated text: {}'.format(imgpath, text_list))
+```
+

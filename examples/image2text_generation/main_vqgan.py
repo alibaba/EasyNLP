@@ -8,12 +8,11 @@ print('*'*50)
 print('running local main...\n')
 from easynlp.core import Trainer
 # from easynlp.appzoo import get_application_evaluator
-from easynlp.appzoo.sequence_classification.data import ClassificationDataset
 
-from easynlp.appzoo.image2text_generation.data import ImageTextDataset
-from easynlp.appzoo.image2text_generation.model import ImageTextGeneration
+from easynlp.appzoo.image2text_generation.data import VQGANGPTImageTextDataset
+from easynlp.appzoo.image2text_generation.model import VQGANGPTImageTextGeneration
 from easynlp.appzoo.image2text_generation.evaluator import ImageTextGenerationEvaluator
-from easynlp.appzoo.image2text_generation.predictor import ImageTextGenerationPredictor
+from easynlp.appzoo.image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor
 from easynlp.utils import initialize_easynlp, get_args
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from easynlp.core import PredictorManager
@@ -38,7 +37,7 @@ if __name__ == "__main__":
 
 
     if args.mode == "predict":
-        predictor = ImageTextGenerationPredictor(model_dir=args.checkpoint_dir, model_cls=ImageTextGeneration,
+        predictor = VQGANGPTImageTextGenerationPredictor(model_dir=args.checkpoint_dir, model_cls=VQGANGPTImageTextGeneration,
                                        first_sequence=args.first_sequence, user_defined_parameters=user_defined_parameters)
 
         predictor_manager = PredictorManager(
@@ -56,7 +55,7 @@ if __name__ == "__main__":
 
     print('log: starts to process dataset...\n')
 
-    train_dataset = ImageTextDataset(
+    train_dataset = VQGANGPTImageTextDataset(
         pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[0],
         max_seq_length=args.sequence_length,
@@ -66,7 +65,7 @@ if __name__ == "__main__":
         user_defined_parameters=user_defined_parameters,
         is_training=True)
 
-    valid_dataset = ImageTextDataset(
+    valid_dataset = VQGANGPTImageTextDataset(
         pretrained_model_name_or_path=pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
         max_seq_length=args.sequence_length,
@@ -77,8 +76,7 @@ if __name__ == "__main__":
         is_training=False)
     
     
-    #model = ImageTextGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
-    model = ImageTextGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
+    model = VQGANGPTImageTextGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
     evaluator = ImageTextGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
 
     trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,

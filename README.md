@@ -20,7 +20,7 @@
 
 # EasyNLP [中文介绍](https://github.com/alibaba/EasyNLP/blob/master/README.cn.md)
   
-EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, first released inside Alibaba in 2021. It is built with scalable distributed training strategies and supports a comprehensive suite of NLP algorithms for various NLP applications. EasyNLP integrates knowledge distillation and few-shot learning for landing large pre-trained models and provides a unified framework of model training, inference, and deployment for real-world applications. It has powered more than 10 BUs and more than 20 business scenarios within the Alibaba group. It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-code model training.
+EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, first released inside Alibaba in 2021. It is built with scalable distributed training strategies and supports a comprehensive suite of NLP algorithms for various NLP applications. EasyNLP integrates knowledge distillation and few-shot learning for landing large pre-trained models, together with various popular multi-modality pre-trained models. It provides a unified framework of model training, inference, and deployment for real-world applications. It has powered more than 10 BUs and more than 20 business scenarios within the Alibaba group. It is seamlessly integrated to [Platform of AI (PAI)](https://www.aliyun.com/product/bigdata/product/learn) products, including PAI-DSW for development, PAI-DLC for cloud-native training, PAI-EAS for serving, and PAI-Designer for zero-code model training.
 
 
 # Main Features
@@ -29,13 +29,25 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 - **Compatible with open-source libraries:** EasyNLP has APIs to support the training of models from Huggingface/Transformers with the PAI distributed framework. It also supports the pre-trained models in [EasyTransfer](https://github.com/alibaba/EasyTransfer) ModelZoo.
 - **Knowledge-injected pre-training:** The PAI team has a lot of research on knowledge-injected pre-training, and builds a knowledge-injected model that wins first place in the CCF knowledge pre-training competition. EasyNLP integrates these cutting-edge knowledge pre-trained models, including DKPLM and KGBERT.
 - **Landing large pre-trained models:** EasyNLP provides few-shot learning capabilities, allowing users to finetune large models with only a few samples to achieve good results. At the same time, it provides knowledge distillation functions to help quickly distill large models to a small and efficient model to facilitate online deployment.
+- **Multi-modality pre-trained models:** EasyNLP is not about NLP only. It also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation.
+
+# Technical Articles
+
+We have a series of technical articles on the functionalities of EasyNLP.
+
+- [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
+- [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
+- [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
+- [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
+- [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
+
 
 # Installation
 
 You can either install it from pip
 
 ```bash
-$ pip install pai-easynlp (might be out-of-date)
+$ pip install pai-easynlp (may be out-of-date)
 ```
 
 or setup from the source：
@@ -46,7 +58,7 @@ $ cd EasyNLP
 $ python setup.py install
 ```
 
-This repo is tested on Python3.6, PyTorch >= 1.8.
+This repo is tested on Python 3.6, PyTorch >= 1.8.
 
 # Quick Start
 
@@ -106,6 +118,8 @@ python main.py \
   --user_defined_parameters='pretrain_model_name_or_path=bert-tiny-uncased'
 ```
 
+The complete example can be found [here](https://github.com/alibaba/EasyNLP/blob/master/examples/appzoo_tutorials/sequence_classification/bert_classify/run_train_eval_predict_user_defined_local.sh).
+
 You can also use AppZoo Command Line Tools to quickly train an App model. Take text classification on SST-2 dataset as an example. First you can download the [train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv), and [dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv), then start training:
 
 ```bash
@@ -161,6 +175,15 @@ Pre-trained Models for Chinese](https://arxiv.org/pdf/2110.06696.pdf) by Zhuoshe
 Please refer to this [readme](https://github.com/alibaba/EasyNLP/blob/master/easynlp/modelzoo/README.md) for the usage of these models in EasyNLP.
 Meanwhile, EasyNLP supports to load pretrained models from Huggingface/Transformers, please refer to [this tutorial](https://www.yuque.com/easyx/easynlp/qmq8wh) for details.
 
+# EasyNLP Goes Multi-modal
+EasyNLP also supports various popular multi-modality pre-trained models to support vision-language tasks that require visual knowledge. For example, it is equipped with CLIP-style models for text-image matching and DALLE-style models for text-to-image generation. 
+
+
+1. [Text-image Matching](https://github.com/alibaba/EasyNLP/blob/master/examples/clip_retrieval/run_clip_local.sh)
+2. [Text-to-image Generation](https://github.com/alibaba/EasyNLP/blob/master/examples/text2image_generation/run_appzoo_cli_local.sh)
+3. [Image-to-text Generation](https://github.com/alibaba/EasyNLP/blob/master/examples/image2text_generation/run_appzoo_cli_local_clip.sh)
+
+
 # Landing Large Pre-trained Models
 EasyNLP provide few-shot learning and knowledge distillation to help land large pre-trained models.
 
@@ -208,7 +231,7 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 - [自定义文本分类示例](https://www.yuque.com/easyx/easynlp/ds35qn)
 - [QuickStart-文本分类](https://www.yuque.com/easyx/easynlp/rxne07)
 - [QuickStart-PAI DSW](https://www.yuque.com/easyx/easynlp/gvat1o)
-- [QuickStart-MaxCompute/ODPS数据](https://www.yuque.com/easyx/easynlp/vdt5ze)
+- [QuickStart-MaxCompute/ODPS数据](https://www.yuque.com/easyx/easynlp/vgwe7f)
 - [AppZoo-文本向量化](https://www.yuque.com/easyx/easynlp/ts4czl)
 - [AppZoo-文本分类/匹配](https://www.yuque.com/easyx/easynlp/vgbopy)
 - [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/qkwqmb)
@@ -221,7 +244,9 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 - [Rapidformer模型训练加速实践](https://www.yuque.com/easyx/easynlp/bi6nzc)
 - API docs: [http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp/easynlp_docs/html/index.html)
 
+
 # License
+
 This project is licensed under the [Apache License (Version 2.0)](https://github.com/alibaba/EasyNLP/blob/master/LICENSE). This toolkit also contains some code modified from other repos under other open-source licenses. See the [NOTICE](https://github.com/alibaba/EasyNLP/blob/master/NOTICE) file for more information.
 
 # ChangeLog

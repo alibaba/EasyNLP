@@ -38,7 +38,7 @@ class MultiModalPredictor(Predictor):
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
         self.tokenizer = BertTokenizer.from_pretrained(model_dir)
-        self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs)
+        self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs).cuda()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.second_sequence = kwargs.pop("second_sequence", "second_sequence")
         self.sequence_length = kwargs.pop("sequence_length", 128)
@@ -106,14 +106,14 @@ class MultiModalPredictor(Predictor):
 
     def postprocess(self, result):
         if result['image_embeds'] is not None:
-            image_embeds_arr=result['image_embeds'].detach().numpy()
+            image_embeds_arr=result['image_embeds'].detach().cpu().numpy()
             _tmp_image=[]
             for one_emb in image_embeds_arr:
                 _tmp_image.append({'image_feat':'\t'.join([str(x) for x in one_emb])})
             return _tmp_image
 
         if result['text_embeds'] is not None:
-            text_embeds_arr=result['text_embeds'].detach().numpy()
+            text_embeds_arr=result['text_embeds'].detach().cpu().numpy()
             _tmp_text=[]
             for one_emb in text_embeds_arr:
                 _tmp_text.append({'text_feat':'\t'.join([str(x) for x in one_emb])})
