@@ -61,8 +61,8 @@ from ..megatron_bert.modeling_megatron_bert import (
 # from ..clip.modeling_clip import CLIPModel
 from ..gpt2.modeling_gpt2 import GPT2ForSequenceClassification, GPT2LMHeadModel, GPT2Model
 
-# from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
-# from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
+from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
+from ..randeng.modeling_randeng import RandengForCausalLM, RandengForConditionalGeneration, RandengModel
 from ..roberta.modeling_roberta import (
     RobertaForCausalLM,
     RobertaForMaskedLM,
@@ -89,6 +89,8 @@ from .configuration_auto import (
     MT5Config,
     PegasusConfig,
     T5Config,
+    BloomConfig,
+    RandengConfig,
     KangarooConfig
 )
 from ..kbert.modeling_kbert import (
@@ -128,6 +130,7 @@ from ..kangaroo.modeling_kangaroo import (
 from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
 from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
 from ..t5.modeling_t5 import T5ForConditionalGeneration, T5Model
+from ..bloom.modeling_bloom import BloomForCausalLM, BloomModel, BloomForTokenClassification, BloomForSequenceClassification, BloomPreTrainedModel
 
 logger = logging.get_logger(__name__)
 
@@ -159,6 +162,8 @@ MODEL_MAPPING = OrderedDict(
         (MT5Config, MT5Model),
         (T5Config, T5Model),
         (PegasusConfig, PegasusModel),
+        (BloomConfig, BloomModel),
+        (RandengConfig, RandengModel),
     ]
 )
 
@@ -173,6 +178,7 @@ MODEL_FOR_PRETRAINING_MAPPING = OrderedDict(
         (KBertConfig, KBertForPreTraining),
         (T5Config, T5ForConditionalGeneration),
         (BartConfig, BartForConditionalGeneration),
+        (BloomConfig, BloomPreTrainedModel),
         (KangarooConfig, KangarooForPreTraining)
     ]
 )
@@ -203,6 +209,8 @@ MODEL_FOR_CAUSAL_LM_MAPPING = OrderedDict(
         (KBertConfig, KBertLMHeadModel),
         (BartConfig, BartForCausalLM),
         (PegasusConfig, PegasusForCausalLM),
+        (BloomConfig, BloomForCausalLM),
+        (RandengConfig, RandengForCausalLM),
         (KangarooConfig, KangarooLMHeadModel)
     ]
 )
@@ -225,7 +233,9 @@ MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING = OrderedDict(
         (MT5Config, MT5ForConditionalGeneration),
         (T5Config, T5ForConditionalGeneration),
         (PegasusConfig, PegasusForConditionalGeneration),
-        (BartConfig, BartForConditionalGeneration)
+        (BartConfig, BartForConditionalGeneration),
+        (BloomConfig, BloomForCausalLM),
+        (RandengConfig, RandengForConditionalGeneration),
     ]
 )
 
@@ -238,6 +248,7 @@ MODEL_FOR_SEQUENCE_CLASSIFICATION_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForSequenceClassification),
         (GPT2Config, GPT2ForSequenceClassification),
         (KBertConfig, KBertForSequenceClassification),
+        (BloomConfig, BloomForSequenceClassification),
         (KangarooConfig, KangarooForSequenceClassification)
     ]
 )
@@ -264,6 +275,7 @@ MODEL_FOR_TOKEN_CLASSIFICATION_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForTokenClassification),
         (MegatronBertConfig, MegatronBertForTokenClassification),
         (KBertConfig, KBertForTokenClassification),
+        (BloomConfig, BloomForTokenClassification),
         (KangarooConfig, KangarooForTokenClassification)
     ]
 )
@@ -276,6 +288,7 @@ MODEL_FOR_MULTIPLE_CHOICE_MAPPING = OrderedDict(
         (DkplmConfig, DkplmForMultipleChoice),
         (MegatronBertConfig, MegatronBertForMultipleChoice),
         (KBertConfig, KBertForTokenClassification),
+        (BloomConfig, BloomForTokenClassification),
         (KangarooConfig, KangarooForTokenClassification)
     ]
 )

@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
         #model = SequenceGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
-        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
+        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, pretrained_model_name_or_path=args.pretrained_model_name_or_path)
 
         trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
                         evaluator=evaluator)
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     elif args.mode == "evaluate":
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
-        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
+        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, pretrained_model_name_or_path=args.pretrained_model_name_or_path)
 
         if args.n_gpu > 0:
             model.to(torch.cuda.current_device())

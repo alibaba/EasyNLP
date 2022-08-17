@@ -24,22 +24,6 @@ from ...utils import io
 from ..dataset import BaseDataset
 from .model import T5PegasusTokenizer,sequence_padding
 
-def generation_convert_single_example_to_feature(src_text, tgt_text, tokenizer, max_seq_len=128):
-    input_ids = tokenizer.encode(src_text, max_length=max_seq_len, truncation='only_first')
-    
-    if tgt_text is None:
-        decoder_input_ids = [101]
-    else:
-        decoder_input_ids = tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
-    features = {
-        'input_ids': input_ids,
-        'decoder_input_ids': decoder_input_ids,
-        'attention_mask': [1] * len(input_ids),
-        'decoder_attention_mask': [1] * len(decoder_input_ids),
-        'src_text': src_text,
-        'tgt_text': tgt_text
-    }
-    return features
 
 class SequenceGenerationDataset(BaseDataset):
     def __init__(self,
@@ -50,6 +34,7 @@ class SequenceGenerationDataset(BaseDataset):
                  first_sequence,
                  second_sequence,
                  user_defined_parameters,
+                 is_training,
                  *args,
                  **kwargs):
         """
@@ -73,24 +58,35 @@ class SequenceGenerationDataset(BaseDataset):
                 self.user_defined_parameters=user_defined_parameters
         else:
             self.user_defined_parameters={}
+        
+        # add self.max_decoder_length
+        self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
+
         if os.path.exists(pretrained_model_name_or_path):
             local_path=pretrained_model_name_or_path
         else:
             local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
-        print(local_path)  
-        config_path=local_path+'/config.json'
-        if self.user_defined_parameters.get('service')=='chat':
-            self.tokenizer = BertTokenizer(vocab_file=local_path+'/vocab.txt', sep_token="[SEP]", pad_token="[PAD]", cls_token="[CLS]")
-        else:
-            with open(config_path,'r') as load_f:
-                load_dict = json.load(load_f)
+
+        self.config_path=local_path+'/config.json'
+        with open(self.config_path, 'r') as load_f:
+            load_dict = json.load(load_f)
+            if 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict):
+                self.tokenizer = BertTokenizer(vocab_file=local_path+'/vocab.txt', sep_token="[SEP]", pad_token="[PAD]", cls_token="[CLS]")
+            else:
                 if ("architectures" in load_dict) and (load_dict["architectures"][0]=='T5ForConditionalGeneration'):
                     tokenizer_class=T5PegasusTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  
-            self.tokenizer = tokenizer_class.from_pretrained(local_path)
+                self.tokenizer = tokenizer_class.from_pretrained(local_path)
+            
+            # add self.decoder_only
+            self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+            self.is_randeng = 'randeng' in pretrained_model_name_or_path or 'randeng' == load_dict.get('model_type', '')
+        # add self.is_training
+        self.is_training = is_training
         self.max_seq_length = max_seq_length
+        self.language = self.user_defined_parameters.get("language", 'zh')
 
         # Text Features
         assert first_sequence in self.column_names, \
@@ -122,7 +118,7 @@ class SequenceGenerationDataset(BaseDataset):
             src_text = row[self.first_sequence]
             tgt_text = row[self.second_sequence]
 
-        feature=generation_convert_single_example_to_feature(src_text, tgt_text, self.tokenizer, max_seq_len=self.max_seq_length)
+        feature=self.generation_convert_single_example_to_feature(src_text, tgt_text, self.tokenizer, max_seq_len=self.max_seq_length)
         return feature
 
     def batch_fn(self, features):
@@ -149,3 +145,36 @@ class SequenceGenerationDataset(BaseDataset):
             "label_ids": [t["tgt_text"] for t in features],
         }
         return output
+    
+    def generation_convert_single_example_to_feature(self, src_text, tgt_text, tokenizer, max_seq_len=128):
+        if self.decoder_only and self.is_training:
+            input_tokens = tokenizer.encode(src_text)
+            output_tokens = tokenizer.encode(tgt_text)
+            if tokenizer.sep_token:
+                input_ids = input_tokens[:self.max_seq_length-len(output_tokens[1:])] + output_tokens[1:]
+                # input_ids = tokenizer.encode(src_text + ' %s ' % tokenizer.sep_token + tgt_text, max_length=max_seq_len+self.max_decoder_length, truncation='only_first')
+            else:
+                input_ids = tokenizer.encode('<s>') + input_tokens[:self.max_seq_length-len(output_tokens)-3] + tokenizer.encode('</s>') + output_tokens + tokenizer.encode('</s>')
+                # input_ids = tokenizer.encode('<s>'+src_text + '%s' % tokenizer.eos_token + tgt_text+'</s>', max_length=max_seq_len+self.max_decoder_length, truncation='only_first')
+        else:
+            if self.is_randeng:
+                input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(src_text, max_length=max_seq_len-1, truncation='only_first')
+            else:
+                input_ids = tokenizer.encode(src_text, max_length=max_seq_len, truncation='only_first')
+        
+        if tgt_text is None:
+            decoder_input_ids = [101]
+        else:
+            if self.is_randeng:
+                decoder_input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+            else:
+                decoder_input_ids = tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+        features = {
+            'input_ids': input_ids,
+            'decoder_input_ids': decoder_input_ids,
+            'attention_mask': [1] * len(input_ids),
+            'decoder_attention_mask': [1] * len(decoder_input_ids),
+            'src_text': src_text,
+            'tgt_text': tgt_text
+        }
+        return features

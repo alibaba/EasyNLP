@@ -35,7 +35,8 @@ from ..bart.configuration_bart import BartConfig
 from ..mt5.configuration_mt5 import MT5Config
 from ..pegasus.configuration_pegasus import PegasusConfig
 from ..t5.configuration_t5 import T5Config
-
+from ..bloom.configuration_bloom import BloomConfig
+from ..randeng.configuration_randeng import RandengConfig
 
 CONFIG_MAPPING = OrderedDict(
     [
@@ -54,6 +55,8 @@ CONFIG_MAPPING = OrderedDict(
         ("t5", T5Config),
         ("pegasus", PegasusConfig),
         ("bart", BartConfig),
+        ("bloom", BloomConfig),
+        ("randeng", RandengConfig),
         ("kangaroo", KangarooConfig)
     ]
 )
@@ -75,6 +78,8 @@ MODEL_NAMES_MAPPING = OrderedDict(
         ("pegasus", "Pegasus"),
         ("bart", "BART"),
         ("mt5", "mT5"),
+        ("bloom", "Bloom"),
+        ("randeng", "Randeng"),
         ("kangaroo", "KANGAROO")
     ]
 )

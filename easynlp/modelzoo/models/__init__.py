@@ -24,5 +24,7 @@ from . import (
     bart,
     mt5,
     t5,
-    pegasus
+    # pegasus,
+    bloom,
+    randeng
 )

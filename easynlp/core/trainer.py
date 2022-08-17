@@ -469,6 +469,21 @@ class Trainer(object):
                                 disable_auto_download=True)), 'vocab.json'),
                     os.path.join(get_dir_name(self.args.checkpoint_dir),
                                 'vocab.json'))
+            # Save tokenizer.json
+            elif os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'tokenizer.json')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'tokenizer.json'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'tokenizer.json'))
             else:
                 raise FileNotFoundError
 

@@ -28,7 +28,7 @@ mode=$2
 
 if [ "$mode" = "predict" ]; then
   
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode $mode \
     --worker_gpu=1 \
@@ -36,16 +36,16 @@ if [ "$mode" = "predict" ]; then
     --outputs=./cn.preds.txt \
     --input_schema=title:str:1,content:str:1,title_tokens:str:1,content_tokens:str:1,tag:str:1 \
     --output_schema=predictions,beams \
-    --append_cols=title_tokens,content,tag \
-    --first_sequence=content_tokens \
-    --checkpoint_dir=./finetuned_zh_model \
+    --append_cols=title,content,tag \
+    --first_sequence=content \
+    --checkpoint_dir=./finetuned_zh_model_randeng238tuned-newspaper/ \
     --micro_batch_size=32 \
     --sequence_length=512 \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "train" ]; then
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
@@ -55,30 +55,36 @@ elif [ "$mode" = "train" ]; then
     --second_sequence=title_tokens \
     --label_name=title_tokens \
     --checkpoint_dir=./finetuned_zh_model \
+    --learning_rate=5e-5  \
     --micro_batch_size=8 \
     --sequence_length=512 \
     --epoch_num=1  \
-    --save_checkpoint_steps=150 \
+    --save_checkpoint_steps=100 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/mt5-title-generation-zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'language=zh pretrain_model_name_or_path=alibaba-pai/mt5-title-generation-zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+
+# alibaba-pai/mt5-title-generation-zh
+# hfl/bloom-350m
+# hfl/randeng-523M-Summary-Chinese
+# hfl/randeng-238M-Summary-Chinese
 
 elif [ "$mode" = "evaluate" ]; then
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_generation/main.py \
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
-    --tables=./cn_dev.tsv  \
+    --tables=./cn_dev.tsv \
     --input_schema=title_tokens:str:1,content_tokens:str:1 \
     --first_sequence=content_tokens \
     --second_sequence=title_tokens \
     --label_name=title_tokens \
-    --checkpoint_dir=./finetuned_zh_model \
-    --micro_batch_size=8 \
+    --checkpoint_dir=./finetuned_zh_model_randeng238tuned-newspaper \
+    --micro_batch_size=16 \
     --sequence_length=512 \
     --epoch_num=1  \
     --save_checkpoint_steps=150 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=50 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi
