@@ -55,6 +55,7 @@ class SequenceGenerationPredictor(Predictor):
             load_dict = json.load(load_f)
             self.is_gpt2='gpt2' in model_dir or ("architectures" not in load_dict)
             self.decoder_only = 'gpt2' in model_dir or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+            self.is_randeng = 'randeng' == load_dict.get('model_type', '')
 
         if self.is_gpt2:
             self.tokenizer = BertTokenizer(vocab_file=local_path+'/vocab.txt', sep_token="[SEP]", pad_token="[PAD]", cls_token="[CLS]")
@@ -119,8 +120,12 @@ class SequenceGenerationPredictor(Predictor):
         if self.decoder_only:
             self.input_len = input_ids.size(1)
             max_decoder_length = self.max_decoder_length + self.input_len
-        else:    
-            max_decoder_length = self.max_decoder_length + input_len
+        else:
+            max_decoder_length = self.max_decoder_length
+        if self.is_randeng:
+            eos_token_id = self.tokenizer.eos_token_id
+        else:
+            eos_token_id = self.tokenizer.sep_token_id
         tmp = self.model.generate(input_ids=input_ids,
                                   attention_mask=attention_mask,
                                   num_beams=self.num_beams,
@@ -130,7 +135,7 @@ class SequenceGenerationPredictor(Predictor):
                                   no_repeat_ngram_size=self.no_repeat_ngram_size,
                                   num_return_sequences=self.num_return_sequences,
                                   decoder_start_token_id=self.tokenizer.cls_token_id,
-                                  eos_token_id=self.tokenizer.sep_token_id)
+                                  eos_token_id=eos_token_id)
         rst = {
             "beam_list": list()
         }

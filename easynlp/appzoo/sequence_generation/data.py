@@ -82,6 +82,7 @@ class SequenceGenerationDataset(BaseDataset):
             
             # add self.decoder_only
             self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+            self.is_randeng = 'randeng' in pretrained_model_name_or_path or 'randeng' == load_dict.get('model_type', '')
         # add self.is_training
         self.is_training = is_training
         self.max_seq_length = max_seq_length
@@ -156,12 +157,18 @@ class SequenceGenerationDataset(BaseDataset):
                 input_ids = tokenizer.encode('<s>') + input_tokens[:self.max_seq_length-len(output_tokens)-3] + tokenizer.encode('</s>') + output_tokens + tokenizer.encode('</s>')
                 # input_ids = tokenizer.encode('<s>'+src_text + '%s' % tokenizer.eos_token + tgt_text+'</s>', max_length=max_seq_len+self.max_decoder_length, truncation='only_first')
         else:
-            input_ids = tokenizer.encode(src_text, max_length=max_seq_len, truncation='only_first')
+            if self.is_randeng:
+                input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(src_text, max_length=max_seq_len-1, truncation='only_first')
+            else:
+                input_ids = tokenizer.encode(src_text, max_length=max_seq_len, truncation='only_first')
         
         if tgt_text is None:
             decoder_input_ids = [101]
         else:
-            decoder_input_ids = tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+            if self.is_randeng:
+                decoder_input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+            else:
+                decoder_input_ids = tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
         features = {
             'input_ids': input_ids,
             'decoder_input_ids': decoder_input_ids,

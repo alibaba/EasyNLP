@@ -38,7 +38,7 @@ if [ "$mode" = "predict" ]; then
     --output_schema=predictions,beams \
     --append_cols=title,content,tag \
     --first_sequence=content \
-    --checkpoint_dir=./finetuned_zh_model/ \
+    --checkpoint_dir=./finetuned_zh_model_randeng238tuned-newspaper/ \
     --micro_batch_size=32 \
     --sequence_length=512 \
     --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
@@ -54,14 +54,14 @@ elif [ "$mode" = "train" ]; then
     --first_sequence=content_tokens \
     --second_sequence=title_tokens \
     --label_name=title_tokens \
-    --checkpoint_dir=./finetuned_zh_model/ \
-    --learning_rate=5e-4  \
+    --checkpoint_dir=./finetuned_zh_model \
+    --learning_rate=5e-5  \
     --micro_batch_size=8 \
     --sequence_length=512 \
-    --epoch_num=10  \
-    --save_checkpoint_steps=200 \
+    --epoch_num=1  \
+    --save_checkpoint_steps=100 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'language=zh service=chat pretrain_model_name_or_path=hfl/bloom-350m copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=30 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'language=zh pretrain_model_name_or_path=alibaba-pai/mt5-title-generation-zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 # alibaba-pai/mt5-title-generation-zh
 # hfl/bloom-350m
@@ -79,12 +79,12 @@ elif [ "$mode" = "evaluate" ]; then
     --first_sequence=content_tokens \
     --second_sequence=title_tokens \
     --label_name=title_tokens \
-    --checkpoint_dir=./finetuned_zh_model \
-    --micro_batch_size=8 \
+    --checkpoint_dir=./finetuned_zh_model_randeng238tuned-newspaper \
+    --micro_batch_size=16 \
     --sequence_length=512 \
     --epoch_num=1  \
     --save_checkpoint_steps=150 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=50 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi

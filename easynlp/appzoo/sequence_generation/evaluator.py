@@ -27,7 +27,8 @@ class SequenceGenerationEvaluator(object):
         self.config_path=local_path+'/config.json'
         with open(self.config_path, 'r') as load_f:
             load_dict = json.load(load_f)
-            self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' in load_dict.get('model_type', ''))
+            self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' == load_dict.get('model_type', ''))
+            self.is_randeng = 'randeng' in pretrained_model_name_or_path or 'randeng' == load_dict.get('model_type', '')
 
         self.max_encoder_length = int(self.user_defined_parameters.get("max_encoder_length", 512))
         self.min_decoder_length = int(self.user_defined_parameters.get("min_decoder_length", 8))
@@ -50,6 +51,10 @@ class SequenceGenerationEvaluator(object):
                 max_decoder_length = self.max_decoder_length + input_len
             else:
                 max_decoder_length = self.max_decoder_length
+            if self.is_randeng:
+                eos_token_id = model._tokenizer.eos_token_id
+            else:
+                eos_token_id = model._tokenizer.sep_token_id
             with torch.no_grad():
                 gen = model.generate(input_ids=batch["input_ids"],
                                      attention_mask=batch["attention_mask"],
@@ -60,7 +65,7 @@ class SequenceGenerationEvaluator(object):
                                      no_repeat_ngram_size=self.no_repeat_ngram_size,
                                      num_return_sequences=1,
                                      decoder_start_token_id=model._tokenizer.cls_token_id,
-                                     eos_token_id=model._tokenizer.sep_token_id)
+                                     eos_token_id=eos_token_id)
             if self.decoder_only:
                 pred_tmp=[model._tokenizer.decode(t[batch["attention_mask"][0].sum().item():], skip_special_tokens=True) for t in gen]
             else:

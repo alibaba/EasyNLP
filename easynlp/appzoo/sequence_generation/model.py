@@ -152,6 +152,7 @@ class SequenceGeneration(Application):
             try:
                 sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id)[1][::2]
             except TypeError:
+                # For compatibility with bloom
                 sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0])[1][::2]
             decoder_input_len = inputs["decoder_attention_mask"][:, 1:slice_len].sum(1)
             prob_list = [prob[i, sep_pos[i]+1:sep_pos[i]+1+decoder_input_len[i]] for i in range(inputs["input_ids"].size()[0])]
