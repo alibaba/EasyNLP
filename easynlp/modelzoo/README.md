@@ -34,9 +34,14 @@
 | hfl/macbert-large-zh | L=24,H=1024,A=16 |  |
 | **Generation** |  |  |
 | alibaba-pai/gpt2-chitchat-zh | L=10,H=768,A=12 | for Chinese dialogue |
-| alibaba-pai/pegasus-summary-generation-en | L=32,H=1024,A=16 | for English text summarization |
+| alibaba-pai/pegasus-summary-generation-en | L=32,H=1024,A=16 | for **English** text summarization |
 | alibaba-pai/mt5-title-generation-zh | L=12,H=768,A=12 | for Chinese News title generation |
 | hfl/bloom-350m | L=24,H=1024,A=16 | decoder-only text generation model for 59 languages |
+| hfl/randeng-238M-Summary-Chinese | L=24,H=768,A=12 | encoder-decoder summarization model for Chinese |
+| hfl/randeng-523M-Summary-Chinese | L=32,H=1024,A=16 | encoder-decoder summarization model for Chinese |
+| alibaba-pai/randeng-238M-Summary-Chinese-tuned | L=24,H=768,A=12 | encoder-decoder news title generation model for Chinese |
+| alibaba-pai/randeng-523M-Summary-Chinese-tuned | L=32,H=1024,A=16 | encoder-decoder news title generation model for Chinese |
+| hfl/brio-cnndm-uncased | L=24,H=1024,A=16 | encoder-decoder summarization model for **English** |
 
 # cli使用方式
 ```bash

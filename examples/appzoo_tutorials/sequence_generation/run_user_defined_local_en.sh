@@ -75,10 +75,10 @@ elif [ "$mode" = "train" ]; then
     --micro_batch_size=8 \
     --learning_rate 5e-5 \
     --sequence_length=512 \
-    --epoch_num 10 \
+    --epoch_num 1 \
     --save_checkpoint_steps=200 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'pretrain_model_name_or_path=hfl/brio-cnndm-uncased language=en copy=false max_encoder_length=512 min_decoder_length=32 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'language=en pretrain_model_name_or_path=alibaba-pai/pegasus-summary-generation-en language=en copy=false max_encoder_length=512 min_decoder_length=32 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 # hfl/bloom-350m
 # alibaba-pai/pegasus-summary-generation-en
