@@ -100,7 +100,7 @@ train_dataset = ClassificationDataset(
     is_training=True)
 
 model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
+Trainer(model=model, train_dataset=train_dataset).train()
 ```
 
 Then you can run the code:
