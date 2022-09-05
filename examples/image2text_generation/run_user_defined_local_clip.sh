@@ -100,9 +100,9 @@ elif [ "$mode" = "pretrain" ]; then
         text_len=32
         pretrain_model_name_or_path=bert-base-chinese
         block_size=288
-        n_layer=24
-        n_head=16
-        n_embd=1024
+        n_layer=12
+        n_head=12
+        n_embd=768
       ' 
 
 elif [ "$mode" = "finetune" ]; then
