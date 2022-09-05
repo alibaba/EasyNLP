@@ -58,7 +58,7 @@ class CLIPGPTImageTextGenerationPredictor(Predictor):
         self.img_len = int(user_defined_parameters.get('img_len', 256))
         self.sequence_length = self.text_len + self.img_len
         self.max_generated_num = int(user_defined_parameters.get('max_generated_num', 1))
-        self.img_size = int(user_defined_parameters.get('img_size', 256))
+        self.img_size = int(user_defined_parameters.get('img_size', 224))
 
         # image sequence length and size validation
         assert self.img_size == self.model.first_stage_model.input_resolution, \

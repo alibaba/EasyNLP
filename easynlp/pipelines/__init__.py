@@ -19,7 +19,7 @@ import logging
 import json
 import tarfile
 from typing import Any, List, Optional
-from ..appzoo import TextImageGeneration, VQGANGPTImageTextGeneration, \
+from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
         SequenceClassification, TextMatch, SequenceLabeling
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
@@ -59,8 +59,8 @@ SUPPORTED_TASKS = {
     },
     'image2text_generation': {
         'impl': ImageTextGenerationPipeline,
-        'model_cls': VQGANGPTImageTextGeneration,
-        'default': 'vqgan-gpt-i2t-large-zh',
+        'model_cls': CLIPGPTImageTextGeneration,
+        'default': 'clip-gpt-i2t-base-zh',
     }
 }
 
