@@ -214,9 +214,9 @@ class VQGANGPTImageTextGenerationPredictor(Predictor):
 
     def predict(self, in_data):
         idx = in_data["idx"]
-        imgs = torch.Tensor(in_data['input_imgs']).cuda()  # [B, 3, 256, 256]
-        # imgs = imgs.permute(0, 3, 1, 2).to(memory_format=torch.contiguous_format)  # [B, 3, 256, 256]
-        _, img_ids = self.model.encode_to_c(imgs)   # [B, 256]
+        imgs = torch.Tensor(in_data['input_imgs']).cuda()  # [B, 3, 224, 224]
+        # imgs = imgs.permute(0, 3, 1, 2).to(memory_format=torch.contiguous_format)  # [B, 3, 224, 224]
+        _, img_ids = self.model.encode_to_c(imgs)   # [B, 256, 768 or 1024]
 
         gen_token_ids_list = []
         for gen_idx in range(self.max_generated_num):
