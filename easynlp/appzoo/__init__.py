@@ -29,6 +29,7 @@ _import_structure = {
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
+    "video2text_generation.model": ['CLIPGPTFrameTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
@@ -40,6 +41,7 @@ _import_structure = {
     "wukong.evaluator": ['WukongEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
+    "video2text_generation.evaluator": ["FrameTextGenerationEvaluator"], 
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
@@ -52,6 +54,7 @@ _import_structure = {
     "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
+    "video2text_generation.predictor": ['CLIPGPTFrameTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
 
 
@@ -64,6 +67,7 @@ _import_structure = {
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
     "text2image_generation.data": ['TextImageDataset', 'TextImageKnowlDataset'],
     "image2text_generation.data": ['CLIPGPTImageTextDataset', 'VQGANGPTImageTextDataset'],
+    "video2text_generation.data": ['CLIPGPTFrameTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
@@ -81,6 +85,7 @@ if TYPE_CHECKING:
     from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
+    from .video2text_generation.model import CLIPGPTFrameTextGeneration
     from .sequence_generation.model import SequenceGeneration
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
@@ -92,6 +97,7 @@ if TYPE_CHECKING:
     from .wukong.evaluator import WukongEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
     from .image2text_generation.evaluator import ImageTextGenerationEvaluator
+    from .video2text_generation.evaluator import FrameTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
@@ -104,6 +110,7 @@ if TYPE_CHECKING:
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
+    from .video2text_generation.predictor import CLIPGPTFrameTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -115,6 +122,7 @@ if TYPE_CHECKING:
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
     from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
+    from .video2text_generation.data import CLIPGPTFrameTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
 
     from .dataset import BaseDataset, GeneralDataset

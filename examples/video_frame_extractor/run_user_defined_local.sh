@@ -19,6 +19,7 @@ if [ ! -f ./tmp/sample_video_id_path.txt ]; then
     mv *.txt tmp/
 fi
 
+# 平均抽取frame_num帧
 
 if [ "$mode" = "base64" ]; then
     # extract video frame, save images by image base64
