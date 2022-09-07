@@ -16,7 +16,7 @@
 
 from abc import ABC
 from typing import Any
-from ..appzoo import VQGANGPTImageTextGenerationPredictor,\
+from ..appzoo import CLIPGPTImageTextGenerationPredictor,\
                     TextImageGenerationPredictor, \
                     SequenceClassificationPredictor, \
                     TextMatchPredictor, SequenceLabelingPredictor
@@ -50,7 +50,7 @@ class Pipeline(ABC):
         results = self.postprocess(model_outputs)
         return results
 
-class ImageTextGenerationPipeline(VQGANGPTImageTextGenerationPredictor, Pipeline):
+class ImageTextGenerationPipeline(CLIPGPTImageTextGenerationPredictor, Pipeline):
 
     def format_input(self, inputs):
         """
