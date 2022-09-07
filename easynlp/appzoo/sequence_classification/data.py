@@ -85,7 +85,6 @@ class ClassificationDataset(BaseDataset):
             self.tokenidVec, self.positionidVec = self.kangaroo_get_contrastive_samples(CL_samples_file)
             self.conceptEmbVec = self.kangaroo_get_concept_emb(concept_emb_file)
 
-        user_defined_parameters = kwargs.get('user_defined_parameters', {})
         self.multi_label = user_defined_parameters.get('app_parameters', {}).get('multi_label', False)
 
         if label_enumerate_values is None:
