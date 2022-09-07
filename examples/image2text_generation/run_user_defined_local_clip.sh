@@ -20,6 +20,13 @@ if [ ! -f ./tmp/IC_train_base64.txt ]; then
     mv *.txt tmp/
 fi
 
+# Download i2t_generation_base ckpt -- This is the clip+gpt version. 
+if [ ! -f ./tmp/pai-clip-gpt-i2t-base-zh.tgz ]; then
+    wget -P ./tmp/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/alibaba-pai/pai-clip-gpt-i2t-base-zh.tgz
+fi
+tar zxvf ./tmp/pai-clip-gpt-i2t-base-zh.tgz -C ./tmp/
+
+
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 mode=$2
 
@@ -115,7 +122,7 @@ elif [ "$mode" = "finetune" ]; then
     --micro_batch_size=8 \
     --app_name=image2text_generation \
     --user_defined_parameters='
-        pretrain_model_name_or_path=./tmp/i2t_gen_model_pretrain
+        pretrain_model_name_or_path=./tmp/pai-clip-gpt-i2t-base-zh
         img_size=224
         img_len=256
         text_len=32
