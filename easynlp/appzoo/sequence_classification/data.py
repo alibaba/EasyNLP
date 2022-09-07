@@ -38,7 +38,6 @@ class ClassificationDataset(BaseDataset):
         label_name: label column name
         second_sequence: set as None
         label_enumerate_values: a list of label values
-        multi_label: set as True if perform multi-label classification, otherwise False
     """
     def __init__(self,
                  pretrained_model_name_or_path,
