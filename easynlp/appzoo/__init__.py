@@ -29,7 +29,8 @@ _import_structure = {
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
-    "sequence_generation.model": ["SequenceGeneration"], 
+    "sequence_generation.model": ["SequenceGeneration"],
+    "machine_reading_comprehension.model": ["MachineReadingComprehension"],
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
@@ -40,7 +41,8 @@ _import_structure = {
     "wukong.evaluator": ['WukongEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
-    "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
+    "sequence_generation.evaluator": ["SequenceGenerationEvaluator"],
+    "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -53,7 +55,7 @@ _import_structure = {
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
-
+    "machine_reading_comprehension.predictor": ["MachineReadingComprehensionPredictor"],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
@@ -65,6 +67,7 @@ _import_structure = {
     "text2image_generation.data": ['TextImageDataset', 'TextImageKnowlDataset'],
     "image2text_generation.data": ['CLIPGPTImageTextDataset', 'VQGANGPTImageTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
+    "machine_reading_comprehension.data": ["MachineReadingComprehensionDataset"],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -82,6 +85,7 @@ if TYPE_CHECKING:
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
     from .sequence_generation.model import SequenceGeneration
+    from .machine_reading_comprehension.model import MachineReadingComprehension
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
@@ -93,6 +97,7 @@ if TYPE_CHECKING:
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
     from .image2text_generation.evaluator import ImageTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
+    from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -105,6 +110,7 @@ if TYPE_CHECKING:
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
+    from .machine_reading_comprehension.predictor import MachineReadingComprehensionPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
@@ -116,6 +122,7 @@ if TYPE_CHECKING:
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
     from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
+    from .machine_reading_comprehension.data import MachineReadingComprehensionDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets

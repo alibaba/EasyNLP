@@ -215,7 +215,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'sequence_generation', 'geep_classify',
                            'text2image_generation', 
                            'image2text_generation', 'image2text_generation_vqgan', 
-                           'clip', 'wukong'
+                           'clip', 'wukong', 'machine_reading_comprehension'
                        ],
                        help='name of the application')
 
@@ -348,10 +348,42 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        type=str,
                        default=None,
                        help='Which column is the label mapping to')
+    group.add_argument('--answer_name',
+                       type=str,
+                       default=None,
+                       help='Which column is the answer (MRC) mapping to')
+    group.add_argument('--qas_id',
+                       type=str,
+                       default=None,
+                       help='Which column is the qas_id (MRC) mapping to')
+    group.add_argument('--start_position_name',
+                       type=str,
+                       default=None,
+                       help='Which column is the start_position (MRC) mapping to')
+    group.add_argument('--max_query_length',
+                       type=int,
+                       default=64,
+                       help='Maximum query length to process. (MRC)')
+    group.add_argument('--max_answer_length',
+                       type=int,
+                       default=30,
+                       help='Maximum answer length to process. (MRC)')
+    group.add_argument('--doc_stride',
+                       type=int,
+                       default=128,
+                       help='doc stride in MRC')
     group.add_argument('--output_schema',
                        type=str,
                        default='',
                        help='The schema of the output results')
+    group.add_argument('--n_best_size',
+                       type=int,
+                       default=10,
+                       help='n best size to show (MRC)')
+    group.add_argument('--output_answer_file',
+                       type=str,
+                       default=None,
+                       help='output predicted answer file (MRC)')
     group.add_argument('--append_cols',
                        type=str,
                        default=None,

@@ -164,3 +164,9 @@ examples/appzoo_tutorials/language_modeling/lm_models/
 examples/appzoo_tutorials/sequence_labeling/labeling_model/
 examples/appzoo_tutorials/text_match/two_tower/text_match_two_tower_model_dir/
 examples/appzoo_tutorials/text_vision/clip_model/
+examples/appzoo_tutorials/machine_reading_comprehension/squad_model/
+examples/appzoo_tutorials/machine_reading_comprehension/evaluate_result.py
+examples/appzoo_tutorials/machine_reading_comprehension/modelzoo_alibaba.json
+examples/appzoo_tutorials/machine_reading_comprehension/output.log
+examples/appzoo_tutorials/machine_reading_comprehension/squad_dev-v1.1-mod.json
+examples/appzoo_tutorials/machine_reading_comprehension/unit_test.py
