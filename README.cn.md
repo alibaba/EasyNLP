@@ -230,7 +230,7 @@ This project is licensed under the [Apache License (Version 2.0)](https://github
 
 # 联系我们
 
-扫描下面二维码加入dingidng群，有任何问题欢迎在群里反馈。
+扫描下面二维码加入dingding群，有任何问题欢迎在群里反馈。
 
 <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649324662278-fe178523-6b14-4eff-8f50-7abbf468f751.png?x-oss-process=image%2Fresize%2Cw_357%2Climit_0" width="300"/>
 
