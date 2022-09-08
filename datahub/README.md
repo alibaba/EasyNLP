@@ -1,4 +1,20 @@
-EasyNLP提供常见的中文数据集的下载，同时提供如下接口加载和处理中文数据。
+EasyNLP提供常见的**中文**数据集的下载，同时提供如下**接口加载**和处理中文数据。
+
+# 目录
+[使用DataHub数据进行训练](#使用DataHub数据进行训练)
+[预训练数据](#预训练数据)
+[通用NLU数据](#通用NLU数据)
+[中文文本匹配/问答数据](#中文文本匹配/问答数据)
+[中文文本分类](#中文文本分类)
+[中文序列标注](#中文序列标注)
+[文本生成数据（摘要、对话等）](#文本生成数据（摘要、对话等）)
+[知识图谱](#知识图谱)
+[知识任务数据](#知识任务数据)
+[零样本学习](#零样本学习)
+[小样本学习](#小样本学习)
+[多模态-检索数据](#多模态-检索数据)
+[多模态-生成数据](#多模态-生成数据)
+
 
 # 使用DataHub数据进行训练
 对于已经过huggingface或easynlp预处理的数据，您可以直接使用以下方式加载与训练:
@@ -116,21 +132,31 @@ Trainer(model=model, train_dataset=train_dataset).train()
 | OntoNotes**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | | 中文命名实体识别任务 总共 15740 | 有18种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 | MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | msra_ner | 中文命名实体识别任务训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 
-# 文本生成/摘要数据
+# 文本生成数据（摘要、对话等）
 | **数据** | **描述** | **数据格式** |
 | --- | --- | --- |
-| Dureader[(链接)](https://arxiv.org/pdf/1711.05073.pdf) | 百度中文阅读理解数据集（改造成：问题生成任务）200,000 问题/1,000,000 文档 | 每条sample包含5个数据项：question：输入的问题；question type：问题类型（yes-no，entity-fact等）；answer：问题的对应答案；support sentence：答案在文档中的支持句；document：输入文档 |
+| Dureader[(链接)](https://arxiv.org/pdf/1711.05073.pdf) [下载](https://dataset-bj.cdn.bcebos.com/dureader/dureader_preprocessed.zip)| 百度中文阅读理解数据集（改造成：问题生成任务）200,000 问题/1,000,000 文档 | 每条sample包含5个数据项：question：输入的问题；question type：问题类型（yes-no，entity-fact等）；answer：问题的对应答案；support sentence：答案在文档中的支持句；document：输入文档 |
+| DureaderQG[(链接)](https://www.luge.ai/#/luge/dataDetail?id=8) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/question_generation/DuReaderQG.zip)| 从DuReader数据集中抽取的部分数据作为问题生成数据集，训练集14500，开发集1000 | 每条sample包含4个数据项：context：上下文信息；question：问题；answer：问题的对应答案；id：编号 |
 | KdConv[(链接)](https://github.com/thu-coai/KdConv) | 多领域对话生成任务 总共：4,500对话轮次 | 每条sample包含2条数据项：user1-userN用户的对话记录；knowledge triple：用户对话记录文本中对应识别出来的知识三元组 |
 | WMT20-enzh[(链接)](https://aclanthology.org/2020.wmt-1.30.pdf) | 中英文机器翻译任务| 每条sample包含2条数据项：源语言和目标语言对应的翻译文本。 |
-| 教育培训行业摘要数据([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/education_data.zip)) | **标题生成任务（短文本生成式摘要）** 教育培训行业摘要数据是github作者wonderfulsuccess整理，数据主要由教育培训行业主流垂直媒体的历史文章 总数量：24423个样本；摘要：平均字数 52 正文：平均字数 2016 | json格式包括title，content.其中content为新闻正文 title为新闻的标题 |
-| lcsts摘要数据([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/lcsts_data.zip)) | **标题生成任务（短文本生成式摘要)** lcsts摘要数据是哈尔滨工业大学整理，基于新闻媒体在微博上发布的新闻摘要创建了该数据集 总数量：2108915个样本；摘要：平均字数 18 正文：平均字数 104 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
-| THUCNews([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/thucnews_data.zip)) | **标题生成任务（短文本生成式摘要)** 清华新闻（THUCNews）数据是清华大学自然语言处理实验室整理，根据新浪新闻RSS订阅频道2005~2011年间的历史数据筛选过滤生成.利用其正文与标题，可以构成新闻标题生成数据 总数量：830749个样本；标题：平均字数 19 正文：平均字数 892 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| MTG-question-generation[(链接)](https://mtg-benchmark.netlify.app) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/question_generation/MTG-question.zip) | 多语言文本生成数据集，包含英语、德语、法语、西班牙语、中文；由于是通过翻译得到的样本，数据质量存在一定问题 | 数据由各个语言的source（src）文件和target（trg）文件组成，每行为一条样本 |
+| MTG-story-generation[(链接)](https://mtg-benchmark.netlify.app) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/story_generation/MTG-story.zip) | 多语言文本生成数据集，包含英语、德语、法语、西班牙语、中文；由于是通过翻译得到的样本，数据质量存在一定问题| 数据由各个语言的source（src）文件和target（trg）文件组成，每行为一条样本 |
+| MTG-title-generation[(链接)](https://mtg-benchmark.netlify.app) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/title_generation/MTG-title.zip) | 多语言文本生成数据集，包含英语、德语、法语、西班牙语、中文；由于是通过翻译得到的样本，数据质量存在一定问题| 数据由各个语言的source（src）文件和target（trg）文件组成，每行为一条样本 |
+| MTG-summarization[(链接)](https://mtg-benchmark.netlify.app) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/MTG-summarization.zip) | 多语言文本生成数据集，包含英语、德语、法语、西班牙语、中文；由于是通过翻译得到的样本，数据质量存在一定问题| 数据由各个语言的source（src）文件和target（trg）文件组成，每行为一条样本 |
+| AdvertiseGen[(链接)](https://www.luge.ai/#/luge/dataDetail?id=9) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/advertisement_generation/AdvertiseGen.zip) | AdvertiseGen以商品网页的标签与文案的信息对应关系为基础构造，是典型的开放式生成任务，在模型基于key-value输入生成开放式文案时，与输入信息的事实一致性需要得到重点关注。| 任务描述：给定商品信息的关键词和属性列表kv-list，生成适合该商品的广告文案adv；数据规模：训练集114k，验证集1k；数据来源：清华大学CoAI小组； |
+| chat[(链接)](https://github.com/codemayq/chinese_chatbot_corpus) [直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_generation/chitchat/raw_chat_corpus-1.zip) | 多源对话数据集 | chatterbot；豆瓣多轮；PTT八卦语料；青云语料；电视剧对白语料；贴吧论坛回帖语料；微博语料；小黄鸡语料 |
+| education([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/education_data.zip)) | **标题生成任务（短文本生成式摘要）** 教育培训行业摘要数据是github作者wonderfulsuccess整理，数据主要由教育培训行业主流垂直媒体的历史文章 总数量：24423个样本；摘要：平均字数 52 正文：平均字数 2016 | json格式包括title，content.其中content为新闻正文 title为新闻的标题 |
+| lcsts([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/lcsts_data.zip)) | **标题生成任务（短文本生成式摘要)** lcsts摘要数据是哈尔滨工业大学整理，基于新闻媒体在微博上发布的新闻摘要创建了该数据集 总数量：2108915个样本；摘要：平均字数 18 正文：平均字数 104 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
+| thucnews([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/thucnews_data.zip)) | **标题生成任务（短文本生成式摘要)** 清华新闻（THUCNews）数据是清华大学自然语言处理实验室整理，根据新浪新闻RSS订阅频道2005~2011年间的历史数据筛选过滤生成.利用其正文与标题，可以构成新闻标题生成数据 总数量：830749个样本；标题：平均字数 19 正文：平均字数 892 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
 | SogouCS([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/sohu_data.zip)) | **标题生成任务（短文本生成式摘要)** 搜狗新闻（SogouCS）数据是搜狗实验室整理，来自搜狐新闻2012年6月—7月 利用其正文与标题，可以构成新闻标题生成数据。整理后数据信息如下：总数量：1245835个样本；标题：平均字数 17 正文：平均字数 494 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
 | nlpcc2017([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/nlpcc_data.zip)) | **标题生成任务（短文本生成式摘要)** nlpcc2017摘要数据是2017年NLPCC比赛Task3任务的数据集。总数量：50000个样本；摘要：平均字数 44 正文：平均字数 990 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
-| 神策杯2018摘要数据([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/shence_data.zip)) | **标题生成任务（短文本生成式摘要)** 神策杯2018摘要数据是“神策杯”2018高校算法大师赛的比赛数据 总数量：108089个样本；摘要：平均字数 24 正文：平均字数 1055 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
-| 微信公众号摘要数据([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/weixin_data.zip)) | **标题生成任务（短文本生成式摘要)** 微信公众号摘要数据是github作者nonamestreet整理 整理后数据信息如下： 总数量：712826个样本；标题：平均字数 22 正文：平均字数 1499 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
-| news2016zh新闻数据([直接下载part1](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_1.json) [直接下载part2](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_2.json) [直接下载part3](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_3.json) [直接下载part4](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_4.json) [直接下载part5](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_5.json)) | **标题生成任务（短文本生成式摘要)** news2016zh新闻数据是 CLUEbenchmark整理 总数量：2317427个样本；标题：平均字数 20 正文：平均字数 1250 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
-| CN-Fin（[下载](https://github.com/TangMoming/TaskSumm)） | 文本摘要任务 48410篇中文新闻文本，新闻中的摘要是网站提供的人工筛选或人工撰写摘要。工业场景中的摘要质量不高，仅能为计算摘要标签提供参考。 | json格式文件，包含：新闻标题（title），新闻正文（article），和新闻摘要（summary） |
+| shence([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/shence_data.zip)) | **标题生成任务（短文本生成式摘要)** 神策杯2018摘要数据是“神策杯”2018高校算法大师赛的比赛数据 总数量：108089个样本；摘要：平均字数 24 正文：平均字数 1055 | json格式包括title，content.其中content新闻正文title为新闻的标题 |
+| weixin([直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/weixin_data.zip)) | **标题生成任务（短文本生成式摘要)** 微信公众号摘要数据是github作者nonamestreet整理 整理后数据信息如下： 总数量：712826个样本；标题：平均字数 22 正文：平均字数 1499 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| new2016zh([直接下载part1](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_1.json) [直接下载part2](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_2.json) [直接下载part3](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_3.json) [直接下载part4](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_4.json) [直接下载part5](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/new2016zh_data_5.json)) | **标题生成任务（短文本生成式摘要)** news2016zh新闻数据是 CLUEbenchmark整理 总数量：2317427个样本；标题：平均字数 20 正文：平均字数 1250 | json格式包括title，content.其中content新闻正文 title为新闻的标题 |
+| weibo（[直接下载](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/weibo_data.zip)） | 数据来源于新浪微博，由He Zhengfang整理，整理后数据信息如下：总数量：450295个样本；标题：平均字数 18，字数标准差 5，最大字数 95，最小数字 4；正文：平均字数 123，字数标准差 30，最大字数 1873，最小数字 100； | json格式文件，包含：新闻标题（title），新闻正文（article），和新闻摘要（summary） |
+| CNewSum（[链接](https://dqwang122.github.io/projects/CNewSum/)）[直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/CNewSum.zip) | 中文大规模中长文档摘要数据，包含304307篇文档以及对应的人工书写的摘要。文档平均长度为730，摘要平均长度为35。 | jsonl格式文件，包含：样本数据以及完整的训练和测试数据 |
+| clts（[链接](https://link.springer.com/chapter/10.1007/978-3-030-60450-9_42)）[直接下载](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/datasets/text_summarization/clts.zip) | 中文大规模长文档摘要数据，包含148300篇文档以及对应的摘要。文档平均长度为1363，摘要平均长度为58。 | json格式文件，包含：新闻标题（title），新闻正文（article），和新闻摘要（summary） |
+
 
 # 知识图谱
 | **数据** | **描述** | **数据格式** | 
