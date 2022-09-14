@@ -7,10 +7,19 @@ import os
 import json
 
 class SequenceGenerationEvaluator(object):
-    def __init__(self, valid_dataset, user_defined_parameters, pretrained_model_name_or_path, **kwargs):
+    def __init__(self, valid_dataset, user_defined_parameters, **kwargs):
         self.valid_dataset = valid_dataset
         self.valid_loader=DataLoader.DataLoader(self.valid_dataset)
         self.best_valid_score=0
+        print(kwargs.get('pretrained_model_name_or_path'))
+        pretrained_model_name_or_path = kwargs.get('pretrained_model_name_or_path')
+        pretrained_model_name_or_path = pretrained_model_name_or_path if pretrained_model_name_or_path else kwargs.get('few_shot_anchor_args').pretrained_model_name_or_path
+        # if 'pretrained_model_name_or_path' in kwargs:
+        #     pretrained_model_name_or_path = kwargs['pretrained_model_name_or_path']
+        # else:
+        #     few_shot_anchor_args = kwargs['few_shot_anchor_args']
+        #     pretrained_model_name_or_path = few_shot_anchor_args.pretrained_model_name_or_path
+        
         if user_defined_parameters is not None:
             if type(user_defined_parameters)=='str':
                 self.user_defined_parameters=json.loads(user_defined_parameters)

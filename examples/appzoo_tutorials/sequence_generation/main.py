@@ -73,15 +73,17 @@ if __name__ == "__main__":
 
         #model = SequenceGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
-        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path}
+        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **extra_para)
 
         trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
                         evaluator=evaluator)
         trainer.train()
 
     elif args.mode == "evaluate":
+        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path}
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
-        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, pretrained_model_name_or_path=args.pretrained_model_name_or_path)
+        evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **extra_para)
 
         if args.n_gpu > 0:
             model.to(torch.cuda.current_device())

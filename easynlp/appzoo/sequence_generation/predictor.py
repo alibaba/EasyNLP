@@ -158,6 +158,7 @@ class SequenceGenerationPredictor(Predictor):
                 pred_tokens = [self.tokenizer.decode(t[self.input_len:], skip_special_tokens=True) for t in beams]
             else:
                 pred_tokens = [self.tokenizer.decode(t[1:], skip_special_tokens=True) for t in beams]
+            pred_tokens = [''.join(i.split()) for i in pred_tokens] if self.model._is_zh else pred_tokens
             rst.append({
                 "predictions": pred_tokens[0],
                 "beams": "||".join(pred_tokens)
