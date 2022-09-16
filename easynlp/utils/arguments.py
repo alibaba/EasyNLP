@@ -77,7 +77,7 @@ def parse_args(extra_args_provider=None,
     else:
         args.read_odps = False
 
-    # args.n_gpu = args.worker_gpu if args.worker_gpu > 0 else 0
+    args.n_gpu = args.worker_gpu if args.worker_gpu > 0 else 0
     if is_torchx_available():
         args.n_gpu = 0
     else:

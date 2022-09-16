@@ -242,6 +242,7 @@ class BaseDataset(Dataset):
         i = 0
         if skip_first_line is None:
             skip_first_line = self.skip_first_line
+        print(f'****{data_file}')
         with io.open(data_file) as f:
             if skip_first_line:
                 f.readline()
