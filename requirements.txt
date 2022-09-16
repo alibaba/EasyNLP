@@ -19,3 +19,4 @@ pillow
 albumentations
 einops
 torchvision
+ftfy
