@@ -59,8 +59,9 @@ elif [ "$mode" = "train" ]; then
   --checkpoint_dir=./finetuned_zh_model \
   --micro_batch_size=8 \
   --sequence_length=512 \
+  --epoch_num 1 \
   --save_checkpoint_steps=150 \
   --export_tf_checkpoint_type none \
-  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/mt5-title-generation-zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/randeng-238M-Summary-Chinese-tuned copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi
