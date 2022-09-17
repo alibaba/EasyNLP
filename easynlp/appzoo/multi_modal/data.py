@@ -18,10 +18,13 @@ import numpy as np
 from ...modelzoo import BertTokenizer
 from ...utils import io
 from ..dataset import BaseDataset
-# from ...modelzoo.models.clip.processing_clip import CLIPProcessor
+from ...modelzoo.models.clip.openclip_tokenizer import SimpleTokenizer
 from PIL import Image
 import base64
 from io import BytesIO
+import json
+from ...utils import losses, get_pretrain_model_path, get_args
+from typing import Union,List
 
 def _center_crop(image, size):
     """
@@ -110,6 +113,7 @@ def _normalize(image, mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954,
     """
 
     if isinstance(image, Image.Image):
+        image=image.convert('RGB')
         image = _to_numpy_array(image)
 
     if isinstance(image, np.ndarray):
@@ -130,6 +134,33 @@ def _normalize(image, mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954,
     else:
         return (image - mean) / std
 
+def openclip_tokenize(texts: Union[str, List[str]], context_length: int = 77,_tokenizer:str='empty') -> torch.LongTensor:
+    """
+    Returns the tokenized representation of given input string(s)
+    Parameters
+    ----------
+    texts : Union[str, List[str]]
+        An input string or a list of input strings to tokenize
+    context_length : int
+        The context length to use; all CLIP models use 77 as the context length
+    Returns
+    -------
+    A two-dimensional tensor containing the resulting tokens, shape = [number of input strings, context_length]
+    """
+    if isinstance(texts, str):
+        texts = [texts]
+
+    sot_token = _tokenizer.encoder["<start_of_text>"]
+    eot_token = _tokenizer.encoder["<end_of_text>"]
+    all_tokens = [[sot_token] + _tokenizer.encode(text) + [eot_token] for text in texts]
+    result = torch.zeros(len(all_tokens), context_length, dtype=torch.long)
+
+    for i, tokens in enumerate(all_tokens):
+        if len(tokens) > context_length: # Truncate
+            tokens = tokens[:context_length]
+        result[i, :len(tokens)] = torch.tensor(tokens)
+
+    return result
 
 class MultiModalDataset(BaseDataset):
     """
@@ -158,15 +189,43 @@ class MultiModalDataset(BaseDataset):
                     *args,
                     **kwargs):
 
-        super().__init__(data_file,
-                         input_schema=input_schema,
-                         output_format="dict",
-                         *args,
-                         **kwargs)
-
+        pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
+        # 先处理配置，再决定后续如何加载权重
+        with open(pretrained_model_name_or_path+'/config.json','r') as config_handle:
+            self.raw_config=json.load(config_handle)
+        if ('model_type' in self.raw_config) and (self.raw_config['model_type']=='open_clip'):
+            self.model_type='open_clip'
+        elif ('model_type' in self.raw_config) and (self.raw_config['model_type']=='chinese_clip'):
+            self.model_type='chinese_clip'
+        else:
+            self.model_type='huggingface_clip'
+        # 直接读取webdataset tar包 进行训练
+        if data_file[-3:]=='tar':
+            print('tar data ',data_file)
+            import webdataset as wds
+            def my_split_by_node(urls):
+                node_id, node_count = torch.distributed.get_rank(), torch.distributed.get_world_size()
+                return list(urls)[node_id::node_count]
+            self.data_source='tar'
+            self.output_format='tar'
+            self.input_schema='tar'
+            self.tar=data_file
+            self.data_rows=[]
+            self.wds = wds.WebDataset(data_file,nodesplitter=my_split_by_node).decode("pil").to_tuple("jpg;png", "json")
+            for idx,sample in enumerate(self.wds):
+                self.data_rows.append({'text':sample[1]['caption'],'image':sample[0]})
+        else:
+            super().__init__(data_file,
+                            input_schema=input_schema,
+                            output_format="dict",
+                            *args,
+                            **kwargs)
         self.text_col = first_sequence
         self.image_col=second_sequence
-        self.tokenizer=BertTokenizer.from_pretrained(pretrained_model_name_or_path+'/vocab.txt')
+        if self.model_type=='open_clip':
+            self.openclip_tokenizer = SimpleTokenizer(bpe_path=pretrained_model_name_or_path+'/vocab.txt')
+        else:
+            self.tokenizer=BertTokenizer.from_pretrained(pretrained_model_name_or_path+'/vocab.txt')
         self.max_text_length=max_seq_length
         self.do_resize=True
         self.size=224
@@ -185,13 +244,24 @@ class MultiModalDataset(BaseDataset):
             Returns: sing example
                 encoding: an example contains token indices.
         """
-        _text=row[self.text_col]
-        # raise Exception(193)
-        tk_result=self.tokenizer([_text], padding='max_length',
+
+        if self.data_source=='tar':
+            _text=row['text']
+            one_image=row['image']
+        else:
+            _text=row[self.text_col]
+            try:
+                one_image= Image.open(BytesIO(base64.urlsafe_b64decode(row[self.image_col])))
+            except:
+                print(row)
+                raise Exception(210)
+        if self.model_type=='open_clip':
+            bpe_result = openclip_tokenize(texts=[_text],context_length=77,_tokenizer=self.openclip_tokenizer)
+            tk_result={'input_ids':bpe_result}
+        else:
+            tk_result=self.tokenizer([_text], padding='max_length',
                                   truncation=True,
                                   max_length=self.max_text_length, return_tensors="pt")
-        # https://www.cnblogs.com/wswang/p/7717997.html
-        one_image= Image.open(BytesIO(base64.urlsafe_b64decode(row[self.image_col])))
         images=[one_image]
         # transformations (resizing + center cropping + normalization)
         if self.do_resize and self.size is not None and self.resample is not None:
@@ -210,12 +280,16 @@ class MultiModalDataset(BaseDataset):
         for dic in features:
             output['pixel_values'].append(dic['pixel_values'])
             output['input_ids'].append(dic['text']['input_ids'])
-            output['token_type_ids'].append(dic['text']['token_type_ids'])
-            output['attention_mask'].append(dic['text']['attention_mask'])
+            if 'token_type_ids' in dic['text']:
+                output['token_type_ids'].append(dic['text']['token_type_ids'])
+            if 'attention_mask' in dic['text']:
+                output['attention_mask'].append(dic['text']['attention_mask'])
 
         output['pixel_values']=torch.cat(output['pixel_values'],dim=0)
         output['input_ids']=torch.cat(output['input_ids'],dim=0)
-        output['token_type_ids']=torch.cat(output['token_type_ids'],dim=0)
-        output['attention_mask']=torch.cat(output['attention_mask'],dim=0)
+        if len(output['token_type_ids'])>0:
+            output['token_type_ids']=torch.cat(output['token_type_ids'],dim=0)
+        if len(output['attention_mask'])>0:
+            output['attention_mask']=torch.cat(output['attention_mask'],dim=0)
         output['label_ids']=[]
         return output
