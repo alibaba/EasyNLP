@@ -98,19 +98,19 @@ if __name__ == "__main__":
                                 contrast_learning_flag=contrast_learning_flag)
     model.backbone.resize_token_embeddings(len(train_dataset.tokenizer))
     model.config.vocab_size = len(train_dataset.tokenizer)
-    valid_dataset = get_application_dataset(app_name=args.app_name,
-                                pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-                                data_file=args.tables.split(",")[1],
-                                max_seq_length=args.sequence_length,
-                                user_defined_parameters=user_defined_parameters,
-                                external_mask=external_mask_flag,
-                                knowledge_graph=Knowledge_G,
-                                contrast_learning_flag=contrast_learning_flag)
+    # valid_dataset = get_application_dataset(app_name=args.app_name,
+    #                             pretrained_model_name_or_path=args.pretrained_model_name_or_path,
+    #                             data_file=args.tables.split(",")[1],
+    #                             max_seq_length=args.sequence_length,
+    #                             user_defined_parameters=user_defined_parameters,
+    #                             external_mask=external_mask_flag,
+    #                             knowledge_graph=Knowledge_G,
+    #                             contrast_learning_flag=contrast_learning_flag)
     
-    evaluator = get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,user_defined_parameters=user_defined_parameters,
-                              eval_batch_size=args.micro_batch_size)
+    # evaluator = get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,user_defined_parameters=user_defined_parameters,
+    #                           eval_batch_size=args.micro_batch_size)
     # Training
     trainer = Trainer(model=model, train_dataset=train_dataset,
-                      evaluator=evaluator, contrast_learning_flag=contrast_learning_flag)
+                      evaluator=None, contrast_learning_flag=contrast_learning_flag)
     trainer.train()
 

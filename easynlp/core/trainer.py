@@ -39,6 +39,8 @@ except:
 class Trainer(object):
     def __init__(self, model, train_dataset, evaluator=None, **kwargs):
         self.args = get_args()
+        # for ckbert contrast learning
+        self.contrast_learning_flag = kwargs.get('contrast_learning_flag', False)
         if self.args.use_torchacc == True and is_torchx_available() == False:
             raise ValueError('No TrochACC Running Environment!')
         if self.args.use_torchacc:
@@ -97,6 +99,7 @@ class Trainer(object):
                 model.to(self.args.local_rank),
                 device_ids=[self.args.local_rank],
                 output_device=self.args.local_rank,
+                broadcast_buffers=False,
                 find_unused_parameters=True)
         else:
             logger.warn("Use CPU Training.")
@@ -550,7 +553,25 @@ class Trainer(object):
         # This is a hack
         if torch.cuda.is_available():
             torch.cuda.set_device(self.args.local_rank)
-
+    def contrast_learning_process(self, positive_negative_examples: torch.Tensor) -> torch.Tensor:
+        # compute the exapmle emmbding
+        original_size = positive_negative_examples.size()
+        positive_negative_examples_inputs = positive_negative_examples.view(-1, original_size[-1])
+        input_inter = torch.sum(positive_negative_examples_inputs, dim=-1)
+        input_nozero = torch.nonzero(input_inter)
+        true_positive_negative_examples_inputs = positive_negative_examples_inputs[input_nozero]
+    
+        positive_negative_example_results = self._model({
+            "input_ids": true_positive_negative_examples_inputs.squeeze(1)
+        })
+        
+        positive_negative_example_hidden_states = positive_negative_example_results['hidden_states']
+        output_size = positive_negative_example_hidden_states.size()
+        positive_negative_examples_inputs = positive_negative_examples_inputs.unsqueeze(-1).repeat(1, 1, output_size[-1]).float()
+        positive_negative_examples_inputs[input_nozero.squeeze(-1)] = positive_negative_example_hidden_states
+        positive_negative_examples_results_new = positive_negative_examples_inputs.view(original_size[0], original_size[1], original_size[2], original_size[3], output_size[-1])
+        return positive_negative_examples_results_new
+    
     def train(self):
         self.log_train_infos()
         args = self.args
@@ -558,7 +579,8 @@ class Trainer(object):
             for _epoch in range(self._start_epoch, int(args.epoch_num)):
                 self.before_epoch(_epoch)
                 start_time = time.time()
-
+                loss_total = 0
+                pn_loss_total = 0
                 for _step, batch in enumerate(self._train_loader):
                     if self._global_step + 1 < self._start_global_step:
                         if (_step + 1) % args.gradient_accumulation_steps == 0:
@@ -574,21 +596,34 @@ class Trainer(object):
                         }
 
                     label_ids = batch.pop('label_ids', None)
+                    positive_negative_examples = batch.pop('positive_negative_examples', None)
                     with self.autocast_context_manager():
                         if label_ids is not None:
                             forward_outputs = self._model(batch)
+                            # for ckbert contrast learning
+                            if self.contrast_learning_flag:
+                                positive_negative_examples_results_new = self.contrast_learning_process(positive_negative_examples)
                         else:
                             forward_outputs, label_ids = self._model(batch)
                         if batch.get('insert_know_labels') is not None:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids,
                                 batch.get('insert_know_labels'))
+                        elif self.contrast_learning_flag:
+                            loss_dict = self.model_module.compute_loss(
+                                forward_outputs, 
+                                label_ids,
+                                constrast_learning_flag = self.contrast_learning_flag,
+                                positive_negative_results = positive_negative_examples_results_new
+                            )
                         else:
                             loss_dict = self.model_module.compute_loss(
                                 forward_outputs, label_ids)
 
                     _loss = loss_dict['loss']
-
+                    if self.contrast_learning_flag:
+                        _loss = loss_dict['loss'] + loss_dict['cl_loss']
+                        
                     if args.n_gpu > 1:
                         _loss = _loss.mean()
                     if args.gradient_accumulation_steps > 1:
@@ -599,6 +634,14 @@ class Trainer(object):
                     else:
                         _loss.backward()
 
+                    if self.contrast_learning_flag:
+                        loss_total += _loss
+                        pn_loss_total += loss_dict['cl_loss']
+                        if _step % 10 == 0:
+                            logger.info(f"total loss: {loss_total/10}\t knowledge loss: {(loss_total - pn_loss_total)/10}\t contrast loss: {pn_loss_total/10}")
+                            loss_total = 0
+                            pn_loss_total = 0
+                        
                     self.after_iter(_step, _epoch, loss_dict)
 
                 end_time = time.time()

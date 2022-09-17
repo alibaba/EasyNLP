@@ -15,9 +15,10 @@
 
 from itertools import count
 import random
-from re import L
+import re
 from tqdm import tqdm
 from tracemalloc import start
+from typing import Any, Dict, List, Union
 import torch
 import json
 import pandas as pd
@@ -62,7 +63,15 @@ class LanguageModelingDataset(BaseDataset):
         # DKPLM needs special tokens to recognize entity in input sentence
         self.dkplm_model_prefix = True if 'dkplm' in pretrained_model_name_or_path else False
         self.kangaroo_model_prefix = True if 'kangaroo' in pretrained_model_name_or_path else False
-
+         # External knowledge
+        self.external_konwledge_flag = kwargs.get('external_mask', False)
+        self.Knowledge_G = kwargs.get('knowledge_graph', None)
+        self.contrast_learning_flag = kwargs.get('contrast_learning_flag', False)
+        self.negative_number = int(user_defined_parameters.get('negative_e_number', 0))
+        self.negative_e_length = int(user_defined_parameters.get('negative_e_length', 0))
+        if self.external_konwledge_flag:
+             self.tokenizer.add_special_tokens({'additional_special_tokens': ['[dep]', '[sdp]']})
+             
         if self.dkplm_model_prefix:
             entity_emb_file = user_defined_parameters.get('entity_emb_file', '')
             rel_emb_file = user_defined_parameters.get('rel_emb_file', '')
@@ -105,7 +114,195 @@ class LanguageModelingDataset(BaseDataset):
             self.entity_tree, self.tokenid2entityid = self.kangaroo_create_entity_tree(entity_df)
             self.tokenidVec, self.positionidVec = self.kangaroo_get_contrastive_samples(CL_samples_file)
             self.conceptEmbVec = self.kangaroo_get_concept_emb(concept_emb_file)
+    def get_positive_and_negative_examples(
+        self,
+        ner_data: str,
+        negative_level: int = 3) -> Union[bool, Dict[str, List[str]]]:
+        """get the positive examples and negative examples for the ner data
 
+        Args:
+            ner_data (str): the ner entity
+            negative_level (int, optional): the deepth of the relationship. Defaults to 3.
+
+        Returns:
+            Union[bool, Dict[str, List[str]]]: if the `ner_data` not in `konwledge`, return False, otherwise, return the positive and negative examples
+        """
+
+        knowledge: Dict[str, Dict[str, str]] = self.Knowledge_G
+        common_used = set()
+        def get_data(key: str, 
+                    data: Dict[str, str], 
+                    results: List[str], 
+                    deep: int, 
+                    insert_flag: bool = False):
+            """get the negative examples recursively
+
+            Args:
+                key (str): the ner
+                data (Dict[str, str]): the related data about `key`
+                results (List[str]): a list used to save the negative examples
+                deep (int): the recursive number
+                insert_flag (bool, optional): whether insert data to `results`. Defaults to False.
+            """
+            nonlocal knowledge
+            # Avoid data interference between different generations, such as: 汤恩伯：三民主义;国民党; 国民党:三民主义 二阶和一阶数据重复了
+            common_used.add(key)
+            if deep == 0:
+                return
+            else:
+                for key_item in data:
+                    if data[key_item] not in common_used and insert_flag == True:
+                        results.append(data[key_item])
+                    if data[key_item] in knowledge and data[key_item] not in common_used:
+                        get_data(data[key_item], knowledge[data[key_item]], results, deep - 1, True)
+        
+        all_examples = {
+            'ner': ner_data,
+            'positive_examples': [],
+            'negative_examples': []
+        }
+        
+        if ner_data in knowledge:
+            tp_data = knowledge[ner_data]
+            negative_examples = []
+            if '描述' in tp_data:
+                positive_example = tp_data['描述']
+            else:
+                keys = list(tp_data.keys())
+                choice = np.random.choice([_ for _ in range(len(keys))], 1)[0]
+                positive_example = tp_data[keys[choice]]
+            # # the description usually contains the ner entity, if not, concate the `ner_data` and the positive example
+            if ner_data in positive_example:
+                all_examples['positive_examples'].append(positive_example)
+            else:
+                all_examples['positive_examples'].append(ner_data + positive_example)
+            
+            get_data(ner_data, tp_data, negative_examples, negative_level)
+            # concate the ner entity and each negative example
+            negative_examples = list(map(lambda x: ner_data + x if ner_data not in x else x, negative_examples))
+            all_examples['negative_examples'] = negative_examples
+            return all_examples
+            
+        return False
+    
+    def positive_negative_examples_postprocess(self, 
+                                       orginal_data: str, 
+                                       ner_data: List[Dict[str, Any]], 
+                                       positive_number:int = 1, 
+                                       negative_number: int = 10) -> List[List[str]]:
+        """get a specific number of positive and negative examples
+
+        Args:
+            orginal_data (str): the original data which is used to caculate the id index
+            ner_data (List[Dict[str, Any]]): ner entity
+            positive_number (int, optional): the positive examples. Defaults to 1.
+            negative_number (int, optional): the negative examples. Defaults to 10.
+
+        Returns:
+            List[List[str]]: renturn the sampled postive examples and negative examples
+        """
+        sub_str = re.compile('\[CLS\]|\[sdp\]|\[dep\]')
+        orginal_data = sub_str.sub('#', orginal_data)
+        
+        positive_examples = []
+        negative_examples = []
+        
+        exist_ners = set()
+        for ner_item in ner_data:
+            if ner_item and ner_item['ner'] not in exist_ners:
+                tp_ner = ner_item['ner']
+                if tp_ner in orginal_data:
+                    search_results = [tp_ner]
+                    exist_ners.add(tp_ner)
+                    copy_data = list(orginal_data)
+                    for search_item in search_results:
+                        ner_insert_data_p = []
+                        ner_insert_data_n = []
+                        start = ''.join(copy_data).index(search_item)
+                        end = start + len(tp_ner)
+                        ids = []
+                        for _ in range(start, end):
+                            if copy_data[_] != '#':
+                                ids.append(_) 
+                            copy_data[_] = '#'
+                        for line_p in ner_item['positive_examples'][:positive_number]:
+                            ner_insert_data_p.append([ids, line_p])
+                        for line_n in ner_item['negative_examples'][:negative_number]:
+                            ner_insert_data_n.append([ids, line_n])
+                    
+                        positive_examples.append(ner_insert_data_p)
+                        negative_examples.append(ner_insert_data_n)
+
+        if len(positive_examples) * len(negative_examples) > 0:
+            return [positive_examples, negative_examples]
+        else:
+            return None
+        ...
+    
+    def ckbert_row_data_process(self, row):
+        """get processed examples
+
+        Args:
+            row (_type_): the original data
+
+        Returns:
+            _type_: _description_
+        """
+        # postitive number is set to 1
+        positive_number = 1
+        negative_number = self.negative_number
+        example_number = self.negative_e_length
+        text_line = eval(row)
+        token_ids = [self.cls_ids]
+        positive_negative_example_token_ids = []
+        if self.contrast_learning_flag:
+            positive_negative_example_token_ids = [[[self.pad_idx] * example_number for _ in range(positive_number + negative_number)] for _ in range(self.max_seq_length)]
+            ner_data_dicts = []
+            deepth = 3
+            text_copy = ''.join(text_line[0]).replace('[sdp]', '')
+            text_copy = text_copy.replace('[dep]', '')
+            ner_exist = set()
+            try:
+                for ner_str in text_line[2]:
+                    if ner_str in text_copy and ner_str not in ner_exist:
+                        ner_exist.add(ner_str)
+                        ner_data_dicts.append(self.get_positive_and_negative_examples(ner_str, deepth))
+            except:
+                ...
+        
+            if len(ner_data_dicts) > 0:
+                positive_negative_examples = self.positive_negative_examples_postprocess(''.join(text_line[0]), ner_data_dicts, positive_number, negative_number)
+                
+                if positive_negative_examples:
+                    try:
+                        for example_item in positive_negative_examples:
+                            start = 0
+                            for example_data in example_item:
+                                counter = start
+                                for example in example_data:
+                                    tp_length = len(example[1])
+                                    tp_ids = []
+                                    for index in range(min(tp_length, example_number)):
+                                        token = self.tokenizer.tokenize(example[1][index])
+                                        id_ = self.tokenizer.convert_tokens_to_ids(token)
+                                        tp_ids.extend(id_)
+                                    gap = example_number - len(tp_ids)
+                                    for example_id in example[0]:
+                                        if len(tp_ids) > example_number:
+                                            positive_negative_example_token_ids[example_id][counter] = tp_ids[:example_number]
+                                        else:
+                                            positive_negative_example_token_ids[example_id][counter] = tp_ids + [0] * gap
+                                    counter += 1
+                            start += 1
+                    except:
+                        ...
+            
+        for sentence in text_line[0][1:-1]:
+            sentence_tokens = self.tokenizer.tokenize(sentence)
+            id_ = self.tokenizer.convert_tokens_to_ids(sentence_tokens)
+            token_ids.extend(id_)
+        token_ids.append(self.sep_ids)
+        return token_ids, text_line[1], [], positive_negative_example_token_ids
         
     def convert_single_row_to_example(self, row):
         if self.dkplm_model_prefix:
@@ -120,6 +317,8 @@ class LanguageModelingDataset(BaseDataset):
             ent_pos = [[item[0]+1, item[1]+1] for item in ent_pos]
         elif self.kangaroo_model_prefix:
             return self.kangaroo_row_data_process(row)
+        elif self.external_konwledge_flag:
+            return self.ckbert_row_data_process(row)
         else:
             text = json.loads(row.strip())['text']
             token_ids = [self.cls_ids]
@@ -170,7 +369,16 @@ class LanguageModelingDataset(BaseDataset):
             }
         token_ids = [t[0] for t in batch]
         mask_labels = [t[1] for t in batch]
-        lengths = [len(t[0]) for t in batch]
+        if self.contrast_learning_flag:
+            positive_negative_ids = [t[3] for t in batch]
+                
+            for _index, item in enumerate(batch):
+                t_length = len(item[0])
+                if t_length > self.max_seq_length:
+                    gap = t_length - self.max_seq_length
+                    token_ids[_index] = batch[_index][0][:t_length - gap - 1] + [batch[_index][0][-1]]
+                    mask_labels[_index] = batch[_index][1][:t_length - gap - 1] + [batch[_index][1][-1]]
+        lengths = [len(t) for t in token_ids]
         # Max for paddings
         max_seq_len_ = max(lengths)
         assert max_seq_len_ <= self.max_seq_length
@@ -187,11 +395,11 @@ class LanguageModelingDataset(BaseDataset):
                                 replaced_entity_id)
 
         # Pad token ids
-        padded_token_ids = [t + [self.pad_idx] * (max_seq_len_ - len(t)) for t in token_ids]
-        padded_mask_labels = [t + [self.pad_idx] * (max_seq_len_ - len(t)) for t in mask_labels]
+        padded_token_ids = [t + [self.pad_idx] * (self.max_seq_length - len(t)) for t in token_ids]
+        padded_mask_labels = [t + [self.pad_idx] * (self.max_seq_length - len(t)) for t in mask_labels]
         assert len(padded_token_ids) == len(token_ids)
-        assert all(len(t) == max_seq_len_ for t in padded_token_ids)
-        assert all(len(t) == max_seq_len_ for t in padded_mask_labels)
+        assert all(len(t) == self.max_seq_length for t in padded_token_ids)
+        assert all(len(t) == self.max_seq_length for t in padded_mask_labels)
 
         token_ids = torch.LongTensor(padded_token_ids)
         mask_labels = torch.LongTensor(padded_mask_labels)
@@ -219,6 +427,16 @@ class LanguageModelingDataset(BaseDataset):
                 "mask_span_indices": [t[5] for t in batch],
                 "return_dict": False
             }
+        elif self.contrast_learning_flag:
+            
+            return {
+                "input_ids": input_ids,
+                "attention_mask": attn_mask,
+                "label_ids": label_ids,
+                "mask_span_indices": [t[2] for t in batch],
+                "positive_negative_examples":torch.tensor(positive_negative_ids, device=lengths.device),
+                # "positive_negative_ner_mask":positive_negative_ner_masks
+            } 
         else:
             return {
                 "input_ids": input_ids,
