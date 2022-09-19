@@ -94,7 +94,6 @@ class SquadExample:
 
 
 def _is_whitespace(c):
-    # if c == " " or c == "\t" or c == "\r" or c == "\n" or ord(c) == 0x202F:
     if c == " " or c == "\t" or c == "\r" or ord(c) == 0x202F:
         return True
     return False
@@ -183,28 +182,16 @@ def convert_example_to_features(
 
     tok_start_position = None
     tok_end_position = None
-    # if is_training and example.is_impossible:
     if example.is_impossible:
         tok_start_position = -1
         tok_end_position = -1
 
-    # if is_training and not example.is_impossible:
     if not example.is_impossible:
         tok_start_position = orig_to_tok_index[example.start_position]
         if example.end_position < len(example.doc_tokens) - 1:
             tok_end_position = orig_to_tok_index[example.end_position + 1] - 1
         else:
             tok_end_position = len(all_doc_tokens) - 1
-
-    # print("doc_tokens: ", example.doc_tokens)
-    # print("tok_to_orig_index: ", tok_to_orig_index)
-    # print("orig_to_tok_index: ", orig_to_tok_index)
-    # print("all_doc_tokens: ", all_doc_tokens)
-    # print("example.char_to_word_offset: ", example.char_to_word_offset)
-    # print("example.start_position: ", example.start_position)
-    # print("example.end_position: ", example.end_position)
-    # print("tok_start_position: ", tok_start_position)
-    # print("tok_end_position: ", tok_end_position)
 
     max_tokens_for_doc = sequence_length - len(query_tokens) - 3  # 3:[CLS],[SEP],[SEP]
 
@@ -261,7 +248,6 @@ def convert_example_to_features(
 
         start_position = 0
         end_position = 0
-        # if is_training and not example.is_impossible:
         if not example.is_impossible:
             doc_start = doc_span.start
             doc_end = doc_span.start + doc_span.length - 1
@@ -276,17 +262,6 @@ def convert_example_to_features(
                 doc_offset = len(query_tokens) + 2
                 start_position = tok_start_position - doc_start + doc_offset
                 end_position = tok_end_position - doc_start + doc_offset
-
-        # print("unique_id: ", unique_id)
-        # print("doc_span_index: ", doc_span_index)
-        # print("tokens: ", str(tokens))
-        # print("token_to_orig_map: ", str(token_to_orig_map))
-        # print("token_is_max_context: ", str(token_is_max_context))
-        # print("input_ids: ", str(input_ids))
-        # print("input_mask: ", str(input_mask))
-        # print("segment_ids: ", str(segment_ids))
-        # print("start_position: ", str(start_position))
-        # print("end_position: ", str(end_position))
 
         features.append(InputFeatures(unique_id=unique_id,
                                       doc_span_index=doc_span_index,
@@ -319,17 +294,11 @@ class MachineReadingComprehensionDataset(BaseDataset):
     def __init__(self,
                  data_file,
                  pretrained_model_name_or_path,
-                 sequence_length,
+                 max_seq_length,
                  input_schema,
                  first_sequence,
                  second_sequence,
-                 answer_name,
-                 qas_id,
-                 start_position_name,
-                 max_query_length,
-                 doc_stride,
                  user_defined_parameters,
-                 is_training,
                  *args,
                  **kwargs):
 
@@ -353,14 +322,12 @@ class MachineReadingComprehensionDataset(BaseDataset):
             local_path = pretrained_model_name_or_path
         else:
             local_path = os.environ['HOME'] + '/.easynlp/modelzoo/' + pretrained_model_name_or_path
-        # self.tokenizer = BertTokenizer(vocab_file=local_path + '/vocab.txt', sep_token="[SEP]",
-        #                                pad_token="[PAD]", cls_token="[CLS]")
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
 
-        self.is_training = is_training
-        self.sequence_length = sequence_length
-        self.max_query_length = max_query_length
-        self.doc_stride = doc_stride
+        self.is_training = kwargs.get('is_training', True)
+        self.sequence_length = max_seq_length
+        self.max_query_length = int(self.user_defined_parameters.get("max_query_length", 64))
+        self.doc_stride = int(self.user_defined_parameters.get("doc_stride", 128))
         self.language = self.user_defined_parameters.get("language", 'zh')
 
         # Text Features
@@ -370,10 +337,9 @@ class MachineReadingComprehensionDataset(BaseDataset):
             "Column name %s needs to be included in columns" % second_sequence
         self.first_sequence = first_sequence
         self.second_sequence = second_sequence
-        self.answer_name = answer_name
-        self.qas_id = qas_id
-        self.start_position_name = start_position_name
-
+        self.qas_id = self.user_defined_parameters.get("qas_id", 'qas_id')
+        self.answer_name = self.user_defined_parameters.get("answer_name", 'answer_text')
+        self.start_position_name = self.user_defined_parameters.get("start_position_name", 'start_position_character')
 
     def convert_single_row_to_example(self, row):
 
@@ -383,13 +349,6 @@ class MachineReadingComprehensionDataset(BaseDataset):
         qas_id = row[self.qas_id] if self.qas_id else None
         start_position_character = row[self.start_position_name] if self.start_position_name else None
         language = self.language
-
-        # print("qas_id: ", qas_id)
-        # print("question_text: ", question_text)
-        # print("context_text: ", context_text)
-        # print("answer_text: ", answer_text)
-        # print("start_position_character: ", start_position_character)
-        # print("language: ", language)
 
         example = SquadExample(
             qas_id=qas_id,
@@ -455,4 +414,3 @@ class MachineReadingComprehensionDataset(BaseDataset):
         }
 
         return inputs
-

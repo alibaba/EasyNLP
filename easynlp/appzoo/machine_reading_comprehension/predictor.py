@@ -14,22 +14,16 @@
 # limitations under the License.
 
 import json
-import os
 import logging
 import collections
-import uuid
-import numpy as np
 from threading import Lock
 from tqdm import tqdm
-from typing import List
 import six
 
 import torch
 
 from ...core.predictor import Predictor, get_model_predictor
-from ...modelzoo import AutoTokenizer, BertTokenizer
-from ...utils import io
-from ...fewshot_learning.fewshot_predictor import PromptPredictor, CPTPredictor
+from ...modelzoo import AutoTokenizer
 from .data import SquadExample, _check_is_max_context
 
 
@@ -179,14 +173,18 @@ class MachineReadingComprehensionPredictor(Predictor):
 
         self.first_sequence = kwargs.pop("first_sequence", "query")
         self.second_sequence = kwargs.pop("second_sequence", "context")
-        self.qas_id = kwargs.pop("qas_id", "qas_id")
+        self.qas_id = self.user_defined_parameters.get("qas_id", 'qas_id')
+        self.answer_name = self.user_defined_parameters.get("answer_name", 'answer_text')
+        self.start_position_name = self.user_defined_parameters.get("start_position_name", 'start_position_character')
+        
+        self.max_query_length = int(self.user_defined_parameters.get("max_query_length", 64))
+        self.max_answer_length = int(self.user_defined_parameters.get("max_answer_length", 30))
+        self.doc_stride = int(self.user_defined_parameters.get("doc_stride", 128))
         self.sequence_length = kwargs.pop("sequence_length", 384)
-        self.max_query_length = kwargs.pop("max_query_length", 64)
-        self.max_answer_length = kwargs.pop("max_answer_length", 30)
-        self.doc_stride = kwargs.pop("doc_stride", 128)
         self.n_best_size = kwargs.pop("n_best_size", 10)
+        
         self.output_file = kwargs.pop("outputs", "dev.pred.csv")
-        self.output_answer_file = kwargs.pop("output_answer_file", "dev.ans.csv")
+        self.output_answer_file = self.user_defined_parameters.get("output_answer_file", "dev.ans.csv")
 
         self.vocab = build_vocab(vocab_path=model_dir + '/vocab.txt')
         self.MUTEX = Lock()
@@ -245,48 +243,24 @@ class MachineReadingComprehensionPredictor(Predictor):
                         ...
                         input_tokens[10]为origin_context中的第5个单词 the
            """
-        # print("orig_map origin_context: ", origin_context)
         token_id = []
         str_origin_context = ""
 
-        # if self.language == 'zh':   # 中文场景下，无需做复杂的字符级处理，下述各变量主要保证与英文场景保持一致，以便兼容
-        #     origin_context_tokens = tokenizer(origin_context)
-        #     print("orig_map origin_context_tokens: ", origin_context_tokens)
-        #     tokens = origin_context_tokens
-        #     print("orig_map tokens: ", tokens)
-        #     str_token = "".join(tokens)
-        #     print("orig_map str_token: ", str_token)
-        #     str_origin_context += "" + str_token
-        #     print("orig_map str_origin_context: ", str_origin_context)
-        #     for _ in str_token:
-        #         token_id.append(0)
-        # else:                       # 英文场景为原版场景，需要做一些字符级处理
         origin_context_tokens = origin_context.split()
-        # print("orig_map origin_context_tokens: ", origin_context_tokens)
         for i in range(len(origin_context_tokens)):
-            # print("orig_map origin_context_tokens[i]: ", origin_context_tokens[i])
             tokens = tokenizer(origin_context_tokens[i])
-            # print("orig_map tokens: ", tokens)
             str_token = "".join(tokens)
-            # print("orig_map str_token: ", str_token)
             str_origin_context += "" + str_token
-            # print("orig_map str_origin_context: ", str_origin_context)
             for _ in str_token:
                 token_id.append(i)
 
-        # print("orig_map str_origin_context: ", str_origin_context)
-        # print("orig_map input_tokens: ", input_tokens)
         key_start = input_tokens.index('[SEP]') + 1
         tokenized_tokens = input_tokens[key_start:-1]
         str_tokenized_tokens = "".join(tokenized_tokens)
-        # print("orig_map str_tokenized_tokens: ", str_tokenized_tokens)
         index = str_origin_context.index(str_tokenized_tokens)
-        # print("orig_map index: ", index)
         value_start = token_id[index]
-        # print("orig_map value_start: ", value_start)
         token_to_orig_map = {}
         # 处理这样的边界情况： Building's gold   《==》   's', 'gold', 'dome'
-        # print("orig_map token_input: ", origin_context_tokens[value_start])
         token = tokenizer(origin_context_tokens[value_start])
         for i in range(len(token), -1, -1):
             s1 = "".join(token[-i:])
@@ -414,31 +388,22 @@ class MachineReadingComprehensionPredictor(Predictor):
         all_logits_list = collections.defaultdict(list)
         unique_id_list = []
         result_length = len(result["unique_id"])
-        # print("generate_answers result_length: ", result_length)
 
         for i in range(result_length):
             unique_id = result["unique_id"][i]
-            # print("generate_answers unique_id: ", unique_id)
             if not (len(unique_id_list) > 0 and unique_id_list[-1] == unique_id):
                 unique_id_list.append(unique_id)
             context = result["context_text"][i]
-            # print("generate_answers context: ", context)
             context_tokens, word_offset = self.get_format_text_and_word_offset(context)
-            # print("generate_answers word_offset: ", word_offset)
             id_to_context_list[unique_id].append(context_tokens)
             id_to_context_text[unique_id].append(" ".join(context_tokens))
             id_to_query[unique_id].append(result["question_text"][i])
             id_to_input_ids[unique_id].append(result["input_ids"][i])
-            # print("generate_answers input_ids: ", result["input_ids"][i])
             id_to_tokens_list[unique_id].append(result["tokens_list"][i])
 
             start_logits = result["start_logits"][i]
-            # print("generate_answers start_logits_shape: ", np.array(start_logits).shape)
             end_logits = result["end_logits"][i]
-            # print("generate_answers end_logits_shape: ", np.array(end_logits).shape)
             all_logits_list[unique_id].append([start_logits, end_logits])
-            # print("generate_answers all_logits_list_shape: ", np.array(all_logits_list[unique_id]).shape)
-            # print("generate_answers all_logits_list: ", all_logits_list[unique_id])
 
         _PrelimPrediction = collections.namedtuple(  # pylint: disable=invalid-name
             "PrelimPrediction",
@@ -451,78 +416,40 @@ class MachineReadingComprehensionPredictor(Predictor):
             all_logits = all_logits_list[unique_id]
 
             for i in range(len(all_logits)):
-                # print("generate_answers all_logits_shape: ", np.array(all_logits).shape)
-                # input_ids = id_to_input_ids[unique_id][i]
-
-                # print("generate_answers unique_id start_logits_shape: ", np.array(all_logits[i][0]).shape)
-                # print("generate_answers unique_id start_logits: ", np.array(all_logits[i][0]))
-                # print("generate_answers unique_id end_logits_shape: ", np.array(all_logits[i][1]).shape)
-                # print("generate_answers unique_id end_logits: ", np.array(all_logits[i][1]))
                 start_indexes = self.get_best_indexes(all_logits[i][0], self.n_best_size)
-                # print("generate_answers unique_id start_indexes_shape: ", np.array(start_indexes).shape)
-                # print("generate_answers unique_id start_indexes: ", np.array(start_indexes))
                 end_indexes = self.get_best_indexes(all_logits[i][1], self.n_best_size)
-                # print("generate_answers unique_id end_indexes_shape: ", np.array(end_indexes).shape)
-                # print("generate_answers unique_id end_indexes: ", np.array(end_indexes))
-
-                # print("generate_answers unique_id input_ids[i]_length: ", len(input_ids[i]))
-                # print("generate_answers unique_id tokens_list[i]_length: ", len(tokens_list[i]))
-                # print("generate_answers unique_id context_text[i]_length: ", len(id_to_context_text[unique_id][i]))
                 token_to_orig_map = self.get_token_to_orig_map(tokens_list[i], id_to_context_text[unique_id][i], self.tokenizer.tokenize)
-                # print("generate_answers unique_id token_to_orig_map: ", token_to_orig_map)
 
                 for start_index in start_indexes:
                     for end_index in end_indexes:
-                        # print("generate_answers unique_id start_index: ", start_index)
-                        # print("generate_answers unique_id end_index: ", end_index)
                         if start_index >= len(input_ids[i]):
-                            # print("start_index >= len(input_ids[i])")
                             continue
                         if end_index >= len(input_ids[i]):
-                            # print("end_index >= len(input_ids[i])")
                             continue
                         if start_index not in token_to_orig_map:
-                            # print("start_index not in token_to_orig_map")
                             continue
                         if end_index not in token_to_orig_map:
-                            # print("end_index not in token_to_orig_map")
                             continue
                         if end_index < start_index:
-                            # print("end_index < start_index")
                             continue
                         length = end_index - start_index + 1
                         if length > self.max_answer_length:
-                            # print("length > self.max_answer_length")
                             continue
                         token_ids = input_ids[i]
-                        # print("generate_answers unique_id token_ids: ", token_ids)
                         strs = [self.vocab.itos[s] for s in token_ids]
-                        # print("generate_answers unique_id strs: ", strs)
                         tok_text = " ".join(strs[start_index:(end_index + 1)])
-                        # print("generate_answers unique_id tok_text: ", tok_text)
                         tok_text = tok_text.replace(" ##", "").replace("##", "")
-                        # print("generate_answers unique_id tok_text: ", tok_text)
                         tok_text = tok_text.strip()
                         tok_text = " ".join(tok_text.split())
-                        # print("generate_answers unique_id tok_text: ", tok_text)
-
-                        # print("generate_answers unique_id token_to_orig_map: ", token_to_orig_map)
+                        
                         orig_doc_start = token_to_orig_map[start_index]
                         orig_doc_end = token_to_orig_map[end_index]
-                        # print("generate_answers unique_id orig_doc_start: ", orig_doc_start)
-                        # print("generate_answers unique_id orig_doc_end: ", orig_doc_end)
                         orig_tokens = id_to_context_list[unique_id][i][orig_doc_start:(orig_doc_end + 1)]
-                        # print("generate_answers unique_id orig_tokens: ", orig_tokens)
                         orig_text = " ".join(orig_tokens)
-                        # print("generate_answers unique_id orig_text: ", orig_text)
                         final_text = self.get_final_text(tok_text, orig_text)
                         if self.language == 'zh':
                             final_text = "".join(final_text.split())
-                        # print("generate_answers unique_id final_text: ", final_text)
-                        # print("generate_answers unique_id logit_sum: ", all_logits[i][0][start_index] + all_logits[i][1][end_index])
-                        #
-                        # print("generate_answers unique_id all_logits[i][0].shape: ", all_logits[i][0].shape)
-                        # print("generate_answers unique_id all_logits[i][1].shape: ", all_logits[i][1].shape)
+                            
                         prelim_predictions[unique_id].append(_PrelimPrediction(
                             text=final_text,
                             start_index=int(start_index),
@@ -543,8 +470,7 @@ class MachineReadingComprehensionPredictor(Predictor):
                 "unique_id": k,
                 "best_answer":  v[0].text,
                 "query": id_to_query[k][0],
-                "context": id_to_context_text[k][0],
-                # "all_n_best_answer":  "||".join(v_.text for v_ in v)
+                "context": id_to_context_text[k][0]
             }
             output_dict_list.append(output_dict)
 
@@ -571,11 +497,6 @@ class MachineReadingComprehensionPredictor(Predictor):
         }
 
         for record in in_data:
-            # print("preprocess in_data_qas_id: ", record["qas_id"])
-            # print("preprocess in_data_context_text: ", record["context_text"])
-            # print("preprocess in_data_question_text: ", record["question_text"])
-            # print("preprocess in_data_answer_text: ", record["answer_text"])
-            # print("preprocess in_data_start_position_character: ", record["start_position_character"])
 
             question_text = record[self.first_sequence]
             context_text = record[self.second_sequence]
@@ -609,39 +530,11 @@ class MachineReadingComprehensionPredictor(Predictor):
                 rst["context_text"].append(feature["context_text"])
                 rst["tokens_list"].append(feature["tokens"])
 
-                # print("preprocess f_index: ", f_index)
-                # print("preprocess feature_input_ids: ", feature["input_ids"])
-                # print("preprocess feature_attention_mask: ", feature["attention_mask"])
-                # print("preprocess feature_token_type_ids: ", feature["token_type_ids"])
-                # print("preprocess feature_unique_id: ", feature["unique_id"])
-                # print("preprocess feature_tokens_list: ", feature["tokens"])
-                # print("preprocess feature_question_text: ", feature["question_text"])
-                # if f_index > 0:
-                #     print("preprocess feature_context_text: ", feature["context_text"])
-
         return rst
-
-
+    
     def predict(self, in_data):
-
         return self.model_predictor.predict(in_data)
-
-
+    
     def postprocess(self, result):
-
-        # print("postprocess result_input_ids: ", result["input_ids"])
-        # print("postprocess result_attention_mask: ", result["attention_mask"])
-        # print("postprocess result_token_type_ids: ", result["token_type_ids"])
-        # print("postprocess result_unique_id: ", result["unique_id"])
-        # print("postprocess result_question_text: ", result["question_text"])
-        # print("postprocess result_context_text: ", result["context_text"])
-        # print("postprocess result_tokens_list: ", result["tokens_list"])
-        # print("postprocess result_start_logits_shape: ", np.array(result["start_logits"]).shape)
-        # print("postprocess result_start_logits: ", result["start_logits"])
-        # print("postprocess result_end_logits_shape: ", np.array(result["end_logits"]).shape)
-        # print("postprocess result_end_logits: ", result["end_logits"])
-        # print("postprocess result_predictions_shape: ", np.array(result["predictions"]).shape)
-        # print("postprocess result_predictions: ", result["predictions"])
-
         outputs = self.generate_answers(result=result)
         return outputs

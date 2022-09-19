@@ -35,14 +35,8 @@ if __name__ == "__main__":
                                               model_dir=args.checkpoint_dir,
                                               first_sequence=args.first_sequence,
                                               second_sequence=args.second_sequence,
-                                              sequence_length=args.sequence_length,
-                                              qas_id=args.qas_id,
-                                              max_query_length=args.max_query_length,
-                                              max_answer_length=args.max_answer_length,
-                                              doc_stride=args.doc_stride,
-                                              n_best_size=args.n_best_size,
+                                              max_seq_length=args.sequence_length,
                                               output_file=args.outputs,
-                                              output_answer_file=args.output_answer_file,
                                               user_defined_parameters=user_defined_parameters
                                               )
         predictor_manager = PredictorManager(predictor=predictor,
@@ -59,15 +53,10 @@ if __name__ == "__main__":
     print('log: starts to process dataset...\n')
     valid_dataset = MachineReadingComprehensionDataset(pretrained_model_name_or_path=args.pretrained_model_name_or_path,
                                                        data_file=args.tables.split(",")[-1],
-                                                       sequence_length=args.sequence_length,
+                                                       max_seq_length=args.sequence_length,
                                                        input_schema=args.input_schema,
                                                        first_sequence=args.first_sequence,
                                                        second_sequence=args.second_sequence,
-                                                       answer_name=args.answer_name,
-                                                       qas_id=args.qas_id,
-                                                       start_position_name=args.start_position_name,
-                                                       max_query_length=args.max_query_length,
-                                                       doc_stride=args.doc_stride,
                                                        user_defined_parameters=user_defined_parameters,
                                                        is_training=False
                                                        )
@@ -75,15 +64,10 @@ if __name__ == "__main__":
     if args.mode == "train":
         train_dataset = MachineReadingComprehensionDataset(pretrained_model_name_or_path=args.pretrained_model_name_or_path,
                                                            data_file=args.tables.split(",")[0],
-                                                           sequence_length=args.sequence_length,
+                                                           max_seq_length=args.sequence_length,
                                                            input_schema=args.input_schema,
                                                            first_sequence=args.first_sequence,
                                                            second_sequence=args.second_sequence,
-                                                           answer_name=args.answer_name,
-                                                           qas_id=args.qas_id,
-                                                           start_position_name=args.start_position_name,
-                                                           max_query_length=args.max_query_length,
-                                                           doc_stride=args.doc_stride,
                                                            user_defined_parameters=user_defined_parameters,
                                                            is_training=True
                                                            )
@@ -121,4 +105,3 @@ if __name__ == "__main__":
         else:
             model.to("cpu")
         evaluator.evaluate(model=model)
-
