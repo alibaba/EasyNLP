@@ -23,9 +23,9 @@ import six
 import torch
 
 from ...core.predictor import Predictor, get_model_predictor
-from ...modelzoo import AutoTokenizer
+from ...modelzoo import AutoTokenizer, BasicTokenizer
+from easynlp.modelzoo.tokenization_utils import _is_control, _is_punctuation
 from .data import SquadExample, _check_is_max_context
-
 
 logger = logging.getLogger()
 
@@ -50,7 +50,6 @@ class Vocab:
 
 
 def build_vocab(vocab_path):
-
     return Vocab(vocab_path)
 
 
@@ -61,7 +60,6 @@ def convert_single_example_to_features(
         sequence_length,
         doc_stride
 ):
-
     query_tokens = tokenizer.tokenize(example.question_text)
 
     if len(query_tokens) > max_query_length:
@@ -137,11 +135,53 @@ def convert_single_example_to_features(
             'unique_id': example.qas_id,
             'question_text': example.question_text,
             'context_text': example.context_text,
+            'answer_text': example.answer_text,
             'tokens': tokens
         }
         features.append(feature)
 
     return features
+
+
+def convert_to_unicode(text):
+  """Converts `text` to Unicode (if it's not already), assuming utf-8 input."""
+  if six.PY3:
+    if isinstance(text, str):
+      return text
+    elif isinstance(text, bytes):
+      return text.decode("utf-8", "ignore")
+    else:
+      raise ValueError("Unsupported string type: %s" % (type(text)))
+  elif six.PY2:
+    if isinstance(text, str):
+      return text.decode("utf-8", "ignore")
+    elif isinstance(text, unicode):
+      return text
+    else:
+      raise ValueError("Unsupported string type: %s" % (type(text)))
+  else:
+    raise ValueError("Not running on Python2 or Python 3?")
+
+
+def customize_tokenizer(text, do_lower_case=False):
+    tokenizer = BasicTokenizer(do_lower_case=do_lower_case)
+    temp_x = ""
+    text = convert_to_unicode(text)
+    for c in text:
+        if tokenizer._is_chinese_char(ord(c)) or _is_punctuation(c) or _is_whitespace(c) or _is_control(c):
+            temp_x += " " + c + " "
+        else:
+            temp_x += c
+    if do_lower_case:
+        temp_x = temp_x.lower()
+    return temp_x.split()
+
+
+def _is_whitespace(c):
+    # ascii值 12288 和 160 为中文特殊空格字符，需要加上判断，否则预处理时遇到空格无法识别出，会出错
+    if c == " " or c == "\t" or c == "\r" or ord(c) == 0x202F or ord(c) == 12288 or ord(c) == 160 or ord(c) == 8201:
+        return True
+    return False
 
 
 class MachineReadingComprehensionPredictor(Predictor):
@@ -176,20 +216,20 @@ class MachineReadingComprehensionPredictor(Predictor):
         self.qas_id = self.user_defined_parameters.get("qas_id", 'qas_id')
         self.answer_name = self.user_defined_parameters.get("answer_name", 'answer_text')
         self.start_position_name = self.user_defined_parameters.get("start_position_name", 'start_position_character')
-        
+
         self.max_query_length = int(self.user_defined_parameters.get("max_query_length", 64))
         self.max_answer_length = int(self.user_defined_parameters.get("max_answer_length", 30))
         self.doc_stride = int(self.user_defined_parameters.get("doc_stride", 128))
         self.sequence_length = kwargs.pop("sequence_length", 384)
         self.n_best_size = kwargs.pop("n_best_size", 10)
-        
+
         self.output_file = kwargs.pop("outputs", "dev.pred.csv")
         self.output_answer_file = self.user_defined_parameters.get("output_answer_file", "dev.ans.csv")
 
         self.vocab = build_vocab(vocab_path=model_dir + '/vocab.txt')
         self.MUTEX = Lock()
 
-    def get_format_text_and_word_offset(self, text):
+    def get_format_text_and_word_offset(self, context_text):
         """
         格式化原始输入的文本（去除多个空格）,同时得到每个字符所属的元素（单词）的位置
         这样，根据原始数据集中所给出的起始index(answer_start)就能立马判定它在列表中的位置。
@@ -202,28 +242,39 @@ class MachineReadingComprehensionPredictor(Predictor):
              3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]
         """
 
-        def is_whitespace(c):
-            if c == " " or c == "\t" or c == "\r" or c == "\n" or ord(c) == 0x202F:
-                return True
-            return False
-
+        raw_doc_tokens = customize_tokenizer(context_text, do_lower_case=False)
         doc_tokens = []
         char_to_word_offset = []
         prev_is_whitespace = True
-        # 以下这个for循环的作用就是将原始context中的内容进行格式化
-        for c in text:  # 遍历paragraph中的每个字符
-            if self.language == 'zh':  # 中文直接append
-                doc_tokens.append(c)
-            else:                      # 英文需要按空格切分预处理
-                if is_whitespace(c):  # 判断当前字符是否为空格（各类空格）
+
+        if self.language == 'zh':
+            k = 0
+            temp_word = ""
+            for c in context_text:
+                if _is_whitespace(c):
+                    char_to_word_offset.append(k - 1)
+                    continue
+                else:
+                    temp_word += c
+                    char_to_word_offset.append(k)
+                if temp_word == raw_doc_tokens[k]:
+                    doc_tokens.append(temp_word)
+                    temp_word = ""
+                    k += 1
+            assert k == len(raw_doc_tokens)
+        else:
+            # Split on whitespace so that different tokens may be attributed to their original position.
+            for c in context_text:
+                if _is_whitespace(c):
                     prev_is_whitespace = True
                 else:
-                    if prev_is_whitespace:  # 如果前一个字符是空格
+                    if prev_is_whitespace:
                         doc_tokens.append(c)
                     else:
-                        doc_tokens[-1] += c  # 在list的最后一个元素中继续追加字符
+                        doc_tokens[-1] += c
                     prev_is_whitespace = False
-            char_to_word_offset.append(len(doc_tokens) - 1)
+                char_to_word_offset.append(len(doc_tokens) - 1)
+
         return doc_tokens, char_to_word_offset
 
     # @staticmethod
@@ -256,8 +307,12 @@ class MachineReadingComprehensionPredictor(Predictor):
 
         key_start = input_tokens.index('[SEP]') + 1
         tokenized_tokens = input_tokens[key_start:-1]
-        str_tokenized_tokens = "".join(tokenized_tokens)
-        index = str_origin_context.index(str_tokenized_tokens)
+        str_tokenized_tokens = "".join(tokenized_tokens).replace(" ##", "").replace("##", "")
+        str_origin_context = str_origin_context.replace(" ##", "").replace("##", "")
+        if str_tokenized_tokens in str_origin_context:
+            index = str_origin_context.index(str_tokenized_tokens)
+        else:
+            index = 0
         value_start = token_id[index]
         token_to_orig_map = {}
         # 处理这样的边界情况： Building's gold   《==》   's', 'gold', 'dome'
@@ -383,6 +438,7 @@ class MachineReadingComprehensionPredictor(Predictor):
         id_to_context_list = collections.defaultdict(list)
         id_to_context_text = collections.defaultdict(list)
         id_to_query = collections.defaultdict(list)
+        id_to_answer = collections.defaultdict(list)
         id_to_input_ids = collections.defaultdict(list)
         id_to_tokens_list = collections.defaultdict(list)
         all_logits_list = collections.defaultdict(list)
@@ -398,6 +454,7 @@ class MachineReadingComprehensionPredictor(Predictor):
             id_to_context_list[unique_id].append(context_tokens)
             id_to_context_text[unique_id].append(" ".join(context_tokens))
             id_to_query[unique_id].append(result["question_text"][i])
+            id_to_answer[unique_id].append(result["answer_text"][i])
             id_to_input_ids[unique_id].append(result["input_ids"][i])
             id_to_tokens_list[unique_id].append(result["tokens_list"][i])
 
@@ -418,7 +475,8 @@ class MachineReadingComprehensionPredictor(Predictor):
             for i in range(len(all_logits)):
                 start_indexes = self.get_best_indexes(all_logits[i][0], self.n_best_size)
                 end_indexes = self.get_best_indexes(all_logits[i][1], self.n_best_size)
-                token_to_orig_map = self.get_token_to_orig_map(tokens_list[i], id_to_context_text[unique_id][i], self.tokenizer.tokenize)
+                token_to_orig_map = self.get_token_to_orig_map(tokens_list[i], id_to_context_text[unique_id][i],
+                                                               self.tokenizer.tokenize)
 
                 for start_index in start_indexes:
                     for end_index in end_indexes:
@@ -441,7 +499,7 @@ class MachineReadingComprehensionPredictor(Predictor):
                         tok_text = tok_text.replace(" ##", "").replace("##", "")
                         tok_text = tok_text.strip()
                         tok_text = " ".join(tok_text.split())
-                        
+
                         orig_doc_start = token_to_orig_map[start_index]
                         orig_doc_end = token_to_orig_map[end_index]
                         orig_tokens = id_to_context_list[unique_id][i][orig_doc_start:(orig_doc_end + 1)]
@@ -449,7 +507,7 @@ class MachineReadingComprehensionPredictor(Predictor):
                         final_text = self.get_final_text(tok_text, orig_text)
                         if self.language == 'zh':
                             final_text = "".join(final_text.split())
-                            
+
                         prelim_predictions[unique_id].append(_PrelimPrediction(
                             text=final_text,
                             start_index=int(start_index),
@@ -466,11 +524,17 @@ class MachineReadingComprehensionPredictor(Predictor):
         best_results = {}
         for k, v in prelim_predictions.items():
             best_results[k] = v[0].text
+            if self.language == 'zh':
+                result_context = "".join(id_to_context_text[k][0].split())
+            else:
+                result_context = id_to_context_text[k][0]
+
             output_dict = {
                 "unique_id": k,
-                "best_answer":  v[0].text,
+                "best_answer": v[0].text,
+                "gold_answer": id_to_answer[k][0],
                 "query": id_to_query[k][0],
-                "context": id_to_context_text[k][0]
+                "context": result_context
             }
             output_dict_list.append(output_dict)
 
@@ -493,6 +557,7 @@ class MachineReadingComprehensionPredictor(Predictor):
             "unique_id": [],
             "question_text": [],
             "context_text": [],
+            "answer_text": [],
             "tokens_list": []
         }
 
@@ -501,12 +566,13 @@ class MachineReadingComprehensionPredictor(Predictor):
             question_text = record[self.first_sequence]
             context_text = record[self.second_sequence]
             unique_id = record[self.qas_id]
+            answer_text = record[self.answer_name] if self.answer_name else None
 
             example = SquadExample(
                 qas_id=unique_id,
                 question_text=question_text,
                 context_text=context_text,
-                answer_text=None,
+                answer_text=answer_text,
                 start_position_character=None,
                 language=self.language
             )
@@ -528,13 +594,14 @@ class MachineReadingComprehensionPredictor(Predictor):
                 rst["unique_id"].append(feature["unique_id"])
                 rst["question_text"].append(feature["question_text"])
                 rst["context_text"].append(feature["context_text"])
+                rst["answer_text"].append(feature["answer_text"])
                 rst["tokens_list"].append(feature["tokens"])
 
         return rst
-    
+
     def predict(self, in_data):
         return self.model_predictor.predict(in_data)
-    
+
     def postprocess(self, result):
         outputs = self.generate_answers(result=result)
         return outputs

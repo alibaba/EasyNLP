@@ -50,7 +50,7 @@ class MachineReadingComprehension(Application):
             self._model = AutoModel.from_pretrained(pretrained_model_name_or_path)
 
         self.classifier = nn.Linear(self.config.hidden_size, 2)    # num_labels = 2 (start_logits & end_logits)
-        # self.dropout = nn.Dropout(self.config.hidden_dropout_prob)
+        self.dropout = nn.Dropout(self.config.hidden_dropout_prob)
         self.init_weights()
 
     def init_weights(self):
@@ -65,7 +65,7 @@ class MachineReadingComprehension(Application):
                                        token_type_ids=inputs["token_type_ids"]
                                        )[0]                        # [batch_size, src_len, hidden_size]
 
-        # sequence_output = self.dropout(sequence_output)
+        sequence_outputs = self.dropout(sequence_outputs)
         logits = self.classifier(sequence_outputs)                 # [batch_size, src_len, 2]
         start_logits, end_logits = logits.split(1, dim=-1)         # [batch_size, src_len, 1] [batch_size, src_len, 1]
         start_logits = start_logits.squeeze(-1)                    # [batch_size, src_len]

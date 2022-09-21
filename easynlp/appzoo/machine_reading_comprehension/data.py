@@ -16,17 +16,17 @@
 
 import os
 import torch
-import numpy as np
+import six
 import json
 import logging
 import collections
 
-from ...modelzoo import AutoTokenizer,BertTokenizer
+from ...modelzoo import AutoTokenizer, BasicTokenizer
+from easynlp.modelzoo.tokenization_utils import _is_control, _is_punctuation
 from ...utils import io
 from ..dataset import BaseDataset
 
 logger = logging.getLogger(__name__)
-
 
 
 class SquadExample:
@@ -62,15 +62,29 @@ class SquadExample:
 
         self.start_position, self.end_position = 0, 0
 
+        raw_doc_tokens = customize_tokenizer(self.context_text, do_lower_case=False)
         doc_tokens = []
         char_to_word_offset = []
         prev_is_whitespace = True
 
-        # Split on whitespace so that different tokens may be attributed to their original position.
-        for c in self.context_text:
-            if language == 'zh':        # 中文直接append
-                doc_tokens.append(c)
-            else:                       # 英文需要按空格切分预处理
+        if language == 'zh':
+            k = 0
+            temp_word = ""
+            for c in self.context_text:
+                if _is_whitespace(c):
+                    char_to_word_offset.append(k - 1)
+                    continue
+                else:
+                    temp_word += c
+                    char_to_word_offset.append(k)
+                if temp_word == raw_doc_tokens[k]:
+                    doc_tokens.append(temp_word)
+                    temp_word = ""
+                    k += 1
+            assert k == len(raw_doc_tokens)
+        else:
+            # Split on whitespace so that different tokens may be attributed to their original position.
+            for c in self.context_text:
                 if _is_whitespace(c):
                     prev_is_whitespace = True
                 else:
@@ -79,7 +93,7 @@ class SquadExample:
                     else:
                         doc_tokens[-1] += c
                     prev_is_whitespace = False
-            char_to_word_offset.append(len(doc_tokens) - 1)
+                char_to_word_offset.append(len(doc_tokens) - 1)
 
         self.doc_tokens = doc_tokens
         self.char_to_word_offset = char_to_word_offset
@@ -93,8 +107,43 @@ class SquadExample:
             ]
 
 
+def convert_to_unicode(text):
+  """Converts `text` to Unicode (if it's not already), assuming utf-8 input."""
+  if six.PY3:
+    if isinstance(text, str):
+      return text
+    elif isinstance(text, bytes):
+      return text.decode("utf-8", "ignore")
+    else:
+      raise ValueError("Unsupported string type: %s" % (type(text)))
+  elif six.PY2:
+    if isinstance(text, str):
+      return text.decode("utf-8", "ignore")
+    elif isinstance(text, unicode):
+      return text
+    else:
+      raise ValueError("Unsupported string type: %s" % (type(text)))
+  else:
+    raise ValueError("Not running on Python2 or Python 3?")
+
+
+def customize_tokenizer(text, do_lower_case=False):
+    tokenizer = BasicTokenizer(do_lower_case=do_lower_case)
+    temp_x = ""
+    text = convert_to_unicode(text)
+    for c in text:
+        if tokenizer._is_chinese_char(ord(c)) or _is_punctuation(c) or _is_whitespace(c) or _is_control(c):
+            temp_x += " " + c + " "
+        else:
+            temp_x += c
+    if do_lower_case:
+        temp_x = temp_x.lower()
+    return temp_x.split()
+
+
 def _is_whitespace(c):
-    if c == " " or c == "\t" or c == "\r" or ord(c) == 0x202F:
+    # ascii值 12288 和 160 为中文特殊空格字符，需要加上判断，否则预处理时遇到空格无法识别出，会出错
+    if c == " " or c == "\t" or c == "\r" or ord(c) == 0x202F or ord(c) == 12288 or ord(c) == 160 or ord(c) == 8201:
         return True
     return False
 
@@ -125,7 +174,6 @@ class InputFeatures(object):
         self.start_position = start_position
         self.end_position = end_position
         self.is_impossible = is_impossible
-
 
 
 def _check_is_max_context(doc_spans, cur_span_index, position):
@@ -256,8 +304,8 @@ def convert_example_to_features(
             if not (tok_start_position >= doc_start and tok_end_position <= doc_end):
                 out_of_span = True
             if out_of_span:
-                start_position = sequence_length
-                end_position = sequence_length
+                start_position = 0
+                end_position = 0
             else:
                 doc_offset = len(query_tokens) + 2
                 start_position = tok_start_position - doc_start + doc_offset
