@@ -7,7 +7,7 @@ EasyNLP提供常见的**中文**数据集的下载，同时提供如下**接口�
 [中文文本匹配/问答数据](#中文文本匹配/问答数据)  
 [中文文本分类](#中文文本分类)  
 [中文序列标注](#中文序列标注)  
-[文本生成数据（摘要、对话等）](#文本生成数据（摘要、对话等）)  
+[文本生成数据（摘要、对话等）](#文本生成数据（摘要/对话等）)  
 [知识图谱](#知识图谱)  
 [知识任务数据](#知识任务数据)  
 [零样本学习](#零样本学习)  
@@ -132,7 +132,7 @@ Trainer(model=model, train_dataset=train_dataset).train()
 | OntoNotes**(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | | 中文命名实体识别任务 总共 15740 | 有18种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 | MSRA **(**[**链接**](https://catalog.ldc.upenn.edu/LDC2013T19)**)** | msra_ner | 中文命名实体识别任务训练集：46675 | 有3种命名实体类型；每条sample包含3条数据项：输入文本和标注出来的实体位置和对应的实体类型。 |
 
-# 文本生成数据（摘要、对话等）
+# 文本生成数据（摘要/对话等）
 | **数据** | **描述** | **数据格式** |
 | --- | --- | --- |
 | Dureader[(链接)](https://arxiv.org/pdf/1711.05073.pdf) [下载](https://dataset-bj.cdn.bcebos.com/dureader/dureader_preprocessed.zip)| 百度中文阅读理解数据集（改造成：问题生成任务）200,000 问题/1,000,000 文档 | 每条sample包含5个数据项：question：输入的问题；question type：问题类型（yes-no，entity-fact等）；answer：问题的对应答案；support sentence：答案在文档中的支持句；document：输入文档 |

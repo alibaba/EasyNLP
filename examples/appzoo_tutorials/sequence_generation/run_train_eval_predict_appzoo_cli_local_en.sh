@@ -25,7 +25,7 @@ if [ "$mode" = "predict" ]; then
     --checkpoint_dir=./finetuned_en_model \
     --micro_batch_size 32 \
     --sequence_length 512 \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'language=en copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "evaluate" ]; then
 
@@ -42,7 +42,7 @@ elif [ "$mode" = "evaluate" ]; then
   --checkpoint_dir=./finetuned_en_model \
   --micro_batch_size 32 \
   --sequence_length 512 \
-  --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'language=en copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "train" ]; then
 
@@ -60,7 +60,7 @@ elif [ "$mode" = "train" ]; then
   --sequence_length=512 \
   --save_checkpoint_steps=2000 \
   --export_tf_checkpoint_type none \
-  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/pegasus-summary-generation-en copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'language=en pretrain_model_name_or_path=alibaba-pai/pegasus-summary-generation-en copy=false max_encoder_length=512 min_decoder_length=64 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 
 fi

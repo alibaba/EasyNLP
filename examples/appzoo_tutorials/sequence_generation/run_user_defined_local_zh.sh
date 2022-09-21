@@ -32,16 +32,16 @@ if [ "$mode" = "predict" ]; then
     --app_name=sequence_generation \
     --mode $mode \
     --worker_gpu=1 \
-    --tables=./cn_dev.tsv  \
-    --outputs=./cn.preds.txt \
-    --input_schema=title:str:1,content:str:1,title_tokens:str:1,content_tokens:str:1,tag:str:1 \
+    --tables=./cn_test.txt  \
+    --outputs=./cn_test.preds.txt \
+    --input_schema=title:str:1,content:str:1 \
     --output_schema=predictions,beams \
-    --append_cols=title,content,tag \
+    --append_cols=title,content \
     --first_sequence=content \
-    --checkpoint_dir=./finetuned_zh_model/ \
+    --checkpoint_dir=/root/.easynlp/modelzoo/alibaba-pai/randeng-238M-Summary-Chinese-tuned/ \
     --micro_batch_size=32 \
     --sequence_length=512 \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "train" ]; then
 
@@ -61,12 +61,13 @@ elif [ "$mode" = "train" ]; then
     --epoch_num=1  \
     --save_checkpoint_steps=150 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'pretrain_model_name_or_path=hfl/randeng-238M-Summary-Chinese copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'pretrain_model_name_or_path=hfl/randeng-238M-Summary-Chinese language=zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 # alibaba-pai/mt5-title-generation-zh
-# hfl/bloom-350m
 # hfl/randeng-523M-Summary-Chinese
 # hfl/randeng-238M-Summary-Chinese
+# alibaba-pai/randeng-523M-Summary-Chinese-tuned
+# alibaba-pai/randeng-238M-Summary-Chinese-tuned
 
 elif [ "$mode" = "evaluate" ]; then
 
@@ -83,6 +84,6 @@ elif [ "$mode" = "evaluate" ]; then
     --micro_batch_size=16 \
     --sequence_length=512 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=50 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=50 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi
