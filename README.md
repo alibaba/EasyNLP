@@ -43,6 +43,7 @@ We have a series of technical articles on the functionalities of EasyNLP.
 - [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
 - [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
 - [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
+- [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127?)
 
 
 # Installation
@@ -239,6 +240,7 @@ Here is the detailed [CLUE benchmark example](https://github.com/alibaba/EasyNLP
 - [AppZoo-文本分类/匹配](https://www.yuque.com/easyx/easynlp/vgbopy)
 - [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/qkwqmb)
 - [AppZoo-GEEP文本分类](https://www.yuque.com/easyx/easynlp/lepm0q)
+- [AppZoo-文本生成](https://www.yuque.com/easyx/easynlp/svde6x)
 - [基础预训练实践](https://www.yuque.com/easyx/easynlp/lm1a5t)
 - [知识预训练实践](https://www.yuque.com/easyx/easynlp/za7ywp)
 - [知识蒸馏实践](https://www.yuque.com/easyx/easynlp/ffu6p9)

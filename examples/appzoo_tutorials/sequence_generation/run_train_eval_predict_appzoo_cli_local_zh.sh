@@ -25,7 +25,7 @@ if [ "$mode" = "predict" ]; then
     --checkpoint_dir=./finetuned_zh_model \
     --micro_batch_size=32 \
     --sequence_length 512 \
-    --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "evaluate" ]; then
 
@@ -42,7 +42,7 @@ elif [ "$mode" = "evaluate" ]; then
   --checkpoint_dir=./finetuned_zh_model \
   --micro_batch_size=32 \
   --sequence_length 512 \
-  --user_defined_parameters 'copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
   
 
 elif [ "$mode" = "train" ]; then
@@ -62,6 +62,12 @@ elif [ "$mode" = "train" ]; then
   --epoch_num 1 \
   --save_checkpoint_steps=150 \
   --export_tf_checkpoint_type none \
-  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/randeng-238M-Summary-Chinese-tuned copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/randeng-238M-Summary-Chinese-tuned language=zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+
+# alibaba-pai/mt5-title-generation-zh
+# hfl/randeng-523M-Summary-Chinese
+# hfl/randeng-238M-Summary-Chinese
+# alibaba-pai/randeng-523M-Summary-Chinese-tuned
+# alibaba-pai/randeng-238M-Summary-Chinese-tuned
 
 fi

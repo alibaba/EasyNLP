@@ -212,6 +212,7 @@ bash run_clue.sh 0 train csl
 - [AppZoo-文本分类/匹配](https://www.yuque.com/easyx/easynlp/vgbopy)
 - [AppZoo-序列标注](https://www.yuque.com/easyx/easynlp/qkwqmb)
 - [AppZoo-GEEP文本分类](https://www.yuque.com/easyx/easynlp/lepm0q)
+- [AppZoo-文本生成](https://www.yuque.com/easyx/easynlp/svde6x)
 - [基础预训练实践](https://www.yuque.com/easyx/easynlp/lm1a5t)
 - [知识预训练实践](https://www.yuque.com/easyx/easynlp/za7ywp)
 - [知识蒸馏实践](https://www.yuque.com/easyx/easynlp/ffu6p9)
