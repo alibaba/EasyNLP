@@ -43,8 +43,6 @@ We have a series of technical articles on the functionalities of EasyNLP.
 - [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
 - [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
 - [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
-- [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127?)
-
 
 # Installation
 
