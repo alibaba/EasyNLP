@@ -54,6 +54,7 @@ if __name__ == "__main__":
         second_sequence=args.second_sequence,
         label_name=args.label_name,
         label_enumerate_values=args.label_enumerate_values,
+        user_defined_parameters=user_defined_parameters,
         is_training=False)
 
     model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
