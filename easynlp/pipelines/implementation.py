@@ -19,7 +19,8 @@ from typing import Any
 from ..appzoo import CLIPGPTImageTextGenerationPredictor,\
                     TextImageGenerationPredictor, \
                     SequenceClassificationPredictor, \
-                    TextMatchPredictor, SequenceLabelingPredictor
+                    TextMatchPredictor, SequenceLabelingPredictor, \
+                    MachineReadingComprehensionPredictor
 
 class Pipeline(ABC):
     """
@@ -146,5 +147,38 @@ class SequenceLabelingPipeline(SequenceLabelingPredictor, Pipeline):
             return delete_useless_key(results, 'id')
         elif type(results) == list:
             return [delete_useless_key(res, 'id') for res in results]
+        else:
+            raise NotImplementedError
+
+class MachineReadingComprehensionPipeline(MachineReadingComprehensionPredictor, Pipeline):
+
+    """
+    This is a implement of MachineReadingComprehension pipeline. 
+    Input format: 
+        {"context": context, "query": query, "answer": answer, "id": id} 
+      or 
+        [{"context": context1, "query": query1, "answer": answer1, "id": id1}, 
+         {"context": context2, "query": query2, "answer": answer2, "id": id2}]
+    """
+    def format_input(self, inputs):
+        if type(inputs) != dict and type(inputs) != list:
+            raise RuntimeError("Input only supports strings or lists of strings")
+        if type(inputs) == dict:
+            inputs = [inputs]
+        return inputs
+    
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        You need to post-process the outputs of the __call__ to get the fields you need.
+        """
+        results = super().__call__(*args, **kwds)
+        if type(results) == dict:
+            return [results]
+        elif type(results) == list:
+            return [{"unique_id": res["unique_id"],
+                     "best_answer": res["best_answer"],
+                     "gold_answer": res["gold_answer"],
+                     "query": res["query"],
+                     "context": res["context"]} for res in results]
         else:
             raise NotImplementedError

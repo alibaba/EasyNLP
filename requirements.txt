@@ -12,7 +12,6 @@ sentencepiece>=0.1.91
 tensorboard
 tokenizers==0.10.1
 datasets==2.1.0
-torch==1.8.0
 rouge
 tqdm>=4.48.2
 pillow
