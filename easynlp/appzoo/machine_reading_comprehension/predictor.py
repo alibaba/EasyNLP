@@ -561,11 +561,7 @@ class MachineReadingComprehensionPredictor(Predictor):
             "tokens_list": []
         }
 
-        print("in_data: ", in_data)
         for record in in_data:
-
-            print("record: ", record)
-            print("self.first_sequence: ", self.first_sequence)
             question_text = record[self.first_sequence]
             context_text = record[self.second_sequence]
             unique_id = record[self.qas_id]
