@@ -544,7 +544,6 @@ class MachineReadingComprehensionPredictor(Predictor):
         return output_dict_list
 
     def preprocess(self, in_data):
-        
         if not in_data:
             raise RuntimeError("Input data should not be None.")
 
@@ -563,6 +562,7 @@ class MachineReadingComprehensionPredictor(Predictor):
         }
 
         for record in in_data:
+        
             question_text = record[self.first_sequence]
             context_text = record[self.second_sequence]
             unique_id = record[self.qas_id]
