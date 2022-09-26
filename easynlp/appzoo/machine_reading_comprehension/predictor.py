@@ -544,6 +544,7 @@ class MachineReadingComprehensionPredictor(Predictor):
         return output_dict_list
 
     def preprocess(self, in_data):
+        
         if not in_data:
             raise RuntimeError("Input data should not be None.")
 
