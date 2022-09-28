@@ -20,11 +20,11 @@ import json
 import tarfile
 from typing import Any, List, Optional
 from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
-        SequenceClassification, TextMatch, SequenceLabeling
+        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
         SequenceClassificationPipeline, TextImageGenerationPipeline, \
-        TextMatchPipeline, SequenceLabelingPipeline
+        TextMatchPipeline, SequenceLabelingPipeline, MachineReadingComprehensionPipeline
 
 from ..utils import EASYNLP_CACHE_ROOT, EASYNLP_REMOTE_MODELZOO, EASYNLP_LOCAL_APPZOO
 
@@ -61,6 +61,11 @@ SUPPORTED_TASKS = {
         'impl': ImageTextGenerationPipeline,
         'model_cls': CLIPGPTImageTextGeneration,
         'default': 'clip-gpt-i2t-base-zh',
+    },
+    'machine_reading_comprehension': {
+        'impl': MachineReadingComprehensionPipeline,
+        'model_cls': MachineReadingComprehension,
+        'default': 'macbert-base-rczh',
     }
 }
 
