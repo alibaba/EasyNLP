@@ -39,7 +39,6 @@ if __name__ == "__main__":
         args.pretrained_model_name_or_path = args.checkpoint_dir
     args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
   
-    multi_label = user_defined_parameters.get('app_parameters', False).get('multi_label', False)
     valid_dataset = ClassificationDataset(
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
@@ -48,7 +47,7 @@ if __name__ == "__main__":
         first_sequence=args.first_sequence,
         second_sequence=args.second_sequence,
         label_name=args.label_name,
-        multi_label=multi_label,
+        user_defined_parameters=user_defined_parameters,
         label_enumerate_values=args.label_enumerate_values,
         is_training=False)
 
@@ -73,7 +72,7 @@ if __name__ == "__main__":
             second_sequence=args.second_sequence,
             label_name=args.label_name,
             label_enumerate_values=args.label_enumerate_values,
-            multi_label=multi_label,
+            user_defined_parameters=user_defined_parameters,
             is_training=True)
 
         trainer = Trainer(model=model, train_dataset=train_dataset,user_defined_parameters=user_defined_parameters,
