@@ -24,6 +24,14 @@ if [ ! -f ./fashiongen_1to1_test.tsv ]; then
   wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/fashiongen_1to1_test.tsv
 fi
 
+if [ ! -f ./fashiongen_1to1_test_part_image.tsv ]; then
+  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/fashiongen_1to1_test_part_image.tsv
+fi
+
+if [ ! -f ./fashiongen_1to1_test_part_text.tsv ]; then
+  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/CLIP/fashiongen_1to1_test_part_text.tsv
+fi
+
 mode=$2
 
 if [ "$mode" = "pretrain_cn" ]; then
@@ -34,7 +42,7 @@ fi
   easynlp \
   --mode train \
   --worker_gpu=1 \
-  --tables=../../../../wukong_data/data/output_5/00002.tar,./COCO_test_images.tsv \
+  --tables=local_path_to.tar,./COCO_test_images.tsv \
   --input_schema=text:str:1,image:str:1 \
   --first_sequence=text \
   --second_sequence=image \
@@ -155,5 +163,39 @@ elif [ "$mode" = "evaluate_en" ]; then
   --sequence_length=77 \
   --micro_batch_size=32 \
   --app_name=clip 
+
+elif [ "$mode" = "predict_en_text" ]; then
+    easynlp \
+      --mode predict \
+      --worker_gpu=1 \
+      --tables=./fashiongen_1to1_test_part_text.tsv \
+      --input_schema=text:str:1 \
+      --output_schema=text_feat \
+      --outputs ./fashion_text_feat.tsv \
+      --first_sequence=text \
+      --checkpoint_dir=./clip_en_model/ \
+      --random_seed=42 \
+      --logging_steps=100 \
+      --save_checkpoint_steps=500 \
+      --sequence_length=32 \
+      --micro_batch_size=2 \
+      --app_name=clip 
+
+elif [ "$mode" = "predict_en_image" ]; then
+    easynlp \
+      --mode predict \
+      --worker_gpu=1 \
+      --tables=./fashiongen_1to1_test_part_image.tsv \
+      --input_schema=image:str:1 \
+      --output_schema=image_feat \
+      --outputs ./fashion_image_feat.tsv \
+      --first_sequence=image \
+      --checkpoint_dir=./clip_en_model/ \
+      --random_seed=42 \
+      --logging_steps=100 \
+      --save_checkpoint_steps=500 \
+      --sequence_length=32 \
+      --micro_batch_size=2 \
+      --app_name=clip 
 
 fi

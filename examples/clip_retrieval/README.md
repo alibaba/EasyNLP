@@ -9,7 +9,7 @@
 对于predict 数据格式为单列 文本 或 图片base64编码
 
 ### Train
-执行命令 sh run_clip_local.sh 0 train
+执行命令 sh run_clip_local_appzoo.sh 0 train_cn
 其中0是所用显卡编号，含义同CUDA_VISIBLE_DEVICES=0
 
 示例输出
@@ -25,7 +25,7 @@ Training Time: 45.49571466445923, rank 0, gsteps 32
 ```
 
 ### evaluate
-执行命令 sh run_clip_local.sh 0 evaluate
+执行命令 sh run_clip_local_appzoo.sh 0 evaluate_cn
 
 示例输出
 ```
@@ -37,9 +37,9 @@ Training Time: 45.49571466445923, rank 0, gsteps 32
 
 ### predict
 predict用于生成测试数据的CLIP特征
-sh run_clip_local.sh 0 predict
-默认将生成测试文本的特征，修改run_clip_local.sh文件中的代码可生成测试图片base64的特征
+sh run_clip_local_appzoo.sh 0 predict_cn_text
+默认将生成测试文本的特征，修改run_clip_local_appzoo.sh文件中的代码可生成测试图片base64的特征
 
 ### 自定义开发
-* batch size 和 learning rate等参数在run_clip_local.sh文件中修改
+* batch size 和 learning rate等参数在run_clip_local_appzoo.sh文件中修改
 * 修改模型底层逻辑如dataset,loss,evaluator等, 请参考easynlp/appzoo/multi_modal 和 easynlp/modelzoo/models/clip 这两个文件夹, 修改完成后记得python setup.py install对修改版本进行安装以生效.
