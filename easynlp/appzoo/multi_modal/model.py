@@ -56,7 +56,6 @@ class MultiModal(Application):
                 self.model_type='open_clip'
                 self.config=Config_Wrapper(self.raw_config)# used by trainer
                 self.open_clip = OPEN_CLIP(**self.config.json_data)
-                self.open_clip.train()
                 checkpoint = torch.load(pretrained_model_name_or_path+'/pytorch_model.bin', map_location=torch.device('cpu'))
                 all_model_state_dict = {k.replace('open_clip.',''): v for k, v in checkpoint.items()}
                 self.open_clip.load_state_dict(all_model_state_dict)
@@ -89,9 +88,7 @@ class MultiModal(Application):
                         key=key.replace('vision_encoder.','')
                         vision_encoder_params[key] = value
                 self.text_encoder=RobertaModel.from_pretrained(pretrained_model_name_or_path,config=self.text_config,state_dict=text_encoder_params)
-                self.text_encoder.train()
                 self.vision_encoder = CLIPVisionModel.from_pretrained(pretrained_model_name_or_path,config=self.vision_config,state_dict=vision_encoder_params) 
-                self.vision_encoder.train()
                 self.text_shape=all_params['text_projection.weight'].shape
                 self.vision_shape=all_params['vision_projection.weight'].shape
                 self.text_projection = nn.Linear(self.text_shape[0], self.text_shape[1])
