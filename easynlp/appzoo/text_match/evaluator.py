@@ -33,6 +33,8 @@ class TextMatchEvaluator(Evaluator):
         super(TextMatchEvaluator, self).__init__(valid_dataset, **kwargs)
         self.metrics = ["accuracy", "f1"]
         self.two_tower = kwargs.get('user_defined_parameters').get('app_parameters').get('two_tower', False)
+        self.kd_type = kwargs.get('user_defined_parameters').get('app_parameters').get('type', None)
+        self.enable_distillation = kwargs.get('user_defined_parameters').get('app_parameters').get('enable_distillation', False)
 
     def evaluate(self, model):
         model.eval()
@@ -56,6 +58,8 @@ class TextMatchEvaluator(Evaluator):
             infer_start_time = time.time()
             with torch.no_grad():
                 label_ids = batch.pop("label_ids")
+                if self.kd_type == "vanilla_kd" and self.enable_distillation:
+                    batch.pop("teacher_logits")
                 outputs = model(batch)
             infer_end_time = time.time()
             total_spent_time += infer_end_time - infer_start_time
