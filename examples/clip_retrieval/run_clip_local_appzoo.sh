@@ -119,7 +119,7 @@ elif [ "$mode" = "predict_cn_image" ]; then
       --input_schema=image:str:1 \
       --output_schema=image_feat \
       --outputs ./image_feat.tsv \
-      --first_sequence=image \
+      --second_sequence=image \
       --checkpoint_dir=./clip_cn_model/ \
       --random_seed=42 \
       --logging_steps=100 \
@@ -189,7 +189,7 @@ elif [ "$mode" = "predict_en_image" ]; then
       --input_schema=image:str:1 \
       --output_schema=image_feat \
       --outputs ./fashion_image_feat.tsv \
-      --first_sequence=image \
+      --second_sequence=image \
       --checkpoint_dir=./clip_en_model/ \
       --random_seed=42 \
       --logging_steps=100 \
