@@ -78,7 +78,8 @@ class MultiModalPredictor(Predictor):
         max_seq_length = self.sequence_length if (max_seq_length == -1) else max_seq_length
         for record in in_data:
             first_sequence_content = record.get(self.first_sequence, None)
-            if self.first_sequence=='text':
+            second_sequence_content = record.get(self.second_sequence, None)
+            if first_sequence_content is not None:
                 if self.model_type=='open_clip':
                     bpe_result = openclip_tokenize(texts=[first_sequence_content],context_length=77,_tokenizer=self.openclip_tokenizer)
                     record["input_ids"]=bpe_result
@@ -90,8 +91,8 @@ class MultiModalPredictor(Predictor):
                     record["input_ids"]=tked["input_ids"]
                     record["token_type_ids"]=tked["token_type_ids"]
                     record["attention_mask"]=tked["attention_mask"]
-            if self.first_sequence=='image':
-                one_image= Image.open(BytesIO(base64.urlsafe_b64decode(first_sequence_content)))
+            if second_sequence_content is not None:
+                one_image= Image.open(BytesIO(base64.urlsafe_b64decode(second_sequence_content)))
                 images=[one_image]
                 # transformations (resizing + center cropping + normalization)
                 if self.do_resize and self.size is not None and self.resample is not None:
