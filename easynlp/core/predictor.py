@@ -497,6 +497,18 @@ class PredictorManager(object):
             assert USE_EASY_PREDICT, 'Predict ODPS need to `pip install easypredict` first'
         if USE_EASY_PREDICT:
             logger.info('Using EasyPredict to predict...')
+            self.predictor_manager_bs1 = EasyPredictorManager(
+                predictor,
+                input_file,
+                output_file,
+                output_schema,
+                append_cols,
+                input_schema=input_schema,
+                batch_size=1,
+                queue_size=queue_size,
+                slice_size=slice_size,
+                thread_num=thread_num,
+                table_read_thread_num=table_read_thread_num)
             self.predictor_manager = EasyPredictorManager(
                 predictor,
                 input_file,
@@ -511,9 +523,18 @@ class PredictorManager(object):
                 table_read_thread_num=table_read_thread_num)
         else:
             logger.info('Using SimplePredict to predict...')
+            self.predictor_manager_bs1 = SimplePredictorManager(
+                predictor, input_file, input_schema, output_file,
+                output_schema, append_cols, skip_first_line, 1)
             self.predictor_manager = SimplePredictorManager(
                 predictor, input_file, input_schema, output_file,
                 output_schema, append_cols, skip_first_line, batch_size)
 
     def run(self):
-        self.predictor_manager.run()
+        try:
+            self.predictor_manager.run()
+        except Exception as e: 
+            print(e)
+            print('Reset batch size to 1.')
+            torch.cuda.empty_cache()
+            self.predictor_manager_bs1.run()
