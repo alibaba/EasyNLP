@@ -76,12 +76,15 @@ from easynlp.utils.logger import logger
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from easynlp.utils import initialize_easynlp, get_args
 
-from easynlp.utils.arguments import get_ds_args
-from easynlp.utils import get_pretrain_model_path
-import torch
-import os
-from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
-from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
+try:
+    from easynlp.utils.arguments import get_ds_args
+    from easynlp.utils import get_pretrain_model_path
+    import torch
+    import os
+    from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
+    from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
+except:
+    print('APEX is required. Please refer to https://github.com/NVIDIA/apex for installation.')
 
 Dataset_Mapping = {
     'text_classify': {
