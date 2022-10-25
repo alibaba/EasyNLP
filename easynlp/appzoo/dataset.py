@@ -188,6 +188,8 @@ class BaseDataset(Dataset):
                 print("[Pid %d] Read success" % self.slice_id)
 
             row = "\t".join([t.decode("utf-8") if isinstance(t, bytes) else str(t) for t in row[0]])
+        elif self.data_source in ["tar"]:
+            row = self.data_rows[item]
         else:
             raise NotImplementedError
 
@@ -202,7 +204,7 @@ class BaseDataset(Dataset):
             raise RuntimeError
 
     def __len__(self):
-        if self.data_source in ["local", "oss"]:
+        if self.data_source in ["local", "oss", "tar"]:
             return len(self.data_rows)
         elif self.data_source == "odps":
             return self.table_row_count
@@ -244,6 +246,7 @@ class BaseDataset(Dataset):
         i = 0
         if skip_first_line is None:
             skip_first_line = self.skip_first_line
+        print(f'****{data_file}')
         with io.open(data_file) as f:
             if skip_first_line:
                 f.readline()

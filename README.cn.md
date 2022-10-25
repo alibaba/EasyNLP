@@ -22,6 +22,19 @@
   
 随着 BERT、Megatron、GPT-3 等预训练模型在NLP领域取得瞩目的成果，越来越多团队投身到超大规模训练中，这使得训练模型的规模从亿级别发展到了千亿甚至万亿的规模。然而，这类超大规模的模型运用于实际场景中仍然有一些挑战。首先，模型参数量过大使得训练和推理速度过慢且部署成本极高；其次在很多实际场景中数据量不足的问题仍然制约着大模型在小样本场景中的应用，提高预训练模型在小样本场景的泛化性依然存在挑战。为了应对以上问题，PAI 团队推出了 EasyNLP 中文 NLP 算法框架，助力大模型快速且高效的落地。
 
+
+- [EasyNLP带你实现中英文机器阅读理解](https://zhuanlan.zhihu.com/p/568890245)
+- [跨模态学习能力再升级，EasyNLP电商文图检索效果刷新SOTA](https://zhuanlan.zhihu.com/p/568512230)
+- [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127)
+- [中文稀疏GPT大模型落地 — 通往低成本&高性能多任务通用自然语言理解的关键里程碑](https://zhuanlan.zhihu.com/p/561320982)
+- [EasyNLP集成K-BERT算法，借助知识图谱实现更优Finetune](https://zhuanlan.zhihu.com/p/553816104)
+- [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
+- [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
+- [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
+- [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
+- [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
+
+
 # 主要特性
 
 - **易用且兼容开源**：EasyNLP 支持常用的中文 NLP 数据和模型，方便用户评测中文 NLP 技术。除了提供易用简洁的 PAI 命令形式对前沿NLP算法进行调用以外，EasyNLP 还抽象了一定的自定义模块如 AppZoo 和 ModelZoo，降低NLP 应用的门槛，同时 ModelZoo 里面常见的预训练模型和 PAI 自研的模型，包括知识预训练模型等。EasyNLP 可以无缝接入 huggingface/ transformers 的模型，也兼容 EasyTransfer 模型，并且可以借助框架自带的分布式训练框架（基于Torch-Accelerator）提升训练效率。
@@ -231,7 +244,7 @@ This project is licensed under the [Apache License (Version 2.0)](https://github
 
 # 联系我们
 
-扫描下面二维码加入dingidng群，有任何问题欢迎在群里反馈。
+扫描下面二维码加入dingding群，有任何问题欢迎在群里反馈。
 
 <img src="https://cdn.nlark.com/yuque/0/2022/png/2480469/1649324662278-fe178523-6b14-4eff-8f50-7abbf468f751.png?x-oss-process=image%2Fresize%2Cw_357%2Climit_0" width="300"/>
 

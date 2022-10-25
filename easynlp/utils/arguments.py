@@ -89,7 +89,7 @@ def parse_args(extra_args_provider=None,
     else:
         args.read_odps = False
 
-    # args.n_gpu = args.worker_gpu if args.worker_gpu > 0 else 0
+    args.n_gpu = args.worker_gpu if args.worker_gpu > 0 else 0
     if is_torchx_available():
         args.n_gpu = 0
     else:
@@ -244,7 +244,9 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'sequence_generation', 'geep_classify',
                            'text2image_generation', 
                            'image2text_generation', 'image2text_generation_vqgan', 
-                           'clip', 'wukong'
+                           'video2text_generation', 
+                           'clip', 'wukong',
+                           'machine_reading_comprehension'
                        ],
                        help='name of the application')
 

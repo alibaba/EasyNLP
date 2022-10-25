@@ -1240,7 +1240,8 @@ class BertForMaskedLM(BertPreTrainedModel):
         return MaskedLMOutput(
             loss=masked_lm_loss,
             logits=prediction_scores,
-            hidden_states=outputs.hidden_states,
+            # hidden_states=outputs.hidden_states,
+            hidden_states=sequence_output,
             attentions=outputs.attentions,
         )
 

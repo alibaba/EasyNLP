@@ -19,12 +19,12 @@ import logging
 import json
 import tarfile
 from typing import Any, List, Optional
-from ..appzoo import TextImageGeneration, VQGANGPTImageTextGeneration, \
-        SequenceClassification, TextMatch, SequenceLabeling
+from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
+        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
         SequenceClassificationPipeline, TextImageGenerationPipeline, \
-        TextMatchPipeline, SequenceLabelingPipeline
+        TextMatchPipeline, SequenceLabelingPipeline, MachineReadingComprehensionPipeline
 
 from ..utils import EASYNLP_CACHE_ROOT, EASYNLP_REMOTE_MODELZOO, EASYNLP_LOCAL_APPZOO
 
@@ -59,8 +59,13 @@ SUPPORTED_TASKS = {
     },
     'image2text_generation': {
         'impl': ImageTextGenerationPipeline,
-        'model_cls': VQGANGPTImageTextGeneration,
-        'default': 'vqgan-gpt-i2t-large-zh',
+        'model_cls': CLIPGPTImageTextGeneration,
+        'default': 'clip-gpt-i2t-base-zh',
+    },
+    'machine_reading_comprehension': {
+        'impl': MachineReadingComprehensionPipeline,
+        'model_cls': MachineReadingComprehension,
+        'default': 'macbert-base-rczh',
     }
 }
 
@@ -122,6 +127,8 @@ def get_remote_app_model_mapping() -> dict:
     remote_file_path = os.path.join(remote_base, 'appzoo_config.json')
     local_file_path = os.path.join(cache_root, "appzoo_config.json")
     try:
+        if not os.path.exists(cache_root):
+            os.makedirs(cache_root)
         urllib.request.urlretrieve(remote_file_path, local_file_path)
     except:
         if os.path.exists(local_file_path):

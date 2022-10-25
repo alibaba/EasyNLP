@@ -16,6 +16,8 @@ import re
 import time
 import torch
 import sys
+
+from easynlp.appzoo.video2text_generation.model import CLIPGPTFrameTextGeneration
 sys.path.append("./")
 sys.path.append("../")
 sys.path.append("../../")
@@ -27,7 +29,9 @@ from easynlp.appzoo import MultiModal
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
+from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
+from easynlp.appzoo import MachineReadingComprehension
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
@@ -39,7 +43,9 @@ from easynlp.appzoo import MultiModalEvaluator
 from easynlp.appzoo import WukongEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
 from easynlp.appzoo import ImageTextGenerationEvaluator
+from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
+from easynlp.appzoo import MachineReadingComprehensionEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
@@ -49,7 +55,9 @@ from easynlp.appzoo import MultiModalPredictor
 from easynlp.appzoo import WukongPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
+from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
+from easynlp.appzoo import MachineReadingComprehensionPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
 from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
@@ -60,6 +68,8 @@ from easynlp.appzoo import MultiModalDataset
 from easynlp.appzoo import WukongDataset
 from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
+from easynlp.appzoo import CLIPGPTFrameTextDataset
+from easynlp.appzoo import MachineReadingComprehensionDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -98,7 +108,9 @@ Dataset_Mapping = {
         'enable_vqgan': VQGANGPTImageTextDataset,
         'others': CLIPGPTImageTextDataset,
     },
+    'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
+    'machine_reading_comprehension': MachineReadingComprehensionDataset
 }
 
 ModelMapping = {
@@ -130,7 +142,9 @@ ModelMapping = {
         'others': CLIPGPTImageTextGeneration,
     },
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration,
+    'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
+    'machine_reading_comprehension': MachineReadingComprehension
 }
 
 Eval_Model_Mapping = {
@@ -156,7 +170,9 @@ Eval_Model_Mapping = {
         'others': CLIPGPTImageTextGeneration
     },
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration, 
+    'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
+    'machine_reading_comprehension': MachineReadingComprehension
 }
 
 Evaluator_Mapping = {
@@ -182,7 +198,9 @@ Evaluator_Mapping = {
         'enable_vqgan': ImageTextGenerationEvaluator,
         'others': ImageTextGenerationEvaluator,
     },
+    'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
+    'machine_reading_comprehension': MachineReadingComprehensionEvaluator
 }
 
 Predictor_Mapping = {
@@ -209,7 +227,9 @@ Predictor_Mapping = {
         'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
         'others': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
     },
+    'video2text_generation': [CLIPGPTFrameTextGenerationPredictor, CLIPGPTFrameTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
+    'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension]
 }
 
 

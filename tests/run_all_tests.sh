@@ -8,8 +8,8 @@ rm -rf $HOME/.cache/huggingface
 
 export MKL_THREADING_LAYER=GNU
 
-# check vectorization
-sh run_vectorization.sh
+# # check vectorization
+# sh run_vectorization.sh
 
 # Install easynlp cli
 cd ../
@@ -156,6 +156,20 @@ fi
 python test_sequence_generation.py
 
 rm -rf sequence_generation_model
+rm -rf *.txt *.csv *.tsv
+
+echo "================== Test machine reading comprehension =================="
+if [ ! -f ./train_squad.tsv ]; then
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/machine_reading_comprehension/train_squad.tsv
+fi
+
+if [ ! -f ./dev_squad.tsv ]; then
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/machine_reading_comprehension/dev_squad.tsv
+fi
+
+python test_machine_reading_comprehension.py
+
+rm -rf mrc_model
 rm -rf *.txt *.csv *.tsv
 
 # uninstall easynlp

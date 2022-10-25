@@ -35,13 +35,16 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 
 We have a series of technical articles on the functionalities of EasyNLP.
 
+- [EasyNLP带你实现中英文机器阅读理解](https://zhuanlan.zhihu.com/p/568890245)
+- [跨模态学习能力再升级，EasyNLP电商文图检索效果刷新SOTA](https://zhuanlan.zhihu.com/p/568512230)
+- [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127)
+- [中文稀疏GPT大模型落地 — 通往低成本&高性能多任务通用自然语言理解的关键里程碑](https://zhuanlan.zhihu.com/p/561320982)
+- [EasyNLP集成K-BERT算法，借助知识图谱实现更优Finetune](https://zhuanlan.zhihu.com/p/553816104)
 - [EasyNLP中文文图生成模型带你秒变艺术家](https://zhuanlan.zhihu.com/p/547063102)
 - [面向长代码序列的Transformer模型优化方法，提升长代码场景性能](https://zhuanlan.zhihu.com/p/540060701)
 - [EasyNLP带你玩转CLIP图文检索](https://zhuanlan.zhihu.com/p/528476134)
 - [阿里云机器学习PAI开源中文NLP算法框架EasyNLP，助力NLP大模型落地](https://zhuanlan.zhihu.com/p/505785399)
 - [预训练知识度量比赛夺冠！阿里云PAI发布知识预训练工具](https://zhuanlan.zhihu.com/p/449487792)
-- [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127?)
-
 
 # Installation
 
@@ -108,7 +111,7 @@ train_dataset = ClassificationDataset(
     is_training=True)
 
 model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
+Trainer(model=model, train_dataset=train_dataset).train()
 ```
 
 Then you can run the code:
