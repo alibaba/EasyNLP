@@ -62,10 +62,14 @@ class SequenceGenerationDataset(BaseDataset):
         # add self.max_decoder_length
         self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
 
-        if os.path.exists(pretrained_model_name_or_path):
-            local_path=pretrained_model_name_or_path
-        else:
-            local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
+        if not os.path.exists(pretrained_model_name_or_path) and os.path.exists(pretrained_model_name_or_path+'.tgz'):
+            os.remove(pretrained_model_name_or_path+'.tgz')
+            print('Decompress pretrain model failed, file is removed. Please try again.')
+            exit()
+            
+        local_path = pretrained_model_name_or_path            
+        
+        # local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
 
         self.config_path=local_path+'/config.json'
         with open(self.config_path, 'r') as load_f:

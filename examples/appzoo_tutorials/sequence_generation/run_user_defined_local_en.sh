@@ -8,14 +8,7 @@ if [ ! -f ./en_dev.tsv ]; then
   wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/en_dev.tsv
 fi
 
-function rand(){
-    min=$1
-    max=$(($2-$min+1))
-    num=$(($RANDOM+1000000000)) #增加一个10位的数再求余
-    echo $(($num%$max+$min))
-}
-rnd=$(rand 5000 9000)
-MASTER_PORT=$rnd
+MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 MASTER_ADDR=localhost
 # MASTER_PORT=6008
 GPUS_PER_NODE=1

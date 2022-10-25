@@ -195,6 +195,8 @@ class BaseDataset(Dataset):
             row = parse_row_by_schema(row, self.input_schema)
         try:
             return self.convert_single_row_to_example(row)
+        except NotImplementedError:
+            return row
         except :
             logger.info("Failed row: {}".format(row))
             raise RuntimeError

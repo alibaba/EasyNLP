@@ -133,7 +133,7 @@ class SequenceGenerationPredictor(Predictor):
                                   max_length=max_decoder_length,
                                   early_stopping=True,
                                   no_repeat_ngram_size=self.no_repeat_ngram_size,
-                                  num_return_sequences=self.num_return_sequences,
+                                  num_return_sequences=self.num_beams,
                                   decoder_start_token_id=self.tokenizer.cls_token_id,
                                   eos_token_id=eos_token_id)
         rst = {
@@ -159,6 +159,7 @@ class SequenceGenerationPredictor(Predictor):
             else:
                 pred_tokens = [self.tokenizer.decode(t[1:], skip_special_tokens=True) for t in beams]
             pred_tokens = [''.join(i.split()) for i in pred_tokens] if self.model._is_zh else pred_tokens
+            pred_tokens = pred_tokens[:self.num_return_sequences]
             rst.append({
                 "predictions": pred_tokens[0],
                 "beams": "||".join(pred_tokens)

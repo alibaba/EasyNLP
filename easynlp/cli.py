@@ -25,6 +25,8 @@ from easynlp.utils.initializer import init_oss_io
 sys.path.append('./')
 sys.path.append('../')
 
+from easynlp.utils import get_pretrain_model_path
+from easynlp.utils.global_vars import parse_user_defined_parameters
 
 def main():
     os.environ['PYTHONUNBUFFERED'] = '1'
@@ -179,6 +181,66 @@ def main():
                             cmd.append('--label_enumerate_values')
                             cmd.append(args.label_enumerate_values)
                         break
+        # Add args for MEGATRON models
+        user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+        model_info = user_defined_parameters.get('pretrain_model_name_or_path', '').split('/')
+        pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+        pretrained_model_name_or_path = pretrained_model_name_or_path or args.checkpoint_dir
+        pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
+        checkpoint_files = os.listdir(pretrained_model_name_or_path)
+        if args.mode != 'train' and os.path.exists(args.checkpoint_dir):
+            checkpoint_files += os.listdir(args.checkpoint_dir)
+        if 'mg' in model_info or args.mg_model or 'latest_checkpointed_iteration.txt' in checkpoint_files:
+            cmd.append('--block-lm')
+            cmd.append('--cloze-eval')
+            cmd.append('--task-mask')
+            cmd.append('--num-layers')
+            cmd.append(str(args.num_layers))
+            cmd.append('--num-attention-heads')
+            cmd.append(str(args.num_attention_heads))
+            cmd.append('--max-position-embeddings')
+            cmd.append(str(args.max_position_embeddings))
+            cmd.append('--tokenizer-type')
+            cmd.append(args.tokenizer_type)
+            cmd.append('--fix-command-token')
+
+            cmd.append('--lr-decay-style')
+            cmd.append(str(args.lr_decay_style))
+            cmd.append('--label-smoothing')
+            cmd.append(str(args.label_smoothing))
+            
+            cmd.append('--save-interval')
+            cmd.append(str(args.save_interval))
+            cmd.append('--log-interval')
+            cmd.append(str(args.log_interval))
+            cmd.append('--eval-interval')
+            cmd.append(str(args.eval_interval))
+            cmd.append('--eval-iters')
+            cmd.append(str(args.eval_iters))
+
+            cmd.append('--length-penalty')
+            cmd.append(str(args.length_penalty))
+            cmd.append('--select-topk')
+            cmd.append('--eval-batch-size')
+            cmd.append(str(args.eval_batch_size))
+
+            cmd.append('--deepspeed')
+            cmd.append('--finetune')
+            cmd.append('--checkpoint-activations')
+            cmd.append('--no-load-lr-scheduler')
+            cmd.append('--fp16')
+            cmd.append('--overwrite')
+
+            cmd.append('--deepspeed_config')
+            cmd.append(args.deepspeed_config)
+            cmd.append('--task')
+            cmd.append(args.task)
+            cmd.append('--data-dir')
+            cmd.append(args.data_dir)
+            cmd.append('--num-workers')
+            cmd.append(str(args.num_workers))
+            cmd.append('--model-parallel-size')
+            cmd.append(str(args.model_parallel_size))
 
         cmd_str = ' '.join(cmd)
         print(cmd_str)
