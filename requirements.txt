@@ -38,4 +38,3 @@ transformers
 fasttext
 unidecode
 ftfy
-apex
