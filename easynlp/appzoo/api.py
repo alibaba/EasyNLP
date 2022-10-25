@@ -80,7 +80,6 @@ from easynlp.utils.arguments import get_ds_args
 from easynlp.utils import get_pretrain_model_path
 import torch
 import os
-from apex.normalization.fused_layer_norm import FusedLayerNorm as LayerNorm
 from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
 from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
 
