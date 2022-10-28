@@ -12,8 +12,6 @@ The main methods:
 - In the span extractor, we convert the original sequentail tagging into a matrix, where each element stands for one span (start and end position) and 1 means this span is an entity and 0 means not. We can train the span extractor via cross-entropy on support set, and recall all candidate spans on query set by model inference.
 - In the mention classifier, we capture each span representations and train the model with protopical learning on support set. When inference on query set, we split out false negative spans via margin-based loss, and predict others class by calculating and sorting the distance between each span embeddings and prototype vectors.
 
-![The model architecture of SpanProto](./images/model.jpg)
-
 ---
 
 ## Data and Models
