@@ -1,0 +1,12 @@
+torch==1.8.
+transformers==4.21.2
+pymysql
+roformer
+datasets
+jieba
+mlflow
+sentence-transformers
+bs4
+ujson
+tqdm
+sklearn
