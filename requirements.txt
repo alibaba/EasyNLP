@@ -20,3 +20,4 @@ albumentations
 einops
 torchvision
 ftfy
+pytorch_lightning
