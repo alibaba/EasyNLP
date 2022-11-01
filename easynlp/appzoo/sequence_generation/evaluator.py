@@ -93,8 +93,8 @@ class SequenceGenerationEvaluator(object):
             scores['rouge-1']['f'] * 100, scores['rouge-2']['f'] * 100,
             scores['rouge-l']['f'] * 100))
         # open('./result.txt','a+').write("Rouge 1/2/L: {:.2f}/{:.2f}/{:.2f} \n".format(
-            scores['rouge-1']['f'] * 100, scores['rouge-2']['f'] * 100,
-            scores['rouge-l']['f'] * 100))
+            # scores['rouge-1']['f'] * 100, scores['rouge-2']['f'] * 100,
+            # scores['rouge-l']['f'] * 100))
         rst = [('rouge-l', scores['rouge-l']['f'] * 100),
                ('rouge-1', scores['rouge-1']['f'] * 100),
                ('rouge-2', scores['rouge-2']['f'] * 100), ]
