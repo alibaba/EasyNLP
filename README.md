@@ -213,7 +213,7 @@ bash run_clue.sh 0 train csl
 
 We've tested chiese bert and roberta modelson the datasets, the results of dev set are:
 
-(1) bert-base-chinese
+(1) bert-base-chinese:
 
 | Task | AFQMC  | CMNLI  | CSL    | IFLYTEK | OCNLI  | TNEWS  | WSC    |
 |------|--------|--------|--------|---------|--------|--------|--------|
