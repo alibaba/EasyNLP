@@ -95,7 +95,7 @@ elif [ "$mode" = "train" ]; then
     --sequence_length 512 \
     --epoch_num 1   \
     $MEGATRON_PARAMETERS \
-    --save_checkpoint_steps 3000 \
+    --save_checkpoint_steps 150 \
     --export_tf_checkpoint_type none \
     --user_defined_parameters 'pretrain_model_name_or_path=hfl/randeng-238M-Summary-Chinese language=zh copy=false max_encoder_length=512 min_decoder_length=20 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
