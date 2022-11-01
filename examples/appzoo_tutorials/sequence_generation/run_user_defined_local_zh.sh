@@ -15,7 +15,7 @@ fi
 
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 MASTER_ADDR=localhost
-GPUS_PER_NODE=2
+GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
 
@@ -33,7 +33,7 @@ TRAIN_ARGS="--lr-decay-style linear \
 
 COMMON_ARGS="--save-interval 10000 \
              --log-interval 50 \
-             --eval-interval 200 \
+             --eval-interval 500 \
              --eval-iters 100"
 
 TASK_ARGS="--length-penalty 0.7 \
@@ -66,17 +66,17 @@ if [ "$mode" = "predict" ]; then
     --app_name=sequence_generation \
     --mode $mode \
     --worker_gpu=1 \
-    --tables=./cn_dev.tsv  \
-    --outputs=./cn.preds.txt \
-    --input_schema=title_tokens:str:1,content_tokens:str:1 \
+    --tables=./ctc_dev.tsv  \
+    --outputs=./ctc_dev_pred.tsv \
+    --input_schema=target:str:1,source:str:1 \
     --output_schema=predictions,beams \
-    --append_cols=title_tokens,content_tokens \
-    --first_sequence=content_tokens \
-    --checkpoint_dir=./finetuned_zh_model \
+    --append_cols=target,source \
+    --first_sequence=source \
+    --checkpoint_dir=/root/.easynlp/modelzoo/public/hfl/randeng-238M-Summary-Chinese \
     --micro_batch_size=32 \
     --sequence_length=512 \
     $MEGATRON_PARAMETERS \
-    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=40 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 elif [ "$mode" = "train" ]; then
 
@@ -84,20 +84,20 @@ elif [ "$mode" = "train" ]; then
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
-    --tables=./cn_train.tsv,./cn_dev.tsv  \
-    --input_schema=title_tokens:str:1,content_tokens:str:1 \
-    --first_sequence=content_tokens \
-    --second_sequence=title_tokens \
-    --label_name=title_tokens \
+    --tables=./ctc_all.tsv,./ctc_dev.tsv  \
+    --input_schema=target:str:1,source:str:1 \
+    --first_sequence=source \
+    --second_sequence=target \
+    --label_name=target \
     --checkpoint_dir=./finetuned_zh_model \
-    --learning_rate 5e-5  \
+    --learning_rate 3e-5  \
     --micro_batch_size 16 \
     --sequence_length 512 \
     --epoch_num 1   \
     $MEGATRON_PARAMETERS \
-    --save_checkpoint_steps 150 \
+    --save_checkpoint_steps 3000 \
     --export_tf_checkpoint_type none \
-    --user_defined_parameters 'pretrain_model_name_or_path=mg/glm-large-chinese language=zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=40 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+    --user_defined_parameters 'pretrain_model_name_or_path=hfl/randeng-238M-Summary-Chinese language=zh copy=false max_encoder_length=512 min_decoder_length=20 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 # alibaba-pai/mt5-title-generation-zh
 # hfl/randeng-523M-Summary-Chinese
@@ -112,16 +112,16 @@ elif [ "$mode" = "evaluate" ]; then
     --app_name=sequence_generation \
     --mode=$mode \
     --worker_gpu=1 \
-    --tables=./cn_dev.tsv \
-    --input_schema=title_tokens:str:1,content_tokens:str:1 \
-    --first_sequence=content_tokens \
-    --second_sequence=title_tokens \
-    --label_name=title_tokens \
-    --checkpoint_dir=/mnt/workspace/GLM-edit/finetune_checkpoints/glm-10B-chinese \
-    --micro_batch_size=16 \
+    --tables=./ctc_dev.tsv \
+    --input_schema=target:str:1,source:str:1 \
+    --first_sequence=source \
+    --second_sequence=target \
+    --label_name=target \
+    --checkpoint_dir=./bart-base-chinese \
+    --micro_batch_size=32 \
     --sequence_length=512 \
     --export_tf_checkpoint_type none \
     $MEGATRON_PARAMETERS \
-    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=12 max_decoder_length=50 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=1'
+    --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=20 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=1'
 
 fi

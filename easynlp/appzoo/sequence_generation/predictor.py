@@ -48,7 +48,7 @@ class SequenceGenerationPredictor(Predictor):
         if os.path.exists(model_dir):
             local_path=model_dir
         else:
-            local_path=os.environ['HOME']+'/.easytexminer/modelzoo/huggingface/'+model_dir
+            raise FileNotFoundError('The provided model path %s does not exist, please check.' % model_dir)
         self.model_dir=local_path
         config_path=local_path+'/config.json'
         with open(config_path,'r') as load_f:

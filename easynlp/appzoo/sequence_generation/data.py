@@ -67,7 +67,10 @@ class SequenceGenerationDataset(BaseDataset):
             print('Decompress pretrain model failed, file is removed. Please try again.')
             exit()
             
-        local_path = pretrained_model_name_or_path            
+        if os.path.exists(pretrained_model_name_or_path):
+            local_path=pretrained_model_name_or_path
+        else:
+            raise FileNotFoundError('The provided model path %s does not exist, please check.' % pretrained_model_name_or_path)
         
         # local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
 
@@ -79,6 +82,8 @@ class SequenceGenerationDataset(BaseDataset):
             else:
                 if ("architectures" in load_dict) and (load_dict["architectures"][0]=='T5ForConditionalGeneration'):
                     tokenizer_class=T5PegasusTokenizer
+                elif ("model_type" in load_dict) and (load_dict["model_type"]=='bart'):
+                    tokenizer_class=BertTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  

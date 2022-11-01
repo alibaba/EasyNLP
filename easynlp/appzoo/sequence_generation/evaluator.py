@@ -31,7 +31,7 @@ class SequenceGenerationEvaluator(object):
         if os.path.exists(pretrained_model_name_or_path):
             local_path=pretrained_model_name_or_path
         else:
-            local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
+            raise FileNotFoundError('The provided model path %s does not exist, please check.' % pretrained_model_name_or_path)
 
         self.config_path=local_path+'/config.json'
         with open(self.config_path, 'r') as load_f:
@@ -92,7 +92,7 @@ class SequenceGenerationEvaluator(object):
         print("Rouge 1/2/L: {:.2f}/{:.2f}/{:.2f}".format(
             scores['rouge-1']['f'] * 100, scores['rouge-2']['f'] * 100,
             scores['rouge-l']['f'] * 100))
-        open('./result.txt','a+').write("Rouge 1/2/L: {:.2f}/{:.2f}/{:.2f} \n".format(
+        # open('./result.txt','a+').write("Rouge 1/2/L: {:.2f}/{:.2f}/{:.2f} \n".format(
             scores['rouge-1']['f'] * 100, scores['rouge-2']['f'] * 100,
             scores['rouge-l']['f'] * 100))
         rst = [('rouge-l', scores['rouge-l']['f'] * 100),

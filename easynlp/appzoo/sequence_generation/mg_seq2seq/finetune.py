@@ -148,6 +148,7 @@ def metrics_func_provider(args, tokenizer, is_test):
 
 def args_mapping(args, user_defined_parameters):
     args.src_seq_length = args.sequence_length
+    args.seq_length = args.sequence_length
     args.load_pretrained = args.pretrained_model_name_or_path
     args.save = args.checkpoint_dir
     args.epochs = args.epoch_num

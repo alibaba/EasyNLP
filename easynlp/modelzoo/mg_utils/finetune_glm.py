@@ -254,11 +254,26 @@ def _train(model, optimizer, lr_scheduler, forward_step,
                 total_lm_loss = 0.0
 
             # Evaluation
-            if args.eval_interval and valid_dataloader is not None and args.iteration % args.eval_interval == 0:
-                prefix = 'iteration {}'.format(args.iteration)
-                evaluate_and_print_results(prefix, valid_dataloader, model, args, timers, step=args.iteration,
-                                           verbose=False, forward_step_func=forward_step,
-                                           summary_writer=summary_writer)
+            if end_of_epoch_callback is not None and args.eval_interval and args.iteration % args.eval_interval == 0:
+                score_dict = end_of_epoch_callback(model, epoch, summary_writer=summary_writer)
+                if score_dict:
+                    validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
+                    validation_score = score_dict[validation_metric]
+                    if best_iteration is None or validation_score > best_score:
+                        best_iteration = args.iteration
+                        best_score = validation_score
+                        print_rank_0(f"Found best {validation_metric} {best_score} at {best_iteration}")
+                        save_checkpoint(args.iteration, model, optimizer, lr_scheduler, args, tag="best", barrier=False,
+                                        only_changed_parameters=True, no_deepspeed=True, no_save_optim=True)
+                        if torch.distributed.get_rank() == 0:
+                            score_dict.update({"type": "validation", "epoch": epoch})
+                            with open(os.path.join(args.save, "best_checkpointed_iteration.txt"), "w") as output:
+                                output.write(str(best_iteration))
+            # if args.eval_interval and valid_dataloader is not None and args.iteration % args.eval_interval == 0:
+            #     prefix = 'iteration {}'.format(args.iteration)
+            #     evaluate_and_print_results(prefix, valid_dataloader, model, args, timers, step=args.iteration,
+            #                                verbose=False, forward_step_func=forward_step,
+            #                                summary_writer=summary_writer)
 
         # Checkpointing at the end of each epoch.
         if args.save and (epoch + 1) % args.save_epoch == 0:
