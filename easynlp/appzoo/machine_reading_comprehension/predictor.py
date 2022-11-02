@@ -214,8 +214,8 @@ class MachineReadingComprehensionPredictor(Predictor):
         self.first_sequence = kwargs.pop("first_sequence", "query")
         self.second_sequence = kwargs.pop("second_sequence", "context")
         self.qas_id = self.user_defined_parameters.get("qas_id", 'qas_id')
-        self.answer_name = self.user_defined_parameters.get("answer_name", 'answer_text')
-        self.start_position_name = self.user_defined_parameters.get("start_position_name", 'start_position_character')
+        self.answer_name = self.user_defined_parameters.get("answer_name")
+        self.start_position_name = self.user_defined_parameters.get("start_position_name")
 
         self.max_query_length = int(self.user_defined_parameters.get("max_query_length", 64))
         self.max_answer_length = int(self.user_defined_parameters.get("max_answer_length", 30))
@@ -566,7 +566,7 @@ class MachineReadingComprehensionPredictor(Predictor):
             question_text = record[self.first_sequence]
             context_text = record[self.second_sequence]
             unique_id = record[self.qas_id]
-            answer_text = record[self.answer_name] if self.answer_name else None
+            answer_text = record[self.answer_name] if self.answer_name else ""
 
             example = SquadExample(
                 qas_id=unique_id,
