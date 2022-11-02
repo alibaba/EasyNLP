@@ -46,14 +46,18 @@ def parse_args(extra_args_provider=None,
     # Standard arguments.
     parser = _add_easynlp_args(parser)
 
-    # Add megatron arguments
-    parser = add_model_config_args(parser)
-    parser = add_fp16_config_args(parser)
-    parser = add_training_args(parser)
-    parser = add_evaluation_args(parser)
-    parser = add_text_generate_args(parser)
-    parser = add_data_args(parser)
-    parser = add_finetune_config_args(parser)
+    try:
+        # Add megatron arguments
+        import deepspeed
+        parser = add_model_config_args(parser)
+        parser = add_fp16_config_args(parser)
+        parser = add_training_args(parser)
+        parser = add_evaluation_args(parser)
+        parser = add_text_generate_args(parser)
+        parser = add_data_args(parser)
+        parser = add_finetune_config_args(parser)
+    except:
+        pass
 
     # Custom arguments.
     if extra_args_provider is not None:
@@ -118,16 +122,17 @@ def parse_args_for_cli(extra_args_provider=None,
     # Standard arguments.
     parser = _add_easynlp_args(parser)
 
-    # Add megatron arguments
-    parser = add_model_config_args(parser)
-    parser = add_fp16_config_args(parser)
-    parser = add_training_args(parser)
-    parser = add_evaluation_args(parser)
-    parser = add_text_generate_args(parser)
-    parser = add_data_args(parser)
-    parser = add_finetune_config_args(parser)
-    
     try:
+        import deepspeed
+        # Add megatron arguments
+        parser = add_model_config_args(parser)
+        parser = add_fp16_config_args(parser)
+        parser = add_training_args(parser)
+        parser = add_evaluation_args(parser)
+        parser = add_text_generate_args(parser)
+        parser = add_data_args(parser)
+        parser = add_finetune_config_args(parser)
+
         # Include DeepSpeed configuration arguments
         parser = deepspeed.add_config_arguments(parser)
     except:
