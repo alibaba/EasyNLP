@@ -19,9 +19,13 @@ import importlib
 import os
 import torch
 
-import deepspeed
 import json
 # from easynlp.modelzoo.mg_utils.utils import get_hostname
+
+try:
+    import deepspeed
+except ModuleNotFoundError:
+    print('NOTE: if you wish to use GLM models, please refer to EasyNLP/examples/appzoo_tutorials/sequence_generation/README.md!')
 
 def is_torchx_available():
     return importlib.util.find_spec('torchacc') is not None
@@ -123,9 +127,12 @@ def parse_args_for_cli(extra_args_provider=None,
     parser = add_data_args(parser)
     parser = add_finetune_config_args(parser)
     
-    # Include DeepSpeed configuration arguments
-    parser = deepspeed.add_config_arguments(parser)
-    
+    try:
+        # Include DeepSpeed configuration arguments
+        parser = deepspeed.add_config_arguments(parser)
+    except:
+        pass
+
     # # Parse.
     # if ignore_unknown_args:
     #     args, _ = parser.parse_known_args()
