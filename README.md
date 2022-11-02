@@ -64,14 +64,6 @@ $ python setup.py install
 
 This repo is tested on Python 3.6, PyTorch >= 1.8.
 
-If you need to use Megatron models such as GLM, particular packages are required.
-```bash
-$ pip install torch==1.8.1+cu101 torchvision==0.9.1+cu101 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
-$ git clone https://github.com/NVIDIA/apex
-$ cd apex && pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./
-$ rm -rf apex
-```
-
 # Quick Start
 
 Now let's show how to use just a few lines of code to build a text classification model based on BERT.
