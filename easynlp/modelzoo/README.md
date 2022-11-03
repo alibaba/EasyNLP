@@ -42,6 +42,7 @@
 | alibaba-pai/randeng-238M-Summary-Chinese-tuned | L=24,H=768,A=12 | encoder-decoder news title generation model for Chinese |
 | alibaba-pai/randeng-523M-Summary-Chinese-tuned | L=32,H=1024,A=16 | encoder-decoder news title generation model for Chinese |
 | hfl/brio-cnndm-uncased | L=24,H=1024,A=16 | encoder-decoder summarization model for **English** |
+| **Megatron** mg/glm-large-chinese | L=24,H=1024,A=16 | encoder-decoder NLG model for Chinese |
 
 # cli使用方式
 ```bash

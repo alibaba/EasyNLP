@@ -1,5 +1,6 @@
 import torch.cuda
-
+import sys
+sys.path.append('./')
 from easynlp.appzoo import SequenceLabelingDataset
 from easynlp.appzoo import get_application_predictor, get_application_model, get_application_evaluator
 from easynlp.appzoo import get_application_model_for_evaluation

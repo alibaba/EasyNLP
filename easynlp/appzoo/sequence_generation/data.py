@@ -62,10 +62,17 @@ class SequenceGenerationDataset(BaseDataset):
         # add self.max_decoder_length
         self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
 
+        if not os.path.exists(pretrained_model_name_or_path) and os.path.exists(pretrained_model_name_or_path+'.tgz'):
+            os.remove(pretrained_model_name_or_path+'.tgz')
+            print('Decompress pretrain model failed, file is removed. Please try again.')
+            exit()
+            
         if os.path.exists(pretrained_model_name_or_path):
             local_path=pretrained_model_name_or_path
         else:
-            local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
+            raise FileNotFoundError('The provided model path %s does not exist, please check.' % pretrained_model_name_or_path)
+        
+        # local_path=os.environ['HOME']+'/.easynlp/modelzoo/'+pretrained_model_name_or_path
 
         self.config_path=local_path+'/config.json'
         with open(self.config_path, 'r') as load_f:
@@ -75,6 +82,8 @@ class SequenceGenerationDataset(BaseDataset):
             else:
                 if ("architectures" in load_dict) and (load_dict["architectures"][0]=='T5ForConditionalGeneration'):
                     tokenizer_class=T5PegasusTokenizer
+                elif ("model_type" in load_dict) and (load_dict["model_type"]=='bart'):
+                    tokenizer_class=BertTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  

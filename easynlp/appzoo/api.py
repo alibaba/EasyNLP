@@ -76,6 +76,15 @@ from easynlp.utils.logger import logger
 from easynlp.utils.global_vars import parse_user_defined_parameters
 from easynlp.utils import initialize_easynlp, get_args
 
+try:
+    from easynlp.utils.arguments import get_ds_args
+    from easynlp.utils import get_pretrain_model_path
+    import torch
+    import os
+    from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
+    from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
+except:
+    print('APEX is required. Please refer to https://github.com/NVIDIA/apex for installation.')
 
 Dataset_Mapping = {
     'text_classify': {
@@ -419,6 +428,32 @@ def get_application_predictor(app_name, model_dir, user_defined_parameters, **kw
 
 
 def default_main_fn():
+    try:
+        args = get_ds_args()
+
+        user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+        model_info = user_defined_parameters.get('pretrain_model_name_or_path', '').split('/')
+        pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+        args.pretrained_model_name_or_path = pretrained_model_name_or_path or args.checkpoint_dir
+        
+        args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+        checkpoint_files = os.listdir(args.pretrained_model_name_or_path)
+        if args.mode != 'train' and os.path.exists(args.checkpoint_dir):
+            checkpoint_files += os.listdir(args.checkpoint_dir)
+        if 'mg' in model_info or args.mg_model or ('latest_checkpointed_iteration.txt' in checkpoint_files and 'pytorch_model.bin' not in checkpoint_files):
+            args.model_name = model_info[-1]
+            is_mg = True
+        else:
+            is_mg = False
+        if is_mg:
+            torch.backends.cudnn.enabled = False
+            initialize_distributed(args)
+            set_random_seed(args.seed)
+            main(args, user_defined_parameters)
+            exit()
+    except:
+        pass
+
     start_time = time.time()
     initialize_easynlp()
     args = get_args()
