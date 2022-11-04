@@ -127,14 +127,14 @@ class MultiModal(Application):
         else:
             image_embeds=None
             text_embeds=None
-            if 'input_ids' in inputs:
+            if ('input_ids' in inputs) and (inputs['input_ids'] is not None):
                 text_outputs = self.text_encoder(input_ids=inputs['input_ids'],
                 token_type_ids=inputs['token_type_ids'].to(_device),
                 attention_mask=inputs['attention_mask'].to(_device))
                 text_embeds = text_outputs[1]
                 text_embeds = self.text_projection(text_embeds)
                 text_embeds = text_embeds / text_embeds.norm(dim=-1, keepdim=True)
-            if 'pixel_values' in inputs:
+            if ('pixel_values' in inputs) and (inputs['pixel_values'] is not None):
                 vision_outputs = self.vision_encoder(
                     pixel_values=inputs['pixel_values']
                 )

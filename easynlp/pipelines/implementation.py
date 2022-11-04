@@ -17,7 +17,7 @@
 from abc import ABC
 from typing import Any
 from ..appzoo import CLIPGPTImageTextGenerationPredictor,\
-                    TextImageGenerationPredictor, \
+                    TextImageGenerationPredictor, LatentDiffusionPredictor, \
                     SequenceClassificationPredictor, \
                     TextMatchPredictor, SequenceLabelingPredictor, \
                     MachineReadingComprehensionPredictor
@@ -92,6 +92,26 @@ class TextImageGenerationPipeline(TextImageGenerationPredictor, Pipeline):
         """
         results = super().__call__(*args, **kwds)
         return [{'gen_imgbase64': res['gen_imgbase64']} for res in results]
+
+class LatentDiffusionPipeline(LatentDiffusionPredictor, Pipeline):
+
+    def format_input(self, inputs):
+        """
+        Preprocess single sentence data.
+        """
+        if type(inputs) != str and type(inputs) != list:
+            raise RuntimeError("Input only supports string or lists of string")
+        if type(inputs) == str:
+            inputs = [inputs]
+        return [{'idx': idx, \
+                'text': inputs[idx]} for idx in range(len(inputs))]
+
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        """
+        You need to post-process the outputs of the __call__ to get the fields you need.
+        """
+        results = super().__call__(*args, **kwds)
+        return results
 
 class SequenceClassificationPipeline(SequenceClassificationPredictor, Pipeline):
 
