@@ -58,11 +58,17 @@ class SequenceGeneration(Application):
                 self.user_defined_parameters=user_defined_parameters
         else:
             self.user_defined_parameters={}
+        
+        # if os.path.exists(pretrained_model_name_or_path):
+        #     local_path=pretrained_model_name_or_path
+        # else:
+        #     local_path=os.environ['HOME']+'/.easynlp/modelzoo/huggingface/'+pretrained_model_name_or_path
+        
         if os.path.exists(pretrained_model_name_or_path):
             local_path=pretrained_model_name_or_path
         else:
-            local_path=os.environ['HOME']+'/.easynlp/modelzoo/huggingface/'+pretrained_model_name_or_path
-
+            raise FileNotFoundError('The provided model path %s does not exist, please check.' % pretrained_model_name_or_path)
+        
         config_path=local_path+'/config.json'
         with open(config_path,'r') as load_f:
             load_dict = json.load(load_f)
@@ -96,6 +102,8 @@ class SequenceGeneration(Application):
                 load_dict = json.load(load_f)
                 if ("model_type" in load_dict) and (load_dict["model_type"]=='mt5'):
                     tokenizer_class=T5PegasusTokenizer
+                elif ("model_type" in load_dict) and (load_dict["model_type"]=='bart'):
+                    tokenizer_class=BertTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  

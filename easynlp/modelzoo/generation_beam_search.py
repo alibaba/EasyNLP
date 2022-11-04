@@ -192,12 +192,12 @@ class BeamSearchScorer(BeamScorer):
                 f"has to be divisible by `num_beam_groups`, but is {num_beam_groups} with `num_beams` being {num_beams}."
             )
 
-        if "max_length" in kwargs:
-            warnings.warn(
-                "Passing `max_length` to BeamSearchScorer is deprecated and has no effect."
-                "`max_length` should be passed directly to `beam_search(...)`, `beam_sample(...)`"
-                ",or `group_beam_search(...)`."
-            )
+        # if "max_length" in kwargs:
+        #     warnings.warn(
+        #         "Passing `max_length` to BeamSearchScorer is deprecated and has no effect."
+        #         "`max_length` should be passed directly to `beam_search(...)`, `beam_sample(...)`"
+        #         ",or `group_beam_search(...)`."
+        #     )
 
     @property
     def is_done(self) -> bool:
