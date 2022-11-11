@@ -64,6 +64,8 @@ class SequenceGenerationPredictor(Predictor):
                 load_dict = json.load(load_f)
                 if ("model_type" in load_dict) and (load_dict["model_type"]=='mt5'):
                     tokenizer_class=T5PegasusTokenizer
+                elif ("model_type" in load_dict) and (load_dict["model_type"]=='bart'):
+                    tokenizer_class=BertTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  
@@ -72,7 +74,7 @@ class SequenceGenerationPredictor(Predictor):
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir,user_defined_parameters=self.user_defined_parameters).cuda()
         self.MUTEX = Lock()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
-        self.max_encoder_length = int(self.user_defined_parameters.get("max_encoder_length", 512))
+        self.max_encoder_length = kwargs.get('max_encoder_length', int(self.user_defined_parameters.get("max_encoder_length", 512)))
         self.min_decoder_length = int(self.user_defined_parameters.get("min_decoder_length", 8))
         self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
         self.no_repeat_ngram_size = int(self.user_defined_parameters.get("no_repeat_ngram_size", 2))

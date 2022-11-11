@@ -49,7 +49,7 @@ MEGATRON_PARAMETERS="--deepspeed \
             --overwrite
             "
 
-# MEGATRON_PARAMETERS is only valid for megatron models such as mg/glm-large-chinese
+# MEGATRON_PARAMETERS is only valid for megatron models such as mg/glm-large-zh
 
 if [ "$mode" = "predict" ]; then
   
@@ -101,17 +101,17 @@ elif [ "$mode" = "train" ]; then
   --checkpoint_dir=./finetuned_zh_model \
   --micro_batch_size=16 \
   --sequence_length=512 \
-  --epoch_num 1 \
+  --epoch_num 3 \
   --save_checkpoint_steps=150 \
   --export_tf_checkpoint_type none \
   $MEGATRON_PARAMETERS \
-  --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/mt5-title-generation-zh language=zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
+  --user_defined_parameters 'pretrain_model_name_or_path=mg/glm-large-chinese language=zh copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=32 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi
 
 # alibaba-pai/mt5-title-generation-zh
-# hfl/randeng-523M-Summary-Chinese
-# hfl/randeng-238M-Summary-Chinese
-# alibaba-pai/randeng-523M-Summary-Chinese-tuned
-# alibaba-pai/randeng-238M-Summary-Chinese-tuned
-# mg/glm-large-chinese
+# hfl/randeng-summary-generation-base-zh
+# hfl/randeng-summary-generation-large-zh
+# alibaba-pai/randeng-title-generation-base-zh
+# alibaba-pai/randeng-title-generation-large-zh
+# mg/glm-large-zh
