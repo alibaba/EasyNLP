@@ -20,7 +20,7 @@ mode=$2
 
 if [ "$mode" = "train" ]; then
 
-  python -m torch.distributed.launch $DISTRIBUTED_ARGS main.py \
+  python -m torch.distributed.launch $DISTRIBUTED_ARGS examples/appzoo_tutorials/sequence_labeling/main.py \
     --mode $mode \
     --tables=./train.csv,./dev.csv \
     --input_schema=content:str:1,label:str:1 \

@@ -87,7 +87,7 @@ fi
 
 python test_clip.py
 rm -rf modelzoo_alibaba.json
-rm -rf clip_model
+rm -rf clip_cn_model
 rm -rf *.tsv
 
 echo "================== Test user defined example =================="

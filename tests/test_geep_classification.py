@@ -38,7 +38,7 @@ class TestClassification(unittest.TestCase):
                 --sequence_length=128 \
                 --micro_batch_size=4 \
                 --app_name=geep_classify \
-                --user_defined_parameters='geep_exit_num=8 pretrain_model_name_or_path=geep-base-uncased' \
+                --user_defined_parameters='geep_exit_num=8 pretrain_model_name_or_path=bert-base-uncased' \
                 "
 
         print(argvs)

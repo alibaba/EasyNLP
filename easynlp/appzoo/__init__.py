@@ -27,6 +27,7 @@ _import_structure = {
     "geep_classification.model": ["GEEPClassification"],
     "multi_modal.model": ["MultiModal"],
     "text2video_retrieval.model": ["Text2VideoRetrieval"],
+    "latent_diffusion.model": ["LatentDiffusion"],
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
@@ -56,6 +57,7 @@ _import_structure = {
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
     "multi_modal.predictor": ['MultiModalPredictor'],
     "text2video_retrieval.predictor": ['Text2VideoRetrievalPredictor'],
+    "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
     "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
@@ -90,6 +92,7 @@ if TYPE_CHECKING:
     from .geep_classification.model import GEEPClassification
     from .multi_modal.model import MultiModal
     from .text2video_retrieval.model import Text2VideoRetrieval
+    from .latent_diffusion.model import LatentDiffusion
     from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
@@ -119,6 +122,7 @@ if TYPE_CHECKING:
     from .geep_classification.predictor import GEEPClassificationPredictor
     from .multi_modal.predictor import MultiModalPredictor
     from .text2video_retrieval.predictor import Text2VideoRetrievalPredictor
+    from .latent_diffusion.predictor import LatentDiffusionPredictor
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor

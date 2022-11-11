@@ -153,7 +153,6 @@ def get_pretrain_model_path(pretrained_model_name_or_path,
             assert io.exists(os.path.join(get_dir_name(pretrained_model_name_or_path), 'config.json')), \
                 '%s not exists in OSS' % pretrained_model_name_or_path
         else:
-
             if not disable_auto_download:
                 # Download the model tar file and untar the files (do once in master node while distributed training)
                 remote_url = 'http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/' + \
@@ -175,13 +174,17 @@ def get_pretrain_model_path(pretrained_model_name_or_path,
                         os.system('wget ' + remote_url + ' -P ' +
                                   get_dir_name(local_tar_file_path))
 
-                        tar = tarfile.open(local_tar_file_path, 'r:gz')
-                        pretrained_model_name_or_path = os.path.join(
-                            modelzoo_base_dir, pretrained_model_name_or_path)
-                        tar.extractall(
-                            get_dir_name(pretrained_model_name_or_path))
-                        tar.close()
-                        os.remove(local_tar_file_path)
+                        try:
+                            tar = tarfile.open(local_tar_file_path, 'r:gz')
+                            pretrained_model_name_or_path = os.path.join(
+                                modelzoo_base_dir, pretrained_model_name_or_path)
+                            tar.extractall(
+                                get_dir_name(pretrained_model_name_or_path))
+                            tar.close()
+                            os.system('rm -rf %s*' % local_tar_file_path)
+                        except:
+                            print('file %s not exists, deletion terminated.' % local_tar_file_path)
+                            pass
 
                 if n_gpu > 1:
                     torch.distributed.barrier()

@@ -20,11 +20,11 @@ import json
 import tarfile
 from typing import Any, List, Optional
 from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
-        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension
+        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension, LatentDiffusion
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
         SequenceClassificationPipeline, TextImageGenerationPipeline, \
-        TextMatchPipeline, SequenceLabelingPipeline, MachineReadingComprehensionPipeline
+        TextMatchPipeline, SequenceLabelingPipeline, MachineReadingComprehensionPipeline, LatentDiffusionPipeline
 
 from ..utils import EASYNLP_CACHE_ROOT, EASYNLP_REMOTE_MODELZOO, EASYNLP_LOCAL_APPZOO
 
@@ -56,6 +56,11 @@ SUPPORTED_TASKS = {
         'impl': TextImageGenerationPipeline,
         'model_cls': TextImageGeneration,
         'default': 'artist-base-zh',
+    },
+    'latent_diffusion': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'latent_diffusion_fashion_cn',
     },
     'image2text_generation': {
         'impl': ImageTextGenerationPipeline,

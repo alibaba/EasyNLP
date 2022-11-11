@@ -28,17 +28,17 @@ class TestCLIP(unittest.TestCase):
                 --input_schema=text:str:1,image:str:1 \
                 --first_sequence=text \
                 --second_sequence=image \
-                --checkpoint_dir=./clip_model/ \
-                --learning_rate=1e-4  \
+                --checkpoint_dir=./clip_cn_model/ \
+                --learning_rate=1e-6  \
                 --epoch_num=1  \
                 --random_seed=42 \
                 --logging_steps=100 \
-                --save_checkpoint_steps 500 \
+                --save_checkpoint_steps 200 \
                 --sequence_length=32 \
-                --micro_batch_size=4 \
+                --micro_batch_size=32 \
                 --app_name=clip \
                 --save_all_checkpoints \
-                --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large fix_vision=True mode=finetune' \
+                --user_defined_parameters='pretrain_model_name_or_path=alibaba-pai/clip_chinese_roberta_base_vit_base'  \
                 "
 
         print(argvs)
@@ -62,28 +62,23 @@ class TestCLIP(unittest.TestCase):
             raise RuntimeError
 
         self.assertTrue('./clip_model/pytorch_model.bin')
-        self.assertTrue('./clip_model/pytorch_model.meta.bin')
         self.assertTrue('./clip_model/config.json')
-        self.assertTrue('./clip_model/vocab.txt')
-        self.assertTrue('./clip_model/label_mapping.json')
 
     def test_1_evaluate(self):
         argvs = "easynlp \
-                    --mode evaluate \
-                    --worker_gpu=1 \
-                    --tables=./MUGE_MR_valid_base64_part.tsv \
-                    --input_schema=text:str:1,image:str:1 \
-                    --first_sequence=text \
-                    --second_sequence=image \
-                    --checkpoint_dir=./clip_model/ \
-                    --learning_rate=1e-4  \
-                    --random_seed=42 \
-                    --logging_steps=100 \
-                    --save_checkpoint_steps=500 \
-                    --sequence_length=32 \
-                    --micro_batch_size=32 \
-                    --app_name=clip \
-                    --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large' \
+                --mode evaluate \
+                --worker_gpu=1 \
+                --tables=./MUGE_MR_valid_base64_part.tsv \
+                --input_schema=text:str:1,image:str:1 \
+                --first_sequence=text \
+                --second_sequence=image \
+                --checkpoint_dir=./clip_cn_model \
+                --random_seed=42 \
+                --logging_steps=100 \
+                --save_checkpoint_steps=500 \
+                --sequence_length=32 \
+                --micro_batch_size=32 \
+                --app_name=clip \
                  "
 
         print(argvs)
@@ -108,22 +103,20 @@ class TestCLIP(unittest.TestCase):
 
     def test_2_predict(self):
         argvs = "easynlp \
-                    --mode predict \
-                    --worker_gpu=1 \
-                    --tables=./MUGE_MR_test_base64_part_text.tsv \
-                    --input_schema=text:str:1 \
-                    --output_schema=text_feat \
-                    --outputs ./text_feat.tsv \
-                    --first_sequence=text \
-                    --checkpoint_dir=./clip_model/ \
-                    --learning_rate=1e-4  \
-                    --random_seed=42 \
-                    --logging_steps=100 \
-                    --save_checkpoint_steps=500 \
-                    --sequence_length=32 \
-                    --micro_batch_size=2 \
-                    --app_name=clip \
-                    --user_defined_parameters='pretrain_model_name_or_path=clip_chinese_roberta_large_with_vit_large' \
+                --mode predict \
+                --worker_gpu=1 \
+                --tables=./MUGE_MR_test_base64_part_text.tsv \
+                --input_schema=text:str:1 \
+                --output_schema=text_feat \
+                --outputs ./text_feat.tsv \
+                --first_sequence=text \
+                --checkpoint_dir=./clip_cn_model/ \
+                --random_seed=42 \
+                --logging_steps=100 \
+                --save_checkpoint_steps=500 \
+                --sequence_length=32 \
+                --micro_batch_size=2 \
+                --app_name=clip \
                  "
 
         print(argvs)
