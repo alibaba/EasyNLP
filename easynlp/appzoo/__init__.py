@@ -26,6 +26,7 @@ _import_structure = {
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
     "multi_modal.model": ["MultiModal"],
+    "text2video_retrieval.model": ["Text2VideoRetrieval"],
     "wukong.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
@@ -39,6 +40,7 @@ _import_structure = {
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
     "multi_modal.evaluator": ['MultiModalEvaluator'],
+    "text2video_retrieval.evaluator": ['Text2VideoRetrievalEvaluator'],
     "wukong.evaluator": ['WukongEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
@@ -53,6 +55,7 @@ _import_structure = {
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
     "multi_modal.predictor": ['MultiModalPredictor'],
+    "text2video_retrieval.predictor": ['Text2VideoRetrievalPredictor'],
     "wukong.predictor": ['WukongPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
@@ -63,6 +66,7 @@ _import_structure = {
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
     "multi_modal.data": ['MultiModalDataset'],
+    "text2video_retrieval.data": ['Text2VideoRetrievalDataset'],
     "wukong.data": ['WukongDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
@@ -85,6 +89,7 @@ if TYPE_CHECKING:
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
     from .multi_modal.model import MultiModal
+    from .text2video_retrieval.model import Text2VideoRetrieval
     from .wukong.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
@@ -98,6 +103,7 @@ if TYPE_CHECKING:
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
     from .multi_modal.evaluator import MultiModalEvaluator
+    from .text2video_retrieval.evaluator import Text2VideoRetrievalEvaluator
     from .wukong.evaluator import WukongEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
     from .image2text_generation.evaluator import ImageTextGenerationEvaluator
@@ -112,6 +118,7 @@ if TYPE_CHECKING:
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
     from .multi_modal.predictor import MultiModalPredictor
+    from .text2video_retrieval.predictor import Text2VideoRetrievalPredictor
     from .wukong.predictor import WukongPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
@@ -125,6 +132,7 @@ if TYPE_CHECKING:
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
     from .multi_modal.data import MultiModalDataset
+    from .text2video_retrieval.data import Text2VideoRetrievalDataset
     from .wukong.data import WukongDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
     from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset

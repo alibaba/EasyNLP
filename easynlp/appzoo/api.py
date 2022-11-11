@@ -26,6 +26,7 @@ from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassificat
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
 from easynlp.appzoo import MultiModal
+from easynlp.appzoo import Text2VideoRetrieval
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
@@ -40,6 +41,7 @@ from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewsho
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
 from easynlp.appzoo import MultiModalEvaluator
+from easynlp.appzoo import Text2VideoRetrievalEvaluator
 from easynlp.appzoo import WukongEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
 from easynlp.appzoo import ImageTextGenerationEvaluator
@@ -52,6 +54,7 @@ from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredic
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
 from easynlp.appzoo import MultiModalPredictor
+from easynlp.appzoo import Text2VideoRetrievalPredictor
 from easynlp.appzoo import WukongPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
@@ -65,6 +68,7 @@ from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySing
 from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
 from easynlp.appzoo import MultiModalDataset
+from easynlp.appzoo import Text2VideoRetrievalDataset
 from easynlp.appzoo import WukongDataset
 from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
@@ -93,6 +97,7 @@ Dataset_Mapping = {
     'sequence_labeling': SequenceLabelingDataset,
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
+    'clip4clip': Text2VideoRetrievalDataset,
     'clip': MultiModalDataset,
     'wukong': WukongDataset,
     'text2image_generation': TextImageDataset,
@@ -126,6 +131,7 @@ ModelMapping = {
     'vectorization': FeatureVectorization,
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
+    'clip4clip': Text2VideoRetrieval,
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
@@ -154,6 +160,7 @@ Eval_Model_Mapping = {
     },
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
+    'clip4clip': Text2VideoRetrieval,
     'clip': MultiModal,
     'wukong': WukongCLIP,
     'text2image_generation': TextImageGeneration,
@@ -183,6 +190,7 @@ Evaluator_Mapping = {
     'language_modeling': LanguageModelingEvaluator,
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
+    'clip4clip': Text2VideoRetrievalEvaluator,
     'clip': MultiModalEvaluator,
     'wukong': WukongEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
@@ -212,6 +220,7 @@ Predictor_Mapping = {
     'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
+    'clip4clip': [Text2VideoRetrievalPredictor, Text2VideoRetrieval],
     'clip': [MultiModalPredictor, MultiModal],
     'wukong': [WukongPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
