@@ -429,8 +429,8 @@ def get_application_predictor(app_name, model_dir, user_defined_parameters, **kw
 
 def default_main_fn():
     try:
-        args = get_ds_args()
         is_mg = False
+        args = get_ds_args()
         user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
         model_info = user_defined_parameters.get('pretrain_model_name_or_path', '').split('/')
         pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
