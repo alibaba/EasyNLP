@@ -175,9 +175,9 @@ class SequenceGenerationDataset(BaseDataset):
             decoder_input_ids = [101]
         else:
             if self.is_randeng:
-                decoder_input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+                decoder_input_ids = tokenizer.encode('[CLS]')[:-1] + tokenizer.encode(tgt_text, max_length=self.max_decoder_length, truncation='only_first')
             else:
-                decoder_input_ids = tokenizer.encode(tgt_text, max_length=max_seq_len, truncation='only_first')
+                decoder_input_ids = tokenizer.encode(tgt_text, max_length=self.max_decoder_length, truncation='only_first')
         features = {
             'input_ids': input_ids,
             'decoder_input_ids': decoder_input_ids,

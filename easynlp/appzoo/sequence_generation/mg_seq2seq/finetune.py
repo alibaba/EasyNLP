@@ -190,5 +190,7 @@ def main(args, user_defined_parameters):
             for di in dirs:
                 if di != 'best':
                     os.system('rm -rf %s' % os.path.join(path, di))
+        checkpoint_path = os.path.join(args.checkpoint_dir, 'latest_checkpointed_iteration.txt')
+        os.system('echo \'best\' > %s' % checkpoint_path)
     else:
         raise NotImplementedError(args.task)

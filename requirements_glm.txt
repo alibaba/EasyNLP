@@ -6,7 +6,6 @@ nltk
 matplotlib
 pandas
 requests
-ftfy
 langdetect
 lsh
 scikit_learn

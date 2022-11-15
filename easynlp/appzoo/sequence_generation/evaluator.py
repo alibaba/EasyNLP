@@ -11,7 +11,7 @@ class SequenceGenerationEvaluator(object):
         self.valid_dataset = valid_dataset
         self.valid_loader=DataLoader.DataLoader(self.valid_dataset)
         self.best_valid_score=0
-        print(kwargs.get('pretrained_model_name_or_path'))
+
         pretrained_model_name_or_path = kwargs.get('pretrained_model_name_or_path')
         pretrained_model_name_or_path = pretrained_model_name_or_path if pretrained_model_name_or_path else kwargs.get('few_shot_anchor_args').pretrained_model_name_or_path
         # if 'pretrained_model_name_or_path' in kwargs:
@@ -39,7 +39,7 @@ class SequenceGenerationEvaluator(object):
             self.decoder_only = 'gpt2' in pretrained_model_name_or_path or ("architectures" not in load_dict) or ("architectures" in load_dict and 'bloom' == load_dict.get('model_type', ''))
             self.is_randeng = 'randeng' in pretrained_model_name_or_path or 'randeng' == load_dict.get('model_type', '')
 
-        self.max_encoder_length = int(self.user_defined_parameters.get("max_encoder_length", 512))
+        self.max_encoder_length = kwargs.get('max_encoder_length', int(self.user_defined_parameters.get("max_encoder_length", 512)))
         self.min_decoder_length = int(self.user_defined_parameters.get("min_decoder_length", 8))
         self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
         self.no_repeat_ngram_size = int(self.user_defined_parameters.get("no_repeat_ngram_size", 2))

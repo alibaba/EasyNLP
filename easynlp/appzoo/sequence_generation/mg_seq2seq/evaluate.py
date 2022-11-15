@@ -304,7 +304,6 @@ class DecoderEvaluater:
                 batch_size = tokens.size(0)
                 beam_scorer = BeamSearchScorer(
                     batch_size=batch_size,
-                    max_length=args.out_seq_length,
                     num_beams=args.num_beams,
                     device=tokens.device,
                     length_penalty=args.length_penalty,
@@ -374,7 +373,7 @@ class DecoderEvaluater:
                     if beam_scorer.is_done:
                         break
                     counter += 1
-                output_dict = beam_scorer.finalize(tokens, beam_scores, next_tokens, next_indices, args.out_seq_length, self.pad_token, self.end_token)
+                output_dict = beam_scorer.finalize(tokens, beam_scores, next_tokens, next_indices, args.tgt_seq_length, self.pad_token, self.end_token)
                 tokens, scores = output_dict['sequences'], output_dict['sequence_scores']
                 uid_list = data['uid']
                 if isinstance(uid_list, torch.Tensor):

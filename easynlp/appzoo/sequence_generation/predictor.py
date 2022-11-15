@@ -64,15 +64,19 @@ class SequenceGenerationPredictor(Predictor):
                 load_dict = json.load(load_f)
                 if ("model_type" in load_dict) and (load_dict["model_type"]=='mt5'):
                     tokenizer_class=T5PegasusTokenizer
+                elif ("model_type" in load_dict) and (load_dict["model_type"]=='bart'):
+                    tokenizer_class=BertTokenizer
                 else:
                     tokenizer_class=AutoTokenizer
                 self.tokenizer_class=tokenizer_class  
             self.tokenizer = tokenizer_class.from_pretrained(self.model_dir)
 
-        self.model = model_cls(pretrained_model_name_or_path=self.model_dir,user_defined_parameters=self.user_defined_parameters).cuda()
+        self.model = model_cls(pretrained_model_name_or_path=self.model_dir,user_defined_parameters=self.user_defined_parameters)
+        if torch.cuda.is_available():
+            self.model = self.model.cuda()
         self.MUTEX = Lock()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
-        self.max_encoder_length = int(self.user_defined_parameters.get("max_encoder_length", 512))
+        self.max_encoder_length = kwargs.get('max_encoder_length', int(self.user_defined_parameters.get("max_encoder_length", 512)))
         self.min_decoder_length = int(self.user_defined_parameters.get("min_decoder_length", 8))
         self.max_decoder_length = int(self.user_defined_parameters.get("max_decoder_length", 128))
         self.no_repeat_ngram_size = int(self.user_defined_parameters.get("no_repeat_ngram_size", 2))
@@ -114,9 +118,12 @@ class SequenceGenerationPredictor(Predictor):
             result (`dict`): a dict of result tensors (`np.array`) by model.forward
         """
         input_ids = torch.LongTensor(sequence_padding(
-            in_data["input_ids"], padding=self.tokenizer.pad_token_id)).cuda()
+            in_data["input_ids"], padding=self.tokenizer.pad_token_id))
         attention_mask = torch.LongTensor(sequence_padding(
-            in_data["attention_mask"], padding=0)).cuda()
+            in_data["attention_mask"], padding=0))
+        if torch.cuda.is_available():
+            input_ids = input_ids.cuda()
+            attention_mask = attention_mask.cuda()
         if self.decoder_only:
             self.input_len = input_ids.size(1)
             max_decoder_length = self.max_decoder_length + self.input_len
