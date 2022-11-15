@@ -25,13 +25,13 @@ if [ "$mode" = "predict" ]; then
     --app_name=sequence_generation \
     --mode $mode \
     --worker_gpu=1 \
-    --tables=./en_test.tsv  \
-    --outputs=./en_test.preds.txt \
+    --tables=./en_dev.tsv  \
+    --outputs=./en_dev.preds.txt \
     --input_schema=title:str:1,content:str:1 \
     --output_schema=predictions,beams \
     --append_cols=title,content \
     --first_sequence=content \
-    --checkpoint_dir=/root/.easynlp/modelzoo/alibaba-pai/pegasus-summary-generation-en/ \
+    --checkpoint_dir=./finetuned_en_model/ \
     --micro_batch_size 32 \
     --sequence_length 512 \
     --user_defined_parameters 'language=en copy=false max_encoder_length=512 min_decoder_length=12 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
