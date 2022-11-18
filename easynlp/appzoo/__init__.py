@@ -25,7 +25,7 @@ _import_structure = {
     "text_match.model": ['TextMatch', 'TextMatchTwoTower', 'DistillatoryTextMatch', 'FewshotSingleTowerTextMatch', 'CptFewshotSingleTowerTextMatch'],
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
-    "multi_modal.model": ["MultiModal"],
+    "clip.model": ["CLIPApp"],
 #   "latent_diffusion.model": ["LatentDiffusion"],
     "wukong_clip.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
@@ -39,7 +39,7 @@ _import_structure = {
     "language_modeling.evaluator": ['LanguageModelingEvaluator'],
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
-    "multi_modal.evaluator": ['MultiModalEvaluator'],
+    "clip.evaluator": ['CLIPEvaluator'],
     "wukong_clip.evaluator": ['WukongCLIPEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
@@ -53,7 +53,7 @@ _import_structure = {
     "text_match.predictor": ['TextMatchPredictor', 'TextMatchTwoTowerPredictor', 'FewshotSingleTowerTextMatchPredictor', 'CptFewshotSingleTowerTextMatchPredictor'],
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
-    "multi_modal.predictor": ['MultiModalPredictor'],
+    "clip.predictor": ['CLIPPredictor'],
 #   "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
     "wukong_clip.predictor": ['WukongCLIPPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
@@ -64,7 +64,7 @@ _import_structure = {
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
-    "multi_modal.data": ['MultiModalDataset'],
+    "clip.data": ['CLIPDataset'],
     "wukong_clip.data": ['WukongCLIPDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
@@ -86,7 +86,7 @@ if TYPE_CHECKING:
     from .text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
-    from .multi_modal.model import MultiModal
+    from .clip.model import CLIPApp
 #   from .latent_diffusion.model import LatentDiffusion
     from .wukong_clip.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
@@ -100,7 +100,7 @@ if TYPE_CHECKING:
     from .language_modeling.evaluator import LanguageModelingEvaluator
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
-    from .multi_modal.evaluator import MultiModalEvaluator
+    from .clip.evaluator import CLIPEvaluator
     from .wukong_clip.evaluator import WukongCLIPEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
     from .image2text_generation.evaluator import ImageTextGenerationEvaluator
@@ -114,7 +114,7 @@ if TYPE_CHECKING:
     from .text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
-    from .multi_modal.predictor import MultiModalPredictor
+    from .clip.predictor import CLIPPredictor
 #   from .latent_diffusion.predictor import LatentDiffusionPredictor
     from .wukong_clip.predictor import WukongCLIPPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
@@ -128,7 +128,7 @@ if TYPE_CHECKING:
     from .language_modeling.data import LanguageModelingDataset
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
-    from .multi_modal.data import MultiModalDataset
+    from .clip.data import CLIPDataset
     from .wukong_clip.data import WukongCLIPDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
     from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset

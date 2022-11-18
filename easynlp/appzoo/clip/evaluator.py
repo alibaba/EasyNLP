@@ -24,7 +24,8 @@ from ...utils import losses
 from ...utils.logger import logger
 from ...core.evaluator import Evaluator
 
-class MultiModalEvaluator(Evaluator):
+class CLIPEvaluator(Evaluator):
+    
     def __init__(self, valid_dataset, **kwargs):
         super().__init__(valid_dataset, **kwargs)
         self.metrics = ["accuracy", "f1"]

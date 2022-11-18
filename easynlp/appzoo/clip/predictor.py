@@ -26,10 +26,10 @@ from PIL import Image
 import base64
 from io import BytesIO
 import numpy as np
-from .model import MultiModal
+from .model import CLIPApp
 from .data import _center_crop, _resize, _to_numpy_array, _normalize,openclip_tokenize
 
-class MultiModalPredictor(Predictor):
+class CLIPPredictor(Predictor):
     def __init__(self, model_dir, model_cls=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         model_dir = get_pretrain_model_path(model_dir)
@@ -52,7 +52,7 @@ class MultiModalPredictor(Predictor):
             self.openclip_tokenizer = SimpleTokenizer(bpe_path=model_dir+'/vocab.txt')
         else:
             self.tokenizer=BertTokenizer.from_pretrained(model_dir+'/vocab.txt')
-        self.multi_modal=MultiModal.from_pretrained(model_dir, *args, **kwargs).cuda()
+        self.multi_modal=CLIPApp.from_pretrained(model_dir, *args, **kwargs).cuda()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.second_sequence = kwargs.pop("second_sequence", "second_sequence")
         self.sequence_length = kwargs.pop("sequence_length", 128)

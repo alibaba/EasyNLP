@@ -28,6 +28,7 @@ from torch import Tensor
 from typing import List, Optional
 import json
 
+
 class Config_Wrapper:
     def __init__(self,json_data):
         self.json_data=json_data
@@ -36,11 +37,11 @@ class Config_Wrapper:
         json_str=json.dumps(self.json_data,ensure_ascii=False)
         return json_str
 
-class MultiModal(Application):
+class CLIPApp(Application):
 
     @classmethod
     def from_pretrained(self, pretrained_model_name_or_path, user_defined_parameters={},**kwargs):
-        instance=MultiModal(pretrained_model_name_or_path,user_defined_parameters)
+        instance=CLIPApp(pretrained_model_name_or_path,user_defined_parameters)
         return instance
 
     def __init__(self, pretrained_model_name_or_path=None,user_defined_parameters=None, **kwargs):
