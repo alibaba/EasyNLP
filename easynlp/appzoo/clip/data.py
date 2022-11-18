@@ -162,7 +162,7 @@ def openclip_tokenize(texts: Union[str, List[str]], context_length: int = 77,_to
 
     return result
 
-class MultiModalDataset(BaseDataset):
+class CLIPDataset(BaseDataset):
     """
     Classification Dataset
     Args:

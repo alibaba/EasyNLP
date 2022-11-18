@@ -25,7 +25,7 @@ sys.path.append("../../")
 from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
-from easynlp.appzoo import MultiModal
+from easynlp.appzoo import CLIPApp
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
@@ -39,7 +39,7 @@ from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as Fewsho
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSingleTowerTextMatchEvaluator
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
-from easynlp.appzoo import MultiModalEvaluator
+from easynlp.appzoo import CLIPEvaluator
 from easynlp.appzoo import WukongCLIPEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
 from easynlp.appzoo import ImageTextGenerationEvaluator
@@ -51,7 +51,7 @@ from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClass
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
-from easynlp.appzoo import MultiModalPredictor
+from easynlp.appzoo import CLIPPredictor
 from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
@@ -64,7 +64,7 @@ from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
 from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
 from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
-from easynlp.appzoo import MultiModalDataset
+from easynlp.appzoo import CLIPDataset
 from easynlp.appzoo import WukongCLIPDataset
 from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
@@ -102,7 +102,7 @@ Dataset_Mapping = {
     'sequence_labeling': SequenceLabelingDataset,
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
-    'clip': MultiModalDataset,
+    'clip': CLIPDataset,
     'wukong_clip': WukongCLIPDataset,
     'text2image_generation': TextImageDataset,
     'image2text_generation': {
@@ -135,7 +135,7 @@ ModelMapping = {
     'vectorization': FeatureVectorization,
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
-    'clip': MultiModal,
+    'clip': CLIPApp,
     'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
@@ -163,7 +163,7 @@ Eval_Model_Mapping = {
     },
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
-    'clip': MultiModal,
+    'clip': CLIPApp,
     'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
@@ -192,7 +192,7 @@ Evaluator_Mapping = {
     'language_modeling': LanguageModelingEvaluator,
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
-    'clip': MultiModalEvaluator,
+    'clip': CLIPEvaluator,
     'wukong_clip': WukongCLIPEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
     'image2text_generation': {
@@ -221,7 +221,7 @@ Predictor_Mapping = {
     'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
-    'clip': [MultiModalPredictor, MultiModal],
+    'clip': [CLIPPredictor, CLIPApp],
     'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
     'image2text_generation': {
