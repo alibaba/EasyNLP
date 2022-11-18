@@ -43,14 +43,6 @@
 
 # 安装
 
-可以通过pip安装：
-
-```bash
-$ pip install pai-easynlp
-```
-
-或者下载源代码：
-
 ```bash
 $ git clone https://github.com/alibaba/EasyNLP.git
 $ pip install -r requirements.txt 
