@@ -28,7 +28,7 @@ import numpy as np
 from .model import WukongCLIP
 from .data import _center_crop, _resize, _to_numpy_array, _normalize
 
-class WukongPredictor(Predictor):
+class WukongCLIPPredictor(Predictor):
     def __init__(self, model_dir, model_cls=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         model_dir = get_pretrain_model_path(model_dir)

@@ -134,7 +134,7 @@ def _normalize(image, mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954,
         return (image - mean) / std
 
 
-class WukongDataset(BaseDataset):
+class WukongCLIPDataset(BaseDataset):
     """
     Classification Dataset
     Args:

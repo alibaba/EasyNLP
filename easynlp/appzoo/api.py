@@ -40,7 +40,7 @@ from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewsho
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
 from easynlp.appzoo import MultiModalEvaluator
-from easynlp.appzoo import WukongEvaluator
+from easynlp.appzoo import WukongCLIPEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
 from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import FrameTextGenerationEvaluator
@@ -52,7 +52,7 @@ from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredic
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
 from easynlp.appzoo import MultiModalPredictor
-from easynlp.appzoo import WukongPredictor
+from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
@@ -65,7 +65,7 @@ from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySing
 from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
 from easynlp.appzoo import MultiModalDataset
-from easynlp.appzoo import WukongDataset
+from easynlp.appzoo import WukongCLIPDataset
 from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
@@ -103,7 +103,7 @@ Dataset_Mapping = {
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
     'clip': MultiModalDataset,
-    'wukong': WukongDataset,
+    'wukong_clip': WukongCLIPDataset,
     'text2image_generation': TextImageDataset,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextDataset,
@@ -136,7 +136,7 @@ ModelMapping = {
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
     'clip': MultiModal,
-    'wukong': WukongCLIP,
+    'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextGeneration,
@@ -164,7 +164,7 @@ Eval_Model_Mapping = {
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
     'clip': MultiModal,
-    'wukong': WukongCLIP,
+    'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextGeneration, 
@@ -193,7 +193,7 @@ Evaluator_Mapping = {
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
     'clip': MultiModalEvaluator,
-    'wukong': WukongEvaluator,
+    'wukong_clip': WukongCLIPEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
     'image2text_generation': {
         'enable_vit': ImageTextGenerationEvaluator,
@@ -222,7 +222,7 @@ Predictor_Mapping = {
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
     'clip': [MultiModalPredictor, MultiModal],
-    'wukong': [WukongPredictor, WukongCLIP],
+    'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
     'image2text_generation': {
         'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],

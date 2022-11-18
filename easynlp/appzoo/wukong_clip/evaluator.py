@@ -24,7 +24,7 @@ from ...utils import losses
 from ...utils.logger import logger
 from ...core.evaluator import Evaluator
 
-class WukongEvaluator(Evaluator):
+class WukongCLIPEvaluator(Evaluator):
     def __init__(self, valid_dataset,user_defined_parameters, **kwargs):
         super().__init__(valid_dataset,**kwargs)
         self.metrics = ["accuracy", "f1"]
