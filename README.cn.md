@@ -64,62 +64,59 @@ $ python setup.py install
 
 下面提供一个BERT文本分类的例子，只需要几行代码就可以训练BERT模型：
 
-首先，通过load_dataset接口加载数据，其次构建一个分类模型，然后调用Trainer即可训练.
 ```python
+
+from easynlp.appzoo import ClassificationDataset
+from easynlp.appzoo import get_application_model, get_application_evaluator
 from easynlp.core import Trainer
-from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
-from easynlp.utils import initialize_easynlp
+from easynlp.utils import initialize_easynlp, get_args
+from easynlp.utils.global_vars import parse_user_defined_parameters
+from easynlp.utils import get_pretrain_model_path
 
-args = initialize_easynlp()
-
-row_data = load_dataset('glue', 'qnli')["train"]
-train_dataset = GeneralDataset(row_data, args.pretrained_model_name_or_path, args.sequence_length)
-
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
-```
-For more datasets, please check it out in [DataHub](https://github.com/alibaba/EasyNLP/tree/master/datahub).
-
-也可以使用自定义数据接口：
-```python
-from easynlp.core import Trainer
-from easynlp.appzoo import ClassificationDataset, SequenceClassification
-from easynlp.utils import initialize_easynlp
-
-args = initialize_easynlp()
+initialize_easynlp()
+args = get_args()
+user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+pretrained_model_name_or_path = get_pretrain_model_path(user_defined_parameters.get('pretrain_model_name_or_path', None))
 
 train_dataset = ClassificationDataset(
-    pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-    data_file=args.tables,
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    data_file=args.tables.split(",")[0],
     max_seq_length=args.sequence_length,
     input_schema=args.input_schema,
     first_sequence=args.first_sequence,
+    second_sequence=args.second_sequence,
     label_name=args.label_name,
     label_enumerate_values=args.label_enumerate_values,
+    user_defined_parameters=user_defined_parameters,
     is_training=True)
 
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
-```
+valid_dataset = ClassificationDataset(
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    data_file=args.tables.split(",")[-1],
+    max_seq_length=args.sequence_length,
+    input_schema=args.input_schema,
+    first_sequence=args.first_sequence,
+    second_sequence=args.second_sequence,
+    label_name=args.label_name,
+    label_enumerate_values=args.label_enumerate_values,
+    user_defined_parameters=user_defined_parameters,
+    is_training=False)
 
-测试代码:
+model = get_application_model(app_name=args.app_name,
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    num_labels=len(valid_dataset.label_enumerate_values),
+    user_defined_parameters=user_defined_parameters)
 
-```bash
-python main.py \
-  --mode train \
-  --tables=train_toy.tsv \
-  --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
-  --first_sequence=sent1 \
-  --label_name=label \
-  --label_enumerate_values=0,1 \
-  --checkpoint_dir=./tmp/ \
-  --epoch_num=1  \
-  --app_name=text_classify \
-  --user_defined_parameters='pretrain_model_name_or_path=bert-tiny-uncased'
+trainer = Trainer(model=model, train_dataset=train_dataset,user_defined_parameters=user_defined_parameters,
+    evaluator=get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,user_defined_parameters=user_defined_parameters,
+    eval_batch_size=args.micro_batch_size))
+    
+trainer.train()
+
 ```
 
 我们也提供了AppZoo的命令行来训练模型，只需要通过简单的参数配置就可以开启训练：
-First you can download the [train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv), and [dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv), then start training:
+首先需要下载训练集[train.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv)和测试集[dev.tsv](http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv)，然后开始训练：
 
 ```bash
 $ easynlp \
@@ -137,7 +134,7 @@ $ easynlp \
    --user_defined_parameters='pretrain_model_name_or_path=bert-small-uncased'
 ```
 
-And then predict:
+模型预测命令如下：
 
 ```bash
 $ easynlp \
