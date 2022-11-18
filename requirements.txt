@@ -19,5 +19,4 @@ pillow
 albumentations
 einops
 torchvision
-pytorch_lightning
 ftfy
