@@ -51,13 +51,7 @@ We have a series of technical articles on the functionalities of EasyNLP.
 
 # Installation
 
-You can either install it from pip
-
-```bash
-$ pip install pai-easynlp (may be out-of-date)
-```
-
-or setup from the source：
+You can setup from the source：
 
 ```bash
 $ git clone https://github.com/alibaba/EasyNLP.git
