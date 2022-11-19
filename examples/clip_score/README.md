@@ -9,9 +9,7 @@
 相似度计算权重使用 wukong_vit_l_14_clip
 
 ### 执行
-按需要修改clip_score.sh文件
-执行命令 sh clip_score.sh 0
-数字指定所需使用的显卡 
+执行命令bash clip_score.sh
 
 示例输出
 ```
