@@ -25,7 +25,7 @@ averaged consine similarity  tensor(0.1037, device='cuda:0')
 ```
 
 ### 自定义开发
-* 修改相似度计算逻辑, 请参考EasyNLP/easynlp/appzoo/wukong/evaluator.py, 修改完成后记得python setup.py install对修改版本进行安装以生效.
+* 修改相似度计算逻辑, 请参考EasyNLP/easynlp/appzoo/wukong_clip/evaluator.py, 修改完成后记得python setup.py install对修改版本进行安装以生效
 
 
 ### 注意事项
