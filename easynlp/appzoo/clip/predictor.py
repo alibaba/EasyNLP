@@ -32,6 +32,7 @@ from .data import _center_crop, _resize, _to_numpy_array, _normalize,openclip_to
 class CLIPPredictor(Predictor):
     def __init__(self, model_dir, model_cls=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        """
         model_dir = get_pretrain_model_path(model_dir)
         if "oss://" in model_dir:
             local_dir = model_dir.split("/")[-1]
@@ -39,6 +40,8 @@ class CLIPPredictor(Predictor):
             os.makedirs(local_dir, exist_ok=True)
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
+        """
+        
         # 先处理配置，再决定后续如何加载权重
         with open(model_dir+'/config.json','r') as config_handle:
             self.raw_config=json.load(config_handle)
