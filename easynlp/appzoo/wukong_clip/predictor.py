@@ -31,6 +31,7 @@ from .data import _center_crop, _resize, _to_numpy_array, _normalize
 class WukongCLIPPredictor(Predictor):
     def __init__(self, model_dir, model_cls=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        """
         model_dir = get_pretrain_model_path(model_dir)
         if "oss://" in model_dir:
             local_dir = model_dir.split("/")[-1]
@@ -38,6 +39,8 @@ class WukongCLIPPredictor(Predictor):
             os.makedirs(local_dir, exist_ok=True)
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
+        """
+        
         self.tokenizer=FullTokenizer(vocab_file=model_dir+'/vocab.txt')
         self.model=WukongCLIP.from_pretrained(model_dir, *args, **kwargs)
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
