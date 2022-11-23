@@ -105,6 +105,7 @@ def get_pretrain_model_path(pretrained_model_name_or_path,
         return None
 
     if pretrained_model_name_or_path.startswith('./') or \
+        pretrained_model_name_or_path.startswith('../') or \
         pretrained_model_name_or_path.startswith('/') or \
         pretrained_model_name_or_path.startswith('oss://'):
         return pretrained_model_name_or_path
