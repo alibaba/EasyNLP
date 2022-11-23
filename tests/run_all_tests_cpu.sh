@@ -22,9 +22,9 @@ fi
 rm -rf *.tsv *.csv *.txt
 
 
-echo "================== Test user defined vectorization =================="
+# echo "================== Test user defined vectorization =================="
 # check vectorization
-sh run_vectorization.sh
+# sh run_vectorization.sh
 
 # Install easynlp cli
 cd ../
@@ -42,13 +42,13 @@ echo "================== Test TorchACC =================="
 python test_torchacc.py
 rm -rf *.tsv
 
-echo "================== Feature Vectorization =================="
-if [ ! -f ./dev2.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev2.tsv
-fi
+# echo "================== Feature Vectorization =================="
+# if [ ! -f ./dev2.tsv ]; then
+#  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev2.tsv
+# fi
 
-python test_vectorization.py
-rm -rf *.tsv
+# python test_vectorization.py
+# rm -rf *.tsv
 
 
 # Unit tests
