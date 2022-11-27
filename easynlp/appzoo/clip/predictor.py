@@ -56,6 +56,13 @@ class CLIPPredictor(Predictor):
         else:
             self.tokenizer=BertTokenizer.from_pretrained(model_dir+'/vocab.txt')
         self.multi_modal=CLIPApp.from_pretrained(model_dir, *args, **kwargs).cuda()
+        if self.model_type=='open_clip':
+            self.multi_modal.open_clip.eval()
+        if self.model_type=='chinese_clip':
+            self.multi_modal.chinese_clip.eval()
+        if self.model_type=='huggingface_clip':
+            self.multi_modal.text_encoder.eval()
+            self.multi_modal.vision_encoder.eval()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.second_sequence = kwargs.pop("second_sequence", "second_sequence")
         self.sequence_length = kwargs.pop("sequence_length", 128)
