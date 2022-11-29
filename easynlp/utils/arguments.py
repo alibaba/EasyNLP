@@ -18,13 +18,11 @@ import argparse
 import importlib
 import os
 import torch
-
 import json
-# from easynlp.modelzoo.mg_utils.utils import get_hostname
 
 try:
     import deepspeed
-except ModuleNotFoundError:
+except:
     print('NOTE: if you wish to use GLM models, please refer to EasyNLP/examples/appzoo_tutorials/sequence_generation/README.md!')
 
 def is_torchx_available():
