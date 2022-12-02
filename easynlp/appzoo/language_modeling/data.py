@@ -381,7 +381,6 @@ class LanguageModelingDataset(BaseDataset):
         lengths = [len(t) for t in token_ids]
         # Max for paddings
         max_seq_len_ = max(lengths)
-        
         # max_seq_len_ = self.max_seq_length
         assert max_seq_len_ <= self.max_seq_length
         if self.dkplm_model_prefix:
