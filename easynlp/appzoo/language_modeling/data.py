@@ -379,7 +379,6 @@ class LanguageModelingDataset(BaseDataset):
                     token_ids[_index] = batch[_index][0][:t_length - gap - 1] + [batch[_index][0][-1]]
                     mask_labels[_index] = batch[_index][1][:t_length - gap - 1] + [batch[_index][1][-1]]
         lengths = [len(t) for t in token_ids]
-        # lengths = self.max_seq_length
         # Max for paddings
         max_seq_len_ = max(lengths)
         # max_seq_len_ = self.max_seq_length
