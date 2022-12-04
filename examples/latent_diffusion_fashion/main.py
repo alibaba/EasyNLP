@@ -7,7 +7,6 @@ sys.path.append('./')
 print('*'*50)
 print('running local main...\n')
 from easynlp.core import Trainer
-# from easynlp.appzoo import get_application_evaluator
 
 from easynlp.appzoo.multi_modal.data import MultiModalDataset
 from easynlp.appzoo.latent_diffusion.model import LatentDiffusion
