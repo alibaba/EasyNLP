@@ -24,6 +24,8 @@ import json
 from tqdm import tqdm, trange
 from einops import rearrange
 from PIL import Image
+from ...utils import losses, get_pretrain_model_path, get_args
+from ..application import Application
 
 try:
 
@@ -33,9 +35,6 @@ try:
     # from ...modelzoo.models.latent_diffusion.ddim import DDIMSampler
     from ...modelzoo.models.latent_diffusion.plms import PLMSSampler
     from ...modelzoo.models.latent_diffusion.RRDBNet_arch import ESRGAN
-
-    from ...utils import losses, get_pretrain_model_path, get_args
-    from ..application import Application
 
     class LatentDiffusion(Application):
 
