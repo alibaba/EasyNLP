@@ -123,7 +123,18 @@ try:
         def compute_loss(self, forward_outputs, label_ids, **kwargs):
             pass
 except Exception as ex:
- 
-    print("出现如下异常%s"%ex)
+
+    class LatentDiffusion(Application):
+
+        @classmethod
+        def from_pretrained(self, pretrained_model_name_or_path,args, user_defined_parameters={}):
+            instance=LatentDiffusion(pretrained_model_name_or_path,args,user_defined_parameters)
+            return instance
+
+        def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
+            super().__init__()
+            self.hello='world'
+
+    print("出现如下异常 %s"%ex)
 
 
