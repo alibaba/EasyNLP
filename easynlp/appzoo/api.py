@@ -28,11 +28,12 @@ from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorizat
 from easynlp.appzoo import CLIPApp
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import LatentDiffusion
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 from easynlp.appzoo import MachineReadingComprehension
-from easynlp.appzoo import InformationExtractionModel
+# from easynlp.appzoo import InformationExtractionModel
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
@@ -47,7 +48,7 @@ from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
-from easynlp.appzoo import InformationExtractionEvaluator
+# from easynlp.appzoo import InformationExtractionEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
@@ -56,11 +57,12 @@ from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredicto
 from easynlp.appzoo import CLIPPredictor
 from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import LatentDiffusionPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 from easynlp.appzoo import MachineReadingComprehensionPredictor
-from easynlp.appzoo import InformationExtractionPredictor
+# from easynlp.appzoo import InformationExtractionPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
 from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
@@ -73,7 +75,7 @@ from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
-from easynlp.appzoo import InformationExtractionDataset
+# from easynlp.appzoo import InformationExtractionDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -117,7 +119,7 @@ Dataset_Mapping = {
     'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
     'machine_reading_comprehension': MachineReadingComprehensionDataset,
-    'information_extraction': InformationExtractionDataset
+    # 'information_extraction': InformationExtractionDataset
 }
 
 ModelMapping = {
@@ -152,7 +154,7 @@ ModelMapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
-    'information_extraction': InformationExtractionModel
+    # 'information_extraction': InformationExtractionModel
 }
 
 Eval_Model_Mapping = {
@@ -181,7 +183,7 @@ Eval_Model_Mapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
-    'information_extraction': InformationExtractionModel
+    # 'information_extraction': InformationExtractionModel
 }
 
 Evaluator_Mapping = {
@@ -210,7 +212,7 @@ Evaluator_Mapping = {
     'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
     'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
-    'information_extraction': InformationExtractionEvaluator
+    # 'information_extraction': InformationExtractionEvaluator
 }
 
 Predictor_Mapping = {
@@ -232,6 +234,7 @@ Predictor_Mapping = {
     'clip': [CLIPPredictor, CLIPApp],
     'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
+    'latent_diffusion': [LatentDiffusionPredictor, LatentDiffusion],
     'image2text_generation': {
         'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
         'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
@@ -240,7 +243,7 @@ Predictor_Mapping = {
     'video2text_generation': [CLIPGPTFrameTextGenerationPredictor, CLIPGPTFrameTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
     'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension],
-    'information_extraction': [InformationExtractionPredictor, InformationExtractionModel]
+    # 'information_extraction': [InformationExtractionPredictor, InformationExtractionModel]
 }
 
 
