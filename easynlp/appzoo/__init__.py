@@ -33,7 +33,7 @@ _import_structure = {
     "video2text_generation.model": ['CLIPGPTFrameTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
     "machine_reading_comprehension.model": ["MachineReadingComprehension"],
-    "information_extraction.model": ["InformationExtractionModel"], 
+    # "information_extraction.model": ["InformationExtractionModel"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
@@ -47,7 +47,7 @@ _import_structure = {
     "video2text_generation.evaluator": ["FrameTextGenerationEvaluator"], 
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
     "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
-    "information_extraction.evaluator": ["InformationExtractionEvaluator"],
+    # "information_extraction.evaluator": ["InformationExtractionEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -63,7 +63,7 @@ _import_structure = {
     "video2text_generation.predictor": ['CLIPGPTFrameTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
     "machine_reading_comprehension.predictor": ["MachineReadingComprehensionPredictor"],
-    "information_extraction.predictor": ["InformationExtractionPredictor"],
+    # "information_extraction.predictor": ["InformationExtractionPredictor"],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
@@ -77,7 +77,7 @@ _import_structure = {
     "video2text_generation.data": ['CLIPGPTFrameTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "machine_reading_comprehension.data": ["MachineReadingComprehensionDataset"],
-    "information_extraction.data": ["InformationExtractionDataset"],
+    # "information_extraction.data": ["InformationExtractionDataset"],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -98,7 +98,7 @@ if TYPE_CHECKING:
     from .video2text_generation.model import CLIPGPTFrameTextGeneration
     from .sequence_generation.model import SequenceGeneration
     from .machine_reading_comprehension.model import MachineReadingComprehension
-    from .information_extraction.model import InformationExtractionModel
+    # from .information_extraction.model import InformationExtractionModel
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
@@ -112,7 +112,7 @@ if TYPE_CHECKING:
     from .video2text_generation.evaluator import FrameTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
     from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
-    from .information_extraction.evaluator import InformationExtractionEvaluator
+    # from .information_extraction.evaluator import InformationExtractionEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -128,7 +128,7 @@ if TYPE_CHECKING:
     from .video2text_generation.predictor import CLIPGPTFrameTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
     from .machine_reading_comprehension.predictor import MachineReadingComprehensionPredictor
-    from .information_extraction.predictor import InformationExtractionPredictor
+    # from .information_extraction.predictor import InformationExtractionPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
@@ -142,7 +142,7 @@ if TYPE_CHECKING:
     from .video2text_generation.data import CLIPGPTFrameTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
     from .machine_reading_comprehension.data import MachineReadingComprehensionDataset
-    from .information_extraction.data import InformationExtractionDataset
+    # from .information_extraction.data import InformationExtractionDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets
