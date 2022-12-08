@@ -25,10 +25,12 @@ from tqdm import tqdm, trange
 from einops import rearrange
 from PIL import Image
 
-from ...modelzoo.models.latent_diffusion.ddpm import ModelZoo_LatentDiffusion
+from ...modelzoo.models.latent_diffusion.ddpm import LatentDiffusionModel
 from ...modelzoo.models.latent_diffusion.autoencoder import AutoencoderKL
 from ...modelzoo.models.latent_diffusion.wukong import FrozenWukongCLIPTextEmbedder
-from ...modelzoo.models.latent_diffusion.ddim import DDIMSampler
+# from ...modelzoo.models.latent_diffusion.ddim import DDIMSampler
+from ...modelzoo.models.latent_diffusion.plms import PLMSSampler
+from ...modelzoo.models.latent_diffusion.RRDBNet_arch import ESRGAN
 
 from ...utils import losses, get_pretrain_model_path, get_args
 from ..application import Application
@@ -62,28 +64,29 @@ class LatentDiffusion(Application):
             all_params["cond_stage_config"]["params"]["version"]=os.path.join(pretrained_model_name_or_path,'wukong_vit_l_14_clip')
             all_params["cond_stage_model"]=FrozenWukongCLIPTextEmbedder(**all_params["cond_stage_config"]["params"])
             
-            self.model=ModelZoo_LatentDiffusion(**all_params)
+            self.model=LatentDiffusionModel(**all_params)
             
             m, u = self.model.load_state_dict(sd, strict=False)
-            if len(m) > 0 and verbose:
+            if len(m) > 0:
                 print("missing keys:")
                 print(m)
-            if len(u) > 0 and verbose:
+            if len(u) > 0:
                 print("unexpected keys:")
                 print(u)
             self.model.eval()
             _device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
             self.model = self.model.to(_device)
-            self.sampler = DDIMSampler(self.model)
-            
+            self.sr_model = ESRGAN(os.path.join(pretrained_model_name_or_path,'RRDB_ESRGAN_x4.pth'), _device)
+            self.sampler = PLMSSampler(self.model)
             self.scale=float(user_defined_parameters.pop('scale',5.0))
             self.n_samples=int(user_defined_parameters.pop('n_samples',4))
             self.n_iter=int(user_defined_parameters.pop('n_iter',1))
             self.H=int(user_defined_parameters.pop('H',256))
             self.W=int(user_defined_parameters.pop('W',256))
-            self.ddim_steps=int(user_defined_parameters.pop('ddim_steps',50))
+            self.ddim_steps=int(user_defined_parameters.pop('ddim_steps',20))
             self.ddim_eta=float(user_defined_parameters.pop('ddim_eta',0.0))
             self.image_prefix=user_defined_parameters.pop('image_prefix','./')
+            self.do_sr=user_defined_parameters.pop('do_sr',False)
             if 'write_image' in user_defined_parameters:
                 self.write_image=True
             else:
@@ -110,6 +113,8 @@ class LatentDiffusion(Application):
                                                         eta=self.ddim_eta)
                         x_samples_ddim = self.model.decode_first_stage(samples_ddim)
                         x_samples_ddim = torch.clamp((x_samples_ddim+1.0)/2.0, min=0.0, max=1.0)
+                        if self.do_sr is True:
+                            x_samples_ddim = self.sr_model.super_resolution(x_samples_ddim)
                         all_samples.append({'image_tensor':x_samples_ddim,'text':one_input["text"]})
         return all_samples
 

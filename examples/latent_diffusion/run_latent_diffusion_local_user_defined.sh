@@ -22,7 +22,7 @@ if [ "$mode" = "predict" ]; then
       --output_schema=text \
       --outputs ./output_placeholder.tsv \
       --first_sequence=text \
-      --checkpoint_dir=alibaba-pai/latent_diffusion_fashion_cn_860M \
+      --checkpoint_dir=alibaba-pai/pai-diffusion-food-large-zh \
       --random_seed=42 \
       --logging_steps=100 \
       --save_checkpoint_steps=500 \

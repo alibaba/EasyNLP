@@ -26,7 +26,7 @@ _import_structure = {
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
     "clip.model": ["CLIPApp"],
-#   "latent_diffusion.model": ["LatentDiffusion"],
+    "latent_diffusion.model": ["LatentDiffusion"],
     "wukong_clip.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
@@ -54,7 +54,7 @@ _import_structure = {
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
     "clip.predictor": ['CLIPPredictor'],
-#   "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
+    "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
     "wukong_clip.predictor": ['WukongCLIPPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
@@ -87,7 +87,7 @@ if TYPE_CHECKING:
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
     from .clip.model import CLIPApp
-#   from .latent_diffusion.model import LatentDiffusion
+    from .latent_diffusion.model import LatentDiffusion
     from .wukong_clip.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
@@ -115,7 +115,7 @@ if TYPE_CHECKING:
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
     from .clip.predictor import CLIPPredictor
-#   from .latent_diffusion.predictor import LatentDiffusionPredictor
+    from .latent_diffusion.predictor import LatentDiffusionPredictor
     from .wukong_clip.predictor import WukongCLIPPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor

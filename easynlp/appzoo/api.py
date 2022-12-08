@@ -28,6 +28,7 @@ from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorizat
 from easynlp.appzoo import CLIPApp
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import LatentDiffusion
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
@@ -54,6 +55,7 @@ from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredicto
 from easynlp.appzoo import CLIPPredictor
 from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import LatentDiffusionPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
@@ -224,6 +226,7 @@ Predictor_Mapping = {
     'clip': [CLIPPredictor, CLIPApp],
     'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
+    'latent_diffusion': [LatentDiffusionPredictor, LatentDiffusion],
     'image2text_generation': {
         'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
         'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
