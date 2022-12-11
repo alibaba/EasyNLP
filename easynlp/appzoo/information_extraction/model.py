@@ -4,7 +4,7 @@ from typing import Optional
 from dataclasses import dataclass
 from ..application import Application
 from ...modelzoo import AutoConfig, AutoModel
-from transformers.file_utils import ModelOutput
+
 
 class SinusoidalPositionEmbedding(nn.Module):
     """定义Sin-Cos位置Embedding
