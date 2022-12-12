@@ -28,7 +28,7 @@ def image_to_base64(img):
 
 # # poem
 # generator = pipeline('chinese-ldm-poem',pipeline_params={"n_samples":1,"do_sr":True})
-# data = ['停车坐爱枫林晚，霜叶红于二月花']
+# data = ['远上寒山石径斜，白云生处有人家']
 
 # # anime
 # generator = pipeline('chinese-ldm-anime',pipeline_params={"n_samples":1,"do_sr":True})
