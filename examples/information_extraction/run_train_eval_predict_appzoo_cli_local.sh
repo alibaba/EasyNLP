@@ -88,4 +88,3 @@ elif [ "$mode" = "predict" ]; then
 fi
 
 #mode=train处，目前使用的是部分训练数据，如果需要使用全部训练数据，请将train_part.tsv修改为train.tsv，save_checkpoint_steps=50修改为save_checkpoint_steps=500
-#mode=predict处，目前验证的是EE任务的一个例子，如果需要验证NER任务，请将predict_input_EE.tsv修改为predict_input_NER.tsv，将predict_output_EE.tsv修改为predict_output_NER.tsv，将task=EE修改为task=NER
