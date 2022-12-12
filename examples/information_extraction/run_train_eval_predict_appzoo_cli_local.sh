@@ -60,7 +60,8 @@ elif [ "$mode" = "predict" ]; then
 
   easynlp \
     --mode=$mode \
-    --tables=predict_input_EE.tsv,predict_output_EE.tsv \
+    --tables=predict_input_EE.tsv \
+    --outputs=predict_output_EE.tsv \
     --input_schema=id:str:1,scheme:str:1,content:str:1 \
     --output_schema=id,content,q_and_a \
     --worker_gpu=1 \
@@ -73,7 +74,8 @@ elif [ "$mode" = "predict" ]; then
     
   easynlp \
     --mode=$mode \
-    --tables=predict_input_NER.tsv,predict_output_NER.tsv \
+    --tables=predict_input_NER.tsv \
+    --outputs=predict_output_NER.tsv \
     --input_schema=id:str:1,scheme:str:1,content:str:1 \
     --output_schema=id,content,q_and_a \
     --worker_gpu=1 \
