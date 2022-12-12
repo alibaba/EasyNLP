@@ -66,12 +66,24 @@ elif [ "$mode" = "predict" ]; then
     --worker_gpu=1 \
     --app_name=information_extraction \
     --sequence_length=512 \
-    --weight_decay=0.0 \
     --micro_batch_size=4 \
     --checkpoint_dir=./information_extraction_model/ \
     --data_threads=5 \
     --user_defined_parameters='task=EE'
+    
+  easynlp \
+    --mode=$mode \
+    --tables=predict_input_NER.tsv,predict_output_NER.tsv \
+    --input_schema=id:str:1,scheme:str:1,content:str:1 \
+    --output_schema=id,content,q_and_a \
+    --worker_gpu=1 \
+    --app_name=information_extraction \
+    --sequence_length=512 \
+    --micro_batch_size=4 \
+    --checkpoint_dir=./information_extraction_model/ \
+    --data_threads=5 \
+    --user_defined_parameters='task=NER'
 fi
 
 #mode=train处，目前使用的是部分训练数据，如果需要使用全部训练数据，请将train_part.tsv修改为train.tsv，save_checkpoint_steps=50修改为save_checkpoint_steps=500
-#mode=predict出，目前验证的是EE任务的一个例子，如果需要验证NER任务，请将predict_input_EE.tsv修改为predict_input_NER.tsv，将predict_output_EE.tsv修改为predict_output_NER.tsv，将task=EE修改为task=NER
+#mode=predict处，目前验证的是EE任务的一个例子，如果需要验证NER任务，请将predict_input_EE.tsv修改为predict_input_NER.tsv，将predict_output_EE.tsv修改为predict_output_NER.tsv，将task=EE修改为task=NER
