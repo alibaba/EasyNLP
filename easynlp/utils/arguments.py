@@ -255,7 +255,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'text2image_generation', 
                            'image2text_generation', 'image2text_generation_vqgan', 
                            'video2text_generation', 
-                           'clip', 'wukong_clip',
+                           'clip', 'wukong_clip', 'clip4clip', 
                            'machine_reading_comprehension','latent_diffusion',
                            'information_extraction'
                        ],

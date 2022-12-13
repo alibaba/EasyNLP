@@ -25,6 +25,7 @@ _import_structure = {
     "text_match.model": ['TextMatch', 'TextMatchTwoTower', 'DistillatoryTextMatch', 'FewshotSingleTowerTextMatch', 'CptFewshotSingleTowerTextMatch'],
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
+    "text2video_retrieval.model": ["Text2VideoRetrieval"],
     "clip.model": ["CLIPApp"],
     "latent_diffusion.model": ["LatentDiffusion"],
     "wukong_clip.model": ["WukongCLIP"],
@@ -40,6 +41,7 @@ _import_structure = {
     "language_modeling.evaluator": ['LanguageModelingEvaluator'],
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
+    "text2video_retrieval.evaluator": ['Text2VideoRetrievalEvaluator'],
     "clip.evaluator": ['CLIPEvaluator'],
     "wukong_clip.evaluator": ['WukongCLIPEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
@@ -55,6 +57,7 @@ _import_structure = {
     "text_match.predictor": ['TextMatchPredictor', 'TextMatchTwoTowerPredictor', 'FewshotSingleTowerTextMatchPredictor', 'CptFewshotSingleTowerTextMatchPredictor'],
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
+    "text2video_retrieval.predictor": ['Text2VideoRetrievalPredictor'],
     "clip.predictor": ['CLIPPredictor'],
     "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
     "wukong_clip.predictor": ['WukongCLIPPredictor'],
@@ -67,6 +70,7 @@ _import_structure = {
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
+    "text2video_retrieval.data": ['Text2VideoRetrievalDataset'],
     "clip.data": ['CLIPDataset'],
     "wukong_clip.data": ['WukongCLIPDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
@@ -90,6 +94,7 @@ if TYPE_CHECKING:
     from .text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
+    from .text2video_retrieval.model import Text2VideoRetrieval
     from .clip.model import CLIPApp
     from .latent_diffusion.model import LatentDiffusion
     from .wukong_clip.model import WukongCLIP
@@ -105,6 +110,7 @@ if TYPE_CHECKING:
     from .language_modeling.evaluator import LanguageModelingEvaluator
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
+    from .text2video_retrieval.evaluator import Text2VideoRetrievalEvaluator
     from .clip.evaluator import CLIPEvaluator
     from .wukong_clip.evaluator import WukongCLIPEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
@@ -120,6 +126,7 @@ if TYPE_CHECKING:
     from .text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
+    from .text2video_retrieval.predictor import Text2VideoRetrievalPredictor
     from .clip.predictor import CLIPPredictor
     from .latent_diffusion.predictor import LatentDiffusionPredictor
     from .wukong_clip.predictor import WukongCLIPPredictor
@@ -135,6 +142,7 @@ if TYPE_CHECKING:
     from .language_modeling.data import LanguageModelingDataset
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
+    from .text2video_retrieval.data import Text2VideoRetrievalDataset
     from .clip.data import CLIPDataset
     from .wukong_clip.data import WukongCLIPDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
