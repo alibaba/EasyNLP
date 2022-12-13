@@ -32,7 +32,6 @@ try:
     from ...modelzoo.models.latent_diffusion.ddpm import LatentDiffusionModel
     from ...modelzoo.models.latent_diffusion.autoencoder import AutoencoderKL
     from ...modelzoo.models.latent_diffusion.wukong import FrozenWukongCLIPTextEmbedder
-    # from ...modelzoo.models.latent_diffusion.ddim import DDIMSampler
     from ...modelzoo.models.latent_diffusion.plms import PLMSSampler
     from ...modelzoo.models.latent_diffusion.RRDBNet_arch import ESRGAN
 
@@ -132,7 +131,6 @@ except Exception as ex:
 
         def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
             super().__init__()
-            self.hello='world'
 
     print("出现如下异常 %s"%ex)
 
