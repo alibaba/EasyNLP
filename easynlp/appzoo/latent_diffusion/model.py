@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 from ast import literal_eval
 import numpy as np
 import torch
@@ -22,7 +23,6 @@ from torch import Tensor
 from typing import List, Optional
 import json
 from tqdm import tqdm, trange
-from einops import rearrange
 from PIL import Image
 from ...utils import losses, get_pretrain_model_path, get_args
 from ..application import Application
