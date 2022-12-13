@@ -67,6 +67,7 @@ class InformationExtractionEvaluator(Evaluator):
         super().__init__(valid_dataset, **kwargs)
 
         self.max_seq_length = kwargs["few_shot_anchor_args"].sequence_length
+        #easynlp.appzoo.api.py中的get_application_evaluator()函数缺乏sequence_length的引入。为了一致性，information_extraction的evaluator通过few_shot_anchor_args引入sequence_length
     
     def _compute(self, label, pred, hit):
         if label == 0:
