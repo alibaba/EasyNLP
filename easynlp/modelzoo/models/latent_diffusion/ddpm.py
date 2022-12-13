@@ -422,7 +422,7 @@ class DDPM(pl.LightningModule):
         return opt
 
 
-class ModelZoo_LatentDiffusion(DDPM):
+class LatentDiffusionModel(DDPM):
     """main class"""
     def __init__(self,
                  first_stage_config,
@@ -1320,7 +1320,7 @@ class DiffusionWrapper(pl.LightningModule):
         return out
 
 
-class Layout2ImgDiffusion(ModelZoo_LatentDiffusion):
+class Layout2ImgDiffusion(LatentDiffusionModel):
     # TODO: move all layout-specific hacks to this class
     def __init__(self, cond_stage_key, *args, **kwargs):
         assert cond_stage_key == 'coordinates_bbox', 'Layout2ImgDiffusion only for cond_stage_key="coordinates_bbox"'

@@ -28,15 +28,13 @@ class FeatureVectorizationPredictor(Predictor):
     def __init__(self, model_dir, model_cls=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        model_dir = get_pretrain_model_path(model_dir)
-
         if "oss://" in model_dir:
             local_dir = model_dir.split("/")[-1]
             local_dir = os.path.join("~/.cache", local_dir)
             os.makedirs(local_dir, exist_ok=True)
             io.copytree(model_dir, local_dir)
             model_dir = local_dir
-
+        
         self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
 
         self.model_predictor = get_model_predictor(

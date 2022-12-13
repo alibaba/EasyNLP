@@ -25,29 +25,31 @@ _import_structure = {
     "text_match.model": ['TextMatch', 'TextMatchTwoTower', 'DistillatoryTextMatch', 'FewshotSingleTowerTextMatch', 'CptFewshotSingleTowerTextMatch'],
     "data_augmentation.model": ["DataAugmentation"],
     "geep_classification.model": ["GEEPClassification"],
-    "multi_modal.model": ["MultiModal"],
     "text2video_retrieval.model": ["Text2VideoRetrieval"],
+    "clip.model": ["CLIPApp"],
     "latent_diffusion.model": ["LatentDiffusion"],
-    "wukong.model": ["WukongCLIP"],
+    "wukong_clip.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
     "video2text_generation.model": ['CLIPGPTFrameTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
     "machine_reading_comprehension.model": ["MachineReadingComprehension"],
+    "information_extraction.model": ["InformationExtractionModel"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
     "language_modeling.evaluator": ['LanguageModelingEvaluator'],
     "text_match.evaluator": ['TextMatchEvaluator'],
     "geep_classification.evaluator": ['GEEPClassificationEvaluator'],
-    "multi_modal.evaluator": ['MultiModalEvaluator'],
     "text2video_retrieval.evaluator": ['Text2VideoRetrievalEvaluator'],
-    "wukong.evaluator": ['WukongEvaluator'],
+    "clip.evaluator": ['CLIPEvaluator'],
+    "wukong_clip.evaluator": ['WukongCLIPEvaluator'],
     "text2image_generation.evaluator": ["TextImageGenerationEvaluator"],
     "image2text_generation.evaluator": ["ImageTextGenerationEvaluator"], 
     "video2text_generation.evaluator": ["FrameTextGenerationEvaluator"], 
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
     "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
+    "information_extraction.evaluator": ["InformationExtractionEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -55,21 +57,22 @@ _import_structure = {
     "text_match.predictor": ['TextMatchPredictor', 'TextMatchTwoTowerPredictor', 'FewshotSingleTowerTextMatchPredictor', 'CptFewshotSingleTowerTextMatchPredictor'],
     "data_augmentation.predictor": ['DataAugmentationPredictor'],
     "geep_classification.predictor": ['GEEPClassificationPredictor'],
-    "multi_modal.predictor": ['MultiModalPredictor'],
     "text2video_retrieval.predictor": ['Text2VideoRetrievalPredictor'],
+    "clip.predictor": ['CLIPPredictor'],
     "latent_diffusion.predictor": ['LatentDiffusionPredictor'],
-    "wukong.predictor": ['WukongPredictor'],
+    "wukong_clip.predictor": ['WukongCLIPPredictor'],
     "text2image_generation.predictor": ['TextImageGenerationPredictor', 'TextImageGenerationKnowlPredictor'],
     "image2text_generation.predictor": ['VQGANGPTImageTextGenerationPredictor', 'CLIPGPTImageTextGenerationPredictor'],
     "video2text_generation.predictor": ['CLIPGPTFrameTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
     "machine_reading_comprehension.predictor": ["MachineReadingComprehensionPredictor"],
+    "information_extraction.predictor": ["InformationExtractionPredictor"],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
-    "multi_modal.data": ['MultiModalDataset'],
     "text2video_retrieval.data": ['Text2VideoRetrievalDataset'],
-    "wukong.data": ['WukongDataset'],
+    "clip.data": ['CLIPDataset'],
+    "wukong_clip.data": ['WukongCLIPDataset'],
     "sequence_classification.data": ['ClassificationDataset', 'DistillatoryClassificationDataset', 'FewshotSequenceClassificationDataset'],
     "sequence_labeling.data": ['SequenceLabelingDataset', 'SequenceLabelingAutoDataset'],
     "text_match.data": ['TwoTowerDataset', 'SingleTowerDataset', 'DistillatorySingleTowerDataset', 'FewshotSingleTowerTextMatchDataset', 'SiameseDataset'],
@@ -78,6 +81,7 @@ _import_structure = {
     "video2text_generation.data": ['CLIPGPTFrameTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "machine_reading_comprehension.data": ["MachineReadingComprehensionDataset"],
+    "information_extraction.data": ["InformationExtractionDataset"],
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -90,29 +94,31 @@ if TYPE_CHECKING:
     from .text_match.model import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
     from .data_augmentation.model import DataAugmentation
     from .geep_classification.model import GEEPClassification
-    from .multi_modal.model import MultiModal
     from .text2video_retrieval.model import Text2VideoRetrieval
+    from .clip.model import CLIPApp
     from .latent_diffusion.model import LatentDiffusion
-    from .wukong.model import WukongCLIP
+    from .wukong_clip.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
     from .video2text_generation.model import CLIPGPTFrameTextGeneration
     from .sequence_generation.model import SequenceGeneration
     from .machine_reading_comprehension.model import MachineReadingComprehension
+    from .information_extraction.model import InformationExtractionModel
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
     from .language_modeling.evaluator import LanguageModelingEvaluator
     from .text_match.evaluator import TextMatchEvaluator
     from .geep_classification.evaluator import GEEPClassificationEvaluator
-    from .multi_modal.evaluator import MultiModalEvaluator
     from .text2video_retrieval.evaluator import Text2VideoRetrievalEvaluator
-    from .wukong.evaluator import WukongEvaluator
+    from .clip.evaluator import CLIPEvaluator
+    from .wukong_clip.evaluator import WukongCLIPEvaluator
     from .text2image_generation.evaluator import TextImageGenerationEvaluator
     from .image2text_generation.evaluator import ImageTextGenerationEvaluator
     from .video2text_generation.evaluator import FrameTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
     from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
+    from .information_extraction.evaluator import InformationExtractionEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -120,29 +126,31 @@ if TYPE_CHECKING:
     from .text_match.predictor import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
     from .data_augmentation.predictor import DataAugmentationPredictor
     from .geep_classification.predictor import GEEPClassificationPredictor
-    from .multi_modal.predictor import MultiModalPredictor
     from .text2video_retrieval.predictor import Text2VideoRetrievalPredictor
+    from .clip.predictor import CLIPPredictor
     from .latent_diffusion.predictor import LatentDiffusionPredictor
-    from .wukong.predictor import WukongPredictor
+    from .wukong_clip.predictor import WukongCLIPPredictor
     from .text2image_generation.predictor import TextImageGenerationPredictor, TextImageGenerationKnowlPredictor
     from .image2text_generation.predictor import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
     from .video2text_generation.predictor import CLIPGPTFrameTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
     from .machine_reading_comprehension.predictor import MachineReadingComprehensionPredictor
+    from .information_extraction.predictor import InformationExtractionPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset
     from .language_modeling.data import LanguageModelingDataset
     from .text_match.data import TwoTowerDataset, SingleTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
     from .geep_classification.data import GEEPClassificationDataset
-    from .multi_modal.data import MultiModalDataset
     from .text2video_retrieval.data import Text2VideoRetrievalDataset
-    from .wukong.data import WukongDataset
+    from .clip.data import CLIPDataset
+    from .wukong_clip.data import WukongCLIPDataset
     from .text2image_generation.data import TextImageDataset, TextImageKnowlDataset
     from .image2text_generation.data import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
     from .video2text_generation.data import CLIPGPTFrameTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
     from .machine_reading_comprehension.data import MachineReadingComprehensionDataset
+    from .information_extraction.data import InformationExtractionDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets

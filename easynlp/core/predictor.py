@@ -23,6 +23,7 @@ from tqdm import tqdm
 from ..utils import io, parse_row_by_schema, parse_tf_config
 from ..utils.logger import logger
 
+"""
 try:
     import tensorflow as tf
     from tensorflow.python.saved_model.signature_constants import (
@@ -58,6 +59,7 @@ try:
 except Exception as err:
     print(err)
     USE_EASY_PREDICT = False
+"""
 
 
 class Predictor(object):
@@ -77,8 +79,8 @@ class Predictor(object):
         raise NotImplementedError
 
 
+"""
 class TFModelPredictor(object):
-    """Prediction process for tf saved model."""
     def __init__(self, saved_model_path, input_keys, output_keys):
         # self.sess = tf.Session(graph=tf.Graph())
         self._graph = tf.Graph()
@@ -120,6 +122,7 @@ class TFModelPredictor(object):
         for key, val in predictions.items():
             ret[key] = val
         return ret
+"""
 
 
 class PyModelPredictor(object):
@@ -154,6 +157,7 @@ def get_model_predictor(model_dir,
                         output_keys,
                         model_cls=None,
                         use_tf=None):
+    """
     if use_tf is None:
         use_tf = io.exists(os.path.join(model_dir, 'saved_model.pb'))
     if use_tf:
@@ -164,6 +168,11 @@ def get_model_predictor(model_dir,
     else:
         logger.info('Using PyTorch .bin model to predict...')
         return PyModelPredictor(model_cls=model_cls,
+                                saved_model_path=model_dir,
+                                input_keys=input_keys,
+                                output_keys=output_keys)
+    """
+    return PyModelPredictor(model_cls=model_cls,
                                 saved_model_path=model_dir,
                                 input_keys=input_keys,
                                 output_keys=output_keys)
@@ -220,6 +229,7 @@ class SimplePredictorManager(object):
         self.fout.close()
 
 
+"""
 class EasyPredictorManager(object):
     def __init__(self,
                  predictor,
@@ -477,6 +487,7 @@ class EasyPredictorManager(object):
         if not distributed_elastic_inference and not self.input_file.startswith(
                 'odps://'):
             output_writer_process.close()
+"""
 
 
 class PredictorManager(object):
@@ -493,6 +504,7 @@ class PredictorManager(object):
                  slice_size=4096,
                  thread_num=1,
                  table_read_thread_num=16):
+        """
         if input_file.startswith('odps://'):
             assert USE_EASY_PREDICT, 'Predict ODPS need to `pip install easypredict` first'
         if USE_EASY_PREDICT:
@@ -514,6 +526,11 @@ class PredictorManager(object):
             self.predictor_manager = SimplePredictorManager(
                 predictor, input_file, input_schema, output_file,
                 output_schema, append_cols, skip_first_line, batch_size)
+        """
+        self.predictor_manager = SimplePredictorManager(
+                predictor, input_file, input_schema, output_file,
+                output_schema, append_cols, skip_first_line, batch_size)
+
 
     def run(self):
         self.predictor_manager.run()

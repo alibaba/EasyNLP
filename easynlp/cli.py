@@ -242,7 +242,7 @@ def main():
                 cmd.append('--model-parallel-size')
                 cmd.append(str(args.model_parallel_size))
         except:
-            print('APEX is required. Please refer to https://github.com/NVIDIA/apex for installation.')
+            pass
 
 
         cmd_str = ' '.join(cmd)

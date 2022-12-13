@@ -62,8 +62,9 @@ if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
     if args.mode == "predict":
+        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path, 'max_encoder_length':args.sequence_length}
         predictor = SequenceGenerationPredictor(model_dir=args.checkpoint_dir, model_cls=SequenceGeneration,
-                                      first_sequence=args.first_sequence, user_defined_parameters=user_defined_parameters)
+                                      first_sequence=args.first_sequence, user_defined_parameters=user_defined_parameters, **extra_para)
         predictor_manager = PredictorManager(
             predictor=predictor,
             input_file=args.tables.split(",")[0],
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 
         #model = SequenceGeneration(pretrained_model_name_or_path=pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters, from_config=transformer_config)
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
-        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path}
+        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path, 'max_encoder_length':args.sequence_length}
         evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **extra_para)
 
         trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
@@ -107,7 +108,7 @@ if __name__ == "__main__":
         trainer.train()
 
     elif args.mode == "evaluate":
-        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path}
+        extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path, 'max_encoder_length':args.sequence_length}
         model = SequenceGeneration(pretrained_model_name_or_path=args.pretrained_model_name_or_path, user_defined_parameters=user_defined_parameters)
         evaluator = SequenceGenerationEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters, **extra_para)
 

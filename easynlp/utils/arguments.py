@@ -18,13 +18,11 @@ import argparse
 import importlib
 import os
 import torch
-
 import json
-# from easynlp.modelzoo.mg_utils.utils import get_hostname
 
 try:
     import deepspeed
-except ModuleNotFoundError:
+except:
     print('NOTE: if you wish to use GLM models, please refer to EasyNLP/examples/appzoo_tutorials/sequence_generation/README.md!')
 
 def is_torchx_available():
@@ -257,8 +255,9 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'text2image_generation', 
                            'image2text_generation', 'image2text_generation_vqgan', 
                            'video2text_generation', 
-                           'clip', 'clip4clip', 'wukong',
-                           'machine_reading_comprehension','latent_diffusion'
+                           'clip', 'wukong_clip', 'clip4clip', 
+                           'machine_reading_comprehension','latent_diffusion',
+                           'information_extraction'
                        ],
                        help='name of the application')
 

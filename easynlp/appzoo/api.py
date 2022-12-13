@@ -25,14 +25,16 @@ sys.path.append("../../")
 from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
-from easynlp.appzoo import MultiModal
 from easynlp.appzoo import Text2VideoRetrieval
+from easynlp.appzoo import CLIPApp
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import LatentDiffusion
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 from easynlp.appzoo import MachineReadingComprehension
+from easynlp.appzoo import InformationExtractionModel
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
@@ -40,40 +42,44 @@ from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as Fewsho
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSingleTowerTextMatchEvaluator
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
-from easynlp.appzoo import MultiModalEvaluator
 from easynlp.appzoo import Text2VideoRetrievalEvaluator
-from easynlp.appzoo import WukongEvaluator
+from easynlp.appzoo import CLIPEvaluator
+from easynlp.appzoo import WukongCLIPEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
 from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
+from easynlp.appzoo import InformationExtractionEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
-from easynlp.appzoo import MultiModalPredictor
 from easynlp.appzoo import Text2VideoRetrievalPredictor
-from easynlp.appzoo import WukongPredictor
+from easynlp.appzoo import CLIPPredictor
+from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import LatentDiffusionPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 from easynlp.appzoo import MachineReadingComprehensionPredictor
+from easynlp.appzoo import InformationExtractionPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
 from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
 from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
 from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
-from easynlp.appzoo import MultiModalDataset
 from easynlp.appzoo import Text2VideoRetrievalDataset
-from easynlp.appzoo import WukongDataset
+from easynlp.appzoo import CLIPDataset
+from easynlp.appzoo import WukongCLIPDataset
 from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
+from easynlp.appzoo import InformationExtractionDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -88,7 +94,7 @@ try:
     from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
     from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
 except:
-    print('APEX is required. Please refer to https://github.com/NVIDIA/apex for installation.')
+    pass
 
 Dataset_Mapping = {
     'text_classify': {
@@ -107,8 +113,8 @@ Dataset_Mapping = {
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
     'clip4clip': Text2VideoRetrievalDataset,
-    'clip': MultiModalDataset,
-    'wukong': WukongDataset,
+    'clip': CLIPDataset,
+    'wukong_clip': WukongCLIPDataset,
     'text2image_generation': TextImageDataset,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextDataset,
@@ -117,7 +123,8 @@ Dataset_Mapping = {
     },
     'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
-    'machine_reading_comprehension': MachineReadingComprehensionDataset
+    'machine_reading_comprehension': MachineReadingComprehensionDataset,
+    'information_extraction': InformationExtractionDataset
 }
 
 ModelMapping = {
@@ -141,8 +148,8 @@ ModelMapping = {
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
     'clip4clip': Text2VideoRetrieval,
-    'clip': MultiModal,
-    'wukong': WukongCLIP,
+    'clip': CLIPApp,
+    'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextGeneration,
@@ -152,7 +159,8 @@ ModelMapping = {
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration,
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
-    'machine_reading_comprehension': MachineReadingComprehension
+    'machine_reading_comprehension': MachineReadingComprehension,
+    'information_extraction': InformationExtractionModel
 }
 
 Eval_Model_Mapping = {
@@ -170,8 +178,8 @@ Eval_Model_Mapping = {
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
     'clip4clip': Text2VideoRetrieval,
-    'clip': MultiModal,
-    'wukong': WukongCLIP,
+    'clip': CLIPApp,
+    'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
     'image2text_generation': {
         'enable_vit': CLIPGPTImageTextGeneration, 
@@ -181,7 +189,8 @@ Eval_Model_Mapping = {
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration, 
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
-    'machine_reading_comprehension': MachineReadingComprehension
+    'machine_reading_comprehension': MachineReadingComprehension,
+    'information_extraction': InformationExtractionModel
 }
 
 Evaluator_Mapping = {
@@ -200,8 +209,8 @@ Evaluator_Mapping = {
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
     'clip4clip': Text2VideoRetrievalEvaluator,
-    'clip': MultiModalEvaluator,
-    'wukong': WukongEvaluator,
+    'clip': CLIPEvaluator,
+    'wukong_clip': WukongCLIPEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
     'image2text_generation': {
         'enable_vit': ImageTextGenerationEvaluator,
@@ -210,7 +219,8 @@ Evaluator_Mapping = {
     },
     'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
-    'machine_reading_comprehension': MachineReadingComprehensionEvaluator
+    'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
+    'information_extraction': InformationExtractionEvaluator
 }
 
 Predictor_Mapping = {
@@ -230,9 +240,10 @@ Predictor_Mapping = {
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
     'clip4clip': [Text2VideoRetrievalPredictor, Text2VideoRetrieval],
-    'clip': [MultiModalPredictor, MultiModal],
-    'wukong': [WukongPredictor, WukongCLIP],
+    'clip': [CLIPPredictor, CLIPApp],
+    'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
+    'latent_diffusion': [LatentDiffusionPredictor, LatentDiffusion],
     'image2text_generation': {
         'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
         'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
@@ -240,7 +251,8 @@ Predictor_Mapping = {
     },
     'video2text_generation': [CLIPGPTFrameTextGenerationPredictor, CLIPGPTFrameTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
-    'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension]
+    'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension],
+    'information_extraction': [InformationExtractionPredictor, InformationExtractionModel]
 }
 
 
@@ -438,8 +450,8 @@ def get_application_predictor(app_name, model_dir, user_defined_parameters, **kw
 
 def default_main_fn():
     try:
+        is_mg = False
         args = get_ds_args()
-
         user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
         model_info = user_defined_parameters.get('pretrain_model_name_or_path', '').split('/')
         pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
@@ -451,17 +463,16 @@ def default_main_fn():
             checkpoint_files += os.listdir(args.checkpoint_dir)
         if 'mg' in model_info or args.mg_model or ('latest_checkpointed_iteration.txt' in checkpoint_files and 'pytorch_model.bin' not in checkpoint_files):
             args.model_name = model_info[-1]
-            is_mg = True
-        else:
-            is_mg = False
+            is_mg = True            
         if is_mg:
             torch.backends.cudnn.enabled = False
             initialize_distributed(args)
             set_random_seed(args.seed)
             main(args, user_defined_parameters)
-            exit()
-    except:
-        pass
+    except Exception as e:
+        print(e)
+    
+    if is_mg: exit()
 
     start_time = time.time()
     initialize_easynlp()

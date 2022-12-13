@@ -51,13 +51,7 @@ We have a series of technical articles on the functionalities of EasyNLP.
 
 # Installation
 
-You can either install it from pip
-
-```bash
-$ pip install pai-easynlp (may be out-of-date)
-```
-
-or setup from the source：
+You can setup from the source：
 
 ```bash
 $ git clone https://github.com/alibaba/EasyNLP.git
@@ -71,58 +65,53 @@ This repo is tested on Python 3.6, PyTorch >= 1.8.
 
 Now let's show how to use just a few lines of code to build a text classification model based on BERT.
 
-You can also load a dataset based on dataset name and starts to train.
 ```python
+from easynlp.appzoo import ClassificationDataset
+from easynlp.appzoo import get_application_model, get_application_evaluator
 from easynlp.core import Trainer
-from easynlp.appzoo import GeneralDataset, SequenceClassification, load_dataset
-from easynlp.utils import initialize_easynlp
+from easynlp.utils import initialize_easynlp, get_args
+from easynlp.utils.global_vars import parse_user_defined_parameters
+from easynlp.utils import get_pretrain_model_path
 
-args = initialize_easynlp()
-
-row_data = load_dataset('glue', 'qnli')["train"]
-train_dataset = GeneralDataset(row_data, args.pretrained_model_name_or_path, args.sequence_length)
-
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model,  train_dataset=train_dataset).train()
-```
-For more datasets, please check it out in [DataHub](https://github.com/alibaba/EasyNLP/tree/master/datahub).
-
-Alternatively, you can use the classification dataset api to support new classification datasets.
-```python
-from easynlp.core import Trainer
-from easynlp.appzoo import ClassificationDataset, SequenceClassification
-from easynlp.utils import initialize_easynlp
-
-args = initialize_easynlp()
+initialize_easynlp()
+args = get_args()
+user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+pretrained_model_name_or_path = get_pretrain_model_path(user_defined_parameters.get('pretrain_model_name_or_path', None))
 
 train_dataset = ClassificationDataset(
-    pretrained_model_name_or_path=args.pretrained_model_name_or_path,
-    data_file=args.tables,
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    data_file=args.tables.split(",")[0],
     max_seq_length=args.sequence_length,
     input_schema=args.input_schema,
     first_sequence=args.first_sequence,
+    second_sequence=args.second_sequence,
     label_name=args.label_name,
     label_enumerate_values=args.label_enumerate_values,
+    user_defined_parameters=user_defined_parameters,
     is_training=True)
 
-model = SequenceClassification(pretrained_model_name_or_path=args.pretrained_model_name_or_path)
-Trainer(model=model, train_dataset=train_dataset).train()
-```
+valid_dataset = ClassificationDataset(
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    data_file=args.tables.split(",")[-1],
+    max_seq_length=args.sequence_length,
+    input_schema=args.input_schema,
+    first_sequence=args.first_sequence,
+    second_sequence=args.second_sequence,
+    label_name=args.label_name,
+    label_enumerate_values=args.label_enumerate_values,
+    user_defined_parameters=user_defined_parameters,
+    is_training=False)
 
-Then you can run the code:
+model = get_application_model(app_name=args.app_name,
+    pretrained_model_name_or_path=pretrained_model_name_or_path,
+    num_labels=len(valid_dataset.label_enumerate_values),
+    user_defined_parameters=user_defined_parameters)
 
-```bash
-python main.py \
-  --mode train \
-  --tables=train_toy.tsv \
-  --input_schema=label:str:1,sid1:str:1,sid2:str:1,sent1:str:1,sent2:str:1 \
-  --first_sequence=sent1 \
-  --label_name=label \
-  --label_enumerate_values=0,1 \
-  --checkpoint_dir=./tmp/ \
-  --epoch_num=1  \
-  --app_name=text_classify \
-  --user_defined_parameters='pretrain_model_name_or_path=bert-tiny-uncased'
+trainer = Trainer(model=model, train_dataset=train_dataset,user_defined_parameters=user_defined_parameters,
+    evaluator=get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset,user_defined_parameters=user_defined_parameters,
+    eval_batch_size=args.micro_batch_size))
+    
+trainer.train()
 ```
 
 The complete example can be found [here](https://github.com/alibaba/EasyNLP/blob/master/examples/appzoo_tutorials/sequence_classification/bert_classify/run_train_eval_predict_user_defined_local.sh).

@@ -34,15 +34,19 @@
 | hfl/macbert-large-zh | L=24,H=1024,A=16 |  |
 | **Generation** |  |  |
 | alibaba-pai/gpt2-chitchat-zh | L=10,H=768,A=12 | for Chinese dialogue |
-| alibaba-pai/pegasus-summary-generation-en | L=32,H=1024,A=16 | for **English** text summarization |
 | alibaba-pai/mt5-title-generation-zh | L=12,H=768,A=12 | for Chinese News title generation |
+| hfl/randeng-summary-generation-base-zh | L=24,H=768,A=12 | encoder-decoder summarization model for Chinese |
+| hfl/randeng-summary-generation-large-zh | L=32,H=1024,A=16 | encoder-decoder summarization model for Chinese |
+| alibaba-pai/randeng-title-generation-base-zh | L=24,H=768,A=12 | encoder-decoder news title generation model for Chinese |
+| alibaba-pai/randeng-title-generation-large-zh | L=32,H=1024,A=16 | encoder-decoder news title generation model for Chinese |
+| alibaba-pai/randeng-advertise-generation-base-zh | L=24,H=768,A=12 | encoder-decoder advertisement generation model for Chinese |
+| hfl/bart-generation-base-zh | L=12,H=768,A=12 | for Chinese generation |
+| hfl/bart-generation-large-zh | L=24,H=1024,A=16 | for Chinese generation |
+| hfl/brio-summary-generation-large-en | L=24,H=1024,A=16 | encoder-decoder summarization model for **English** |
+| alibaba-pai/pegasus-summary-generation-en | L=32,H=1024,A=16 | for **English** text summarization |
 | hfl/bloom-350m | L=24,H=1024,A=16 | decoder-only text generation model for 59 languages |
-| hfl/randeng-238M-Summary-Chinese | L=24,H=768,A=12 | encoder-decoder summarization model for Chinese |
-| hfl/randeng-523M-Summary-Chinese | L=32,H=1024,A=16 | encoder-decoder summarization model for Chinese |
-| alibaba-pai/randeng-238M-Summary-Chinese-tuned | L=24,H=768,A=12 | encoder-decoder news title generation model for Chinese |
-| alibaba-pai/randeng-523M-Summary-Chinese-tuned | L=32,H=1024,A=16 | encoder-decoder news title generation model for Chinese |
-| hfl/brio-cnndm-uncased | L=24,H=1024,A=16 | encoder-decoder summarization model for **English** |
 | **Megatron** mg/glm-large-chinese | L=24,H=1024,A=16 | encoder-decoder NLG model for Chinese |
+
 
 # cli使用方式
 ```bash
