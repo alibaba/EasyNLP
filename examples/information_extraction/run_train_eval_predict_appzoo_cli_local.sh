@@ -48,7 +48,6 @@ elif [ "$mode" = "evaluate" ]; then
     --worker_gpu=1 \
     --app_name=information_extraction \
     --sequence_length=128 \
-    --weight_decay=0.0 \
     --micro_batch_size=8 \
     --checkpoint_dir=./information_extraction_model/ \
     --data_threads=5
