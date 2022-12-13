@@ -28,7 +28,7 @@ def image_to_base64(img):
 
 # # poem
 # generator = pipeline('chinese-ldm-poem',pipeline_params={"n_samples":1,"do_sr":True})
-# data = ['一行白鹭上青天']
+# data = ['远上寒山石径斜，白云生处有人家']
 
 # # anime
 # generator = pipeline('chinese-ldm-anime',pipeline_params={"n_samples":1,"do_sr":True})
@@ -40,7 +40,7 @@ def image_to_base64(img):
 
 # food
 generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
-data = ['青椒炒牛肉']
+data = ['小炒黄牛肉']
 
 # 生成结果
 result=generator(data)

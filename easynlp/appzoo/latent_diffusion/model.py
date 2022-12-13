@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 from ast import literal_eval
 import numpy as np
 import torch
@@ -22,7 +23,6 @@ from torch import Tensor
 from typing import List, Optional
 import json
 from tqdm import tqdm, trange
-from einops import rearrange
 from PIL import Image
 from ...utils import losses, get_pretrain_model_path, get_args
 from ..application import Application
@@ -32,7 +32,6 @@ try:
     from ...modelzoo.models.latent_diffusion.ddpm import LatentDiffusionModel
     from ...modelzoo.models.latent_diffusion.autoencoder import AutoencoderKL
     from ...modelzoo.models.latent_diffusion.wukong import FrozenWukongCLIPTextEmbedder
-    # from ...modelzoo.models.latent_diffusion.ddim import DDIMSampler
     from ...modelzoo.models.latent_diffusion.plms import PLMSSampler
     from ...modelzoo.models.latent_diffusion.RRDBNet_arch import ESRGAN
 
@@ -132,7 +131,6 @@ except Exception as ex:
 
         def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
             super().__init__()
-            self.hello='world'
 
     print("出现如下异常 %s"%ex)
 
