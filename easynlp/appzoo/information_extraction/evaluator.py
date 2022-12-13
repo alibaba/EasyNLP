@@ -4,18 +4,18 @@ from ...utils.logger import logger
 from ...core.evaluator import Evaluator
 
 def fush_multi_answer(has_answer, new_answer):
-        # 对于某个id测试集，出现多个example时（例如同一个测试样本使用了多个模板而生成了多个example），此时将预测的topk结果进行合并
-        # has为已经合并的结果，new为当前新产生的结果，
-        # has格式为 {'ans': {'prob': float(prob[index_ids[ei]]), 'pos': (s, e)}, ...}
-        # new {'ans': {'prob': float(prob[index_ids[ei]]), 'pos': (s, e)}, ...}
-        # print('has_answer=', has_answer)
-        for ans, value in new_answer.items():
-            if ans not in has_answer.keys():
-                has_answer[ans] = value
-            else:
-                has_answer[ans]['prob'] += value['prob']
-                has_answer[ans]['pos'].extend(value['pos'])
-        return has_answer
+    # 对于某个id测试集，出现多个example时（例如同一个测试样本使用了多个模板而生成了多个example），此时将预测的topk结果进行合并
+    # has为已经合并的结果，new为当前新产生的结果，
+    # has格式为 {'ans': {'prob': float(prob[index_ids[ei]]), 'pos': (s, e)}, ...}
+    # new {'ans': {'prob': float(prob[index_ids[ei]]), 'pos': (s, e)}, ...}
+    # print('has_answer=', has_answer)
+    for ans, value in new_answer.items():
+        if ans not in has_answer.keys():
+            has_answer[ans] = value
+        else:
+            has_answer[ans]['prob'] += value['prob']
+            has_answer[ans]['pos'].extend(value['pos'])
+    return has_answer
 
 def get_predict_result(batchs, probs, indices, max_seq_length):
     probs = probs.squeeze(1)  # topk结果的概率
@@ -66,7 +66,8 @@ class InformationExtractionEvaluator(Evaluator):
     def __init__(self, valid_dataset, **kwargs):
         super().__init__(valid_dataset, **kwargs)
 
-        self.max_seq_length = kwargs.get("sequence_length")
+        self.max_seq_length = kwargs["few_shot_anchor_args"].sequence_length
+        #easynlp.appzoo.api.py中的get_application_evaluator()函数缺乏sequence_length的引入。为了一致性，information_extraction的evaluator通过few_shot_anchor_args引入sequence_length
     
     def _compute(self, label, pred, hit):
         if label == 0:

@@ -28,7 +28,7 @@ if [ "$mode" = "train" ]; then
     --mode $mode \
     --tables=train_part.tsv,dev.tsv \
     --input_schema=id:str:1,instruction:str:1,start:str:1,end:str:1,target:str:1 \
-    --worker_gpu=1 \
+    --worker_gpu=4 \
     --app_name=information_extraction \
     --sequence_length=512 \
     --weight_decay=0.0 \
@@ -48,7 +48,7 @@ elif [ "$mode" = "evaluate" ]; then
     --mode $mode \
     --tables=dev.tsv \
     --input_schema=id:str:1,instruction:str:1,start:str:1,end:str:1,target:str:1 \
-    --worker_gpu=1 \
+    --worker_gpu=4 \
     --app_name=information_extraction \
     --sequence_length=512 \
     --weight_decay=0.0 \
@@ -63,15 +63,16 @@ elif [ "$mode" = "predict" ]; then
     --tables=predict_input_EE.tsv \
     --outputs=predict_output_EE.tsv \
     --input_schema=id:str:1,scheme:str:1,content:str:1 \
+    --outputs=predict_output_EE.tsv \
     --output_schema=id,content,q_and_a \
-    --worker_gpu=1 \
+    --worker_gpu=4 \
     --app_name=information_extraction \
     --sequence_length=512 \
     --micro_batch_size=4 \
     --checkpoint_dir=./information_extraction_model/ \
     --data_threads=5 \
     --user_defined_parameters='task=EE'
-    
+
   easynlp \
     --mode=$mode \
     --tables=predict_input_NER.tsv \

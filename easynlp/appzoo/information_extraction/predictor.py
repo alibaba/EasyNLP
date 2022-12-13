@@ -21,9 +21,9 @@ class InformationExtractionPredictor(Predictor):
 
       self.MUTEX = Lock()
 
-      self.task = kwargs.pop("task")
-      self.max_seq_length = kwargs.pop("max_seq_length")
-      self.input_schema = kwargs.pop("input_schema")
+      self.task = kwargs["user_defined_parameters"]["task"]
+      self.max_seq_length = kwargs.get("sequence_length")
+      self.input_schema = kwargs.get("input_schema")
       self.column_names = [t.split(":")[0] for t in self.input_schema.split(",")]
 
       self.tokenizer = BertTokenizerFast.from_pretrained(model_dir)
