@@ -101,7 +101,6 @@ def parse_args(extra_args_provider=None,
     else:
         args.n_gpu = args.world_size if torch.cuda.is_available() else 0
         
-    args.n_cpu = args.worker_cpu if args.worker_cpu > 0 else 1
     if args.rank == 0:
         args.is_master_node = True
     else:
@@ -415,10 +414,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        default=-1,
                        type=int,
                        help='Count of GPUs in each worker')
-    group.add_argument('--worker_cpu',
-                       default=-1,
-                       type=int,
-                       help='Count of CPUs in each worker')
     group.add_argument('--master_port',
                        default=23456,
                        type=int,

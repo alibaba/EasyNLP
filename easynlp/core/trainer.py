@@ -216,7 +216,6 @@ class Trainer(object):
         args = self.args
         logger.info('=' * 10 + ' Training Start ' + '=' * 10 + '\n')
         logger.info('  Num of GPUs (all)       = %d', args.n_gpu)
-        logger.info('  Num of CPUs per worker  = %d', args.n_cpu)
         if args.n_gpu > 0:
             n_tr_samples = len(self._train_loader.dataset
                                ) * args.n_gpu if args.read_odps else len(
