@@ -284,6 +284,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        help='local rank passed from distributed launcher.')
 
     group.add_argument('--checkpoint_dir',
+                       '--checkpoint_path',
                        default=None,
                        type=str,
                        help='The model checkpoint dir.')
