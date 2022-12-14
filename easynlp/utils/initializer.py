@@ -44,7 +44,7 @@ def initialize_easynlp(extra_args_provider=None,
     _set_random_seed(args.random_seed)
 
     #this env is for predictor
-    os.environ['TF_FAILOVER_RESTORE_WORKS_DIR'] = args.restore_works_dir
+    #os.environ['TF_FAILOVER_RESTORE_WORKS_DIR'] = args.restore_works_dir
     os.environ['EASYNLP_MODELZOO_BASE_DIR'] = args.modelzoo_base_dir
     os.environ['EASYNLP_IS_MASTER'] = str(args.is_master_node)
     os.environ['EASYNLP_N_GPUS'] = str(args.n_gpu)
@@ -151,9 +151,9 @@ def _set_random_seed(seed):
         np.random.seed(seed)
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-    else:
-        raise ValueError(
-            'Seed ({}) should be a positive integer.'.format(seed))
+    #else:
+    #    raise ValueError(
+    #        'Seed ({}) should be a positive integer.'.format(seed))
 
 
 def write_args_to_tensorboard():

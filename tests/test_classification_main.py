@@ -12,8 +12,6 @@ from easynlp.utils.global_vars import parse_user_defined_parameters
 print('*' * 50)
 print('running local main...\n')
 
-# from easynlp.core.trainer_vanilla import VanillaTrainer as Trainer
-
 if __name__ == '__main__':
     print('log: starts to init...\n')
 

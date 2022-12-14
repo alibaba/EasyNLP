@@ -62,7 +62,7 @@ class Statistics(object):
             if 'loss' in key:
                 logger.info('  {:10}: {:.4f} '.format(
                     key,
-                    val.item() / self.n_tr_steps))
+                    val / self.n_tr_steps))
 
         self.last_time = time.time()
 
