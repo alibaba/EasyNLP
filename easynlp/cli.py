@@ -27,8 +27,10 @@ sys.path.append('../')
 
 def main():
     os.environ['PYTHONUNBUFFERED'] = '1'
+    
     # TODO: Need to modify here
-    os.environ['PATH'] = '/opt/conda/envs/python3.6/bin:' + os.environ['PATH']
+    # os.environ['PATH'] = '/opt/conda/envs/python3.6/bin:' + os.environ['PATH']
+    
     set_variables_for_cli()
     args = get_args()
     if args.user_script is not None and args.user_entry_file is not None:
