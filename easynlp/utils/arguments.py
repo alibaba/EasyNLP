@@ -106,7 +106,7 @@ def parse_args(extra_args_provider=None,
         args.is_master_node = True
     else:
         args.is_master_node = False
-    _print_args(args)
+    # _print_args(args)
     return args
 
 
@@ -273,7 +273,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
 
     group.add_argument(
         '--micro_batch_size',
-        '--train_batch_size',
         type=int,
         default=2,
         help='Batch size per model instance (local batch size). '
@@ -286,7 +285,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        help='local rank passed from distributed launcher.')
 
     group.add_argument('--checkpoint_dir',
-                       '--checkpoint_path',
                        default=None,
                        type=str,
                        help='The model checkpoint dir.')
@@ -364,12 +362,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        default=None,
                        help='Resume training process from checkpoint')
 
-    group.add_argument('--export_tf_checkpoint_type',
-                       type=str,
-                       default='easytransfer',
-                       choices=['easytransfer', 'google', 'none'],
-                       help='Which type of checkpoint you want to export')
-
     group.add_argument('--input_schema',
                        type=str,
                        default=None,
@@ -415,34 +407,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        default=16,
                        type=int,
                        help='Predict Table Read Thread Num')
-    group.add_argument('--restore_works_dir',
-                       default='./.easynlp_predict_restore_works_dir',
-                       type=str,
-                       help='(for PAI-TF fail-over)')
-    group.add_argument('--ps_hosts',
-                       default='',
-                       type=str,
-                       help='PS hosts (for PAI-TF)')
-    group.add_argument('--chief_hosts',
-                       default='',
-                       type=str,
-                       help='Chief hosts (for PAI-TF)')
-    group.add_argument('--job_name',
-                       default=None,
-                       type=str,
-                       help='Name of the job (for PAI-TF)')
-    group.add_argument('--task_index',
-                       default=0,
-                       type=int,
-                       help='Index of the task (for PAI-TF)')
-    group.add_argument('--task_count',
-                       default=1,
-                       type=int,
-                       help='Number of the task (for PAI-TF)')
-    group.add_argument('--is_chief',
-                       default='',
-                       type=str,
-                       help='is chief (for PAI-TF)')
     group.add_argument('--worker_count',
                        default=1,
                        type=int,
@@ -483,7 +447,6 @@ def add_model_config_args(parser):
     """Model arguments"""
 
     group = parser.add_argument_group('model', 'model configuration')
-
     group.add_argument('--transformer-xl', action='store_true', help='use transformer-xl for training')
     group.add_argument('--pretrained-bert', action='store_true',
                        help='use a pretrained bert-large-uncased model instead'
@@ -873,6 +836,7 @@ def add_finetune_config_args(parser):
 def get_ds_args():
     """Parse all the args."""
     parser = argparse.ArgumentParser(description='PyTorch BERT Model')
+
     parser = add_model_config_args(parser)
     parser = add_fp16_config_args(parser)
     parser = add_training_args(parser)

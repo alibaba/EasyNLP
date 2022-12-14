@@ -214,7 +214,6 @@ class Trainer(object):
 
     def log_train_infos(self):
         args = self.args
-
         logger.info('=' * 10 + ' Training Start ' + '=' * 10 + '\n')
         logger.info('  Num of GPUs (all)       = %d', args.n_gpu)
         logger.info('  Num of CPUs per worker  = %d', args.n_cpu)
@@ -254,9 +253,6 @@ class Trainer(object):
                     str(args.save_checkpoint_steps))
         logger.info('  Distributed_backend     = %s',
                     str(args.distributed_backend))
-        logger.info('  Worker Count            = %s', str(args.worker_count))
-        logger.info('  Worker CPU              = %s', str(args.worker_cpu))
-        logger.info('  Worker data threads     = %s', str(args.data_threads))
 
         model_num_params = sum(
             [p.nelement() for n, p in self.model_module.named_parameters()])
@@ -523,6 +519,7 @@ class Trainer(object):
         if not save_best:
             return
 
+        """
         if self.args.export_tf_checkpoint_type != 'none' and hasattr(
                 self.model_module, 'model_name'):
             # If the student is pre-defined EasyTransfer AppZoo model
@@ -531,7 +528,6 @@ class Trainer(object):
                         (self.args.export_tf_checkpoint_type,
                          os.path.join(get_dir_name(self.args.checkpoint_dir),
                                       'model.ckpt')))
-
             if self.args.export_tf_checkpoint_type == 'easytransfer':
                 exporter.export_pytorch_checkpoint_to_tf(
                     model=self.model_module,
@@ -550,9 +546,12 @@ class Trainer(object):
             else:
                 raise RuntimeError('Invalid export_tf_checkpoint_type %s' %
                                    self.args.export_tf_checkpoint_type)
+            """
+
         # This is a hack
         if torch.cuda.is_available():
             torch.cuda.set_device(self.args.local_rank)
+
     def contrast_learning_process(self, positive_negative_examples: torch.Tensor) -> torch.Tensor:
         # compute the exapmle emmbding
         original_size = positive_negative_examples.size()
