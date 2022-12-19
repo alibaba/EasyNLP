@@ -89,6 +89,11 @@ def extraction_process_save_path(csv_dir, json_dir, video_dir, frame_num, frame_
 
     with open(output, 'w') as of:
         of.write('\n'.join(output_file))
+    if 'test' in output:
+        with open('./msrvtt_subset/MSRVTT_test_part_text.tsv', 'w') as of:
+            of.write('\n'.join([o.split('\t')[0] for o in output_file]))
+        with open('./msrvtt_subset/MSRVTT_test_part_video.tsv', 'w') as of:
+            of.write('\n'.join([o.split('\t')[1] for o in output_file]))
     print("Finished processing {} videos in total.".format(len(video_ids)))
 
 if __name__ == '__main__':
