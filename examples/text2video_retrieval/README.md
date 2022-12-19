@@ -3,6 +3,7 @@
 ### 准备工作
 * 安装好EasyNLP
 * 进入目录 ./examples/text2video_retrieval
+* 下载并生成数据 sh preprocess_video_frame.sh
 
 ### 数据格式
 对于train与evaluate 数据格式为制表符分隔的两列 文本\t视频提取帧存放路径

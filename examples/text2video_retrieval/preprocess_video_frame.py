@@ -76,6 +76,8 @@ def extraction_process_save_path(csv_dir, json_dir, video_dir, frame_num, frame_
                 image_list = extract_video_frames(video_path, frame_num).tolist() # 
             except:
                 print(video_id)
+                print(video_path)
+                import pdb;pdb.set_trace()
 
             for frame_idx in range(len(image_list)):
                 image = image_list[frame_idx]
