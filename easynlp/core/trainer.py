@@ -370,14 +370,16 @@ class Trainer(object):
                     )
                     self._eval_scores = self.evaluator.evaluate(
                         model=self.model_module)
-                    if self._eval_scores[0][
-                            1] > self.evaluator.best_valid_score:
-                        logger.info(
-                            'Saving best model to %s...' % os.path.join(
-                                args.checkpoint_dir, 'pytorch_model.bin'))
-                        self.save_checkpoint(save_best=True)
-                        self.evaluator.best_valid_score = self._eval_scores[0][
-                            1]
+                    
+                    # if self._eval_scores[0][
+                    #         1] > self.evaluator.best_valid_score:
+                    logger.info(
+                        'Saving best model to %s...' % os.path.join(
+                            args.checkpoint_dir, 'pytorch_model.bin'))
+                    self.save_checkpoint(save_best=True)
+                    self.evaluator.best_valid_score = self._eval_scores[0][
+                        1]
+                    
                     logger.info('Best score: {}'.format(
                         self.evaluator.best_valid_score))
                     logger.info('Learning rate: {:.8f}'.format(

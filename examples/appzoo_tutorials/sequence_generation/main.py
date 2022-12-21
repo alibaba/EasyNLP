@@ -40,12 +40,8 @@ if __name__ == "__main__":
         try:
             from apex.normalization.fused_layer_norm import FusedLayerNorm as LayerNorm
         except ModuleNotFoundError:
-            print('APEX is required but not found. Installing Apex...')
-            os.system('git clone https://github.com/NVIDIA/apex')
-            os.system('cd apex && pip install -v --disable-pip-version-check --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./')
-            os.system('rm -rf apex')
             print('*'*80)
-            print('APEX is installed. Please run the code again.')
+            print('APEX is required. Please refer to examples/appzoo_tutorials/sequence_generation/README.md.')
             print('*'*80)
         from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
         from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
