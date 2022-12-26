@@ -8,17 +8,11 @@ import torch.nn as nn
 import numpy as np
 import math
 
-from ...modeling_utils import (PreTrainedModel)
+from ...modeling_utils import PreTrainedModel
 from .configuration_transformer import TransformerConfig
 
-from parlai.core.opt import Opt
-from parlai.core.params import default
+from .utils import checkpoint_wrapper, neginf, default, warn_once, PipelineHelper
 from parlai.core.torch_agent import DictionaryAgent
-from parlai.utils.misc import warn_once
-from parlai.utils.fsdp import fsdp_wrap
-from parlai.nn.checkpoint import checkpoint_wrapper
-from parlai.utils.torch import PipelineHelper
-from parlai.utils.torch import neginf
 
 LAYER_NORM_EPS = 1e-5  # Epsilon for layer norm.
 
@@ -38,19 +32,19 @@ def create_position_codes(n_pos, dim, out):
     out[:, 0::2] = torch.FloatTensor(np.sin(position_enc)).type_as(out)
     out[:, 1::2] = torch.FloatTensor(np.cos(position_enc)).type_as(out)
 
-def get_n_positions_from_options(opt: Opt):
+def get_n_positions_from_config(config: TransformerConfig):
     """
     Determine n_positions from options dict.
     """
-    if opt.get('n_positions'):
+    if config.n_positions:
         # if the number of positions is explicitly provided, use that
-        n_positions = opt['n_positions']
+        n_positions = config.n_positions
     else:
         # else, use the worst case from truncate
         n_positions = max(
-            opt.get('truncate') or 0,
-            opt.get('text_truncate') or 0,
-            opt.get('label_truncate') or 0,
+            config.truncate or 0,
+            config.text_truncate or 0,
+            config.label_truncate or 0,
         )
         if n_positions == 0:
             # default to 1024
@@ -68,293 +62,6 @@ def create_embeddings(dictionary, embedding_size, padding_idx):
     nn.init.constant_(e.weight[padding_idx], 0)
     return e
 
-class TransformerEncoder(nn.Module):
-    """
-    Transformer encoder module.
-
-    For documentation on parameters that are take directly from opt,
-    see parlai/agents/transformer/transformer.py
-
-    :param opt: ParlAI-parsed options.
-    :param vocabulary_size: Count of tokens/words in the dictionary.
-    :param embedding: an embedding matrix for the bottom layer of the transformer.
-        If none, one is created for this encoder.
-    :param int padding_idx: Reserved padding index in the embeddings matrix.
-    :param str reduction_type: Type of reduction at the end of the encoder.
-    :param int n_positions: Size of the position embeddings matrix.
-    :param int n_segments: Number of segments/lang/sentence embeddings.
-    :param bool embeddings_scale: Scale embeddings relative to their dimensionality.
-        Found useful in fairseq.
-    """
-
-    def __init__(
-        self,
-        opt: Opt,
-        vocabulary_size: int,
-        embedding: Optional[nn.Embedding] = None,
-        padding_idx: int = 0,
-        reduction_type: str = 'mean',
-        n_positions: Optional[int] = None,
-        n_segments: Optional[int] = None,
-        embeddings_scale: Optional[bool] = None,
-        dropout: Optional[float] = None,
-        activation: Optional[str] = None,
-        variant: Optional[str] = None,
-        output_scaling: Optional[float] = None,
-        **kwargs,
-    ):
-        super().__init__()
-
-        self.opt = opt
-        self.embedding_size = opt['embedding_size']
-        self.ffn_size = opt['ffn_size']
-        self.n_layers = (
-            opt['n_encoder_layers']
-            if opt.get('n_encoder_layers', -1) > 0
-            else opt['n_layers']
-        )
-        self.n_heads = opt['n_heads']
-        self.dim = self.embedding_size
-        self.embeddings_scale = default(
-            embeddings_scale, opt.get('embeddings_scale', False)
-        )
-        self.reduction_type = reduction_type
-        self.padding_idx = padding_idx
-        # this is --dropout, not --relu-dropout or --attention-dropout
-        self.dropout_frac = default(dropout, opt.get('dropout', 0.0))
-        self.dropout = nn.Dropout(p=self.dropout_frac)
-        self.activation = default(activation, opt.get('activation', 'relu'))
-        self.variant = default(variant, opt.get('variant', 'aiayn'))
-        self.n_segments = default(n_segments, opt.get('n_segments', 0))
-
-        self.n_positions = default(n_positions, get_n_positions_from_options(opt))
-        self.out_dim = self.embedding_size
-        assert (
-            self.embedding_size % self.n_heads == 0
-        ), 'Transformer embedding size must be a multiple of n_heads'
-
-        # check input formats:
-        if embedding is not None:
-            assert (
-                self.embedding_size is None
-                or self.embedding_size == embedding.weight.shape[1]
-            ), "Embedding dim must match the embedding size."
-
-        if embedding is not None:
-            self.embeddings = embedding
-        else:
-            raise AssertionError(
-                "This code should not execute. Left here in case we want to enable it."
-            )
-            assert self.padding_idx is not None
-            self.embeddings = nn.Embedding(
-                vocabulary_size, self.embedding_size, padding_idx=padding_idx
-            )
-            nn.init.normal_(self.embeddings.weight, 0, self.embedding_size**-0.5)
-
-        # create the positional embeddings
-        self.position_embeddings = nn.Embedding(self.n_positions, self.embedding_size)
-        if not opt.get('learn_positional_embeddings', False):
-            create_position_codes(
-                self.n_positions,
-                self.embedding_size,
-                out=self.position_embeddings.weight,
-            )
-        else:
-            nn.init.normal_(
-                self.position_embeddings.weight, 0, self.embedding_size**-0.5
-            )
-
-        # embedding normalization
-        if (
-            self.variant == 'xlm'
-            or self.variant == 'prelayernorm'
-            or self.variant == 'bart'
-        ):
-            self.norm_embeddings = torch.nn.LayerNorm(self.dim, eps=LAYER_NORM_EPS)
-        elif self.variant == 'aiayn':
-            pass
-        else:
-            raise ValueError("Can't handle --variant {}".format(self.variant))
-
-        if self.n_segments >= 1:
-            self.segment_embeddings = nn.Embedding(self.n_segments, self.dim)
-            nn.init.normal_(self.segment_embeddings.weight, 0, self.dim**-0.5)
-
-        # build the model
-        self.layers = self.build_layers()
-        self.output_scaling = default(output_scaling, opt.get('output_scaling', 1.0))
-
-    def build_layers(self) -> nn.ModuleList:
-        layers = nn.ModuleList()
-        for _ in range(self.n_layers):
-            layer = self.swappables.layer(  # type: ignore
-                self.opt,
-                attention_dropout=self.opt.get('attention_dropout', 0.0),
-                relu_dropout=self.opt.get('relu_dropout', 0.0),
-                dropout=self.dropout_frac,
-                variant=self.variant,
-                activation=self.activation,
-            )
-            if self.opt.get('checkpoint_activations'):
-                layer = checkpoint_wrapper(layer)
-            layers.append(fsdp_wrap(layer))
-        return layers
-
-    def forward_embedding(
-        self,
-        input: torch.LongTensor,
-        positions: Optional[torch.LongTensor] = None,
-        segments: Optional[torch.LongTensor] = None,
-    ) -> Tuple[torch.Tensor, torch.BoolTensor]:
-        """
-        Embed tokens prior to feeding into transformer.
-
-        :param LongTensor[batch,seqlen] input:
-            The input IDs
-        :param LongTensor[batch,seqlen] positions:
-            Positions for input IDs
-        :param LongTensor[batch,seqlen]:
-            If provided, additionally adds ``segments`` as extra embedding features.
-
-        :return (tensor, mask):
-            return embedded input and mask
-        """
-        mask = input != self.padding_idx
-        if positions is None:
-            positions = (mask.cumsum(dim=1, dtype=torch.int64) - 1).clamp_(min=0)
-        tensor = self.embeddings(input)
-        if self.embeddings_scale:
-            tensor = tensor * np.sqrt(self.dim)
-
-        if positions.max().item() > self.n_positions:
-            warn_once(
-                'You are inputting a sequence of {x} length, but only have '
-                '--n-positions {y}. Set --truncate or increase --n-positions'.format(
-                    x=positions.max().item(), y=self.n_positions
-                )
-            )
-        position_embs = self.position_embeddings(positions).expand_as(tensor)
-        tensor = tensor + position_embs
-
-        if self.n_segments >= 1:
-            if segments is None:
-                segments = torch.zeros_like(input)  # type: ignore
-            tensor = tensor + self.segment_embeddings(segments)
-
-        return tensor, mask
-
-    def forward_layers(
-        self, tensor: torch.Tensor, mask: torch.BoolTensor
-    ) -> torch.Tensor:
-        """
-        Apply transformer layers to input.
-
-        :param tensor:
-            embedded input
-        :param mask:
-            mask of input
-
-        :return tensor:
-            return embedding after applying transformer layers
-        """
-        if getattr(self.layers, 'is_model_parallel', False):
-            # factored out for readability. It is equivalent to the other
-            # condition
-            tensor = self._apply_model_parallel(tensor, mask)
-        else:
-            for i in range(self.n_layers):
-                tensor = self.layers[i](tensor, mask)
-
-        return tensor
-
-    def reduce_output(
-        self, tensor: torch.Tensor, mask: torch.BoolTensor
-    ) -> Tuple[torch.Tensor, Optional[torch.BoolTensor]]:
-        """
-        Reduce transformer output at end of forward pass.
-
-        :param tensor:
-            encoded input
-        :param mask:
-            mask for encoded input
-
-        :return (tensor, mask):
-            returns the reduced tensor, and mask if appropriate
-        """
-        tensor *= self.output_scaling
-        if self.reduction_type == 'first':
-            return tensor[:, 0, :], None
-        elif self.reduction_type == 'max':
-            return tensor.max(dim=1)[0], None
-        elif self.reduction_type == 'mean':
-            divisor = mask.float().sum(dim=1).unsqueeze(-1).clamp(min=1).type_as(tensor)
-            output = tensor.sum(dim=1) / divisor
-            return output, None
-        elif self.reduction_type is None or 'none' in self.reduction_type:
-            return tensor, mask
-        else:
-            raise ValueError(
-                "Can't handle --reduction-type {}".format(self.reduction_type)
-            )
-
-    def forward(  # type: ignore
-        self,
-        input: torch.LongTensor,
-        positions: Optional[torch.LongTensor] = None,
-        segments: Optional[torch.LongTensor] = None,
-        **kwargs,
-    ) -> Union[torch.Tensor, Tuple[torch.Tensor, torch.BoolTensor]]:
-        """
-        Forward pass.
-
-        :param LongTensor[batch,seqlen] input:
-            The input IDs
-        :param LongTensor[batch,seqlen] positions:
-            Positions for input IDs
-        :param LongTensor[batch,seqlen] segments:
-            If provided, additionally adds ``segments`` as extra embedding features.
-        """
-        # embed input
-        tensor, mask = self.forward_embedding(input, positions, segments)
-
-        if self.variant == 'xlm' or self.variant == 'bart':
-            tensor = self.norm_embeddings(tensor)
-
-        # --dropout on the embeddings
-        tensor = self.dropout(tensor)
-
-        tensor *= mask.unsqueeze(-1).type_as(tensor)
-
-        # apply transformer layers
-        tensor = self.forward_layers(tensor, mask)
-
-        if self.variant == 'prelayernorm':
-            tensor = self.norm_embeddings(tensor)
-
-        # reduce output
-        tensor, out_mask = self.reduce_output(tensor, mask)
-        if out_mask is not None:
-            return tensor, out_mask
-        else:
-            return tensor
-
-    def _apply_model_parallel(self, tensor, mask):
-        """
-        Pipeline application of model parallelism.
-        """
-        chunks = PipelineHelper.split((tensor, mask))
-        work_items = PipelineHelper.schedule_work_items(self.layers, chunks)
-
-        for chunk_idx, layer_nos, next_device in work_items:
-            s_tensor, s_mask = chunks[chunk_idx]
-            for layer_no in layer_nos:
-                s_tensor = self.layers[layer_no](s_tensor, s_mask)
-            chunks[chunk_idx] = PipelineHelper.chunk_to((s_tensor, s_mask), next_device)
-
-        tensor_out, mask_out = PipelineHelper.join(chunks)
-        return tensor_out
-
 class MultiHeadAttention(nn.Module):
     """
     Implements MultiHeadAttention; this is the core workhorse of the Transformer.
@@ -363,12 +70,12 @@ class MultiHeadAttention(nn.Module):
     """
 
     def __init__(
-        self, opt: Opt, n_heads: int = None, dim: int = None, dropout: float = 0
+        self, config: TransformerConfig, n_heads: int = None, dim: int = None, dropout: float = 0
     ):
         super(MultiHeadAttention, self).__init__()
 
-        n_heads = default(n_heads, opt['n_heads'])
-        dim = default(dim, opt['embedding_size'])
+        n_heads = default(n_heads, config.n_heads)
+        dim = default(dim, config.embedding_size)
 
         self.n_heads = n_heads
         self.dim = dim
@@ -552,7 +259,7 @@ class TransformerFFN(nn.Module):
 
     def __init__(
         self,
-        opt: Opt,
+        config: TransformerConfig,
         dim: int = None,
         dim_hidden: int = None,
         relu_dropout: float = 0,
@@ -561,10 +268,10 @@ class TransformerFFN(nn.Module):
     ):
         super(TransformerFFN, self).__init__(**kwargs)
 
-        dim = default(dim, opt['embedding_size'])
-        dim_hidden = default(dim_hidden, opt['ffn_size'])
+        dim = default(dim, config.embedding_size)
+        dim_hidden = default(dim_hidden, config.ffn_size)
 
-        self.opt = opt
+        self.config = config
         self.relu_dropout = nn.Dropout(p=relu_dropout)
         if activation == 'relu':
             self.nonlinear = F.relu
@@ -589,6 +296,361 @@ class TransformerFFN(nn.Module):
         x = self.lin2(x)
         return x
 
+class TransformerEncoderLayer(nn.Module):
+    """
+    Implements a single Transformer encoder layer.
+    """
+
+    def __init__(
+        self,
+        config: TransformerConfig,
+        n_heads: int = None,
+        embedding_size: int = None,
+        ffn_size: int = None,
+        attention_dropout: float = 0.0,
+        relu_dropout: float = 0.0,
+        dropout: float = 0.0,
+        activation: str = 'relu',
+        variant: Optional[str] = None,
+        **kwargs,
+    ):
+        super().__init__()
+
+        n_heads = default(n_heads, config.n_heads)
+        embedding_size = default(embedding_size, config.embedding_size)
+        ffn_size = default(ffn_size, config.ffn_size)
+
+        self.config = config
+        self.dim = embedding_size
+        self.ffn_dim = ffn_size
+        self.activation = activation
+        self.variant = variant
+        self.attention = MultiHeadAttention(  # type: ignore
+            config=self.config,
+            n_heads=n_heads,
+            dim=embedding_size,
+            dropout=attention_dropout,  # --attention-dropout
+        )
+        self.norm1 = torch.nn.LayerNorm(embedding_size, eps=LAYER_NORM_EPS)
+        self.ffn = TransformerFFN(  # type: ignore
+            config=self.config,
+            dim=embedding_size,
+            dim_hidden=ffn_size,
+            relu_dropout=relu_dropout,
+            activation=self.activation,
+        )
+        self.norm2 = torch.nn.LayerNorm(embedding_size, eps=LAYER_NORM_EPS)
+        self.dropout = nn.Dropout(p=dropout)
+
+    def forward(
+        self, tensor: torch.Tensor, mask: torch.Tensor, **kwargs
+    ) -> torch.Tensor:
+        """
+        Forward pass.
+        """
+        residual = tensor
+        if self.variant == 'prelayernorm':
+            tensor = self.norm1(tensor)
+        attended_tensor = self.attention(tensor, mask=mask)[0]
+        tensor = residual + self.dropout(attended_tensor)
+        if self.variant == 'aiayn' or self.variant == 'xlm' or self.variant == 'bart':
+            tensor = self.norm1(tensor)
+        residual = tensor
+        if self.variant == 'prelayernorm':
+            tensor = self.norm2(tensor)
+        tensor = residual + self.dropout(self.ffn(tensor))
+        if self.variant == 'aiayn' or self.variant == 'xlm' or self.variant == 'bart':
+            tensor = self.norm2(tensor)
+        tensor *= mask.unsqueeze(-1).type_as(tensor)
+        return tensor
+
+class TransformerEncoder(nn.Module):
+    """
+    Transformer encoder module.
+
+    For documentation on parameters that are take directly from opt,
+    see parlai/agents/transformer/transformer.py
+
+    :param opt: ParlAI-parsed options.
+    :param vocabulary_size: Count of tokens/words in the dictionary.
+    :param embedding: an embedding matrix for the bottom layer of the transformer.
+        If none, one is created for this encoder.
+    :param int padding_idx: Reserved padding index in the embeddings matrix.
+    :param str reduction_type: Type of reduction at the end of the encoder.
+    :param int n_positions: Size of the position embeddings matrix.
+    :param int n_segments: Number of segments/lang/sentence embeddings.
+    :param bool embeddings_scale: Scale embeddings relative to their dimensionality.
+        Found useful in fairseq.
+    """
+
+    def __init__(
+        self,
+        config: TransformerConfig,
+        vocabulary_size: int,
+        embedding: Optional[nn.Embedding] = None,
+        padding_idx: int = 0,
+        reduction_type: str = 'mean',
+        n_positions: Optional[int] = None,
+        n_segments: Optional[int] = None,
+        embeddings_scale: Optional[bool] = None,
+        dropout: Optional[float] = None,
+        activation: Optional[str] = None,
+        variant: Optional[str] = None,
+        output_scaling: Optional[float] = None,
+        **kwargs,
+    ):
+        super().__init__()
+
+        self.config = config
+        self.embedding_size = config.embedding_size
+        self.ffn_size = config.ffn_size
+        self.n_layers = (
+            config.n_encoder_layers
+            if config.n_encoder_layers > 0
+            else config.n_layers
+        )
+        self.n_heads = config.n_heads
+        self.dim = self.embedding_size
+        self.embeddings_scale = default(
+            embeddings_scale, config.embeddings_scale
+        )
+        self.reduction_type = reduction_type
+        self.padding_idx = padding_idx
+        # this is --dropout, not --relu-dropout or --attention-dropout
+        self.dropout_frac = default(dropout, config.dropout)
+        self.dropout = nn.Dropout(p=self.dropout_frac)
+        self.activation = default(activation, config.activation)
+        self.variant = default(variant, config.variant)
+        self.n_segments = default(n_segments, config.n_segments)
+
+        self.n_positions = default(n_positions, get_n_positions_from_config(config))
+        self.out_dim = self.embedding_size
+        assert (
+            self.embedding_size % self.n_heads == 0
+        ), 'Transformer embedding size must be a multiple of n_heads'
+
+        # check input formats:
+        if embedding is not None:
+            assert (
+                self.embedding_size is None
+                or self.embedding_size == embedding.weight.shape[1]
+            ), "Embedding dim must match the embedding size."
+
+        if embedding is not None:
+            self.embeddings = embedding
+        else:
+            raise AssertionError(
+                "This code should not execute. Left here in case we want to enable it."
+            )
+            assert self.padding_idx is not None
+            self.embeddings = nn.Embedding(
+                vocabulary_size, self.embedding_size, padding_idx=padding_idx
+            )
+            nn.init.normal_(self.embeddings.weight, 0, self.embedding_size**-0.5)
+
+        # create the positional embeddings
+        self.position_embeddings = nn.Embedding(self.n_positions, self.embedding_size)
+        if not config.learn_positional_embeddings:
+            create_position_codes(
+                self.n_positions,
+                self.embedding_size,
+                out=self.position_embeddings.weight,
+            )
+        else:
+            nn.init.normal_(
+                self.position_embeddings.weight, 0, self.embedding_size**-0.5
+            )
+
+        # embedding normalization
+        if (
+            self.variant == 'xlm'
+            or self.variant == 'prelayernorm'
+            or self.variant == 'bart'
+        ):
+            self.norm_embeddings = torch.nn.LayerNorm(self.dim, eps=LAYER_NORM_EPS)
+        elif self.variant == 'aiayn':
+            pass
+        else:
+            raise ValueError("Can't handle --variant {}".format(self.variant))
+
+        if self.n_segments >= 1:
+            self.segment_embeddings = nn.Embedding(self.n_segments, self.dim)
+            nn.init.normal_(self.segment_embeddings.weight, 0, self.dim**-0.5)
+
+        # build the model
+        self.layers = self.build_layers()
+        self.output_scaling = default(output_scaling, config.output_scaling)
+
+    def build_layers(self) -> nn.ModuleList:
+        layers = nn.ModuleList()
+        for _ in range(self.n_layers):
+            layer = TransformerEncoderLayer(  # type: ignore
+                self.config,
+                attention_dropout=self.config.attention_dropout,
+                relu_dropout=self.config.relu_dropout,
+                dropout=self.dropout_frac,
+                variant=self.variant,
+                activation=self.activation,
+            )
+            if self.config.checkpoint_activations:
+                layer = checkpoint_wrapper(layer)
+            layers.append(layer)
+        return layers
+
+    def forward_embedding(
+        self,
+        input: torch.LongTensor,
+        positions: Optional[torch.LongTensor] = None,
+        segments: Optional[torch.LongTensor] = None,
+    ) -> Tuple[torch.Tensor, torch.BoolTensor]:
+        """
+        Embed tokens prior to feeding into transformer.
+
+        :param LongTensor[batch,seqlen] input:
+            The input IDs
+        :param LongTensor[batch,seqlen] positions:
+            Positions for input IDs
+        :param LongTensor[batch,seqlen]:
+            If provided, additionally adds ``segments`` as extra embedding features.
+
+        :return (tensor, mask):
+            return embedded input and mask
+        """
+        mask = input != self.padding_idx
+        if positions is None:
+            positions = (mask.cumsum(dim=1, dtype=torch.int64) - 1).clamp_(min=0)
+        tensor = self.embeddings(input)
+        if self.embeddings_scale:
+            tensor = tensor * np.sqrt(self.dim)
+
+        if positions.max().item() > self.n_positions:
+            warn_once(
+                'You are inputting a sequence of {x} length, but only have '
+                '--n-positions {y}. Set --truncate or increase --n-positions'.format(
+                    x=positions.max().item(), y=self.n_positions
+                )
+            )
+        position_embs = self.position_embeddings(positions).expand_as(tensor)
+        tensor = tensor + position_embs
+
+        if self.n_segments >= 1:
+            if segments is None:
+                segments = torch.zeros_like(input)  # type: ignore
+            tensor = tensor + self.segment_embeddings(segments)
+
+        return tensor, mask
+
+    def forward_layers(
+        self, tensor: torch.Tensor, mask: torch.BoolTensor
+    ) -> torch.Tensor:
+        """
+        Apply transformer layers to input.
+
+        :param tensor:
+            embedded input
+        :param mask:
+            mask of input
+
+        :return tensor:
+            return embedding after applying transformer layers
+        """
+        if getattr(self.layers, 'is_model_parallel', False):
+            # factored out for readability. It is equivalent to the other
+            # condition
+            tensor = self._apply_model_parallel(tensor, mask)
+        else:
+            for i in range(self.n_layers):
+                tensor = self.layers[i](tensor, mask)
+
+        return tensor
+
+    def reduce_output(
+        self, tensor: torch.Tensor, mask: torch.BoolTensor
+    ) -> Tuple[torch.Tensor, Optional[torch.BoolTensor]]:
+        """
+        Reduce transformer output at end of forward pass.
+
+        :param tensor:
+            encoded input
+        :param mask:
+            mask for encoded input
+
+        :return (tensor, mask):
+            returns the reduced tensor, and mask if appropriate
+        """
+        tensor *= self.output_scaling
+        if self.reduction_type == 'first':
+            return tensor[:, 0, :], None
+        elif self.reduction_type == 'max':
+            return tensor.max(dim=1)[0], None
+        elif self.reduction_type == 'mean':
+            divisor = mask.float().sum(dim=1).unsqueeze(-1).clamp(min=1).type_as(tensor)
+            output = tensor.sum(dim=1) / divisor
+            return output, None
+        elif self.reduction_type is None or 'none' in self.reduction_type:
+            return tensor, mask
+        else:
+            raise ValueError(
+                "Can't handle --reduction-type {}".format(self.reduction_type)
+            )
+
+    def forward(  # type: ignore
+        self,
+        input: torch.LongTensor,
+        positions: Optional[torch.LongTensor] = None,
+        segments: Optional[torch.LongTensor] = None,
+        **kwargs,
+    ) -> Union[torch.Tensor, Tuple[torch.Tensor, torch.BoolTensor]]:
+        """
+        Forward pass.
+
+        :param LongTensor[batch,seqlen] input:
+            The input IDs
+        :param LongTensor[batch,seqlen] positions:
+            Positions for input IDs
+        :param LongTensor[batch,seqlen] segments:
+            If provided, additionally adds ``segments`` as extra embedding features.
+        """
+        # embed input
+        tensor, mask = self.forward_embedding(input, positions, segments)
+
+        if self.variant == 'xlm' or self.variant == 'bart':
+            tensor = self.norm_embeddings(tensor)
+
+        # --dropout on the embeddings
+        tensor = self.dropout(tensor)
+
+        tensor *= mask.unsqueeze(-1).type_as(tensor)
+
+        # apply transformer layers
+        tensor = self.forward_layers(tensor, mask)
+
+        if self.variant == 'prelayernorm':
+            tensor = self.norm_embeddings(tensor)
+
+        # reduce output
+        tensor, out_mask = self.reduce_output(tensor, mask)
+        if out_mask is not None:
+            return tensor, out_mask
+        else:
+            return tensor
+
+    def _apply_model_parallel(self, tensor, mask):
+        """
+        Pipeline application of model parallelism.
+        """
+        chunks = PipelineHelper.split((tensor, mask))
+        work_items = PipelineHelper.schedule_work_items(self.layers, chunks)
+
+        for chunk_idx, layer_nos, next_device in work_items:
+            s_tensor, s_mask = chunks[chunk_idx]
+            for layer_no in layer_nos:
+                s_tensor = self.layers[layer_no](s_tensor, s_mask)
+            chunks[chunk_idx] = PipelineHelper.chunk_to((s_tensor, s_mask), next_device)
+
+        tensor_out, mask_out = PipelineHelper.join(chunks)
+        return tensor_out
+
 DecoderLayerIncrState = Dict[str, Dict[str, torch.Tensor]]
 
 class BaseTransformerDecoderLayer(nn.Module, ABC):
@@ -603,7 +665,7 @@ class BaseTransformerDecoderLayer(nn.Module, ABC):
 
     def __init__(
         self,
-        opt: Opt,
+        config: TransformerConfig,
         n_heads: int = None,
         embedding_size: int = None,
         ffn_size: int = None,
@@ -616,11 +678,11 @@ class BaseTransformerDecoderLayer(nn.Module, ABC):
     ):
         super().__init__()
 
-        n_heads = default(n_heads, opt['n_heads'])
-        embedding_size = default(embedding_size, opt['embedding_size'])
-        ffn_size = default(ffn_size, opt['ffn_size'])
+        n_heads = default(n_heads, config.n_heads)
+        embedding_size = default(embedding_size, config.embedding_size)
+        ffn_size = default(ffn_size, config.ffn_size)
 
-        self.opt = opt
+        self.config = config
         self.dim = embedding_size
         self.ffn_dim = ffn_size
         self.variant = variant
@@ -644,7 +706,7 @@ class BaseTransformerDecoderLayer(nn.Module, ABC):
         self, n_heads: int = None, dim: int = None, dropout: float = 0
     ) -> MultiHeadAttention:
         return MultiHeadAttention(
-            opt=self.opt, n_heads=n_heads, dim=dim, dropout=dropout
+            config=self.config, n_heads=n_heads, dim=dim, dropout=dropout
         )
 
     def build_feedforward(
@@ -655,7 +717,7 @@ class BaseTransformerDecoderLayer(nn.Module, ABC):
         activation: str = 'relu',
     ) -> TransformerFFN:
         return TransformerFFN(
-            opt=self.opt,
+            config=self.config,
             dim=dim,
             dim_hidden=dim_hidden,
             relu_dropout=relu_dropout,
@@ -734,6 +796,168 @@ class BaseTransformerDecoderLayer(nn.Module, ABC):
 
 DecoderIncrState = Dict[int, Dict[str, Dict[str, torch.Tensor]]]
 
+class TransformerDecoderLayer(BaseTransformerDecoderLayer):
+    """
+    Implements a single Transformer decoder layer with cross (encoder) attention as in.
+
+    [Vaswani, 2017](https://arxiv.org/abs/1706.03762).
+
+    Decoder layers are similar to encoder layers but:
+
+    1. Self-attention is limited in a causal (auto-regressive) manner.
+    2. Attend over all of the encoder states.
+    """
+
+    def __init__(
+        self,
+        config: TransformerConfig,
+        n_heads: int = None,
+        embedding_size: int = None,
+        ffn_size: int = None,
+        attention_dropout: float = 0.0,
+        relu_dropout: float = 0.0,
+        dropout: float = 0.0,
+        activation: str = 'relu',
+        variant: str = 'aiayn',
+        **kwargs,
+    ):
+        super().__init__(
+            config=config,
+            n_heads=n_heads,
+            embedding_size=embedding_size,
+            ffn_size=ffn_size,
+            attention_dropout=attention_dropout,
+            relu_dropout=relu_dropout,
+            dropout=dropout,
+            activation=activation,
+            variant=variant,
+            **kwargs,
+        )
+
+        n_heads = default(n_heads, config.n_heads)
+        embedding_size = default(embedding_size, config.embedding_size)
+
+        self.encoder_attention = MultiHeadAttention(  # type: ignore
+            config=self.config, n_heads=n_heads, dim=embedding_size, dropout=attention_dropout
+        )
+        self.norm2 = torch.nn.LayerNorm(embedding_size, eps=LAYER_NORM_EPS)
+
+    def build_self_attention(
+        self, n_heads: int = None, dim: int = None, dropout: float = 0
+    ) -> MultiHeadAttention:
+        """
+        Overridden to allow swapping out of the attention class at instantiation.
+        """
+        return MultiHeadAttention(  # type: ignore
+            config=self.config, n_heads=n_heads, dim=dim, dropout=dropout
+        )
+
+    def build_feedforward(
+        self,
+        dim: int = None,
+        dim_hidden: int = None,
+        relu_dropout: float = 0,
+        activation: str = 'relu',
+    ) -> TransformerFFN:
+        """
+        Overridden to allow swapping out of the feedforward class at instantiation.
+        """
+        return TransformerFFN(  # type: ignore
+            config=self.config,
+            dim=dim,
+            dim_hidden=dim_hidden,
+            relu_dropout=relu_dropout,
+            activation=activation,
+        )
+
+    def forward(
+        self,
+        x: torch.Tensor,
+        encoder_output: torch.Tensor,
+        encoder_mask: torch.Tensor,
+        incr_state: Optional[DecoderLayerIncrState] = None,
+        **kwargs,
+    ) -> Tuple[torch.Tensor, DecoderLayerIncrState]:
+        """
+        Forward pass.
+
+        The incremental state is a dict with values for self- and encoder-attention
+        states.
+        """
+
+        if incr_state is None:
+            incr_state = {}
+
+        decoder_mask = self._create_selfattn_mask(x)
+        # first self attn
+        residual = x
+        if self.variant == 'prelayernorm':
+            x = self.norm1(x)
+
+        # don't peak into the future!
+        x, final_self_attn_incr_state = self.self_attention(
+            query=x,
+            mask=decoder_mask,
+            incr_state=incr_state.get('self_attn'),
+            static_kv=False,
+            **kwargs,
+        )[:2]
+        x = self.dropout(x)  # --dropout
+        x = x + residual
+        if self.variant == 'aiayn' or self.variant == 'xlm' or self.variant == 'bart':
+            x = self.norm1(x)
+
+        residual = x
+        # encoder_attn_layer_norm norm 2
+        if self.variant == 'prelayernorm':
+            x = self.norm2(x)
+        x, final_encoder_attn_incr_state = self.encoder_attention(
+            query=x,
+            key=encoder_output,
+            value=encoder_output,
+            mask=encoder_mask,
+            incr_state=incr_state.get('encoder_attn'),
+            static_kv=True,
+            **kwargs,
+        )[:2]
+        x = self.dropout(x)  # --dropout
+        x = residual + x
+        if self.variant == 'aiayn' or self.variant == 'xlm' or self.variant == 'bart':
+            x = self.norm2(x)
+
+        # finally the ffn
+        residual = x
+        if self.variant == 'prelayernorm':
+            x = self.norm3(x)
+        x = self.ffn(x, **kwargs)
+        x = self.dropout(x)  # --dropout
+        x = residual + x
+        if self.variant == 'aiayn' or self.variant == 'xlm' or self.variant == 'bart':
+            x = self.norm3(x)
+
+        new_incr_state = {
+            'self_attn': final_self_attn_incr_state,
+            'encoder_attn': final_encoder_attn_incr_state,
+        }
+        return x, new_incr_state
+
+    def reorder_incremental_state(
+        self, incremental_state: DecoderLayerIncrState, inds: torch.Tensor
+    ) -> DecoderLayerIncrState:
+        """
+        Reorder all incremental-state tensors for this layer.
+        """
+        attn_types = {
+            'self_attn': self.self_attention,
+            'encoder_attn': self.encoder_attention,
+        }
+        return {
+            attn_type: attn.reorder_incremental_state(
+                incremental_state[attn_type], inds
+            )
+            for attn_type, attn in attn_types.items()
+        }
+
 class BaseTransformerDecoder(nn.Module, ABC):
     """
     Implements functionality common to all transformer decoder variants. Not intended to
@@ -749,34 +973,34 @@ class BaseTransformerDecoder(nn.Module, ABC):
 
     def __init__(
         self,
-        opt: Opt,
+        config: TransformerConfig,
         embedding: nn.Embedding,
         dictionary: DictionaryAgent,
         n_positions: Optional[int] = None,
         **kwargs,
     ):
         super().__init__()
-        self.opt = opt
+        self.config = config
         self.pad_idx = dictionary[dictionary.null_token]
         self.start_idx = dictionary[dictionary.start_token]
         self.end_idx = dictionary[dictionary.end_token]
 
-        self.embedding_size = opt['embedding_size']
-        self.ffn_size = opt['ffn_size']
+        self.embedding_size = config.embedding_size
+        self.ffn_size = config.ffn_size
         self.n_layers = (
-            opt['n_decoder_layers']
-            if opt.get('n_decoder_layers', -1) > 0
-            else opt['n_layers']
+            config.n_decoder_layers
+            if config.n_decoder_layers > 0
+            else config.n_layers
         )
-        self.n_heads = opt['n_heads']
+        self.n_heads = config.n_heads
         self.dim = self.embedding_size
-        self.activation = opt.get('activation', 'relu')
-        self.variant = opt.get('variant', 'aiayn')
+        self.activation = config.activation
+        self.variant = config.variant
 
-        self.embeddings_scale = opt.get('embeddings_scale', True)
-        self.dropout = nn.Dropout(p=opt.get('dropout', 0.0))  # --dropout
+        self.embeddings_scale = config.embeddings_scale
+        self.dropout = nn.Dropout(p=config.dropout)  # --dropout
 
-        self.n_positions = default(n_positions, get_n_positions_from_options(opt))
+        self.n_positions = default(n_positions, get_n_positions_from_config(config))
         self.out_dim = self.embedding_size
         assert (
             self.embedding_size % self.n_heads == 0
@@ -802,7 +1026,7 @@ class BaseTransformerDecoder(nn.Module, ABC):
 
         # create the positional embeddings
         self.position_embeddings = nn.Embedding(self.n_positions, self.embedding_size)
-        if not opt.get('learn_positional_embeddings', False):
+        if not config.learn_positional_embeddings:
             create_position_codes(
                 self.n_positions,
                 self.embedding_size,
@@ -826,9 +1050,9 @@ class BaseTransformerDecoder(nn.Module, ABC):
         layers = nn.ModuleList()
         for i in range(self.n_layers):
             layer = self.build_layer(index=i)
-            if self.opt.get('checkpoint_activations'):
+            if self.config.checkpoint_activations:
                 layer = checkpoint_wrapper(layer)
-            layers.append(fsdp_wrap(layer))  # type: ignore
+            layers.append(layer)  # type: ignore
         return layers
 
     def build_layer(self, index: int) -> BaseTransformerDecoderLayer:
@@ -839,10 +1063,10 @@ class BaseTransformerDecoder(nn.Module, ABC):
             Index of current layer.
         """
         return BaseTransformerDecoderLayer(  # type: ignore
-            self.opt,
-            attention_dropout=self.opt.get('attention_dropout', 0.0),
-            relu_dropout=self.opt.get('relu_dropout', 0.0),
-            dropout=self.opt.get('dropout', 0.0),
+            self.config,
+            attention_dropout=self.config.attention_dropout,
+            relu_dropout=self.config.relu_dropout,
+            dropout=self.config.dropout,
             activation=self.activation,
             variant=self.variant,
         )
@@ -991,11 +1215,11 @@ class TransformerDecoder(BaseTransformerDecoder):
         :param int index:
             Index of current layer.
         """
-        return self.swappables.layer(  # type: ignore
-            self.opt,
-            attention_dropout=self.opt.get('attention_dropout', 0.0),
-            relu_dropout=self.opt.get('relu_dropout', 0.0),
-            dropout=self.opt.get('dropout', 0.0),
+        return TransformerDecoderLayer(  # type: ignore
+            self.config,
+            attention_dropout=self.config.attention_dropout,
+            relu_dropout=self.config.relu_dropout,
+            dropout=self.config.dropout,
             activation=self.activation,
             variant=self.variant,
         )
@@ -1063,7 +1287,7 @@ class TransformerModel(TransformerPreTrainedModel):
     @classmethod
     def build_encoder(
         cls,
-        opt,
+        config,
         dictionary,
         embedding=None,
         padding_idx=None,
@@ -1072,7 +1296,7 @@ class TransformerModel(TransformerPreTrainedModel):
         **kwargs,
     ) -> TransformerEncoder:
         return encoder_class(
-            opt=opt,
+            config=config,
             embedding=embedding,
             vocabulary_size=len(dictionary),
             padding_idx=padding_idx,
@@ -1083,35 +1307,35 @@ class TransformerModel(TransformerPreTrainedModel):
     @classmethod
     def build_decoder(
         cls,
-        opt,
+        config,
         embedding=None,
         decoder_class: Type[TransformerDecoder] = TransformerDecoder,
         **kwargs,
     ) -> TransformerDecoder:
-        return decoder_class(opt=opt, embedding=embedding, **kwargs)
+        return decoder_class(config=config, embedding=embedding, **kwargs)
 
-    def __init__(self, opt: Opt, dictionary: DictionaryAgent, **kwargs):
+    def __init__(self, config: TransformerConfig, dictionary: DictionaryAgent, **kwargs):
         self.pad_idx = dictionary[dictionary.null_token]
         self.start_idx = dictionary[dictionary.start_token]
         self.end_idx = dictionary[dictionary.end_token]
         super().__init__(self.pad_idx, self.start_idx, self.end_idx, **kwargs)
-        self.opt = opt
+        self.config = config
         self.embeddings = create_embeddings(
-            dictionary, opt['embedding_size'], self.pad_idx
+            dictionary, config.embedding_size, self.pad_idx
         )
 
         self.encoder = self.build_encoder(
-            opt,
+            config,
             dictionary,
             self.embeddings,
             self.pad_idx,
             reduction_type=None,
-            encoder_class=self.swappables.encoder,  # type: ignore
+            encoder_class=TransformerEncoder,  # type: ignore
         )
         self.decoder = self.build_decoder(
-            opt,
+            config,
             embedding=self.embeddings,
-            decoder_class=self.swappables.decoder,  # type: ignore
+            decoder_class=TransformerDecoder,  # type: ignore
             dictionary=dictionary,
         )
 
