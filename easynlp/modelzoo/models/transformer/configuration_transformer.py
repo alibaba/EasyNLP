@@ -27,8 +27,8 @@ class TransformerConfig(PretrainedConfig):
         self,
         embedding_size=512,
         ffn_size=2048,
-        n_encoder_layers=None,
-        n_decoder_layers=None,
+        n_encoder_layers=-1,
+        n_decoder_layers=-1,
         n_layers=8,
         n_heads=16,
         dropout=0.1,
@@ -36,36 +36,36 @@ class TransformerConfig(PretrainedConfig):
         variant="xlm",
         learn_positional_embeddings=True,
         n_positions=512,
-        truncate=512,
+        truncate=-1,
         text_truncate=512,
         label_truncate=128,
         attention_dropout=0.0,
         relu_dropout=0.0,
-        embeddings_scale,
-        output_scaling,
-        n_segments,
-        checkpoint_activations,
+        embeddings_scale=True,
+        output_scaling=1.0,
+        n_segments=0,
+        checkpoint_activations=False,
         **kwargs
     ):
         super().__init__(**kwargs)
 
-        self.embedding_size = embedding_size,
-        self.ffn_size = ffn_size,
-        self.n_encoder_layers = n_encoder_layers,
-        self.n_layers = n_layers,
-        self.n_heads = n_heads,
-        self.embeddings_scale = embeddings_scale,
-        self.dropout = dropout,
-        self.activation = activation,
-        self.variant = variant,
-        self.n_segments = n_segments,
-        self.learn_positional_embeddings = learn_positional_embeddings,
-        self.output_scaling = output_scaling,
-        self.n_decoder_layers = n_decoder_layers,
-        self.n_positions = n_positions,
-        self.truncate = truncate,
-        self.text_truncate = text_truncate,
-        self.label_truncate = label_truncate,
-        self.checkpoint_activations = checkpoint_activations,
-        self.attention_dropout = attention_dropout,
-        self.relu_dropout = relu_dropout,
+        self.embedding_size = embedding_size
+        self.ffn_size = ffn_size
+        self.n_encoder_layers = n_encoder_layers
+        self.n_layers = n_layers
+        self.n_heads = n_heads
+        self.dropout = dropout
+        self.activation = activation
+        self.variant = variant
+        self.learn_positional_embeddings = learn_positional_embeddings
+        self.n_decoder_layers = n_decoder_layers
+        self.n_positions = n_positions
+        self.truncate = truncate
+        self.text_truncate = text_truncate
+        self.label_truncate = label_truncate
+        self.attention_dropout = attention_dropout
+        self.relu_dropout = relu_dropout
+        self.embeddings_scale = embeddings_scale
+        self.output_scaling = output_scaling
+        self.n_segments = n_segments
+        self.checkpoint_activations = checkpoint_activations
