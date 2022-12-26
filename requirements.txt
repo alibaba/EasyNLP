@@ -20,3 +20,7 @@ albumentations
 einops
 torchvision
 ftfy
+fairscale~=0.4.1
+iopath~=0.1.8
+fvcore
+nltk==3.6.6
