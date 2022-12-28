@@ -1,5 +1,15 @@
+from typing import List
 from ...tokenization_utils import PreTrainedTokenizer
 import regex as re
+import collections
+import os
+import sys
+import random
+
+VOCAB_FILES_NAMES = {
+    "vocab_file": "vocab.txt",
+    "codecs_file": "dict.codecs"
+}
 
 def get_pairs(word):
     """
@@ -14,9 +24,202 @@ def get_pairs(word):
         prev_char = char
     return pairs
 
+def unescape(s):
+    r"""
+    Revert escaped characters back to their special version.
+
+    For example, \\n => \n and \\t => \t
+
+    :param s:
+        string to unescape
+    """
+    return s.replace('\\n', '\n').replace('\\t', '\t').replace('\\r', '\r')
+
+def load_vocab(vocab_file):
+    """Loads a vocabulary file into a dictionary."""
+    vocab = collections.OrderedDict()
+    with open(vocab_file, "r", encoding="utf-8") as reader:
+        lines = reader.readlines()
+    for index, line in enumerate(lines):
+        split = line.rstrip("\n\r").split("\t")
+        token = unescape(split[0])
+        vocab[token] = index
+    return vocab
+
+def load_codecs(codecs_file, merges=-1):
+    """Loads a bpe codecs file into a dictionary."""
+    bpe_codes = dict()
+    bpe_codes_reverse = dict()
+    version = None
+    with open(codecs_file, 'r', encoding='utf-8') as codecs_file:
+        codecs_file.seek(0)
+        offset=1
+
+        # check version information
+        firstline = codecs_file.readline()
+        if firstline.startswith('#version:'):
+            version = tuple([int(x) for x in re.sub(r'(\.0+)*$','', firstline.split()[-1]).split(".")])
+            offset += 1
+        else:
+            version = (0, 1)
+            codecs_file.seek(0)
+
+        bpe_codes = [tuple(item.strip('\r\n ').split(' ')) for (n, item) in enumerate(codecs_file.read().rstrip('\n').split('\n')) if (n < merges or merges == -1)]
+
+        for i, item in enumerate(bpe_codes):
+            if len(item) != 2:
+                sys.stderr.write('Error: invalid line {0} in BPE codes file: {1}\n'.format(i+offset, ' '.join(item)))
+                sys.stderr.write('The line should exist of exactly two subword units, separated by whitespace\n')
+                sys.exit(1)
+
+        # some hacking to deal with duplicates (only consider first instance)
+        bpe_codes = dict([(code,i) for (i,code) in reversed(list(enumerate(bpe_codes)))])
+
+        bpe_codes_reverse = dict([(pair[0] + pair[1], pair) for pair,i in bpe_codes.items()])
+    return bpe_codes, bpe_codes_reverse, version
+
+def find_ngrams(token_dict, text, n):
+    """
+    Break text into ngrams that appear in ``token_dict``.
+
+    :param token_dict:
+        ``dict`` to check for ngrams
+    :param text:
+        ``str`` to look for ngrams in
+    :param n:
+        ``int`` max size of ngrams
+    """
+    # base case
+    if n <= 1:
+        return text
+    # tokens committed to output
+    saved_tokens = []
+    # tokens remaining to be searched in sentence
+    search_tokens = text[:]
+    # tokens stored until next ngram found
+    next_search = []
+    while len(search_tokens) >= n:
+        ngram = ' '.join(search_tokens[:n])
+        if ngram in token_dict:
+            # first, search previous unmatched words for smaller ngrams
+            sub_n = min(len(next_search), n - 1)
+            saved_tokens.extend(find_ngrams(token_dict, next_search, sub_n))
+            next_search.clear()
+            # then add this ngram
+            saved_tokens.append(ngram)
+            # then pop this ngram from the remaining words to search
+            search_tokens = search_tokens[n:]
+        else:
+            next_search.append(search_tokens.pop(0))
+    remainder = next_search + search_tokens
+    sub_n = min(len(remainder), n - 1)
+    saved_tokens.extend(find_ngrams(token_dict, remainder, sub_n))
+    return saved_tokens
+
+def recursive_split(segment, bpe_codes, vocab, separator, final=False):
+    """Recursively split segment into smaller units (by reversing BPE merges)
+    until all units are either in-vocabulary, or cannot be split futher."""
+
+    try:
+        if final:
+            left, right = bpe_codes[segment + '</w>']
+            right = right[:-4]
+        else:
+            left, right = bpe_codes[segment]
+    except:
+        #sys.stderr.write('cannot split {0} further.\n'.format(segment))
+        yield segment
+        return
+
+    if left + separator in vocab:
+        yield left
+    else:
+        for item in recursive_split(left, bpe_codes, vocab, separator, False):
+            yield item
+
+    if (final and right in vocab) or (not final and right + separator in vocab):
+        yield right
+    else:
+        for item in recursive_split(right, bpe_codes, vocab, separator, final):
+            yield item
+
+def check_vocab_and_split(orig, bpe_codes, vocab, separator):
+    """Check for each segment in word if it is in-vocabulary,
+    and segment OOV segments into smaller units by reversing the BPE merge operations"""
+
+    out = []
+
+    for segment in orig[:-1]:
+        if segment + separator in vocab:
+            out.append(segment)
+        else:
+            #sys.stderr.write('OOV: {0}\n'.format(segment))
+            for item in recursive_split(segment, bpe_codes, vocab, separator, False):
+                out.append(item)
+
+    segment = orig[-1]
+    if segment in vocab:
+        out.append(segment)
+    else:
+        #sys.stderr.write('OOV: {0}\n'.format(segment))
+        for item in recursive_split(segment, bpe_codes, vocab, separator, True):
+            out.append(item)
+
+    return out
+
 class TransformerTokenizer(PreTrainedTokenizer):
-    def __init__():
-        pass
+    vocab_files_names = VOCAB_FILES_NAMES
+
+    def __init__(
+        self,
+        vocab_file,
+        codecs_file,
+        do_lower_case=True,
+        do_basic_tokenize=True,
+        null_token='__null__',
+        bos_token='__start__',
+        eos_token='__end__',
+        unk_token='__unk__',
+        max_ngram_size=-1,
+        max_tokens=-1,
+        tokenizer='bpe',
+        separator='@@',
+        **kwargs
+    ):
+        super().__init__(
+            do_lower_case=do_lower_case,
+            do_basic_tokenize=do_basic_tokenize,
+            null_token=null_token,
+            bos_token=bos_token,
+            eos_token=eos_token,
+            unk_token=unk_token,
+            max_ngram_size=max_ngram_size,
+            max_tokens=max_tokens,
+            **kwargs,
+        )
+        
+        self.do_lower_case = do_lower_case
+        self.max_ngram_size = max_ngram_size
+        self.max_tokens = max_tokens
+        self.tokenizer = tokenizer
+        self.separator = separator
+
+        if not os.path.isfile(vocab_file):
+            raise ValueError(
+                f"Can't find a vocabulary file at path '{vocab_file}'. To load the vocabulary from a Google pretrained "
+                "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
+            )
+        if not os.path.isfile(codecs_file):
+            raise ValueError(
+                f"Can't find a bpe codecs file at path '{codecs_file}'. To load the codecs from a Google pretrained "
+                "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
+            )
+        self.vocab = load_vocab(vocab_file)
+        self.ids_to_tokens = collections.OrderedDict([(ids, tok) for tok, ids in self.vocab.items()])
+        self.codecs, self.codecs_reverse, self.version = load_codecs(codecs_file)
+
+        self.splitter = re.compile(r'\w+|[^\w\s]', re.UNICODE)
+        self.cache = {}
 
     @property
     def vocab_size(self):
@@ -25,57 +228,131 @@ class TransformerTokenizer(PreTrainedTokenizer):
     def get_vocab(self):
         return dict(self.vocab, **self.added_tokens_encoder)
 
-    def bpe(self, token):
-        if token in self.cache:
-            return self.cache[token]
-        word = tuple(token)
-        pairs = get_pairs(word)
+    def encode(orig, bpe_codes, bpe_codes_reverse, vocab, separator, version, cache, dropout=0):
+        """Encode word based on list of BPE merge operations, which are applied consecutively"""
+        if not dropout and orig in cache:
+            return cache[orig]
 
-        if not pairs:
-            return token
+        if len(orig) == 1:
+            return orig
 
-        while True:
-            bigram = min(pairs, key=lambda pair: self.bpe_ranks.get(pair, float("inf")))
-            if bigram not in self.bpe_ranks:
+        if version == (0, 1):
+            word = list(orig) + ['</w>']
+        elif version == (0, 2): # more consistent handling of word-final segments
+            word = list(orig[:-1]) + [orig[-1] + '</w>']
+        else:
+            raise NotImplementedError
+
+        while len(word) > 1:
+
+            # get list of symbol pairs; optionally apply dropout
+            pairs = [(bpe_codes[pair],i,pair) for (i,pair) in enumerate(zip(word, word[1:])) if (not dropout or random.random() > dropout) and pair in bpe_codes]
+
+            if not pairs:
                 break
-            first, second = bigram
-            new_word = []
+
+            #get first merge operation in list of BPE codes
+            bigram = min(pairs)[2]
+
+            # find start position of all pairs that we want to merge
+            positions = [i for (rank,i,pair) in pairs if pair == bigram]
+
             i = 0
-            while i < len(word):
-                try:
-                    j = word.index(first, i)
-                except ValueError:
-                    new_word.extend(word[i:])
-                    break
-                else:
-                    new_word.extend(word[i:j])
-                    i = j
-
-                if word[i] == first and i < len(word) - 1 and word[i + 1] == second:
-                    new_word.append(first + second)
-                    i += 2
-                else:
-                    new_word.append(word[i])
-                    i += 1
-            new_word = tuple(new_word)
+            new_word = []
+            bigram = ''.join(bigram)
+            for j in positions:
+                # merges are invalid if they start before current position. This can happen if there are overlapping pairs: (x x x -> xx x)
+                if j < i:
+                    continue
+                new_word.extend(word[i:j]) # all symbols before merged pair
+                new_word.append(bigram) # merged pair
+                i = j+2 # continue after merged pair
+            new_word.extend(word[i:]) # add all symbols until end of word
             word = new_word
-            if len(word) == 1:
-                break
-            else:
-                pairs = get_pairs(word)
-        word = " ".join(word)
-        self.cache[token] = word
-        return word
 
-    def _tokenize(self, text):
-        """Tokenize a string."""
-        bpe_tokens = []
-        for token in re.findall(self.pat, text):
-            token = "".join(
-                self.byte_encoder[b] for b in token.encode("utf-8")
-            )  # Maps all our bytes to unicode strings, avoiding control tokens of the BPE (spaces in our case)
-            bpe_tokens.extend(bpe_token for bpe_token in self.bpe(token).split(" "))
-        return bpe_tokens
+        # don't print end-of-word symbols
+        if word[-1] == '</w>':
+            word = word[:-1]
+        elif word[-1].endswith('</w>'):
+            word[-1] = word[-1][:-4]
+
+        word = tuple(word)
+        if vocab:
+            word = check_vocab_and_split(word, bpe_codes_reverse, vocab, separator)
+
+        cache[orig] = word
+        return word
+        
+    def segment_tokens(self, tokens, dropout=0):
+        """segment a sequence of tokens with BPE encoding"""
+        output = []
+        for word in tokens:
+            # eliminate double spaces
+            if not word:
+                continue
+            new_word = [out for segment in [word]
+                        for out in self.encode(segment,
+                                          self.codecs,
+                                          self.codecs_reverse,
+                                          None,
+                                          self.separator,
+                                          self.version,
+                                          self.cache,
+                                          dropout)]
+
+            for item in new_word[:-1]:
+                output.append(item + self.separator)
+            output.append(new_word[-1])
+
+        return output
+
+    def bpe_tokenize(self, text: str) -> List[str]:
+        """
+        Tokenize the text with bpe if codecs are already finalized.
+
+        Otherwise, returns the regularly split tokens that will train the bpe.
+
+        :param text:
+            Raw text to tokenize.
+        :return:
+            a list of tokens. Will use BPE once finalized.
+        """
+        text = text.replace('\n', ' __newln__ ')
+        tokens = self.splitter.findall(text)
+
+        if hasattr(self, 'bpe'):
+            return self.segment_tokens(tokens)
+        else:
+            return tokens
+
+    def _tokenize(self, text: str):
+        """
+        Return a sequence of tokens from the iterable.
+
+        Also handles special tokens for some tokenizers
+        """
+        if self.tokenizer in ('re', 'split', 'space'):
+            for special_token in self.additional_special_tokens:
+                index = text.find(special_token)
+                if index == -1:
+                    continue
+                left = text[:index]
+                right = text[index + len(special_token) :]
+                tokens_left = self._tokenize(left) if left else []
+                tokens_right = self._tokenize(right) if right else []
+                return tokens_left + [special_token] + tokens_right
+
+        if self.do_lower_case:
+            text = text.lower()
+
+        # calls the selected tokenizer function e.g. 're' => re_tokenize(text)
+        word_tokens = self.bpe_tokenize(text)
+
+        if self.max_ngram_size > 1:
+            # search for ngrams during parse-time
+            # TODO(ahm): support build-time ngrams using word2vec heuristic?
+            word_tokens = find_ngrams(self.tok2ind, word_tokens, self.max_ngram_size)
+        return word_tokens
     
     def _convert_token_to_id(self, token):
         """Converts a token (str) in an id using the vocab."""

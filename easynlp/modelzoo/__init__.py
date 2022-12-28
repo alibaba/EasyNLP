@@ -142,6 +142,7 @@ _import_structure = {
     "models.gpt2": ["GPT2Config", "GPT2Tokenizer"],
     "models.bloom": ["BloomConfig", "BloomTokenizerFast"],
     "models.roberta": ["ROBERTA_PRETRAINED_CONFIG_ARCHIVE_MAP", "RobertaConfig", "RobertaTokenizer"],
+    "models.transformer": ["TransformerTokenizer", "TransformerConfig"],
     "tokenization_utils": ["PreTrainedTokenizer"],
     "tokenization_utils_base": [
         "AddedToken",
@@ -332,6 +333,12 @@ if is_torch_available():
             "RobertaPreTrainedModel",
         ]
     )
+
+    _import_structure["models.transformer"].extend(
+        [
+            "TransformerModel",
+        ]
+    )
     
     _import_structure["optimization"] = [
         "Adafactor",
@@ -451,6 +458,7 @@ if TYPE_CHECKING:
     from .models.cnn import TextCNNEncoder, TextCNNConfig
     from .models.gpt2 import GPT2Config, GPT2Tokenizer
     from .models.roberta import ROBERTA_PRETRAINED_CONFIG_ARCHIVE_MAP, RobertaConfig, RobertaTokenizer
+    from .models.transformer import TransformerTokenizer, TransformerConfig
     from .tokenization_bloom_fast import BloomTokenizerFast
     from .configuration_bloom import BloomConfig
 
@@ -584,6 +592,10 @@ if TYPE_CHECKING:
             RobertaForTokenClassification,
             RobertaModel,
             RobertaPreTrainedModel,
+        )
+
+        from .models.transformer import (
+            TransformerModel
         )
 
         # Optimization
