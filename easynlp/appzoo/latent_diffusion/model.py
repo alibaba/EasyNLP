@@ -132,6 +132,6 @@ except Exception as ex:
         def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
             super().__init__()
 
-    print("出现如下异常 %s"%ex)
+    print(ex)
 
 
