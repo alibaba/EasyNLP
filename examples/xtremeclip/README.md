@@ -1,13 +1,5 @@
 # Tip-Adapter: Training-free Adaption of CLIP for Few-shot Classification
-Official implementation of "XtremeCLIP: Extremely Parameter-efficient Tuning for Low-resource Vision Language Understanding."
-
-## Introduction
-In this paper, we introduce a simple yet efficient paradigm for low-resource Visual Language Understanding tasks~(VLU) named XtremeCLIP, which involves very few trainable parameters to improve the generalization ability of the trained models.
-In our XtremeCLIP framework, we reformulate a series of VLU tasks as a unified open-book affinity-matching problem. Furthermore, to handle the insufficient supervised signals in small datasets, we adopt contrastive learning to utilize the implicit sorting information of ground-truth labels to provide more supervised cues.
-
-<div align="center">
-  <img width=900 src="XtremeCLIP.png"/>
-</div>
+Official implementation of "Few-shot CLIP"
 
 ## Requirements
 ### Installation
@@ -104,7 +96,6 @@ For FGVC
 ```bash
 python main_fgvc_matching.py --config configs/fgvc.yaml
 ```
-
 
 ## Acknowledgement
 This repo benefits from [Tip-Adapter](https://github.com/gaopengcuhk/Tip-Adapter) and [CLIP-Adapter](https://github.com/gaopengcuhk/CLIP-Adapter). Thanks for their wonderful works.
