@@ -106,8 +106,5 @@ python main_fgvc_matching.py --config configs/fgvc.yaml
 ```
 
 
-## Contributors
-[Renrui Zhang](https://github.com/ZrrSkywalker), Peng Gao
-
 ## Acknowledgement
 This repo benefits from [Tip-Adapter](https://github.com/gaopengcuhk/Tip-Adapter) and [CLIP-Adapter](https://github.com/gaopengcuhk/CLIP-Adapter). Thanks for their wonderful works.
