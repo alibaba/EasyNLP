@@ -120,6 +120,7 @@ try:
 
         def compute_loss(self, forward_outputs, label_ids, **kwargs):
             pass
+        
 except Exception as ex:
 
     class LatentDiffusion(Application):
