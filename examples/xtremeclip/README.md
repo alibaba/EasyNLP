@@ -1,4 +1,3 @@
-# Tip-Adapter: Training-free Adaption of CLIP for Few-shot Classification
 Official implementation of "Few-shot CLIP"
 
 ## Requirements
