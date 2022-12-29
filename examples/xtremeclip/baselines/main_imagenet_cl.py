@@ -1,0 +1,166 @@
+import os
+import random
+import argparse
+import yaml
+from tqdm import tqdm
+
+import torch
+import torch.nn.functional as F
+import torch.nn as nn
+
+from datasets.imagenet import ImageNet
+import clip
+from utils import *
+
+
+def get_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', default='/home/moming/code/VITCLIP/configs/imagenet.yaml', dest='config',
+                        help='settings of Tip-Adapter in yaml format')
+    args = parser.parse_args()
+
+    return args
+
+
+def run_tip_adapter(cfg, cache_keys, cache_values, test_features, test_labels, clip_weights):
+    
+    # Zero-shot CLIP
+    clip_logits = 100. * test_features @ clip_weights
+    acc = cls_acc(clip_logits, test_labels)
+    # for adapter_layer, layer_emb in zip(cache_layers, test_layers):
+    #     layer_logits = layer_emb @ adapter_layer.t()
+    #     layer_acc = cls_acc(layer_logits, test_labels)
+    print("\n**** Zero-shot CLIP's test accuracy: {:.2f}. ****\n".format(acc))
+
+    # Tip-Adapter
+    beta, alpha = cfg['init_beta'], cfg['init_alpha']
+    
+    affinity = test_features @ cache_keys
+    cache_logits = ((-1) * (beta - beta * affinity)).exp() @ cache_values
+
+    tip_logits = clip_logits + cache_logits * alpha
+    acc = cls_acc(tip_logits, test_labels)
+    print("**** Tip-Adapter's test accuracy: {:.2f}. ****\n".format(acc))
+
+    # Search Hyperparameters
+    # _ = search_hp(cfg, cache_keys, cache_values, test_features, test_labels, clip_weights)
+
+
+def run_tip_adapter_F(cfg, cache_keys, cache_values, test_features, test_labels, clip_weights, clip_model, train_loader_F):
+    device_id = clip_model.positional_embedding.device
+    # Enable the cached keys to be learnable
+    adapter = nn.Linear(cache_keys.shape[1], cache_keys.shape[0], bias=False).to(clip_model.dtype).cuda(device_id)
+    adapter.weight = nn.Parameter(clip_weights.t())
+
+    
+    optimizer = torch.optim.AdamW(adapter.parameters(), lr=2e-3, eps=1e-4)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, cfg['train_epoch'] * len(train_loader_F))
+    
+    beta, alpha = cfg['init_beta'], cfg['init_alpha']
+    best_acc, best_epoch = 0.0, 0
+
+    for train_idx in range(cfg['train_epoch']):
+        # Train
+        adapter.train()
+        correct_samples, all_samples = 0, 0
+        loss_list = []
+        print('Train Epoch: {:} / {:}'.format(train_idx, cfg['train_epoch']))
+
+        for i, (images, target) in enumerate(tqdm(train_loader_F)):
+            images, target = images.cuda(device_id), target.cuda(device_id)
+            with torch.no_grad():
+                image_features = clip_model.encode_image(images)
+                image_features = image_features/image_features.norm(dim=-1, keepdim=True)
+
+            logits = adapter(image_features)
+            log_prob = torch.softmax(logits, dim=-1)
+            pos_score = log_prob.gather(-1, target.unsqueeze(-1).repeat(1, logits.size(1)))
+            ones = torch.ones(pos_score.size()).cuda(pos_score.device)
+            loss_func = torch.nn.MarginRankingLoss(0.0, reduction='sum')
+            contr_loss = loss_func(pos_score, log_prob, ones)
+            loss = F.cross_entropy(logits, target) + contr_loss
+
+            acc = cls_acc(logits, target)
+            correct_samples += acc / 100 * len(logits)
+            all_samples += len(logits)
+            loss_list.append(loss.item())
+
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            scheduler.step()
+
+        current_lr = scheduler.get_last_lr()[0]
+        print('LR: {:.6f}, Acc: {:.4f} ({:}/{:}), Loss: {:.4f}'.format(current_lr, correct_samples / all_samples, correct_samples, all_samples, sum(loss_list)/len(loss_list)))
+
+        # Eval
+        adapter.eval()
+
+        test_logits = adapter(test_features)
+        acc = cls_acc(test_logits, test_labels)
+
+        print("**** Tip-Adapter-F's test accuracy: {:.2f}. ****\n".format(acc))
+        if acc > best_acc:
+            best_acc = acc
+            best_epoch = train_idx
+            torch.save(adapter.weight, cfg['cache_dir'] + "/best_F_" + str(cfg['shots']) + "shots.pt")
+    
+    adapter.weight = torch.load(cfg['cache_dir'] + "/best_F_" + str(cfg['shots']) + "shots.pt")
+    print(f"**** After fine-tuning, Tip-Adapter-F's best test accuracy: {best_acc:.2f}, at epoch: {best_epoch}. ****\n")
+
+    # Search Hyperparameters
+    # _ = search_hp(cfg, None, None, test_features, test_labels, clip_weights, adapter=adapter)
+
+
+def main():
+
+    # Load config file
+    args = get_arguments()
+    assert (os.path.exists(args.config))
+    
+    cfg = yaml.load(open(args.config, 'r'), Loader=yaml.Loader)
+
+    cache_dir = os.path.join('./caches', cfg['dataset'])
+    os.makedirs(cache_dir, exist_ok=True)
+    cfg['cache_dir'] = cache_dir
+
+    print("\nRunning configs.")
+    print(cfg, "\n")
+
+    # CLIP
+    clip_model, preprocess = clip.load(cfg['backbone'], 'cuda:0')
+    clip_model.eval()
+
+    # ImageNet dataset
+    random.seed(1)
+    torch.manual_seed(1)
+    
+    print("Preparing ImageNet dataset.")
+    imagenet = ImageNet(cfg['root_path'], cfg['shots'], preprocess)
+
+    test_loader = torch.utils.data.DataLoader(imagenet.test, batch_size=64, num_workers=8, shuffle=False)
+
+    train_loader_cache = torch.utils.data.DataLoader(imagenet.train, batch_size=256, num_workers=8, shuffle=False)
+    train_loader_F = torch.utils.data.DataLoader(imagenet.train, batch_size=16, num_workers=8, shuffle=True)
+
+    # Textual features
+    print("Getting textual features as CLIP's classifier.")
+    clip_weights = clip_classifier(imagenet.classnames, imagenet.template, clip_model)
+
+    # Construct the cache model by few-shot training set
+    print("\nConstructing cache model by few-shot visual features and labels.")
+    cache_keys, cache_values = build_cache_model(cfg, clip_model, train_loader_cache)
+
+    # Pre-load test features
+    print("\nLoading visual features and labels from test set.")
+    test_features, test_labels = pre_load_features(cfg, "test", clip_model, test_loader)
+
+    # ------------------------------------------ Tip-Adapter ------------------------------------------
+    # run_tip_adapter(cfg, cache_keys, cache_values, test_features, test_labels, clip_weights)
+
+    # ------------------------------------------ Tip-Adapter-F ------------------------------------------
+    run_tip_adapter_F(cfg, cache_keys, cache_values, test_features, test_labels, clip_weights, clip_model, train_loader_F)
+           
+
+if __name__ == '__main__':
+    main()

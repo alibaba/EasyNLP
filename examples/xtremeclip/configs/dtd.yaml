@@ -1,0 +1,33 @@
+# ------ root_path/dataset_name ------
+root_path: '/home/moming/code/VITCLIP'
+
+
+# ------ Load Cache and Features ------
+load_cache: False
+load_pre_feat: False
+#
+#load_cache: True
+#load_pre_feat: True
+
+
+# ------ Hyperparamters ------
+#search_hp: True
+# search_hp: False
+
+#search_scale: [13, 13]
+#search_step: [200, 20]
+#
+#init_beta: 1
+#init_alpha: 2
+
+
+# ------ Basic Config ------
+dataset: 'dtd'
+shots: 16
+backbone: 'ViT-B/16'
+
+lr: 0.002
+augment_epoch: 10
+train_epoch: 200
+gpu: "cuda:0"
+batch_size: 16
