@@ -7,12 +7,27 @@ import torch.nn.functional as F
 import torch.nn as nn
 import numpy as np
 import math
+import os
+from abc import abstractmethod
 
-from ...modeling_utils import PreTrainedModel
+from ...modeling_utils import PreTrainedModel, no_init_weights
 from .configuration_transformer import TransformerConfig
+from ...configuration_utils import PretrainedConfig
+from ...file_utils import (
+    FLAX_WEIGHTS_NAME,
+    TF2_WEIGHTS_NAME,
+    TF_WEIGHTS_NAME,
+    WEIGHTS_NAME,
+    is_offline_mode,
+    is_remote_url,
+    cached_path,
+    hf_bucket_url,
+)
 
 from .utils import checkpoint_wrapper, neginf, default, warn_once, PipelineHelper
-from parlai.core.torch_agent import DictionaryAgent
+from ...utils import logging
+
+logger = logging.get_logger(__name__)
 
 LAYER_NORM_EPS = 1e-5  # Epsilon for layer norm.
 
@@ -53,11 +68,11 @@ def get_n_positions_from_config(config: TransformerConfig):
         raise ValueError('n_positions must be positive')
     return n_positions
 
-def create_embeddings(dictionary, embedding_size, padding_idx):
+def create_embeddings(vocab_size, embedding_size, padding_idx):
     """
     Create and initialize word embeddings.
     """
-    e = nn.Embedding(len(dictionary), embedding_size, padding_idx)
+    e = nn.Embedding(vocab_size, embedding_size, padding_idx)
     nn.init.normal_(e.weight, mean=0, std=embedding_size**-0.5)
     nn.init.constant_(e.weight[padding_idx], 0)
     return e
@@ -975,15 +990,14 @@ class BaseTransformerDecoder(nn.Module, ABC):
         self,
         config: TransformerConfig,
         embedding: nn.Embedding,
-        dictionary: DictionaryAgent,
         n_positions: Optional[int] = None,
         **kwargs,
     ):
         super().__init__()
         self.config = config
-        self.pad_idx = dictionary[dictionary.null_token]
-        self.start_idx = dictionary[dictionary.start_token]
-        self.end_idx = dictionary[dictionary.end_token]
+        self.pad_idx = config.pad_token_id
+        self.start_idx = config.bos_token_id
+        self.end_idx = config.eos_token_id
 
         self.embedding_size = config.embedding_size
         self.ffn_size = config.ffn_size
@@ -1277,7 +1291,368 @@ class TransformerPreTrainedModel(PreTrainedModel):
     """
 
     config_class = TransformerConfig
-    # todo
+    base_model_prefix = "transformer"
+
+    def __init__(
+        self,
+        config,
+        padding_idx=0,
+        start_idx=1,
+        end_idx=2,
+        unknown_idx=3,
+        input_dropout=0,
+        longest_label=1,
+        **kwargs,
+    ):
+        super().__init__(config)
+        self.NULL_IDX = padding_idx
+        self.END_IDX = end_idx
+        self.START_IDX = start_idx
+        self.register_buffer('START', torch.LongTensor([start_idx]))
+        self.longest_label = longest_label
+
+    def _get_initial_forced_decoder_input(self, bsz: int, inputs: torch.LongTensor):
+        """
+        Return initial input to the decoder.
+
+        :param bsz:
+            batchsize
+        :param inputs:
+            inputs to decode
+
+        :return initial_input:
+            initial input for the decoder.
+        """
+        return torch.cat([self.START.detach().expand(bsz, 1), inputs], 1)
+
+    def decode_forced(self, encoder_states, ys):
+        """
+        Decode with a fixed, true sequence, computing loss.
+
+        Useful for training, or ranking fixed candidates.
+
+        :param ys:
+            the prediction targets. Contains both the start and end tokens.
+
+        :type ys:
+            LongTensor[bsz, time]
+
+        :param encoder_states:
+            Output of the encoder. Model specific types.
+
+        :type encoder_states:
+            model specific
+
+        :return:
+            pair (logits, choices) containing the logits and MLE predictions
+
+        :rtype:
+            (FloatTensor[bsz, ys, vocab], LongTensor[bsz, ys])
+        """
+        bsz = ys.size(0)
+        seqlen = ys.size(1)
+        inputs = ys.narrow(1, 0, seqlen - 1)
+        if (ys[:, 0] == self.START_IDX).any():
+            raise AssertionError(
+                "The Beginning of Sentence token is automatically added to the "
+                "label in decode_forced, but you included it in the label. This means "
+                "your model will have a double BOS token, which is probably not what "
+                "you intended."
+            )
+        inputs = self._get_initial_forced_decoder_input(bsz, inputs)
+        latent, _ = self.decoder(inputs, encoder_states)
+        logits = self.output(latent)
+        _, preds = logits.max(dim=2)
+        return logits, preds
+
+    @abstractmethod
+    def reorder_encoder_states(self, encoder_states, indices):
+        """
+        Reorder encoder states according to a new set of indices.
+
+        This is an abstract method, and *must* be implemented by the user.
+
+        Its purpose is to provide beam search with a model-agnostic interface for
+        beam search. For example, this method is used to sort hypotheses,
+        expand beams, etc.
+
+        For example, assume that encoder_states is an bsz x 1 tensor of values
+
+        .. code-block:: python
+
+            indices = [0, 2, 2]
+            encoder_states = [[0.1]
+                              [0.2]
+                              [0.3]]
+
+        then the output will be
+
+        .. code-block:: python
+
+            output = [[0.1]
+                      [0.3]
+                      [0.3]]
+
+        :param encoder_states:
+            output from encoder. type is model specific.
+
+        :type encoder_states:
+            model specific
+
+        :param indices:
+            the indices to select over. The user must support non-tensor
+            inputs.
+
+        :type indices: list[int]
+
+        :return:
+            The re-ordered encoder states. It should be of the same type as
+            encoder states, and it must be a valid input to the decoder.
+
+        :rtype:
+            model specific
+        """
+        pass
+
+    @abstractmethod
+    def reorder_decoder_incremental_state(self, incremental_state, inds):
+        """
+        Reorder incremental state for the decoder.
+
+        Used to expand selected beams in beam search. Unlike reorder_encoder_states,
+        implementing this method is optional. However, without incremental decoding,
+        decoding a single beam becomes O(n^2) instead of O(n), which can make
+        beam search impractically slow.
+
+        In order to fall back to non-incremental decoding, just return None from this
+        method.
+
+        :param incremental_state:
+            second output of model.decoder
+        :type incremental_state:
+            model specific
+        :param inds:
+            indices to select and reorder over.
+        :type inds:
+            LongTensor[n]
+
+        :return:
+            The re-ordered decoder incremental states. It should be the same
+            type as incremental_state, and usable as an input to the decoder.
+            This method should return None if the model does not support
+            incremental decoding.
+
+        :rtype:
+            model specific
+        """
+        pass
+
+    def forward(self, *xs, ys=None, prev_enc=None, maxlen=None, bsz=None):
+        """
+        Get output predictions from the model.
+
+        :param xs:
+            input to the encoder
+        :type xs:
+            LongTensor[bsz, seqlen]
+        :param ys:
+            Expected output from the decoder. Used
+            for teacher forcing to calculate loss.
+        :type ys:
+            LongTensor[bsz, outlen]
+        :param prev_enc:
+            if you know you'll pass in the same xs multiple times, you can pass
+            in the encoder output from the last forward pass to skip
+            recalcuating the same encoder output.
+        :param maxlen:
+            max number of tokens to decode. if not set, will use the length of
+            the longest label this model has seen. ignored when ys is not None.
+        :param bsz:
+            if ys is not provided, then you must specify the bsz for greedy
+            decoding.
+
+        :return:
+            (scores, candidate_scores, encoder_states) tuple
+
+            - scores contains the model's predicted token scores.
+              (FloatTensor[bsz, seqlen, num_features])
+            - candidate_scores are the score the model assigned to each candidate.
+              (FloatTensor[bsz, num_cands])
+            - encoder_states are the output of model.encoder. Model specific types.
+              Feed this back in to skip encoding on the next call.
+        """
+        assert ys is not None, "Greedy decoding in TGModel.forward no longer supported."
+        # TODO: get rid of longest_label
+        # keep track of longest label we've ever seen
+        # we'll never produce longer ones than that during prediction
+        self.longest_label = max(self.longest_label, ys.size(-1))
+
+        # use cached encoding if available
+        encoder_states = prev_enc if prev_enc is not None else self.encoder(*xs)
+
+        # use teacher forcing
+        scores, preds = self.decode_forced(encoder_states, ys)
+        return scores, preds, encoder_states
+    
+    @classmethod
+    def from_pretrained(cls, pretrained_model_name_or_path: Optional[Union[str, os.PathLike]], *model_args, **kwargs):
+        config = kwargs.pop("config", None)
+        state_dict = kwargs.pop("state_dict", None)
+        cache_dir = kwargs.pop("cache_dir", None)
+        from_tf = kwargs.pop("from_tf", False)
+        from_flax = kwargs.pop("from_flax", False)
+        force_download = kwargs.pop("force_download", False)
+        resume_download = kwargs.pop("resume_download", False)
+        proxies = kwargs.pop("proxies", None)
+        output_loading_info = kwargs.pop("output_loading_info", False)
+        local_files_only = kwargs.pop("local_files_only", False)
+        use_auth_token = kwargs.pop("use_auth_token", None)
+        revision = kwargs.pop("revision", None)
+        mirror = kwargs.pop("mirror", None)
+        from_pipeline = kwargs.pop("_from_pipeline", None)
+        from_auto_class = kwargs.pop("_from_auto", False)
+        _fast_init = kwargs.pop("_fast_init", True)
+
+        user_agent = {"file_type": "model", "framework": "pytorch", "from_auto_class": from_auto_class}
+        if from_pipeline is not None:
+            user_agent["using_pipeline"] = from_pipeline
+
+        if is_offline_mode() and not local_files_only:
+            logger.info("Offline mode: forcing local_files_only=True")
+            local_files_only = True
+
+        # Load config if we don't provide a configuration
+        if not isinstance(config, PretrainedConfig):
+            config_path = config if config is not None else pretrained_model_name_or_path
+            config, model_kwargs = cls.config_class.from_pretrained(
+                config_path,
+                *model_args,
+                cache_dir=cache_dir,
+                return_unused_kwargs=True,
+                force_download=force_download,
+                resume_download=resume_download,
+                proxies=proxies,
+                local_files_only=local_files_only,
+                use_auth_token=use_auth_token,
+                revision=revision,
+                _from_auto=from_auto_class,
+                _from_pipeline=from_pipeline,
+                **kwargs,
+            )
+        else:
+            model_kwargs = kwargs
+
+        # Load model
+        if pretrained_model_name_or_path is not None:
+            pretrained_model_name_or_path = str(pretrained_model_name_or_path)
+            if os.path.isdir(pretrained_model_name_or_path):
+                if from_tf and os.path.isfile(os.path.join(pretrained_model_name_or_path, TF_WEIGHTS_NAME + ".index")):
+                    # Load from a TF 1.0 checkpoint in priority if from_tf
+                    archive_file = os.path.join(pretrained_model_name_or_path, TF_WEIGHTS_NAME + ".index")
+                elif from_tf and os.path.isfile(os.path.join(pretrained_model_name_or_path, TF2_WEIGHTS_NAME)):
+                    # Load from a TF 2.0 checkpoint in priority if from_tf
+                    archive_file = os.path.join(pretrained_model_name_or_path, TF2_WEIGHTS_NAME)
+                elif from_flax and os.path.isfile(os.path.join(pretrained_model_name_or_path, FLAX_WEIGHTS_NAME)):
+                    # Load from a Flax checkpoint in priority if from_flax
+                    archive_file = os.path.join(pretrained_model_name_or_path, FLAX_WEIGHTS_NAME)
+                elif os.path.isfile(os.path.join(pretrained_model_name_or_path, WEIGHTS_NAME)):
+                    # Load from a PyTorch checkpoint
+                    archive_file = os.path.join(pretrained_model_name_or_path, WEIGHTS_NAME)
+                else:
+                    raise EnvironmentError(
+                        f"Error no file named {[WEIGHTS_NAME, TF2_WEIGHTS_NAME, TF_WEIGHTS_NAME + '.index', FLAX_WEIGHTS_NAME]} found in "
+                        f"directory {pretrained_model_name_or_path} or `from_tf` and `from_flax` set to False."
+                    )
+            elif os.path.isfile(pretrained_model_name_or_path) or is_remote_url(pretrained_model_name_or_path):
+                archive_file = pretrained_model_name_or_path
+            elif os.path.isfile(pretrained_model_name_or_path + ".index"):
+                if not from_tf:
+                    raise ValueError(
+                        f"We found a TensorFlow checkpoint at {pretrained_model_name_or_path + '.index'}, please set "
+                        "from_tf to True to load from this checkpoint."
+                    )
+                archive_file = pretrained_model_name_or_path + ".index"
+            else:
+                # set correct filename
+                if from_tf:
+                    filename = TF2_WEIGHTS_NAME
+                elif from_flax:
+                    filename = FLAX_WEIGHTS_NAME
+                else:
+                    filename = WEIGHTS_NAME
+
+                archive_file = hf_bucket_url(
+                    pretrained_model_name_or_path,
+                    filename=filename,
+                    revision=revision,
+                    mirror=mirror,
+                )
+
+            try:
+                # Load from URL or cache if already cached
+                resolved_archive_file = cached_path(
+                    archive_file,
+                    cache_dir=cache_dir,
+                    force_download=force_download,
+                    proxies=proxies,
+                    resume_download=resume_download,
+                    local_files_only=local_files_only,
+                    use_auth_token=use_auth_token,
+                    user_agent=user_agent,
+                )
+            except EnvironmentError as err:
+                logger.error(err)
+                msg = (
+                    f"Can't load weights for '{pretrained_model_name_or_path}'. Make sure that:\n\n"
+                    f"- '{pretrained_model_name_or_path}' is a correct model identifier listed on 'https://huggingface.co/models'\n\n"
+                    f"- or '{pretrained_model_name_or_path}' is the correct path to a directory containing a file named one of {WEIGHTS_NAME}, {TF2_WEIGHTS_NAME}, {TF_WEIGHTS_NAME}.\n\n"
+                )
+                raise EnvironmentError(msg)
+
+            if resolved_archive_file == archive_file:
+                logger.info(f"loading weights file {archive_file}")
+            else:
+                logger.info(f"loading weights file {archive_file} from cache at {resolved_archive_file}")
+        else:
+            resolved_archive_file = None
+
+        config.name_or_path = pretrained_model_name_or_path
+
+        # Instantiate model.
+        with no_init_weights(_enable=_fast_init):
+            model = cls(config, *model_args, **model_kwargs)
+
+        if state_dict is None:
+            try:
+                with open(resolved_archive_file, 'rb') as f:
+                    from . import pickle
+                    state_dict = torch.load(f, map_location=lambda cpu, _: cpu, pickle_module=pickle)
+            except Exception:
+                raise OSError(
+                    f"Unable to load weights from pytorch checkpoint file for '{pretrained_model_name_or_path}' "
+                    f"at '{resolved_archive_file}'"
+                    "If you tried to load a PyTorch model from a TF 2.0 checkpoint, please set from_tf=True. "
+                )
+        
+        model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+            model, state_dict, pretrained_model_name_or_path, _fast_init=_fast_init
+        )
+
+        # make sure token embedding weights are still tied if needed
+        model.tie_weights()
+
+        # Set model in evaluation mode to deactivate DropOut modules by default
+        model.eval()
+
+        if output_loading_info:
+            loading_info = {
+                "missing_keys": missing_keys,
+                "unexpected_keys": unexpected_keys,
+                "error_msgs": error_msgs,
+            }
+            return model, loading_info
+
+        return model
 
 class TransformerModel(TransformerPreTrainedModel):
     """
@@ -1288,7 +1663,6 @@ class TransformerModel(TransformerPreTrainedModel):
     def build_encoder(
         cls,
         config,
-        dictionary,
         embedding=None,
         padding_idx=None,
         reduction_type='mean',
@@ -1298,7 +1672,7 @@ class TransformerModel(TransformerPreTrainedModel):
         return encoder_class(
             config=config,
             embedding=embedding,
-            vocabulary_size=len(dictionary),
+            vocabulary_size=config.vocab_size,
             padding_idx=padding_idx,
             reduction_type=reduction_type,
             **kwargs,
@@ -1314,19 +1688,18 @@ class TransformerModel(TransformerPreTrainedModel):
     ) -> TransformerDecoder:
         return decoder_class(config=config, embedding=embedding, **kwargs)
 
-    def __init__(self, config: TransformerConfig, dictionary: DictionaryAgent, **kwargs):
-        self.pad_idx = dictionary[dictionary.null_token]
-        self.start_idx = dictionary[dictionary.start_token]
-        self.end_idx = dictionary[dictionary.end_token]
-        super().__init__(self.pad_idx, self.start_idx, self.end_idx, **kwargs)
+    def __init__(self, config: TransformerConfig, **kwargs):
+        self.pad_idx = config.pad_token_id
+        self.start_idx = config.bos_token_id
+        self.end_idx = config.eos_token_id
+        super().__init__(config, self.pad_idx, self.start_idx, self.end_idx, **kwargs)
         self.config = config
         self.embeddings = create_embeddings(
-            dictionary, config.embedding_size, self.pad_idx
+            config.vocab_size, config.embedding_size, self.pad_idx
         )
 
         self.encoder = self.build_encoder(
             config,
-            dictionary,
             self.embeddings,
             self.pad_idx,
             reduction_type=None,
@@ -1336,7 +1709,6 @@ class TransformerModel(TransformerPreTrainedModel):
             config,
             embedding=self.embeddings,
             decoder_class=TransformerDecoder,  # type: ignore
-            dictionary=dictionary,
         )
 
     def reorder_encoder_states(self, encoder_states, indices):

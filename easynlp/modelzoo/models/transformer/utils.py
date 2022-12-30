@@ -1,4 +1,4 @@
-from typing import List, Any, Dict, Tuple, Generator, Optional, TypeVar
+from typing import List, Any, Dict, Tuple, Generator, Optional, TypeVar, Set
 from dataclasses import dataclass
 from contextlib import contextmanager
 import threading
@@ -286,6 +286,8 @@ def default(val, default):
     shorthand for explicit None check for optional arguments.
     """
     return val if val is not None else default
+
+_seen_logs: Set[str] = set()
 
 def warn_once(msg: str) -> None:
     """
