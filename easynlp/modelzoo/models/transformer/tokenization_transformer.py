@@ -189,7 +189,7 @@ class TransformerTokenizer(PreTrainedTokenizer):
         super().__init__(
             do_lower_case=do_lower_case,
             do_basic_tokenize=do_basic_tokenize,
-            null_token=null_token,
+            pad_token=null_token,
             bos_token=bos_token,
             eos_token=eos_token,
             unk_token=unk_token,
@@ -197,7 +197,7 @@ class TransformerTokenizer(PreTrainedTokenizer):
             max_tokens=max_tokens,
             **kwargs,
         )
-        
+
         self.do_lower_case = do_lower_case
         self.max_ngram_size = max_ngram_size
         self.max_tokens = max_tokens

@@ -25,6 +25,10 @@ class TransformerConfig(PretrainedConfig):
 
     def __init__(
         self,
+        vocab_size=54944,
+        pad_token_id=0,
+        start_token_id=1,
+        end_token_id=2,
         embedding_size=512,
         ffn_size=2048,
         n_encoder_layers=-1,
@@ -47,8 +51,13 @@ class TransformerConfig(PretrainedConfig):
         checkpoint_activations=False,
         **kwargs
     ):
-        super().__init__(**kwargs)
+        super().__init__(
+            pad_token_id=pad_token_id,
+            bos_token_id=start_token_id,
+            eos_token_id=end_token_id,
+            **kwargs)
 
+        self.vocab_size = vocab_size
         self.embedding_size = embedding_size
         self.ffn_size = ffn_size
         self.n_encoder_layers = n_encoder_layers
