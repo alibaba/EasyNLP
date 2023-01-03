@@ -27,7 +27,7 @@ _import_structure = {
     "geep_classification.model": ["GEEPClassification"],
     "text2video_retrieval.model": ["Text2VideoRetrieval"],
     "clip.model": ["CLIPApp"],
-    "latent_diffusion.model": ["LatentDiffusion"],
+    "latent_diffusion.model": ["LatentDiffusion","StableDiffusion"],
     "wukong_clip.model": ["WukongCLIP"],
     "text2image_generation.model": ["TextImageGeneration", "TextImageGeneration_knowl"],
     "image2text_generation.model": ['VQGANGPTImageTextGeneration', 'CLIPGPTImageTextGeneration'], 
@@ -96,7 +96,7 @@ if TYPE_CHECKING:
     from .geep_classification.model import GEEPClassification
     from .text2video_retrieval.model import Text2VideoRetrieval
     from .clip.model import CLIPApp
-    from .latent_diffusion.model import LatentDiffusion
+    from .latent_diffusion.model import LatentDiffusion,StableDiffusion
     from .wukong_clip.model import WukongCLIP
     from .text2image_generation.model import TextImageGeneration, TextImageGeneration_knowl
     from .image2text_generation.model import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration

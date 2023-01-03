@@ -38,9 +38,13 @@ def image_to_base64(img):
 # generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
 # data = ['一只黄色的猫']
 
-# food
-generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
-data = ['小炒黄牛肉']
+# # food
+# generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
+# data = ['小炒黄牛肉']
+
+# sdm
+generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True})
+data = ['an astronaut, high quality']
 
 # 生成结果
 result=generator(data)

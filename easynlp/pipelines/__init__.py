@@ -20,7 +20,7 @@ import json
 import tarfile
 from typing import Any, List, Optional
 from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
-        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension, LatentDiffusion
+        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension, LatentDiffusion, StableDiffusion
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
         SequenceClassificationPipeline, TextImageGenerationPipeline, \
@@ -61,6 +61,11 @@ SUPPORTED_TASKS = {
         'impl': LatentDiffusionPipeline,
         'model_cls': LatentDiffusion,
         'default': 'chinese-ldm-general',
+    },
+    'stable-diffusion-general': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': StableDiffusion,
+        'default': 'stable-diffusion-general',
     },
     'chinese-ldm-fashion': {
         'impl': LatentDiffusionPipeline,
