@@ -6,7 +6,7 @@ In this paper, we introduce a novel paradigm for low-resource extractive summari
 we adopt a simple yet efficient model and align the training paradigm of summarization to textual paraphrasing to facilitate network-based transfer learning. 
 
 <div align="center">
-  <img width=900 src="ParaSumModelArchitecture.png"/>
+  <img width=500 src="ParaSumModelArchitecture.png"/>
 </div>
 
 ## Installation
