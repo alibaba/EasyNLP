@@ -22,7 +22,8 @@ Besides, please install dependencies:
 ```bash
 pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
-
+##Prepare for ROUGE
+We need to download the ROUGE files to automatically evaluate the model performance, you can utilize the project [pythonrouge](https://github.com/tagucci/pythonrouge). After cloning the project, you need to set the set the `_ROUGE_PATH=/PATH/TO/RELEASE-1.5.5` at the `20-th` line of `finetune_for_CNNDM/metrics.py`.
 ## Paraphrase Pre-training
 ### QQP for English Summarization dataset
 We have provide the training, validation and test dataset (i.e. QQP) for Paraphrase Pre-training for English Summarization Dataset.
