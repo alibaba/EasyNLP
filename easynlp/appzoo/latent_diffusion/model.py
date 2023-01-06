@@ -34,6 +34,12 @@ try:
     from ...modelzoo.models.latent_diffusion.wukong import FrozenWukongCLIPTextEmbedder
     from ...modelzoo.models.latent_diffusion.plms import PLMSSampler
     from ...modelzoo.models.latent_diffusion.RRDBNet_arch import ESRGAN
+    from ...modelzoo.models.latent_diffusion.modules import FrozenCLIPEmbedder
+
+    Key_Class_Mapping={
+        'FrozenCLIPEmbedder':FrozenCLIPEmbedder,
+        'AutoencoderKL':AutoencoderKL
+    }
 
     class LatentDiffusion(Application):
 
@@ -120,19 +126,106 @@ try:
 
         def compute_loss(self, forward_outputs, label_ids, **kwargs):
             pass
-        
-except Exception as ex:
 
-    class LatentDiffusion(Application):
+    class StableDiffusion(Application):
 
         @classmethod
         def from_pretrained(self, pretrained_model_name_or_path,args, user_defined_parameters={}):
-            instance=LatentDiffusion(pretrained_model_name_or_path,args,user_defined_parameters)
+            instance=StableDiffusion(pretrained_model_name_or_path,args,user_defined_parameters)
             return instance
 
         def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
             super().__init__()
 
-    print(ex)
+            if pretrained_model_name_or_path is not None:
+                pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
+                # 先处理配置，再决定后续如何加载权重
+                with open(pretrained_model_name_or_path+'/config.json','r') as config_handle:
+                    self.config=json.load(config_handle)
+                    all_params=self.config["model"]["params"]
+                    first_stage_class=Key_Class_Mapping[all_params["first_stage_config"]["target"]]
+                    all_params["first_stage_model"]=first_stage_class(**all_params["first_stage_config"]["params"])
+                    cond_stage_class=Key_Class_Mapping[all_params["cond_stage_config"]["target"]]
+                    all_params["cond_stage_config"]["params"]={"version":os.path.join(pretrained_model_name_or_path,'clip-vit-large-patch14')}
+                    all_params["cond_stage_model"]=cond_stage_class(**all_params["cond_stage_config"]["params"])
+                checkpoint = torch.load(os.path.join(pretrained_model_name_or_path,'pytorch_model.bin'), map_location=torch.device('cpu'))
+                sd = checkpoint["state_dict"]
+                self.model=LatentDiffusionModel(**all_params)
+                m, u = self.model.load_state_dict(sd, strict=False)
+                # print('----------------------------------------------')
+                if len(m) > 0:
+                    print("missing keys:")
+                    print(m)
+                if len(u) > 0:
+                    print("unexpected keys:")
+                    print(u)
+                self.model.eval()
+                _device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+                self.model = self.model.to(_device)
+                self.sr_model = ESRGAN(os.path.join(pretrained_model_name_or_path,'RRDB_ESRGAN_x4.pth'), _device)
+                self.sampler = PLMSSampler(self.model)
+                self.scale=float(user_defined_parameters.pop('scale',5.0))
+                self.n_samples=int(user_defined_parameters.pop('n_samples',4))
+                self.n_iter=int(user_defined_parameters.pop('n_iter',1))
+                self.H=int(user_defined_parameters.pop('H',512))
+                self.W=int(user_defined_parameters.pop('W',512))
+                self.ddim_steps=int(user_defined_parameters.pop('ddim_steps',100))
+                self.ddim_eta=float(user_defined_parameters.pop('ddim_eta',0.0))
+                self.image_prefix=user_defined_parameters.pop('image_prefix','./')
+                self.do_sr=user_defined_parameters.pop('do_sr',False)
+                if 'write_image' in user_defined_parameters:
+                    self.write_image=True
+                else:
+                    self.write_image=False
+
+        def forward(self, inputs):
+            all_samples=list()
+            for one_input in inputs:
+                with torch.no_grad():
+                    with self.model.ema_scope():
+                        uc = None
+                        if self.scale != 1.0:
+                            uc = self.model.get_learned_conditioning(self.n_samples * [""])
+                        for n in trange(self.n_iter, desc="Sampling"):
+                            c = self.model.get_learned_conditioning(self.n_samples * [one_input["text"]])
+                            shape = [4, self.H//8, self.W//8]
+                            samples_ddim, _ = self.sampler.sample(S=self.ddim_steps,
+                                                            conditioning=c,
+                                                            batch_size=self.n_samples,
+                                                            shape=shape,
+                                                            verbose=False,
+                                                            unconditional_guidance_scale=self.scale,
+                                                            unconditional_conditioning=uc,
+                                                            eta=self.ddim_eta)
+                            x_samples_ddim = self.model.decode_first_stage(samples_ddim)
+                            x_samples_ddim = torch.clamp((x_samples_ddim+1.0)/2.0, min=0.0, max=1.0)
+                            if self.do_sr is True:
+                                x_samples_ddim = self.sr_model.super_resolution(x_samples_ddim)
+                            all_samples.append({'image_tensor':x_samples_ddim,'text':one_input["text"]})
+            return all_samples
+
+        def compute_loss(self, forward_outputs, label_ids, **kwargs):
+            pass
+
+except Exception as ex:
+
+    class LatentDiffusion(Application):
+        @classmethod
+        def from_pretrained(self, pretrained_model_name_or_path,args, user_defined_parameters={}):
+            instance=LatentDiffusion(pretrained_model_name_or_path,args,user_defined_parameters)
+            return instance
+        def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
+            super().__init__()
+
+
+    class StableDiffusion(Application):
+        @classmethod
+        def from_pretrained(self, pretrained_model_name_or_path,args, user_defined_parameters={}):
+            instance=StableDiffusion(pretrained_model_name_or_path,args,user_defined_parameters)
+            return instance
+        def __init__(self, pretrained_model_name_or_path=None,args=None,user_defined_parameters=None):
+            super().__init__()
+
+    print("出现如下异常 %s"%ex)
 
 
