@@ -1,5 +1,6 @@
 import torch.nn as nn
-from transformers import CLIPTokenizer, CLIPTextModel
+from ..clip.tokenization_clip import CLIPTokenizer
+from ..clip.modeling_clip import CLIPTextModel
 
 class AbstractEncoder(nn.Module):
     def __init__(self):

@@ -146,7 +146,8 @@ try:
                     first_stage_class=Key_Class_Mapping[all_params["first_stage_config"]["target"]]
                     all_params["first_stage_model"]=first_stage_class(**all_params["first_stage_config"]["params"])
                     cond_stage_class=Key_Class_Mapping[all_params["cond_stage_config"]["target"]]
-                    all_params["cond_stage_model"]=cond_stage_class()#暂时未使用参数
+                    all_params["cond_stage_config"]["params"]={"version":os.path.join(pretrained_model_name_or_path,'clip-vit-large-patch14')}
+                    all_params["cond_stage_model"]=cond_stage_class(**all_params["cond_stage_config"]["params"])
                 checkpoint = torch.load(os.path.join(pretrained_model_name_or_path,'pytorch_model.bin'), map_location=torch.device('cpu'))
                 sd = checkpoint["state_dict"]
                 self.model=LatentDiffusionModel(**all_params)
