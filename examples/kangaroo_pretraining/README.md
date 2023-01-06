@@ -2,7 +2,7 @@
 
 # Kangaroo
 
-This cod is the re-implementation of Kangaroo, a Unified Framework  for Learning Knowledge-Enhanced Language Representations in Closed Domains.
+This code is the re-implementation of Kangaroo, a Unified Framework  for Learning Knowledge-Enhanced Language Representations in Closed Domains.
 
 ### Quick start
 

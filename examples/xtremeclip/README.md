@@ -1,4 +1,4 @@
-Official implementation of "Few-shot CLIP"
+# Official implementation of Few-shot CLIP
 
 ## Requirements
 ### Installation
