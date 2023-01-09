@@ -5,10 +5,6 @@ Official implementation of "ParaSum: A Contrastive Paraphrasing Framework for Lo
 In this paper, we introduce a novel paradigm for low-resource extractive summarization, namely ParaSum, which reformulates text summarization as textual paraphrasing to minimize its training gap with Pre-trained Language Models (PLMs) in order to better probe knowledge of PLMs to improve the performance of summarization. Furthermore, to relax the requisition of training data,
 we adopt a simple yet efficient model and align the training paradigm of summarization to textual paraphrasing to facilitate network-based transfer learning. 
 
-<div align="center">
-  <img width=900 src="ParaSumModelArchitecture.png"/>
-</div>
-
 ## Installation
 Our CUDA version is 11.2; Python version is 3.8; our torch versions are as follows:
 ```bash
