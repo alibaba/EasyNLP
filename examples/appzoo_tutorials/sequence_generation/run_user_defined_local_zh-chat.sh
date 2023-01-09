@@ -1,64 +1,14 @@
 export CUDA_VISIBLE_DEVICES=$1
 
-if [ ! -f ./chat_train.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/chat_train.tsv
-fi
-
-if [ ! -f ./chat_dev.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/generation/chat_dev.tsv
-fi
-
-if [ ! -f ./config_ds_glm_large_generation.json ]; then
-  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/public/mg/config_ds_glm_large_generation.json
-  wget https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easynlp_modelzoo/public/mg/config_ds_glm_10B_generation.json
-fi
-
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 MASTER_ADDR=localhost
-GPUS_PER_NODE=2
+GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0
 
 DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 
 mode=$2
-
-MODEL_ARGS="--block-lm \
-            --cloze-eval \
-            --task-mask \
-            --fix-command-token"
-
-TRAIN_ARGS="--lr-decay-style linear \
-            --label-smoothing 0.1"
-
-COMMON_ARGS="--save-interval 10000 \
-             --log-interval 50 \
-             --eval-interval 3000 \
-             --eval-iters 100"
-
-TASK_ARGS="--length-penalty 0.7 \
-           --select-topk \
-           --eval-batch-size 1"
-
-TASK_NAME=chinesegen
-MEGATRON_PARAMETERS="--deepspeed \
-            --deepspeed_config ./config_ds_glm_large_generation.json \
-            --finetune \
-            --task ${TASK_NAME} \
-            --data-dir ./ \
-            --checkpoint-activations \
-            --no-load-lr-scheduler \
-            --num-workers 1 \
-            --model-parallel-size 1 \
-            $MODEL_ARGS \
-            $TRAIN_ARGS \
-            $COMMON_ARGS \
-            $TASK_ARGS \
-            --fp16 \
-            --overwrite
-            "
-
-# MEGATRON_PARAMETERS is only valid for megatron models such as mg/glm-large-chinese
 
 if [ "$mode" = "predict" ]; then
   
@@ -75,7 +25,6 @@ if [ "$mode" = "predict" ]; then
     --checkpoint_dir=./finetuned_zh_model-chat  \
     --micro_batch_size=32 \
     --sequence_length=128 \
-    $MEGATRON_PARAMETERS \
     --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=8 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=15 num_return_sequences=5 num_beam_groups=5 diversity_penalty=1.0'
 
 elif [ "$mode" = "train" ]; then
@@ -94,17 +43,9 @@ elif [ "$mode" = "train" ]; then
     --micro_batch_size 64 \
     --sequence_length 128 \
     --epoch_num 3   \
-    $MEGATRON_PARAMETERS \
-    --save_checkpoint_steps 3000 \
+    --save_checkpoint_steps 500 \
     --export_tf_checkpoint_type none \
     --user_defined_parameters 'pretrain_model_name_or_path=alibaba-pai/gpt2-chitchat-zh language=zh copy=false max_encoder_length=128 min_decoder_length=4 max_decoder_length=128 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
-
-# alibaba-pai/mt5-title-generation-zh
-# hfl/randeng-summary-generation-base-zh
-# hfl/randeng-summary-generation-large-zh
-# alibaba-pai/randeng-title-generation-base-zh
-# alibaba-pai/randeng-title-generation-large-zh
-# mg/glm-generation-large-zh
 
 elif [ "$mode" = "evaluate" ]; then
 
@@ -121,7 +62,6 @@ elif [ "$mode" = "evaluate" ]; then
     --micro_batch_size=32 \
     --sequence_length=512 \
     --export_tf_checkpoint_type none \
-    $MEGATRON_PARAMETERS \
     --user_defined_parameters 'copy=false language=zh max_encoder_length=512 min_decoder_length=8 max_decoder_length=64 no_repeat_ngram_size=2 num_beams=5 num_return_sequences=5'
 
 fi

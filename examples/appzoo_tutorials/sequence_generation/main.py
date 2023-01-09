@@ -23,6 +23,7 @@ if __name__ == "__main__":
     print('log: starts to init...\n')
     # os.environ["NCCL_DEBUG_SUBSYS"] = "ALL"
     # os.environ["NCCL_DEBUG"] = "INFO"
+
     args = get_ds_args()
 
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
@@ -43,7 +44,12 @@ if __name__ == "__main__":
             print('*'*80)
             print('APEX is required. Please refer to examples/appzoo_tutorials/sequence_generation/README.md.')
             print('*'*80)
-        from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
+        if args.task == 'chinesegen':
+            from easynlp.appzoo.sequence_generation.mg_seq2seq.finetune import main
+        elif args.task == 'language_model':
+            from easynlp.appzoo.language_modeling.mg_lm.finetune import main
+        else:
+            print('%s task is not implemente. Select from "chinesegen, language_model"' % args.task)
         from easynlp.modelzoo.mg_utils.pretrain_glm import initialize_distributed, set_random_seed
     else:
         is_mg = False
@@ -57,6 +63,11 @@ if __name__ == "__main__":
 
     initialize_easynlp()
     args = get_args()
+    
+    # user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+    # model_info = user_defined_parameters.get('pretrain_model_name_or_path', '').split('/')
+    # pretrained_model_name_or_path = user_defined_parameters.get('pretrain_model_name_or_path', None)
+
     if args.mode == "predict":
         extra_para = {'pretrained_model_name_or_path':args.pretrained_model_name_or_path, 'max_encoder_length':args.sequence_length}
         predictor = SequenceGenerationPredictor(model_dir=args.checkpoint_dir, model_cls=SequenceGeneration,
