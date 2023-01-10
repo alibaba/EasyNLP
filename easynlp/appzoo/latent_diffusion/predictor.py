@@ -28,7 +28,7 @@ from einops import rearrange
 from .model import LatentDiffusion
 
 class LatentDiffusionPredictor(Predictor):
-    def __init__(self, model_dir, model_cls=None, args={},user_defined_parameters={}):
+    def __init__(self, model_dir, model_cls=None, args={},user_defined_parameters={},**kwargs):
         super().__init__()
         try:
             self.args=vars(args)
@@ -65,7 +65,7 @@ class LatentDiffusionPredictor(Predictor):
         return in_data
 
     def predict(self, in_data):
-        forward_result=self.ld(in_data)
+        forward_result=self.ld.forward_predict(in_data)
         return forward_result
 
     def postprocess(self, result):

@@ -50,6 +50,7 @@ _import_structure = {
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
     "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
     "information_extraction.evaluator": ["InformationExtractionEvaluator"],
+    "latent_diffusion.evaluator": ["LatentDiffusionModelEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -82,6 +83,8 @@ _import_structure = {
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "machine_reading_comprehension.data": ["MachineReadingComprehensionDataset"],
     "information_extraction.data": ["InformationExtractionDataset"],
+    "latent_diffusion.data": ["LdmDataset"],
+
     "dataset": ['BaseDataset', 'GeneralDataset', 'load_dataset', 'list_datasets'],
     "api": ['get_application_dataset', 'get_application_model', 'get_application_model_for_evaluation', 'get_application_evaluator', 'get_application_predictor'],
 }
@@ -119,6 +122,7 @@ if TYPE_CHECKING:
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
     from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
     from .information_extraction.evaluator import InformationExtractionEvaluator
+    from .latent_diffusion.evaluator import LatentDiffusionModelEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor
@@ -151,6 +155,7 @@ if TYPE_CHECKING:
     from .sequence_generation.data import SequenceGenerationDataset
     from .machine_reading_comprehension.data import MachineReadingComprehensionDataset
     from .information_extraction.data import InformationExtractionDataset
+    from .latent_diffusion.data import LdmDataset
 
     from .dataset import BaseDataset, GeneralDataset
     from .dataset import load_dataset, list_datasets
