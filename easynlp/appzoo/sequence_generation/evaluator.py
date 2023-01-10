@@ -47,6 +47,7 @@ class SequenceGenerationEvaluator(object):
         self.num_return_sequences = int(self.user_defined_parameters.get("num_return_sequences", 5))
 
     def evaluate(self, model):
+        model.eval()
         y_preds = list()
         y_trues = list()
         for i, batch in enumerate(tqdm(self.valid_loader)):
@@ -64,17 +65,16 @@ class SequenceGenerationEvaluator(object):
                 eos_token_id = model._tokenizer.eos_token_id
             else:
                 eos_token_id = model._tokenizer.sep_token_id
-            with torch.no_grad():
-                gen = model.generate(input_ids=batch["input_ids"],
-                                     attention_mask=batch["attention_mask"],
-                                     num_beams=1,
-                                     min_length=self.min_decoder_length,
-                                     max_length=max_decoder_length,
-                                     early_stopping=True,
-                                     no_repeat_ngram_size=self.no_repeat_ngram_size,
-                                     num_return_sequences=1,
-                                     decoder_start_token_id=model._tokenizer.cls_token_id,
-                                     eos_token_id=eos_token_id)
+            gen = model.generate(input_ids=batch["input_ids"],
+                                    attention_mask=batch["attention_mask"],
+                                    num_beams=1,
+                                    min_length=self.min_decoder_length,
+                                    max_length=max_decoder_length,
+                                    early_stopping=True,
+                                    no_repeat_ngram_size=self.no_repeat_ngram_size,
+                                    num_return_sequences=1,
+                                    decoder_start_token_id=model._tokenizer.cls_token_id,
+                                    eos_token_id=eos_token_id)
             if self.decoder_only:
                 pred_tmp=[model._tokenizer.decode(t[batch["attention_mask"][0].sum().item():], skip_special_tokens=True) for t in gen]
             else:

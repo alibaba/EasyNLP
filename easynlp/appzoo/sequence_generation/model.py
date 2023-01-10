@@ -5,6 +5,7 @@ import os
 import re
 from ...modelzoo import AutoConfig, AutoModel, AutoTokenizer, AutoModelForSeq2SeqLM, BertTokenizer, GPT2LMHeadModel
 from ..application import Application
+from ...utils import losses
 
 def sequence_padding(inputs, length=None, padding=0):
     """Padding the sequence to same length
@@ -136,17 +137,15 @@ class SequenceGeneration(Application):
 
             self._model=AutoModelForSeq2SeqLM.from_pretrained(local_path,state_dict=state_dict_without_prefix)
             
-            self.loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
-
     def forward(self, inputs):
         if self.is_gpt2 or 'bloom' in self.pretrained_model_name_or_path:
             prob = self._model(input_ids=inputs["input_ids"],
-                        attention_mask=inputs["attention_mask"])[0]            
+                        attention_mask=inputs["attention_mask"])[0]
         else:
             prob = self._model(input_ids=inputs["input_ids"],
                         decoder_input_ids=inputs["decoder_input_ids"],
                         attention_mask=inputs["attention_mask"],
-                        decoder_attention_mask=inputs["decoder_attention_mask"])[0]        
+                        decoder_attention_mask=inputs["decoder_attention_mask"])[0]  
         slice_len=prob.size()[1]
         label_len=inputs['decoder_attention_mask'].size()[1]
         if label_len<slice_len:
@@ -157,17 +156,23 @@ class SequenceGeneration(Application):
             prob = prob.reshape((-1, prob.size(-1)))[mask]
             labels = inputs['decoder_input_ids'][:, 1:slice_len].reshape(-1)[mask]
         else:
-            try:
-                sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id)[1][::2]
-            except TypeError:
-                # For compatibility with bloom
-                sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0])[1][::2]
-            decoder_input_len = inputs["decoder_attention_mask"][:, 1:slice_len].sum(1)
-            prob_list = [prob[i, sep_pos[i]+1:sep_pos[i]+1+decoder_input_len[i]] for i in range(inputs["input_ids"].size()[0])]
-            prob = torch.cat(prob_list)
-            pred_len_list = [i.size(0) for i in prob_list]
-            labels = torch.cat([inputs['decoder_input_ids'][i, 1: pred_len_list[i]+1] for i in range(inputs["input_ids"].size()[0])])
-            
+            labels = inputs["input_ids"][:, 1:].cpu().cuda()
+            labels[labels==0] = -100
+            prob = prob[:, :-1]
+            prob = prob.reshape(-1, prob.shape[-1])
+            labels = labels.reshape(1, -1).squeeze(0)
+            # prob = torch.cat([i.squeeze(0) for i in prob], 0)
+            # labels = torch.cat([i for i in labels],1)
+            # try:
+            #     sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.sep_token_id)[1][::2]
+            # except TypeError:
+            #     # For compatibility with bloom
+            #     sep_pos = torch.where(inputs["input_ids"]==self._tokenizer.encode(self._tokenizer.eos_token)[0])[1][::2]
+            # decoder_input_len = inputs["decoder_attention_mask"][:, 1:slice_len].sum(1)
+            # prob_list = [prob[i, sep_pos[i]+1:sep_pos[i]+1+decoder_input_len[i]] for i in range(inputs["input_ids"].size()[0])]
+            # prob = torch.cat(prob_list)
+            # pred_len_list = [i.size(0) for i in prob_list]
+            # labels = torch.cat([inputs['decoder_input_ids'][i, 1: pred_len_list[i]+1] for i in range(inputs["input_ids"].size()[0])])
         return {
             "prob": prob,
             "labels": labels
@@ -183,7 +188,9 @@ class SequenceGeneration(Application):
                  no_repeat_ngram_size=2,
                  num_return_sequences=5,
                  decoder_start_token_id=101,
-                 eos_token_id=102):
+                 eos_token_id=102,
+                 num_beam_groups=None,
+                 diversity_penalty=None):
         
         copy_flag=False
         if ("copy" in self.user_defined_parameters) and (self.user_defined_parameters['copy']==True):
@@ -214,13 +221,14 @@ class SequenceGeneration(Application):
                                     num_return_sequences=num_return_sequences,
                                     eos_token_id=eos_token_id,
                                     decoder_start_token_id=decoder_start_token_id,
-                                    bad_words_ids=new_bad)
-            gen_con.extend(gen.cpu().tolist())
+                                    bad_words_ids=new_bad, 
+                                    num_beam_groups=num_beam_groups, 
+                                    diversity_penalty=diversity_penalty)
+            gen_con.extend(gen.tolist())
 
         return gen_con
 
     def compute_loss(self, model_outputs, inputs):
-        loss = self.loss_fct(model_outputs["prob"], model_outputs["labels"])
         return {
-            "loss": loss
+            "loss": losses.cross_entropy(model_outputs["prob"], model_outputs["labels"])
         }

@@ -55,7 +55,7 @@ class Statistics(object):
         """
         logger.info(
             'Epoch [{:2}/{:2}], step [{}/{}], lr {:.6f}, {:.2f} s'.format(
-                epoch, self.epoch_num, step, self.total_training_steps,
+                epoch + 1, self.epoch_num, step, self.total_training_steps,
                 learning_rate, self.elapsed_time()))
 
         for key, val in self.loss_dict.items():

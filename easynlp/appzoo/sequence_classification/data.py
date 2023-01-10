@@ -48,7 +48,7 @@ class ClassificationDataset(BaseDataset):
                  label_name=None,
                  second_sequence=None,
                  label_enumerate_values=None,
-                 user_defined_parameters=None,
+                 user_defined_parameters={},
                  *args,
                  **kwargs):
         super().__init__(data_file,

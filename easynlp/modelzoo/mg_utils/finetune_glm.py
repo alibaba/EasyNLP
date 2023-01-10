@@ -278,14 +278,14 @@ def _train(model, optimizer, lr_scheduler, forward_step,
         # Checkpointing at the end of each epoch.
         if args.save and (epoch + 1) % args.save_epoch == 0:
             save_checkpoint(args.iteration, model, optimizer, lr_scheduler, args, only_changed_parameters=True)
-
+        
         # Callback at the end of each epoch.
         if end_of_epoch_callback is not None and (epoch + 1) % args.eval_epoch == 0:
             score_dict = end_of_epoch_callback(model, epoch, summary_writer=summary_writer)
             if score_dict:
                 validation_metric = args.validation_metric if args.validation_metric else list(score_dict.keys())[0]
                 validation_score = score_dict[validation_metric]
-                if best_iteration is None or validation_score > best_score:
+                if best_iteration is None or ('loss' not in validation_metric and validation_score > best_score) or ('loss' in validation_metric and validation_score < best_score):
                     best_iteration = args.iteration
                     best_score = validation_score
                     print_rank_0(f"Found best {validation_metric} {best_score} at {best_iteration}")
@@ -318,7 +318,7 @@ def finetune(args, train_valid_datasets_provider, model_kwargs, forward_step=fin
     train_block_dataloader, valid_block_dataloader = None, None
     if train_valid_datasets_provider is not None and args.epochs > 0:
         if mpu.get_model_parallel_rank() == 0:
-            train_dataset, valid_dataset = train_valid_datasets_provider(args, tokenizer)
+            train_dataset, valid_dataset = train_valid_datasets_provider(args=args, tokenizer=tokenizer)
             train_dataloader, valid_dataloader = _build_train_valid_dataloaders(train_dataset, valid_dataset, args)
             if args.no_validation:
                 valid_dataloader = None
@@ -330,7 +330,6 @@ def finetune(args, train_valid_datasets_provider, model_kwargs, forward_step=fin
         if mpu.get_model_parallel_rank() != 0:
             args.train_iters_per_epoch = train_iters[0].item()
             args.train_iters = args.epochs * args.train_iters_per_epoch
-
             train_dataloader = FakeDataloader(args.train_iters_per_epoch)
             if args.no_validation:
                 valid_dataloader = None
