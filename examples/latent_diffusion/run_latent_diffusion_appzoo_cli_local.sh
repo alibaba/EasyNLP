@@ -17,12 +17,12 @@ if [ "$mode" = "train" ]; then
     --second_sequence=imgbase64 \
     --checkpoint_dir=./finetune_model \
     --learning_rate=4e-5 \
-    --epoch_num=5 \
+    --epoch_num=3 \
     --random_seed=42 \
     --logging_steps=100 \
     --save_checkpoint_steps=1000 \
     --sequence_length=288 \
-    --micro_batch_size=2 \
+    --micro_batch_size=16 \
     --app_name=latent_diffusion \
     --user_defined_parameters='
         pretrain_model_name_or_path=alibaba-pai/pai-diffusion-general-slim-zh
@@ -46,7 +46,7 @@ elif [ "$mode" = "predict" ]; then
       --logging_steps=100 \
       --save_checkpoint_steps=500 \
       --sequence_length=32 \
-      --micro_batch_size=2 \
+      --micro_batch_size=16 \
       --app_name=latent_diffusion \
       --user_defined_parameters="n_samples=2 write_image=True image_prefix=./output/" 
 fi
