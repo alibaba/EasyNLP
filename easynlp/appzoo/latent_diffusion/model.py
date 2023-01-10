@@ -24,9 +24,16 @@ from typing import List, Optional
 import json
 from tqdm import tqdm, trange
 from PIL import Image
+from collections import OrderedDict 
 from ...utils import losses, get_pretrain_model_path, get_args
 from ..application import Application
+class Config_Wrapper:
+    def __init__(self,json_data):
+        self.json_data=json_data
 
+    def to_json_string(self):
+        json_str=json.dumps(self.json_data,ensure_ascii=False)
+        return json_str
 try:
 
     from ...modelzoo.models.latent_diffusion.ddpm import LatentDiffusionModel
@@ -55,19 +62,24 @@ try:
                 pretrained_model_name_or_path = get_pretrain_model_path(pretrained_model_name_or_path)
                 # 先处理配置，再决定后续如何加载权重
                 with open(pretrained_model_name_or_path+'/config.json','r') as config_handle:
-                    self.config=json.load(config_handle)
+                    self.raw_config=json.load(config_handle)
                     # print(self.config)
                 checkpoint = torch.load(os.path.join(pretrained_model_name_or_path,'pytorch_model.bin'), map_location=torch.device('cpu'))
                 
-                sd = checkpoint["state_dict"]
-                all_params=self.config["model"]["params"]
+                if "state_dict" not in checkpoint:
+                    sd = checkpoint
+                else:
+                    sd = checkpoint["state_dict"]
+                all_params=self.raw_config["model"]["params"]
+            
+                self.config=Config_Wrapper(self.raw_config)# used by trainer
 
                 # 权重放在此处统一管理
                 # 一阶段权重
-                all_params["first_stage_config"]["params"]["ckpt_path"]=os.path.join(pretrained_model_name_or_path,'first_stage_kl_f8.ckpt')
+                all_params["first_stage_config"]["params"]["ckpt_path"]=None
                 all_params["first_stage_model"]=AutoencoderKL(**all_params["first_stage_config"]["params"])
                 # 条件阶段权重
-                all_params["cond_stage_config"]["params"]["version"]=os.path.join(pretrained_model_name_or_path,'wukong_vit_l_14_clip')
+                all_params["cond_stage_config"]["params"]["version"]= pretrained_model_name_or_path
                 all_params["cond_stage_model"]=FrozenWukongCLIPTextEmbedder(**all_params["cond_stage_config"]["params"])
                 
                 self.model=LatentDiffusionModel(**all_params)
@@ -79,6 +91,18 @@ try:
                 if len(u) > 0:
                     print("unexpected keys:")
                     print(u)
+                    new_state_dict = OrderedDict()
+                    for k, v in sd.items():
+                        name = k[6:]   # remove `model.`
+                        new_state_dict[name] = v 
+                    i,j = self.model.load_state_dict(new_state_dict,strict=False)
+                    print('Reload new_state dict: Done')
+                    if len(i) > 0:
+                        print("missing keys:")
+                        print(i)
+                    if len(j) > 0:
+                        print("unexpected keys:")
+                        print(j)
                 self.model.eval()
                 _device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
                 self.model = self.model.to(_device)
@@ -97,8 +121,28 @@ try:
                     self.write_image=True
                 else:
                     self.write_image=False
-                    
+            
+
         def forward(self, inputs):
+            x, c = self.model.get_input(inputs, self.model.first_stage_key)
+            t = torch.randint(0, self.model.num_timesteps, (x.shape[0],), device=self.model.device).long()
+            if self.model.cond_stage_trainable:
+                c = self.model.get_learned_conditioning(c)
+            if self.model.shorten_cond_schedule:  # TODO: drop this option
+                tc = self.model.cond_ids[t].to(self.device)
+                c = self.model.q_sample(x_start=c, t=tc, noise=torch.randn_like(c.float()))
+
+            noise = torch.randn_like(x)
+            x_noisy = self.model.q_sample(x_start=x, t=t, noise=noise)
+
+            logits = self.model.apply_model(x_noisy, t, c)
+
+            target = noise
+
+            return logits, target
+
+        @torch.no_grad()    
+        def forward_predict(self, inputs):
             all_samples=list()
             for one_input in inputs:
                 with torch.no_grad():
@@ -124,8 +168,19 @@ try:
                             all_samples.append({'image_tensor':x_samples_ddim,'text':one_input["text"]})
             return all_samples
 
-        def compute_loss(self, forward_outputs, label_ids, **kwargs):
-            pass
+        def compute_loss(self, logits, target, mean=True):
+            if self.model.loss_type == 'l1':
+                loss = (target - logits).abs()
+                if mean:
+                    loss = loss.mean()
+            elif self.model.loss_type == 'l2':
+                if mean:
+                    loss = torch.nn.functional.mse_loss(target, logits)
+                else:
+                    loss = torch.nn.functional.mse_loss(target, logits, reduction='none')
+            else:
+                raise NotImplementedError("unknown loss type '{loss_type}'")
+            return {'loss': loss}
 
     class StableDiffusion(Application):
 

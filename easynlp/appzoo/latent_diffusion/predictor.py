@@ -65,7 +65,7 @@ class LatentDiffusionPredictor(Predictor):
         return in_data
 
     def predict(self, in_data):
-        forward_result=self.ld(in_data)
+        forward_result=self.ld.forward_predict(in_data)
         return forward_result
 
     def postprocess(self, result):
