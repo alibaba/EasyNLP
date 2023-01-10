@@ -26,6 +26,7 @@ from ...file_utils import (
 
 from .utils import checkpoint_wrapper, neginf, default, warn_once, PipelineHelper
 from ...utils import logging
+from .beam_search import SearchBlocklist, BeamSearch
 
 logger = logging.get_logger(__name__)
 
@@ -1324,6 +1325,55 @@ class TransformerPreTrainedModel(PreTrainedModel):
             initial input for the decoder.
         """
         return torch.cat([self.START.detach().expand(bsz, 1), inputs], 1)
+    
+
+    def _get_initial_decoder_input(
+        self, bsz: int, beam_size: int, dev: torch.device
+    ) -> torch.LongTensor:
+        """
+        Return initial input to the decoder.
+
+        :param bsz:
+            batchsize
+        :param beam_size:
+            beam size
+        :param dev:
+            device to send input to.
+
+        :return initial_input:
+            initial input for the decoder
+        """
+        return (
+            torch.LongTensor([self.START_IDX])  # type: ignore
+            .expand(bsz * beam_size, 1)
+            .to(dev)
+        )
+    
+    def _get_next_decoder_input(
+        self,
+        prev_input: torch.LongTensor,
+        selection: torch.LongTensor,
+        incr_state_inds: torch.LongTensor,
+    ) -> torch.LongTensor:
+        """
+        Return next decoder input.
+
+        :param prev_input:
+            previous input to decoder
+        :param selection:
+            token selections for current timestep
+        :param inds:
+            incremental state indices
+
+        :return decoder input:
+            return decoder input for next timestep
+        """
+        prev_input = torch.index_select(prev_input, 0, incr_state_inds)
+        decoder_input = torch.cat([prev_input, selection], dim=-1)
+        return decoder_input
+    
+    def _generation_activation(self, score: torch.Tensor) -> torch.float32:
+        return F.log_softmax(score, dim=-1, dtype=torch.float32)
 
     def decode_forced(self, encoder_states, ys):
         """
@@ -1751,3 +1801,72 @@ class TransformerModel(TransformerPreTrainedModel):
         # we need to force their probability of generation to be 0.
         output[:, :, self.start_idx] = neginf(output.dtype)
         return output
+
+    def _generate(
+        self,
+        input,
+        beam_size,
+        max_ts
+    ):
+        encoder_states = self.encoder(input)
+        if input is not None:
+            dev = input.device
+            bsz = 1
+            context_list = input
+            beam_block_list = SearchBlocklist()
+            beam = BeamSearch(beam_size,
+                min_length=self.config.beam_min_length,
+                block_ngram=self.config.beam_block_ngram,
+                length_penalty=0.65,
+                padding_token=self.NULL_IDX,
+                bos_token=self.START_IDX,
+                eos_token=self.END_IDX,
+                device=dev,
+                verbose=False,
+                gpu_beam_blocking=False).set_batch_context(
+                    context_list, 0, False
+                ).set_block_list(beam_block_list)
+
+        # repeat encoder outputs and decoder inputs
+        decoder_input = self._get_initial_decoder_input(1, beam_size, dev)
+
+        inds = torch.arange(bsz).to(dev).unsqueeze(1).repeat(1, beam_size).view(-1)
+        encoder_states = self.reorder_encoder_states(encoder_states, inds)
+        incr_state = None
+
+        for _ts in range(max_ts):
+            if beam.is_done():
+                break
+
+            score, incr_state = self.decoder(decoder_input, encoder_states, incr_state)
+            # only need the final hidden state to make the word prediction
+            score = score[:, -1:, :]
+            score = self.output(score)
+            # score contains softmax scores for bsz * beam_size samples
+            score = score.view(bsz, beam_size, -1)
+            # if self.temperature != 1.0:
+            #     score.div_(self.temperature)
+            # force to fp32 to avoid overflow issues during search calculations
+            score = self._generation_activation(score)  # type: ignore
+            
+            if not beam.is_done():
+                    beam.advance(score[0], _ts)
+            incr_state_inds = torch.cat(
+                [
+                    beam_size * 0 + beam.get_backtrack_from_current_step()
+                ]
+            )
+            incr_state = self.reorder_decoder_incremental_state(
+                incr_state, incr_state_inds
+            )
+            selection = torch.cat(
+                [beam.get_output_from_current_step()]
+            ).unsqueeze(-1)
+            decoder_input = self._get_next_decoder_input(
+                decoder_input, selection, incr_state_inds
+            )
+
+        # get the top prediction for each beam (i.e. minibatch sample)
+        beam_preds_scores = [beam.get_rescored_finished()[0]]
+
+        return beam_preds_scores

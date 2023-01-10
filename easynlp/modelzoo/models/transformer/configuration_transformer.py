@@ -49,6 +49,8 @@ class TransformerConfig(PretrainedConfig):
         output_scaling=1.0,
         n_segments=0,
         checkpoint_activations=False,
+        beam_min_length=20,
+        beam_block_ngram=3,
         **kwargs
     ):
         super().__init__(
@@ -78,3 +80,5 @@ class TransformerConfig(PretrainedConfig):
         self.output_scaling = output_scaling
         self.n_segments = n_segments
         self.checkpoint_activations = checkpoint_activations
+        self.beam_min_length = beam_min_length
+        self.beam_block_ngram = beam_block_ngram

@@ -18,6 +18,7 @@ from . import (
     cnn,
     gpt2,
     roberta,
+    transformer,
     geep,
     clip,
     wukong,

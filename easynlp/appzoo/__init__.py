@@ -33,6 +33,7 @@ _import_structure = {
     "video2text_generation.model": ['CLIPGPTFrameTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
     "machine_reading_comprehension.model": ["MachineReadingComprehension"],
+    "open_domain_dialogue.model": ["OpenDomainDialogue"],
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
     "sequence_labeling.evaluator": ['SequenceLabelingEvaluator'],
@@ -61,6 +62,7 @@ _import_structure = {
     "video2text_generation.predictor": ['CLIPGPTFrameTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
     "machine_reading_comprehension.predictor": ["MachineReadingComprehensionPredictor"],
+    "open_domain_dialogue.predictor": ["OpenDomainDialoguePredictor"],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
     "language_modeling.data": ['LanguageModelingDataset'],
@@ -94,6 +96,7 @@ if TYPE_CHECKING:
     from .video2text_generation.model import CLIPGPTFrameTextGeneration
     from .sequence_generation.model import SequenceGeneration
     from .machine_reading_comprehension.model import MachineReadingComprehension
+    from .open_domain_dialogue.model import OpenDomainDialogue
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
     from .sequence_labeling.evaluator import SequenceLabelingEvaluator
@@ -122,6 +125,7 @@ if TYPE_CHECKING:
     from .video2text_generation.predictor import CLIPGPTFrameTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
     from .machine_reading_comprehension.predictor import MachineReadingComprehensionPredictor
+    from .open_domain_dialogue.predictor import OpenDomainDialoguePredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
     from .sequence_labeling.data import SequenceLabelingDataset, SequenceLabelingAutoDataset

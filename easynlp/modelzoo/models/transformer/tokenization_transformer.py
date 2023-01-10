@@ -201,6 +201,7 @@ class TransformerTokenizer(PreTrainedTokenizer):
         self.do_lower_case = do_lower_case
         self.max_ngram_size = max_ngram_size
         self.max_tokens = max_tokens
+        self.null_token = null_token
         self.tokenizer = tokenizer
         self.separator = separator
 
@@ -360,4 +361,6 @@ class TransformerTokenizer(PreTrainedTokenizer):
 
     def _convert_id_to_token(self, index):
         """Converts an index (integer) in a token (str) using the vocab."""
-        return self.ids_to_tokens.get(index, self.unk_token)
+        token = self.ids_to_tokens.get(index, self.unk_token)
+        token = '\n' if token == '__newln__' else token
+        return token
