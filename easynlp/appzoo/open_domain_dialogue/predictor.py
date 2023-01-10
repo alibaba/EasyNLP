@@ -176,6 +176,8 @@ class OpenDomainDialoguePredictor(Predictor):
         self.beam_size = 10
         self.delimiter = '__newln__'
         self.delimiter_tok = [self.tokenizer._convert_token_to_id(self.delimiter)]
+        self.END_IDX = self.model.backbone.END_IDX
+        self.START_IDX = self.model.backbone.START_IDX
 
 
         print(
@@ -196,8 +198,8 @@ class OpenDomainDialoguePredictor(Predictor):
         try:
             reply = self.get_human_reply()
         except StopIteration:
-            self.reset()
             self.finalize_episode()
+            self.reset()
             return
         
         if self.turn_cnt == 0 and self.p2 != '':
@@ -228,7 +230,7 @@ class OpenDomainDialoguePredictor(Predictor):
                 input, self.beam_size, maxlen
             )
             preds, _, _ = zip(*beam_preds_scores)
-            text = self.tokenizer.decode(preds[0].tolist()) if preds is not None else None
+            text = self._v2t(preds[0].tolist()) if preds is not None else None
             reply['text'] = text
         
         return reply
@@ -375,3 +377,12 @@ class OpenDomainDialoguePredictor(Predictor):
             return vec
         else:
             return vec[-truncate:]
+    
+    def _v2t(self, vec):
+        new_vec = []
+        for i in vec:
+            if i == self.END_IDX:
+                break
+            elif i != self.START_IDX:
+                new_vec.append(i)
+        return self.tokenizer.decode(new_vec)
