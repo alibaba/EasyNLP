@@ -174,7 +174,7 @@ class OpenDomainDialoguePredictor(Predictor):
         self.text_truncate = 512
         self.label_truncate = 128
         self.beam_size = 10
-        self.delimiter = '\n'
+        self.delimiter = '__newln__'
         self.delimiter_tok = [self.tokenizer._convert_token_to_id(self.delimiter)]
 
 
@@ -221,7 +221,6 @@ class OpenDomainDialoguePredictor(Predictor):
             input = temp
 
         with torch.no_grad():
-            self.model.eval()
             beam_preds_scores = None
             preds = None
             maxlen = self.label_truncate
@@ -290,7 +289,7 @@ class OpenDomainDialoguePredictor(Predictor):
         for r in rows:
             context1 = []
             context2 = []
-            all_context = r.split('\t')
+            all_context = r.strip('\n').split('\t')
             context1.append('your persona: ' + all_context[0])
             context1.append('your persona: ' + all_context[1])
             context2.append('your persona: ' + all_context[2])

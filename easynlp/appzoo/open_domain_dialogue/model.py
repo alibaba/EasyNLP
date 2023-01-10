@@ -11,4 +11,5 @@ class OpenDomainDialogue(Application):
     
     def _generate(self, input, beam_size, max_ts):
         model_input = input['text_vec'].unsqueeze(0)
+        self.backbone.eval()
         return self.backbone._generate(model_input, beam_size, max_ts)

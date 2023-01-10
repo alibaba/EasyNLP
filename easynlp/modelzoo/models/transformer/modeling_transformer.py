@@ -32,6 +32,8 @@ logger = logging.get_logger(__name__)
 
 LAYER_NORM_EPS = 1e-5  # Epsilon for layer norm.
 
+FP16_PAD_SIZE = 8
+
 def create_position_codes(n_pos, dim, out):
     """
     Create positional codes and store them in ``out``.
@@ -1544,6 +1546,17 @@ class TransformerPreTrainedModel(PreTrainedModel):
         scores, preds = self.decode_forced(encoder_states, ys)
         return scores, preds, encoder_states
     
+    def _pad_tensor(self, input: torch.Tensor, fp16friendly=True):
+        n = input.shape[0]
+        lens = input.shape[1]
+        t = lens
+        if fp16friendly and (t % FP16_PAD_SIZE != 0):
+            t += FP16_PAD_SIZE - (t % FP16_PAD_SIZE)
+        output = input.new(n, t)
+        output.fill_(self.NULL_IDX)
+        output[0, :lens] = input
+        return output
+    
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path: Optional[Union[str, os.PathLike]], *model_args, **kwargs):
         config = kwargs.pop("config", None)
@@ -1671,6 +1684,8 @@ class TransformerPreTrainedModel(PreTrainedModel):
         # Instantiate model.
         with no_init_weights(_enable=_fast_init):
             model = cls(config, *model_args, **model_kwargs)
+        
+        model.half()
 
         if state_dict is None:
             try:
@@ -1685,7 +1700,7 @@ class TransformerPreTrainedModel(PreTrainedModel):
                 )
         
         model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
-            model, state_dict, pretrained_model_name_or_path, _fast_init=_fast_init
+            model, state_dict['model'], pretrained_model_name_or_path, _fast_init=_fast_init
         )
 
         # make sure token embedding weights are still tied if needed
@@ -1808,6 +1823,8 @@ class TransformerModel(TransformerPreTrainedModel):
         beam_size,
         max_ts
     ):
+        input = self._pad_tensor(input)
+
         encoder_states = self.encoder(input)
         if input is not None:
             dev = input.device
