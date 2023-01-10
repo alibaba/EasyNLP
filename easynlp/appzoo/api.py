@@ -51,6 +51,8 @@ from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
 from easynlp.appzoo import InformationExtractionEvaluator
+from easynlp.appzoo import LatentDiffusionModelEvaluator
+
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
@@ -80,6 +82,8 @@ from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
 from easynlp.appzoo import InformationExtractionDataset
+from easynlp.appzoo import LdmDataset
+
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -124,7 +128,9 @@ Dataset_Mapping = {
     'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
     'machine_reading_comprehension': MachineReadingComprehensionDataset,
-    'information_extraction': InformationExtractionDataset
+    'information_extraction': InformationExtractionDataset,
+    'latent_diffusion':LdmDataset
+
 }
 
 ModelMapping = {
@@ -160,7 +166,9 @@ ModelMapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
-    'information_extraction': InformationExtractionModel
+    'information_extraction': InformationExtractionModel,
+    'latent_diffusion':LatentDiffusion,
+
 }
 
 Eval_Model_Mapping = {
@@ -190,7 +198,9 @@ Eval_Model_Mapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
-    'information_extraction': InformationExtractionModel
+    'information_extraction': InformationExtractionModel,
+    'latent_diffusion': LatentDiffusion
+
 }
 
 Evaluator_Mapping = {
@@ -220,7 +230,8 @@ Evaluator_Mapping = {
     'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
     'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
-    'information_extraction': InformationExtractionEvaluator
+    'information_extraction': InformationExtractionEvaluator,
+    'latent_diffusion': LatentDiffusionModelEvaluator
 }
 
 Predictor_Mapping = {
