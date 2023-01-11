@@ -41,6 +41,12 @@ class Trainer(object):
         self.args = get_args()
         # for ckbert contrast learning
         self.contrast_learning_flag = kwargs.get('contrast_learning_flag', False)
+        # for save latent diffusion model
+        if kwargs.get('user_defined_parameters',False):
+            self.reset_model_state_flag = kwargs.get('user_defined_parameters',False).get('reset_model_state_flag',False)
+        else:
+            self.reset_model_state_flag=False
+                    
         if self.args.use_torchacc == True and is_torchx_available() == False:
             raise ValueError('No TrochACC Running Environment!')
         if self.args.use_torchacc:
@@ -54,7 +60,6 @@ class Trainer(object):
                 self._scaler = GradScaler()
             else:
                 self._scaler = torch.cuda.amp.GradScaler()
-
         self.optimizer_type = self.args.optimizer_type # add by ruihan.wjn
         self.max_grad_norm = self.args.max_grad_norm # add by ruihan.wjn
         self._model = None
@@ -498,14 +503,35 @@ class Trainer(object):
                     spiece_path,
                     os.path.join(get_dir_name(self.args.checkpoint_dir),
                                 'spiece.model'))
-
+            # save super-resolution model
+            if  os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'RRDB_ESRGAN_x4.pth')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'RRDB_ESRGAN_x4.pth'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'RRDB_ESRGAN_x4.pth'))
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
             self._global_step + 1)
-
         with io.open(os.path.join(self.args.checkpoint_dir, model_to_save_prefix + '.bin'), 'wb') \
                 as output_model_file:
-            torch.save(self.model_module.state_dict(), output_model_file)
+            if self.reset_model_state_flag:
+                from collections import OrderedDict
+                new_state_dict = OrderedDict()
+                for k, v in self.model_module.state_dict().items():
+                    name = k[6:]   # remove `model.`
+                    new_state_dict[name] = v
+                torch.save(new_state_dict, output_model_file)
+            else:    
+                torch.save(self.model_module.state_dict(), output_model_file)
 
         meta_data = {
             'epoch': self._current_epoch,
