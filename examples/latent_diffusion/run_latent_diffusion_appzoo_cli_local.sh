@@ -29,6 +29,7 @@ if [ "$mode" = "train" ]; then
         size=256
         text_len=32
         img_len=256
+        reset_model_state_flag=True
       ' 
 
 
@@ -36,7 +37,7 @@ elif [ "$mode" = "predict" ]; then
   easynlp \
       --mode=predict \
       --worker_gpu=1 \
-      --tables=T2I_test.text.tsv \
+      --tables=T2I_test.tsv \
       --input_schema=idx:str:1,text:str:1 \
       --output_schema=text \
       --outputs=./output_placeholder.tsv \

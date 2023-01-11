@@ -96,18 +96,6 @@ try:
                 if len(u) > 0:
                     print("unexpected keys:")
                     print(u)
-                    new_state_dict = OrderedDict()
-                    for k, v in sd.items():
-                        name = k[6:]   # remove `model.`
-                        new_state_dict[name] = v 
-                    i,j = self.model.load_state_dict(new_state_dict,strict=False)
-                    print('************************Load new_state_dict Done************************')
-                    if len(i) > 0:
-                        print("missing keys:")
-                        print(i)
-                    if len(j) > 0:
-                        print("unexpected keys:")
-                        print(j)
                 self.model.eval()
                 _device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
                 self.model = self.model.to(_device)
@@ -139,9 +127,7 @@ try:
 
             noise = torch.randn_like(x)
             x_noisy = self.model.q_sample(x_start=x, t=t, noise=noise)
-
             logits = self.model.apply_model(x_noisy, t, c)
-
             target = noise
 
             return logits, target

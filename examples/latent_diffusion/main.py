@@ -77,12 +77,6 @@ if __name__ == "__main__":
         user_defined_parameters=user_defined_parameters,
         is_training=False)
 
-    if args.mode =='train':
-        if not os.path.exists(os.path.join(get_dir_name(args.checkpoint_dir),'RRDB_ESRGAN_x4.pth')):
-            shutil.copy(os.path.join(pretrained_model_name_or_path,'RRDB_ESRGAN_x4.pth'),os.path.join(get_dir_name(args.checkpoint_dir),'RRDB_ESRGAN_x4.pth'))
-        if not os.path.exists(os.path.join(get_dir_name(args.checkpoint_dir),'vocab.txt')):
-            shutil.copy(os.path.join(pretrained_model_name_or_path,'vocab.txt'),os.path.join(get_dir_name(args.checkpoint_dir),'vocab.txt'))
-
     model = LatentDiffusion(pretrained_model_name_or_path=pretrained_model_name_or_path,args=args,user_defined_parameters=user_defined_parameters)
     
     evaluator = LatentDiffusionModelEvaluator(valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters)
