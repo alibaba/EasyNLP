@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 setup(
     # Metadata
     name='pai-easynlp',
-    version='0.1.0',
+    version='0.1.1',
     python_requires='>=3.6',
     author='PAI NLP',
     author_email='easynlp@list.alibaba-inc.com',
