@@ -23,8 +23,8 @@ def image_to_base64(img):
 # data = ['黄色连帽卫衣']
 
 # # art
-generator = pipeline('chinese-ldm-art',pipeline_params={"n_samples":1,"do_sr":True})
-data = ['有群牛羊在吃草']
+# generator = pipeline('chinese-ldm-art',pipeline_params={"n_samples":1,"do_sr":True})
+# data = ['有群牛羊在吃草']
 
 # # poem
 # generator = pipeline('chinese-ldm-poem',pipeline_params={"n_samples":1,"do_sr":True})
@@ -35,8 +35,8 @@ data = ['有群牛羊在吃草']
 # data = ['粉色头发，穿裙子的少女']
 
 # # pet
-# generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
-# data = ['一只黄色的猫']
+generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
+data = ['一只黄色的猫']
 
 # # food
 # generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
