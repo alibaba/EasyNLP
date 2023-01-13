@@ -156,7 +156,7 @@ try:
                             x_samples_ddim = torch.clamp((x_samples_ddim+1.0)/2.0, min=0.0, max=1.0)
                             if self.do_sr is True:
                                 x_samples_ddim = self.sr_model.super_resolution(x_samples_ddim)
-                            all_samples.append({'image_tensor':x_samples_ddim,'text':one_input["text"]})
+                            all_samples.append({'idx':one_input["idx"],'image_tensor':x_samples_ddim,'text':one_input["text"]})
             return all_samples
 
         def compute_loss(self, logits, target, mean=True):
@@ -224,7 +224,7 @@ try:
                 else:
                     self.write_image=False
 
-        def forward(self, inputs):
+        def forward_predict(self, inputs):
             all_samples=list()
             for one_input in inputs:
                 with torch.no_grad():
