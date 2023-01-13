@@ -69,6 +69,7 @@ class LatentDiffusionPredictor(Predictor):
         return forward_result
 
     def postprocess(self, result):
+        all_result=list()
         if self.ld.write_image is True:
             os.makedirs(self.ld.image_prefix, exist_ok=True)
             for idx1,one in enumerate(result):
@@ -80,4 +81,20 @@ class LatentDiffusionPredictor(Predictor):
                 for idx2,x_sample in enumerate(one['image_tensor']):
                     x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
                     Image.fromarray(x_sample.astype(np.uint8)).save(os.path.join(cur_path, f"{idx2:04}.png"))
-        return result
+                    img = Image.fromarray(x_sample.astype(np.uint8))
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='png')
+                    byte_data = img_buffer.getvalue()
+                    base64_str = base64.b64encode(byte_data)
+                    all_result.append({'idx':one["idx"],'text':one["text"],'gen_imgbase64':base64_str,'image_tensor':one['image_tensor']})
+        else:
+            for idx1,one in enumerate(result):
+                for idx2,x_sample in enumerate(one['image_tensor']):
+                    x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
+                    img = Image.fromarray(x_sample.astype(np.uint8))
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='png')
+                    byte_data = img_buffer.getvalue()
+                    base64_str = base64.b64encode(byte_data)
+                    all_result.append({'idx':one["idx"],'text':one["text"],'gen_imgbase64':base64_str,'image_tensor':one['image_tensor']})
+        return all_result
