@@ -272,6 +272,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
 
     group.add_argument(
         '--micro_batch_size',
+        '--train_batch_size',
         type=int,
         default=2,
         help='Batch size per model instance (local batch size). '
