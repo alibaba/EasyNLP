@@ -18,7 +18,7 @@ mode=$2
 
 if [ "$mode" = "predict" ]; then
     python -m torch.distributed.launch $DISTRIBUTED_ARGS ./main.py \
-      --mode predict \
+      --mode=predict \
       --worker_gpu=1 \
       --tables=T2I_test.tsv \
       --input_schema=idx:str:1,text:str:1 \
