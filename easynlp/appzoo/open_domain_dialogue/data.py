@@ -37,9 +37,12 @@ class OpenDomainDialogueDataset(BaseDataset):
     def convert_single_row_to_example(self, row):
         sentences = row.split('\t')
         episodes = []
+        history = ''
         for turn in range(len(sentences) // 2):
             text = sentences[turn * 2].replace('\\n', '\n')
+            text = history + text
             label = sentences[(turn * 2) + 1].replace('\\n', '\n')
+            history = text + label
             if text == '__null__' or label == '__null__':
                 break
             encoding = self.tokenizer(text,
