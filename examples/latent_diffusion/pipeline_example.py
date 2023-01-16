@@ -35,17 +35,19 @@ def image_to_base64(img):
 # data = ['粉色头发，穿裙子的少女']
 
 # # pet
-generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
-data = ['一只黄色的猫']
+# generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
+# data = ['一只黄色的猫']
 
 # # food
 # generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
 # data = ['小炒黄牛肉']
 
 # sdm
-# generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True})
-# data = ['an astronaut, high quality']
+generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True})
+data = ['an astronaut, high quality']
 
+##修改采样图片数量及采样步长
+# generator.reset(n_samples=2,sample_steps=50)
 # 生成结果
 result=generator(data)
 for one_prompt in result:
@@ -55,6 +57,6 @@ for one_prompt in result:
         pil_image=Image.fromarray(one_image_tensor.astype(np.uint8))
         # 保存图片
         pil_image.save(os.path.join('./',one_prompt['text']+f"_{idx:04}.png"))
-        # 生成base64
+        #生成base64
         # b64_image=image_to_base64(pil_image)
         # print(b64_image)
