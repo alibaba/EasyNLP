@@ -114,7 +114,11 @@ try:
                     self.write_image=True
                 else:
                     self.write_image=False
-            
+                    
+        def reset_params(self,n_samples,sample_steps):
+            self.n_samples = n_samples
+            self.ddim_steps = sample_steps
+            print("Reset image sampling number and steps params Done.")
 
         def forward(self, inputs):
             x, c = self.model.get_input(inputs, self.model.first_stage_key)
@@ -223,7 +227,11 @@ try:
                     self.write_image=True
                 else:
                     self.write_image=False
-
+        def reset_params(self,n_samples,sample_steps):
+            self.n_samples = n_samples
+            self.ddim_steps = sample_steps
+            print("Reset image sampling number and steps params Done.")
+            
         def forward_predict(self, inputs):
             all_samples=list()
             for one_input in inputs:

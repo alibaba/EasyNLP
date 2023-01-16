@@ -49,6 +49,9 @@ class LatentDiffusionPredictor(Predictor):
         self.sequence_length = self.args.pop("sequence_length", 128)
         self.ld=model_cls.from_pretrained(model_dir,self.args, self.user_defined_parameters)
         self.gen_cnt=0
+        
+    def reset(self,n_samples,sample_steps):
+        self.ld.reset_params(n_samples,sample_steps)
 
     def preprocess(self, in_data):
         if not in_data:
