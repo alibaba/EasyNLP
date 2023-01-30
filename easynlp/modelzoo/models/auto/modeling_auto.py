@@ -91,7 +91,8 @@ from .configuration_auto import (
     T5Config,
     BloomConfig,
     RandengConfig,
-    KangarooConfig
+    KangarooConfig,
+    TransformerConfig
 )
 from ..kbert.modeling_kbert import (
     KBertForMaskedLM,
@@ -131,6 +132,7 @@ from ..mt5.modeling_mt5 import MT5ForConditionalGeneration, MT5Model
 from ..pegasus.modeling_pegasus import PegasusForCausalLM, PegasusForConditionalGeneration, PegasusModel
 from ..t5.modeling_t5 import T5ForConditionalGeneration, T5Model
 from ..bloom.modeling_bloom import BloomForCausalLM, BloomModel, BloomForTokenClassification, BloomForSequenceClassification, BloomPreTrainedModel
+from ..transformer.modeling_transformer import TransformerModel
 
 logger = logging.get_logger(__name__)
 
@@ -164,6 +166,7 @@ MODEL_MAPPING = OrderedDict(
         (PegasusConfig, PegasusModel),
         (BloomConfig, BloomModel),
         (RandengConfig, RandengModel),
+        (TransformerConfig, TransformerModel)
     ]
 )
 
