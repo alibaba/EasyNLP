@@ -1685,7 +1685,7 @@ class TransformerPreTrainedModel(PreTrainedModel):
         with no_init_weights(_enable=_fast_init):
             model = cls(config, *model_args, **model_kwargs)
         
-        model.half()
+        # model.half()
 
         if state_dict is None:
             try:
@@ -1699,8 +1699,9 @@ class TransformerPreTrainedModel(PreTrainedModel):
                     "If you tried to load a PyTorch model from a TF 2.0 checkpoint, please set from_tf=True. "
                 )
         
+        state_dict = state_dict['model'] if state_dict.get('model') else state_dict
         model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
-            model, state_dict['model'], pretrained_model_name_or_path, _fast_init=_fast_init
+            model, state_dict, pretrained_model_name_or_path, _fast_init=_fast_init
         )
 
         # make sure token embedding weights are still tied if needed
