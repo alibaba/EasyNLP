@@ -256,7 +256,8 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'image2text_generation', 'image2text_generation_vqgan', 
                            'video2text_generation', 
                            'clip', 'wukong_clip',
-                           'machine_reading_comprehension','latent_diffusion'
+                           'machine_reading_comprehension','latent_diffusion',
+                           'open_domain_dialogue'
                        ],
                        help='name of the application')
 
@@ -269,6 +270,11 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        type=int,
                        default=16,
                        help='Maximum sequence length to process.')
+
+    group.add_argument('--label_length',
+                       type=int,
+                       default=16,
+                       help='Maximum label length to process.')
 
     group.add_argument(
         '--micro_batch_size',
