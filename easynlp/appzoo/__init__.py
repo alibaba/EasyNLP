@@ -47,6 +47,7 @@ _import_structure = {
     "video2text_generation.evaluator": ["FrameTextGenerationEvaluator"], 
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
     "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
+    "open_domain_dialogue.evaluator": ["OpenDomainDialogueEvaluator"],
 
     "sequence_classification.predictor": ['SequenceClassificationPredictor', 'FewshotSequenceClassificationPredictor', 'CptFewshotSequenceClassificationPredictor'],
     "sequence_labeling.predictor": ['SequenceLabelingPredictor'],
@@ -111,6 +112,7 @@ if TYPE_CHECKING:
     from .video2text_generation.evaluator import FrameTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
     from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
+    from .open_domain_dialogue.evaluator import OpenDomainDialogueEvaluator
 
     from .sequence_classification.predictor import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
     from .sequence_labeling.predictor import SequenceLabelingPredictor

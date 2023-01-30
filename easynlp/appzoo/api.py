@@ -32,6 +32,7 @@ from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGenerati
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 from easynlp.appzoo import MachineReadingComprehension
+from easynlp.appzoo import OpenDomainDialogue
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
@@ -46,6 +47,7 @@ from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
+from easynlp.appzoo import OpenDomainDialogueEvaluator
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
@@ -58,6 +60,7 @@ from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTex
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 from easynlp.appzoo import MachineReadingComprehensionPredictor
+from easynlp.appzoo import OpenDomainDialoguePredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
 from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
@@ -70,6 +73,7 @@ from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
+from easynlp.appzoo import OpenDomainDialogueDataset
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -112,7 +116,8 @@ Dataset_Mapping = {
     },
     'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
-    'machine_reading_comprehension': MachineReadingComprehensionDataset
+    'machine_reading_comprehension': MachineReadingComprehensionDataset,
+    'open_domain_dialogue': OpenDomainDialogueDataset
 }
 
 ModelMapping = {
@@ -146,7 +151,8 @@ ModelMapping = {
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration,
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
-    'machine_reading_comprehension': MachineReadingComprehension
+    'machine_reading_comprehension': MachineReadingComprehension,
+    'open_domain_dialogue': OpenDomainDialogue
 }
 
 Eval_Model_Mapping = {
@@ -174,7 +180,8 @@ Eval_Model_Mapping = {
     'vqgan_image2text_generation': VQGANGPTImageTextGeneration, 
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
-    'machine_reading_comprehension': MachineReadingComprehension
+    'machine_reading_comprehension': MachineReadingComprehension,
+    'open_domain_dialogue': OpenDomainDialogue
 }
 
 Evaluator_Mapping = {
@@ -202,7 +209,8 @@ Evaluator_Mapping = {
     },
     'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
-    'machine_reading_comprehension': MachineReadingComprehensionEvaluator
+    'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
+    'open_domain_dialogue': OpenDomainDialogueEvaluator
 }
 
 Predictor_Mapping = {
@@ -231,7 +239,8 @@ Predictor_Mapping = {
     },
     'video2text_generation': [CLIPGPTFrameTextGenerationPredictor, CLIPGPTFrameTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
-    'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension]
+    'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension],
+    'open_domain_dialogue': [OpenDomainDialoguePredictor, OpenDomainDialogue]
 }
 
 

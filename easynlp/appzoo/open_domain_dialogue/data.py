@@ -1,9 +1,6 @@
 import torch
 from ..dataset import BaseDataset
-from easynlp.modelzoo import TransformerTokenizer
-
-vocab_file = '/apsarapangu/disk3/xianyu.lzy/.easynlp/modelzoo/public/transformer/vocab.txt'
-codecs_file = '/apsarapangu/disk3/xianyu.lzy/.easynlp/modelzoo/public/transformer/dict.codecs'
+from ...modelzoo import AutoTokenizer
 
 class OpenDomainDialogueDataset(BaseDataset):
     def __init__(self,
@@ -19,20 +16,8 @@ class OpenDomainDialogueDataset(BaseDataset):
         
         self.max_text_length = max_text_length
         self.max_label_length = max_label_length
-        
-        self.tokenizer = TransformerTokenizer(
-            vocab_file=vocab_file,
-            codecs_file=codecs_file,
-            do_lower_case=True,
-            do_basic_tokenize=True,
-            null_token='__null__',
-            bos_token='__start__',
-            eos_token='__end__',
-            unk_token='__unk__',
-            max_ngram_size=-1,
-            max_tokens=-1,
-            tokenizer='bpe',
-            separator='@@')
+
+        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
     
     def convert_single_row_to_example(self, row):
         sentences = row.split('\t')
@@ -54,6 +39,7 @@ class OpenDomainDialogueDataset(BaseDataset):
                                        truncation=True,
                                        max_length=self.max_label_length)['input_ids']
             encoding.update({'label_ids': label_ids})
+            encoding.update({'label': label_ids})
             episodes.append(encoding)
         return episodes
 
