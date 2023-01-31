@@ -321,7 +321,7 @@ class TransformerTokenizer(PreTrainedTokenizer):
         text = text.replace('\n', ' __newln__ ')
         tokens = self.splitter.findall(text)
 
-        if hasattr(self, 'bpe'):
+        if self.tokenizer == 'bpe':
             return self.segment_tokens(tokens)
         else:
             return tokens
@@ -354,6 +354,16 @@ class TransformerTokenizer(PreTrainedTokenizer):
             # TODO(ahm): support build-time ngrams using word2vec heuristic?
             word_tokens = find_ngrams(self.tok2ind, word_tokens, self.max_ngram_size)
         return word_tokens
+    
+    def _decode(self, **kwargs) -> str:
+        text = super()._decode(**kwargs)
+
+        text = text.replace('@@ ', '')
+        if text.endswith('@@'):
+            text = text[:-2]
+        text = text.replace('__newln__', '\n')
+        
+        return text
     
     def _convert_token_to_id(self, token):
         """Converts a token (str) in an id using the vocab."""
