@@ -127,16 +127,11 @@ class ClassificationDataset(BaseDataset):
 
     def convert_single_row_to_example(self, row):
         """Convert sample token to indices.
-
             Args:
                 row: contains sequence and label.
-
                 text_a: the first sequence in row.
-
                 text_b: the second sequence in row if self.second_sequence is true.
-
                 label: label token if self.label_name is true.
-
             Returns: sing example
                 encoding: an example contains token indices.
         """
