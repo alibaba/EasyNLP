@@ -51,6 +51,7 @@ class TransformerConfig(PretrainedConfig):
         checkpoint_activations=False,
         beam_min_length=20,
         beam_block_ngram=3,
+        tokenizer='bpe',
         **kwargs
     ):
         super().__init__(
@@ -82,3 +83,4 @@ class TransformerConfig(PretrainedConfig):
         self.checkpoint_activations = checkpoint_activations
         self.beam_min_length = beam_min_length
         self.beam_block_ngram = beam_block_ngram
+        self.tokenizer_class = tokenizer

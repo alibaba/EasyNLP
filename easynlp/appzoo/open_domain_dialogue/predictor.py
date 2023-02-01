@@ -15,6 +15,7 @@
 
 from ...core.predictor import Predictor
 from easynlp.modelzoo import TransformerTokenizer
+from ...modelzoo import AutoConfig
 import logging
 import os
 import torch
@@ -170,9 +171,11 @@ class OpenDomainDialoguePredictor(Predictor):
         else:
             raise FileNotFoundError('The provided model path %s does not exist, please check.' % model_dir)
         self.model_dir = local_path
+        config = AutoConfig.from_pretrained(model_dir, **kwargs)
         self.tokenizer = TransformerTokenizer(
             vocab_file=local_path + '/vocab.txt',
-            codecs_file=local_path + '/dict.codecs'
+            codecs_file=local_path + '/dict.codecs',
+            tokenizer = config.tokenizer_class
         )
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir, user_defined_parameters=user_defined_parameters)
         if torch.cuda.is_available():
@@ -184,12 +187,11 @@ class OpenDomainDialoguePredictor(Predictor):
         self.p1 = ''
         self.p2 = ''
         self.history_strings = []
-        self.history_vecs = []
         self.max_turn_num = -1
-        self.text_truncate = 512
-        self.label_truncate = 128
+        self.text_truncate = config.text_truncate
+        self.label_truncate = config.label_truncate
         self.beam_size = 10
-        self.delimiter = '__newln__'
+        self.delimiter = '\n'
         self.delimiter_tok = [self.tokenizer._convert_token_to_id(self.delimiter)]
         self.END_IDX = self.model.backbone.END_IDX
         self.START_IDX = self.model.backbone.START_IDX
@@ -284,7 +286,6 @@ class OpenDomainDialoguePredictor(Predictor):
         self.p2 = ''
         self.message = None
         self.history_strings = []
-        self.history_vecs = []
         
     def load_context(self, data_file):
         print('[ loading personas.. ]')
@@ -345,11 +346,8 @@ class OpenDomainDialoguePredictor(Predictor):
         if self.max_turn_num > 0:
             while len(self.history_strings) >= self.max_turn_num:
                 self.history_strings.pop(0)
-            while len(self.history_vecs) >= self.max_turn_num:
-                self.history_vecs.pop(0)
         text = msg['text']
         self.history_strings.append(text)
-        self.history_vecs.append(self.tokenizer(text).input_ids)
 
         # set the 'text_vec' field in the message
         history_string = self.get_history_str()
@@ -357,7 +355,7 @@ class OpenDomainDialoguePredictor(Predictor):
             return
         self.message['full_text'] = history_string
         if history_string:
-            self.message['text_vec'] = self.get_history_vec()
+            self.message['text_vec'] = self.tokenizer(self.message['full_text'])['input_ids']
         
         # check truncation
         if self.message['text_vec'] is not None:
@@ -374,18 +372,6 @@ class OpenDomainDialoguePredictor(Predictor):
             return history
         
         return None
-
-    def get_history_vec(self):
-        if len(self.history_vecs) == 0:
-            return None
-        
-        history = []
-        for vec in self.history_vecs[:-1]:
-            history += [vec]
-            history += [self.delimiter_tok]
-        history += [self.history_vecs[-1]]
-        history = sum(history, [])
-        return history
 
     def _check_truncate(self, vec, truncate):
         if truncate is None or len(vec) <= truncate:

@@ -21,11 +21,13 @@ import collections
 import os
 import sys
 import random
+from tokenizers import ByteLevelBPETokenizer
 
 VOCAB_FILES_NAMES = {
     "vocab_file": "vocab.txt",
     "codecs_file": "dict.codecs"
 }
+BYTELEVEL_VOCAB_FILE_NAME = "vocab.json"
 
 def get_pairs(word):
     """
@@ -238,6 +240,14 @@ class TransformerTokenizer(PreTrainedTokenizer):
         self.splitter = re.compile(r'\w+|[^\w\s]', re.UNICODE)
         self.cache = {}
 
+        if self.tokenizer == 'bytelevelbpe':
+            vocab_path = os.path.join(os.path.dirname(vocab_file), BYTELEVEL_VOCAB_FILE_NAME)
+            assert os.path.exists(vocab_path), "Vocab file for bytelevel BPE not found! please check and retry."
+
+            self.help_tokenizer = ByteLevelBPETokenizer(
+                vocab_path, codecs_file, True
+            )
+
     @property
     def vocab_size(self):
         return len(self.vocab)
@@ -245,7 +255,7 @@ class TransformerTokenizer(PreTrainedTokenizer):
     def get_vocab(self):
         return dict(self.vocab, **self.added_tokens_encoder)
 
-    def encode(orig, bpe_codes, bpe_codes_reverse, vocab, separator, version, cache, dropout=0):
+    def encode(self, orig, bpe_codes, bpe_codes_reverse, vocab, separator, version, cache, dropout=0):
         """Encode word based on list of BPE merge operations, which are applied consecutively"""
         if not dropout and orig in cache:
             return cache[orig]
@@ -363,7 +373,10 @@ class TransformerTokenizer(PreTrainedTokenizer):
             text = text.lower()
 
         # calls the selected tokenizer function e.g. 're' => re_tokenize(text)
-        word_tokens = self.bpe_tokenize(text)
+        if self.tokenizer == 'bytelevelbpe':
+            word_tokens = self.help_tokenizer.encode(text).tokens
+        else:
+            word_tokens = self.bpe_tokenize(text)
 
         if self.max_ngram_size > 1:
             # search for ngrams during parse-time
@@ -372,18 +385,28 @@ class TransformerTokenizer(PreTrainedTokenizer):
         return word_tokens
     
     def _decode(self, **kwargs) -> str:
-        text = super()._decode(**kwargs)
+        if self.tokenizer == 'bytelevelbpe':
+            token_ids = kwargs.get('token_ids')
+            extra_tokens = 4
+            token_ids = [idx-extra_tokens for idx in token_ids]
+            text = self.help_tokenizer.decode(token_ids, skip_special_tokens=False)
+        else:
+            text = super()._decode(**kwargs)
 
-        text = text.replace('@@ ', '')
-        if text.endswith('@@'):
-            text = text[:-2]
-        text = text.replace('__newln__', '\n')
+            text = text.replace('@@ ', '')
+            if text.endswith('@@'):
+                text = text[:-2]
         
+        text = text.replace('__newln__', '\n')
         return text
     
     def _convert_token_to_id(self, token):
         """Converts a token (str) in an id using the vocab."""
-        return self.vocab.get(token, self.vocab.get(self.unk_token))
+        idx = self.vocab.get(token, self.vocab.get(self.unk_token))
+        # if self.tokenizer == 'bytelevelbpe':
+        #     extra_tokens = 4  # length of special tokens
+        #     idx -= extra_tokens
+        return idx
 
     def _convert_id_to_token(self, index):
         """Converts an index (integer) in a token (str) using the vocab."""
