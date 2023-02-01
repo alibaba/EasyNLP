@@ -163,7 +163,6 @@ class ClassificationDataset(BaseDataset):
 
         if self.kangaroo_model_prefix:
             encoding['entities_position'], encoding['ent_mask'], encoding['sample_token_id'], encoding['sample_position_id'], encoding['sample_mask'], encoding['concept_emb'] = self.kangaroo_row_data_process(encoding['input_ids'])
-
             encoding['pretrain_model'] = False
 
         return encoding
@@ -370,10 +369,7 @@ class ClassificationDataset(BaseDataset):
             concept_emb_vec[int(ind) + 1] = entity2emb[ind]
         return torch.FloatTensor(concept_emb_vec)
 
-
-
-
-
+    
 class KnowledgeGraph():
     """
         Construct KG structure for K-BERT
