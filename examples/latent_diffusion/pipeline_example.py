@@ -15,36 +15,36 @@ def image_to_base64(img):
     return base64_str
 
 # # general
-# generator = pipeline('chinese-ldm-general',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['绿色外套搭配蓝色牛仔裤']
 
 # # fashion
-# generator = pipeline('chinese-ldm-fashion',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-fashion',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['黄色连帽卫衣']
 
 # # art
-# generator = pipeline('chinese-ldm-art',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-art',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['有群牛羊在吃草']
 
 # # poem
-# generator = pipeline('chinese-ldm-poem',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-poem',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['远上寒山石径斜，白云生处有人家']
 
 # # anime
-# generator = pipeline('chinese-ldm-anime',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-anime',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['粉色头发，穿裙子的少女']
 
 # # pet
-# generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True})
+# generator = pipeline('chinese-ldm-pet',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
 # data = ['一只黄色的猫']
 
 # # food
-# generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True})
-# data = ['小炒黄牛肉']
+generator = pipeline('chinese-ldm-food',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
+data = ['小炒黄牛肉']
 
 # sdm
-generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True})
-data = ['an astronaut, high quality']
+# generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
+# data = ['an astronaut, high quality']
 
 ##修改采样图片数量及采样步长
 # generator.reset(n_samples=2,sample_steps=50)
