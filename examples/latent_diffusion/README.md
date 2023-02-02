@@ -37,6 +37,14 @@ img = Image.open(BytesIO(base64.urlsafe_b64decode(image_base64)))
 
 ## 模型训练
 
+MASTER_ADDR=localhost
+MASTER_PORT=6027
+GPUS_PER_NODE=1
+NNODES=1
+NODE_RANK=0
+
+DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+
 1. 模型微调
 ```shell
   python -m torch.distributed.launch $DISTRIBUTED_ARGS ./main.py \
