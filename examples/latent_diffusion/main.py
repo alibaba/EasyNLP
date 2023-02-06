@@ -65,6 +65,7 @@ if __name__ == "__main__":
         input_schema=args.input_schema,
         first_sequence=args.first_sequence,
         second_sequence=args.second_sequence,
+        pretrained_model_name_or_path=pretrained_model_name_or_path,
         user_defined_parameters=user_defined_parameters,
         is_training=True)
 
@@ -74,6 +75,7 @@ if __name__ == "__main__":
         input_schema=args.input_schema,
         first_sequence=args.first_sequence,
         second_sequence=args.second_sequence,
+        pretrained_model_name_or_path=pretrained_model_name_or_path,
         user_defined_parameters=user_defined_parameters,
         is_training=False)
 

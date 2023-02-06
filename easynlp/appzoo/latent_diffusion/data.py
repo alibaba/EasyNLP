@@ -36,6 +36,7 @@ import albumentations
 from io import BytesIO
 import base64
 from PIL import Image, ImageFile
+import json
 
 from ..dataset import BaseDataset
 
@@ -59,6 +60,7 @@ class LdmDataset(BaseDataset):
                  max_seq_length,
                  input_schema,
                  first_sequence,
+                pretrained_model_name_or_path,
                  second_sequence=None,
                  user_defined_parameters=None,
                  *args,
@@ -68,10 +70,10 @@ class LdmDataset(BaseDataset):
                          output_format="dict",
                          *args,
                          **kwargs)
-        self.size = int(user_defined_parameters.get('size', 256))
+        with open(pretrained_model_name_or_path+'/config.json','r') as config_handle:
+            self.raw_config=json.load(config_handle)
+        self.size = self.raw_config["model"]["params"]['first_stage_config']['params']['ddconfig']['resolution']
         self.random_crop = bool(user_defined_parameters.get('random_crop', False))
-        self.text_len = int(user_defined_parameters.get('text_len', 32))
-        self.img_len = int(user_defined_parameters.get('img_len', 256))
         self.max_seq_length = max_seq_length
 
 
