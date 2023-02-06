@@ -15,8 +15,8 @@ def image_to_base64(img):
     return base64_str
 
 # # general
-# generator = pipeline('chinese-ldm-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
-# data = ['绿色外套搭配蓝色牛仔裤']
+generator = pipeline('chinese-ldm-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
+data = ['绿色外套搭配蓝色牛仔裤']
 
 # # fashion
 # generator = pipeline('chinese-ldm-fashion',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
@@ -43,8 +43,8 @@ def image_to_base64(img):
 # data = ['小炒黄牛肉']
 
 # sdm
-generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
-data = ['an astronaut, high quality']
+# generator = pipeline('stable-diffusion-general',pipeline_params={"n_samples":1,"do_sr":True,'not_use_gradient_checkpoint':True})
+# data = ['an astronaut, high quality']
 
 ##修改采样图片数量及采样步长
 # generator.reset(n_samples=2,sample_steps=50)

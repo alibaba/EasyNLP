@@ -26,9 +26,6 @@ if [ "$mode" = "train" ]; then
     --app_name=latent_diffusion \
     --user_defined_parameters='
         pretrain_model_name_or_path=alibaba-pai/pai-diffusion-general-large-zh
-        size=256
-        text_len=32
-        img_len=256
         reset_model_state_flag=True
       ' 
 
