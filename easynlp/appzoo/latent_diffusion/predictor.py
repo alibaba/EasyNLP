@@ -28,7 +28,7 @@ from einops import rearrange
 from .model import LatentDiffusion
 
 class LatentDiffusionPredictor(Predictor):
-    def __init__(self, model_dir, model_cls=None, args={},user_defined_parameters={}):
+    def __init__(self, model_dir, model_cls=None, args={},user_defined_parameters={},**kwargs):
         super().__init__()
         try:
             self.args=vars(args)
@@ -49,6 +49,9 @@ class LatentDiffusionPredictor(Predictor):
         self.sequence_length = self.args.pop("sequence_length", 128)
         self.ld=model_cls.from_pretrained(model_dir,self.args, self.user_defined_parameters)
         self.gen_cnt=0
+        
+    def reset(self,n_samples,sample_steps):
+        self.ld.reset_params(n_samples,sample_steps)
 
     def preprocess(self, in_data):
         if not in_data:
@@ -65,10 +68,11 @@ class LatentDiffusionPredictor(Predictor):
         return in_data
 
     def predict(self, in_data):
-        forward_result=self.ld(in_data)
+        forward_result=self.ld.forward_predict(in_data)
         return forward_result
 
     def postprocess(self, result):
+        all_result=list()
         if self.ld.write_image is True:
             os.makedirs(self.ld.image_prefix, exist_ok=True)
             for idx1,one in enumerate(result):
@@ -80,4 +84,20 @@ class LatentDiffusionPredictor(Predictor):
                 for idx2,x_sample in enumerate(one['image_tensor']):
                     x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
                     Image.fromarray(x_sample.astype(np.uint8)).save(os.path.join(cur_path, f"{idx2:04}.png"))
-        return result
+                    img = Image.fromarray(x_sample.astype(np.uint8))
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='png')
+                    byte_data = img_buffer.getvalue()
+                    base64_str = base64.b64encode(byte_data)
+                    all_result.append({'idx':one["idx"],'text':one["text"],'gen_imgbase64':base64_str,'image_tensor':one['image_tensor']})
+        else:
+            for idx1,one in enumerate(result):
+                for idx2,x_sample in enumerate(one['image_tensor']):
+                    x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
+                    img = Image.fromarray(x_sample.astype(np.uint8))
+                    img_buffer = BytesIO()
+                    img.save(img_buffer, format='png')
+                    byte_data = img_buffer.getvalue()
+                    base64_str = base64.b64encode(byte_data)
+                    all_result.append({'idx':one["idx"],'text':one["text"],'gen_imgbase64':base64_str,'image_tensor':one['image_tensor']})
+        return all_result

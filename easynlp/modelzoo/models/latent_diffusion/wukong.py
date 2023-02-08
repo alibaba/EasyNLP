@@ -11,7 +11,7 @@ from .x_transformer import Encoder, TransformerWrapper  # TODO: can we directly 
 import os
 import json
 from ..wukong.configuration_wukong import WukongConfig
-from ..wukong.modeling_wukong import WukongModel
+from ..wukong.modeling_wukong import WukongModel,TextTransformer
 from .bert_tokenizer import FullTokenizer
 
 
@@ -177,15 +177,11 @@ class FrozenWukongCLIPTextEmbedder(nn.Module):
     """
     Uses the Wukong CLIP transformer encoder for text.
     """
-    def __init__(self, version='ViT-L/14', device="cuda", max_length=32, n_repeat=1, normalize=True):
+    def __init__(self,text_encoder, version='ViT-L/14', device="cuda", max_length=32, n_repeat=1, normalize=True):
         super().__init__()
         pretrained_model_path = version
         self.tokenizer = FullTokenizer(vocab_file=os.path.join(pretrained_model_path, "vocab.txt"))
-        with open(os.path.join(pretrained_model_path, "config.json"), "r") as stream:
-            _config = json.load(stream)
-            config = WukongConfig(_config)
-        model = WukongModel(config, os.path.join(pretrained_model_path, "pytorch_model.bin"))
-        self.model = model.text_encoder
+        self.model = TextTransformer(**text_encoder)
         self.device = device
         self.max_length = max_length
         self.n_repeat = n_repeat

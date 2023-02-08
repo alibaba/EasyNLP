@@ -158,7 +158,7 @@ class SequenceGenerationDataset(BaseDataset):
     def generation_convert_single_example_to_feature(self, src_text, tgt_text, tokenizer, max_seq_len=128):
         if self.decoder_only and self.is_training:
             input_tokens = tokenizer.encode(src_text)
-            output_tokens = tokenizer.encode(tgt_text)
+            output_tokens = tokenizer.encode(tgt_text, max_length=self.max_decoder_length, truncation='only_first')
             if tokenizer.sep_token:
                 input_ids = input_tokens[:self.max_seq_length-len(output_tokens[1:])] + output_tokens[1:]
                 # input_ids = tokenizer.encode(src_text + ' %s ' % tokenizer.sep_token + tgt_text, max_length=max_seq_len+self.max_decoder_length, truncation='only_first')
@@ -186,4 +186,5 @@ class SequenceGenerationDataset(BaseDataset):
             'src_text': src_text,
             'tgt_text': tgt_text
         }
+        # print(features)
         return features

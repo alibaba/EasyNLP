@@ -27,8 +27,10 @@ sys.path.append('../')
 
 def main():
     os.environ['PYTHONUNBUFFERED'] = '1'
+    
     # TODO: Need to modify here
-    os.environ['PATH'] = '/opt/conda/envs/python3.6/bin:' + os.environ['PATH']
+    # os.environ['PATH'] = '/opt/conda/envs/python3.6/bin:' + os.environ['PATH']
+    
     set_variables_for_cli()
     args = get_args()
     if args.user_script is not None and args.user_entry_file is not None:
@@ -100,6 +102,17 @@ def main():
         cmd.append(args.mode)
         cmd.append('--tables')
         cmd.append(args.tables)
+        cmd.append('--checkpoint_dir')
+        cmd.append(args.checkpoint_dir)
+        cmd.append('--sequence_length')
+        cmd.append(str(args.sequence_length))
+        cmd.append('--micro_batch_size')
+        cmd.append(str(args.micro_batch_size))
+        cmd.append('--app_name')
+        cmd.append(args.app_name)
+        cmd.append('--worker_gpu')
+        cmd.append(str(args.worker_gpu))
+
         if args.skip_first_line:
             cmd.append('--skip_first_line')
         if args.input_schema is not None:
@@ -111,6 +124,9 @@ def main():
         if args.second_sequence is not None:
             cmd.append('--second_sequence')
             cmd.append(args.second_sequence)
+        if args.data_threads is not None:
+            cmd.append('--data_threads')
+            cmd.append(str(args.data_threads))
 
         if args.mode != 'predict':
             if args.label_name is not None:
@@ -120,19 +136,28 @@ def main():
                 cmd.append('--label_enumerate_values')
                 cmd.append(args.label_enumerate_values)
 
-        cmd.append('--checkpoint_dir')
-        cmd.append(args.checkpoint_dir)
-        cmd.append('--export_tf_checkpoint_type')
-        cmd.append(args.export_tf_checkpoint_type)
-        cmd.append('--learning_rate')
-        cmd.append(str(args.learning_rate))
-        cmd.append('--epoch_num')
-        cmd.append(str(args.epoch_num))
-        cmd.append('--random_seed')
-        cmd.append(str(args.random_seed))
+        # cmd.append('--export_tf_checkpoint_type')
+        # cmd.append(args.export_tf_checkpoint_type)
+               
         if args.mode == 'train':
             cmd.append('--save_checkpoint_steps')
             cmd.append(str(args.save_checkpoint_steps))
+            if args.weight_decay is not None:
+                cmd.append('--weight_decay')
+                cmd.append(str(args.weight_decay))
+            if args.gradient_accumulation_steps is not None:
+                cmd.append('--gradient_accumulation_steps')
+                cmd.append(str(args.gradient_accumulation_steps))
+            if args.epoch_num is not None:
+                cmd.append('--epoch_num')
+                cmd.append(str(args.epoch_num))
+            if args.random_seed is not None:
+                cmd.append('--random_seed')
+                cmd.append(str(args.random_seed))
+            if args.learning_rate is not None:
+                cmd.append('--learning_rate')
+                cmd.append(str(args.learning_rate))
+
         if args.mode == 'predict':
             cmd.append('--predict_queue_size')
             cmd.append('1024')
@@ -144,17 +169,10 @@ def main():
             cmd.append(args.outputs)
             cmd.append('--output_schema')
             cmd.append(args.output_schema)
-            cmd.append('--restore_works_dir')
-            cmd.append(args.restore_works_dir)
             if args.append_cols is not None:
                 cmd.append('--append_cols')
                 cmd.append(args.append_cols)
-        cmd.append('--sequence_length')
-        cmd.append(str(args.sequence_length))
-        cmd.append('--micro_batch_size')
-        cmd.append(str(args.micro_batch_size))
-        cmd.append('--app_name')
-        cmd.append(args.app_name)
+
         if args.buckets is not None:
             cmd.append('--buckets')
             cmd.append(args.buckets)

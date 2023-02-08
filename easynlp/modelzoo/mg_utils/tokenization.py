@@ -29,7 +29,7 @@ from easynlp.modelzoo.models.bert import BertTokenizer
 PRETRAINED_VOCAB_ARCHIVE_MAP = {}
 
 from easynlp.modelzoo.models.gpt2 import GPT2Tokenizer
-from easynlp.modelzoo.models.glm import sp_tokenizer
+from easynlp.modelzoo.models.mg_glm import sp_tokenizer
 from .utils import print_rank_0
 import regex as re
 

@@ -25,14 +25,17 @@ sys.path.append("../../")
 from easynlp.appzoo import SequenceClassification, SequenceMultiLabelClassification, DistillatorySequenceClassification, FewshotSequenceClassification, CptFewshotSequenceClassification
 from easynlp.appzoo import TextMatch, TextMatchTwoTower, DistillatoryTextMatch, FewshotSingleTowerTextMatch, CptFewshotSingleTowerTextMatch
 from easynlp.appzoo import SequenceLabeling, LanguageModeling, FeatureVectorization, DataAugmentation, GEEPClassification
+from easynlp.appzoo import Text2VideoRetrieval
 from easynlp.appzoo import CLIPApp
 from easynlp.appzoo import WukongCLIP
 from easynlp.appzoo import TextImageGeneration
+from easynlp.appzoo import LatentDiffusion, StableDiffusion
 from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGeneration
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 from easynlp.appzoo import MachineReadingComprehension
 from easynlp.appzoo import OpenDomainDialogue
+from easynlp.appzoo import InformationExtractionModel
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSequenceClassificationEvaluator
@@ -40,6 +43,7 @@ from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as Fewsho
 from easynlp.fewshot_learning.fewshot_evaluator import CPTEvaluator as CptFewshotSingleTowerTextMatchEvaluator
 from easynlp.appzoo import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
 from easynlp.appzoo import SequenceLabelingEvaluator, LanguageModelingEvaluator, TextMatchEvaluator, GEEPClassificationEvaluator
+from easynlp.appzoo import Text2VideoRetrievalEvaluator
 from easynlp.appzoo import CLIPEvaluator
 from easynlp.appzoo import WukongCLIPEvaluator
 from easynlp.appzoo import TextImageGenerationEvaluator
@@ -48,25 +52,32 @@ from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
 from easynlp.appzoo import OpenDomainDialogueEvaluator
+from easynlp.appzoo import InformationExtractionEvaluator
+from easynlp.appzoo import LatentDiffusionModelEvaluator
+
 
 from easynlp.appzoo import SequenceClassificationPredictor, FewshotSequenceClassificationPredictor, CptFewshotSequenceClassificationPredictor
 from easynlp.appzoo import SequenceLabelingPredictor, FeatureVectorizationPredictor
 from easynlp.appzoo import TextMatchPredictor, TextMatchTwoTowerPredictor, FewshotSingleTowerTextMatchPredictor, CptFewshotSingleTowerTextMatchPredictor
 from easynlp.appzoo import DataAugmentationPredictor, GEEPClassificationPredictor
+from easynlp.appzoo import Text2VideoRetrievalPredictor
 from easynlp.appzoo import CLIPPredictor
 from easynlp.appzoo import WukongCLIPPredictor
 from easynlp.appzoo import TextImageGenerationPredictor
+from easynlp.appzoo import LatentDiffusionPredictor
 from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTextGenerationPredictor
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 from easynlp.appzoo import MachineReadingComprehensionPredictor
 from easynlp.appzoo import OpenDomainDialoguePredictor
+from easynlp.appzoo import InformationExtractionPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
 from easynlp.appzoo import SequenceLabelingDataset, LanguageModelingDataset
 from easynlp.appzoo import SingleTowerDataset, TwoTowerDataset, DistillatorySingleTowerDataset, FewshotSingleTowerTextMatchDataset, SiameseDataset
 from easynlp.appzoo import SequenceGenerationDataset
 from easynlp.appzoo import GEEPClassificationDataset
+from easynlp.appzoo import Text2VideoRetrievalDataset
 from easynlp.appzoo import CLIPDataset
 from easynlp.appzoo import WukongCLIPDataset
 from easynlp.appzoo import TextImageDataset
@@ -74,6 +85,9 @@ from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
 from easynlp.appzoo import OpenDomainDialogueDataset
+from easynlp.appzoo import InformationExtractionDataset
+from easynlp.appzoo import LdmDataset
+
 
 from easynlp.core import PredictorManager, Trainer, DistillatoryTrainer
 from easynlp.utils.logger import logger
@@ -106,6 +120,7 @@ Dataset_Mapping = {
     'sequence_labeling': SequenceLabelingDataset,
     'language_modeling': LanguageModelingDataset,
     'geep_classify': GEEPClassificationDataset,
+    'clip4clip': Text2VideoRetrievalDataset,
     'clip': CLIPDataset,
     'wukong_clip': WukongCLIPDataset,
     'text2image_generation': TextImageDataset,
@@ -118,6 +133,9 @@ Dataset_Mapping = {
     'sequence_generation': SequenceGenerationDataset,
     'machine_reading_comprehension': MachineReadingComprehensionDataset,
     'open_domain_dialogue': OpenDomainDialogueDataset
+    'information_extraction': InformationExtractionDataset,
+    'latent_diffusion':LdmDataset
+
 }
 
 ModelMapping = {
@@ -140,6 +158,7 @@ ModelMapping = {
     'vectorization': FeatureVectorization,
     'data_augmentation': DataAugmentation,
     'geep_classify': GEEPClassification,
+    'clip4clip': Text2VideoRetrieval,
     'clip': CLIPApp,
     'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
@@ -153,6 +172,9 @@ ModelMapping = {
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
     'open_domain_dialogue': OpenDomainDialogue
+    'information_extraction': InformationExtractionModel,
+    'latent_diffusion':LatentDiffusion,
+
 }
 
 Eval_Model_Mapping = {
@@ -169,6 +191,7 @@ Eval_Model_Mapping = {
     },
     'sequence_labeling': SequenceLabeling,
     'geep_classify': GEEPClassification,
+    'clip4clip': Text2VideoRetrieval,
     'clip': CLIPApp,
     'wukong_clip': WukongCLIP,
     'text2image_generation': TextImageGeneration,
@@ -182,6 +205,9 @@ Eval_Model_Mapping = {
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
     'open_domain_dialogue': OpenDomainDialogue
+    'information_extraction': InformationExtractionModel,
+    'latent_diffusion': LatentDiffusion
+
 }
 
 Evaluator_Mapping = {
@@ -199,6 +225,7 @@ Evaluator_Mapping = {
     'language_modeling': LanguageModelingEvaluator,
     'sequence_labeling': SequenceLabelingEvaluator,
     'geep_classify': GEEPClassificationEvaluator,
+    'clip4clip': Text2VideoRetrievalEvaluator,
     'clip': CLIPEvaluator,
     'wukong_clip': WukongCLIPEvaluator,
     'text2image_generation': TextImageGenerationEvaluator,
@@ -211,6 +238,8 @@ Evaluator_Mapping = {
     'sequence_generation': SequenceGenerationEvaluator,
     'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
     'open_domain_dialogue': OpenDomainDialogueEvaluator
+    'information_extraction': InformationExtractionEvaluator,
+    'latent_diffusion': LatentDiffusionModelEvaluator
 }
 
 Predictor_Mapping = {
@@ -229,9 +258,11 @@ Predictor_Mapping = {
     'vectorization': [FeatureVectorizationPredictor, FeatureVectorization],
     'data_augmentation': [DataAugmentationPredictor, DataAugmentation],
     'geep_classify': [GEEPClassificationPredictor, GEEPClassification],
+    'clip4clip': [Text2VideoRetrievalPredictor, Text2VideoRetrieval],
     'clip': [CLIPPredictor, CLIPApp],
     'wukong_clip': [WukongCLIPPredictor, WukongCLIP],
     'text2image_generation': [TextImageGenerationPredictor, TextImageGeneration],
+    'latent_diffusion': [LatentDiffusionPredictor, LatentDiffusion, StableDiffusion],
     'image2text_generation': {
         'enable_vit': [CLIPGPTImageTextGenerationPredictor, CLIPGPTImageTextGeneration],
         'enable_vqgan': [VQGANGPTImageTextGenerationPredictor, VQGANGPTImageTextGeneration],
@@ -241,6 +272,7 @@ Predictor_Mapping = {
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
     'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension],
     'open_domain_dialogue': [OpenDomainDialoguePredictor, OpenDomainDialogue]
+    'information_extraction': [InformationExtractionPredictor, InformationExtractionModel]
 }
 
 

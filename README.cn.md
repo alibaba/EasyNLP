@@ -22,7 +22,12 @@
   
 随着 BERT、Megatron、GPT-3 等预训练模型在NLP领域取得瞩目的成果，越来越多团队投身到超大规模训练中，这使得训练模型的规模从亿级别发展到了千亿甚至万亿的规模。然而，这类超大规模的模型运用于实际场景中仍然有一些挑战。首先，模型参数量过大使得训练和推理速度过慢且部署成本极高；其次在很多实际场景中数据量不足的问题仍然制约着大模型在小样本场景中的应用，提高预训练模型在小样本场景的泛化性依然存在挑战。为了应对以上问题，PAI 团队推出了 EasyNLP 中文 NLP 算法框架，助力大模型快速且高效的落地。
 
-
+- [PAI-Diffusion模型来了！阿里云机器学习团队带您徜徉中文艺术海洋](https://zhuanlan.zhihu.com/p/590020134)
+- [模型精度再被提升，统一跨任务小样本学习算法 UPT 给出解法!](https://zhuanlan.zhihu.com/p/590611518)
+- [Span抽取和元学习能碰撞出怎样的新火花，小样本实体识别来告诉你!](https://zhuanlan.zhihu.com/p/590297824)
+- [算法 KECP 被顶会 EMNLP 收录，极少训练数据就能实现机器阅读理解](https://zhuanlan.zhihu.com/p/590024650)
+- [当大火的文图生成模型遇见知识图谱，AI画像趋近于真实世界](https://zhuanlan.zhihu.com/p/581870071)
+- [EasyNLP发布融合语言学和事实知识的中文预训练模型CKBERT](https://zhuanlan.zhihu.com/p/574853281)
 - [EasyNLP带你实现中英文机器阅读理解](https://zhuanlan.zhihu.com/p/568890245)
 - [跨模态学习能力再升级，EasyNLP电商文图检索效果刷新SOTA](https://zhuanlan.zhihu.com/p/568512230)
 - [EasyNLP玩转文本摘要（新闻标题）生成](https://zhuanlan.zhihu.com/p/566607127)

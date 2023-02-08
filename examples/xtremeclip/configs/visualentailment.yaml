@@ -1,0 +1,26 @@
+# ------ root_path/dataset_name ------
+root_path: '/home/moming/code/VITCLIP/snli_ve_%s.tsv'
+
+
+# ------ Load Cache and Features ------
+load_cache: False
+load_pre_feat: False
+#
+#load_cache: True
+#load_pre_feat: True
+
+
+
+# ------ Basic Config ------
+dataset: 'visualentailment'
+backbone: 'ViT-B/16' #'ViT-B/16' ViT-L/14
+
+#lr: 0.001
+lr: 0.006
+augment_epoch: 10
+train_epoch: 20
+
+# ------ GPU device ------
+gpu: "cuda:0"
+batch_size: 16
+low_resource_num: 10000

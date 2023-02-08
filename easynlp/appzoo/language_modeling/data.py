@@ -381,8 +381,10 @@ class LanguageModelingDataset(BaseDataset):
         lengths = [len(t) for t in token_ids]
         # Max for paddings
         max_seq_len_ = max(lengths)
+        # max_seq_len_ = self.max_seq_length
         assert max_seq_len_ <= self.max_seq_length
         if self.dkplm_model_prefix:
+            max_seq_len_ = self.max_seq_length
             ent_pos = [t[2] for t in batch]
             relation_id = [t[3] for t in batch]
             replaced_entity_id = [t[4] for t in batch]
@@ -409,8 +411,7 @@ class LanguageModelingDataset(BaseDataset):
             insert_know_emb = insert_know_emb
             insert_relation_emb = insert_relation_emb
             insert_know_labels = torch.LongTensor(insert_know_labels)
-        attn_mask = torch.arange(token_ids.size(1), dtype=torch.long,
-                                 device=lengths.device) < lengths[:, None]
+        attn_mask = torch.arange(token_ids.size(1), dtype=torch.long, device=lengths.device) < lengths[:, None]
         attn_mask = attn_mask.long()
 
         input_ids, label_ids = self.mask_tokens(token_ids, mask_labels)
@@ -515,8 +516,7 @@ class LanguageModelingDataset(BaseDataset):
         inputs[indices_replaced] = self.mask_idx
 
         # 10% of the time, we replace masked input tokens with random word
-        indices_random = torch.bernoulli(torch.full(
-            labels.shape, 0.5)).bool() & masked_indices & ~indices_replaced
+        indices_random = torch.bernoulli(torch.full(labels.shape, 0.5)).bool() & masked_indices & ~indices_replaced
         random_words = torch.randint(self.vocab_size, labels.shape, dtype=torch.long)
         inputs[indices_random] = random_words[indices_random]
 
