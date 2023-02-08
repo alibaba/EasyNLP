@@ -271,11 +271,6 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                        default=16,
                        help='Maximum sequence length to process.')
 
-    group.add_argument('--label_length',
-                       type=int,
-                       default=16,
-                       help='Maximum label length to process.')
-
     group.add_argument(
         '--micro_batch_size',
         '--train_batch_size',

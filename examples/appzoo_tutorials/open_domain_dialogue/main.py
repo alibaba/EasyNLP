@@ -27,6 +27,7 @@ if __name__ == "__main__":
     else:
         args.pretrained_model_name_or_path = args.checkpoint_dir
     args.pretrained_model_name_or_path = get_pretrain_model_path(args.pretrained_model_name_or_path)
+    args.label_length = int(user_defined_parameters.get('label_length', 128))
     valid_dataset = OpenDomainDialogueDataset(
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],

@@ -175,7 +175,7 @@ class OpenDomainDialoguePredictor(Predictor):
         self.tokenizer = TransformerTokenizer(
             vocab_file=local_path + '/vocab.txt',
             codecs_file=local_path + '/dict.codecs',
-            tokenizer = config.tokenizer_class
+            tokenizer = config.tokenizer
         )
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir, user_defined_parameters=user_defined_parameters)
         if torch.cuda.is_available():

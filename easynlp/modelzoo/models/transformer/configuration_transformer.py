@@ -83,4 +83,4 @@ class TransformerConfig(PretrainedConfig):
         self.checkpoint_activations = checkpoint_activations
         self.beam_min_length = beam_min_length
         self.beam_block_ngram = beam_block_ngram
-        self.tokenizer_class = tokenizer
+        self.tokenizer = tokenizer
