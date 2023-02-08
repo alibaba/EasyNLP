@@ -48,7 +48,7 @@ class ClassificationDataset(BaseDataset):
                  label_name=None,
                  second_sequence=None,
                  label_enumerate_values=None,
-                 user_defined_parameters=None,
+                 user_defined_parameters={},
                  *args,
                  **kwargs):
         super().__init__(data_file,
@@ -127,16 +127,11 @@ class ClassificationDataset(BaseDataset):
 
     def convert_single_row_to_example(self, row):
         """Convert sample token to indices.
-
             Args:
                 row: contains sequence and label.
-
                 text_a: the first sequence in row.
-
                 text_b: the second sequence in row if self.second_sequence is true.
-
                 label: label token if self.label_name is true.
-
             Returns: sing example
                 encoding: an example contains token indices.
         """
@@ -168,7 +163,6 @@ class ClassificationDataset(BaseDataset):
 
         if self.kangaroo_model_prefix:
             encoding['entities_position'], encoding['ent_mask'], encoding['sample_token_id'], encoding['sample_position_id'], encoding['sample_mask'], encoding['concept_emb'] = self.kangaroo_row_data_process(encoding['input_ids'])
-
             encoding['pretrain_model'] = False
 
         return encoding
@@ -375,10 +369,7 @@ class ClassificationDataset(BaseDataset):
             concept_emb_vec[int(ind) + 1] = entity2emb[ind]
         return torch.FloatTensor(concept_emb_vec)
 
-
-
-
-
+    
 class KnowledgeGraph():
     """
         Construct KG structure for K-BERT

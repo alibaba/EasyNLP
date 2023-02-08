@@ -473,9 +473,9 @@ class UNetModel(nn.Module):
 
         if context_dim is not None:
             assert use_spatial_transformer, 'Fool!! You forgot to use the spatial transformer for your cross-attention conditioning...'
-            from omegaconf.listconfig import ListConfig
-            if type(context_dim) == ListConfig:
-                context_dim = list(context_dim)
+            # from omegaconf.listconfig import ListConfig
+            # if type(context_dim) == ListConfig:
+            #     context_dim = list(context_dim)
 
         if num_heads_upsample == -1:
             num_heads_upsample = num_heads
@@ -555,8 +555,9 @@ class UNetModel(nn.Module):
                             num_head_channels=dim_head,
                             use_new_attention_order=use_new_attention_order,
                         ) if not use_spatial_transformer else SpatialTransformer(
-                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim
-                        )
+                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim,
+                                                        use_checkpoint=use_checkpoint,
+                        ),
                     )
                 self.input_blocks.append(TimestepEmbedSequential(*layers))
                 self._feature_size += ch
@@ -610,7 +611,8 @@ class UNetModel(nn.Module):
                 num_head_channels=dim_head,
                 use_new_attention_order=use_new_attention_order,
             ) if not use_spatial_transformer else SpatialTransformer(
-                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim
+                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim,
+                                                        use_checkpoint=use_checkpoint,
                         ),
             ResBlock(
                 ch,
@@ -656,8 +658,9 @@ class UNetModel(nn.Module):
                             num_head_channels=dim_head,
                             use_new_attention_order=use_new_attention_order,
                         ) if not use_spatial_transformer else SpatialTransformer(
-                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim
-                        )
+                            ch, num_heads, dim_head, depth=transformer_depth, context_dim=context_dim,
+                                                        use_checkpoint=use_checkpoint,
+                        ),
                     )
                 if level and i == num_res_blocks:
                     out_ch = ch

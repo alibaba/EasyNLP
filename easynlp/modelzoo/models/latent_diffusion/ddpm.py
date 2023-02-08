@@ -9,7 +9,6 @@ https://github.com/CompVis/taming-transformers
 import torch
 import torch.nn as nn
 import numpy as np
-import pytorch_lightning as pl
 from torch.optim.lr_scheduler import LambdaLR
 from einops import rearrange, repeat
 from contextlib import contextmanager
@@ -42,7 +41,7 @@ def uniform_on_device(r1, r2, shape, device):
     return (r1 - r2) * torch.rand(*shape, device=device) + r2
 
 
-class DDPM(pl.LightningModule):
+class DDPM(nn.Module):
     # classic DDPM with Gaussian diffusion, in image space
     def __init__(self,
                  unet_config,
@@ -420,9 +419,12 @@ class DDPM(pl.LightningModule):
             params = params + [self.logvar]
         opt = torch.optim.AdamW(params, lr=lr)
         return opt
+    def __getattribute__(self, attr):
+            if attr == "device":
+                return next(self.parameters()).device
+            return object.__getattribute__(self, attr)
 
-
-class ModelZoo_LatentDiffusion(DDPM):
+class LatentDiffusionModel(DDPM):
     """main class"""
     def __init__(self,
                  first_stage_config,
@@ -518,8 +520,8 @@ class ModelZoo_LatentDiffusion(DDPM):
                 self.cond_stage_model = None
                 # self.be_unconditional = True
             else:
-                model = instantiate_from_config(config)
-                self.cond_stage_model = model.eval()
+                self.cond_stage_model = _model
+                self.cond_stage_model = self.cond_stage_model.eval()
                 self.cond_stage_model.train = disabled_train
                 for param in self.cond_stage_model.parameters():
                     param.requires_grad = False
@@ -1291,7 +1293,7 @@ class ModelZoo_LatentDiffusion(DDPM):
         return x
 
 
-class DiffusionWrapper(pl.LightningModule):
+class DiffusionWrapper(nn.Module):
     def __init__(self, diff_model_config, conditioning_key):
         super().__init__()
         self.diffusion_model = UNetModel(**diff_model_config["params"])
@@ -1318,9 +1320,13 @@ class DiffusionWrapper(pl.LightningModule):
             raise NotImplementedError()
 
         return out
+    def __getattribute__(self, attr):
+            if attr == "device":
+                return next(self.parameters()).device
+            return object.__getattribute__(self, attr)
 
 
-class Layout2ImgDiffusion(ModelZoo_LatentDiffusion):
+class Layout2ImgDiffusion(LatentDiffusionModel):
     # TODO: move all layout-specific hacks to this class
     def __init__(self, cond_stage_key, *args, **kwargs):
         assert cond_stage_key == 'coordinates_bbox', 'Layout2ImgDiffusion only for cond_stage_key="coordinates_bbox"'

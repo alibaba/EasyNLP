@@ -41,6 +41,12 @@ class Trainer(object):
         self.args = get_args()
         # for ckbert contrast learning
         self.contrast_learning_flag = kwargs.get('contrast_learning_flag', False)
+        # for save latent diffusion model
+        if kwargs.get('user_defined_parameters',False):
+            self.reset_model_state_flag = kwargs.get('user_defined_parameters',False).get('reset_model_state_flag',False)
+        else:
+            self.reset_model_state_flag=False
+                    
         if self.args.use_torchacc == True and is_torchx_available() == False:
             raise ValueError('No TrochACC Running Environment!')
         if self.args.use_torchacc:
@@ -54,7 +60,6 @@ class Trainer(object):
                 self._scaler = GradScaler()
             else:
                 self._scaler = torch.cuda.amp.GradScaler()
-
         self.optimizer_type = self.args.optimizer_type # add by ruihan.wjn
         self.max_grad_norm = self.args.max_grad_norm # add by ruihan.wjn
         self._model = None
@@ -214,10 +219,8 @@ class Trainer(object):
 
     def log_train_infos(self):
         args = self.args
-
         logger.info('=' * 10 + ' Training Start ' + '=' * 10 + '\n')
         logger.info('  Num of GPUs (all)       = %d', args.n_gpu)
-        logger.info('  Num of CPUs per worker  = %d', args.n_cpu)
         if args.n_gpu > 0:
             n_tr_samples = len(self._train_loader.dataset
                                ) * args.n_gpu if args.read_odps else len(
@@ -254,9 +257,6 @@ class Trainer(object):
                     str(args.save_checkpoint_steps))
         logger.info('  Distributed_backend     = %s',
                     str(args.distributed_backend))
-        logger.info('  Worker Count            = %s', str(args.worker_count))
-        logger.info('  Worker CPU              = %s', str(args.worker_cpu))
-        logger.info('  Worker data threads     = %s', str(args.data_threads))
 
         model_num_params = sum(
             [p.nelement() for n, p in self.model_module.named_parameters()])
@@ -370,6 +370,7 @@ class Trainer(object):
                     )
                     self._eval_scores = self.evaluator.evaluate(
                         model=self.model_module)
+                    
                     if self._eval_scores[0][
                             1] > self.evaluator.best_valid_score:
                         logger.info(
@@ -378,6 +379,7 @@ class Trainer(object):
                         self.save_checkpoint(save_best=True)
                         self.evaluator.best_valid_score = self._eval_scores[0][
                             1]
+                        
                     logger.info('Best score: {}'.format(
                         self.evaluator.best_valid_score))
                     logger.info('Learning rate: {:.8f}'.format(
@@ -501,14 +503,35 @@ class Trainer(object):
                     spiece_path,
                     os.path.join(get_dir_name(self.args.checkpoint_dir),
                                 'spiece.model'))
-
+            # save super-resolution model
+            if  os.path.exists(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'RRDB_ESRGAN_x4.pth')):
+                io.copy(
+                    os.path.join(
+                        get_dir_name(
+                            get_pretrain_model_path(
+                                self.args.pretrained_model_name_or_path,
+                                disable_auto_download=True)), 'RRDB_ESRGAN_x4.pth'),
+                    os.path.join(get_dir_name(self.args.checkpoint_dir),
+                                'RRDB_ESRGAN_x4.pth'))
         # Save the model
         model_to_save_prefix = 'pytorch_model' if save_best else 'pytorch_model_step_%d' % (
             self._global_step + 1)
-
         with io.open(os.path.join(self.args.checkpoint_dir, model_to_save_prefix + '.bin'), 'wb') \
                 as output_model_file:
-            torch.save(self.model_module.state_dict(), output_model_file)
+            if self.reset_model_state_flag:
+                from collections import OrderedDict
+                new_state_dict = OrderedDict()
+                for k, v in self.model_module.state_dict().items():
+                    name = k[6:]   # remove `model.`
+                    new_state_dict[name] = v
+                torch.save(new_state_dict, output_model_file)
+            else:    
+                torch.save(self.model_module.state_dict(), output_model_file)
 
         meta_data = {
             'epoch': self._current_epoch,
@@ -523,6 +546,7 @@ class Trainer(object):
         if not save_best:
             return
 
+        """
         if self.args.export_tf_checkpoint_type != 'none' and hasattr(
                 self.model_module, 'model_name'):
             # If the student is pre-defined EasyTransfer AppZoo model
@@ -531,7 +555,6 @@ class Trainer(object):
                         (self.args.export_tf_checkpoint_type,
                          os.path.join(get_dir_name(self.args.checkpoint_dir),
                                       'model.ckpt')))
-
             if self.args.export_tf_checkpoint_type == 'easytransfer':
                 exporter.export_pytorch_checkpoint_to_tf(
                     model=self.model_module,
@@ -550,9 +573,12 @@ class Trainer(object):
             else:
                 raise RuntimeError('Invalid export_tf_checkpoint_type %s' %
                                    self.args.export_tf_checkpoint_type)
+            """
+
         # This is a hack
         if torch.cuda.is_available():
             torch.cuda.set_device(self.args.local_rank)
+
     def contrast_learning_process(self, positive_negative_examples: torch.Tensor) -> torch.Tensor:
         # compute the exapmle emmbding
         original_size = positive_negative_examples.size()

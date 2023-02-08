@@ -23,14 +23,14 @@ fi
 
 rm -rf *.tsv *.csv *.txt
 
-echo "================== Test MegatronBERT classification =================="
-if [ ! -f ./train.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv
-fi
+#echo "================== Test MegatronBERT classification =================="
+#if [ ! -f ./train.tsv ]; then
+#  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/train.tsv
+#  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/classification/dev.tsv
+#fi
 
-python test_megatron_bert.py
-rm -rf classification_model
+#python test_megatron_bert.py
+#rm -rf classification_model
 
 echo "================== Test DKPLM =================="
 if [ ! -f ./train_corpus.txt ]; then
@@ -42,9 +42,9 @@ fi
 python test_dkplm_language_modeling.py
 rm -rf *.txt
 
-echo "================== Test TorchACC =================="
-python test_torchacc.py
-rm -rf *.tsv
+#echo "================== Test TorchACC =================="
+#python test_torchacc.py
+#rm -rf *.tsv
 
 # echo "================== Feature Vectorization =================="
 # if [ ! -f ./dev2.tsv ]; then

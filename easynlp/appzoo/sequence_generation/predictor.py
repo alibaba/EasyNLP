@@ -71,9 +71,11 @@ class SequenceGenerationPredictor(Predictor):
                 self.tokenizer_class=tokenizer_class  
             self.tokenizer = tokenizer_class.from_pretrained(self.model_dir)
 
+        device = torch.device(torch.cuda.current_device() if torch.cuda.is_available() else "cpu")
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir,user_defined_parameters=self.user_defined_parameters)
-        if torch.cuda.is_available():
-            self.model = self.model.cuda()
+        self.model.to(device)
+        # if torch.cuda.is_available():
+        #     self.model = self.model.cuda()
         self.MUTEX = Lock()
         self.first_sequence = kwargs.pop("first_sequence", "first_sequence")
         self.max_encoder_length = kwargs.get('max_encoder_length', int(self.user_defined_parameters.get("max_encoder_length", 512)))
@@ -82,6 +84,8 @@ class SequenceGenerationPredictor(Predictor):
         self.no_repeat_ngram_size = int(self.user_defined_parameters.get("no_repeat_ngram_size", 2))
         self.num_beams = int(self.user_defined_parameters.get("num_beams", 5))
         self.num_return_sequences = int(self.user_defined_parameters.get("num_return_sequences", 5))
+        self.num_beam_groups = int(self.user_defined_parameters.get("num_beam_groups", 0)) or None
+        self.diversity_penalty = float(self.user_defined_parameters.get("diversity_penalty", 0)) or (1.0 if self.num_beam_groups else None)
 
     def preprocess(self, in_data):
         """
@@ -142,7 +146,9 @@ class SequenceGenerationPredictor(Predictor):
                                   no_repeat_ngram_size=self.no_repeat_ngram_size,
                                   num_return_sequences=self.num_beams,
                                   decoder_start_token_id=self.tokenizer.cls_token_id,
-                                  eos_token_id=eos_token_id)
+                                  eos_token_id=eos_token_id, 
+                                  num_beam_groups=self.num_beam_groups, 
+                                  diversity_penalty=self.diversity_penalty)
         rst = {
             "beam_list": list()
         }
