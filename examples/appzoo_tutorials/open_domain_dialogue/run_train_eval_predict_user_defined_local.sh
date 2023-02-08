@@ -28,7 +28,7 @@ if [ "$mode" = "train" ]; then
     --mode $mode \
     --worker_gpu=1 \
     --tables=train.tsv,valid.tsv \
-    --checkpoint_dir=./chitchat_model/ \
+    --checkpoint_dir=./chat_model/ \
     --learning_rate=3e-5  \
     --epoch_num=3  \
     --random_seed=42 \
@@ -37,7 +37,7 @@ if [ "$mode" = "train" ]; then
     --micro_batch_size=1 \
     --app_name=open_domain_dialogue \
     --user_defined_parameters='
-        pretrain_model_name_or_path=transformer
+        pretrain_model_name_or_path=blender-dialog-90M-en
         label_length=128
     '
 
@@ -47,7 +47,7 @@ elif [ "$mode" = "evaluate" ]; then
     --mode=$mode \
     --worker_gpu=1 \
     --tables=valid.tsv \
-    --checkpoint_dir=./chitchat_model/ \
+    --checkpoint_dir=./chat_model/ \
     --micro_batch_size=1 \
     --app_name=open_domain_dialogue \
 
@@ -58,7 +58,7 @@ elif [ "$mode" = "predict" ]; then
     --mode=$mode \
     --worker_gpu=1 \
     --tables=persona.tsv \
-    --checkpoint_path=./classification_model/ \
+    --checkpoint_path=./chat_model/ \
     --sequence_length=512 \
     --app_name=open_domain_dialogue
 
