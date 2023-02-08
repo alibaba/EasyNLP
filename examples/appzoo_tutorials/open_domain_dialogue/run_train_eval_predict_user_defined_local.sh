@@ -34,11 +34,11 @@ if [ "$mode" = "train" ]; then
     --random_seed=42 \
     --save_checkpoint_steps=50 \
     --sequence_length=512 \
-    --label_length=128 \
     --micro_batch_size=1 \
     --app_name=open_domain_dialogue \
     --user_defined_parameters='
         pretrain_model_name_or_path=transformer
+        label_length=128
     '
 
 elif [ "$mode" = "evaluate" ]; then
@@ -48,10 +48,9 @@ elif [ "$mode" = "evaluate" ]; then
     --worker_gpu=1 \
     --tables=valid.tsv \
     --checkpoint_dir=./chitchat_model/ \
-    --sequence_length=512 \
-    --label_length=128 \
     --micro_batch_size=1 \
-    --app_name=open_domain_dialogue
+    --app_name=open_domain_dialogue \
+
 
 elif [ "$mode" = "predict" ]; then
 
