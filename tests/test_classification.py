@@ -118,7 +118,7 @@ class TestClassification(unittest.TestCase):
                   --append_cols=label \
                   --first_sequence=sent1 \
                   --second_sequence=sent2 \
-                  --checkpoint_path=./classification_model \
+                  --checkpoint_dir=./classification_model \
                   --sequence_length=128 \
                   --micro_batch_size=32 \
                   --app_name=text_classify \

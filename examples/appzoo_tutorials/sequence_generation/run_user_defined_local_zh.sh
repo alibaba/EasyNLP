@@ -58,7 +58,7 @@ MEGATRON_PARAMETERS="--deepspeed \
             --overwrite
             "
 
-# MEGATRON_PARAMETERS is only valid for megatron models such as mg/glm-large-chinese
+# MEGATRON_PARAMETERS is only valid for megatron models such as mg/glm-generation-large-zh
 
 if [ "$mode" = "predict" ]; then
   

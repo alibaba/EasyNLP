@@ -177,8 +177,9 @@ def rouge_metric(predictions, labels, examples, metric="rouge-1", duplicate_rate
     # dealing with Chinese
     en = any([isEnglish(i) for i in ref_list[:5]])
     # en = [' ' in i.strip() for i in ref_list].count(True) > len(ref_list) * 0.95
+
     if not en:
-        predictions = [' '.join(list(j)) for j in predictions]
+        predictions = sum([[' '.join(list(j)) for j in i] for i in predictions], [])
 
     for prediction in predictions:
         buf = []
@@ -194,15 +195,9 @@ def rouge_metric(predictions, labels, examples, metric="rouge-1", duplicate_rate
             buf = remove_duplicate(buf, duplicate_rate)
         line = "\n".join(buf)
         pred_list.append(line)
-    # if torch.distributed.get_rank() == 0:
-    #     import json
-    #     with open("./results.json", "w") as output:
-    #         for ref, pred in zip(ref_list, pred_list):
-    #             if en:
-    #                 output.write(json.dumps({"ref": ref, "pred": pred}) + "\n")
-    #             else:
-    #                 output.write(json.dumps({"ref": ref, "pred": ''.join(pred.split())}, ensure_ascii=False) + "\n")
-    
+
+    print('Example of the predicted sequences.')
+    print(pred_list[0])
     rouge = Rouge()
     if en:
         scores = rouge.get_scores(pred_list, ref_list, avg=True)
@@ -388,8 +383,8 @@ class DecoderEvaluater:
                     else:
                         text = self.tokenizer.DecodeIds(text)
                     predictions.append(text)
-                if args.num_return_sequences != 1:
-                    predictions = [predictions]
+                # if args.num_return_sequences != 1:
+                predictions = [predictions]
                 for uid, prediction in zip(uid_list, predictions):
                     local_predictions[uid] = prediction
                 if (idx + 1) % args.log_interval == 0:

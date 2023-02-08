@@ -7,10 +7,10 @@ from torch import distributed as dist
 from SwissArmyTransformer import mpu
 from .fp16 import FP16_Module, FP16_Optimizer, DynamicLossScaler
 from .learning_rates import AnnealingLR
-from easynlp.modelzoo.models.glm import GLMModel, glm_get_params_for_weight_decay_optimization
-from easynlp.modelzoo.models.glm import GLMForMultiTokenCloze, GLMForMultiTokenClozeFast, GLMForSingleTokenCloze, GLMForSequenceClassification
-from easynlp.modelzoo.models.glm import PyTorchDistributedDataParallel as TorchDDP, DistributedDataParallel as LocalDDP
-# from easynlp.modelzoo.models.glm.modeling_bert import BertForMultipleChoice, BertForSequenceClassification
+from easynlp.modelzoo.models.mg_glm import GLMModel, glm_get_params_for_weight_decay_optimization
+from easynlp.modelzoo.models.mg_glm import GLMForMultiTokenCloze, GLMForMultiTokenClozeFast, GLMForSingleTokenCloze, GLMForSequenceClassification
+from easynlp.modelzoo.models.mg_glm import PyTorchDistributedDataParallel as TorchDDP, DistributedDataParallel as LocalDDP
+# from easynlp.modelzoo.models.mg_glm.modeling_bert import BertForMultipleChoice, BertForSequenceClassification
 from .utils import print_rank_0, get_checkpoint_name, get_checkpoint_iteration
 
 

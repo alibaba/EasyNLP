@@ -20,7 +20,7 @@ import json
 import tarfile
 from typing import Any, List, Optional
 from ..appzoo import TextImageGeneration, CLIPGPTImageTextGeneration, \
-        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension, LatentDiffusion
+        SequenceClassification, TextMatch, SequenceLabeling, MachineReadingComprehension, LatentDiffusion, StableDiffusion
 from ..utils.io_utils import io
 from .implementation import Pipeline, TextImageGenerationPipeline, ImageTextGenerationPipeline, \
         SequenceClassificationPipeline, TextImageGenerationPipeline, \
@@ -57,10 +57,45 @@ SUPPORTED_TASKS = {
         'model_cls': TextImageGeneration,
         'default': 'artist-base-zh',
     },
-    'latent_diffusion': {
+    'chinese-ldm-general': {
         'impl': LatentDiffusionPipeline,
         'model_cls': LatentDiffusion,
-        'default': 'latent_diffusion_fashion_cn',
+        'default': 'chinese-ldm-general',
+    },
+    'stable-diffusion-general': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': StableDiffusion,
+        'default': 'stable-diffusion-general',
+    },
+    'chinese-ldm-fashion': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-fashion',
+    },
+    'chinese-ldm-art': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-art',
+    },
+    'chinese-ldm-poem': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-poem',
+    },
+    'chinese-ldm-anime': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-anime',
+    },
+    'chinese-ldm-pet': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-pet',
+    },
+    'chinese-ldm-food': {
+        'impl': LatentDiffusionPipeline,
+        'model_cls': LatentDiffusion,
+        'default': 'chinese-ldm-food',
     },
     'image2text_generation': {
         'impl': ImageTextGenerationPipeline,
