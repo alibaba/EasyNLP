@@ -13,7 +13,7 @@ if [ ! -f ./persona.tsv ]; then
 fi
 
 MASTER_ADDR=localhost
-MASTER_PORT=6009
+MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 GPUS_PER_NODE=1
 NNODES=1
 NODE_RANK=0

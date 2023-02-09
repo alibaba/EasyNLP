@@ -14,7 +14,8 @@
 # limitations under the License.
 """ BeamSearch classes for BlenderBot """
 
-from typing import TypedDict, Optional, List, TypeVar, Iterable, Tuple, Set, Dict
+from typing import Optional, List, TypeVar, Iterable, Tuple, Set, Dict
+from typing_extensions import TypedDict
 import torch
 import math
 from abc import abstractmethod
