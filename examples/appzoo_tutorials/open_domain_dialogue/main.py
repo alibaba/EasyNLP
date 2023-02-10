@@ -32,7 +32,8 @@ if __name__ == "__main__":
         pretrained_model_name_or_path=args.pretrained_model_name_or_path,
         data_file=args.tables.split(",")[-1],
         max_text_length=args.sequence_length,
-        max_label_length=args.label_length)
+        max_label_length=args.label_length,
+        origin_model_name=user_defined_parameters.get('pretrain_model_name_or_path', None))
 
     pretrained_model_name_or_path = args.pretrained_model_name_or_path \
         if args.pretrained_model_name_or_path else args.checkpoint_dir
@@ -47,7 +48,8 @@ if __name__ == "__main__":
             pretrained_model_name_or_path=args.pretrained_model_name_or_path,
             data_file=args.tables.split(",")[0],
             max_text_length=args.sequence_length,
-            max_label_length=args.label_length)
+            max_label_length=args.label_length,
+            origin_model_name=user_defined_parameters.get('pretrain_model_name_or_path', None))
         
         trainer = Trainer(model=model, train_dataset=train_dataset, user_defined_parameters=user_defined_parameters,
                           evaluator=get_application_evaluator(app_name=args.app_name, valid_dataset=valid_dataset, user_defined_parameters=user_defined_parameters,

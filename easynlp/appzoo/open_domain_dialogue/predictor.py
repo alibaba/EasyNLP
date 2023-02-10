@@ -172,10 +172,15 @@ class OpenDomainDialoguePredictor(Predictor):
             raise FileNotFoundError('The provided model path %s does not exist, please check.' % model_dir)
         self.model_dir = local_path
         config = AutoConfig.from_pretrained(model_dir, **kwargs)
+        
+        vocab_file = os.path.join(local_path, 'vocab.txt')
+        codecs_file = os.path.join(local_path, 'dict.codecs')
+
         self.tokenizer = TransformerTokenizer(
-            vocab_file=local_path + '/vocab.txt',
-            codecs_file=local_path + '/dict.codecs',
-            tokenizer = config.tokenizer
+            vocab_file=vocab_file,
+            codecs_file=codecs_file,
+            tokenizer=config.tokenizer,
+            origin_model_name=user_defined_parameters.get('pretrain_model_name_or_path', '')
         )
         self.model = model_cls(pretrained_model_name_or_path=self.model_dir, user_defined_parameters=user_defined_parameters)
         if torch.cuda.is_available():

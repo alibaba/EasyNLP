@@ -23,8 +23,12 @@ class OpenDomainDialogue(Application):
     def __init__(self, pretrained_model_name_or_path=None, **kwargs):
         super().__init__()
 
-        self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
-        self.backbone = AutoModel.from_pretrained(pretrained_model_name_or_path)
+        if kwargs.get('from_config'):
+            self.config = kwargs.get('from_config')
+            self.backbone = AutoModel.from_config(self.config)
+        else:
+            self.config = AutoConfig.from_pretrained(pretrained_model_name_or_path)
+            self.backbone = AutoModel.from_pretrained(pretrained_model_name_or_path)
         self.criterion = torch.nn.CrossEntropyLoss(
             ignore_index=self.backbone.NULL_IDX, reduction='none'
         )

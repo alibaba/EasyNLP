@@ -32,7 +32,7 @@ class OpenDomainDialogueDataset(BaseDataset):
         self.max_text_length = max_text_length
         self.max_label_length = max_label_length
 
-        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path, **kwargs)
     
     def convert_single_row_to_example(self, row):
         sentences = row.split('\t')

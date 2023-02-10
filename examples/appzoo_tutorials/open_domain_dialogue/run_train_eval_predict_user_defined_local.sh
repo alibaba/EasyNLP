@@ -50,6 +50,9 @@ elif [ "$mode" = "evaluate" ]; then
     --checkpoint_dir=./chat_model/ \
     --micro_batch_size=1 \
     --app_name=open_domain_dialogue \
+    --user_defined_parameters='
+        pretrain_model_name_or_path=blender-dialog-90M-en
+    '
 
 
 elif [ "$mode" = "predict" ]; then
@@ -60,6 +63,9 @@ elif [ "$mode" = "predict" ]; then
     --tables=persona.tsv \
     --checkpoint_path=./chat_model/ \
     --sequence_length=512 \
-    --app_name=open_domain_dialogue
+    --app_name=open_domain_dialogue \
+    --user_defined_parameters='
+        pretrain_model_name_or_path=blender-dialog-90M-en
+    '
 
 fi
