@@ -34,6 +34,7 @@ from easynlp.appzoo import VQGANGPTImageTextGeneration, CLIPGPTImageTextGenerati
 from easynlp.appzoo import CLIPGPTFrameTextGeneration
 from easynlp.appzoo.sequence_generation.model import SequenceGeneration
 from easynlp.appzoo import MachineReadingComprehension
+from easynlp.appzoo import OpenDomainDialogue
 from easynlp.appzoo import InformationExtractionModel
 
 from easynlp.fewshot_learning.fewshot_evaluator import PromptEvaluator as FewshotSequenceClassificationEvaluator
@@ -50,6 +51,7 @@ from easynlp.appzoo import ImageTextGenerationEvaluator
 from easynlp.appzoo import FrameTextGenerationEvaluator
 from easynlp.appzoo import SequenceGenerationEvaluator
 from easynlp.appzoo import MachineReadingComprehensionEvaluator
+from easynlp.appzoo import OpenDomainDialogueEvaluator
 from easynlp.appzoo import InformationExtractionEvaluator
 from easynlp.appzoo import LatentDiffusionModelEvaluator
 
@@ -67,6 +69,7 @@ from easynlp.appzoo import VQGANGPTImageTextGenerationPredictor, CLIPGPTImageTex
 from easynlp.appzoo import CLIPGPTFrameTextGenerationPredictor
 from easynlp.appzoo import SequenceGenerationPredictor
 from easynlp.appzoo import MachineReadingComprehensionPredictor
+from easynlp.appzoo import OpenDomainDialoguePredictor
 from easynlp.appzoo import InformationExtractionPredictor
 
 from easynlp.appzoo import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -81,6 +84,7 @@ from easynlp.appzoo import TextImageDataset
 from easynlp.appzoo import CLIPGPTImageTextDataset, VQGANGPTImageTextDataset
 from easynlp.appzoo import CLIPGPTFrameTextDataset
 from easynlp.appzoo import MachineReadingComprehensionDataset
+from easynlp.appzoo import OpenDomainDialogueDataset
 from easynlp.appzoo import InformationExtractionDataset
 from easynlp.appzoo import LdmDataset
 
@@ -128,6 +132,7 @@ Dataset_Mapping = {
     'video2text_generation': CLIPGPTFrameTextDataset,
     'sequence_generation': SequenceGenerationDataset,
     'machine_reading_comprehension': MachineReadingComprehensionDataset,
+    'open_domain_dialogue': OpenDomainDialogueDataset,
     'information_extraction': InformationExtractionDataset,
     'latent_diffusion':LdmDataset
 
@@ -166,6 +171,7 @@ ModelMapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
+    'open_domain_dialogue': OpenDomainDialogue,
     'information_extraction': InformationExtractionModel,
     'latent_diffusion':LatentDiffusion,
 
@@ -198,6 +204,7 @@ Eval_Model_Mapping = {
     'video2text_generation': CLIPGPTFrameTextGeneration, 
     'sequence_generation': SequenceGeneration,
     'machine_reading_comprehension': MachineReadingComprehension,
+    'open_domain_dialogue': OpenDomainDialogue,
     'information_extraction': InformationExtractionModel,
     'latent_diffusion': LatentDiffusion
 
@@ -230,6 +237,7 @@ Evaluator_Mapping = {
     'video2text_generation': FrameTextGenerationEvaluator, 
     'sequence_generation': SequenceGenerationEvaluator,
     'machine_reading_comprehension': MachineReadingComprehensionEvaluator,
+    'open_domain_dialogue': OpenDomainDialogueEvaluator,
     'information_extraction': InformationExtractionEvaluator,
     'latent_diffusion': LatentDiffusionModelEvaluator
 }
@@ -263,6 +271,7 @@ Predictor_Mapping = {
     'video2text_generation': [CLIPGPTFrameTextGenerationPredictor, CLIPGPTFrameTextGeneration],
     'sequence_generation': [SequenceGenerationPredictor, SequenceGeneration],
     'machine_reading_comprehension': [MachineReadingComprehensionPredictor, MachineReadingComprehension],
+    'open_domain_dialogue': [OpenDomainDialoguePredictor, OpenDomainDialogue],
     'information_extraction': [InformationExtractionPredictor, InformationExtractionModel]
 }
 

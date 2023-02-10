@@ -256,6 +256,7 @@ def _add_easynlp_args(parser: argparse.ArgumentParser):
                            'video2text_generation', 
                            'clip', 'wukong_clip', 'clip4clip', 
                            'machine_reading_comprehension','latent_diffusion',
+                           'open_domain_dialogue',
                            'information_extraction'
                        ],
                        help='name of the application')

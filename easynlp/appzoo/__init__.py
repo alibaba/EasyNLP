@@ -34,6 +34,7 @@ _import_structure = {
     "video2text_generation.model": ['CLIPGPTFrameTextGeneration'], 
     "sequence_generation.model": ["SequenceGeneration"], 
     "machine_reading_comprehension.model": ["MachineReadingComprehension"],
+    "open_domain_dialogue.model": ["OpenDomainDialogue"],
     "information_extraction.model": ["InformationExtractionModel"], 
 
     "sequence_classification.evaluator": ['SequenceClassificationEvaluator', 'SequenceMultiLabelClassificationEvaluator'],
@@ -49,6 +50,7 @@ _import_structure = {
     "video2text_generation.evaluator": ["FrameTextGenerationEvaluator"], 
     "sequence_generation.evaluator": ["SequenceGenerationEvaluator"], 
     "machine_reading_comprehension.evaluator": ["MachineReadingComprehensionEvaluator"],
+    "open_domain_dialogue.evaluator": ["OpenDomainDialogueEvaluator"],
     "information_extraction.evaluator": ["InformationExtractionEvaluator"],
     "latent_diffusion.evaluator": ["LatentDiffusionModelEvaluator"],
 
@@ -67,6 +69,7 @@ _import_structure = {
     "video2text_generation.predictor": ['CLIPGPTFrameTextGenerationPredictor'],
     "sequence_generation.predictor": ['SequenceGenerationPredictor'],
     "machine_reading_comprehension.predictor": ["MachineReadingComprehensionPredictor"],
+    "open_domain_dialogue.predictor": ["OpenDomainDialoguePredictor"],
     "information_extraction.predictor": ["InformationExtractionPredictor"],
 
     "geep_classification.data": ['GEEPClassificationDataset'],
@@ -82,6 +85,7 @@ _import_structure = {
     "video2text_generation.data": ['CLIPGPTFrameTextDataset'],
     "sequence_generation.data": ['SequenceGenerationDataset'],
     "machine_reading_comprehension.data": ["MachineReadingComprehensionDataset"],
+    "open_domain_dialogue.data": ['OpenDomainDialogueDataset'],
     "information_extraction.data": ["InformationExtractionDataset"],
     "latent_diffusion.data": ["LdmDataset"],
 
@@ -106,6 +110,7 @@ if TYPE_CHECKING:
     from .video2text_generation.model import CLIPGPTFrameTextGeneration
     from .sequence_generation.model import SequenceGeneration
     from .machine_reading_comprehension.model import MachineReadingComprehension
+    from .open_domain_dialogue.model import OpenDomainDialogue
     from .information_extraction.model import InformationExtractionModel
 
     from .sequence_classification.evaluator import SequenceClassificationEvaluator, SequenceMultiLabelClassificationEvaluator
@@ -121,6 +126,7 @@ if TYPE_CHECKING:
     from .video2text_generation.evaluator import FrameTextGenerationEvaluator
     from .sequence_generation.evaluator import SequenceGenerationEvaluator
     from .machine_reading_comprehension.evaluator import MachineReadingComprehensionEvaluator
+    from .open_domain_dialogue.evaluator import OpenDomainDialogueEvaluator
     from .information_extraction.evaluator import InformationExtractionEvaluator
     from .latent_diffusion.evaluator import LatentDiffusionModelEvaluator
 
@@ -139,6 +145,7 @@ if TYPE_CHECKING:
     from .video2text_generation.predictor import CLIPGPTFrameTextGenerationPredictor
     from .sequence_generation.predictor import SequenceGenerationPredictor
     from .machine_reading_comprehension.predictor import MachineReadingComprehensionPredictor
+    from .open_domain_dialogue.predictor import OpenDomainDialoguePredictor
     from .information_extraction.predictor import InformationExtractionPredictor
 
     from .sequence_classification.data import ClassificationDataset, DistillatoryClassificationDataset, FewshotSequenceClassificationDataset
@@ -154,6 +161,7 @@ if TYPE_CHECKING:
     from .video2text_generation.data import CLIPGPTFrameTextDataset
     from .sequence_generation.data import SequenceGenerationDataset
     from .machine_reading_comprehension.data import MachineReadingComprehensionDataset
+    from .open_domain_dialogue.data import OpenDomainDialogueDataset
     from .information_extraction.data import InformationExtractionDataset
     from .latent_diffusion.data import LdmDataset
 

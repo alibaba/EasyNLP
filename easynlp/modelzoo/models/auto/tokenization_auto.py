@@ -41,6 +41,7 @@ from ..bart.tokenization_bart import BartTokenizer
 from ..bloom.tokenization_bloom_fast import BloomTokenizerFast
 from ..randeng.tokenization_randeng import RandengTokenizer
 from ..kangaroo.tokenization_kangaroo import KangarooTokenizer
+from ..transformer.tokenization_transformer import TransformerTokenizer
 
 from .configuration_auto import (
     AutoConfig,
@@ -60,7 +61,8 @@ from .configuration_auto import (
     T5Config,
     BloomConfig,
     RandengConfig,
-    KangarooConfig
+    KangarooConfig,
+    TransformerConfig
 )
 
 if is_sentencepiece_available():
@@ -121,7 +123,8 @@ TOKENIZER_MAPPING = OrderedDict(
         (BartConfig, (BartTokenizer, BartTokenizerFast)),
         (BloomConfig, (None, BloomTokenizerFast)),
         (RandengConfig, (RandengTokenizer, None)),
-        (KangarooConfig, (KangarooTokenizer, KangarooTokenizerFast))
+        (KangarooConfig, (KangarooTokenizer, KangarooTokenizerFast)),
+        (TransformerConfig, (TransformerTokenizer, None))
     ]
 )
 
