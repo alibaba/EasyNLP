@@ -1,15 +1,15 @@
 export CUDA_VISIBLE_DEVICES=$1
 
 if [ ! -f ./train.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/chitchat/train.tsv
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/open_domain_dialogue/train.tsv
 fi
 
 if [ ! -f ./valid.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/chitchat/valid.tsv
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/open_domain_dialogue/valid.tsv
 fi
 
 if [ ! -f ./persona.tsv ]; then
-  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/chitchat/persona.tsv
+  wget http://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/open_domain_dialogue/persona.tsv
 fi
 
 MASTER_ADDR=localhost
