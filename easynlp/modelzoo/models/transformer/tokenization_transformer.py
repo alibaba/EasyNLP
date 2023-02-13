@@ -22,6 +22,7 @@ import os
 import sys
 import random
 from tokenizers import ByteLevelBPETokenizer
+from easynlp.utils import get_pretrain_model_path
 
 VOCAB_FILES_NAMES = {
     "vocab_file": "vocab.txt",
@@ -223,16 +224,26 @@ class TransformerTokenizer(PreTrainedTokenizer):
         self.tokenizer = tokenizer
         self.separator = separator
 
-        if not os.path.isfile(vocab_file):
-            raise ValueError(
-                f"Can't find a vocabulary file at path '{vocab_file}'. To load the vocabulary from a Google pretrained "
-                "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
-            )
-        if not os.path.isfile(codecs_file):
-            raise ValueError(
-                f"Can't find a bpe codecs file at path '{codecs_file}'. To load the codecs from a Google pretrained "
-                "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
-            )
+
+        # Search vocab and codecs file under pretrain model path
+        # when they are not found under checkpoint dir
+        if not vocab_file or not os.path.isfile(vocab_file):
+            pretrain_model_path = get_pretrain_model_path(kwargs.get('origin_model_name', ''))
+            vocab_file = os.path.join(pretrain_model_path, VOCAB_FILES_NAMES['vocab_file'])
+            if not os.path.isfile(vocab_file):
+                raise ValueError(
+                    f"Can't find a vocabulary file at path '{vocab_file}'. To load the vocabulary from a Google pretrained "
+                    "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
+                )
+        if not codecs_file or not os.path.isfile(codecs_file):
+            pretrain_model_path = get_pretrain_model_path(kwargs.get('origin_model_name', ''))
+            codecs_file = os.path.join(pretrain_model_path, VOCAB_FILES_NAMES['codecs_file'])
+            if not os.path.isfile(codecs_file):
+                raise ValueError(
+                    f"Can't find a bpe codecs file at path '{codecs_file}'. To load the codecs from a Google pretrained "
+                    "model use `tokenizer = TransformerTokenizer.from_pretrained(PRETRAINED_MODEL_NAME)`"
+                )
+
         self.vocab = load_vocab(vocab_file)
         self.ids_to_tokens = collections.OrderedDict([(ids, tok) for tok, ids in self.vocab.items()])
         self.codecs, self.codecs_reverse, self.version = load_codecs(codecs_file)
