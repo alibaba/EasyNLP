@@ -571,12 +571,15 @@ def default_main_fn():
             multi_label=multi_label,
             is_training=True)
 
-        evaluator = get_application_evaluator(
-            app_name=args.app_name,
-            valid_dataset=valid_dataset,
-            few_shot_anchor_args=args,
-            eval_batch_size=args.micro_batch_size,
-            user_defined_parameters=user_defined_parameters)
+        evaluator=None
+        do_eval = user_defined_parameters.get('do_eval', 'True')
+        if do_eval=='True':
+            evaluator = get_application_evaluator(
+                app_name=args.app_name,
+                valid_dataset=valid_dataset,
+                few_shot_anchor_args=args,
+                eval_batch_size=args.micro_batch_size,
+                user_defined_parameters=user_defined_parameters)
         enable_distillation = user_defined_parameters.get('app_parameters', False).get('enable_distillation', False)
         # Training
         default_trainer = DistillatoryTrainer if enable_distillation else Trainer
