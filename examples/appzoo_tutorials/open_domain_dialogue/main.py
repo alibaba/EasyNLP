@@ -11,6 +11,8 @@ if __name__ == "__main__":
     initialize_easynlp()
     args = get_args()
     user_defined_parameters = parse_user_defined_parameters(args.user_defined_parameters)
+    if args.checkpoint_dir == None:
+        args.checkpoint_dir = args.pretrained_model_name_or_path
 
     if args.mode == "predict":
         predictor = get_application_predictor(
