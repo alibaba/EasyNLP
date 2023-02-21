@@ -46,6 +46,11 @@ class Trainer(object):
             self.reset_model_state_flag = kwargs.get('user_defined_parameters',False).get('reset_model_state_flag',False)
         else:
             self.reset_model_state_flag=False
+        # for save bert classify 
+        if kwargs.get('user_defined_parameters',False): #add by jiuzhu
+            self.reset_model_prefix = kwargs.get('user_defined_parameters',False).get('reset_model_prefix',False)
+        else:  
+            self.reset_model_prefix=False
                     
         if self.args.use_torchacc == True and is_torchx_available() == False:
             raise ValueError('No TrochACC Running Environment!')
@@ -529,6 +534,14 @@ class Trainer(object):
                 for k, v in self.model_module.state_dict().items():
                     name = k[6:]   # remove `model.`
                     new_state_dict[name] = v
+                torch.save(new_state_dict, output_model_file)
+            elif self.reset_model_prefix: #add by jiuzhu
+                from collections import OrderedDict
+                new_state_dict = OrderedDict()
+                for k, v in self.model_module.state_dict().items():
+                    if k.startswith('backbone'):
+                        name = k[9:]   # remove `backbone.`
+                        new_state_dict[name] = v
                 torch.save(new_state_dict, output_model_file)
             else:    
                 torch.save(self.model_module.state_dict(), output_model_file)
