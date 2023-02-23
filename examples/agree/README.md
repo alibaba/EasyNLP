@@ -13,8 +13,8 @@ We use the popular public benchmark dataset Flickr30k for evaluation. You can do
 
     ```
     if [ ! -f ./tmp/datasets/flickr30k_images.tgz ]; then
-        wget -P ./tmp 
-        tar zxvf ./tmp/datasets/flickr30k_images.tgz -C ./tmp
+        wget -P ./tmp/datasets https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/flick30k_images.tgz
+        tar zxvf ./tmp/datasets/flickr30k_images.tgz -C ./tmp/datasets
     fi
 
     ```
@@ -31,7 +31,7 @@ We also provide the preprocessed and re-organized data of visual entities from V
 
     ```
     if [ ! -f ./tmp/VG.tgz ]; then
-        wget -P ./tmp https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/fashionklip/fashion_kb.tgz
+        wget -P ./tmp https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/VG.tgz
         tar zxvf ./tmp/VG.tgz -C ./tmp
     fi
     ```
@@ -42,7 +42,7 @@ Besides, we provide the images where the grounded textual entities are masked in
 
     ```
     if [ ! -f ./tmp/datasets/flickr30k_images/flickr30k_visual_grounding.224.npz ]; then
-        wget -P ./tmp/datasets/flickr30k_images/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/fashionklip/fashion_kb.tgz
+        wget -P ./tmp/datasets/flickr30k_images/ https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/flickr30k_visual_grounding.224.npz
     fi
     ```
 
@@ -52,7 +52,7 @@ Besides, we provide the images where the grounded textual entities are masked in
 
     ```
     if [ ! -f ./tmp/pretrained_models/ViT-L-14.pt ]; then
-        wget -P ./tmp/pretrained_models https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/agree/openai/ViT-B-32.pt
+        wget -P ./tmp/pretrained_models https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/openai/ViT-L-14.pt
     fi
 
     ```
