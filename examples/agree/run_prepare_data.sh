@@ -1,6 +1,6 @@
 if [ ! -f ./tmp/datasets/flickr30k_images.tgz ]; then
-    wget -P ./tmp https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/flick30k_images.tgz
-    tar zxvf ./tmp/datasets/flickr30k_images.tgz -C ./tmp
+    wget -P ./tmp/datasets https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/easywxd/AGREE/flick30k_images.tgz
+    tar zxvf ./tmp/datasets/flickr30k_images.tgz -C ./tmp/datasets
 fi
 
 if [ ! -f ./tmp/VG.tgz ]; then
