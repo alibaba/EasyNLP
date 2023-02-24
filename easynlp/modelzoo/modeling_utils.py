@@ -130,6 +130,13 @@ def load_state_dict_into_model(cls, model, state_dict, pretrained_model_name_or_
     expected_keys = list(model.state_dict().keys())
     loaded_keys = list(state_dict.keys())
     prefix = model.base_model_prefix
+    
+    #for seq_classify remove the prefix backbone of user trained model local
+    if prefix=='bert' and any(s.startswith('backbone') for s in loaded_keys):
+        for _key in loaded_keys:
+            if _key.startswith('backbone'):
+                state_dict[_key[9:]] = state_dict.pop(_key)
+        loaded_keys = list(state_dict.keys())
 
     has_prefix_module = any(s.startswith(prefix) for s in loaded_keys)
     expects_prefix_module = any(s.startswith(prefix) for s in expected_keys)
