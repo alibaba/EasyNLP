@@ -179,7 +179,7 @@ def _build_infinite_size_dataloader(dataloader):
 
 
 def _build_train_valid_dataloaders(train_dataset, valid_dataset, args):
-    """Traing and validation dataloaders."""
+    """Training and validation dataloaders."""
     print_rank_0('building train and validation dataloaders ...')
     # Training dataset.
     train_dataloader = build_data_loader(train_dataset, args.batch_size, args.num_workers, drop_last=False)
@@ -313,7 +313,7 @@ def finetune(args, train_valid_datasets_provider, model_kwargs, forward_step=fin
     # pretrain_glm.tokenizer = tokenizer
 
     # Train and validation data loaders.
-    timers('train/valid/test dataset/dataloder').start()
+    timers('train/valid/test dataset/dataloader').start()
     train_dataloader, valid_dataloader = None, None
     train_block_dataloader, valid_block_dataloader = None, None
     if train_valid_datasets_provider is not None and args.epochs > 0:
@@ -352,8 +352,8 @@ def finetune(args, train_valid_datasets_provider, model_kwargs, forward_step=fin
                 valid_block_dataloader = FakeDataloader(None)
             train_block_dataloader, valid_block_dataloader = iter(train_block_dataloader), iter(valid_block_dataloader)
 
-    timers('train/valid/test dataset/dataloder').stop()
-    # Build calback function.
+    timers('train/valid/test dataset/dataloader').stop()
+    # Build callback function.
     timers('callback function').start()
     end_of_epoch_callback, end_of_train_callback = None, None
     if end_of_epoch_callback_provider is not None:
@@ -433,7 +433,7 @@ def finetune(args, train_valid_datasets_provider, model_kwargs, forward_step=fin
 
     # Print setup timing.
     print_rank_0('done with setups ...')
-    timers.log(['train/valid/test dataset/dataloder', 'callback function',
+    timers.log(['train/valid/test dataset/dataloader', 'callback function',
                 'model and optimizer', 'pretrained checkpoint'])
     print_rank_0('training ...')
 
@@ -481,7 +481,7 @@ if __name__ == '__main__':
     # Pytorch distributed.
     initialize_distributed(args)
 
-    # Random seeds for reproducability.
+    # Random seeds for reproducibility.
     set_random_seed(args.seed)
     # from tasks.superglue.dataset import PROCESSORS
 

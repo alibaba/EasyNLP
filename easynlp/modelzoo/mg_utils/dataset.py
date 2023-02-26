@@ -316,7 +316,7 @@ class csv_dataset(data.Dataset):
         return len(self.X)
 
     def __getitem__(self, index):
-        """process+tokenize string and return string,label,and stringlen"""
+        """process+tokenize string and return string,label,and string length"""
         x = self.X[index]
         if self.tokenizer is not None:
             x = self.tokenizer.EncodeAsIds(x, self.preprocess_fn)
