@@ -10,7 +10,7 @@ from ...core.predictor import Predictor, get_model_predictor
 #假定一个文件中只有一种任务，NER或RE或EE
 #对于NER任务，scheme为xx；xx；xx，
 #输出形式为id content q_and_a 注意，q_and_a的形式为[[实体类型 答案 答案开始位置 答案结束位置 答案的可能性大小]]
-#对于非NER任务，schem为竞赛名称：主办方，承办方；比赛：冠军，亚军
+#对于非NER任务，scheme为竞赛名称：主办方，承办方；比赛：冠军，亚军
 #输出形式为id content 竞赛名称 答案 答案开始位置 答案结束位置 答案的可能性大小
 #以及id content  q_and_a 注意，q_and_a的形式为[[竞赛名称（xx）-主办方 答案 答案开始位置 答案结束位置 答案的可能性大小]]
 
@@ -214,7 +214,7 @@ class InformationExtractionPredictor(Predictor):
             temp.append(answers[i][j]["ans"]) #answer
             temp.append(answers[i][j]["prob"]) #answer_prob
             temp.append(answers[i][j]["pos"][0]) #answer_start
-            temp.append(answers[i][j]["pos"][1]) #eanswer_endnd
+            temp.append(answers[i][j]["pos"][1]) #answer_end
             output_dict["q_and_a"].append(temp)
          if in_data["id"][i] != temp_id or i == len(answers)-1:
             output_dict_list.append(output_dict)

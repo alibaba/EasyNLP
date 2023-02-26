@@ -122,10 +122,10 @@ class LanguageModelingDataset(BaseDataset):
 
         Args:
             ner_data (str): the ner entity
-            negative_level (int, optional): the deepth of the relationship. Defaults to 3.
+            negative_level (int, optional): the depth of the relationship. Defaults to 3.
 
         Returns:
-            Union[bool, Dict[str, List[str]]]: if the `ner_data` not in `konwledge`, return False, otherwise, return the positive and negative examples
+            Union[bool, Dict[str, List[str]]]: if the `ner_data` not in `knowledge`, return False, otherwise, return the positive and negative examples
         """
 
         knowledge: Dict[str, Dict[str, str]] = self.Knowledge_G
@@ -171,14 +171,14 @@ class LanguageModelingDataset(BaseDataset):
                 keys = list(tp_data.keys())
                 choice = np.random.choice([_ for _ in range(len(keys))], 1)[0]
                 positive_example = tp_data[keys[choice]]
-            # # the description usually contains the ner entity, if not, concate the `ner_data` and the positive example
+            # # the description usually contains the ner entity, if not, concatenate the `ner_data` and the positive example
             if ner_data in positive_example:
                 all_examples['positive_examples'].append(positive_example)
             else:
                 all_examples['positive_examples'].append(ner_data + positive_example)
             
             get_data(ner_data, tp_data, negative_examples, negative_level)
-            # concate the ner entity and each negative example
+            # concatenate the ner entity and each negative example
             negative_examples = list(map(lambda x: ner_data + x if ner_data not in x else x, negative_examples))
             all_examples['negative_examples'] = negative_examples
             return all_examples
@@ -193,13 +193,13 @@ class LanguageModelingDataset(BaseDataset):
         """get a specific number of positive and negative examples
 
         Args:
-            orginal_data (str): the original data which is used to caculate the id index
+            orginal_data (str): the original data which is used to calculate the id index
             ner_data (List[Dict[str, Any]]): ner entity
             positive_number (int, optional): the positive examples. Defaults to 1.
             negative_number (int, optional): the negative examples. Defaults to 10.
 
         Returns:
-            List[List[str]]: renturn the sampled postive examples and negative examples
+            List[List[str]]: return the sampled positive examples and negative examples
         """
         sub_str = re.compile('\[CLS\]|\[sdp\]|\[dep\]')
         orginal_data = sub_str.sub('#', orginal_data)
@@ -248,7 +248,7 @@ class LanguageModelingDataset(BaseDataset):
         Returns:
             _type_: _description_
         """
-        # postitive number is set to 1
+        # positive number is set to 1
         positive_number = 1
         negative_number = self.negative_number
         example_number = self.negative_e_length
@@ -592,10 +592,10 @@ class LanguageModelingDataset(BaseDataset):
         padded_rel_emb = self.rel_emb(torch.LongTensor(padded_insert_rel_labels_zeros))
         # decoder loss module: r * h, so default value of padded_rel_emb is 1 not 0
         padded_rel_emb = torch.where(padded_rel_emb!=0., padded_rel_emb, insert_rel_emb)
-        # replcaed entity emb = h + r, so default valur is 0 not 1
+        # replaced entity emb = h + r, so default value is 0 not 1
         replaced_padded_rel_emb = torch.where(padded_rel_emb!=0., padded_rel_emb, replaced_insert_rel_emb)
         
-        # replcaed entity = entity + relation (TransE)
+        # replaced entity = entity + relation (TransE)
         padded_replaced_entity_emb = padded_entity_emb + replaced_padded_rel_emb
 
         return padded_insert_know_position_mask, padded_replaced_entity_emb, padded_rel_emb, padded_insert_know_labels
@@ -624,7 +624,7 @@ class LanguageModelingDataset(BaseDataset):
 
         # entity id list
         entities = [-100 for _ in range(len(token_ids))]
-        # entity id list, trasform id to 1,2,3...n
+        # entity id list, transform id to 1,2,3...n
         entities_position = [0 for _ in range(len(token_ids))]
         entity_index = 0
         entity_pos_true = []
