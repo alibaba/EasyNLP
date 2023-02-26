@@ -402,7 +402,7 @@ def configure_data():
     """add cmdline flags for configuring datasets"""
     # These are options that are used by data_utils, but are either
     # deprecated or not meant to be exposed to the command line user.
-    # These options are intneded to be set in code by specific scripts.
+    # These options are intended to be set in code by specific scripts.
     defaults = {
         'world_size': 1,
         'rank': -1,

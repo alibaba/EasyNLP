@@ -41,6 +41,6 @@ class DistillatoryBaseApplication(Application):
                                        **kwargs)
         else:
             raise NotImplementedError(
-                f'KD type {kd_type} is not avaliable yet, please use '
+                f'KD type {kd_type} is not available yet, please use '
                 'supported KD methods.')
         return {'loss': loss}

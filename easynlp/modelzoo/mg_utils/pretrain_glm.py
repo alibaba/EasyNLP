@@ -89,13 +89,13 @@ def get_masks_and_position_ids(data,
         # Loop through the batches:
         for b in range(batch_size):
 
-            # Find indecies where EOD token is.
+            # Find indexes where EOD token is.
             eod_index = position_ids[b, data[b] == eod_token]
-            # Detach indecies from positions if going to modify positions.
+            # Detach indexes from positions if going to modify positions.
             if reset_position_ids:
                 eod_index = eod_index.clone()
 
-            # Loop through EOD indecies:
+            # Loop through EOD indexes:
             prev_index = 0
             for j in range(eod_index.size()[0]):
                 i = eod_index[j]
@@ -149,7 +149,7 @@ def get_batch(data, args):
     of 2, we'd get the following two Variables for i = 0:
     ┌ a g m s ┐ ┌ b h n t ┐
     └ b h n t ┘ └ c i o u ┘
-    Note that despite the name of the function, the subdivison of data is not
+    Note that despite the name of the function, the subdivision of data is not
     done along the batch dimension (i.e. dimension 1), since that was handled
     by the data loader. The chunks are along dimension 0, corresponding
     to the seq_len dimension in the LSTM. A Variable representing an appropriate
@@ -185,7 +185,7 @@ def get_batch(data, args):
         tokens = tokens_[:, :-1].contiguous()
         attention_mask = None
 
-    # Get the masks and postition ids.
+    # Get the masks and position ids.
     if not args.block_lm:
         attention_mask, loss_mask, position_ids = get_masks_and_position_ids(
             tokens,
@@ -250,7 +250,7 @@ def initialize_distributed(args):
 
 
 def set_random_seed(seed):
-    """Set random seed for reproducability."""
+    """Set random seed for reproducibility."""
 
     if seed is not None and seed > 0:
         random.seed(seed)
@@ -512,7 +512,7 @@ def evaluate(data_iterator, model, args, timers, forward_step_func, verbose=Fals
 
 
 def get_train_val_test_data(args, tokenizer):
-    """Load the data on rank zero and boradcast number of tokens to all GPUS."""
+    """Load the data on rank zero and broadcast number of tokens to all GPUS."""
 
     (train_data, val_data, test_data) = (None, None, None)
     # Data loader only on rank 0 of each model parallel group.
@@ -562,7 +562,7 @@ def main():
     # Pytorch distributed.
     initialize_distributed(args)
 
-    # Random seeds for reproducability.
+    # Random seeds for reproducibility.
     set_random_seed(args.seed)
 
     # Data stuff.

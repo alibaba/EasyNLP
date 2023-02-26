@@ -62,7 +62,7 @@ class CLIPTextConfig(PretrainedConfig):
         attention_dropout (`float`, *optional*, defaults to 0.0):
             The dropout ratio for the attention probabilities.
         dropout (`float`, *optional*, defaults to 0.0):
-            The dropout probabilitiy for all fully connected layers in the embeddings, encoder, and pooler.
+            The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
         initializer_range (`float`, *optional*, defaults to 0.02):
             The standard deviation of the truncated_normal_initializer for initializing all weight matrices.
         initializer_factor (`float``, *optional*, defaults to 1):
@@ -174,7 +174,7 @@ class CLIPVisionConfig(PretrainedConfig):
             `"relu"`, `"selu"` and `"gelu_new"` ``"quick_gelu"` are supported. layer_norm_eps (`float`, *optional*,
             defaults to 1e-5): The epsilon used by the layer normalization layers.
         dropout (`float`, *optional*, defaults to 0.0):
-            The dropout probabilitiy for all fully connected layers in the embeddings, encoder, and pooler.
+            The dropout probability for all fully connected layers in the embeddings, encoder, and pooler.
         attention_dropout (`float`, *optional*, defaults to 0.0):
             The dropout ratio for the attention probabilities.
         initializer_range (`float`, *optional*, defaults to 0.02):
@@ -265,9 +265,9 @@ class CLIPConfig(PretrainedConfig):
         vision_config_dict (`dict`, *optional*):
             Dictionary of configuration options used to initialize [`CLIPVisionConfig`].
         projection_dim (`int`, *optional*, defaults to 512):
-            Dimentionality of text and vision projection layers.
+            Dimensionality of text and vision projection layers.
         logit_scale_init_value (`float`, *optional*, defaults to 2.6592):
-            The inital value of the *logit_scale* paramter. Default is used as per the original CLIP implementation.
+            The initial value of the *logit_scale* parameter. Default is used as per the original CLIP implementation.
         kwargs (*optional*):
             Dictionary of keyword arguments.
     """

@@ -285,7 +285,7 @@ class MetaStudentForSequenceClassification(Application):
                 tmp_loss = mse_loss(student_att, teacher_att)
                 att_loss += tmp_loss
 
-            # representions loss
+            # representations loss
             new_teacher_reps = [
                 teacher_reps[i * layers_per_block]
                 for i in range(student_layer_num + 1)

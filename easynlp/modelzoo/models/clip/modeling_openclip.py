@@ -266,7 +266,7 @@ class OPEN_CLIP(nn.Module):
                  transformer_width: int,
                  transformer_heads: int,
                  transformer_layers: int,
-                 #addtional
+                 #additional
                  model_type:str
                  ):
         super().__init__()

@@ -134,16 +134,16 @@ class MetakdSentiClassificationDataset(BaseDataset):
 
                 label: label token if self.label_name is true.
 
-                domain: the domain of squence in row.
+                domain: the domain of sequence in row.
 
                 weight: the weight calculated after pre-processing.
 
             Returns: sing example
                 encoding: an example contains token indices.
                 A dict additional contains:
-                domain_id: the domain id of squence through mapped.
+                domain_id: the domain id of sequence through mapped.
 
-                label_ids: the label id of squence through mapped.
+                label_ids: the label id of sequence through mapped.
 
                 sample_weights: same to the weight.
 

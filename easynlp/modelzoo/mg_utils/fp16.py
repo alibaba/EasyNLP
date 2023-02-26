@@ -587,7 +587,7 @@ class FP16_Optimizer(object):
         the fp32 master params' ``.grad``
         attributes will contain valid gradients properly divided by the loss scale.  However, 
         because :class:`FP16_Optimizer` flattens some parameters, accessing them may be 
-        nonintuitive.  :attr:`inspect_master_grad_data`
+        non-intuitive.  :attr:`inspect_master_grad_data`
         allows those gradients to be viewed with shapes corresponding to their associated model leaves.
 
         Returns:
