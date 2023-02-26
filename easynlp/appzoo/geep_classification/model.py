@@ -167,8 +167,8 @@ def attr_set(classifiers,key,val):
 
 class GEEPClassification(Application):
     """
-    GEEPClassification: a hybrid architechture including a BERT-ish backbone and multiple early-exit classifiers.
-    You sholud provide following user_defined_parameters:
+    GEEPClassification: a hybrid architecture including a BERT-ish backbone and multiple early-exit classifiers.
+    You should provide following user_defined_parameters:
     user_defined_parameters['geep_exit_num']: Required for training. The number of early-exit classifiers, these classifiers receive each Transformer Layer output from bootom to top.
     user_defined_parameters['geep_threshold']: Required for inference, between 0 and 1. It is the threshold for the normalized cross entropy. Smaller value for higher accuracy and slower inference time.
     """
