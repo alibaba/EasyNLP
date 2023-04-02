@@ -4,6 +4,24 @@ Match4Match is a text-video retrieval method based on [CLIP](https://github.com/
 
 ## Install
 
+requirements.txt:
+```
+tqdm
+ftfy
+torch
+torchvision
+joblib
+pillow
+regex
+pandas
+matplotlib
+faiss-cpu
+ortools
+opencv-python-headless
+argparse
+git+https://github.com/openai/CLIP.git@main#egg=clip
+```
+
 ```
 pip install -r requirements.txt
 ```
