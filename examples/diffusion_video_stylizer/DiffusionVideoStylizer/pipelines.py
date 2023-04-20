@@ -1,5 +1,3 @@
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "6"
 import torch, PIL, cv2
 from torchvision import transforms
 from PIL import Image
