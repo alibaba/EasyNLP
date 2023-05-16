@@ -24,6 +24,8 @@ pip install transformers accelerate datasets bitsandbytes torch torchvision diff
 | alibaba-pai/pai-diffusion-food-large-zh     | 中文美食文图生成，默认支持生成图像分辨率为512*512            |
 | alibaba-pai/pai-diffusion-artist-xlarge-zh | 中文文图生成通用艺术模型（更大分辨率），默认支持生成图像分辨率为768*768 |
 
+使用上述模型需遵守[AIGC模型开源特别条款](https://terms.alicdn.com/legal-agreement/terms/common_platform_service/20230505180457947/20230505180457947.html)。
+
 ### 文图生成
 
 在PAI-DSW中，使用与微调社区Diffusion模型相同的环境配置，我们可以直接利用上述模型生成中文文本对应的图片，示例脚本如下：
