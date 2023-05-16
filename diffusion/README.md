@@ -39,7 +39,7 @@ image = pipe(prompt).images[0]
 image.save("result.png")
 ```
 
-如果需要使用其他模型，只需要替换对应model_id的值即可。                      |
+如果需要使用其他模型，只需要替换对应model_id的值即可。                     
 
 除了直接输入文本生成图像，PAI-Diffusion模型也支持其他从文本到图像生成的Pipeline。
 
