@@ -21,6 +21,8 @@ pip install transformers accelerate datasets bitsandbytes torch torchvision diff
 | 模型名                                      | 使用场景                                                     |
 | ------------------------------------------- | ------------------------------------------------------------ |
 | alibaba-pai/pai-diffusion-artist-large-zh  | 中文文图生成通用艺术模型，默认支持生成图像分辨率为512*512 |
+| alibaba-pai/pai-diffusion-artist-large-zh-controlnet-canny   | 中文文图生成通用艺术模型的Canny ControlNet |
+| alibaba-pai/pai-diffusion-artist-large-zh-controlnet-depth   | 中文文图生成通用艺术模型的Depth ControlNet |
 | alibaba-pai/pai-diffusion-food-large-zh     | 中文美食文图生成，默认支持生成图像分辨率为512*512            |
 | alibaba-pai/pai-diffusion-artist-xlarge-zh | 中文文图生成通用艺术模型（更大分辨率），默认支持生成图像分辨率为768*768 |
 
