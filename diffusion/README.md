@@ -66,6 +66,81 @@ image.save("result.png")
 
 如果需要使用其他模型，只需要替换对应model_id的值即可。
 
+### 可控的图像生成
+
+我们提供了两个 ControlNet 模型，您可以使用 ControlNet 模型进行可控的图像生成，示例脚本如下：
+
+Canny ControlNet：
+
+```python
+from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
+from transformers import pipeline
+from PIL import Image
+import numpy as np
+import cv2
+
+
+def to_canny(image):
+    low_threshold = 100
+    high_threshold = 200
+    image = np.array(image)
+    image = cv2.Canny(image, low_threshold, high_threshold)
+    image = image[:, :, None]
+    image = np.concatenate([image, image, image], axis=2)
+    image = Image.fromarray(image)
+    return image
+
+
+controlnet_id = "alibaba-pai/pai-diffusion-artist-large-zh-controlnet-canny"
+controlnet = ControlNetModel.from_pretrained(controlnet_id)
+model_id = "alibaba-pai/pai-diffusion-artist-large-zh"
+pipe = StableDiffusionControlNetPipeline.from_pretrained(model_id, controlnet=controlnet)
+pipe = pipe.to("cuda")
+
+image = Image.open("image.png")
+controlnet_image = to_canny(image)
+prompt = "输入文本"
+image = pipe(prompt, controlnet_image).images[0]
+
+controlnet_image.save("image_canny.png")
+image.save("image_canny_output.png")
+```
+
+Depth ControlNet：
+
+```python
+from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
+from transformers import pipeline
+from PIL import Image
+import numpy as np
+import cv2
+
+
+def to_depth(image):
+    depth_estimator = pipeline('depth-estimation')
+    image = depth_estimator(image)['depth']
+    image = np.array(image)
+    image = image[:, :, None]
+    image = np.concatenate([image, image, image], axis=2)
+    image = Image.fromarray(image)
+    return image
+
+
+controlnet_id = "alibaba-pai/pai-diffusion-artist-large-zh-controlnet-depth"
+controlnet = ControlNetModel.from_pretrained(controlnet_id)
+model_id = "alibaba-pai/pai-diffusion-artist-large-zh"
+pipe = StableDiffusionControlNetPipeline.from_pretrained(model_id, controlnet=controlnet)
+pipe = pipe.to("cuda")
+
+image = Image.open("image.png")
+controlnet_image = to_depth(image)
+prompt = "输入文本"
+image = pipe(prompt, controlnet_image).images[0]
+
+controlnet_image.save("image_depth.png")
+image.save("image_depth_output.png")
+```
+
 # 微调PAI-Diffusion模型
 
 PAI-Diffusion模型可以使用我们提供的脚本 `diffusers_api/finetune.py` 进行微调，同样地，我们使用上一节微调社区Diffusion模型的开发环境运行脚本。微调PAI-Diffusion模型步骤如下：
