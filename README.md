@@ -35,6 +35,7 @@ EasyNLP is an easy-to-use NLP development and application toolkit in PyTorch, fi
 
 We have a series of technical articles on the functionalities of EasyNLP.
 
+- [BeautifulPrompt：PAI推出自研Prompt美化器，赋能AIGC一键出美图](https://zhuanlan.zhihu.com/p/636546340)
 - [PAI-Diffusion中文模型全面升级，海量高清艺术大图一键生成](https://zhuanlan.zhihu.com/p/632031092)
 - [EasyNLP集成K-Global Pointer算法，支持中文信息抽取](https://zhuanlan.zhihu.com/p/608560954)
 - [阿里云PAI-Diffusion功能再升级，全链路支持模型调优，平均推理速度提升75%以上](https://zhuanlan.zhihu.com/p/604483551)
