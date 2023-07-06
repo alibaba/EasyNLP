@@ -68,6 +68,25 @@ image.save("result.png")
 
 如果需要使用其他模型，只需要替换对应model_id的值即可。
 
+### 文本引导的局部重绘
+
+使用 mask 遮盖部分区域，对图像中部分细节进行修改，示例脚本如下：
+
+```python
+from diffusers import StableDiffusionInpaintPipeline
+from PIL import Image
+
+image = Image.open("image.png")
+mask_image = Image.open("mask_image.png")
+
+model_id = "alibaba-pai/pai-diffusion-artist-large-zh"
+pipe = StableDiffusionInpaintPipeline.from_pretrained(model_id)
+pipe = pipe.to("cuda")
+prompt = "输入文本"
+image = pipe(prompt=prompt, image=image, mask_image=mask_image, strength=0.8).images[0]
+image.save("result.png")
+```
+
 ### 可控的图像生成
 
 我们提供了两个 ControlNet 模型，您可以使用 ControlNet 模型进行可控的图像生成，示例脚本如下：
