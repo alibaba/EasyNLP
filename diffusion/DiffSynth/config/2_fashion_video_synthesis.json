@@ -1,0 +1,36 @@
+{
+    "controlnet_model_id": [
+        "../models/controlnet_v11/control_v11f1p_sd15_depth",
+        "../models/controlnet_v11/control_v11p_sd15_openpose"
+    ],
+    "controlnet_processor": [
+        "ControlnetImageProcesserDepth",
+        "VideoControlnetImageProcesserOpenpose"
+    ],
+    "controlnet_scale": [
+        1.0,
+        0.0
+    ],
+    "smoother": "EbsynthSmoother",
+    "smoother_config": {
+        "bin_path": "bin/ebsynth",
+        "cache_path": "cache",
+        "smooth_index": [-3, -2, -1, 1, 2, 3]
+    },
+    "model_id": "../models/fashion_models/91GN31Z1rVS",
+    "input_video": "../data/FashionVideo/videos/test/91EfnBTEE2S.mp4",
+    "frame_height": 768,
+    "frame_width": 512,
+    "frame_interval": 1,
+    "frame_maximum_count": 10,
+    "prompt": "A woman. Fashion clothes.",
+    "negative_prompt": "",
+    "frames_reference": ["../data/exp_1/generation_ours/91GN31Z1rVS/91EfnBTEE2S/0.png"],
+    "num_inference_steps": 10,
+    "seed_of_noise": 0,
+    "combine_pattern": ["reference_0", -1, 0, 1],
+    "img2img_strength": 1.0,
+    "ignore_smoother_steps": 1,
+    "smoother_interval": 1,
+    "output_path": "output_video"
+}

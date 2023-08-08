@@ -1,0 +1,41 @@
+{
+    "controlnet_model_id": [
+        "../models/controlnet_v11/control_v11f1p_sd15_depth",
+        "../models/controlnet_v11/control_v11p_sd15_softedge"
+    ],
+    "controlnet_processor": [
+        "ControlnetImageProcesserDepth",
+        "ControlnetImageProcesserHED"
+    ],
+    "controlnet_scale": [
+        1.0,
+        1.0
+    ],
+    "smoother": "VideoPatchMatchSmoother",
+    "smoother_config": {
+        "engine_name": "Ebsynth",
+        "bin_path": "bin/ebsynth_nnf",
+        "cache_path": "cache",
+        "postprocessing": {
+            "contrast": 1.5,
+            "sharpness": 5.0
+        }
+    },
+    "model_id": "../models/DreamShaper7",
+    "input_video": "../data/exp_2/dataset/pixabay_44534/video.mp4",
+    "frame_height": 512,
+    "frame_width": 960,
+    "frame_interval": 1,
+    "frame_maximum_count": 10,
+    "prompt": "winter, snow, fishing rod, white, grass",
+    "negative_prompt": "",
+    "frames_reference": [],
+    "num_inference_steps": 20,
+    "seed_of_noise": 0,
+    "combine_pattern": [-10000, -1, 0, 1],
+    "img2img_strength": 1.0,
+    "ignore_smoother_steps": 0,
+    "smoother_interval": 5,
+    "output_path": "output_video",
+    "extra_deflickering_range": 60
+}

@@ -1,0 +1,33 @@
+{
+    "controlnet_model_id": [
+        "../models/controlnet_v11/control_v11f1e_sd15_tile"
+    ],
+    "controlnet_processor": [
+        "ControlnetImageProcesserTile"
+    ],
+    "controlnet_scale": [
+        1.0
+    ],
+    "smoother": "VideoPatchMatchSmoother",
+    "smoother_config": {
+        "engine_name": "Ebsynth",
+        "bin_path": "bin/ebsynth_nnf",
+        "cache_path": "cache"
+    },
+    "model_id": "../models/stable-diffusion-v1-5",
+    "input_video": "../data/app_3_video_restoring/clip1.mp4",
+    "frame_height": 1024,
+    "frame_width": 2112,
+    "frame_interval": 1,
+    "frame_maximum_count": 10,
+    "prompt": "high resolution. real. photo. 4k. 8k. hdr.",
+    "negative_prompt": "cartoon, 3d, disfigured, bad art, deformed,extra limbs,close up,b&w, wierd colors, blurry, duplicate, morbid, mutilated, out of frame, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, ugly, blurry, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, out of frame, ugly, extra limbs, bad anatomy, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, mutated hands, fused fingers, too many fingers, long neck, Photoshop, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, 3d rendercartoon, 3d, disfigured, bad art, deformed,extra limbs,close up,b&w, wierd colors, blurry, duplicate, morbid, mutilated, [out of frame], extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, ugly, blurry, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, out of frame, ugly, extra limbs, bad anatomy, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, mutated hands, fused fingers, too many fingers, long neck, Photoshop, video game, ugly, tiling, poorly drawn hands, poorly drawn feet, poorly drawn face, out of frame, mutation, mutated, extra limbs, extra legs, extra arms, disfigured, deformed, cross-eye, body out of frame, blurry, bad art, bad anatomy, 3d render",
+    "frames_reference": [],
+    "num_inference_steps": 10,
+    "seed_of_noise": 0,
+    "combine_pattern": [-1, 0, 1],
+    "img2img_strength": 0.3,
+    "ignore_smoother_steps": 0,
+    "smoother_interval": 1,
+    "output_path": "output_video"
+}

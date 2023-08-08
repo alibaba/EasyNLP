@@ -1,5 +1,7 @@
 # Diffusion Video Stylizer
 
+**The new version is here**: https://github.com/alibaba/EasyNLP/tree/master/diffusion/DiffSynth
+
 We designed a deflicker algorithm for diffusion models. This algorithm is still under development and this released version is an initial version. Please stay tuned for future updates.
 
 ## Install
