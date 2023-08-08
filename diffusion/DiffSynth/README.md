@@ -47,6 +47,8 @@ conda activate DiffSynth
 
 ### Compile Ebsynth NNF Estimator
 
+We use [Ebsynth](https://github.com/jamriska/ebsynth) in the deflickering algorithm.
+
 ```shell
 cd ebsynth
 ```
