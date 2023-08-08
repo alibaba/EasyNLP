@@ -1,0 +1,40 @@
+{
+    "controlnet_model_id": [
+        "../models/controlnet_v11/control_v11p_sd15_softedge",
+        "../models/controlnet_v11/control_v11f1p_sd15_depth",
+        "../models/controlnet_v11/control_v11e_sd15_shuffle"
+    ],
+    "controlnet_processor": [
+        "ControlnetImageProcesserHED",
+        "ControlnetImageProcesserDepth",
+        "ControlnetImageProcesserShuffle"
+    ],
+    "controlnet_scale": [
+        0.0,
+        1.0,
+        1.0
+    ],
+    "smoother": "VideoPatchMatchSmoother",
+    "smoother_config": {
+        "engine_name": "Ebsynth",
+        "bin_path": "bin/ebsynth_nnf",
+        "cache_path": "cache"
+    },
+    "model_id": "../models/stable-diffusion-v1-5",
+    "input_video": "../data/app_2_image_guided_style_transfer/clip1.mp4",
+    "style_image": "../data/app_2_image_guided_style_transfer/style1.jpg",
+    "frame_height": 544,
+    "frame_width": 960,
+    "frame_interval": 1,
+    "frame_maximum_count": 10,
+    "prompt": "Mountain, green, sky, forest, beautiful, light, bright",
+    "negative_prompt": "",
+    "frames_reference": [],
+    "num_inference_steps": 20,
+    "seed_of_noise": 0,
+    "combine_pattern": [-1, 0, 1],
+    "img2img_strength": 1.0,
+    "ignore_smoother_steps": 0,
+    "smoother_interval": 1,
+    "output_path": "output_video"
+}

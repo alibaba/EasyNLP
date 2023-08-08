@@ -1,0 +1,36 @@
+{
+    "controlnet_model_id": [
+        "../models/controlnet_v11/control_v11f1p_sd15_depth",
+        "../models/controlnet_v11/control_v11p_sd15_softedge"
+    ],
+    "controlnet_processor": [
+        "ControlnetImageProcesserDepth",
+        "ControlnetImageProcesserHED"
+    ],
+    "controlnet_scale": [
+        1.0,
+        0.0
+    ],
+    "smoother": "VideoPatchMatchSmoother",
+    "smoother_config": {
+        "engine_name": "Ebsynth",
+        "bin_path": "bin/ebsynth_nnf",
+        "cache_path": "cache"
+    },
+    "model_id": "../models/stable-diffusion-v1-5",
+    "input_video": "../data/app_1_render/raw.webm",
+    "frame_height": 544,
+    "frame_width": 960,
+    "frame_interval": 1,
+    "frame_maximum_count": 10,
+    "prompt": "A diver, black suit, black mask, swimming, in the deep sea.",
+    "negative_prompt": "",
+    "frames_reference": [],
+    "num_inference_steps": 20,
+    "seed_of_noise": 0,
+    "combine_pattern": [-1, 0, 1],
+    "img2img_strength": 1.0,
+    "ignore_smoother_steps": 1,
+    "smoother_interval": 1,
+    "output_path": "output_video"
+}
