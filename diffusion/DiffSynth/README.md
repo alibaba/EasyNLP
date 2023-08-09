@@ -32,7 +32,7 @@ dependencies:
     - opencv-python-headless
     - einops
     - timm
-    - diffusers
+    - diffusers==0.18.0
     - safetensors
     - imageio
     - scipy
@@ -41,7 +41,7 @@ dependencies:
 ```
 
 ```shell
-conda env create -f environment.yaml
+conda env create -f environment.yml
 conda activate DiffSynth
 ```
 
