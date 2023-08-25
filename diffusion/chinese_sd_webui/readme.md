@@ -3,7 +3,7 @@ An extension for [webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui
 
 ## download model
 
-Put your models into the `../stable-diffusion-webui/models/ChineseDiffusion`. 
+Download or place the pai diffusion models in `path_to_your/stable-diffusion-webui/models/ChineseDiffusion`. 
 For example,
 ```
 cd path_to_your/stable-diffusion-webui/models/ChineseDiffusion/Chinese_diffusion 
@@ -32,13 +32,13 @@ git clone https://huggingface.co/alibaba-pai/pai-diffusion-artist-large-zh-lora-
                     ┗━━ 📁vae
                     model_index.josn
                     README.md
-                ┗━━ 📁 Chinese_Lora
-                    ┗━━ 📁 your lora model    <----- any name can be used, such as 'pai-diffusion-artist-large-zh-lora-poem‘
-                        ┣━━ 📁...               
+            ┗━━ 📁 Chinese_Lora
+                ┗━━ 📁 your lora model    <----- any name can be used, such as 'pai-diffusion-artist-large-zh-lora-poem‘
+                    ┣━━ 📁...               
 
-                ┗━━ 📁 Chinese_Controlnet                              
-                    ┗━━ 📁 your controlnet model   <----- any name can be used, such as 'pai-diffusion-artist-large-zh-controlnet-canny‘
-                        ┣━━ 📁...   
+            ┗━━ 📁 Chinese_Controlnet                              
+                ┗━━ 📁 your controlnet model   <----- any name can be used, such as 'pai-diffusion-artist-large-zh-controlnet-canny‘
+                    ┣━━ 📁...   
 
 
 ```
