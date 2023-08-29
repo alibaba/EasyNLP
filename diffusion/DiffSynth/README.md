@@ -6,8 +6,6 @@ DiffSynth is an open-source project that aims to apply diffusion models to video
 
 ## Installation
 
-### 1. Python Environment
-
 environment.yml:
 
 ```yml
@@ -38,6 +36,7 @@ dependencies:
     - scipy
     - scikit-image
     - controlnet_aux==0.0.5
+    - cupy
 ```
 
 ```shell
@@ -45,23 +44,7 @@ conda env create -f environment.yml
 conda activate DiffSynth
 ```
 
-### Compile Ebsynth NNF Estimator
-
-We use [Ebsynth](https://github.com/jamriska/ebsynth) in the deflickering algorithm.
-
-```shell
-cd ebsynth
-```
-
-```shell
-nvcc -arch compute_50 src/ebsynth_nnf.cpp src/ebsynth_cpu.cpp src/ebsynth_cuda.cu -I"include" -DNDEBUG -D__CORRECT_ISO_CPP11_MATH_H_PROTO -O6 -std=c++11 -w -Xcompiler -fopenmp -o ../bin/ebsynth_nnf
-```
-
-```shell
-nvcc -arch compute_50 src/ebsynth.cpp src/ebsynth_cpu.cpp src/ebsynth_cuda.cu -I"include" -DNDEBUG -D__CORRECT_ISO_CPP11_MATH_H_PROTO -O6 -std=c++11 -w -Xcompiler -fopenmp -o ../bin/ebsynth
-```
-
-We only tested this component with CUDA 11.2/11.3 on Linux.
+Note that some components are implemented using cupy. If you find cupy doesn't work, maybe you need to reinstall it manually depending on your CUDA, see [this document](https://docs.cupy.dev/en/stable/install.html#installing-cupy-from-pypi) for more details.
 
 ## Usage
 
@@ -76,7 +59,7 @@ DiffSynth now supports the following five tasks:
 4. Video Restoring
 5. 3D rendering
 
-Please refer to our [project page](https://anonymous456852.github.io/) to see examples synthesized by DiffSynth. The config template of each task is in `./config/`.
+Please refer to our [project page](https://anonymous456852.github.io/) to see examples synthesized by DiffSynth. The config template of each task is in `./config/`, and we may update these templates in future.
 
 ## Parameters
 
@@ -135,28 +118,43 @@ The input of Shuffle ControlNet.
 
 * `smoother` and `smoother_config`
 
+DiffSynth is still under development. Now we recommend you to only use `PySynthSmoother`, although we have provided other smoothers in `./DiffSynth/smoother`. The other smoothers may be detated in future.
+
+`PySynthSmoother` is a deflickering algorithm based on [Ebsynth](https://github.com/jamriska/ebsynth). It supports two modes:
+
 ```json
-"smoother": "EbsynthSmoother",
+"smoother": "PySynthSmoother",
 "smoother_config": {
-    "bin_path": "bin/ebsynth",
-    "cache_path": "cache",
-    "smooth_index": [-3, -2, -1, 1, 2, 3]
-}
+    "gpu_id": 0,
+    "speed": "fastest"
+},
 ```
 or
 ```json
-"smoother": "VideoPatchMatchSmoother",
+"smoother": "PySynthSmoother",
 "smoother_config": {
-    "engine_name": "Ebsynth",
-    "bin_path": "bin/ebsynth_nnf",
-    "cache_path": "cache",
-    "postprocessing": {
-        "contrast": 1.5,
-        "sharpness": 5.0
-    }
+    "gpu_id": 0,
+    "speed": "slowest",
+    "window_size": 3
+},
+```
+
+If `speed` is `fastest`, this algorithm will blend all frames together. The time complexity is O(nlogn), where n is the number of frames. This algorithm may make the video foggy when the number of frames is large.
+
+If `speed` is `slowest`, this algorithm will blend the frames in a sliding window. The time complexity is O(nk), where k is the size of sliding window.
+
+Additionally, you can adjust the contrast and sharpness in the smoother. You only need to add the following parameters in the `smoother_config`.
+
+```json
+"postprocessing": {
+    "contrast": 1.5,
+    "sharpness": 5.0
 }
 ```
-The smoother contains the deflickering algorithm. It could be `EbsynthSmoother` or `VideoPatchMatchSmoother`, where the former is applied in a sliding window and the latter is applied in the whole video. Note that the video may be blurry when we use `VideoPatchMatchSmoother` to blend all frames. We use the parameter `postprocessing` to control the post-process the frames.
+
+* `post_smoother` and `post_smoother_config`
+
+If you want to apply the smoother again after the denoising process, please add `post_smoother` and `post_smoother_config` to the config file. Empirically, using `PySynthSmoother` as `post_smoother` with a small sliding window can make the video looks better.
 
 * `ignore_smoother_steps`
 
@@ -172,12 +170,6 @@ The smoother will be disabled in the last `ignore_smoother_steps` denoising step
 ```
 Determine how frequent we use the smoother. For example, if `smoother_interval=5` and `num_inference_steps=20`, we use the smoother in the 1st, 6th, 11th and 16th frames.
 
-* `extra_deflickering_range`
-
-```json
-"extra_deflickering_range": 60
-```
-We apply the deflickering algorithm to the video after all denoising steps. This parameter represent the size of sliding window of `EbsynthSmoother`. Leave it `0` if you want to skip this step.
 
 ### Video Input/Output
 

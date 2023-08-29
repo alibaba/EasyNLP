@@ -11,11 +11,11 @@
         1.0,
         0.0
     ],
-    "smoother": "EbsynthSmoother",
+    "smoother": "PySynthSmoother",
     "smoother_config": {
-        "bin_path": "bin/ebsynth",
-        "cache_path": "cache",
-        "smooth_index": [-3, -2, -1, 1, 2, 3]
+        "gpu_id": 0,
+        "speed": "slowest",
+        "window_size": 3
     },
     "model_id": "../models/fashion_models/91GN31Z1rVS",
     "input_video": "../data/FashionVideo/videos/test/91EfnBTEE2S.mp4",

@@ -9,7 +9,7 @@ from DiffSynth.controlnet_processors import (
     VideoControlnetImageProcesserOpenpose
 )
 from DiffSynth.pipeline import VideoStylizingPipeline
-from DiffSynth.smoother import VideoPatchMatchSmoother, EbsynthSmoother
+from DiffSynth.smoother import PySynthSmoother
 from DiffSynth.utils import save_images, save_video, read_video_from_video, read_video_from_images
 
 
@@ -47,10 +47,8 @@ if len(controlnet)!=len(controlnet_processor):
 
 
 smoother = None
-if config["smoother"] == "VideoPatchMatchSmoother":
-    smoother = VideoPatchMatchSmoother(**config["smoother_config"])
-elif config["smoother"] == "EbsynthSmoother":
-    smoother = EbsynthSmoother(**config["smoother_config"])
+if config["smoother"] == "PySynthSmoother":
+    smoother = PySynthSmoother(**config["smoother_config"])
 
 pipe = VideoStylizingPipeline.from_pretrained(
     config["model_id"],
@@ -109,13 +107,11 @@ results = pipe(
 )
 rendered_frames = results["images"]
 
-if "extra_deflickering_range" in config:
-    extra_deflickering_range = config["extra_deflickering_range"]
-    if isinstance(smoother, VideoPatchMatchSmoother):
-        rendered_frames = smoother.image_postprocessing(rendered_frames)
-    final_smoother = EbsynthSmoother("bin/ebsynth", "cache", smooth_index=list(range(-extra_deflickering_range, extra_deflickering_range+1)))
-    final_smoother.prepare(frames)
-    rendered_frames = final_smoother.smooth(rendered_frames)
+if "post_smoother" in config:
+    if config["post_smoother"] == "PySynthSmoother":
+        post_smoother = PySynthSmoother(**config["post_smoother_config"])
+    post_smoother.prepare(frames)
+    rendered_frames = post_smoother.smooth(rendered_frames)
 
 os.makedirs(config["output_path"], exist_ok=True)
 save_images(rendered_frames, os.path.join(config["output_path"], "frames"))
