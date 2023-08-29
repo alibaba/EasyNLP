@@ -8,11 +8,10 @@
     "controlnet_scale": [
         1.0
     ],
-    "smoother": "VideoPatchMatchSmoother",
+    "smoother": "PySynthSmoother",
     "smoother_config": {
-        "engine_name": "Ebsynth",
-        "bin_path": "bin/ebsynth_nnf",
-        "cache_path": "cache"
+        "gpu_id": 0,
+        "speed": "fastest"
     },
     "model_id": "../models/stable-diffusion-v1-5",
     "input_video": "../data/app_3_video_restoring/clip1.mp4",
