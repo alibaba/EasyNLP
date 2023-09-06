@@ -13,8 +13,8 @@
     ],
     "smoother": "PySynthSmoother",
     "smoother_config": {
-        "gpu_id": 0,
         "speed": "fastest",
+        "window_size": 30,
         "postprocessing": {
             "contrast": 1.5,
             "sharpness": 5.0
@@ -38,8 +38,11 @@
     "output_path": "output_video",
     "post_smoother": "PySynthSmoother",
     "post_smoother_config": {
-        "gpu_id": 0,
-        "speed": "slowest",
-        "window_size": 60
+        "speed": "fastest",
+        "window_size": 30,
+        "postprocessing": {
+            "contrast": 1.5,
+            "sharpness": 3.0
+        }
     }
 }
