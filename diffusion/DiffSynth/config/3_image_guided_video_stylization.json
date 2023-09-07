@@ -16,8 +16,8 @@
     ],
     "smoother": "PySynthSmoother",
     "smoother_config": {
-        "gpu_id": 0,
-        "speed": "fastest"
+        "speed": "fastest",
+        "window_size": 10000
     },
     "model_id": "../models/stable-diffusion-v1-5",
     "input_video": "../data/app_2_image_guided_style_transfer/clip1.mp4",

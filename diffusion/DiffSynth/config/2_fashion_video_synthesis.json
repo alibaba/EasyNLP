@@ -13,7 +13,6 @@
     ],
     "smoother": "PySynthSmoother",
     "smoother_config": {
-        "gpu_id": 0,
         "speed": "slowest",
         "window_size": 3
     },

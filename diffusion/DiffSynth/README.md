@@ -4,6 +4,8 @@
 
 DiffSynth is an open-source project that aims to apply diffusion models to video synthesis. You can use DiffSynth to synthesize coherent and realistic videos.
 
+**Now an extention of stable-diffusion-webui is available! See [here](https://github.com/Artiprocher/sd-webui-fastblend).** This extension is an implementation of the fast blending algorithm in DiffSynth. We notice that this algorithm is very effective. Thus we develop this extension independently, making it easy to use.
+
 ## Installation
 
 environment.yml:
@@ -125,23 +127,24 @@ DiffSynth is still under development. Now we recommend you to only use `PySynthS
 ```json
 "smoother": "PySynthSmoother",
 "smoother_config": {
-    "gpu_id": 0,
-    "speed": "fastest"
-},
+    "speed": "fastest",
+    "window_size": 30
+}
 ```
 or
 ```json
 "smoother": "PySynthSmoother",
 "smoother_config": {
-    "gpu_id": 0,
     "speed": "slowest",
-    "window_size": 3
-},
+    "window_size": 30
+}
 ```
 
-If `speed` is `fastest`, this algorithm will blend all frames together. The time complexity is O(nlogn), where n is the number of frames. This algorithm may make the video foggy when the number of frames is large.
+This algorithm will blend the frames in a sliding window. It may make the video foggy when window size is large.
 
-If `speed` is `slowest`, this algorithm will blend the frames in a sliding window. The time complexity is O(nk), where k is the size of sliding window.
+If `speed` is `fastest`, the time complexity is O(nlogn), where n is the number of frames.
+
+If `speed` is `slowest`, the time complexity is O(nk), where k is the size of sliding window.
 
 Additionally, you can adjust the contrast and sharpness in the smoother. You only need to add the following parameters in the `smoother_config`.
 
