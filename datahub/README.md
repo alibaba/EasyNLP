@@ -114,8 +114,8 @@ Trainer(model=model, train_dataset=train_dataset).train()
 | weibo_senti | none | 10 万多条，带情感标注 新浪微博 | csv格式，正负向评论约各 5 万条 |
 | simplifyweibo | none | 36 万多条，带情感标注 新浪微博 | csv格式，包含 4 种情感，其中喜悦约 20 万条，愤怒、厌恶、低落各约 5 万条 |
 | dmsc_v2 | none | 28 部电影，超 70 万 用户，超 200 万条 评分/评论 数据 | csv格式，包含movieid，title，和tile cn，即id和中英文标题 |
-| yf_dianping | none | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, commenet |
-| yf_amazon | none | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, commenet |
+| yf_dianping | none | 24 万家餐馆，54 万用户，440 万条评论/评分数据 | csv格式，包括userid，restid（餐馆id），rating（评分），rating_env（环境评分）,rating_flavor（口味评分）, rating_service（服务评分）, timestamp, comment |
+| yf_amazon | none | 52 万件商品，1100 多个类目，142 万用户，720 万条评论/评分数据 | csv格式，包括userid，product id, rating, timestamp, title, comment |
 | ChnSentiCorp | seamew/ChnSentiCorp | 7000 多条酒店评论数据，5000 多条正向评论，2000 多条负向评论，来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向。数据来源：携程网, 原数据集由谭松波 老师整理的一份数据集 |
 | waimai | XiangPan/waimai_10k | 某外卖平台收集的用户评价，正向 4000 条，负向 约 8000 条。来源：SophonPlus | csv格式，包括label和review两个字段，label包括正向和负向 |
 
