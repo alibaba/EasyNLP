@@ -1,15 +1,5 @@
-from typing import Union, Optional
 import torch
-from dataclasses import dataclass
-from diffusers.utils import BaseOutput
 from tqdm import tqdm
-
-
-@dataclass
-class OLSSSchedulerOutput(BaseOutput):
-
-    prev_sample: torch.FloatTensor
-    pred_original_sample: Optional[torch.FloatTensor] = None
 
 
 class OLSSSchedulerModel(torch.nn.Module):
@@ -38,11 +28,22 @@ class OLSSScheduler():
         self.init_noise_sigma = 1.0
         self.order = 1
 
-    def set_timesteps(self, num_inference_steps: int, device: Union[str, torch.device] = None):
+    @staticmethod
+    def load(path):
+        timesteps, wx, we = torch.load(path, map_location="cpu")
+        model = OLSSSchedulerModel(wx, we)
+        return OLSSScheduler(timesteps, model)
+
+    def save(self, path):
+        timesteps, wx, we = self.timesteps, self.model.wx, self.model.we
+        torch.save((timesteps, wx, we), path)
+
+    def set_timesteps(self, num_inference_steps, device = "cuda"):
         self.xT = None
         self.e_prev = []
         self.t_prev = -1
         self.model = self.model.to(device)
+        self.timesteps = self.timesteps.to(device)
 
     def scale_model_input(self, sample: torch.FloatTensor, *args, **kwargs):
         return sample
@@ -53,6 +54,7 @@ class OLSSScheduler():
         model_output: torch.FloatTensor,
         timestep: int,
         sample: torch.FloatTensor,
+        *args, **kwargs
     ):
         t = self.timesteps.tolist().index(timestep)
         assert self.t_prev==-1 or t==self.t_prev+1
@@ -66,7 +68,7 @@ class OLSSScheduler():
             self.t_prev = -1
         else:
             self.t_prev = t
-        return OLSSSchedulerOutput(prev_sample=x, pred_original_sample=None)
+        return (x,)
 
 
 class OLSSSolver:
@@ -213,7 +215,7 @@ class SchedulerWrapper:
                 self.catch_x_[timestep] = []
             self.catch_x[timestep].append(sample.clone().detach().cpu())
             self.catch_e[timestep].append(model_output.clone().detach().cpu())
-            self.catch_x_[timestep].append(result.prev_sample.clone().detach().cpu())
+            self.catch_x_[timestep].append(result[0].clone().detach().cpu())
             return result
         else:
             result = self.olss_scheduler.step(model_output, timestep, sample, **kwargs)
@@ -249,3 +251,4 @@ class SchedulerWrapper:
             num_accelerate_steps, t_path, x_path, e_path)
         self.olss_model = OLSSSchedulerModel(wx, we)
         self.olss_scheduler = OLSSScheduler(timesteps, self.olss_model)
+        
