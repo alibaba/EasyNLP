@@ -35,7 +35,7 @@ Seed: 0
 ## Usage 使用
 
 ```
-pip install diffusers torch
+pip install diffusers==0.21.3 torch
 ```
 
 We provide a demo here:
