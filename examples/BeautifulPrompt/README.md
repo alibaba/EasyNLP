@@ -2,7 +2,7 @@
 This project is implemented for the EMNLP Industry Track 2023 paper: "BeautifulPrompt: Towards Automatic Prompt Engineering for Text-to-Image Synthesis". Our code is based on pytorch and huggingface transformers.
 
 ## Data & Models
-We released our collected [dataset](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/BeautifulPrompt/data.json), which includes prompt pairs and various scores, and also released a more extensive [rm_aesthetic dataset](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/BeautifulPrompt/rm_aesthetic.json).
+We released our collected dataset ([train](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/BeautifulPrompt/data.json), [test](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/BeautifulPrompt/test.json)), which includes prompt pairs and various scores, and also released a more extensive [rm_aesthetic dataset](https://atp-modelzoo-sh.oss-cn-shanghai.aliyuncs.com/release/tutorials/BeautifulPrompt/rm_aesthetic.json).
 
 We released the following models:
 - [alibaba-pai/pai-bloom-1b1-text2prompt-sd](https://huggingface.co/alibaba-pai/pai-bloom-1b1-text2prompt-sd)
