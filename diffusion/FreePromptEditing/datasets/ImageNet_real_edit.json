@@ -1,0 +1,5462 @@
+[
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00028602.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a Afghan hound"
+    },
+    {
+        "image_name": "n02088238/ILSVRC2012_val_00020535.JPEG",
+        "soure_prompt": "a photo of a basset",
+        "edit_prompt": "a photo of a Afghan hound"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00038554.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a Afghan hound"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00037353.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a Afghan hound"
+    },
+    {
+        "image_name": "n02115641/ILSVRC2012_val_00007858.JPEG",
+        "soure_prompt": "a photo of a dingo",
+        "edit_prompt": "a photo of a African hunting dog"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00025662.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a African hunting dog"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00026516.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a African hunting dog"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00049262.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a African hunting dog"
+    },
+    {
+        "image_name": "n02095314/ILSVRC2012_val_00005331.JPEG",
+        "soure_prompt": "a photo of a wire-haired fox terrier",
+        "edit_prompt": "a photo of a American Staffordshire terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00024508.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a American Staffordshire terrier"
+    },
+    {
+        "image_name": "n02094433/ILSVRC2012_val_00010584.JPEG",
+        "soure_prompt": "a photo of a Yorkshire terrier",
+        "edit_prompt": "a photo of a American Staffordshire terrier"
+    },
+    {
+        "image_name": "n02093991/ILSVRC2012_val_00025690.JPEG",
+        "soure_prompt": "a photo of a Irish terrier",
+        "edit_prompt": "a photo of a American Staffordshire terrier"
+    },
+    {
+        "image_name": "n02509815/ILSVRC2012_val_00010418.JPEG",
+        "soure_prompt": "a photo of a lesser panda",
+        "edit_prompt": "a photo of a American black bear"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00017155.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a American black bear"
+    },
+    {
+        "image_name": "n02134084/ILSVRC2012_val_00030485.JPEG",
+        "soure_prompt": "a photo of a ice bear",
+        "edit_prompt": "a photo of a American black bear"
+    },
+    {
+        "image_name": "n02134084/ILSVRC2012_val_00007578.JPEG",
+        "soure_prompt": "a photo of a ice bear",
+        "edit_prompt": "a photo of a American black bear"
+    },
+    {
+        "image_name": "n01978455/ILSVRC2012_val_00021378.JPEG",
+        "soure_prompt": "a photo of a rock crab",
+        "edit_prompt": "a photo of a American lobster"
+    },
+    {
+        "image_name": "n01978455/ILSVRC2012_val_00047476.JPEG",
+        "soure_prompt": "a photo of a rock crab",
+        "edit_prompt": "a photo of a American lobster"
+    },
+    {
+        "image_name": "n01980166/ILSVRC2012_val_00037413.JPEG",
+        "soure_prompt": "a photo of a fiddler crab",
+        "edit_prompt": "a photo of a American lobster"
+    },
+    {
+        "image_name": "n01980166/ILSVRC2012_val_00020779.JPEG",
+        "soure_prompt": "a photo of a fiddler crab",
+        "edit_prompt": "a photo of a American lobster"
+    },
+    {
+        "image_name": "n02116738/ILSVRC2012_val_00034551.JPEG",
+        "soure_prompt": "a photo of a African hunting dog",
+        "edit_prompt": "a photo of a Arctic fox"
+    },
+    {
+        "image_name": "n02114712/ILSVRC2012_val_00007419.JPEG",
+        "soure_prompt": "a photo of a red wolf",
+        "edit_prompt": "a photo of a Arctic fox"
+    },
+    {
+        "image_name": "n02114712/ILSVRC2012_val_00009312.JPEG",
+        "soure_prompt": "a photo of a red wolf",
+        "edit_prompt": "a photo of a Arctic fox"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00030724.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a Arctic fox"
+    },
+    {
+        "image_name": "n02095314/ILSVRC2012_val_00041718.JPEG",
+        "soure_prompt": "a photo of a wire-haired fox terrier",
+        "edit_prompt": "a photo of a Border terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00009589.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Border terrier"
+    },
+    {
+        "image_name": "n02095314/ILSVRC2012_val_00037925.JPEG",
+        "soure_prompt": "a photo of a wire-haired fox terrier",
+        "edit_prompt": "a photo of a Border terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00036919.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Border terrier"
+    },
+    {
+        "image_name": "n02086910/ILSVRC2012_val_00025601.JPEG",
+        "soure_prompt": "a photo of a papillon",
+        "edit_prompt": "a photo of a Chihuahua"
+    },
+    {
+        "image_name": "n02087046/ILSVRC2012_val_00029090.JPEG",
+        "soure_prompt": "a photo of a toy terrier",
+        "edit_prompt": "a photo of a Chihuahua"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00028706.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a Chihuahua"
+    },
+    {
+        "image_name": "n02086910/ILSVRC2012_val_00021961.JPEG",
+        "soure_prompt": "a photo of a papillon",
+        "edit_prompt": "a photo of a Chihuahua"
+    },
+    {
+        "image_name": "n01983481/ILSVRC2012_val_00032029.JPEG",
+        "soure_prompt": "a photo of a American lobster",
+        "edit_prompt": "a photo of a Dungeness crab"
+    },
+    {
+        "image_name": "n01990800/ILSVRC2012_val_00045807.JPEG",
+        "soure_prompt": "a photo of a isopod",
+        "edit_prompt": "a photo of a Dungeness crab"
+    },
+    {
+        "image_name": "n01985128/ILSVRC2012_val_00032174.JPEG",
+        "soure_prompt": "a photo of a crayfish",
+        "edit_prompt": "a photo of a Dungeness crab"
+    },
+    {
+        "image_name": "n01980166/ILSVRC2012_val_00047891.JPEG",
+        "soure_prompt": "a photo of a fiddler crab",
+        "edit_prompt": "a photo of a Dungeness crab"
+    },
+    {
+        "image_name": "n02091032/ILSVRC2012_val_00012416.JPEG",
+        "soure_prompt": "a photo of a Italian greyhound",
+        "edit_prompt": "a photo of a English foxhound"
+    },
+    {
+        "image_name": "n02091032/ILSVRC2012_val_00019488.JPEG",
+        "soure_prompt": "a photo of a Italian greyhound",
+        "edit_prompt": "a photo of a English foxhound"
+    },
+    {
+        "image_name": "n02088094/ILSVRC2012_val_00040105.JPEG",
+        "soure_prompt": "a photo of a Afghan hound",
+        "edit_prompt": "a photo of a English foxhound"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00047309.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a English foxhound"
+    },
+    {
+        "image_name": "n02100877/ILSVRC2012_val_00038122.JPEG",
+        "soure_prompt": "a photo of a Irish setter",
+        "edit_prompt": "a photo of a English springer"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00030385.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a English springer"
+    },
+    {
+        "image_name": "n02102318/ILSVRC2012_val_00012155.JPEG",
+        "soure_prompt": "a photo of a cocker spaniel",
+        "edit_prompt": "a photo of a English springer"
+    },
+    {
+        "image_name": "n02102318/ILSVRC2012_val_00018596.JPEG",
+        "soure_prompt": "a photo of a cocker spaniel",
+        "edit_prompt": "a photo of a English springer"
+    },
+    {
+        "image_name": "n02106030/ILSVRC2012_val_00006330.JPEG",
+        "soure_prompt": "a photo of a collie",
+        "edit_prompt": "a photo of a Eskimo dog"
+    },
+    {
+        "image_name": "n02110185/ILSVRC2012_val_00022762.JPEG",
+        "soure_prompt": "a photo of a Siberian husky",
+        "edit_prompt": "a photo of a Eskimo dog"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00018792.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a Eskimo dog"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00018107.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a Eskimo dog"
+    },
+    {
+        "image_name": "n01632777/ILSVRC2012_val_00046976.JPEG",
+        "soure_prompt": "a photo of a axolotl",
+        "edit_prompt": "a photo of a European fire salamander"
+    },
+    {
+        "image_name": "n01632777/ILSVRC2012_val_00006579.JPEG",
+        "soure_prompt": "a photo of a axolotl",
+        "edit_prompt": "a photo of a European fire salamander"
+    },
+    {
+        "image_name": "n01631663/ILSVRC2012_val_00043111.JPEG",
+        "soure_prompt": "a photo of a eft",
+        "edit_prompt": "a photo of a European fire salamander"
+    },
+    {
+        "image_name": "n01632777/ILSVRC2012_val_00047938.JPEG",
+        "soure_prompt": "a photo of a axolotl",
+        "edit_prompt": "a photo of a European fire salamander"
+    },
+    {
+        "image_name": "n02058221/ILSVRC2012_val_00026758.JPEG",
+        "soure_prompt": "a photo of a albatross",
+        "edit_prompt": "a photo of a European gallinule"
+    },
+    {
+        "image_name": "n01860187/ILSVRC2012_val_00030887.JPEG",
+        "soure_prompt": "a photo of a black swan",
+        "edit_prompt": "a photo of a European gallinule"
+    },
+    {
+        "image_name": "n02056570/ILSVRC2012_val_00027559.JPEG",
+        "soure_prompt": "a photo of a king penguin",
+        "edit_prompt": "a photo of a European gallinule"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00021709.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a European gallinule"
+    },
+    {
+        "image_name": "n02110185/ILSVRC2012_val_00014542.JPEG",
+        "soure_prompt": "a photo of a Siberian husky",
+        "edit_prompt": "a photo of a French bulldog"
+    },
+    {
+        "image_name": "n02107312/ILSVRC2012_val_00004883.JPEG",
+        "soure_prompt": "a photo of a miniature pinscher",
+        "edit_prompt": "a photo of a French bulldog"
+    },
+    {
+        "image_name": "n02109961/ILSVRC2012_val_00049841.JPEG",
+        "soure_prompt": "a photo of a Eskimo dog",
+        "edit_prompt": "a photo of a French bulldog"
+    },
+    {
+        "image_name": "n02109961/ILSVRC2012_val_00032991.JPEG",
+        "soure_prompt": "a photo of a Eskimo dog",
+        "edit_prompt": "a photo of a French bulldog"
+    },
+    {
+        "image_name": "n03372029/ILSVRC2012_val_00003736.JPEG",
+        "soure_prompt": "a photo of a flute",
+        "edit_prompt": "a photo of a French horn"
+    },
+    {
+        "image_name": "n03372029/ILSVRC2012_val_00043562.JPEG",
+        "soure_prompt": "a photo of a flute",
+        "edit_prompt": "a photo of a French horn"
+    },
+    {
+        "image_name": "n03838899/ILSVRC2012_val_00021771.JPEG",
+        "soure_prompt": "a photo of a oboe",
+        "edit_prompt": "a photo of a French horn"
+    },
+    {
+        "image_name": "n03838899/ILSVRC2012_val_00020445.JPEG",
+        "soure_prompt": "a photo of a oboe",
+        "edit_prompt": "a photo of a French horn"
+    },
+    {
+        "image_name": "n02107312/ILSVRC2012_val_00005750.JPEG",
+        "soure_prompt": "a photo of a miniature pinscher",
+        "edit_prompt": "a photo of a German shepherd"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00049344.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a German shepherd"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00005327.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a German shepherd"
+    },
+    {
+        "image_name": "n02109961/ILSVRC2012_val_00002004.JPEG",
+        "soure_prompt": "a photo of a Eskimo dog",
+        "edit_prompt": "a photo of a German shepherd"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00047966.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a Granny Smith"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00038432.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a Granny Smith"
+    },
+    {
+        "image_name": "n07753113/ILSVRC2012_val_00018524.JPEG",
+        "soure_prompt": "a photo of a fig",
+        "edit_prompt": "a photo of a Granny Smith"
+    },
+    {
+        "image_name": "n07760859/ILSVRC2012_val_00000798.JPEG",
+        "soure_prompt": "a photo of a custard apple",
+        "edit_prompt": "a photo of a Granny Smith"
+    },
+    {
+        "image_name": "n01753488/ILSVRC2012_val_00033749.JPEG",
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a Indian cobra"
+    },
+    {
+        "image_name": "n01753488/ILSVRC2012_val_00017595.JPEG",
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a Indian cobra"
+    },
+    {
+        "image_name": "n01742172/ILSVRC2012_val_00049311.JPEG",
+        "soure_prompt": "a photo of a boa constrictor",
+        "edit_prompt": "a photo of a Indian cobra"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00042100.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a Indian cobra"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00034237.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a Irish setter"
+    },
+    {
+        "image_name": "n02102040/ILSVRC2012_val_00021205.JPEG",
+        "soure_prompt": "a photo of a English springer",
+        "edit_prompt": "a photo of a Irish setter"
+    },
+    {
+        "image_name": "n02102040/ILSVRC2012_val_00015499.JPEG",
+        "soure_prompt": "a photo of a English springer",
+        "edit_prompt": "a photo of a Irish setter"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00006981.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a Irish setter"
+    },
+    {
+        "image_name": "n02094433/ILSVRC2012_val_00037838.JPEG",
+        "soure_prompt": "a photo of a Yorkshire terrier",
+        "edit_prompt": "a photo of a Irish terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00041251.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Irish terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00040565.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Irish terrier"
+    },
+    {
+        "image_name": "n02093754/ILSVRC2012_val_00024411.JPEG",
+        "soure_prompt": "a photo of a Border terrier",
+        "edit_prompt": "a photo of a Irish terrier"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00037989.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a Italian greyhound"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00032793.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a Italian greyhound"
+    },
+    {
+        "image_name": "n02088238/ILSVRC2012_val_00039242.JPEG",
+        "soure_prompt": "a photo of a basset",
+        "edit_prompt": "a photo of a Italian greyhound"
+    },
+    {
+        "image_name": "n02088094/ILSVRC2012_val_00009139.JPEG",
+        "soure_prompt": "a photo of a Afghan hound",
+        "edit_prompt": "a photo of a Italian greyhound"
+    },
+    {
+        "image_name": "n02086910/ILSVRC2012_val_00036012.JPEG",
+        "soure_prompt": "a photo of a papillon",
+        "edit_prompt": "a photo of a Japanese spaniel"
+    },
+    {
+        "image_name": "n02086240/ILSVRC2012_val_00003841.JPEG",
+        "soure_prompt": "a photo of a Shih-Tzu",
+        "edit_prompt": "a photo of a Japanese spaniel"
+    },
+    {
+        "image_name": "n02086240/ILSVRC2012_val_00014174.JPEG",
+        "soure_prompt": "a photo of a Shih-Tzu",
+        "edit_prompt": "a photo of a Japanese spaniel"
+    },
+    {
+        "image_name": "n02085620/ILSVRC2012_val_00023234.JPEG",
+        "soure_prompt": "a photo of a Chihuahua",
+        "edit_prompt": "a photo of a Japanese spaniel"
+    },
+    {
+        "image_name": "n02128925/ILSVRC2012_val_00017739.JPEG",
+        "soure_prompt": "a photo of a jaguar",
+        "edit_prompt": "a photo of a Persian cat"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00031492.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a Persian cat"
+    },
+    {
+        "image_name": "n02128925/ILSVRC2012_val_00040784.JPEG",
+        "soure_prompt": "a photo of a jaguar",
+        "edit_prompt": "a photo of a Persian cat"
+    },
+    {
+        "image_name": "n02128757/ILSVRC2012_val_00005917.JPEG",
+        "soure_prompt": "a photo of a snow leopard",
+        "edit_prompt": "a photo of a Persian cat"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00002012.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a Rottweiler"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00046902.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a Rottweiler"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00022142.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a Rottweiler"
+    },
+    {
+        "image_name": "n02106030/ILSVRC2012_val_00038789.JPEG",
+        "soure_prompt": "a photo of a collie",
+        "edit_prompt": "a photo of a Rottweiler"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00043201.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a Shih-Tzu"
+    },
+    {
+        "image_name": "n02087046/ILSVRC2012_val_00034454.JPEG",
+        "soure_prompt": "a photo of a toy terrier",
+        "edit_prompt": "a photo of a Shih-Tzu"
+    },
+    {
+        "image_name": "n02085620/ILSVRC2012_val_00006892.JPEG",
+        "soure_prompt": "a photo of a Chihuahua",
+        "edit_prompt": "a photo of a Shih-Tzu"
+    },
+    {
+        "image_name": "n02085620/ILSVRC2012_val_00024126.JPEG",
+        "soure_prompt": "a photo of a Chihuahua",
+        "edit_prompt": "a photo of a Shih-Tzu"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00012203.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a Siberian husky"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00011718.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a Siberian husky"
+    },
+    {
+        "image_name": "n02108089/ILSVRC2012_val_00029255.JPEG",
+        "soure_prompt": "a photo of a boxer",
+        "edit_prompt": "a photo of a Siberian husky"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00034771.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a Siberian husky"
+    },
+    {
+        "image_name": "n02095314/ILSVRC2012_val_00011082.JPEG",
+        "soure_prompt": "a photo of a wire-haired fox terrier",
+        "edit_prompt": "a photo of a Yorkshire terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00010046.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Yorkshire terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00009362.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Yorkshire terrier"
+    },
+    {
+        "image_name": "n02097209/ILSVRC2012_val_00028691.JPEG",
+        "soure_prompt": "a photo of a standard schnauzer",
+        "edit_prompt": "a photo of a Yorkshire terrier"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00021729.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a acoustic guitar"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00012911.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a acoustic guitar"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00009952.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a acoustic guitar"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00001836.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a acoustic guitar"
+    },
+    {
+        "image_name": "n02279972/ILSVRC2012_val_00011143.JPEG",
+        "soure_prompt": "a photo of a monarch",
+        "edit_prompt": "a photo of a admiral"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00021806.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a admiral"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00020376.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a admiral"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00044300.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a admiral"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00003153.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a albatross"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00041469.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a albatross"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00020326.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a albatross"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00048664.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a albatross"
+    },
+    {
+        "image_name": "n03670208/ILSVRC2012_val_00033422.JPEG",
+        "soure_prompt": "a photo of a limousine",
+        "edit_prompt": "a photo of a ambulance"
+    },
+    {
+        "image_name": "n03100240/ILSVRC2012_val_00019496.JPEG",
+        "soure_prompt": "a photo of a convertible",
+        "edit_prompt": "a photo of a ambulance"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00013993.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a ambulance"
+    },
+    {
+        "image_name": "n02814533/ILSVRC2012_val_00023221.JPEG",
+        "soure_prompt": "a photo of a beach wagon",
+        "edit_prompt": "a photo of a ambulance"
+    },
+    {
+        "image_name": "n04328186/ILSVRC2012_val_00029493.JPEG",
+        "soure_prompt": "a photo of a stopwatch",
+        "edit_prompt": "a photo of a analog clock"
+    },
+    {
+        "image_name": "n03196217/ILSVRC2012_val_00033627.JPEG",
+        "soure_prompt": "a photo of a digital clock",
+        "edit_prompt": "a photo of a analog clock"
+    },
+    {
+        "image_name": "n03196217/ILSVRC2012_val_00048682.JPEG",
+        "soure_prompt": "a photo of a digital clock",
+        "edit_prompt": "a photo of a analog clock"
+    },
+    {
+        "image_name": "n04328186/ILSVRC2012_val_00008052.JPEG",
+        "soure_prompt": "a photo of a stopwatch",
+        "edit_prompt": "a photo of a analog clock"
+    },
+    {
+        "image_name": "n02640242/ILSVRC2012_val_00035407.JPEG",
+        "soure_prompt": "a photo of a sturgeon",
+        "edit_prompt": "a photo of a anemone fish"
+    },
+    {
+        "image_name": "n01443537/ILSVRC2012_val_00003735.JPEG",
+        "soure_prompt": "a photo of a goldfish",
+        "edit_prompt": "a photo of a anemone fish"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00023806.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a anemone fish"
+    },
+    {
+        "image_name": "n02641379/ILSVRC2012_val_00032197.JPEG",
+        "soure_prompt": "a photo of a gar",
+        "edit_prompt": "a photo of a anemone fish"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00042805.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a artichoke"
+    },
+    {
+        "image_name": "n07718472/ILSVRC2012_val_00015777.JPEG",
+        "soure_prompt": "a photo of a cucumber",
+        "edit_prompt": "a photo of a artichoke"
+    },
+    {
+        "image_name": "n07718472/ILSVRC2012_val_00046928.JPEG",
+        "soure_prompt": "a photo of a cucumber",
+        "edit_prompt": "a photo of a artichoke"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00006628.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a artichoke"
+    },
+    {
+        "image_name": "n01631663/ILSVRC2012_val_00037037.JPEG",
+        "soure_prompt": "a photo of a eft",
+        "edit_prompt": "a photo of a axolotl"
+    },
+    {
+        "image_name": "n01629819/ILSVRC2012_val_00011661.JPEG",
+        "soure_prompt": "a photo of a European fire salamander",
+        "edit_prompt": "a photo of a axolotl"
+    },
+    {
+        "image_name": "n01641577/ILSVRC2012_val_00020916.JPEG",
+        "soure_prompt": "a photo of a bullfrog",
+        "edit_prompt": "a photo of a axolotl"
+    },
+    {
+        "image_name": "n01641577/ILSVRC2012_val_00023308.JPEG",
+        "soure_prompt": "a photo of a bullfrog",
+        "edit_prompt": "a photo of a axolotl"
+    },
+    {
+        "image_name": "n02484975/ILSVRC2012_val_00016599.JPEG",
+        "soure_prompt": "a photo of a guenon",
+        "edit_prompt": "a photo of a baboon"
+    },
+    {
+        "image_name": "n02484975/ILSVRC2012_val_00038869.JPEG",
+        "soure_prompt": "a photo of a guenon",
+        "edit_prompt": "a photo of a baboon"
+    },
+    {
+        "image_name": "n02493793/ILSVRC2012_val_00037219.JPEG",
+        "soure_prompt": "a photo of a spider monkey",
+        "edit_prompt": "a photo of a baboon"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00021140.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a baboon"
+    },
+    {
+        "image_name": "n04026417/ILSVRC2012_val_00036411.JPEG",
+        "soure_prompt": "a photo of a purse",
+        "edit_prompt": "a photo of a backpack"
+    },
+    {
+        "image_name": "n04026417/ILSVRC2012_val_00014524.JPEG",
+        "soure_prompt": "a photo of a purse",
+        "edit_prompt": "a photo of a backpack"
+    },
+    {
+        "image_name": "n03958227/ILSVRC2012_val_00000722.JPEG",
+        "soure_prompt": "a photo of a plastic bag",
+        "edit_prompt": "a photo of a backpack"
+    },
+    {
+        "image_name": "n04026417/ILSVRC2012_val_00047620.JPEG",
+        "soure_prompt": "a photo of a purse",
+        "edit_prompt": "a photo of a backpack"
+    },
+    {
+        "image_name": "n07697537/ILSVRC2012_val_00014874.JPEG",
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a bagel"
+    },
+    {
+        "image_name": "n07697537/ILSVRC2012_val_00034147.JPEG",
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a bagel"
+    },
+    {
+        "image_name": "n07697313/ILSVRC2012_val_00047577.JPEG",
+        "soure_prompt": "a photo of a cheeseburger",
+        "edit_prompt": "a photo of a bagel"
+    },
+    {
+        "image_name": "n07697537/ILSVRC2012_val_00026101.JPEG",
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a bagel"
+    },
+    {
+        "image_name": "n01622779/ILSVRC2012_val_00032875.JPEG",
+        "soure_prompt": "a photo of a great grey owl",
+        "edit_prompt": "a photo of a bald eagle"
+    },
+    {
+        "image_name": "n01608432/ILSVRC2012_val_00030483.JPEG",
+        "soure_prompt": "a photo of a kite",
+        "edit_prompt": "a photo of a bald eagle"
+    },
+    {
+        "image_name": "n01622779/ILSVRC2012_val_00005770.JPEG",
+        "soure_prompt": "a photo of a great grey owl",
+        "edit_prompt": "a photo of a bald eagle"
+    },
+    {
+        "image_name": "n01608432/ILSVRC2012_val_00031676.JPEG",
+        "soure_prompt": "a photo of a kite",
+        "edit_prompt": "a photo of a bald eagle"
+    },
+    {
+        "image_name": "n07753113/ILSVRC2012_val_00002179.JPEG",
+        "soure_prompt": "a photo of a fig",
+        "edit_prompt": "a photo of a banana"
+    },
+    {
+        "image_name": "n07760859/ILSVRC2012_val_00015400.JPEG",
+        "soure_prompt": "a photo of a custard apple",
+        "edit_prompt": "a photo of a banana"
+    },
+    {
+        "image_name": "n07747607/ILSVRC2012_val_00018013.JPEG",
+        "soure_prompt": "a photo of a orange",
+        "edit_prompt": "a photo of a banana"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00032276.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a banana"
+    },
+    {
+        "image_name": "n04536866/ILSVRC2012_val_00015869.JPEG",
+        "soure_prompt": "a photo of a violin",
+        "edit_prompt": "a photo of a banjo"
+    },
+    {
+        "image_name": "n02676566/ILSVRC2012_val_00021282.JPEG",
+        "soure_prompt": "a photo of a acoustic guitar",
+        "edit_prompt": "a photo of a banjo"
+    },
+    {
+        "image_name": "n02676566/ILSVRC2012_val_00040891.JPEG",
+        "soure_prompt": "a photo of a acoustic guitar",
+        "edit_prompt": "a photo of a banjo"
+    },
+    {
+        "image_name": "n02676566/ILSVRC2012_val_00029228.JPEG",
+        "soure_prompt": "a photo of a acoustic guitar",
+        "edit_prompt": "a photo of a banjo"
+    },
+    {
+        "image_name": "n02708093/ILSVRC2012_val_00033429.JPEG",
+        "soure_prompt": "a photo of a analog clock",
+        "edit_prompt": "a photo of a barometer"
+    },
+    {
+        "image_name": "n03196217/ILSVRC2012_val_00014666.JPEG",
+        "soure_prompt": "a photo of a digital clock",
+        "edit_prompt": "a photo of a barometer"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00003529.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a barometer"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00022736.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a barometer"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00005291.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00006704.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "image_name": "n02088094/ILSVRC2012_val_00029232.JPEG",
+        "soure_prompt": "a photo of a Afghan hound",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00016656.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "image_name": "n03394916/ILSVRC2012_val_00015542.JPEG",
+        "soure_prompt": "a photo of a French horn",
+        "edit_prompt": "a photo of a bassoon"
+    },
+    {
+        "image_name": "n03110669/ILSVRC2012_val_00015433.JPEG",
+        "soure_prompt": "a photo of a cornet",
+        "edit_prompt": "a photo of a bassoon"
+    },
+    {
+        "image_name": "n03838899/ILSVRC2012_val_00001834.JPEG",
+        "soure_prompt": "a photo of a oboe",
+        "edit_prompt": "a photo of a bassoon"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00047864.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a bassoon"
+    },
+    {
+        "image_name": "n02869837/ILSVRC2012_val_00026464.JPEG",
+        "soure_prompt": "a photo of a bonnet",
+        "edit_prompt": "a photo of a bathing cap"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00030122.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a bathing cap"
+    },
+    {
+        "image_name": "n04209133/ILSVRC2012_val_00006601.JPEG",
+        "soure_prompt": "a photo of a shower cap",
+        "edit_prompt": "a photo of a bathing cap"
+    },
+    {
+        "image_name": "n03379051/ILSVRC2012_val_00030254.JPEG",
+        "soure_prompt": "a photo of a football helmet",
+        "edit_prompt": "a photo of a bathing cap"
+    },
+    {
+        "image_name": "n02930766/ILSVRC2012_val_00030314.JPEG",
+        "soure_prompt": "a photo of a cab",
+        "edit_prompt": "a photo of a beach wagon"
+    },
+    {
+        "image_name": "n02701002/ILSVRC2012_val_00024658.JPEG",
+        "soure_prompt": "a photo of a ambulance",
+        "edit_prompt": "a photo of a beach wagon"
+    },
+    {
+        "image_name": "n02701002/ILSVRC2012_val_00041942.JPEG",
+        "soure_prompt": "a photo of a ambulance",
+        "edit_prompt": "a photo of a beach wagon"
+    },
+    {
+        "image_name": "n03100240/ILSVRC2012_val_00027795.JPEG",
+        "soure_prompt": "a photo of a convertible",
+        "edit_prompt": "a photo of a beach wagon"
+    },
+    {
+        "image_name": "n02088094/ILSVRC2012_val_00049756.JPEG",
+        "soure_prompt": "a photo of a Afghan hound",
+        "edit_prompt": "a photo of a beagle"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00022137.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a beagle"
+    },
+    {
+        "image_name": "n02091635/ILSVRC2012_val_00044766.JPEG",
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a beagle"
+    },
+    {
+        "image_name": "n02091032/ILSVRC2012_val_00046154.JPEG",
+        "soure_prompt": "a photo of a Italian greyhound",
+        "edit_prompt": "a photo of a beagle"
+    },
+    {
+        "image_name": "n03733805/ILSVRC2012_val_00048274.JPEG",
+        "soure_prompt": "a photo of a measuring cup",
+        "edit_prompt": "a photo of a beer bottle"
+    },
+    {
+        "image_name": "n04522168/ILSVRC2012_val_00000895.JPEG",
+        "soure_prompt": "a photo of a vase",
+        "edit_prompt": "a photo of a beer bottle"
+    },
+    {
+        "image_name": "n03063689/ILSVRC2012_val_00028811.JPEG",
+        "soure_prompt": "a photo of a coffeepot",
+        "edit_prompt": "a photo of a beer bottle"
+    },
+    {
+        "image_name": "n03063599/ILSVRC2012_val_00025893.JPEG",
+        "soure_prompt": "a photo of a coffee mug",
+        "edit_prompt": "a photo of a beer bottle"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00025272.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a bell pepper"
+    },
+    {
+        "image_name": "n07716906/ILSVRC2012_val_00035527.JPEG",
+        "soure_prompt": "a photo of a spaghetti squash",
+        "edit_prompt": "a photo of a bell pepper"
+    },
+    {
+        "image_name": "n07730033/ILSVRC2012_val_00043433.JPEG",
+        "soure_prompt": "a photo of a cardoon",
+        "edit_prompt": "a photo of a bell pepper"
+    },
+    {
+        "image_name": "n07714990/ILSVRC2012_val_00027503.JPEG",
+        "soure_prompt": "a photo of a broccoli",
+        "edit_prompt": "a photo of a bell pepper"
+    },
+    {
+        "image_name": "n02412080/ILSVRC2012_val_00022185.JPEG",
+        "soure_prompt": "a photo of a ram",
+        "edit_prompt": "a photo of a bighorn"
+    },
+    {
+        "image_name": "n02412080/ILSVRC2012_val_00044042.JPEG",
+        "soure_prompt": "a photo of a ram",
+        "edit_prompt": "a photo of a bighorn"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00004914.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a bighorn"
+    },
+    {
+        "image_name": "n02408429/ILSVRC2012_val_00025011.JPEG",
+        "soure_prompt": "a photo of a water buffalo",
+        "edit_prompt": "a photo of a bighorn"
+    },
+    {
+        "image_name": "n02422699/ILSVRC2012_val_00024665.JPEG",
+        "soure_prompt": "a photo of a impala",
+        "edit_prompt": "a photo of a bison"
+    },
+    {
+        "image_name": "n02412080/ILSVRC2012_val_00048757.JPEG",
+        "soure_prompt": "a photo of a ram",
+        "edit_prompt": "a photo of a bison"
+    },
+    {
+        "image_name": "n02422699/ILSVRC2012_val_00041130.JPEG",
+        "soure_prompt": "a photo of a impala",
+        "edit_prompt": "a photo of a bison"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00023708.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a bison"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00039021.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a black grouse"
+    },
+    {
+        "image_name": "n01796340/ILSVRC2012_val_00012410.JPEG",
+        "soure_prompt": "a photo of a ptarmigan",
+        "edit_prompt": "a photo of a black grouse"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00018626.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a black grouse"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00041329.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a black grouse"
+    },
+    {
+        "image_name": "n01855672/ILSVRC2012_val_00009610.JPEG",
+        "soure_prompt": "a photo of a goose",
+        "edit_prompt": "a photo of a black stork"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00037207.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a black stork"
+    },
+    {
+        "image_name": "n02007558/ILSVRC2012_val_00041083.JPEG",
+        "soure_prompt": "a photo of a flamingo",
+        "edit_prompt": "a photo of a black stork"
+    },
+    {
+        "image_name": "n02006656/ILSVRC2012_val_00008555.JPEG",
+        "soure_prompt": "a photo of a spoonbill",
+        "edit_prompt": "a photo of a black stork"
+    },
+    {
+        "image_name": "n02056570/ILSVRC2012_val_00012523.JPEG",
+        "soure_prompt": "a photo of a king penguin",
+        "edit_prompt": "a photo of a black swan"
+    },
+    {
+        "image_name": "n02058221/ILSVRC2012_val_00029223.JPEG",
+        "soure_prompt": "a photo of a albatross",
+        "edit_prompt": "a photo of a black swan"
+    },
+    {
+        "image_name": "n02017213/ILSVRC2012_val_00042113.JPEG",
+        "soure_prompt": "a photo of a European gallinule",
+        "edit_prompt": "a photo of a black swan"
+    },
+    {
+        "image_name": "n02017213/ILSVRC2012_val_00023024.JPEG",
+        "soure_prompt": "a photo of a European gallinule",
+        "edit_prompt": "a photo of a black swan"
+    },
+    {
+        "image_name": "n01773797/ILSVRC2012_val_00022895.JPEG",
+        "soure_prompt": "a photo of a garden spider",
+        "edit_prompt": "a photo of a black widow"
+    },
+    {
+        "image_name": "n01774750/ILSVRC2012_val_00047574.JPEG",
+        "soure_prompt": "a photo of a tarantula",
+        "edit_prompt": "a photo of a black widow"
+    },
+    {
+        "image_name": "n01773797/ILSVRC2012_val_00020991.JPEG",
+        "soure_prompt": "a photo of a garden spider",
+        "edit_prompt": "a photo of a black widow"
+    },
+    {
+        "image_name": "n01773797/ILSVRC2012_val_00000395.JPEG",
+        "soure_prompt": "a photo of a garden spider",
+        "edit_prompt": "a photo of a black widow"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00019722.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a boa constrictor"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00038480.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a boa constrictor"
+    },
+    {
+        "image_name": "n01749939/ILSVRC2012_val_00007937.JPEG",
+        "soure_prompt": "a photo of a green mamba",
+        "edit_prompt": "a photo of a boa constrictor"
+    },
+    {
+        "image_name": "n01756291/ILSVRC2012_val_00013698.JPEG",
+        "soure_prompt": "a photo of a sidewinder",
+        "edit_prompt": "a photo of a boa constrictor"
+    },
+    {
+        "image_name": "n13052670/ILSVRC2012_val_00022963.JPEG",
+        "soure_prompt": "a photo of a hen-of-the-woods",
+        "edit_prompt": "a photo of a bolete"
+    },
+    {
+        "image_name": "n13037406/ILSVRC2012_val_00045909.JPEG",
+        "soure_prompt": "a photo of a gyromitra",
+        "edit_prompt": "a photo of a bolete"
+    },
+    {
+        "image_name": "n13052670/ILSVRC2012_val_00020929.JPEG",
+        "soure_prompt": "a photo of a hen-of-the-woods",
+        "edit_prompt": "a photo of a bolete"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00044046.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a bolete"
+    },
+    {
+        "image_name": "n03379051/ILSVRC2012_val_00047692.JPEG",
+        "soure_prompt": "a photo of a football helmet",
+        "edit_prompt": "a photo of a bonnet"
+    },
+    {
+        "image_name": "n02807133/ILSVRC2012_val_00024350.JPEG",
+        "soure_prompt": "a photo of a bathing cap",
+        "edit_prompt": "a photo of a bonnet"
+    },
+    {
+        "image_name": "n04209133/ILSVRC2012_val_00024479.JPEG",
+        "soure_prompt": "a photo of a shower cap",
+        "edit_prompt": "a photo of a bonnet"
+    },
+    {
+        "image_name": "n02807133/ILSVRC2012_val_00036950.JPEG",
+        "soure_prompt": "a photo of a bathing cap",
+        "edit_prompt": "a photo of a bonnet"
+    },
+    {
+        "image_name": "n01667778/ILSVRC2012_val_00031774.JPEG",
+        "soure_prompt": "a photo of a terrapin",
+        "edit_prompt": "a photo of a box turtle"
+    },
+    {
+        "image_name": "n01667778/ILSVRC2012_val_00031674.JPEG",
+        "soure_prompt": "a photo of a terrapin",
+        "edit_prompt": "a photo of a box turtle"
+    },
+    {
+        "image_name": "n01667778/ILSVRC2012_val_00008921.JPEG",
+        "soure_prompt": "a photo of a terrapin",
+        "edit_prompt": "a photo of a box turtle"
+    },
+    {
+        "image_name": "n01667778/ILSVRC2012_val_00013738.JPEG",
+        "soure_prompt": "a photo of a terrapin",
+        "edit_prompt": "a photo of a box turtle"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00032658.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a boxer"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00017940.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a boxer"
+    },
+    {
+        "image_name": "n02107312/ILSVRC2012_val_00019364.JPEG",
+        "soure_prompt": "a photo of a miniature pinscher",
+        "edit_prompt": "a photo of a boxer"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00013155.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a boxer"
+    },
+    {
+        "image_name": "n07716358/ILSVRC2012_val_00013114.JPEG",
+        "soure_prompt": "a photo of a zucchini",
+        "edit_prompt": "a photo of a broccoli"
+    },
+    {
+        "image_name": "n07716906/ILSVRC2012_val_00008554.JPEG",
+        "soure_prompt": "a photo of a spaghetti squash",
+        "edit_prompt": "a photo of a broccoli"
+    },
+    {
+        "image_name": "n07717556/ILSVRC2012_val_00045122.JPEG",
+        "soure_prompt": "a photo of a butternut squash",
+        "edit_prompt": "a photo of a broccoli"
+    },
+    {
+        "image_name": "n07717556/ILSVRC2012_val_00000674.JPEG",
+        "soure_prompt": "a photo of a butternut squash",
+        "edit_prompt": "a photo of a broccoli"
+    },
+    {
+        "image_name": "n02134418/ILSVRC2012_val_00044129.JPEG",
+        "soure_prompt": "a photo of a sloth bear",
+        "edit_prompt": "a photo of a brown bear"
+    },
+    {
+        "image_name": "n02509815/ILSVRC2012_val_00035546.JPEG",
+        "soure_prompt": "a photo of a lesser panda",
+        "edit_prompt": "a photo of a brown bear"
+    },
+    {
+        "image_name": "n02134418/ILSVRC2012_val_00044947.JPEG",
+        "soure_prompt": "a photo of a sloth bear",
+        "edit_prompt": "a photo of a brown bear"
+    },
+    {
+        "image_name": "n02134084/ILSVRC2012_val_00040753.JPEG",
+        "soure_prompt": "a photo of a ice bear",
+        "edit_prompt": "a photo of a brown bear"
+    },
+    {
+        "image_name": "n01644373/ILSVRC2012_val_00003846.JPEG",
+        "soure_prompt": "a photo of a tree frog",
+        "edit_prompt": "a photo of a bullfrog"
+    },
+    {
+        "image_name": "n01630670/ILSVRC2012_val_00007257.JPEG",
+        "soure_prompt": "a photo of a common newt",
+        "edit_prompt": "a photo of a bullfrog"
+    },
+    {
+        "image_name": "n01629819/ILSVRC2012_val_00022935.JPEG",
+        "soure_prompt": "a photo of a European fire salamander",
+        "edit_prompt": "a photo of a bullfrog"
+    },
+    {
+        "image_name": "n01632777/ILSVRC2012_val_00019710.JPEG",
+        "soure_prompt": "a photo of a axolotl",
+        "edit_prompt": "a photo of a bullfrog"
+    },
+    {
+        "image_name": "n02002724/ILSVRC2012_val_00025651.JPEG",
+        "soure_prompt": "a photo of a black stork",
+        "edit_prompt": "a photo of a bustard"
+    },
+    {
+        "image_name": "n01855672/ILSVRC2012_val_00015675.JPEG",
+        "soure_prompt": "a photo of a goose",
+        "edit_prompt": "a photo of a bustard"
+    },
+    {
+        "image_name": "n02009229/ILSVRC2012_val_00026416.JPEG",
+        "soure_prompt": "a photo of a little blue heron",
+        "edit_prompt": "a photo of a bustard"
+    },
+    {
+        "image_name": "n01855672/ILSVRC2012_val_00008834.JPEG",
+        "soure_prompt": "a photo of a goose",
+        "edit_prompt": "a photo of a bustard"
+    },
+    {
+        "image_name": "n07714990/ILSVRC2012_val_00030197.JPEG",
+        "soure_prompt": "a photo of a broccoli",
+        "edit_prompt": "a photo of a butternut squash"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00013415.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a butternut squash"
+    },
+    {
+        "image_name": "n07716906/ILSVRC2012_val_00033271.JPEG",
+        "soure_prompt": "a photo of a spaghetti squash",
+        "edit_prompt": "a photo of a butternut squash"
+    },
+    {
+        "image_name": "n07714990/ILSVRC2012_val_00000155.JPEG",
+        "soure_prompt": "a photo of a broccoli",
+        "edit_prompt": "a photo of a butternut squash"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00026466.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a cab"
+    },
+    {
+        "image_name": "n04285008/ILSVRC2012_val_00004970.JPEG",
+        "soure_prompt": "a photo of a sports car",
+        "edit_prompt": "a photo of a cab"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00041490.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a cab"
+    },
+    {
+        "image_name": "n04285008/ILSVRC2012_val_00035603.JPEG",
+        "soure_prompt": "a photo of a sports car",
+        "edit_prompt": "a photo of a cab"
+    },
+    {
+        "image_name": "n02279972/ILSVRC2012_val_00012137.JPEG",
+        "soure_prompt": "a photo of a monarch",
+        "edit_prompt": "a photo of a cabbage butterfly"
+    },
+    {
+        "image_name": "n02276258/ILSVRC2012_val_00012764.JPEG",
+        "soure_prompt": "a photo of a admiral",
+        "edit_prompt": "a photo of a cabbage butterfly"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00013322.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a cabbage butterfly"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00040785.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a cabbage butterfly"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00016640.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a canoe"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00047743.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a canoe"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00025029.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a canoe"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00045286.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a canoe"
+    },
+    {
+        "image_name": "n02493793/ILSVRC2012_val_00026757.JPEG",
+        "soure_prompt": "a photo of a spider monkey",
+        "edit_prompt": "a photo of a capuchin"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00005306.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a capuchin"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00008873.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a capuchin"
+    },
+    {
+        "image_name": "n02494079/ILSVRC2012_val_00012793.JPEG",
+        "soure_prompt": "a photo of a squirrel monkey",
+        "edit_prompt": "a photo of a capuchin"
+    },
+    {
+        "image_name": "n07720875/ILSVRC2012_val_00000423.JPEG",
+        "soure_prompt": "a photo of a bell pepper",
+        "edit_prompt": "a photo of a cardoon"
+    },
+    {
+        "image_name": "n07714990/ILSVRC2012_val_00040922.JPEG",
+        "soure_prompt": "a photo of a broccoli",
+        "edit_prompt": "a photo of a cardoon"
+    },
+    {
+        "image_name": "n07716358/ILSVRC2012_val_00039647.JPEG",
+        "soure_prompt": "a photo of a zucchini",
+        "edit_prompt": "a photo of a cardoon"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00010591.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a cardoon"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00027181.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a cassette player"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00038711.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a cassette player"
+    },
+    {
+        "image_name": "n03492542/ILSVRC2012_val_00018299.JPEG",
+        "soure_prompt": "a photo of a hard disc",
+        "edit_prompt": "a photo of a cassette player"
+    },
+    {
+        "image_name": "n02992529/ILSVRC2012_val_00036024.JPEG",
+        "soure_prompt": "a photo of a cellular telephone",
+        "edit_prompt": "a photo of a cassette player"
+    },
+    {
+        "image_name": "n04483307/ILSVRC2012_val_00035945.JPEG",
+        "soure_prompt": "a photo of a trimaran",
+        "edit_prompt": "a photo of a catamaran"
+    },
+    {
+        "image_name": "n04147183/ILSVRC2012_val_00032731.JPEG",
+        "soure_prompt": "a photo of a schooner",
+        "edit_prompt": "a photo of a catamaran"
+    },
+    {
+        "image_name": "n04147183/ILSVRC2012_val_00016151.JPEG",
+        "soure_prompt": "a photo of a schooner",
+        "edit_prompt": "a photo of a catamaran"
+    },
+    {
+        "image_name": "n04147183/ILSVRC2012_val_00031936.JPEG",
+        "soure_prompt": "a photo of a schooner",
+        "edit_prompt": "a photo of a catamaran"
+    },
+    {
+        "image_name": "n07718747/ILSVRC2012_val_00005335.JPEG",
+        "soure_prompt": "a photo of a artichoke",
+        "edit_prompt": "a photo of a cauliflower"
+    },
+    {
+        "image_name": "n07730033/ILSVRC2012_val_00047735.JPEG",
+        "soure_prompt": "a photo of a cardoon",
+        "edit_prompt": "a photo of a cauliflower"
+    },
+    {
+        "image_name": "n07718472/ILSVRC2012_val_00022886.JPEG",
+        "soure_prompt": "a photo of a cucumber",
+        "edit_prompt": "a photo of a cauliflower"
+    },
+    {
+        "image_name": "n07717556/ILSVRC2012_val_00042937.JPEG",
+        "soure_prompt": "a photo of a butternut squash",
+        "edit_prompt": "a photo of a cauliflower"
+    },
+    {
+        "image_name": "n04536866/ILSVRC2012_val_00031548.JPEG",
+        "soure_prompt": "a photo of a violin",
+        "edit_prompt": "a photo of a cello"
+    },
+    {
+        "image_name": "n02787622/ILSVRC2012_val_00029236.JPEG",
+        "soure_prompt": "a photo of a banjo",
+        "edit_prompt": "a photo of a cello"
+    },
+    {
+        "image_name": "n02787622/ILSVRC2012_val_00033413.JPEG",
+        "soure_prompt": "a photo of a banjo",
+        "edit_prompt": "a photo of a cello"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00002992.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a cello"
+    },
+    {
+        "image_name": "n02979186/ILSVRC2012_val_00005866.JPEG",
+        "soure_prompt": "a photo of a cassette player",
+        "edit_prompt": "a photo of a cellular telephone"
+    },
+    {
+        "image_name": "n03492542/ILSVRC2012_val_00003609.JPEG",
+        "soure_prompt": "a photo of a hard disc",
+        "edit_prompt": "a photo of a cellular telephone"
+    },
+    {
+        "image_name": "n03642806/ILSVRC2012_val_00000660.JPEG",
+        "soure_prompt": "a photo of a laptop",
+        "edit_prompt": "a photo of a cellular telephone"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00030348.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a cellular telephone"
+    },
+    {
+        "image_name": "n07693725/ILSVRC2012_val_00018914.JPEG",
+        "soure_prompt": "a photo of a bagel",
+        "edit_prompt": "a photo of a cheeseburger"
+    },
+    {
+        "image_name": "n07693725/ILSVRC2012_val_00022802.JPEG",
+        "soure_prompt": "a photo of a bagel",
+        "edit_prompt": "a photo of a cheeseburger"
+    },
+    {
+        "image_name": "n07697537/ILSVRC2012_val_00000197.JPEG",
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a cheeseburger"
+    },
+    {
+        "image_name": "n07697537/ILSVRC2012_val_00049219.JPEG",
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a cheeseburger"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00009594.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a cheetah"
+    },
+    {
+        "image_name": "n02129165/ILSVRC2012_val_00027413.JPEG",
+        "soure_prompt": "a photo of a lion",
+        "edit_prompt": "a photo of a cheetah"
+    },
+    {
+        "image_name": "n02128757/ILSVRC2012_val_00042484.JPEG",
+        "soure_prompt": "a photo of a snow leopard",
+        "edit_prompt": "a photo of a cheetah"
+    },
+    {
+        "image_name": "n02128757/ILSVRC2012_val_00048717.JPEG",
+        "soure_prompt": "a photo of a snow leopard",
+        "edit_prompt": "a photo of a cheetah"
+    },
+    {
+        "image_name": "n03720891/ILSVRC2012_val_00044143.JPEG",
+        "soure_prompt": "a photo of a maraca",
+        "edit_prompt": "a photo of a chime"
+    },
+    {
+        "image_name": "n03720891/ILSVRC2012_val_00018810.JPEG",
+        "soure_prompt": "a photo of a maraca",
+        "edit_prompt": "a photo of a chime"
+    },
+    {
+        "image_name": "n04311174/ILSVRC2012_val_00045460.JPEG",
+        "soure_prompt": "a photo of a steel drum",
+        "edit_prompt": "a photo of a chime"
+    },
+    {
+        "image_name": "n03447721/ILSVRC2012_val_00006388.JPEG",
+        "soure_prompt": "a photo of a gong",
+        "edit_prompt": "a photo of a chime"
+    },
+    {
+        "image_name": "n02480855/ILSVRC2012_val_00006541.JPEG",
+        "soure_prompt": "a photo of a gorilla",
+        "edit_prompt": "a photo of a chimpanzee"
+    },
+    {
+        "image_name": "n02480855/ILSVRC2012_val_00004173.JPEG",
+        "soure_prompt": "a photo of a gorilla",
+        "edit_prompt": "a photo of a chimpanzee"
+    },
+    {
+        "image_name": "n02480855/ILSVRC2012_val_00040794.JPEG",
+        "soure_prompt": "a photo of a gorilla",
+        "edit_prompt": "a photo of a chimpanzee"
+    },
+    {
+        "image_name": "n02480855/ILSVRC2012_val_00020000.JPEG",
+        "soure_prompt": "a photo of a gorilla",
+        "edit_prompt": "a photo of a chimpanzee"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00001112.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a cocker spaniel"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00008772.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a cocker spaniel"
+    },
+    {
+        "image_name": "n02102040/ILSVRC2012_val_00007032.JPEG",
+        "soure_prompt": "a photo of a English springer",
+        "edit_prompt": "a photo of a cocker spaniel"
+    },
+    {
+        "image_name": "n02099601/ILSVRC2012_val_00017672.JPEG",
+        "soure_prompt": "a photo of a golden retriever",
+        "edit_prompt": "a photo of a cocker spaniel"
+    },
+    {
+        "image_name": "n04591713/ILSVRC2012_val_00032225.JPEG",
+        "soure_prompt": "a photo of a wine bottle",
+        "edit_prompt": "a photo of a cocktail shaker"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00023127.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a cocktail shaker"
+    },
+    {
+        "image_name": "n02823428/ILSVRC2012_val_00020345.JPEG",
+        "soure_prompt": "a photo of a beer bottle",
+        "edit_prompt": "a photo of a cocktail shaker"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00000826.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a cocktail shaker"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00043720.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a coffee mug"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00020527.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a coffee mug"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00015857.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a coffee mug"
+    },
+    {
+        "image_name": "n03063689/ILSVRC2012_val_00020255.JPEG",
+        "soure_prompt": "a photo of a coffeepot",
+        "edit_prompt": "a photo of a coffee mug"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00038313.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a coffeepot"
+    },
+    {
+        "image_name": "n03063599/ILSVRC2012_val_00002430.JPEG",
+        "soure_prompt": "a photo of a coffee mug",
+        "edit_prompt": "a photo of a coffeepot"
+    },
+    {
+        "image_name": "n04560804/ILSVRC2012_val_00033522.JPEG",
+        "soure_prompt": "a photo of a water jug",
+        "edit_prompt": "a photo of a coffeepot"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00030441.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a coffeepot"
+    },
+    {
+        "image_name": "n02107312/ILSVRC2012_val_00044075.JPEG",
+        "soure_prompt": "a photo of a miniature pinscher",
+        "edit_prompt": "a photo of a collie"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00036110.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a collie"
+    },
+    {
+        "image_name": "n02108915/ILSVRC2012_val_00007318.JPEG",
+        "soure_prompt": "a photo of a French bulldog",
+        "edit_prompt": "a photo of a collie"
+    },
+    {
+        "image_name": "n02108089/ILSVRC2012_val_00000635.JPEG",
+        "soure_prompt": "a photo of a boxer",
+        "edit_prompt": "a photo of a collie"
+    },
+    {
+        "image_name": "n01632458/ILSVRC2012_val_00038202.JPEG",
+        "soure_prompt": "a photo of a spotted salamander",
+        "edit_prompt": "a photo of a common newt"
+    },
+    {
+        "image_name": "n01629819/ILSVRC2012_val_00019308.JPEG",
+        "soure_prompt": "a photo of a European fire salamander",
+        "edit_prompt": "a photo of a common newt"
+    },
+    {
+        "image_name": "n01644373/ILSVRC2012_val_00032104.JPEG",
+        "soure_prompt": "a photo of a tree frog",
+        "edit_prompt": "a photo of a common newt"
+    },
+    {
+        "image_name": "n01644373/ILSVRC2012_val_00006987.JPEG",
+        "soure_prompt": "a photo of a tree frog",
+        "edit_prompt": "a photo of a common newt"
+    },
+    {
+        "image_name": "n03642806/ILSVRC2012_val_00016812.JPEG",
+        "soure_prompt": "a photo of a laptop",
+        "edit_prompt": "a photo of a computer keyboard"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00001831.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a computer keyboard"
+    },
+    {
+        "image_name": "n03642806/ILSVRC2012_val_00024499.JPEG",
+        "soure_prompt": "a photo of a laptop",
+        "edit_prompt": "a photo of a computer keyboard"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00022219.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a computer keyboard"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00023599.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a convertible"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00036304.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a convertible"
+    },
+    {
+        "image_name": "n04285008/ILSVRC2012_val_00004979.JPEG",
+        "soure_prompt": "a photo of a sports car",
+        "edit_prompt": "a photo of a convertible"
+    },
+    {
+        "image_name": "n02701002/ILSVRC2012_val_00025159.JPEG",
+        "soure_prompt": "a photo of a ambulance",
+        "edit_prompt": "a photo of a convertible"
+    },
+    {
+        "image_name": "n13054560/ILSVRC2012_val_00004690.JPEG",
+        "soure_prompt": "a photo of a bolete",
+        "edit_prompt": "a photo of a coral fungus"
+    },
+    {
+        "image_name": "n13054560/ILSVRC2012_val_00035125.JPEG",
+        "soure_prompt": "a photo of a bolete",
+        "edit_prompt": "a photo of a coral fungus"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00048378.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a coral fungus"
+    },
+    {
+        "image_name": "n13052670/ILSVRC2012_val_00017210.JPEG",
+        "soure_prompt": "a photo of a hen-of-the-woods",
+        "edit_prompt": "a photo of a coral fungus"
+    },
+    {
+        "image_name": "n02804610/ILSVRC2012_val_00012019.JPEG",
+        "soure_prompt": "a photo of a bassoon",
+        "edit_prompt": "a photo of a cornet"
+    },
+    {
+        "image_name": "n03394916/ILSVRC2012_val_00038137.JPEG",
+        "soure_prompt": "a photo of a French horn",
+        "edit_prompt": "a photo of a cornet"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00036869.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a cornet"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00043168.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a cornet"
+    },
+    {
+        "image_name": "n02869837/ILSVRC2012_val_00015695.JPEG",
+        "soure_prompt": "a photo of a bonnet",
+        "edit_prompt": "a photo of a cowboy hat"
+    },
+    {
+        "image_name": "n03379051/ILSVRC2012_val_00006170.JPEG",
+        "soure_prompt": "a photo of a football helmet",
+        "edit_prompt": "a photo of a cowboy hat"
+    },
+    {
+        "image_name": "n03379051/ILSVRC2012_val_00037567.JPEG",
+        "soure_prompt": "a photo of a football helmet",
+        "edit_prompt": "a photo of a cowboy hat"
+    },
+    {
+        "image_name": "n04209133/ILSVRC2012_val_00047240.JPEG",
+        "soure_prompt": "a photo of a shower cap",
+        "edit_prompt": "a photo of a cowboy hat"
+    },
+    {
+        "image_name": "n02120079/ILSVRC2012_val_00042659.JPEG",
+        "soure_prompt": "a photo of a Arctic fox",
+        "edit_prompt": "a photo of a coyote"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00020225.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a coyote"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00044496.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a coyote"
+    },
+    {
+        "image_name": "n02116738/ILSVRC2012_val_00013368.JPEG",
+        "soure_prompt": "a photo of a African hunting dog",
+        "edit_prompt": "a photo of a coyote"
+    },
+    {
+        "image_name": "n01990800/ILSVRC2012_val_00026939.JPEG",
+        "soure_prompt": "a photo of a isopod",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "image_name": "n01990800/ILSVRC2012_val_00015754.JPEG",
+        "soure_prompt": "a photo of a isopod",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "image_name": "n01978287/ILSVRC2012_val_00015120.JPEG",
+        "soure_prompt": "a photo of a Dungeness crab",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "image_name": "n01990800/ILSVRC2012_val_00003662.JPEG",
+        "soure_prompt": "a photo of a isopod",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "image_name": "n07718747/ILSVRC2012_val_00047448.JPEG",
+        "soure_prompt": "a photo of a artichoke",
+        "edit_prompt": "a photo of a cucumber"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00047937.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a cucumber"
+    },
+    {
+        "image_name": "n07717556/ILSVRC2012_val_00011524.JPEG",
+        "soure_prompt": "a photo of a butternut squash",
+        "edit_prompt": "a photo of a cucumber"
+    },
+    {
+        "image_name": "n07716358/ILSVRC2012_val_00003660.JPEG",
+        "soure_prompt": "a photo of a zucchini",
+        "edit_prompt": "a photo of a cucumber"
+    },
+    {
+        "image_name": "n07747607/ILSVRC2012_val_00026831.JPEG",
+        "soure_prompt": "a photo of a orange",
+        "edit_prompt": "a photo of a custard apple"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00012216.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a custard apple"
+    },
+    {
+        "image_name": "n07768694/ILSVRC2012_val_00025102.JPEG",
+        "soure_prompt": "a photo of a pomegranate",
+        "edit_prompt": "a photo of a custard apple"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00037096.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a custard apple"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00043848.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a desktop computer"
+    },
+    {
+        "image_name": "n03492542/ILSVRC2012_val_00042243.JPEG",
+        "soure_prompt": "a photo of a hard disc",
+        "edit_prompt": "a photo of a desktop computer"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00035703.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a desktop computer"
+    },
+    {
+        "image_name": "n03187595/ILSVRC2012_val_00011934.JPEG",
+        "soure_prompt": "a photo of a dial telephone",
+        "edit_prompt": "a photo of a desktop computer"
+    },
+    {
+        "image_name": "n03642806/ILSVRC2012_val_00021413.JPEG",
+        "soure_prompt": "a photo of a laptop",
+        "edit_prompt": "a photo of a dial telephone"
+    },
+    {
+        "image_name": "n03180011/ILSVRC2012_val_00049752.JPEG",
+        "soure_prompt": "a photo of a desktop computer",
+        "edit_prompt": "a photo of a dial telephone"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00002755.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a dial telephone"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00030993.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a dial telephone"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00027142.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a diamondback"
+    },
+    {
+        "image_name": "n01744401/ILSVRC2012_val_00032756.JPEG",
+        "soure_prompt": "a photo of a rock python",
+        "edit_prompt": "a photo of a diamondback"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00027680.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a diamondback"
+    },
+    {
+        "image_name": "n01744401/ILSVRC2012_val_00000688.JPEG",
+        "soure_prompt": "a photo of a rock python",
+        "edit_prompt": "a photo of a diamondback"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00003043.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital clock"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00013824.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a digital clock"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00032908.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a digital clock"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00008280.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital clock"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00003406.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital watch"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00032063.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital watch"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00033746.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital watch"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00030062.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a digital watch"
+    },
+    {
+        "image_name": "n02120505/ILSVRC2012_val_00045171.JPEG",
+        "soure_prompt": "a photo of a grey fox",
+        "edit_prompt": "a photo of a dingo"
+    },
+    {
+        "image_name": "n02120079/ILSVRC2012_val_00020302.JPEG",
+        "soure_prompt": "a photo of a Arctic fox",
+        "edit_prompt": "a photo of a dingo"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00024786.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a dingo"
+    },
+    {
+        "image_name": "n02120079/ILSVRC2012_val_00045175.JPEG",
+        "soure_prompt": "a photo of a Arctic fox",
+        "edit_prompt": "a photo of a dingo"
+    },
+    {
+        "image_name": "n04311174/ILSVRC2012_val_00031667.JPEG",
+        "soure_prompt": "a photo of a steel drum",
+        "edit_prompt": "a photo of a drum"
+    },
+    {
+        "image_name": "n03721384/ILSVRC2012_val_00016595.JPEG",
+        "soure_prompt": "a photo of a marimba",
+        "edit_prompt": "a photo of a drum"
+    },
+    {
+        "image_name": "n03721384/ILSVRC2012_val_00008971.JPEG",
+        "soure_prompt": "a photo of a marimba",
+        "edit_prompt": "a photo of a drum"
+    },
+    {
+        "image_name": "n03720891/ILSVRC2012_val_00026768.JPEG",
+        "soure_prompt": "a photo of a maraca",
+        "edit_prompt": "a photo of a drum"
+    },
+    {
+        "image_name": "n02071294/ILSVRC2012_val_00039524.JPEG",
+        "soure_prompt": "a photo of a killer whale",
+        "edit_prompt": "a photo of a dugong"
+    },
+    {
+        "image_name": "n02066245/ILSVRC2012_val_00033405.JPEG",
+        "soure_prompt": "a photo of a grey whale",
+        "edit_prompt": "a photo of a dugong"
+    },
+    {
+        "image_name": "n02071294/ILSVRC2012_val_00049801.JPEG",
+        "soure_prompt": "a photo of a killer whale",
+        "edit_prompt": "a photo of a dugong"
+    },
+    {
+        "image_name": "n02071294/ILSVRC2012_val_00006253.JPEG",
+        "soure_prompt": "a photo of a killer whale",
+        "edit_prompt": "a photo of a dugong"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00014277.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a earthstar"
+    },
+    {
+        "image_name": "n13040303/ILSVRC2012_val_00017416.JPEG",
+        "soure_prompt": "a photo of a stinkhorn",
+        "edit_prompt": "a photo of a earthstar"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00015085.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a earthstar"
+    },
+    {
+        "image_name": "n13037406/ILSVRC2012_val_00031593.JPEG",
+        "soure_prompt": "a photo of a gyromitra",
+        "edit_prompt": "a photo of a earthstar"
+    },
+    {
+        "image_name": "n02607072/ILSVRC2012_val_00027500.JPEG",
+        "soure_prompt": "a photo of a anemone fish",
+        "edit_prompt": "a photo of a eel"
+    },
+    {
+        "image_name": "n01443537/ILSVRC2012_val_00009034.JPEG",
+        "soure_prompt": "a photo of a goldfish",
+        "edit_prompt": "a photo of a eel"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00004464.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a eel"
+    },
+    {
+        "image_name": "n02641379/ILSVRC2012_val_00005755.JPEG",
+        "soure_prompt": "a photo of a gar",
+        "edit_prompt": "a photo of a eel"
+    },
+    {
+        "image_name": "n01644373/ILSVRC2012_val_00007977.JPEG",
+        "soure_prompt": "a photo of a tree frog",
+        "edit_prompt": "a photo of a eft"
+    },
+    {
+        "image_name": "n01632777/ILSVRC2012_val_00022771.JPEG",
+        "soure_prompt": "a photo of a axolotl",
+        "edit_prompt": "a photo of a eft"
+    },
+    {
+        "image_name": "n01644373/ILSVRC2012_val_00041279.JPEG",
+        "soure_prompt": "a photo of a tree frog",
+        "edit_prompt": "a photo of a eft"
+    },
+    {
+        "image_name": "n01641577/ILSVRC2012_val_00033960.JPEG",
+        "soure_prompt": "a photo of a bullfrog",
+        "edit_prompt": "a photo of a eft"
+    },
+    {
+        "image_name": "n02787622/ILSVRC2012_val_00025664.JPEG",
+        "soure_prompt": "a photo of a banjo",
+        "edit_prompt": "a photo of a electric guitar"
+    },
+    {
+        "image_name": "n02676566/ILSVRC2012_val_00044733.JPEG",
+        "soure_prompt": "a photo of a acoustic guitar",
+        "edit_prompt": "a photo of a electric guitar"
+    },
+    {
+        "image_name": "n04536866/ILSVRC2012_val_00024503.JPEG",
+        "soure_prompt": "a photo of a violin",
+        "edit_prompt": "a photo of a electric guitar"
+    },
+    {
+        "image_name": "n02992211/ILSVRC2012_val_00013202.JPEG",
+        "soure_prompt": "a photo of a cello",
+        "edit_prompt": "a photo of a electric guitar"
+    },
+    {
+        "image_name": "n04310018/ILSVRC2012_val_00021247.JPEG",
+        "soure_prompt": "a photo of a steam locomotive",
+        "edit_prompt": "a photo of a electric locomotive"
+    },
+    {
+        "image_name": "n04310018/ILSVRC2012_val_00021734.JPEG",
+        "soure_prompt": "a photo of a steam locomotive",
+        "edit_prompt": "a photo of a electric locomotive"
+    },
+    {
+        "image_name": "n04310018/ILSVRC2012_val_00020437.JPEG",
+        "soure_prompt": "a photo of a steam locomotive",
+        "edit_prompt": "a photo of a electric locomotive"
+    },
+    {
+        "image_name": "n04310018/ILSVRC2012_val_00018868.JPEG",
+        "soure_prompt": "a photo of a steam locomotive",
+        "edit_prompt": "a photo of a electric locomotive"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00017555.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a fiddler crab"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00000231.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a fiddler crab"
+    },
+    {
+        "image_name": "n01978287/ILSVRC2012_val_00003272.JPEG",
+        "soure_prompt": "a photo of a Dungeness crab",
+        "edit_prompt": "a photo of a fiddler crab"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00019512.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a fiddler crab"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00004428.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a fig"
+    },
+    {
+        "image_name": "n07747607/ILSVRC2012_val_00014856.JPEG",
+        "soure_prompt": "a photo of a orange",
+        "edit_prompt": "a photo of a fig"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00029311.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a fig"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00030543.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a fig"
+    },
+    {
+        "image_name": "n03930630/ILSVRC2012_val_00039508.JPEG",
+        "soure_prompt": "a photo of a pickup",
+        "edit_prompt": "a photo of a fire engine"
+    },
+    {
+        "image_name": "n04467665/ILSVRC2012_val_00033387.JPEG",
+        "soure_prompt": "a photo of a trailer truck",
+        "edit_prompt": "a photo of a fire engine"
+    },
+    {
+        "image_name": "n03930630/ILSVRC2012_val_00032894.JPEG",
+        "soure_prompt": "a photo of a pickup",
+        "edit_prompt": "a photo of a fire engine"
+    },
+    {
+        "image_name": "n03977966/ILSVRC2012_val_00036046.JPEG",
+        "soure_prompt": "a photo of a police van",
+        "edit_prompt": "a photo of a fire engine"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00025415.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a fireboat"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00022210.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a fireboat"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00013191.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a fireboat"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00001677.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a fireboat"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00009991.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a flamingo"
+    },
+    {
+        "image_name": "n02018795/ILSVRC2012_val_00025273.JPEG",
+        "soure_prompt": "a photo of a bustard",
+        "edit_prompt": "a photo of a flamingo"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00011196.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a flamingo"
+    },
+    {
+        "image_name": "n02006656/ILSVRC2012_val_00029736.JPEG",
+        "soure_prompt": "a photo of a spoonbill",
+        "edit_prompt": "a photo of a flamingo"
+    },
+    {
+        "image_name": "n03110669/ILSVRC2012_val_00023807.JPEG",
+        "soure_prompt": "a photo of a cornet",
+        "edit_prompt": "a photo of a flute"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00028182.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a flute"
+    },
+    {
+        "image_name": "n03838899/ILSVRC2012_val_00004486.JPEG",
+        "soure_prompt": "a photo of a oboe",
+        "edit_prompt": "a photo of a flute"
+    },
+    {
+        "image_name": "n03394916/ILSVRC2012_val_00043988.JPEG",
+        "soure_prompt": "a photo of a French horn",
+        "edit_prompt": "a photo of a flute"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00049869.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a football helmet"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00002639.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a football helmet"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00005719.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a football helmet"
+    },
+    {
+        "image_name": "n04209133/ILSVRC2012_val_00041604.JPEG",
+        "soure_prompt": "a photo of a shower cap",
+        "edit_prompt": "a photo of a football helmet"
+    },
+    {
+        "image_name": "n02607072/ILSVRC2012_val_00005188.JPEG",
+        "soure_prompt": "a photo of a anemone fish",
+        "edit_prompt": "a photo of a gar"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00003094.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a gar"
+    },
+    {
+        "image_name": "n02640242/ILSVRC2012_val_00004784.JPEG",
+        "soure_prompt": "a photo of a sturgeon",
+        "edit_prompt": "a photo of a gar"
+    },
+    {
+        "image_name": "n02526121/ILSVRC2012_val_00034488.JPEG",
+        "soure_prompt": "a photo of a eel",
+        "edit_prompt": "a photo of a gar"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00037681.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a garbage truck"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00011870.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a garbage truck"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00005166.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a garbage truck"
+    },
+    {
+        "image_name": "n03977966/ILSVRC2012_val_00008953.JPEG",
+        "soure_prompt": "a photo of a police van",
+        "edit_prompt": "a photo of a garbage truck"
+    },
+    {
+        "image_name": "n01770393/ILSVRC2012_val_00027439.JPEG",
+        "soure_prompt": "a photo of a scorpion",
+        "edit_prompt": "a photo of a garden spider"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00030333.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a garden spider"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00016936.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a garden spider"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00029208.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a garden spider"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00028707.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a gazelle"
+    },
+    {
+        "image_name": "n02408429/ILSVRC2012_val_00007108.JPEG",
+        "soure_prompt": "a photo of a water buffalo",
+        "edit_prompt": "a photo of a gazelle"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00018032.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a gazelle"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00000444.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a gazelle"
+    },
+    {
+        "image_name": "n02509815/ILSVRC2012_val_00011235.JPEG",
+        "soure_prompt": "a photo of a lesser panda",
+        "edit_prompt": "a photo of a giant panda"
+    },
+    {
+        "image_name": "n02134084/ILSVRC2012_val_00041156.JPEG",
+        "soure_prompt": "a photo of a ice bear",
+        "edit_prompt": "a photo of a giant panda"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00031253.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a giant panda"
+    },
+    {
+        "image_name": "n02134418/ILSVRC2012_val_00046498.JPEG",
+        "soure_prompt": "a photo of a sloth bear",
+        "edit_prompt": "a photo of a giant panda"
+    },
+    {
+        "image_name": "n02100877/ILSVRC2012_val_00020279.JPEG",
+        "soure_prompt": "a photo of a Irish setter",
+        "edit_prompt": "a photo of a golden retriever"
+    },
+    {
+        "image_name": "n02102040/ILSVRC2012_val_00038569.JPEG",
+        "soure_prompt": "a photo of a English springer",
+        "edit_prompt": "a photo of a golden retriever"
+    },
+    {
+        "image_name": "n02102318/ILSVRC2012_val_00001663.JPEG",
+        "soure_prompt": "a photo of a cocker spaniel",
+        "edit_prompt": "a photo of a golden retriever"
+    },
+    {
+        "image_name": "n02102040/ILSVRC2012_val_00046295.JPEG",
+        "soure_prompt": "a photo of a English springer",
+        "edit_prompt": "a photo of a golden retriever"
+    },
+    {
+        "image_name": "n01532829/ILSVRC2012_val_00006597.JPEG",
+        "soure_prompt": "a photo of a house finch",
+        "edit_prompt": "a photo of a goldfinch"
+    },
+    {
+        "image_name": "n01532829/ILSVRC2012_val_00038160.JPEG",
+        "soure_prompt": "a photo of a house finch",
+        "edit_prompt": "a photo of a goldfinch"
+    },
+    {
+        "image_name": "n01537544/ILSVRC2012_val_00048732.JPEG",
+        "soure_prompt": "a photo of a indigo bunting",
+        "edit_prompt": "a photo of a goldfinch"
+    },
+    {
+        "image_name": "n01537544/ILSVRC2012_val_00037454.JPEG",
+        "soure_prompt": "a photo of a indigo bunting",
+        "edit_prompt": "a photo of a goldfinch"
+    },
+    {
+        "image_name": "n02640242/ILSVRC2012_val_00029790.JPEG",
+        "soure_prompt": "a photo of a sturgeon",
+        "edit_prompt": "a photo of a goldfish"
+    },
+    {
+        "image_name": "n02641379/ILSVRC2012_val_00031222.JPEG",
+        "soure_prompt": "a photo of a gar",
+        "edit_prompt": "a photo of a goldfish"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00046455.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a goldfish"
+    },
+    {
+        "image_name": "n01440764/ILSVRC2012_val_00017699.JPEG",
+        "soure_prompt": "a photo of a tench",
+        "edit_prompt": "a photo of a goldfish"
+    },
+    {
+        "image_name": "n04118538/ILSVRC2012_val_00036288.JPEG",
+        "soure_prompt": "a photo of a rugby ball",
+        "edit_prompt": "a photo of a golf ball"
+    },
+    {
+        "image_name": "n04118538/ILSVRC2012_val_00049365.JPEG",
+        "soure_prompt": "a photo of a rugby ball",
+        "edit_prompt": "a photo of a golf ball"
+    },
+    {
+        "image_name": "n04118538/ILSVRC2012_val_00001497.JPEG",
+        "soure_prompt": "a photo of a rugby ball",
+        "edit_prompt": "a photo of a golf ball"
+    },
+    {
+        "image_name": "n04409515/ILSVRC2012_val_00000397.JPEG",
+        "soure_prompt": "a photo of a tennis ball",
+        "edit_prompt": "a photo of a golf ball"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00026054.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a gondola"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00046387.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a gondola"
+    },
+    {
+        "image_name": "n03344393/ILSVRC2012_val_00013632.JPEG",
+        "soure_prompt": "a photo of a fireboat",
+        "edit_prompt": "a photo of a gondola"
+    },
+    {
+        "image_name": "n04273569/ILSVRC2012_val_00047638.JPEG",
+        "soure_prompt": "a photo of a speedboat",
+        "edit_prompt": "a photo of a gondola"
+    },
+    {
+        "image_name": "n03017168/ILSVRC2012_val_00031533.JPEG",
+        "soure_prompt": "a photo of a chime",
+        "edit_prompt": "a photo of a gong"
+    },
+    {
+        "image_name": "n03721384/ILSVRC2012_val_00046386.JPEG",
+        "soure_prompt": "a photo of a marimba",
+        "edit_prompt": "a photo of a gong"
+    },
+    {
+        "image_name": "n03249569/ILSVRC2012_val_00015169.JPEG",
+        "soure_prompt": "a photo of a drum",
+        "edit_prompt": "a photo of a gong"
+    },
+    {
+        "image_name": "n03720891/ILSVRC2012_val_00025962.JPEG",
+        "soure_prompt": "a photo of a maraca",
+        "edit_prompt": "a photo of a gong"
+    },
+    {
+        "image_name": "n02007558/ILSVRC2012_val_00031931.JPEG",
+        "soure_prompt": "a photo of a flamingo",
+        "edit_prompt": "a photo of a goose"
+    },
+    {
+        "image_name": "n02007558/ILSVRC2012_val_00039514.JPEG",
+        "soure_prompt": "a photo of a flamingo",
+        "edit_prompt": "a photo of a goose"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00010080.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a goose"
+    },
+    {
+        "image_name": "n02006656/ILSVRC2012_val_00007697.JPEG",
+        "soure_prompt": "a photo of a spoonbill",
+        "edit_prompt": "a photo of a goose"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00015148.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a gorilla"
+    },
+    {
+        "image_name": "n02480495/ILSVRC2012_val_00012167.JPEG",
+        "soure_prompt": "a photo of a orangutan",
+        "edit_prompt": "a photo of a gorilla"
+    },
+    {
+        "image_name": "n02480495/ILSVRC2012_val_00011592.JPEG",
+        "soure_prompt": "a photo of a orangutan",
+        "edit_prompt": "a photo of a gorilla"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00046703.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a gorilla"
+    },
+    {
+        "image_name": "n01614925/ILSVRC2012_val_00034168.JPEG",
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a great grey owl"
+    },
+    {
+        "image_name": "n01614925/ILSVRC2012_val_00006334.JPEG",
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a great grey owl"
+    },
+    {
+        "image_name": "n01614925/ILSVRC2012_val_00008481.JPEG",
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a great grey owl"
+    },
+    {
+        "image_name": "n01608432/ILSVRC2012_val_00033433.JPEG",
+        "soure_prompt": "a photo of a kite",
+        "edit_prompt": "a photo of a great grey owl"
+    },
+    {
+        "image_name": "n01494475/ILSVRC2012_val_00003558.JPEG",
+        "soure_prompt": "a photo of a hammerhead",
+        "edit_prompt": "a photo of a great white shark"
+    },
+    {
+        "image_name": "n01494475/ILSVRC2012_val_00031169.JPEG",
+        "soure_prompt": "a photo of a hammerhead",
+        "edit_prompt": "a photo of a great white shark"
+    },
+    {
+        "image_name": "n01491361/ILSVRC2012_val_00037516.JPEG",
+        "soure_prompt": "a photo of a tiger shark",
+        "edit_prompt": "a photo of a great white shark"
+    },
+    {
+        "image_name": "n01494475/ILSVRC2012_val_00049166.JPEG",
+        "soure_prompt": "a photo of a hammerhead",
+        "edit_prompt": "a photo of a great white shark"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00033762.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a green mamba"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00045019.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a green mamba"
+    },
+    {
+        "image_name": "n01742172/ILSVRC2012_val_00042500.JPEG",
+        "soure_prompt": "a photo of a boa constrictor",
+        "edit_prompt": "a photo of a green mamba"
+    },
+    {
+        "image_name": "n01734418/ILSVRC2012_val_00032754.JPEG",
+        "soure_prompt": "a photo of a king snake",
+        "edit_prompt": "a photo of a green mamba"
+    },
+    {
+        "image_name": "n01755581/ILSVRC2012_val_00038068.JPEG",
+        "soure_prompt": "a photo of a diamondback",
+        "edit_prompt": "a photo of a green snake"
+    },
+    {
+        "image_name": "n01742172/ILSVRC2012_val_00020401.JPEG",
+        "soure_prompt": "a photo of a boa constrictor",
+        "edit_prompt": "a photo of a green snake"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00014181.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a green snake"
+    },
+    {
+        "image_name": "n01755581/ILSVRC2012_val_00045418.JPEG",
+        "soure_prompt": "a photo of a diamondback",
+        "edit_prompt": "a photo of a green snake"
+    },
+    {
+        "image_name": "n02114367/ILSVRC2012_val_00001469.JPEG",
+        "soure_prompt": "a photo of a timber wolf",
+        "edit_prompt": "a photo of a grey fox"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00035165.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a grey fox"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00029562.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a grey fox"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00006818.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a grey fox"
+    },
+    {
+        "image_name": "n02077923/ILSVRC2012_val_00012330.JPEG",
+        "soure_prompt": "a photo of a sea lion",
+        "edit_prompt": "a photo of a grey whale"
+    },
+    {
+        "image_name": "n02077923/ILSVRC2012_val_00027024.JPEG",
+        "soure_prompt": "a photo of a sea lion",
+        "edit_prompt": "a photo of a grey whale"
+    },
+    {
+        "image_name": "n02077923/ILSVRC2012_val_00013809.JPEG",
+        "soure_prompt": "a photo of a sea lion",
+        "edit_prompt": "a photo of a grey whale"
+    },
+    {
+        "image_name": "n02077923/ILSVRC2012_val_00043549.JPEG",
+        "soure_prompt": "a photo of a sea lion",
+        "edit_prompt": "a photo of a grey whale"
+    },
+    {
+        "image_name": "n02168699/ILSVRC2012_val_00017552.JPEG",
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a ground beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00000625.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a ground beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00027586.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a ground beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00029943.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a ground beetle"
+    },
+    {
+        "image_name": "n02494079/ILSVRC2012_val_00018253.JPEG",
+        "soure_prompt": "a photo of a squirrel monkey",
+        "edit_prompt": "a photo of a guenon"
+    },
+    {
+        "image_name": "n02486410/ILSVRC2012_val_00009799.JPEG",
+        "soure_prompt": "a photo of a baboon",
+        "edit_prompt": "a photo of a guenon"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00027705.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a guenon"
+    },
+    {
+        "image_name": "n02486410/ILSVRC2012_val_00000945.JPEG",
+        "soure_prompt": "a photo of a baboon",
+        "edit_prompt": "a photo of a guenon"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00044494.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a gyromitra"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00042840.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a gyromitra"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00043263.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a gyromitra"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00033845.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a gyromitra"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00004803.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a hammer"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00037757.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a hammer"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00039935.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a hammer"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00001966.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a hammer"
+    },
+    {
+        "image_name": "n01484850/ILSVRC2012_val_00040710.JPEG",
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a hammerhead"
+    },
+    {
+        "image_name": "n01484850/ILSVRC2012_val_00014467.JPEG",
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a hammerhead"
+    },
+    {
+        "image_name": "n01491361/ILSVRC2012_val_00007875.JPEG",
+        "soure_prompt": "a photo of a tiger shark",
+        "edit_prompt": "a photo of a hammerhead"
+    },
+    {
+        "image_name": "n01484850/ILSVRC2012_val_00039304.JPEG",
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a hammerhead"
+    },
+    {
+        "image_name": "n02992529/ILSVRC2012_val_00016828.JPEG",
+        "soure_prompt": "a photo of a cellular telephone",
+        "edit_prompt": "a photo of a hard disc"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00007754.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a hard disc"
+    },
+    {
+        "image_name": "n02992529/ILSVRC2012_val_00028116.JPEG",
+        "soure_prompt": "a photo of a cellular telephone",
+        "edit_prompt": "a photo of a hard disc"
+    },
+    {
+        "image_name": "n02992529/ILSVRC2012_val_00010737.JPEG",
+        "soure_prompt": "a photo of a cellular telephone",
+        "edit_prompt": "a photo of a hard disc"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00000755.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a hen-of-the-woods"
+    },
+    {
+        "image_name": "n13037406/ILSVRC2012_val_00023433.JPEG",
+        "soure_prompt": "a photo of a gyromitra",
+        "edit_prompt": "a photo of a hen-of-the-woods"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00040193.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a hen-of-the-woods"
+    },
+    {
+        "image_name": "n13054560/ILSVRC2012_val_00048207.JPEG",
+        "soure_prompt": "a photo of a bolete",
+        "edit_prompt": "a photo of a hen-of-the-woods"
+    },
+    {
+        "image_name": "n01983481/ILSVRC2012_val_00048837.JPEG",
+        "soure_prompt": "a photo of a American lobster",
+        "edit_prompt": "a photo of a hermit crab"
+    },
+    {
+        "image_name": "n01983481/ILSVRC2012_val_00039303.JPEG",
+        "soure_prompt": "a photo of a American lobster",
+        "edit_prompt": "a photo of a hermit crab"
+    },
+    {
+        "image_name": "n01985128/ILSVRC2012_val_00013932.JPEG",
+        "soure_prompt": "a photo of a crayfish",
+        "edit_prompt": "a photo of a hermit crab"
+    },
+    {
+        "image_name": "n01981276/ILSVRC2012_val_00012713.JPEG",
+        "soure_prompt": "a photo of a king crab",
+        "edit_prompt": "a photo of a hermit crab"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00021215.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a horned viper"
+    },
+    {
+        "image_name": "n01734418/ILSVRC2012_val_00028503.JPEG",
+        "soure_prompt": "a photo of a king snake",
+        "edit_prompt": "a photo of a horned viper"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00022901.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a horned viper"
+    },
+    {
+        "image_name": "n01729977/ILSVRC2012_val_00030719.JPEG",
+        "soure_prompt": "a photo of a green snake",
+        "edit_prompt": "a photo of a horned viper"
+    },
+    {
+        "image_name": "n07697313/ILSVRC2012_val_00038898.JPEG",
+        "soure_prompt": "a photo of a cheeseburger",
+        "edit_prompt": "a photo of a hotdog"
+    },
+    {
+        "image_name": "n07697313/ILSVRC2012_val_00016999.JPEG",
+        "soure_prompt": "a photo of a cheeseburger",
+        "edit_prompt": "a photo of a hotdog"
+    },
+    {
+        "image_name": "n07697313/ILSVRC2012_val_00018040.JPEG",
+        "soure_prompt": "a photo of a cheeseburger",
+        "edit_prompt": "a photo of a hotdog"
+    },
+    {
+        "image_name": "n07697313/ILSVRC2012_val_00027479.JPEG",
+        "soure_prompt": "a photo of a cheeseburger",
+        "edit_prompt": "a photo of a hotdog"
+    },
+    {
+        "image_name": "n01534433/ILSVRC2012_val_00029999.JPEG",
+        "soure_prompt": "a photo of a junco",
+        "edit_prompt": "a photo of a house finch"
+    },
+    {
+        "image_name": "n01534433/ILSVRC2012_val_00017970.JPEG",
+        "soure_prompt": "a photo of a junco",
+        "edit_prompt": "a photo of a house finch"
+    },
+    {
+        "image_name": "n01531178/ILSVRC2012_val_00019236.JPEG",
+        "soure_prompt": "a photo of a goldfinch",
+        "edit_prompt": "a photo of a house finch"
+    },
+    {
+        "image_name": "n01534433/ILSVRC2012_val_00014108.JPEG",
+        "soure_prompt": "a photo of a junco",
+        "edit_prompt": "a photo of a house finch"
+    },
+    {
+        "image_name": "n02114712/ILSVRC2012_val_00033911.JPEG",
+        "soure_prompt": "a photo of a red wolf",
+        "edit_prompt": "a photo of a hyena"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00014133.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a hyena"
+    },
+    {
+        "image_name": "n02119022/ILSVRC2012_val_00034084.JPEG",
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a hyena"
+    },
+    {
+        "image_name": "n02114712/ILSVRC2012_val_00017288.JPEG",
+        "soure_prompt": "a photo of a red wolf",
+        "edit_prompt": "a photo of a hyena"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00042686.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a iPod"
+    },
+    {
+        "image_name": "n03492542/ILSVRC2012_val_00010204.JPEG",
+        "soure_prompt": "a photo of a hard disc",
+        "edit_prompt": "a photo of a iPod"
+    },
+    {
+        "image_name": "n03492542/ILSVRC2012_val_00006167.JPEG",
+        "soure_prompt": "a photo of a hard disc",
+        "edit_prompt": "a photo of a iPod"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00045473.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a iPod"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00044567.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a ibex"
+    },
+    {
+        "image_name": "n02403003/ILSVRC2012_val_00004751.JPEG",
+        "soure_prompt": "a photo of a ox",
+        "edit_prompt": "a photo of a ibex"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00043684.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a ibex"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00044556.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a ibex"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00015955.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a ice bear"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00018469.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a ice bear"
+    },
+    {
+        "image_name": "n02133161/ILSVRC2012_val_00042882.JPEG",
+        "soure_prompt": "a photo of a American black bear",
+        "edit_prompt": "a photo of a ice bear"
+    },
+    {
+        "image_name": "n02510455/ILSVRC2012_val_00012542.JPEG",
+        "soure_prompt": "a photo of a giant panda",
+        "edit_prompt": "a photo of a ice bear"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00044074.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a impala"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00021563.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a impala"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00013417.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a impala"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00046413.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a impala"
+    },
+    {
+        "image_name": "n01531178/ILSVRC2012_val_00029740.JPEG",
+        "soure_prompt": "a photo of a goldfinch",
+        "edit_prompt": "a photo of a indigo bunting"
+    },
+    {
+        "image_name": "n01531178/ILSVRC2012_val_00004243.JPEG",
+        "soure_prompt": "a photo of a goldfinch",
+        "edit_prompt": "a photo of a indigo bunting"
+    },
+    {
+        "image_name": "n01534433/ILSVRC2012_val_00017712.JPEG",
+        "soure_prompt": "a photo of a junco",
+        "edit_prompt": "a photo of a indigo bunting"
+    },
+    {
+        "image_name": "n01534433/ILSVRC2012_val_00004577.JPEG",
+        "soure_prompt": "a photo of a junco",
+        "edit_prompt": "a photo of a indigo bunting"
+    },
+    {
+        "image_name": "n01981276/ILSVRC2012_val_00046611.JPEG",
+        "soure_prompt": "a photo of a king crab",
+        "edit_prompt": "a photo of a isopod"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00046344.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a isopod"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00041366.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a isopod"
+    },
+    {
+        "image_name": "n01983481/ILSVRC2012_val_00009251.JPEG",
+        "soure_prompt": "a photo of a American lobster",
+        "edit_prompt": "a photo of a isopod"
+    },
+    {
+        "image_name": "n02130308/ILSVRC2012_val_00006239.JPEG",
+        "soure_prompt": "a photo of a cheetah",
+        "edit_prompt": "a photo of a jaguar"
+    },
+    {
+        "image_name": "n02130308/ILSVRC2012_val_00022327.JPEG",
+        "soure_prompt": "a photo of a cheetah",
+        "edit_prompt": "a photo of a jaguar"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00034256.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a jaguar"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00029635.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a jaguar"
+    },
+    {
+        "image_name": "n03770679/ILSVRC2012_val_00046793.JPEG",
+        "soure_prompt": "a photo of a minivan",
+        "edit_prompt": "a photo of a jeep"
+    },
+    {
+        "image_name": "n02930766/ILSVRC2012_val_00010637.JPEG",
+        "soure_prompt": "a photo of a cab",
+        "edit_prompt": "a photo of a jeep"
+    },
+    {
+        "image_name": "n03770679/ILSVRC2012_val_00018768.JPEG",
+        "soure_prompt": "a photo of a minivan",
+        "edit_prompt": "a photo of a jeep"
+    },
+    {
+        "image_name": "n03770679/ILSVRC2012_val_00037492.JPEG",
+        "soure_prompt": "a photo of a minivan",
+        "edit_prompt": "a photo of a jeep"
+    },
+    {
+        "image_name": "n01537544/ILSVRC2012_val_00025428.JPEG",
+        "soure_prompt": "a photo of a indigo bunting",
+        "edit_prompt": "a photo of a junco"
+    },
+    {
+        "image_name": "n01532829/ILSVRC2012_val_00045623.JPEG",
+        "soure_prompt": "a photo of a house finch",
+        "edit_prompt": "a photo of a junco"
+    },
+    {
+        "image_name": "n01531178/ILSVRC2012_val_00035254.JPEG",
+        "soure_prompt": "a photo of a goldfinch",
+        "edit_prompt": "a photo of a junco"
+    },
+    {
+        "image_name": "n01532829/ILSVRC2012_val_00028791.JPEG",
+        "soure_prompt": "a photo of a house finch",
+        "edit_prompt": "a photo of a junco"
+    },
+    {
+        "image_name": "n02077923/ILSVRC2012_val_00027457.JPEG",
+        "soure_prompt": "a photo of a sea lion",
+        "edit_prompt": "a photo of a killer whale"
+    },
+    {
+        "image_name": "n02066245/ILSVRC2012_val_00022105.JPEG",
+        "soure_prompt": "a photo of a grey whale",
+        "edit_prompt": "a photo of a killer whale"
+    },
+    {
+        "image_name": "n02066245/ILSVRC2012_val_00015203.JPEG",
+        "soure_prompt": "a photo of a grey whale",
+        "edit_prompt": "a photo of a killer whale"
+    },
+    {
+        "image_name": "n02074367/ILSVRC2012_val_00011012.JPEG",
+        "soure_prompt": "a photo of a dugong",
+        "edit_prompt": "a photo of a killer whale"
+    },
+    {
+        "image_name": "n01985128/ILSVRC2012_val_00022720.JPEG",
+        "soure_prompt": "a photo of a crayfish",
+        "edit_prompt": "a photo of a king crab"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00031943.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a king crab"
+    },
+    {
+        "image_name": "n01985128/ILSVRC2012_val_00027920.JPEG",
+        "soure_prompt": "a photo of a crayfish",
+        "edit_prompt": "a photo of a king crab"
+    },
+    {
+        "image_name": "n01986214/ILSVRC2012_val_00004444.JPEG",
+        "soure_prompt": "a photo of a hermit crab",
+        "edit_prompt": "a photo of a king crab"
+    },
+    {
+        "image_name": "n01860187/ILSVRC2012_val_00044422.JPEG",
+        "soure_prompt": "a photo of a black swan",
+        "edit_prompt": "a photo of a king penguin"
+    },
+    {
+        "image_name": "n02051845/ILSVRC2012_val_00032780.JPEG",
+        "soure_prompt": "a photo of a pelican",
+        "edit_prompt": "a photo of a king penguin"
+    },
+    {
+        "image_name": "n01860187/ILSVRC2012_val_00048039.JPEG",
+        "soure_prompt": "a photo of a black swan",
+        "edit_prompt": "a photo of a king penguin"
+    },
+    {
+        "image_name": "n01860187/ILSVRC2012_val_00007343.JPEG",
+        "soure_prompt": "a photo of a black swan",
+        "edit_prompt": "a photo of a king penguin"
+    },
+    {
+        "image_name": "n01753488/ILSVRC2012_val_00041616.JPEG",
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a king snake"
+    },
+    {
+        "image_name": "n01728572/ILSVRC2012_val_00016095.JPEG",
+        "soure_prompt": "a photo of a thunder snake",
+        "edit_prompt": "a photo of a king snake"
+    },
+    {
+        "image_name": "n01749939/ILSVRC2012_val_00001578.JPEG",
+        "soure_prompt": "a photo of a green mamba",
+        "edit_prompt": "a photo of a king snake"
+    },
+    {
+        "image_name": "n01755581/ILSVRC2012_val_00015622.JPEG",
+        "soure_prompt": "a photo of a diamondback",
+        "edit_prompt": "a photo of a king snake"
+    },
+    {
+        "image_name": "n01622779/ILSVRC2012_val_00027627.JPEG",
+        "soure_prompt": "a photo of a great grey owl",
+        "edit_prompt": "a photo of a kite"
+    },
+    {
+        "image_name": "n01622779/ILSVRC2012_val_00031144.JPEG",
+        "soure_prompt": "a photo of a great grey owl",
+        "edit_prompt": "a photo of a kite"
+    },
+    {
+        "image_name": "n01614925/ILSVRC2012_val_00017994.JPEG",
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a kite"
+    },
+    {
+        "image_name": "n01614925/ILSVRC2012_val_00026614.JPEG",
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a kite"
+    },
+    {
+        "image_name": "n02168699/ILSVRC2012_val_00017727.JPEG",
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a ladybug"
+    },
+    {
+        "image_name": "n02168699/ILSVRC2012_val_00045910.JPEG",
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a ladybug"
+    },
+    {
+        "image_name": "n02177972/ILSVRC2012_val_00006121.JPEG",
+        "soure_prompt": "a photo of a weevil",
+        "edit_prompt": "a photo of a ladybug"
+    },
+    {
+        "image_name": "n02168699/ILSVRC2012_val_00015056.JPEG",
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a ladybug"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00044784.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a laptop"
+    },
+    {
+        "image_name": "n03584254/ILSVRC2012_val_00037190.JPEG",
+        "soure_prompt": "a photo of a iPod",
+        "edit_prompt": "a photo of a laptop"
+    },
+    {
+        "image_name": "n02992529/ILSVRC2012_val_00039592.JPEG",
+        "soure_prompt": "a photo of a cellular telephone",
+        "edit_prompt": "a photo of a laptop"
+    },
+    {
+        "image_name": "n03085013/ILSVRC2012_val_00026428.JPEG",
+        "soure_prompt": "a photo of a computer keyboard",
+        "edit_prompt": "a photo of a laptop"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00036251.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a leaf beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00036486.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a leaf beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00031903.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a leaf beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00035694.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a leaf beetle"
+    },
+    {
+        "image_name": "n07742313/ILSVRC2012_val_00046718.JPEG",
+        "soure_prompt": "a photo of a Granny Smith",
+        "edit_prompt": "a photo of a lemon"
+    },
+    {
+        "image_name": "n07760859/ILSVRC2012_val_00024711.JPEG",
+        "soure_prompt": "a photo of a custard apple",
+        "edit_prompt": "a photo of a lemon"
+    },
+    {
+        "image_name": "n07753592/ILSVRC2012_val_00036580.JPEG",
+        "soure_prompt": "a photo of a banana",
+        "edit_prompt": "a photo of a lemon"
+    },
+    {
+        "image_name": "n07742313/ILSVRC2012_val_00034820.JPEG",
+        "soure_prompt": "a photo of a Granny Smith",
+        "edit_prompt": "a photo of a lemon"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00014216.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a leopard"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00034321.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a leopard"
+    },
+    {
+        "image_name": "n02129165/ILSVRC2012_val_00049018.JPEG",
+        "soure_prompt": "a photo of a lion",
+        "edit_prompt": "a photo of a leopard"
+    },
+    {
+        "image_name": "n02129165/ILSVRC2012_val_00024234.JPEG",
+        "soure_prompt": "a photo of a lion",
+        "edit_prompt": "a photo of a leopard"
+    },
+    {
+        "image_name": "n02134418/ILSVRC2012_val_00045098.JPEG",
+        "soure_prompt": "a photo of a sloth bear",
+        "edit_prompt": "a photo of a lesser panda"
+    },
+    {
+        "image_name": "n02133161/ILSVRC2012_val_00007093.JPEG",
+        "soure_prompt": "a photo of a American black bear",
+        "edit_prompt": "a photo of a lesser panda"
+    },
+    {
+        "image_name": "n02510455/ILSVRC2012_val_00034060.JPEG",
+        "soure_prompt": "a photo of a giant panda",
+        "edit_prompt": "a photo of a lesser panda"
+    },
+    {
+        "image_name": "n02134418/ILSVRC2012_val_00023812.JPEG",
+        "soure_prompt": "a photo of a sloth bear",
+        "edit_prompt": "a photo of a lesser panda"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00042282.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a lifeboat"
+    },
+    {
+        "image_name": "n03344393/ILSVRC2012_val_00046561.JPEG",
+        "soure_prompt": "a photo of a fireboat",
+        "edit_prompt": "a photo of a lifeboat"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00027865.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a lifeboat"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00016468.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a lifeboat"
+    },
+    {
+        "image_name": "n02814533/ILSVRC2012_val_00018335.JPEG",
+        "soure_prompt": "a photo of a beach wagon",
+        "edit_prompt": "a photo of a limousine"
+    },
+    {
+        "image_name": "n02814533/ILSVRC2012_val_00006084.JPEG",
+        "soure_prompt": "a photo of a beach wagon",
+        "edit_prompt": "a photo of a limousine"
+    },
+    {
+        "image_name": "n02814533/ILSVRC2012_val_00037112.JPEG",
+        "soure_prompt": "a photo of a beach wagon",
+        "edit_prompt": "a photo of a limousine"
+    },
+    {
+        "image_name": "n02930766/ILSVRC2012_val_00023507.JPEG",
+        "soure_prompt": "a photo of a cab",
+        "edit_prompt": "a photo of a limousine"
+    },
+    {
+        "image_name": "n02128925/ILSVRC2012_val_00045488.JPEG",
+        "soure_prompt": "a photo of a jaguar",
+        "edit_prompt": "a photo of a lion"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00035494.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a lion"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00040630.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a lion"
+    },
+    {
+        "image_name": "n02123045/ILSVRC2012_val_00045239.JPEG",
+        "soure_prompt": "a photo of a tabby",
+        "edit_prompt": "a photo of a lion"
+    },
+    {
+        "image_name": "n01440764/ILSVRC2012_val_00017700.JPEG",
+        "soure_prompt": "a photo of a tench",
+        "edit_prompt": "a photo of a lionfish"
+    },
+    {
+        "image_name": "n01440764/ILSVRC2012_val_00009191.JPEG",
+        "soure_prompt": "a photo of a tench",
+        "edit_prompt": "a photo of a lionfish"
+    },
+    {
+        "image_name": "n01443537/ILSVRC2012_val_00000262.JPEG",
+        "soure_prompt": "a photo of a goldfish",
+        "edit_prompt": "a photo of a lionfish"
+    },
+    {
+        "image_name": "n02607072/ILSVRC2012_val_00031305.JPEG",
+        "soure_prompt": "a photo of a anemone fish",
+        "edit_prompt": "a photo of a lionfish"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00041535.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a little blue heron"
+    },
+    {
+        "image_name": "n02006656/ILSVRC2012_val_00002953.JPEG",
+        "soure_prompt": "a photo of a spoonbill",
+        "edit_prompt": "a photo of a little blue heron"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00026476.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a little blue heron"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00008737.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a little blue heron"
+    },
+    {
+        "image_name": "n02169497/ILSVRC2012_val_00049845.JPEG",
+        "soure_prompt": "a photo of a leaf beetle",
+        "edit_prompt": "a photo of a long-horned beetle"
+    },
+    {
+        "image_name": "n02165105/ILSVRC2012_val_00036417.JPEG",
+        "soure_prompt": "a photo of a tiger beetle",
+        "edit_prompt": "a photo of a long-horned beetle"
+    },
+    {
+        "image_name": "n02169497/ILSVRC2012_val_00047901.JPEG",
+        "soure_prompt": "a photo of a leaf beetle",
+        "edit_prompt": "a photo of a long-horned beetle"
+    },
+    {
+        "image_name": "n02165105/ILSVRC2012_val_00031945.JPEG",
+        "soure_prompt": "a photo of a tiger beetle",
+        "edit_prompt": "a photo of a long-horned beetle"
+    },
+    {
+        "image_name": "n02281406/ILSVRC2012_val_00047683.JPEG",
+        "soure_prompt": "a photo of a sulphur butterfly",
+        "edit_prompt": "a photo of a lycaenid"
+    },
+    {
+        "image_name": "n02279972/ILSVRC2012_val_00014310.JPEG",
+        "soure_prompt": "a photo of a monarch",
+        "edit_prompt": "a photo of a lycaenid"
+    },
+    {
+        "image_name": "n02276258/ILSVRC2012_val_00023523.JPEG",
+        "soure_prompt": "a photo of a admiral",
+        "edit_prompt": "a photo of a lycaenid"
+    },
+    {
+        "image_name": "n02280649/ILSVRC2012_val_00007368.JPEG",
+        "soure_prompt": "a photo of a cabbage butterfly",
+        "edit_prompt": "a photo of a lycaenid"
+    },
+    {
+        "image_name": "n02492035/ILSVRC2012_val_00037084.JPEG",
+        "soure_prompt": "a photo of a capuchin",
+        "edit_prompt": "a photo of a macaque"
+    },
+    {
+        "image_name": "n02494079/ILSVRC2012_val_00043576.JPEG",
+        "soure_prompt": "a photo of a squirrel monkey",
+        "edit_prompt": "a photo of a macaque"
+    },
+    {
+        "image_name": "n02494079/ILSVRC2012_val_00042708.JPEG",
+        "soure_prompt": "a photo of a squirrel monkey",
+        "edit_prompt": "a photo of a macaque"
+    },
+    {
+        "image_name": "n02484975/ILSVRC2012_val_00002334.JPEG",
+        "soure_prompt": "a photo of a guenon",
+        "edit_prompt": "a photo of a macaque"
+    },
+    {
+        "image_name": "n03447721/ILSVRC2012_val_00035792.JPEG",
+        "soure_prompt": "a photo of a gong",
+        "edit_prompt": "a photo of a maraca"
+    },
+    {
+        "image_name": "n04311174/ILSVRC2012_val_00019940.JPEG",
+        "soure_prompt": "a photo of a steel drum",
+        "edit_prompt": "a photo of a maraca"
+    },
+    {
+        "image_name": "n03447721/ILSVRC2012_val_00016503.JPEG",
+        "soure_prompt": "a photo of a gong",
+        "edit_prompt": "a photo of a maraca"
+    },
+    {
+        "image_name": "n03447721/ILSVRC2012_val_00002842.JPEG",
+        "soure_prompt": "a photo of a gong",
+        "edit_prompt": "a photo of a maraca"
+    },
+    {
+        "image_name": "n03017168/ILSVRC2012_val_00026592.JPEG",
+        "soure_prompt": "a photo of a chime",
+        "edit_prompt": "a photo of a marimba"
+    },
+    {
+        "image_name": "n04311174/ILSVRC2012_val_00005668.JPEG",
+        "soure_prompt": "a photo of a steel drum",
+        "edit_prompt": "a photo of a marimba"
+    },
+    {
+        "image_name": "n03017168/ILSVRC2012_val_00043454.JPEG",
+        "soure_prompt": "a photo of a chime",
+        "edit_prompt": "a photo of a marimba"
+    },
+    {
+        "image_name": "n04311174/ILSVRC2012_val_00033204.JPEG",
+        "soure_prompt": "a photo of a steel drum",
+        "edit_prompt": "a photo of a marimba"
+    },
+    {
+        "image_name": "n02823428/ILSVRC2012_val_00040545.JPEG",
+        "soure_prompt": "a photo of a beer bottle",
+        "edit_prompt": "a photo of a measuring cup"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00000464.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a measuring cup"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00038312.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a measuring cup"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00020977.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a measuring cup"
+    },
+    {
+        "image_name": "n02106662/ILSVRC2012_val_00005662.JPEG",
+        "soure_prompt": "a photo of a German shepherd",
+        "edit_prompt": "a photo of a miniature pinscher"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00033334.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a miniature pinscher"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00014315.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a miniature pinscher"
+    },
+    {
+        "image_name": "n02106550/ILSVRC2012_val_00012085.JPEG",
+        "soure_prompt": "a photo of a Rottweiler",
+        "edit_prompt": "a photo of a miniature pinscher"
+    },
+    {
+        "image_name": "n02701002/ILSVRC2012_val_00046706.JPEG",
+        "soure_prompt": "a photo of a ambulance",
+        "edit_prompt": "a photo of a minivan"
+    },
+    {
+        "image_name": "n02930766/ILSVRC2012_val_00041920.JPEG",
+        "soure_prompt": "a photo of a cab",
+        "edit_prompt": "a photo of a minivan"
+    },
+    {
+        "image_name": "n04467665/ILSVRC2012_val_00030748.JPEG",
+        "soure_prompt": "a photo of a trailer truck",
+        "edit_prompt": "a photo of a minivan"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00031870.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a minivan"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00043381.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a monarch"
+    },
+    {
+        "image_name": "n02280649/ILSVRC2012_val_00014909.JPEG",
+        "soure_prompt": "a photo of a cabbage butterfly",
+        "edit_prompt": "a photo of a monarch"
+    },
+    {
+        "image_name": "n02281406/ILSVRC2012_val_00038721.JPEG",
+        "soure_prompt": "a photo of a sulphur butterfly",
+        "edit_prompt": "a photo of a monarch"
+    },
+    {
+        "image_name": "n02277742/ILSVRC2012_val_00035399.JPEG",
+        "soure_prompt": "a photo of a ringlet",
+        "edit_prompt": "a photo of a monarch"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00042393.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a moped"
+    },
+    {
+        "image_name": "n04482393/ILSVRC2012_val_00023808.JPEG",
+        "soure_prompt": "a photo of a tricycle",
+        "edit_prompt": "a photo of a moped"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00011330.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a moped"
+    },
+    {
+        "image_name": "n03791053/ILSVRC2012_val_00030174.JPEG",
+        "soure_prompt": "a photo of a motor scooter",
+        "edit_prompt": "a photo of a moped"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00030892.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a motor scooter"
+    },
+    {
+        "image_name": "n04482393/ILSVRC2012_val_00041965.JPEG",
+        "soure_prompt": "a photo of a tricycle",
+        "edit_prompt": "a photo of a motor scooter"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00048569.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a motor scooter"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00004104.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a motor scooter"
+    },
+    {
+        "image_name": "n04509417/ILSVRC2012_val_00038319.JPEG",
+        "soure_prompt": "a photo of a unicycle",
+        "edit_prompt": "a photo of a mountain bike"
+    },
+    {
+        "image_name": "n03791053/ILSVRC2012_val_00014286.JPEG",
+        "soure_prompt": "a photo of a motor scooter",
+        "edit_prompt": "a photo of a mountain bike"
+    },
+    {
+        "image_name": "n04482393/ILSVRC2012_val_00041594.JPEG",
+        "soure_prompt": "a photo of a tricycle",
+        "edit_prompt": "a photo of a mountain bike"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00003853.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a mountain bike"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00040287.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a mud turtle"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00017222.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a mud turtle"
+    },
+    {
+        "image_name": "n01667778/ILSVRC2012_val_00040787.JPEG",
+        "soure_prompt": "a photo of a terrapin",
+        "edit_prompt": "a photo of a mud turtle"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00030343.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a mud turtle"
+    },
+    {
+        "image_name": "n03394916/ILSVRC2012_val_00017407.JPEG",
+        "soure_prompt": "a photo of a French horn",
+        "edit_prompt": "a photo of a oboe"
+    },
+    {
+        "image_name": "n03110669/ILSVRC2012_val_00037364.JPEG",
+        "soure_prompt": "a photo of a cornet",
+        "edit_prompt": "a photo of a oboe"
+    },
+    {
+        "image_name": "n04487394/ILSVRC2012_val_00018346.JPEG",
+        "soure_prompt": "a photo of a trombone",
+        "edit_prompt": "a photo of a oboe"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00020715.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a oboe"
+    },
+    {
+        "image_name": "n04548280/ILSVRC2012_val_00041547.JPEG",
+        "soure_prompt": "a photo of a wall clock",
+        "edit_prompt": "a photo of a odometer"
+    },
+    {
+        "image_name": "n04548280/ILSVRC2012_val_00036318.JPEG",
+        "soure_prompt": "a photo of a wall clock",
+        "edit_prompt": "a photo of a odometer"
+    },
+    {
+        "image_name": "n03197337/ILSVRC2012_val_00017597.JPEG",
+        "soure_prompt": "a photo of a digital watch",
+        "edit_prompt": "a photo of a odometer"
+    },
+    {
+        "image_name": "n03196217/ILSVRC2012_val_00013767.JPEG",
+        "soure_prompt": "a photo of a digital clock",
+        "edit_prompt": "a photo of a odometer"
+    },
+    {
+        "image_name": "n07760859/ILSVRC2012_val_00011441.JPEG",
+        "soure_prompt": "a photo of a custard apple",
+        "edit_prompt": "a photo of a orange"
+    },
+    {
+        "image_name": "n07768694/ILSVRC2012_val_00036732.JPEG",
+        "soure_prompt": "a photo of a pomegranate",
+        "edit_prompt": "a photo of a orange"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00035445.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a orange"
+    },
+    {
+        "image_name": "n07749582/ILSVRC2012_val_00017842.JPEG",
+        "soure_prompt": "a photo of a lemon",
+        "edit_prompt": "a photo of a orange"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00033537.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a orangutan"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00032684.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a orangutan"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00037790.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a orangutan"
+    },
+    {
+        "image_name": "n02481823/ILSVRC2012_val_00030426.JPEG",
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a orangutan"
+    },
+    {
+        "image_name": "n02088094/ILSVRC2012_val_00042097.JPEG",
+        "soure_prompt": "a photo of a Afghan hound",
+        "edit_prompt": "a photo of a otterhound"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00027989.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a otterhound"
+    },
+    {
+        "image_name": "n02089973/ILSVRC2012_val_00007850.JPEG",
+        "soure_prompt": "a photo of a English foxhound",
+        "edit_prompt": "a photo of a otterhound"
+    },
+    {
+        "image_name": "n02088364/ILSVRC2012_val_00029932.JPEG",
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a otterhound"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00035331.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a ox"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00028130.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a ox"
+    },
+    {
+        "image_name": "n02408429/ILSVRC2012_val_00018198.JPEG",
+        "soure_prompt": "a photo of a water buffalo",
+        "edit_prompt": "a photo of a ox"
+    },
+    {
+        "image_name": "n02422699/ILSVRC2012_val_00028482.JPEG",
+        "soure_prompt": "a photo of a impala",
+        "edit_prompt": "a photo of a ox"
+    },
+    {
+        "image_name": "n01855672/ILSVRC2012_val_00028438.JPEG",
+        "soure_prompt": "a photo of a goose",
+        "edit_prompt": "a photo of a oystercatcher"
+    },
+    {
+        "image_name": "n02007558/ILSVRC2012_val_00018511.JPEG",
+        "soure_prompt": "a photo of a flamingo",
+        "edit_prompt": "a photo of a oystercatcher"
+    },
+    {
+        "image_name": "n01855672/ILSVRC2012_val_00036969.JPEG",
+        "soure_prompt": "a photo of a goose",
+        "edit_prompt": "a photo of a oystercatcher"
+    },
+    {
+        "image_name": "n02002724/ILSVRC2012_val_00001230.JPEG",
+        "soure_prompt": "a photo of a black stork",
+        "edit_prompt": "a photo of a oystercatcher"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00033200.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a papillon"
+    },
+    {
+        "image_name": "n02085620/ILSVRC2012_val_00039439.JPEG",
+        "soure_prompt": "a photo of a Chihuahua",
+        "edit_prompt": "a photo of a papillon"
+    },
+    {
+        "image_name": "n02086240/ILSVRC2012_val_00007958.JPEG",
+        "soure_prompt": "a photo of a Shih-Tzu",
+        "edit_prompt": "a photo of a papillon"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00031965.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a papillon"
+    },
+    {
+        "image_name": "n02056570/ILSVRC2012_val_00029710.JPEG",
+        "soure_prompt": "a photo of a king penguin",
+        "edit_prompt": "a photo of a pelican"
+    },
+    {
+        "image_name": "n02056570/ILSVRC2012_val_00023617.JPEG",
+        "soure_prompt": "a photo of a king penguin",
+        "edit_prompt": "a photo of a pelican"
+    },
+    {
+        "image_name": "n01860187/ILSVRC2012_val_00015899.JPEG",
+        "soure_prompt": "a photo of a black swan",
+        "edit_prompt": "a photo of a pelican"
+    },
+    {
+        "image_name": "n02058221/ILSVRC2012_val_00026733.JPEG",
+        "soure_prompt": "a photo of a albatross",
+        "edit_prompt": "a photo of a pelican"
+    },
+    {
+        "image_name": "n03417042/ILSVRC2012_val_00042802.JPEG",
+        "soure_prompt": "a photo of a garbage truck",
+        "edit_prompt": "a photo of a pickup"
+    },
+    {
+        "image_name": "n03417042/ILSVRC2012_val_00047189.JPEG",
+        "soure_prompt": "a photo of a garbage truck",
+        "edit_prompt": "a photo of a pickup"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00045030.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a pickup"
+    },
+    {
+        "image_name": "n03345487/ILSVRC2012_val_00046181.JPEG",
+        "soure_prompt": "a photo of a fire engine",
+        "edit_prompt": "a photo of a pickup"
+    },
+    {
+        "image_name": "n07753592/ILSVRC2012_val_00032327.JPEG",
+        "soure_prompt": "a photo of a banana",
+        "edit_prompt": "a photo of a pineapple"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00032411.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a pineapple"
+    },
+    {
+        "image_name": "n07768694/ILSVRC2012_val_00007820.JPEG",
+        "soure_prompt": "a photo of a pomegranate",
+        "edit_prompt": "a photo of a pineapple"
+    },
+    {
+        "image_name": "n07747607/ILSVRC2012_val_00032960.JPEG",
+        "soure_prompt": "a photo of a orange",
+        "edit_prompt": "a photo of a pineapple"
+    },
+    {
+        "image_name": "n03445777/ILSVRC2012_val_00023845.JPEG",
+        "soure_prompt": "a photo of a golf ball",
+        "edit_prompt": "a photo of a ping-pong ball"
+    },
+    {
+        "image_name": "n03445777/ILSVRC2012_val_00044936.JPEG",
+        "soure_prompt": "a photo of a golf ball",
+        "edit_prompt": "a photo of a ping-pong ball"
+    },
+    {
+        "image_name": "n04254680/ILSVRC2012_val_00036050.JPEG",
+        "soure_prompt": "a photo of a soccer ball",
+        "edit_prompt": "a photo of a ping-pong ball"
+    },
+    {
+        "image_name": "n04254680/ILSVRC2012_val_00028138.JPEG",
+        "soure_prompt": "a photo of a soccer ball",
+        "edit_prompt": "a photo of a ping-pong ball"
+    },
+    {
+        "image_name": "n03970156/ILSVRC2012_val_00031958.JPEG",
+        "soure_prompt": "a photo of a plunger",
+        "edit_prompt": "a photo of a plane"
+    },
+    {
+        "image_name": "n03970156/ILSVRC2012_val_00022380.JPEG",
+        "soure_prompt": "a photo of a plunger",
+        "edit_prompt": "a photo of a plane"
+    },
+    {
+        "image_name": "n04208210/ILSVRC2012_val_00002065.JPEG",
+        "soure_prompt": "a photo of a shovel",
+        "edit_prompt": "a photo of a plane"
+    },
+    {
+        "image_name": "n04208210/ILSVRC2012_val_00025749.JPEG",
+        "soure_prompt": "a photo of a shovel",
+        "edit_prompt": "a photo of a plane"
+    },
+    {
+        "image_name": "n04026417/ILSVRC2012_val_00048124.JPEG",
+        "soure_prompt": "a photo of a purse",
+        "edit_prompt": "a photo of a plastic bag"
+    },
+    {
+        "image_name": "n04026417/ILSVRC2012_val_00030487.JPEG",
+        "soure_prompt": "a photo of a purse",
+        "edit_prompt": "a photo of a plastic bag"
+    },
+    {
+        "image_name": "n02769748/ILSVRC2012_val_00018021.JPEG",
+        "soure_prompt": "a photo of a backpack",
+        "edit_prompt": "a photo of a plastic bag"
+    },
+    {
+        "image_name": "n02769748/ILSVRC2012_val_00007012.JPEG",
+        "soure_prompt": "a photo of a backpack",
+        "edit_prompt": "a photo of a plastic bag"
+    },
+    {
+        "image_name": "n04208210/ILSVRC2012_val_00032928.JPEG",
+        "soure_prompt": "a photo of a shovel",
+        "edit_prompt": "a photo of a plunger"
+    },
+    {
+        "image_name": "n03481172/ILSVRC2012_val_00009914.JPEG",
+        "soure_prompt": "a photo of a hammer",
+        "edit_prompt": "a photo of a plunger"
+    },
+    {
+        "image_name": "n03481172/ILSVRC2012_val_00041876.JPEG",
+        "soure_prompt": "a photo of a hammer",
+        "edit_prompt": "a photo of a plunger"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00006877.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a plunger"
+    },
+    {
+        "image_name": "n03417042/ILSVRC2012_val_00006234.JPEG",
+        "soure_prompt": "a photo of a garbage truck",
+        "edit_prompt": "a photo of a police van"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00010117.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a police van"
+    },
+    {
+        "image_name": "n03930630/ILSVRC2012_val_00017360.JPEG",
+        "soure_prompt": "a photo of a pickup",
+        "edit_prompt": "a photo of a police van"
+    },
+    {
+        "image_name": "n03930630/ILSVRC2012_val_00026743.JPEG",
+        "soure_prompt": "a photo of a pickup",
+        "edit_prompt": "a photo of a police van"
+    },
+    {
+        "image_name": "n07749582/ILSVRC2012_val_00045149.JPEG",
+        "soure_prompt": "a photo of a lemon",
+        "edit_prompt": "a photo of a pomegranate"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00009015.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a pomegranate"
+    },
+    {
+        "image_name": "n07753275/ILSVRC2012_val_00016984.JPEG",
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a pomegranate"
+    },
+    {
+        "image_name": "n07745940/ILSVRC2012_val_00002412.JPEG",
+        "soure_prompt": "a photo of a strawberry",
+        "edit_prompt": "a photo of a pomegranate"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00022992.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a prairie chicken"
+    },
+    {
+        "image_name": "n01796340/ILSVRC2012_val_00027946.JPEG",
+        "soure_prompt": "a photo of a ptarmigan",
+        "edit_prompt": "a photo of a prairie chicken"
+    },
+    {
+        "image_name": "n01795545/ILSVRC2012_val_00028600.JPEG",
+        "soure_prompt": "a photo of a black grouse",
+        "edit_prompt": "a photo of a prairie chicken"
+    },
+    {
+        "image_name": "n01796340/ILSVRC2012_val_00035916.JPEG",
+        "soure_prompt": "a photo of a ptarmigan",
+        "edit_prompt": "a photo of a prairie chicken"
+    },
+    {
+        "image_name": "n01795545/ILSVRC2012_val_00030713.JPEG",
+        "soure_prompt": "a photo of a black grouse",
+        "edit_prompt": "a photo of a ptarmigan"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00041375.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a ptarmigan"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00028119.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a ptarmigan"
+    },
+    {
+        "image_name": "n01797886/ILSVRC2012_val_00021954.JPEG",
+        "soure_prompt": "a photo of a ruffed grouse",
+        "edit_prompt": "a photo of a ptarmigan"
+    },
+    {
+        "image_name": "n03958227/ILSVRC2012_val_00020845.JPEG",
+        "soure_prompt": "a photo of a plastic bag",
+        "edit_prompt": "a photo of a purse"
+    },
+    {
+        "image_name": "n02769748/ILSVRC2012_val_00000459.JPEG",
+        "soure_prompt": "a photo of a backpack",
+        "edit_prompt": "a photo of a purse"
+    },
+    {
+        "image_name": "n02769748/ILSVRC2012_val_00002183.JPEG",
+        "soure_prompt": "a photo of a backpack",
+        "edit_prompt": "a photo of a purse"
+    },
+    {
+        "image_name": "n03958227/ILSVRC2012_val_00042645.JPEG",
+        "soure_prompt": "a photo of a plastic bag",
+        "edit_prompt": "a photo of a purse"
+    },
+    {
+        "image_name": "n02423022/ILSVRC2012_val_00036577.JPEG",
+        "soure_prompt": "a photo of a gazelle",
+        "edit_prompt": "a photo of a ram"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00020346.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a ram"
+    },
+    {
+        "image_name": "n02415577/ILSVRC2012_val_00021149.JPEG",
+        "soure_prompt": "a photo of a bighorn",
+        "edit_prompt": "a photo of a ram"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00039117.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a ram"
+    },
+    {
+        "image_name": "n02120505/ILSVRC2012_val_00029855.JPEG",
+        "soure_prompt": "a photo of a grey fox",
+        "edit_prompt": "a photo of a red fox"
+    },
+    {
+        "image_name": "n02114367/ILSVRC2012_val_00044765.JPEG",
+        "soure_prompt": "a photo of a timber wolf",
+        "edit_prompt": "a photo of a red fox"
+    },
+    {
+        "image_name": "n02114855/ILSVRC2012_val_00023411.JPEG",
+        "soure_prompt": "a photo of a coyote",
+        "edit_prompt": "a photo of a red fox"
+    },
+    {
+        "image_name": "n02114548/ILSVRC2012_val_00042098.JPEG",
+        "soure_prompt": "a photo of a white wolf",
+        "edit_prompt": "a photo of a red fox"
+    },
+    {
+        "image_name": "n02116738/ILSVRC2012_val_00004282.JPEG",
+        "soure_prompt": "a photo of a African hunting dog",
+        "edit_prompt": "a photo of a red wolf"
+    },
+    {
+        "image_name": "n02114548/ILSVRC2012_val_00002063.JPEG",
+        "soure_prompt": "a photo of a white wolf",
+        "edit_prompt": "a photo of a red wolf"
+    },
+    {
+        "image_name": "n02117135/ILSVRC2012_val_00020325.JPEG",
+        "soure_prompt": "a photo of a hyena",
+        "edit_prompt": "a photo of a red wolf"
+    },
+    {
+        "image_name": "n02114548/ILSVRC2012_val_00018188.JPEG",
+        "soure_prompt": "a photo of a white wolf",
+        "edit_prompt": "a photo of a red wolf"
+    },
+    {
+        "image_name": "n02276258/ILSVRC2012_val_00025122.JPEG",
+        "soure_prompt": "a photo of a admiral",
+        "edit_prompt": "a photo of a ringlet"
+    },
+    {
+        "image_name": "n02281406/ILSVRC2012_val_00041173.JPEG",
+        "soure_prompt": "a photo of a sulphur butterfly",
+        "edit_prompt": "a photo of a ringlet"
+    },
+    {
+        "image_name": "n02276258/ILSVRC2012_val_00011772.JPEG",
+        "soure_prompt": "a photo of a admiral",
+        "edit_prompt": "a photo of a ringlet"
+    },
+    {
+        "image_name": "n02280649/ILSVRC2012_val_00011589.JPEG",
+        "soure_prompt": "a photo of a cabbage butterfly",
+        "edit_prompt": "a photo of a ringlet"
+    },
+    {
+        "image_name": "n01981276/ILSVRC2012_val_00018750.JPEG",
+        "soure_prompt": "a photo of a king crab",
+        "edit_prompt": "a photo of a rock crab"
+    },
+    {
+        "image_name": "n01985128/ILSVRC2012_val_00021094.JPEG",
+        "soure_prompt": "a photo of a crayfish",
+        "edit_prompt": "a photo of a rock crab"
+    },
+    {
+        "image_name": "n01983481/ILSVRC2012_val_00006179.JPEG",
+        "soure_prompt": "a photo of a American lobster",
+        "edit_prompt": "a photo of a rock crab"
+    },
+    {
+        "image_name": "n01981276/ILSVRC2012_val_00026843.JPEG",
+        "soure_prompt": "a photo of a king crab",
+        "edit_prompt": "a photo of a rock crab"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00022408.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a rock python"
+    },
+    {
+        "image_name": "n01742172/ILSVRC2012_val_00008849.JPEG",
+        "soure_prompt": "a photo of a boa constrictor",
+        "edit_prompt": "a photo of a rock python"
+    },
+    {
+        "image_name": "n01755581/ILSVRC2012_val_00025467.JPEG",
+        "soure_prompt": "a photo of a diamondback",
+        "edit_prompt": "a photo of a rock python"
+    },
+    {
+        "image_name": "n01749939/ILSVRC2012_val_00043850.JPEG",
+        "soure_prompt": "a photo of a green mamba",
+        "edit_prompt": "a photo of a rock python"
+    },
+    {
+        "image_name": "n01795545/ILSVRC2012_val_00001136.JPEG",
+        "soure_prompt": "a photo of a black grouse",
+        "edit_prompt": "a photo of a ruffed grouse"
+    },
+    {
+        "image_name": "n01795545/ILSVRC2012_val_00003122.JPEG",
+        "soure_prompt": "a photo of a black grouse",
+        "edit_prompt": "a photo of a ruffed grouse"
+    },
+    {
+        "image_name": "n01796340/ILSVRC2012_val_00000860.JPEG",
+        "soure_prompt": "a photo of a ptarmigan",
+        "edit_prompt": "a photo of a ruffed grouse"
+    },
+    {
+        "image_name": "n01798484/ILSVRC2012_val_00040261.JPEG",
+        "soure_prompt": "a photo of a prairie chicken",
+        "edit_prompt": "a photo of a ruffed grouse"
+    },
+    {
+        "image_name": "n04254680/ILSVRC2012_val_00030118.JPEG",
+        "soure_prompt": "a photo of a soccer ball",
+        "edit_prompt": "a photo of a rugby ball"
+    },
+    {
+        "image_name": "n04254680/ILSVRC2012_val_00033315.JPEG",
+        "soure_prompt": "a photo of a soccer ball",
+        "edit_prompt": "a photo of a rugby ball"
+    },
+    {
+        "image_name": "n03445777/ILSVRC2012_val_00011431.JPEG",
+        "soure_prompt": "a photo of a golf ball",
+        "edit_prompt": "a photo of a rugby ball"
+    },
+    {
+        "image_name": "n03942813/ILSVRC2012_val_00035706.JPEG",
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a rugby ball"
+    },
+    {
+        "image_name": "n03372029/ILSVRC2012_val_00028005.JPEG",
+        "soure_prompt": "a photo of a flute",
+        "edit_prompt": "a photo of a sax"
+    },
+    {
+        "image_name": "n04487394/ILSVRC2012_val_00025175.JPEG",
+        "soure_prompt": "a photo of a trombone",
+        "edit_prompt": "a photo of a sax"
+    },
+    {
+        "image_name": "n03394916/ILSVRC2012_val_00013113.JPEG",
+        "soure_prompt": "a photo of a French horn",
+        "edit_prompt": "a photo of a sax"
+    },
+    {
+        "image_name": "n02804610/ILSVRC2012_val_00048210.JPEG",
+        "soure_prompt": "a photo of a bassoon",
+        "edit_prompt": "a photo of a sax"
+    },
+    {
+        "image_name": "n04467665/ILSVRC2012_val_00034167.JPEG",
+        "soure_prompt": "a photo of a trailer truck",
+        "edit_prompt": "a photo of a school bus"
+    },
+    {
+        "image_name": "n03977966/ILSVRC2012_val_00027383.JPEG",
+        "soure_prompt": "a photo of a police van",
+        "edit_prompt": "a photo of a school bus"
+    },
+    {
+        "image_name": "n03417042/ILSVRC2012_val_00034001.JPEG",
+        "soure_prompt": "a photo of a garbage truck",
+        "edit_prompt": "a photo of a school bus"
+    },
+    {
+        "image_name": "n03345487/ILSVRC2012_val_00031405.JPEG",
+        "soure_prompt": "a photo of a fire engine",
+        "edit_prompt": "a photo of a school bus"
+    },
+    {
+        "image_name": "n04483307/ILSVRC2012_val_00005196.JPEG",
+        "soure_prompt": "a photo of a trimaran",
+        "edit_prompt": "a photo of a schooner"
+    },
+    {
+        "image_name": "n04483307/ILSVRC2012_val_00002094.JPEG",
+        "soure_prompt": "a photo of a trimaran",
+        "edit_prompt": "a photo of a schooner"
+    },
+    {
+        "image_name": "n02981792/ILSVRC2012_val_00028215.JPEG",
+        "soure_prompt": "a photo of a catamaran",
+        "edit_prompt": "a photo of a schooner"
+    },
+    {
+        "image_name": "n02981792/ILSVRC2012_val_00013181.JPEG",
+        "soure_prompt": "a photo of a catamaran",
+        "edit_prompt": "a photo of a schooner"
+    },
+    {
+        "image_name": "n01774750/ILSVRC2012_val_00041311.JPEG",
+        "soure_prompt": "a photo of a tarantula",
+        "edit_prompt": "a photo of a scorpion"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00040995.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a scorpion"
+    },
+    {
+        "image_name": "n01775062/ILSVRC2012_val_00048649.JPEG",
+        "soure_prompt": "a photo of a wolf spider",
+        "edit_prompt": "a photo of a scorpion"
+    },
+    {
+        "image_name": "n01775062/ILSVRC2012_val_00046017.JPEG",
+        "soure_prompt": "a photo of a wolf spider",
+        "edit_prompt": "a photo of a scorpion"
+    },
+    {
+        "image_name": "n03481172/ILSVRC2012_val_00025789.JPEG",
+        "soure_prompt": "a photo of a hammer",
+        "edit_prompt": "a photo of a screwdriver"
+    },
+    {
+        "image_name": "n03970156/ILSVRC2012_val_00035780.JPEG",
+        "soure_prompt": "a photo of a plunger",
+        "edit_prompt": "a photo of a screwdriver"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00000645.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a screwdriver"
+    },
+    {
+        "image_name": "n04208210/ILSVRC2012_val_00035208.JPEG",
+        "soure_prompt": "a photo of a shovel",
+        "edit_prompt": "a photo of a screwdriver"
+    },
+    {
+        "image_name": "n02066245/ILSVRC2012_val_00017716.JPEG",
+        "soure_prompt": "a photo of a grey whale",
+        "edit_prompt": "a photo of a sea lion"
+    },
+    {
+        "image_name": "n02071294/ILSVRC2012_val_00042590.JPEG",
+        "soure_prompt": "a photo of a killer whale",
+        "edit_prompt": "a photo of a sea lion"
+    },
+    {
+        "image_name": "n02071294/ILSVRC2012_val_00002166.JPEG",
+        "soure_prompt": "a photo of a killer whale",
+        "edit_prompt": "a photo of a sea lion"
+    },
+    {
+        "image_name": "n02074367/ILSVRC2012_val_00039158.JPEG",
+        "soure_prompt": "a photo of a dugong",
+        "edit_prompt": "a photo of a sea lion"
+    },
+    {
+        "image_name": "n03481172/ILSVRC2012_val_00015962.JPEG",
+        "soure_prompt": "a photo of a hammer",
+        "edit_prompt": "a photo of a shovel"
+    },
+    {
+        "image_name": "n03970156/ILSVRC2012_val_00006905.JPEG",
+        "soure_prompt": "a photo of a plunger",
+        "edit_prompt": "a photo of a shovel"
+    },
+    {
+        "image_name": "n03481172/ILSVRC2012_val_00015583.JPEG",
+        "soure_prompt": "a photo of a hammer",
+        "edit_prompt": "a photo of a shovel"
+    },
+    {
+        "image_name": "n03954731/ILSVRC2012_val_00044017.JPEG",
+        "soure_prompt": "a photo of a plane",
+        "edit_prompt": "a photo of a shovel"
+    },
+    {
+        "image_name": "n02807133/ILSVRC2012_val_00011741.JPEG",
+        "soure_prompt": "a photo of a bathing cap",
+        "edit_prompt": "a photo of a shower cap"
+    },
+    {
+        "image_name": "n02869837/ILSVRC2012_val_00009041.JPEG",
+        "soure_prompt": "a photo of a bonnet",
+        "edit_prompt": "a photo of a shower cap"
+    },
+    {
+        "image_name": "n04259630/ILSVRC2012_val_00018053.JPEG",
+        "soure_prompt": "a photo of a sombrero",
+        "edit_prompt": "a photo of a shower cap"
+    },
+    {
+        "image_name": "n02807133/ILSVRC2012_val_00043987.JPEG",
+        "soure_prompt": "a photo of a bathing cap",
+        "edit_prompt": "a photo of a shower cap"
+    },
+    {
+        "image_name": "n01744401/ILSVRC2012_val_00002899.JPEG",
+        "soure_prompt": "a photo of a rock python",
+        "edit_prompt": "a photo of a sidewinder"
+    },
+    {
+        "image_name": "n01742172/ILSVRC2012_val_00015643.JPEG",
+        "soure_prompt": "a photo of a boa constrictor",
+        "edit_prompt": "a photo of a sidewinder"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00017753.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a sidewinder"
+    },
+    {
+        "image_name": "n01729977/ILSVRC2012_val_00029827.JPEG",
+        "soure_prompt": "a photo of a green snake",
+        "edit_prompt": "a photo of a sidewinder"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00016512.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a sloth bear"
+    },
+    {
+        "image_name": "n02133161/ILSVRC2012_val_00014029.JPEG",
+        "soure_prompt": "a photo of a American black bear",
+        "edit_prompt": "a photo of a sloth bear"
+    },
+    {
+        "image_name": "n02132136/ILSVRC2012_val_00048883.JPEG",
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a sloth bear"
+    },
+    {
+        "image_name": "n02133161/ILSVRC2012_val_00000592.JPEG",
+        "soure_prompt": "a photo of a American black bear",
+        "edit_prompt": "a photo of a sloth bear"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00018437.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a snow leopard"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00016194.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a snow leopard"
+    },
+    {
+        "image_name": "n02129165/ILSVRC2012_val_00040607.JPEG",
+        "soure_prompt": "a photo of a lion",
+        "edit_prompt": "a photo of a snow leopard"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00002967.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a snow leopard"
+    },
+    {
+        "image_name": "n04409515/ILSVRC2012_val_00034028.JPEG",
+        "soure_prompt": "a photo of a tennis ball",
+        "edit_prompt": "a photo of a soccer ball"
+    },
+    {
+        "image_name": "n03942813/ILSVRC2012_val_00046563.JPEG",
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a soccer ball"
+    },
+    {
+        "image_name": "n03942813/ILSVRC2012_val_00041504.JPEG",
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a soccer ball"
+    },
+    {
+        "image_name": "n04409515/ILSVRC2012_val_00033602.JPEG",
+        "soure_prompt": "a photo of a tennis ball",
+        "edit_prompt": "a photo of a soccer ball"
+    },
+    {
+        "image_name": "n04209133/ILSVRC2012_val_00006090.JPEG",
+        "soure_prompt": "a photo of a shower cap",
+        "edit_prompt": "a photo of a sombrero"
+    },
+    {
+        "image_name": "n03379051/ILSVRC2012_val_00020866.JPEG",
+        "soure_prompt": "a photo of a football helmet",
+        "edit_prompt": "a photo of a sombrero"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00024382.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a sombrero"
+    },
+    {
+        "image_name": "n03124170/ILSVRC2012_val_00010957.JPEG",
+        "soure_prompt": "a photo of a cowboy hat",
+        "edit_prompt": "a photo of a sombrero"
+    },
+    {
+        "image_name": "n02391049/ILSVRC2012_val_00012498.JPEG",
+        "soure_prompt": "a photo of a zebra",
+        "edit_prompt": "a photo of a sorrel"
+    },
+    {
+        "image_name": "n02391049/ILSVRC2012_val_00033660.JPEG",
+        "soure_prompt": "a photo of a zebra",
+        "edit_prompt": "a photo of a sorrel"
+    },
+    {
+        "image_name": "n02391049/ILSVRC2012_val_00026458.JPEG",
+        "soure_prompt": "a photo of a zebra",
+        "edit_prompt": "a photo of a sorrel"
+    },
+    {
+        "image_name": "n02391049/ILSVRC2012_val_00043935.JPEG",
+        "soure_prompt": "a photo of a zebra",
+        "edit_prompt": "a photo of a sorrel"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00038343.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a spaghetti squash"
+    },
+    {
+        "image_name": "n07718472/ILSVRC2012_val_00005593.JPEG",
+        "soure_prompt": "a photo of a cucumber",
+        "edit_prompt": "a photo of a spaghetti squash"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00032107.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a spaghetti squash"
+    },
+    {
+        "image_name": "n07730033/ILSVRC2012_val_00003961.JPEG",
+        "soure_prompt": "a photo of a cardoon",
+        "edit_prompt": "a photo of a spaghetti squash"
+    },
+    {
+        "image_name": "n03447447/ILSVRC2012_val_00048806.JPEG",
+        "soure_prompt": "a photo of a gondola",
+        "edit_prompt": "a photo of a speedboat"
+    },
+    {
+        "image_name": "n03662601/ILSVRC2012_val_00047650.JPEG",
+        "soure_prompt": "a photo of a lifeboat",
+        "edit_prompt": "a photo of a speedboat"
+    },
+    {
+        "image_name": "n03662601/ILSVRC2012_val_00004483.JPEG",
+        "soure_prompt": "a photo of a lifeboat",
+        "edit_prompt": "a photo of a speedboat"
+    },
+    {
+        "image_name": "n02951358/ILSVRC2012_val_00023574.JPEG",
+        "soure_prompt": "a photo of a canoe",
+        "edit_prompt": "a photo of a speedboat"
+    },
+    {
+        "image_name": "n02484975/ILSVRC2012_val_00046645.JPEG",
+        "soure_prompt": "a photo of a guenon",
+        "edit_prompt": "a photo of a spider monkey"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00029789.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a spider monkey"
+    },
+    {
+        "image_name": "n02494079/ILSVRC2012_val_00034293.JPEG",
+        "soure_prompt": "a photo of a squirrel monkey",
+        "edit_prompt": "a photo of a spider monkey"
+    },
+    {
+        "image_name": "n02486410/ILSVRC2012_val_00021331.JPEG",
+        "soure_prompt": "a photo of a baboon",
+        "edit_prompt": "a photo of a spider monkey"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00025410.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a spoonbill"
+    },
+    {
+        "image_name": "n02037110/ILSVRC2012_val_00031760.JPEG",
+        "soure_prompt": "a photo of a oystercatcher",
+        "edit_prompt": "a photo of a spoonbill"
+    },
+    {
+        "image_name": "n02002724/ILSVRC2012_val_00018159.JPEG",
+        "soure_prompt": "a photo of a black stork",
+        "edit_prompt": "a photo of a spoonbill"
+    },
+    {
+        "image_name": "n02009229/ILSVRC2012_val_00010673.JPEG",
+        "soure_prompt": "a photo of a little blue heron",
+        "edit_prompt": "a photo of a spoonbill"
+    },
+    {
+        "image_name": "n02701002/ILSVRC2012_val_00025469.JPEG",
+        "soure_prompt": "a photo of a ambulance",
+        "edit_prompt": "a photo of a sports car"
+    },
+    {
+        "image_name": "n03670208/ILSVRC2012_val_00016945.JPEG",
+        "soure_prompt": "a photo of a limousine",
+        "edit_prompt": "a photo of a sports car"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00004439.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a sports car"
+    },
+    {
+        "image_name": "n03594945/ILSVRC2012_val_00029244.JPEG",
+        "soure_prompt": "a photo of a jeep",
+        "edit_prompt": "a photo of a sports car"
+    },
+    {
+        "image_name": "n01630670/ILSVRC2012_val_00016422.JPEG",
+        "soure_prompt": "a photo of a common newt",
+        "edit_prompt": "a photo of a spotted salamander"
+    },
+    {
+        "image_name": "n01641577/ILSVRC2012_val_00018512.JPEG",
+        "soure_prompt": "a photo of a bullfrog",
+        "edit_prompt": "a photo of a spotted salamander"
+    },
+    {
+        "image_name": "n01630670/ILSVRC2012_val_00007288.JPEG",
+        "soure_prompt": "a photo of a common newt",
+        "edit_prompt": "a photo of a spotted salamander"
+    },
+    {
+        "image_name": "n01641577/ILSVRC2012_val_00004613.JPEG",
+        "soure_prompt": "a photo of a bullfrog",
+        "edit_prompt": "a photo of a spotted salamander"
+    },
+    {
+        "image_name": "n02484975/ILSVRC2012_val_00002543.JPEG",
+        "soure_prompt": "a photo of a guenon",
+        "edit_prompt": "a photo of a squirrel monkey"
+    },
+    {
+        "image_name": "n02493793/ILSVRC2012_val_00046117.JPEG",
+        "soure_prompt": "a photo of a spider monkey",
+        "edit_prompt": "a photo of a squirrel monkey"
+    },
+    {
+        "image_name": "n02487347/ILSVRC2012_val_00003000.JPEG",
+        "soure_prompt": "a photo of a macaque",
+        "edit_prompt": "a photo of a squirrel monkey"
+    },
+    {
+        "image_name": "n02486410/ILSVRC2012_val_00000486.JPEG",
+        "soure_prompt": "a photo of a baboon",
+        "edit_prompt": "a photo of a squirrel monkey"
+    },
+    {
+        "image_name": "n02094433/ILSVRC2012_val_00001597.JPEG",
+        "soure_prompt": "a photo of a Yorkshire terrier",
+        "edit_prompt": "a photo of a standard schnauzer"
+    },
+    {
+        "image_name": "n02093754/ILSVRC2012_val_00038167.JPEG",
+        "soure_prompt": "a photo of a Border terrier",
+        "edit_prompt": "a photo of a standard schnauzer"
+    },
+    {
+        "image_name": "n02093428/ILSVRC2012_val_00019276.JPEG",
+        "soure_prompt": "a photo of a American Staffordshire terrier",
+        "edit_prompt": "a photo of a standard schnauzer"
+    },
+    {
+        "image_name": "n02093754/ILSVRC2012_val_00043199.JPEG",
+        "soure_prompt": "a photo of a Border terrier",
+        "edit_prompt": "a photo of a standard schnauzer"
+    },
+    {
+        "image_name": "n03272562/ILSVRC2012_val_00023716.JPEG",
+        "soure_prompt": "a photo of a electric locomotive",
+        "edit_prompt": "a photo of a steam locomotive"
+    },
+    {
+        "image_name": "n03272562/ILSVRC2012_val_00039148.JPEG",
+        "soure_prompt": "a photo of a electric locomotive",
+        "edit_prompt": "a photo of a steam locomotive"
+    },
+    {
+        "image_name": "n03272562/ILSVRC2012_val_00046707.JPEG",
+        "soure_prompt": "a photo of a electric locomotive",
+        "edit_prompt": "a photo of a steam locomotive"
+    },
+    {
+        "image_name": "n03272562/ILSVRC2012_val_00043187.JPEG",
+        "soure_prompt": "a photo of a electric locomotive",
+        "edit_prompt": "a photo of a steam locomotive"
+    },
+    {
+        "image_name": "n03720891/ILSVRC2012_val_00025932.JPEG",
+        "soure_prompt": "a photo of a maraca",
+        "edit_prompt": "a photo of a steel drum"
+    },
+    {
+        "image_name": "n03249569/ILSVRC2012_val_00016663.JPEG",
+        "soure_prompt": "a photo of a drum",
+        "edit_prompt": "a photo of a steel drum"
+    },
+    {
+        "image_name": "n03721384/ILSVRC2012_val_00019690.JPEG",
+        "soure_prompt": "a photo of a marimba",
+        "edit_prompt": "a photo of a steel drum"
+    },
+    {
+        "image_name": "n03017168/ILSVRC2012_val_00026289.JPEG",
+        "soure_prompt": "a photo of a chime",
+        "edit_prompt": "a photo of a steel drum"
+    },
+    {
+        "image_name": "n13054560/ILSVRC2012_val_00011333.JPEG",
+        "soure_prompt": "a photo of a bolete",
+        "edit_prompt": "a photo of a stinkhorn"
+    },
+    {
+        "image_name": "n13037406/ILSVRC2012_val_00042738.JPEG",
+        "soure_prompt": "a photo of a gyromitra",
+        "edit_prompt": "a photo of a stinkhorn"
+    },
+    {
+        "image_name": "n13044778/ILSVRC2012_val_00012826.JPEG",
+        "soure_prompt": "a photo of a earthstar",
+        "edit_prompt": "a photo of a stinkhorn"
+    },
+    {
+        "image_name": "n12985857/ILSVRC2012_val_00006796.JPEG",
+        "soure_prompt": "a photo of a coral fungus",
+        "edit_prompt": "a photo of a stinkhorn"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00045889.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a stopwatch"
+    },
+    {
+        "image_name": "n03197337/ILSVRC2012_val_00039361.JPEG",
+        "soure_prompt": "a photo of a digital watch",
+        "edit_prompt": "a photo of a stopwatch"
+    },
+    {
+        "image_name": "n02708093/ILSVRC2012_val_00015108.JPEG",
+        "soure_prompt": "a photo of a analog clock",
+        "edit_prompt": "a photo of a stopwatch"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00003637.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a stopwatch"
+    },
+    {
+        "image_name": "n07753113/ILSVRC2012_val_00042141.JPEG",
+        "soure_prompt": "a photo of a fig",
+        "edit_prompt": "a photo of a strawberry"
+    },
+    {
+        "image_name": "n07747607/ILSVRC2012_val_00046347.JPEG",
+        "soure_prompt": "a photo of a orange",
+        "edit_prompt": "a photo of a strawberry"
+    },
+    {
+        "image_name": "n07768694/ILSVRC2012_val_00031912.JPEG",
+        "soure_prompt": "a photo of a pomegranate",
+        "edit_prompt": "a photo of a strawberry"
+    },
+    {
+        "image_name": "n07753113/ILSVRC2012_val_00032536.JPEG",
+        "soure_prompt": "a photo of a fig",
+        "edit_prompt": "a photo of a strawberry"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00032375.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a sturgeon"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00030309.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a sturgeon"
+    },
+    {
+        "image_name": "n01440764/ILSVRC2012_val_00045866.JPEG",
+        "soure_prompt": "a photo of a tench",
+        "edit_prompt": "a photo of a sturgeon"
+    },
+    {
+        "image_name": "n01440764/ILSVRC2012_val_00048204.JPEG",
+        "soure_prompt": "a photo of a tench",
+        "edit_prompt": "a photo of a sturgeon"
+    },
+    {
+        "image_name": "n02279972/ILSVRC2012_val_00023084.JPEG",
+        "soure_prompt": "a photo of a monarch",
+        "edit_prompt": "a photo of a sulphur butterfly"
+    },
+    {
+        "image_name": "n02277742/ILSVRC2012_val_00029047.JPEG",
+        "soure_prompt": "a photo of a ringlet",
+        "edit_prompt": "a photo of a sulphur butterfly"
+    },
+    {
+        "image_name": "n02281787/ILSVRC2012_val_00002787.JPEG",
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a sulphur butterfly"
+    },
+    {
+        "image_name": "n02276258/ILSVRC2012_val_00010777.JPEG",
+        "soure_prompt": "a photo of a admiral",
+        "edit_prompt": "a photo of a sulphur butterfly"
+    },
+    {
+        "image_name": "n02129604/ILSVRC2012_val_00029267.JPEG",
+        "soure_prompt": "a photo of a tiger",
+        "edit_prompt": "a photo of a tabby"
+    },
+    {
+        "image_name": "n02128925/ILSVRC2012_val_00049347.JPEG",
+        "soure_prompt": "a photo of a jaguar",
+        "edit_prompt": "a photo of a tabby"
+    },
+    {
+        "image_name": "n02129165/ILSVRC2012_val_00047193.JPEG",
+        "soure_prompt": "a photo of a lion",
+        "edit_prompt": "a photo of a tabby"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00049996.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a tabby"
+    },
+    {
+        "image_name": "n01770393/ILSVRC2012_val_00029177.JPEG",
+        "soure_prompt": "a photo of a scorpion",
+        "edit_prompt": "a photo of a tarantula"
+    },
+    {
+        "image_name": "n01770393/ILSVRC2012_val_00012429.JPEG",
+        "soure_prompt": "a photo of a scorpion",
+        "edit_prompt": "a photo of a tarantula"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00017294.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a tarantula"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00022205.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a tarantula"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00049929.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a teapot"
+    },
+    {
+        "image_name": "n03063599/ILSVRC2012_val_00035758.JPEG",
+        "soure_prompt": "a photo of a coffee mug",
+        "edit_prompt": "a photo of a teapot"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00027424.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a teapot"
+    },
+    {
+        "image_name": "n04557648/ILSVRC2012_val_00020948.JPEG",
+        "soure_prompt": "a photo of a water bottle",
+        "edit_prompt": "a photo of a teapot"
+    },
+    {
+        "image_name": "n02643566/ILSVRC2012_val_00011576.JPEG",
+        "soure_prompt": "a photo of a lionfish",
+        "edit_prompt": "a photo of a tench"
+    },
+    {
+        "image_name": "n02526121/ILSVRC2012_val_00017924.JPEG",
+        "soure_prompt": "a photo of a eel",
+        "edit_prompt": "a photo of a tench"
+    },
+    {
+        "image_name": "n01443537/ILSVRC2012_val_00018075.JPEG",
+        "soure_prompt": "a photo of a goldfish",
+        "edit_prompt": "a photo of a tench"
+    },
+    {
+        "image_name": "n02640242/ILSVRC2012_val_00032979.JPEG",
+        "soure_prompt": "a photo of a sturgeon",
+        "edit_prompt": "a photo of a tench"
+    },
+    {
+        "image_name": "n04254680/ILSVRC2012_val_00032634.JPEG",
+        "soure_prompt": "a photo of a soccer ball",
+        "edit_prompt": "a photo of a tennis ball"
+    },
+    {
+        "image_name": "n03942813/ILSVRC2012_val_00016861.JPEG",
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a tennis ball"
+    },
+    {
+        "image_name": "n03445777/ILSVRC2012_val_00036171.JPEG",
+        "soure_prompt": "a photo of a golf ball",
+        "edit_prompt": "a photo of a tennis ball"
+    },
+    {
+        "image_name": "n03942813/ILSVRC2012_val_00033381.JPEG",
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a tennis ball"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00010386.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a terrapin"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00004834.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a terrapin"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00043444.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a terrapin"
+    },
+    {
+        "image_name": "n01669191/ILSVRC2012_val_00049782.JPEG",
+        "soure_prompt": "a photo of a box turtle",
+        "edit_prompt": "a photo of a terrapin"
+    },
+    {
+        "image_name": "n01748264/ILSVRC2012_val_00021680.JPEG",
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "image_name": "n01753488/ILSVRC2012_val_00045212.JPEG",
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "image_name": "n01753488/ILSVRC2012_val_00027790.JPEG",
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "image_name": "n01749939/ILSVRC2012_val_00049182.JPEG",
+        "soure_prompt": "a photo of a green mamba",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "image_name": "n02123394/ILSVRC2012_val_00032910.JPEG",
+        "soure_prompt": "a photo of a Persian cat",
+        "edit_prompt": "a photo of a tiger"
+    },
+    {
+        "image_name": "n02128757/ILSVRC2012_val_00010472.JPEG",
+        "soure_prompt": "a photo of a snow leopard",
+        "edit_prompt": "a photo of a tiger"
+    },
+    {
+        "image_name": "n02128385/ILSVRC2012_val_00036533.JPEG",
+        "soure_prompt": "a photo of a leopard",
+        "edit_prompt": "a photo of a tiger"
+    },
+    {
+        "image_name": "n02128925/ILSVRC2012_val_00040788.JPEG",
+        "soure_prompt": "a photo of a jaguar",
+        "edit_prompt": "a photo of a tiger"
+    },
+    {
+        "image_name": "n02168699/ILSVRC2012_val_00018022.JPEG",
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a tiger beetle"
+    },
+    {
+        "image_name": "n02177972/ILSVRC2012_val_00044574.JPEG",
+        "soure_prompt": "a photo of a weevil",
+        "edit_prompt": "a photo of a tiger beetle"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00035497.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a tiger beetle"
+    },
+    {
+        "image_name": "n02169497/ILSVRC2012_val_00047115.JPEG",
+        "soure_prompt": "a photo of a leaf beetle",
+        "edit_prompt": "a photo of a tiger beetle"
+    },
+    {
+        "image_name": "n01494475/ILSVRC2012_val_00045133.JPEG",
+        "soure_prompt": "a photo of a hammerhead",
+        "edit_prompt": "a photo of a tiger shark"
+    },
+    {
+        "image_name": "n01484850/ILSVRC2012_val_00031808.JPEG",
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a tiger shark"
+    },
+    {
+        "image_name": "n01494475/ILSVRC2012_val_00016259.JPEG",
+        "soure_prompt": "a photo of a hammerhead",
+        "edit_prompt": "a photo of a tiger shark"
+    },
+    {
+        "image_name": "n01484850/ILSVRC2012_val_00004311.JPEG",
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a tiger shark"
+    },
+    {
+        "image_name": "n02115641/ILSVRC2012_val_00010040.JPEG",
+        "soure_prompt": "a photo of a dingo",
+        "edit_prompt": "a photo of a timber wolf"
+    },
+    {
+        "image_name": "n02120505/ILSVRC2012_val_00043662.JPEG",
+        "soure_prompt": "a photo of a grey fox",
+        "edit_prompt": "a photo of a timber wolf"
+    },
+    {
+        "image_name": "n02120079/ILSVRC2012_val_00019222.JPEG",
+        "soure_prompt": "a photo of a Arctic fox",
+        "edit_prompt": "a photo of a timber wolf"
+    },
+    {
+        "image_name": "n02116738/ILSVRC2012_val_00048385.JPEG",
+        "soure_prompt": "a photo of a African hunting dog",
+        "edit_prompt": "a photo of a timber wolf"
+    },
+    {
+        "image_name": "n03345487/ILSVRC2012_val_00043256.JPEG",
+        "soure_prompt": "a photo of a fire engine",
+        "edit_prompt": "a photo of a tow truck"
+    },
+    {
+        "image_name": "n04146614/ILSVRC2012_val_00010401.JPEG",
+        "soure_prompt": "a photo of a school bus",
+        "edit_prompt": "a photo of a tow truck"
+    },
+    {
+        "image_name": "n03977966/ILSVRC2012_val_00033923.JPEG",
+        "soure_prompt": "a photo of a police van",
+        "edit_prompt": "a photo of a tow truck"
+    },
+    {
+        "image_name": "n04467665/ILSVRC2012_val_00038360.JPEG",
+        "soure_prompt": "a photo of a trailer truck",
+        "edit_prompt": "a photo of a tow truck"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00025098.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a toy terrier"
+    },
+    {
+        "image_name": "n02086240/ILSVRC2012_val_00011754.JPEG",
+        "soure_prompt": "a photo of a Shih-Tzu",
+        "edit_prompt": "a photo of a toy terrier"
+    },
+    {
+        "image_name": "n02085620/ILSVRC2012_val_00029289.JPEG",
+        "soure_prompt": "a photo of a Chihuahua",
+        "edit_prompt": "a photo of a toy terrier"
+    },
+    {
+        "image_name": "n02085782/ILSVRC2012_val_00037960.JPEG",
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a toy terrier"
+    },
+    {
+        "image_name": "n03930630/ILSVRC2012_val_00036504.JPEG",
+        "soure_prompt": "a photo of a pickup",
+        "edit_prompt": "a photo of a trailer truck"
+    },
+    {
+        "image_name": "n03417042/ILSVRC2012_val_00039069.JPEG",
+        "soure_prompt": "a photo of a garbage truck",
+        "edit_prompt": "a photo of a trailer truck"
+    },
+    {
+        "image_name": "n04461696/ILSVRC2012_val_00016332.JPEG",
+        "soure_prompt": "a photo of a tow truck",
+        "edit_prompt": "a photo of a trailer truck"
+    },
+    {
+        "image_name": "n04461696/ILSVRC2012_val_00028462.JPEG",
+        "soure_prompt": "a photo of a tow truck",
+        "edit_prompt": "a photo of a trailer truck"
+    },
+    {
+        "image_name": "n01631663/ILSVRC2012_val_00012441.JPEG",
+        "soure_prompt": "a photo of a eft",
+        "edit_prompt": "a photo of a tree frog"
+    },
+    {
+        "image_name": "n01629819/ILSVRC2012_val_00009938.JPEG",
+        "soure_prompt": "a photo of a European fire salamander",
+        "edit_prompt": "a photo of a tree frog"
+    },
+    {
+        "image_name": "n01632458/ILSVRC2012_val_00023080.JPEG",
+        "soure_prompt": "a photo of a spotted salamander",
+        "edit_prompt": "a photo of a tree frog"
+    },
+    {
+        "image_name": "n01632458/ILSVRC2012_val_00015091.JPEG",
+        "soure_prompt": "a photo of a spotted salamander",
+        "edit_prompt": "a photo of a tree frog"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00044139.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a tricycle"
+    },
+    {
+        "image_name": "n03791053/ILSVRC2012_val_00022401.JPEG",
+        "soure_prompt": "a photo of a motor scooter",
+        "edit_prompt": "a photo of a tricycle"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00015839.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a tricycle"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00019513.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a tricycle"
+    },
+    {
+        "image_name": "n04147183/ILSVRC2012_val_00049923.JPEG",
+        "soure_prompt": "a photo of a schooner",
+        "edit_prompt": "a photo of a trimaran"
+    },
+    {
+        "image_name": "n02981792/ILSVRC2012_val_00010769.JPEG",
+        "soure_prompt": "a photo of a catamaran",
+        "edit_prompt": "a photo of a trimaran"
+    },
+    {
+        "image_name": "n04147183/ILSVRC2012_val_00047791.JPEG",
+        "soure_prompt": "a photo of a schooner",
+        "edit_prompt": "a photo of a trimaran"
+    },
+    {
+        "image_name": "n02981792/ILSVRC2012_val_00034585.JPEG",
+        "soure_prompt": "a photo of a catamaran",
+        "edit_prompt": "a photo of a trimaran"
+    },
+    {
+        "image_name": "n02804610/ILSVRC2012_val_00011274.JPEG",
+        "soure_prompt": "a photo of a bassoon",
+        "edit_prompt": "a photo of a trombone"
+    },
+    {
+        "image_name": "n02804610/ILSVRC2012_val_00018806.JPEG",
+        "soure_prompt": "a photo of a bassoon",
+        "edit_prompt": "a photo of a trombone"
+    },
+    {
+        "image_name": "n03838899/ILSVRC2012_val_00033457.JPEG",
+        "soure_prompt": "a photo of a oboe",
+        "edit_prompt": "a photo of a trombone"
+    },
+    {
+        "image_name": "n04141076/ILSVRC2012_val_00011804.JPEG",
+        "soure_prompt": "a photo of a sax",
+        "edit_prompt": "a photo of a trombone"
+    },
+    {
+        "image_name": "n04482393/ILSVRC2012_val_00016915.JPEG",
+        "soure_prompt": "a photo of a tricycle",
+        "edit_prompt": "a photo of a unicycle"
+    },
+    {
+        "image_name": "n03785016/ILSVRC2012_val_00031789.JPEG",
+        "soure_prompt": "a photo of a moped",
+        "edit_prompt": "a photo of a unicycle"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00036678.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a unicycle"
+    },
+    {
+        "image_name": "n03792782/ILSVRC2012_val_00005330.JPEG",
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a unicycle"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00037105.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a vase"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00014757.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a vase"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00006085.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a vase"
+    },
+    {
+        "image_name": "n04560804/ILSVRC2012_val_00032981.JPEG",
+        "soure_prompt": "a photo of a water jug",
+        "edit_prompt": "a photo of a vase"
+    },
+    {
+        "image_name": "n02992211/ILSVRC2012_val_00042863.JPEG",
+        "soure_prompt": "a photo of a cello",
+        "edit_prompt": "a photo of a violin"
+    },
+    {
+        "image_name": "n02992211/ILSVRC2012_val_00045757.JPEG",
+        "soure_prompt": "a photo of a cello",
+        "edit_prompt": "a photo of a violin"
+    },
+    {
+        "image_name": "n02992211/ILSVRC2012_val_00034445.JPEG",
+        "soure_prompt": "a photo of a cello",
+        "edit_prompt": "a photo of a violin"
+    },
+    {
+        "image_name": "n03272010/ILSVRC2012_val_00014896.JPEG",
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a violin"
+    },
+    {
+        "image_name": "n02794156/ILSVRC2012_val_00048149.JPEG",
+        "soure_prompt": "a photo of a barometer",
+        "edit_prompt": "a photo of a wall clock"
+    },
+    {
+        "image_name": "n04328186/ILSVRC2012_val_00043606.JPEG",
+        "soure_prompt": "a photo of a stopwatch",
+        "edit_prompt": "a photo of a wall clock"
+    },
+    {
+        "image_name": "n03197337/ILSVRC2012_val_00012383.JPEG",
+        "soure_prompt": "a photo of a digital watch",
+        "edit_prompt": "a photo of a wall clock"
+    },
+    {
+        "image_name": "n03841143/ILSVRC2012_val_00038367.JPEG",
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a wall clock"
+    },
+    {
+        "image_name": "n03063689/ILSVRC2012_val_00012391.JPEG",
+        "soure_prompt": "a photo of a coffeepot",
+        "edit_prompt": "a photo of a water bottle"
+    },
+    {
+        "image_name": "n04560804/ILSVRC2012_val_00020857.JPEG",
+        "soure_prompt": "a photo of a water jug",
+        "edit_prompt": "a photo of a water bottle"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00000344.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a water bottle"
+    },
+    {
+        "image_name": "n03063689/ILSVRC2012_val_00022585.JPEG",
+        "soure_prompt": "a photo of a coffeepot",
+        "edit_prompt": "a photo of a water bottle"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00028496.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a water buffalo"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00016192.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a water buffalo"
+    },
+    {
+        "image_name": "n02417914/ILSVRC2012_val_00011631.JPEG",
+        "soure_prompt": "a photo of a ibex",
+        "edit_prompt": "a photo of a water buffalo"
+    },
+    {
+        "image_name": "n02410509/ILSVRC2012_val_00008629.JPEG",
+        "soure_prompt": "a photo of a bison",
+        "edit_prompt": "a photo of a water buffalo"
+    },
+    {
+        "image_name": "n03733805/ILSVRC2012_val_00007887.JPEG",
+        "soure_prompt": "a photo of a measuring cup",
+        "edit_prompt": "a photo of a water jug"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00042306.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a water jug"
+    },
+    {
+        "image_name": "n02823428/ILSVRC2012_val_00009225.JPEG",
+        "soure_prompt": "a photo of a beer bottle",
+        "edit_prompt": "a photo of a water jug"
+    },
+    {
+        "image_name": "n03733805/ILSVRC2012_val_00027209.JPEG",
+        "soure_prompt": "a photo of a measuring cup",
+        "edit_prompt": "a photo of a water jug"
+    },
+    {
+        "image_name": "n02165456/ILSVRC2012_val_00027954.JPEG",
+        "soure_prompt": "a photo of a ladybug",
+        "edit_prompt": "a photo of a weevil"
+    },
+    {
+        "image_name": "n02169497/ILSVRC2012_val_00043134.JPEG",
+        "soure_prompt": "a photo of a leaf beetle",
+        "edit_prompt": "a photo of a weevil"
+    },
+    {
+        "image_name": "n02165105/ILSVRC2012_val_00000361.JPEG",
+        "soure_prompt": "a photo of a tiger beetle",
+        "edit_prompt": "a photo of a weevil"
+    },
+    {
+        "image_name": "n02169497/ILSVRC2012_val_00001776.JPEG",
+        "soure_prompt": "a photo of a leaf beetle",
+        "edit_prompt": "a photo of a weevil"
+    },
+    {
+        "image_name": "n02114855/ILSVRC2012_val_00004178.JPEG",
+        "soure_prompt": "a photo of a coyote",
+        "edit_prompt": "a photo of a white wolf"
+    },
+    {
+        "image_name": "n02115641/ILSVRC2012_val_00019728.JPEG",
+        "soure_prompt": "a photo of a dingo",
+        "edit_prompt": "a photo of a white wolf"
+    },
+    {
+        "image_name": "n02116738/ILSVRC2012_val_00046470.JPEG",
+        "soure_prompt": "a photo of a African hunting dog",
+        "edit_prompt": "a photo of a white wolf"
+    },
+    {
+        "image_name": "n02120079/ILSVRC2012_val_00020481.JPEG",
+        "soure_prompt": "a photo of a Arctic fox",
+        "edit_prompt": "a photo of a white wolf"
+    },
+    {
+        "image_name": "n04398044/ILSVRC2012_val_00046719.JPEG",
+        "soure_prompt": "a photo of a teapot",
+        "edit_prompt": "a photo of a wine bottle"
+    },
+    {
+        "image_name": "n04522168/ILSVRC2012_val_00031872.JPEG",
+        "soure_prompt": "a photo of a vase",
+        "edit_prompt": "a photo of a wine bottle"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00048215.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a wine bottle"
+    },
+    {
+        "image_name": "n03062245/ILSVRC2012_val_00041455.JPEG",
+        "soure_prompt": "a photo of a cocktail shaker",
+        "edit_prompt": "a photo of a wine bottle"
+    },
+    {
+        "image_name": "n02093754/ILSVRC2012_val_00017404.JPEG",
+        "soure_prompt": "a photo of a Border terrier",
+        "edit_prompt": "a photo of a wire-haired fox terrier"
+    },
+    {
+        "image_name": "n02093991/ILSVRC2012_val_00044532.JPEG",
+        "soure_prompt": "a photo of a Irish terrier",
+        "edit_prompt": "a photo of a wire-haired fox terrier"
+    },
+    {
+        "image_name": "n02093428/ILSVRC2012_val_00043556.JPEG",
+        "soure_prompt": "a photo of a American Staffordshire terrier",
+        "edit_prompt": "a photo of a wire-haired fox terrier"
+    },
+    {
+        "image_name": "n02093991/ILSVRC2012_val_00004687.JPEG",
+        "soure_prompt": "a photo of a Irish terrier",
+        "edit_prompt": "a photo of a wire-haired fox terrier"
+    },
+    {
+        "image_name": "n01774750/ILSVRC2012_val_00040775.JPEG",
+        "soure_prompt": "a photo of a tarantula",
+        "edit_prompt": "a photo of a wolf spider"
+    },
+    {
+        "image_name": "n01773797/ILSVRC2012_val_00019030.JPEG",
+        "soure_prompt": "a photo of a garden spider",
+        "edit_prompt": "a photo of a wolf spider"
+    },
+    {
+        "image_name": "n01774384/ILSVRC2012_val_00019765.JPEG",
+        "soure_prompt": "a photo of a black widow",
+        "edit_prompt": "a photo of a wolf spider"
+    },
+    {
+        "image_name": "n01770393/ILSVRC2012_val_00031020.JPEG",
+        "soure_prompt": "a photo of a scorpion",
+        "edit_prompt": "a photo of a wolf spider"
+    },
+    {
+        "image_name": "n02389026/ILSVRC2012_val_00049082.JPEG",
+        "soure_prompt": "a photo of a sorrel",
+        "edit_prompt": "a photo of a zebra"
+    },
+    {
+        "image_name": "n02389026/ILSVRC2012_val_00007267.JPEG",
+        "soure_prompt": "a photo of a sorrel",
+        "edit_prompt": "a photo of a zebra"
+    },
+    {
+        "image_name": "n02389026/ILSVRC2012_val_00047494.JPEG",
+        "soure_prompt": "a photo of a sorrel",
+        "edit_prompt": "a photo of a zebra"
+    },
+    {
+        "image_name": "n02389026/ILSVRC2012_val_00029082.JPEG",
+        "soure_prompt": "a photo of a sorrel",
+        "edit_prompt": "a photo of a zebra"
+    },
+    {
+        "image_name": "n07714990/ILSVRC2012_val_00028304.JPEG",
+        "soure_prompt": "a photo of a broccoli",
+        "edit_prompt": "a photo of a zucchini"
+    },
+    {
+        "image_name": "n07718747/ILSVRC2012_val_00039289.JPEG",
+        "soure_prompt": "a photo of a artichoke",
+        "edit_prompt": "a photo of a zucchini"
+    },
+    {
+        "image_name": "n07718472/ILSVRC2012_val_00025145.JPEG",
+        "soure_prompt": "a photo of a cucumber",
+        "edit_prompt": "a photo of a zucchini"
+    },
+    {
+        "image_name": "n07715103/ILSVRC2012_val_00000332.JPEG",
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a zucchini"
+    }
+]

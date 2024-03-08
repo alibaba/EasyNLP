@@ -1,0 +1,3026 @@
+[
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a red car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a green car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a blue car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a yellow car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a orange car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a purple car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a pink car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a black car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a white car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a gray car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a brown car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a beige car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a cyan car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a magenta car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a teal car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a lime car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a olive car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a navy car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a maroon car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a silver car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a gold car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a bronze car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a peach car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a coral car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a indigo car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a turquoise car"
+    },
+    {
+        "soure_prompt": "a violet car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a turquoise car",
+        "edit_prompt": "a chocolate car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a red car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a green car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a blue car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a yellow car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a orange car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a purple car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a pink car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a black car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a white car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a gray car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a brown car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a beige car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a cyan car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a magenta car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a teal car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a lime car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a olive car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a navy car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a maroon car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a silver car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a gold car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a bronze car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a peach car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a coral car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a indigo car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a violet car"
+    },
+    {
+        "soure_prompt": "a chocolate car",
+        "edit_prompt": "a turquoise car"
+    }
+]
