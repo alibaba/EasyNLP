@@ -1,0 +1,4730 @@
+[
+    {
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a Afghan hound"
+    },
+    {
+        "soure_prompt": "a photo of a cool basset",
+        "edit_prompt": "a photo of a cool Afghan hound"
+    },
+    {
+        "soure_prompt": "a photo of one otterhound",
+        "edit_prompt": "a photo of one Afghan hound"
+    },
+    {
+        "soure_prompt": "a photo of the nice beagle",
+        "edit_prompt": "a photo of the nice Afghan hound"
+    },
+    {
+        "soure_prompt": "a photo of a dingo",
+        "edit_prompt": "a photo of a African hunting dog"
+    },
+    {
+        "soure_prompt": "a good photo of a hyena",
+        "edit_prompt": "a good photo of a African hunting dog"
+    },
+    {
+        "soure_prompt": "a close-up photo of a hyena",
+        "edit_prompt": "a close-up photo of a African hunting dog"
+    },
+    {
+        "soure_prompt": "a close-up photo of a red fox",
+        "edit_prompt": "a close-up photo of a African hunting dog"
+    },
+    {
+        "soure_prompt": "a rendition of the wire-haired fox terrier",
+        "edit_prompt": "a rendition of the American Staffordshire terrier"
+    },
+    {
+        "soure_prompt": "a cropped photo of a standard schnauzer",
+        "edit_prompt": "a cropped photo of a American Staffordshire terrier"
+    },
+    {
+        "soure_prompt": "a photo of the clean Yorkshire terrier",
+        "edit_prompt": "a photo of the clean American Staffordshire terrier"
+    },
+    {
+        "soure_prompt": "a cropped photo of a Irish terrier",
+        "edit_prompt": "a cropped photo of a American Staffordshire terrier"
+    },
+    {
+        "soure_prompt": "a bright photo of the lesser panda",
+        "edit_prompt": "a bright photo of the American black bear"
+    },
+    {
+        "soure_prompt": "a cropped photo of a brown bear",
+        "edit_prompt": "a cropped photo of a American black bear"
+    },
+    {
+        "soure_prompt": "a photo of one ice bear",
+        "edit_prompt": "a photo of one American black bear"
+    },
+    {
+        "soure_prompt": "a good photo of the ice bear",
+        "edit_prompt": "a good photo of the American black bear"
+    },
+    {
+        "soure_prompt": "the photo of a rock crab",
+        "edit_prompt": "the photo of a American lobster"
+    },
+    {
+        "soure_prompt": "a cropped photo of the rock crab",
+        "edit_prompt": "a cropped photo of the American lobster"
+    },
+    {
+        "soure_prompt": "a photo of a small fiddler crab",
+        "edit_prompt": "a photo of a small American lobster"
+    },
+    {
+        "soure_prompt": "a photo of the large fiddler crab",
+        "edit_prompt": "a photo of the large American lobster"
+    },
+    {
+        "soure_prompt": "a photo of the African hunting dog",
+        "edit_prompt": "a photo of the Arctic fox"
+    },
+    {
+        "soure_prompt": "a photo of a dirty red wolf",
+        "edit_prompt": "a photo of a dirty Arctic fox"
+    },
+    {
+        "soure_prompt": "a rendition of the red wolf",
+        "edit_prompt": "a rendition of the Arctic fox"
+    },
+    {
+        "soure_prompt": "the photo of a hyena",
+        "edit_prompt": "the photo of a Arctic fox"
+    },
+    {
+        "soure_prompt": "a dark photo of the wire-haired fox terrier",
+        "edit_prompt": "a dark photo of the Border terrier"
+    },
+    {
+        "soure_prompt": "a bright photo of the standard schnauzer",
+        "edit_prompt": "a bright photo of the Border terrier"
+    },
+    {
+        "soure_prompt": "a photo of the clean wire-haired fox terrier",
+        "edit_prompt": "a photo of the clean Border terrier"
+    },
+    {
+        "soure_prompt": "a photo of a dirty standard schnauzer",
+        "edit_prompt": "a photo of a dirty Border terrier"
+    },
+    {
+        "soure_prompt": "a photo of a cool papillon",
+        "edit_prompt": "a photo of a cool Chihuahua"
+    },
+    {
+        "soure_prompt": "a rendition of a toy terrier",
+        "edit_prompt": "a rendition of a Chihuahua"
+    },
+    {
+        "soure_prompt": "a photo of the clean Japanese spaniel",
+        "edit_prompt": "a photo of the clean Chihuahua"
+    },
+    {
+        "soure_prompt": "a cropped photo of the papillon",
+        "edit_prompt": "a cropped photo of the Chihuahua"
+    },
+    {
+        "soure_prompt": "a photo of a cool American lobster",
+        "edit_prompt": "a photo of a cool Dungeness crab"
+    },
+    {
+        "soure_prompt": "a rendition of a isopod",
+        "edit_prompt": "a rendition of a Dungeness crab"
+    },
+    {
+        "soure_prompt": "a photo of the weird crayfish",
+        "edit_prompt": "a photo of the weird Dungeness crab"
+    },
+    {
+        "soure_prompt": "a cropped photo of a fiddler crab",
+        "edit_prompt": "a cropped photo of a Dungeness crab"
+    },
+    {
+        "soure_prompt": "a photo of a nice Italian greyhound",
+        "edit_prompt": "a photo of a nice English foxhound"
+    },
+    {
+        "soure_prompt": "a close-up photo of a Italian greyhound",
+        "edit_prompt": "a close-up photo of a English foxhound"
+    },
+    {
+        "soure_prompt": "a photo of one Afghan hound",
+        "edit_prompt": "a photo of one English foxhound"
+    },
+    {
+        "soure_prompt": "a bright photo of the beagle",
+        "edit_prompt": "a bright photo of the English foxhound"
+    },
+    {
+        "soure_prompt": "a rendition of the Irish setter",
+        "edit_prompt": "a rendition of the English springer"
+    },
+    {
+        "soure_prompt": "a cropped photo of a golden retriever",
+        "edit_prompt": "a cropped photo of a English springer"
+    },
+    {
+        "soure_prompt": "a photo of one cocker spaniel",
+        "edit_prompt": "a photo of one English springer"
+    },
+    {
+        "soure_prompt": "a photo of the weird cocker spaniel",
+        "edit_prompt": "a photo of the weird English springer"
+    },
+    {
+        "soure_prompt": "a good photo of the collie",
+        "edit_prompt": "a good photo of the Eskimo dog"
+    },
+    {
+        "soure_prompt": "a photo of my Siberian husky",
+        "edit_prompt": "a photo of my Eskimo dog"
+    },
+    {
+        "soure_prompt": "a photo of the cool French bulldog",
+        "edit_prompt": "a photo of the cool Eskimo dog"
+    },
+    {
+        "soure_prompt": "a photo of the German shepherd",
+        "edit_prompt": "a photo of the Eskimo dog"
+    },
+    {
+        "soure_prompt": "the photo of a axolotl",
+        "edit_prompt": "the photo of a European fire salamander"
+    },
+    {
+        "soure_prompt": "a close-up photo of the axolotl",
+        "edit_prompt": "a close-up photo of the European fire salamander"
+    },
+    {
+        "soure_prompt": "a photo of one eft",
+        "edit_prompt": "a photo of one European fire salamander"
+    },
+    {
+        "soure_prompt": "a bright photo of the axolotl",
+        "edit_prompt": "a bright photo of the European fire salamander"
+    },
+    {
+        "soure_prompt": "a photo of one albatross",
+        "edit_prompt": "a photo of one European gallinule"
+    },
+    {
+        "soure_prompt": "a good photo of the black swan",
+        "edit_prompt": "a good photo of the European gallinule"
+    },
+    {
+        "soure_prompt": "a photo of a small king penguin",
+        "edit_prompt": "a photo of a small European gallinule"
+    },
+    {
+        "soure_prompt": "the photo of a pelican",
+        "edit_prompt": "the photo of a European gallinule"
+    },
+    {
+        "soure_prompt": "a rendering of a Siberian husky",
+        "edit_prompt": "a rendering of a French bulldog"
+    },
+    {
+        "soure_prompt": "a photo of the small miniature pinscher",
+        "edit_prompt": "a photo of the small French bulldog"
+    },
+    {
+        "soure_prompt": "a good photo of a Eskimo dog",
+        "edit_prompt": "a good photo of a French bulldog"
+    },
+    {
+        "soure_prompt": "a rendition of a Eskimo dog",
+        "edit_prompt": "a rendition of a French bulldog"
+    },
+    {
+        "soure_prompt": "a close-up photo of the flute",
+        "edit_prompt": "a close-up photo of the French horn"
+    },
+    {
+        "soure_prompt": "a photo of a cool flute",
+        "edit_prompt": "a photo of a cool French horn"
+    },
+    {
+        "soure_prompt": "a photo of the nice oboe",
+        "edit_prompt": "a photo of the nice French horn"
+    },
+    {
+        "soure_prompt": "a photo of the weird oboe",
+        "edit_prompt": "a photo of the weird French horn"
+    },
+    {
+        "soure_prompt": "a photo of a clean miniature pinscher",
+        "edit_prompt": "a photo of a clean German shepherd"
+    },
+    {
+        "soure_prompt": "a close-up photo of a Rottweiler",
+        "edit_prompt": "a close-up photo of a German shepherd"
+    },
+    {
+        "soure_prompt": "a photo of the cool French bulldog",
+        "edit_prompt": "a photo of the cool German shepherd"
+    },
+    {
+        "soure_prompt": "a photo of the large Eskimo dog",
+        "edit_prompt": "a photo of the large German shepherd"
+    },
+    {
+        "soure_prompt": "a photo of my pineapple",
+        "edit_prompt": "a photo of my Granny Smith"
+    },
+    {
+        "soure_prompt": "a photo of the weird pineapple",
+        "edit_prompt": "a photo of the weird Granny Smith"
+    },
+    {
+        "soure_prompt": "a close-up photo of the fig",
+        "edit_prompt": "a close-up photo of the Granny Smith"
+    },
+    {
+        "soure_prompt": "a good photo of a custard apple",
+        "edit_prompt": "a good photo of a Granny Smith"
+    },
+    {
+        "soure_prompt": "a photo of a nice horned viper",
+        "edit_prompt": "a photo of a nice Indian cobra"
+    },
+    {
+        "soure_prompt": "a photo of a nice horned viper",
+        "edit_prompt": "a photo of a nice Indian cobra"
+    },
+    {
+        "soure_prompt": "a good photo of the boa constrictor",
+        "edit_prompt": "a good photo of the Indian cobra"
+    },
+    {
+        "soure_prompt": "a photo of the small thunder snake",
+        "edit_prompt": "a photo of the small Indian cobra"
+    },
+    {
+        "soure_prompt": "a good photo of the golden retriever",
+        "edit_prompt": "a good photo of the Irish setter"
+    },
+    {
+        "soure_prompt": "a cropped photo of a English springer",
+        "edit_prompt": "a cropped photo of a Irish setter"
+    },
+    {
+        "soure_prompt": "a bright photo of the English springer",
+        "edit_prompt": "a bright photo of the Irish setter"
+    },
+    {
+        "soure_prompt": "a photo of a dirty golden retriever",
+        "edit_prompt": "a photo of a dirty Irish setter"
+    },
+    {
+        "soure_prompt": "a photo of the nice Yorkshire terrier",
+        "edit_prompt": "a photo of the nice Irish terrier"
+    },
+    {
+        "soure_prompt": "a bright photo of the standard schnauzer",
+        "edit_prompt": "a bright photo of the Irish terrier"
+    },
+    {
+        "soure_prompt": "a photo of the large standard schnauzer",
+        "edit_prompt": "a photo of the large Irish terrier"
+    },
+    {
+        "soure_prompt": "a photo of the cool Border terrier",
+        "edit_prompt": "a photo of the cool Irish terrier"
+    },
+    {
+        "soure_prompt": "a photo of a nice otterhound",
+        "edit_prompt": "a photo of a nice Italian greyhound"
+    },
+    {
+        "soure_prompt": "a photo of the large otterhound",
+        "edit_prompt": "a photo of the large Italian greyhound"
+    },
+    {
+        "soure_prompt": "a photo of the nice basset",
+        "edit_prompt": "a photo of the nice Italian greyhound"
+    },
+    {
+        "soure_prompt": "a good photo of the Afghan hound",
+        "edit_prompt": "a good photo of the Italian greyhound"
+    },
+    {
+        "soure_prompt": "a photo of the large papillon",
+        "edit_prompt": "a photo of the large Japanese spaniel"
+    },
+    {
+        "soure_prompt": "a photo of a small Shih-Tzu",
+        "edit_prompt": "a photo of a small Japanese spaniel"
+    },
+    {
+        "soure_prompt": "a photo of a dirty Shih-Tzu",
+        "edit_prompt": "a photo of a dirty Japanese spaniel"
+    },
+    {
+        "soure_prompt": "a photo of the large Chihuahua",
+        "edit_prompt": "a photo of the large Japanese spaniel"
+    },
+    {
+        "soure_prompt": "a photo of my jaguar",
+        "edit_prompt": "a photo of my Persian cat"
+    },
+    {
+        "soure_prompt": "a rendering of a tiger",
+        "edit_prompt": "a rendering of a Persian cat"
+    },
+    {
+        "soure_prompt": "a good photo of a jaguar",
+        "edit_prompt": "a good photo of a Persian cat"
+    },
+    {
+        "soure_prompt": "a photo of the clean snow leopard",
+        "edit_prompt": "a photo of the clean Persian cat"
+    },
+    {
+        "soure_prompt": "a photo of a cool German shepherd",
+        "edit_prompt": "a photo of a cool Rottweiler"
+    },
+    {
+        "soure_prompt": "a close-up photo of the German shepherd",
+        "edit_prompt": "a close-up photo of the Rottweiler"
+    },
+    {
+        "soure_prompt": "a rendering of a German shepherd",
+        "edit_prompt": "a rendering of a Rottweiler"
+    },
+    {
+        "soure_prompt": "a good photo of a collie",
+        "edit_prompt": "a good photo of a Rottweiler"
+    },
+    {
+        "soure_prompt": "a photo of a nice Japanese spaniel",
+        "edit_prompt": "a photo of a nice Shih-Tzu"
+    },
+    {
+        "soure_prompt": "a cropped photo of the toy terrier",
+        "edit_prompt": "a cropped photo of the Shih-Tzu"
+    },
+    {
+        "soure_prompt": "a photo of a small Chihuahua",
+        "edit_prompt": "a photo of a small Shih-Tzu"
+    },
+    {
+        "soure_prompt": "a photo of the Chihuahua",
+        "edit_prompt": "a photo of the Shih-Tzu"
+    },
+    {
+        "soure_prompt": "a photo of a cool German shepherd",
+        "edit_prompt": "a photo of a cool Siberian husky"
+    },
+    {
+        "soure_prompt": "a rendition of a French bulldog",
+        "edit_prompt": "a rendition of a Siberian husky"
+    },
+    {
+        "soure_prompt": "a photo of a cool boxer",
+        "edit_prompt": "a photo of a cool Siberian husky"
+    },
+    {
+        "soure_prompt": "a photo of a clean Rottweiler",
+        "edit_prompt": "a photo of a clean Siberian husky"
+    },
+    {
+        "soure_prompt": "a photo of a cool wire-haired fox terrier",
+        "edit_prompt": "a photo of a cool Yorkshire terrier"
+    },
+    {
+        "soure_prompt": "a photo of a dirty standard schnauzer",
+        "edit_prompt": "a photo of a dirty Yorkshire terrier"
+    },
+    {
+        "soure_prompt": "a photo of the nice standard schnauzer",
+        "edit_prompt": "a photo of the nice Yorkshire terrier"
+    },
+    {
+        "soure_prompt": "a photo of one standard schnauzer",
+        "edit_prompt": "a photo of one Yorkshire terrier"
+    },
+    {
+        "soure_prompt": "a cropped photo of the electric guitar",
+        "edit_prompt": "a cropped photo of the acoustic guitar"
+    },
+    {
+        "soure_prompt": "a close-up photo of the electric guitar",
+        "edit_prompt": "a close-up photo of the acoustic guitar"
+    },
+    {
+        "soure_prompt": "a photo of a small electric guitar",
+        "edit_prompt": "a photo of a small acoustic guitar"
+    },
+    {
+        "soure_prompt": "a photo of a electric guitar",
+        "edit_prompt": "a photo of a acoustic guitar"
+    },
+    {
+        "soure_prompt": "a photo of the small monarch",
+        "edit_prompt": "a photo of the small admiral"
+    },
+    {
+        "soure_prompt": "a close-up photo of the lycaenid",
+        "edit_prompt": "a close-up photo of the admiral"
+    },
+    {
+        "soure_prompt": "a photo of one lycaenid",
+        "edit_prompt": "a photo of one admiral"
+    },
+    {
+        "soure_prompt": "a photo of a dirty lycaenid",
+        "edit_prompt": "a photo of a dirty admiral"
+    },
+    {
+        "soure_prompt": "a cropped photo of a pelican",
+        "edit_prompt": "a cropped photo of a albatross"
+    },
+    {
+        "soure_prompt": "a cropped photo of a pelican",
+        "edit_prompt": "a cropped photo of a albatross"
+    },
+    {
+        "soure_prompt": "a photo of a cool pelican",
+        "edit_prompt": "a photo of a cool albatross"
+    },
+    {
+        "soure_prompt": "a photo of a clean pelican",
+        "edit_prompt": "a photo of a clean albatross"
+    },
+    {
+        "soure_prompt": "a close-up photo of the limousine",
+        "edit_prompt": "a close-up photo of the ambulance"
+    },
+    {
+        "soure_prompt": "a photo of the cool convertible",
+        "edit_prompt": "a photo of the cool ambulance"
+    },
+    {
+        "soure_prompt": "a photo of a clean jeep",
+        "edit_prompt": "a photo of a clean ambulance"
+    },
+    {
+        "soure_prompt": "a photo of a cool beach wagon",
+        "edit_prompt": "a photo of a cool ambulance"
+    },
+    {
+        "soure_prompt": "a cropped photo of the stopwatch",
+        "edit_prompt": "a cropped photo of the analog clock"
+    },
+    {
+        "soure_prompt": "a photo of a nice digital clock",
+        "edit_prompt": "a photo of a nice analog clock"
+    },
+    {
+        "soure_prompt": "a photo of the nice digital clock",
+        "edit_prompt": "a photo of the nice analog clock"
+    },
+    {
+        "soure_prompt": "the photo of a stopwatch",
+        "edit_prompt": "the photo of a analog clock"
+    },
+    {
+        "soure_prompt": "a cropped photo of a sturgeon",
+        "edit_prompt": "a cropped photo of a anemone fish"
+    },
+    {
+        "soure_prompt": "a photo of a small goldfish",
+        "edit_prompt": "a photo of a small anemone fish"
+    },
+    {
+        "soure_prompt": "a photo of the small lionfish",
+        "edit_prompt": "a photo of the small anemone fish"
+    },
+    {
+        "soure_prompt": "a photo of the gar",
+        "edit_prompt": "a photo of the anemone fish"
+    },
+    {
+        "soure_prompt": "a photo of the cool cauliflower",
+        "edit_prompt": "a photo of the cool artichoke"
+    },
+    {
+        "soure_prompt": "a rendition of a cucumber",
+        "edit_prompt": "a rendition of a artichoke"
+    },
+    {
+        "soure_prompt": "a photo of the weird cucumber",
+        "edit_prompt": "a photo of the weird artichoke"
+    },
+    {
+        "soure_prompt": "a good photo of the cauliflower",
+        "edit_prompt": "a good photo of the artichoke"
+    },
+    {
+        "soure_prompt": "a close-up photo of the eft",
+        "edit_prompt": "a close-up photo of the axolotl"
+    },
+    {
+        "soure_prompt": "a bright photo of the European fire salamander",
+        "edit_prompt": "a bright photo of the axolotl"
+    },
+    {
+        "soure_prompt": "a photo of a nice bullfrog",
+        "edit_prompt": "a photo of a nice axolotl"
+    },
+    {
+        "soure_prompt": "a good photo of the bullfrog",
+        "edit_prompt": "a good photo of the axolotl"
+    },
+    {
+        "soure_prompt": "a photo of a small guenon",
+        "edit_prompt": "a photo of a small baboon"
+    },
+    {
+        "soure_prompt": "a photo of the guenon",
+        "edit_prompt": "a photo of the baboon"
+    },
+    {
+        "soure_prompt": "a close-up photo of a spider monkey",
+        "edit_prompt": "a close-up photo of a baboon"
+    },
+    {
+        "soure_prompt": "a rendering of a macaque",
+        "edit_prompt": "a rendering of a baboon"
+    },
+    {
+        "soure_prompt": "a cropped photo of the purse",
+        "edit_prompt": "a cropped photo of the backpack"
+    },
+    {
+        "soure_prompt": "a rendering of a purse",
+        "edit_prompt": "a rendering of a backpack"
+    },
+    {
+        "soure_prompt": "a photo of one plastic bag",
+        "edit_prompt": "a photo of one backpack"
+    },
+    {
+        "soure_prompt": "a photo of a small purse",
+        "edit_prompt": "a photo of a small backpack"
+    },
+    {
+        "soure_prompt": "a photo of the nice hotdog",
+        "edit_prompt": "a photo of the nice bagel"
+    },
+    {
+        "soure_prompt": "a photo of a small hotdog",
+        "edit_prompt": "a photo of a small bagel"
+    },
+    {
+        "soure_prompt": "a photo of a clean cheeseburger",
+        "edit_prompt": "a photo of a clean bagel"
+    },
+    {
+        "soure_prompt": "a photo of a nice hotdog",
+        "edit_prompt": "a photo of a nice bagel"
+    },
+    {
+        "soure_prompt": "a close-up photo of the great grey owl",
+        "edit_prompt": "a close-up photo of the bald eagle"
+    },
+    {
+        "soure_prompt": "a close-up photo of the kite",
+        "edit_prompt": "a close-up photo of the bald eagle"
+    },
+    {
+        "soure_prompt": "a cropped photo of the great grey owl",
+        "edit_prompt": "a cropped photo of the bald eagle"
+    },
+    {
+        "soure_prompt": "a close-up photo of the kite",
+        "edit_prompt": "a close-up photo of the bald eagle"
+    },
+    {
+        "soure_prompt": "a photo of one fig",
+        "edit_prompt": "a photo of one banana"
+    },
+    {
+        "soure_prompt": "a photo of the weird custard apple",
+        "edit_prompt": "a photo of the weird banana"
+    },
+    {
+        "soure_prompt": "a photo of a small orange",
+        "edit_prompt": "a photo of a small banana"
+    },
+    {
+        "soure_prompt": "a close-up photo of a strawberry",
+        "edit_prompt": "a close-up photo of a banana"
+    },
+    {
+        "soure_prompt": "a photo of a dirty violin",
+        "edit_prompt": "a photo of a dirty banjo"
+    },
+    {
+        "soure_prompt": "a photo of a acoustic guitar",
+        "edit_prompt": "a photo of a banjo"
+    },
+    {
+        "soure_prompt": "a photo of the acoustic guitar",
+        "edit_prompt": "a photo of the banjo"
+    },
+    {
+        "soure_prompt": "a good photo of a acoustic guitar",
+        "edit_prompt": "a good photo of a banjo"
+    },
+    {
+        "soure_prompt": "a photo of one analog clock",
+        "edit_prompt": "a photo of one barometer"
+    },
+    {
+        "soure_prompt": "a photo of a cool digital clock",
+        "edit_prompt": "a photo of a cool barometer"
+    },
+    {
+        "soure_prompt": "a good photo of the odometer",
+        "edit_prompt": "a good photo of the barometer"
+    },
+    {
+        "soure_prompt": "a photo of a dirty odometer",
+        "edit_prompt": "a photo of a dirty barometer"
+    },
+    {
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "soure_prompt": "a photo of a otterhound",
+        "edit_prompt": "a photo of a basset"
+    },
+    {
+        "soure_prompt": "a cropped photo of a Afghan hound",
+        "edit_prompt": "a cropped photo of a basset"
+    },
+    {
+        "soure_prompt": "a cropped photo of a beagle",
+        "edit_prompt": "a cropped photo of a basset"
+    },
+    {
+        "soure_prompt": "a photo of one French horn",
+        "edit_prompt": "a photo of one bassoon"
+    },
+    {
+        "soure_prompt": "a photo of a small cornet",
+        "edit_prompt": "a photo of a small bassoon"
+    },
+    {
+        "soure_prompt": "a good photo of the oboe",
+        "edit_prompt": "a good photo of the bassoon"
+    },
+    {
+        "soure_prompt": "a photo of one sax",
+        "edit_prompt": "a photo of one bassoon"
+    },
+    {
+        "soure_prompt": "a good photo of a bonnet",
+        "edit_prompt": "a good photo of a bathing cap"
+    },
+    {
+        "soure_prompt": "a dark photo of the cowboy hat",
+        "edit_prompt": "a dark photo of the bathing cap"
+    },
+    {
+        "soure_prompt": "a rendering of a shower cap",
+        "edit_prompt": "a rendering of a bathing cap"
+    },
+    {
+        "soure_prompt": "a photo of the clean football helmet",
+        "edit_prompt": "a photo of the clean bathing cap"
+    },
+    {
+        "soure_prompt": "a photo of a nice cab",
+        "edit_prompt": "a photo of a nice beach wagon"
+    },
+    {
+        "soure_prompt": "a cropped photo of the ambulance",
+        "edit_prompt": "a cropped photo of the beach wagon"
+    },
+    {
+        "soure_prompt": "a rendition of a ambulance",
+        "edit_prompt": "a rendition of a beach wagon"
+    },
+    {
+        "soure_prompt": "a cropped photo of a convertible",
+        "edit_prompt": "a cropped photo of a beach wagon"
+    },
+    {
+        "soure_prompt": "a photo of a dirty Afghan hound",
+        "edit_prompt": "a photo of a dirty beagle"
+    },
+    {
+        "soure_prompt": "a cropped photo of the otterhound",
+        "edit_prompt": "a cropped photo of the beagle"
+    },
+    {
+        "soure_prompt": "a photo of the nice otterhound",
+        "edit_prompt": "a photo of the nice beagle"
+    },
+    {
+        "soure_prompt": "a photo of the large Italian greyhound",
+        "edit_prompt": "a photo of the large beagle"
+    },
+    {
+        "soure_prompt": "a rendition of a measuring cup",
+        "edit_prompt": "a rendition of a beer bottle"
+    },
+    {
+        "soure_prompt": "a photo of a nice vase",
+        "edit_prompt": "a photo of a nice beer bottle"
+    },
+    {
+        "soure_prompt": "a photo of a coffeepot",
+        "edit_prompt": "a photo of a beer bottle"
+    },
+    {
+        "soure_prompt": "a photo of a small coffee mug",
+        "edit_prompt": "a photo of a small beer bottle"
+    },
+    {
+        "soure_prompt": "a good photo of the cauliflower",
+        "edit_prompt": "a good photo of the bell pepper"
+    },
+    {
+        "soure_prompt": "a photo of the large spaghetti squash",
+        "edit_prompt": "a photo of the large bell pepper"
+    },
+    {
+        "soure_prompt": "a cropped photo of a cardoon",
+        "edit_prompt": "a cropped photo of a bell pepper"
+    },
+    {
+        "soure_prompt": "a photo of a nice broccoli",
+        "edit_prompt": "a photo of a nice bell pepper"
+    },
+    {
+        "soure_prompt": "a photo of a dirty ram",
+        "edit_prompt": "a photo of a dirty bighorn"
+    },
+    {
+        "soure_prompt": "a photo of a clean ram",
+        "edit_prompt": "a photo of a clean bighorn"
+    },
+    {
+        "soure_prompt": "a photo of the ibex",
+        "edit_prompt": "a photo of the bighorn"
+    },
+    {
+        "soure_prompt": "a photo of the weird water buffalo",
+        "edit_prompt": "a photo of the weird bighorn"
+    },
+    {
+        "soure_prompt": "a dark photo of the impala",
+        "edit_prompt": "a dark photo of the bison"
+    },
+    {
+        "soure_prompt": "a photo of the clean ram",
+        "edit_prompt": "a photo of the clean bison"
+    },
+    {
+        "soure_prompt": "a photo of the small impala",
+        "edit_prompt": "a photo of the small bison"
+    },
+    {
+        "soure_prompt": "a photo of the small gazelle",
+        "edit_prompt": "a photo of the small bison"
+    },
+    {
+        "soure_prompt": "a photo of the nice ruffed grouse",
+        "edit_prompt": "a photo of the nice black grouse"
+    },
+    {
+        "soure_prompt": "a cropped photo of the ptarmigan",
+        "edit_prompt": "a cropped photo of the black grouse"
+    },
+    {
+        "soure_prompt": "a good photo of the ruffed grouse",
+        "edit_prompt": "a good photo of the black grouse"
+    },
+    {
+        "soure_prompt": "a close-up photo of a ruffed grouse",
+        "edit_prompt": "a close-up photo of a black grouse"
+    },
+    {
+        "soure_prompt": "a cropped photo of a goose",
+        "edit_prompt": "a cropped photo of a black stork"
+    },
+    {
+        "soure_prompt": "a cropped photo of the oystercatcher",
+        "edit_prompt": "a cropped photo of the black stork"
+    },
+    {
+        "soure_prompt": "a bright photo of the flamingo",
+        "edit_prompt": "a bright photo of the black stork"
+    },
+    {
+        "soure_prompt": "a dark photo of the spoonbill",
+        "edit_prompt": "a dark photo of the black stork"
+    },
+    {
+        "soure_prompt": "a cropped photo of the king penguin",
+        "edit_prompt": "a cropped photo of the black swan"
+    },
+    {
+        "soure_prompt": "a photo of the large albatross",
+        "edit_prompt": "a photo of the large black swan"
+    },
+    {
+        "soure_prompt": "a close-up photo of the European gallinule",
+        "edit_prompt": "a close-up photo of the black swan"
+    },
+    {
+        "soure_prompt": "a photo of the large European gallinule",
+        "edit_prompt": "a photo of the large black swan"
+    },
+    {
+        "soure_prompt": "a photo of a cool garden spider",
+        "edit_prompt": "a photo of a cool black widow"
+    },
+    {
+        "soure_prompt": "a rendering of a tarantula",
+        "edit_prompt": "a rendering of a black widow"
+    },
+    {
+        "soure_prompt": "a dark photo of the garden spider",
+        "edit_prompt": "a dark photo of the black widow"
+    },
+    {
+        "soure_prompt": "a photo of the cool garden spider",
+        "edit_prompt": "a photo of the cool black widow"
+    },
+    {
+        "soure_prompt": "a cropped photo of the thunder snake",
+        "edit_prompt": "a cropped photo of the boa constrictor"
+    },
+    {
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a boa constrictor"
+    },
+    {
+        "soure_prompt": "a photo of a cool green mamba",
+        "edit_prompt": "a photo of a cool boa constrictor"
+    },
+    {
+        "soure_prompt": "a photo of my sidewinder",
+        "edit_prompt": "a photo of my boa constrictor"
+    },
+    {
+        "soure_prompt": "a rendition of a hen-of-the-woods",
+        "edit_prompt": "a rendition of a bolete"
+    },
+    {
+        "soure_prompt": "a photo of the large gyromitra",
+        "edit_prompt": "a photo of the large bolete"
+    },
+    {
+        "soure_prompt": "a close-up photo of the hen-of-the-woods",
+        "edit_prompt": "a close-up photo of the bolete"
+    },
+    {
+        "soure_prompt": "a photo of the large coral fungus",
+        "edit_prompt": "a photo of the large bolete"
+    },
+    {
+        "soure_prompt": "a cropped photo of a football helmet",
+        "edit_prompt": "a cropped photo of a bonnet"
+    },
+    {
+        "soure_prompt": "a photo of the bathing cap",
+        "edit_prompt": "a photo of the bonnet"
+    },
+    {
+        "soure_prompt": "a photo of the cool shower cap",
+        "edit_prompt": "a photo of the cool bonnet"
+    },
+    {
+        "soure_prompt": "a photo of the bathing cap",
+        "edit_prompt": "a photo of the bonnet"
+    },
+    {
+        "soure_prompt": "a rendition of a terrapin",
+        "edit_prompt": "a rendition of a box turtle"
+    },
+    {
+        "soure_prompt": "a rendering of a terrapin",
+        "edit_prompt": "a rendering of a box turtle"
+    },
+    {
+        "soure_prompt": "a bright photo of the terrapin",
+        "edit_prompt": "a bright photo of the box turtle"
+    },
+    {
+        "soure_prompt": "a photo of a dirty terrapin",
+        "edit_prompt": "a photo of a dirty box turtle"
+    },
+    {
+        "soure_prompt": "a photo of a nice French bulldog",
+        "edit_prompt": "a photo of a nice boxer"
+    },
+    {
+        "soure_prompt": "a photo of my Rottweiler",
+        "edit_prompt": "a photo of my boxer"
+    },
+    {
+        "soure_prompt": "a photo of the cool miniature pinscher",
+        "edit_prompt": "a photo of the cool boxer"
+    },
+    {
+        "soure_prompt": "a cropped photo of a French bulldog",
+        "edit_prompt": "a cropped photo of a boxer"
+    },
+    {
+        "soure_prompt": "the photo of a zucchini",
+        "edit_prompt": "the photo of a broccoli"
+    },
+    {
+        "soure_prompt": "a rendition of the spaghetti squash",
+        "edit_prompt": "a rendition of the broccoli"
+    },
+    {
+        "soure_prompt": "a rendering of a butternut squash",
+        "edit_prompt": "a rendering of a broccoli"
+    },
+    {
+        "soure_prompt": "a dark photo of the butternut squash",
+        "edit_prompt": "a dark photo of the broccoli"
+    },
+    {
+        "soure_prompt": "a photo of a dirty sloth bear",
+        "edit_prompt": "a photo of a dirty brown bear"
+    },
+    {
+        "soure_prompt": "a good photo of the lesser panda",
+        "edit_prompt": "a good photo of the brown bear"
+    },
+    {
+        "soure_prompt": "a dark photo of the sloth bear",
+        "edit_prompt": "a dark photo of the brown bear"
+    },
+    {
+        "soure_prompt": "a photo of the small ice bear",
+        "edit_prompt": "a photo of the small brown bear"
+    },
+    {
+        "soure_prompt": "a photo of the cool tree frog",
+        "edit_prompt": "a photo of the cool bullfrog"
+    },
+    {
+        "soure_prompt": "a photo of a cool common newt",
+        "edit_prompt": "a photo of a cool bullfrog"
+    },
+    {
+        "soure_prompt": "a good photo of the European fire salamander",
+        "edit_prompt": "a good photo of the bullfrog"
+    },
+    {
+        "soure_prompt": "a photo of the weird axolotl",
+        "edit_prompt": "a photo of the weird bullfrog"
+    },
+    {
+        "soure_prompt": "a photo of a small black stork",
+        "edit_prompt": "a photo of a small bustard"
+    },
+    {
+        "soure_prompt": "a photo of a dirty goose",
+        "edit_prompt": "a photo of a dirty bustard"
+    },
+    {
+        "soure_prompt": "a rendition of a little blue heron",
+        "edit_prompt": "a rendition of a bustard"
+    },
+    {
+        "soure_prompt": "a rendering of a goose",
+        "edit_prompt": "a rendering of a bustard"
+    },
+    {
+        "soure_prompt": "a good photo of a broccoli",
+        "edit_prompt": "a good photo of a butternut squash"
+    },
+    {
+        "soure_prompt": "a photo of the clean cauliflower",
+        "edit_prompt": "a photo of the clean butternut squash"
+    },
+    {
+        "soure_prompt": "a rendition of the spaghetti squash",
+        "edit_prompt": "a rendition of the butternut squash"
+    },
+    {
+        "soure_prompt": "a photo of a dirty broccoli",
+        "edit_prompt": "a photo of a dirty butternut squash"
+    },
+    {
+        "soure_prompt": "a good photo of the jeep",
+        "edit_prompt": "a good photo of the cab"
+    },
+    {
+        "soure_prompt": "a photo of one sports car",
+        "edit_prompt": "a photo of one cab"
+    },
+    {
+        "soure_prompt": "a photo of the clean jeep",
+        "edit_prompt": "a photo of the clean cab"
+    },
+    {
+        "soure_prompt": "a photo of my sports car",
+        "edit_prompt": "a photo of my cab"
+    },
+    {
+        "soure_prompt": "a photo of a monarch",
+        "edit_prompt": "a photo of a cabbage butterfly"
+    },
+    {
+        "soure_prompt": "a photo of the weird admiral",
+        "edit_prompt": "a photo of the weird cabbage butterfly"
+    },
+    {
+        "soure_prompt": "a photo of the cool lycaenid",
+        "edit_prompt": "a photo of the cool cabbage butterfly"
+    },
+    {
+        "soure_prompt": "a photo of one lycaenid",
+        "edit_prompt": "a photo of one cabbage butterfly"
+    },
+    {
+        "soure_prompt": "a photo of my gondola",
+        "edit_prompt": "a photo of my canoe"
+    },
+    {
+        "soure_prompt": "a photo of the cool gondola",
+        "edit_prompt": "a photo of the cool canoe"
+    },
+    {
+        "soure_prompt": "a rendition of a gondola",
+        "edit_prompt": "a rendition of a canoe"
+    },
+    {
+        "soure_prompt": "a photo of the large gondola",
+        "edit_prompt": "a photo of the large canoe"
+    },
+    {
+        "soure_prompt": "a cropped photo of the spider monkey",
+        "edit_prompt": "a cropped photo of the capuchin"
+    },
+    {
+        "soure_prompt": "a photo of my macaque",
+        "edit_prompt": "a photo of my capuchin"
+    },
+    {
+        "soure_prompt": "a photo of a small macaque",
+        "edit_prompt": "a photo of a small capuchin"
+    },
+    {
+        "soure_prompt": "a rendition of a squirrel monkey",
+        "edit_prompt": "a rendition of a capuchin"
+    },
+    {
+        "soure_prompt": "a close-up photo of a bell pepper",
+        "edit_prompt": "a close-up photo of a cardoon"
+    },
+    {
+        "soure_prompt": "a rendering of a broccoli",
+        "edit_prompt": "a rendering of a cardoon"
+    },
+    {
+        "soure_prompt": "a photo of a zucchini",
+        "edit_prompt": "a photo of a cardoon"
+    },
+    {
+        "soure_prompt": "a photo of the weird cauliflower",
+        "edit_prompt": "a photo of the weird cardoon"
+    },
+    {
+        "soure_prompt": "a photo of the nice computer keyboard",
+        "edit_prompt": "a photo of the nice cassette player"
+    },
+    {
+        "soure_prompt": "a cropped photo of a computer keyboard",
+        "edit_prompt": "a cropped photo of a cassette player"
+    },
+    {
+        "soure_prompt": "a photo of the weird hard disc",
+        "edit_prompt": "a photo of the weird cassette player"
+    },
+    {
+        "soure_prompt": "a rendering of a cellular telephone",
+        "edit_prompt": "a rendering of a cassette player"
+    },
+    {
+        "soure_prompt": "the photo of a trimaran",
+        "edit_prompt": "the photo of a catamaran"
+    },
+    {
+        "soure_prompt": "a photo of the clean schooner",
+        "edit_prompt": "a photo of the clean catamaran"
+    },
+    {
+        "soure_prompt": "a photo of my schooner",
+        "edit_prompt": "a photo of my catamaran"
+    },
+    {
+        "soure_prompt": "a photo of the clean schooner",
+        "edit_prompt": "a photo of the clean catamaran"
+    },
+    {
+        "soure_prompt": "a good photo of the artichoke",
+        "edit_prompt": "a good photo of the cauliflower"
+    },
+    {
+        "soure_prompt": "a cropped photo of a cardoon",
+        "edit_prompt": "a cropped photo of a cauliflower"
+    },
+    {
+        "soure_prompt": "a cropped photo of a cucumber",
+        "edit_prompt": "a cropped photo of a cauliflower"
+    },
+    {
+        "soure_prompt": "a close-up photo of the butternut squash",
+        "edit_prompt": "a close-up photo of the cauliflower"
+    },
+    {
+        "soure_prompt": "a photo of my violin",
+        "edit_prompt": "a photo of my cello"
+    },
+    {
+        "soure_prompt": "a photo of the large banjo",
+        "edit_prompt": "a photo of the large cello"
+    },
+    {
+        "soure_prompt": "a photo of the cool banjo",
+        "edit_prompt": "a photo of the cool cello"
+    },
+    {
+        "soure_prompt": "a cropped photo of a electric guitar",
+        "edit_prompt": "a cropped photo of a cello"
+    },
+    {
+        "soure_prompt": "a photo of a cool cassette player",
+        "edit_prompt": "a photo of a cool cellular telephone"
+    },
+    {
+        "soure_prompt": "a photo of my hard disc",
+        "edit_prompt": "a photo of my cellular telephone"
+    },
+    {
+        "soure_prompt": "a rendition of a laptop",
+        "edit_prompt": "a rendition of a cellular telephone"
+    },
+    {
+        "soure_prompt": "a photo of the iPod",
+        "edit_prompt": "a photo of the cellular telephone"
+    },
+    {
+        "soure_prompt": "a good photo of the bagel",
+        "edit_prompt": "a good photo of the cheeseburger"
+    },
+    {
+        "soure_prompt": "a photo of a nice bagel",
+        "edit_prompt": "a photo of a nice cheeseburger"
+    },
+    {
+        "soure_prompt": "a photo of a hotdog",
+        "edit_prompt": "a photo of a cheeseburger"
+    },
+    {
+        "soure_prompt": "a photo of the large hotdog",
+        "edit_prompt": "a photo of the large cheeseburger"
+    },
+    {
+        "soure_prompt": "a rendition of the Persian cat",
+        "edit_prompt": "a rendition of the cheetah"
+    },
+    {
+        "soure_prompt": "a close-up photo of a lion",
+        "edit_prompt": "a close-up photo of a cheetah"
+    },
+    {
+        "soure_prompt": "a photo of the weird snow leopard",
+        "edit_prompt": "a photo of the weird cheetah"
+    },
+    {
+        "soure_prompt": "a rendering of a snow leopard",
+        "edit_prompt": "a rendering of a cheetah"
+    },
+    {
+        "soure_prompt": "a bright photo of the maraca",
+        "edit_prompt": "a bright photo of the chime"
+    },
+    {
+        "soure_prompt": "a photo of a dirty maraca",
+        "edit_prompt": "a photo of a dirty chime"
+    },
+    {
+        "soure_prompt": "a bright photo of the steel drum",
+        "edit_prompt": "a bright photo of the chime"
+    },
+    {
+        "soure_prompt": "a rendition of the gong",
+        "edit_prompt": "a rendition of the chime"
+    },
+    {
+        "soure_prompt": "a photo of a nice gorilla",
+        "edit_prompt": "a photo of a nice chimpanzee"
+    },
+    {
+        "soure_prompt": "a good photo of the gorilla",
+        "edit_prompt": "a good photo of the chimpanzee"
+    },
+    {
+        "soure_prompt": "a photo of a nice gorilla",
+        "edit_prompt": "a photo of a nice chimpanzee"
+    },
+    {
+        "soure_prompt": "a photo of a dirty gorilla",
+        "edit_prompt": "a photo of a dirty chimpanzee"
+    },
+    {
+        "soure_prompt": "a photo of a clean golden retriever",
+        "edit_prompt": "a photo of a clean cocker spaniel"
+    },
+    {
+        "soure_prompt": "a photo of a dirty golden retriever",
+        "edit_prompt": "a photo of a dirty cocker spaniel"
+    },
+    {
+        "soure_prompt": "a bright photo of the English springer",
+        "edit_prompt": "a bright photo of the cocker spaniel"
+    },
+    {
+        "soure_prompt": "a close-up photo of the golden retriever",
+        "edit_prompt": "a close-up photo of the cocker spaniel"
+    },
+    {
+        "soure_prompt": "a photo of the large wine bottle",
+        "edit_prompt": "a photo of the large cocktail shaker"
+    },
+    {
+        "soure_prompt": "a photo of the large water bottle",
+        "edit_prompt": "a photo of the large cocktail shaker"
+    },
+    {
+        "soure_prompt": "a cropped photo of the beer bottle",
+        "edit_prompt": "a cropped photo of the cocktail shaker"
+    },
+    {
+        "soure_prompt": "a photo of the weird teapot",
+        "edit_prompt": "a photo of the weird cocktail shaker"
+    },
+    {
+        "soure_prompt": "a photo of the small teapot",
+        "edit_prompt": "a photo of the small coffee mug"
+    },
+    {
+        "soure_prompt": "a good photo of a cocktail shaker",
+        "edit_prompt": "a good photo of a coffee mug"
+    },
+    {
+        "soure_prompt": "a rendition of a teapot",
+        "edit_prompt": "a rendition of a coffee mug"
+    },
+    {
+        "soure_prompt": "a photo of the large coffeepot",
+        "edit_prompt": "a photo of the large coffee mug"
+    },
+    {
+        "soure_prompt": "a photo of my cocktail shaker",
+        "edit_prompt": "a photo of my coffeepot"
+    },
+    {
+        "soure_prompt": "a bright photo of the coffee mug",
+        "edit_prompt": "a bright photo of the coffeepot"
+    },
+    {
+        "soure_prompt": "a cropped photo of the water jug",
+        "edit_prompt": "a cropped photo of the coffeepot"
+    },
+    {
+        "soure_prompt": "a photo of one teapot",
+        "edit_prompt": "a photo of one coffeepot"
+    },
+    {
+        "soure_prompt": "a photo of the small miniature pinscher",
+        "edit_prompt": "a photo of the small collie"
+    },
+    {
+        "soure_prompt": "a photo of a dirty Rottweiler",
+        "edit_prompt": "a photo of a dirty collie"
+    },
+    {
+        "soure_prompt": "a photo of a nice French bulldog",
+        "edit_prompt": "a photo of a nice collie"
+    },
+    {
+        "soure_prompt": "a photo of the boxer",
+        "edit_prompt": "a photo of the collie"
+    },
+    {
+        "soure_prompt": "a photo of a cool spotted salamander",
+        "edit_prompt": "a photo of a cool common newt"
+    },
+    {
+        "soure_prompt": "a photo of a dirty European fire salamander",
+        "edit_prompt": "a photo of a dirty common newt"
+    },
+    {
+        "soure_prompt": "a photo of a small tree frog",
+        "edit_prompt": "a photo of a small common newt"
+    },
+    {
+        "soure_prompt": "a good photo of a tree frog",
+        "edit_prompt": "a good photo of a common newt"
+    },
+    {
+        "soure_prompt": "a photo of a clean laptop",
+        "edit_prompt": "a photo of a clean computer keyboard"
+    },
+    {
+        "soure_prompt": "a photo of a small iPod",
+        "edit_prompt": "a photo of a small computer keyboard"
+    },
+    {
+        "soure_prompt": "a photo of the nice laptop",
+        "edit_prompt": "a photo of the nice computer keyboard"
+    },
+    {
+        "soure_prompt": "a photo of one iPod",
+        "edit_prompt": "a photo of one computer keyboard"
+    },
+    {
+        "soure_prompt": "a bright photo of the jeep",
+        "edit_prompt": "a bright photo of the convertible"
+    },
+    {
+        "soure_prompt": "a photo of a dirty jeep",
+        "edit_prompt": "a photo of a dirty convertible"
+    },
+    {
+        "soure_prompt": "a photo of a clean sports car",
+        "edit_prompt": "a photo of a clean convertible"
+    },
+    {
+        "soure_prompt": "the photo of a ambulance",
+        "edit_prompt": "the photo of a convertible"
+    },
+    {
+        "soure_prompt": "a photo of the clean bolete",
+        "edit_prompt": "a photo of the clean coral fungus"
+    },
+    {
+        "soure_prompt": "a good photo of the bolete",
+        "edit_prompt": "a good photo of the coral fungus"
+    },
+    {
+        "soure_prompt": "a photo of one earthstar",
+        "edit_prompt": "a photo of one coral fungus"
+    },
+    {
+        "soure_prompt": "a close-up photo of the hen-of-the-woods",
+        "edit_prompt": "a close-up photo of the coral fungus"
+    },
+    {
+        "soure_prompt": "a photo of my bassoon",
+        "edit_prompt": "a photo of my cornet"
+    },
+    {
+        "soure_prompt": "a photo of a clean French horn",
+        "edit_prompt": "a photo of a clean cornet"
+    },
+    {
+        "soure_prompt": "a close-up photo of a sax",
+        "edit_prompt": "a close-up photo of a cornet"
+    },
+    {
+        "soure_prompt": "a photo of the large sax",
+        "edit_prompt": "a photo of the large cornet"
+    },
+    {
+        "soure_prompt": "a rendition of a bonnet",
+        "edit_prompt": "a rendition of a cowboy hat"
+    },
+    {
+        "soure_prompt": "a photo of my football helmet",
+        "edit_prompt": "a photo of my cowboy hat"
+    },
+    {
+        "soure_prompt": "a good photo of a football helmet",
+        "edit_prompt": "a good photo of a cowboy hat"
+    },
+    {
+        "soure_prompt": "a photo of a small shower cap",
+        "edit_prompt": "a photo of a small cowboy hat"
+    },
+    {
+        "soure_prompt": "a good photo of the Arctic fox",
+        "edit_prompt": "a good photo of the coyote"
+    },
+    {
+        "soure_prompt": "a photo of the weird red fox",
+        "edit_prompt": "a photo of the weird coyote"
+    },
+    {
+        "soure_prompt": "a cropped photo of a hyena",
+        "edit_prompt": "a cropped photo of a coyote"
+    },
+    {
+        "soure_prompt": "the photo of a African hunting dog",
+        "edit_prompt": "the photo of a coyote"
+    },
+    {
+        "soure_prompt": "a photo of one isopod",
+        "edit_prompt": "a photo of one crayfish"
+    },
+    {
+        "soure_prompt": "a photo of the cool isopod",
+        "edit_prompt": "a photo of the cool crayfish"
+    },
+    {
+        "soure_prompt": "a photo of a Dungeness crab",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "soure_prompt": "a photo of a isopod",
+        "edit_prompt": "a photo of a crayfish"
+    },
+    {
+        "soure_prompt": "a photo of one artichoke",
+        "edit_prompt": "a photo of one cucumber"
+    },
+    {
+        "soure_prompt": "a photo of a cauliflower",
+        "edit_prompt": "a photo of a cucumber"
+    },
+    {
+        "soure_prompt": "a bright photo of the butternut squash",
+        "edit_prompt": "a bright photo of the cucumber"
+    },
+    {
+        "soure_prompt": "a photo of the weird zucchini",
+        "edit_prompt": "a photo of the weird cucumber"
+    },
+    {
+        "soure_prompt": "a bright photo of the orange",
+        "edit_prompt": "a bright photo of the custard apple"
+    },
+    {
+        "soure_prompt": "a photo of a dirty strawberry",
+        "edit_prompt": "a photo of a dirty custard apple"
+    },
+    {
+        "soure_prompt": "a photo of the large pomegranate",
+        "edit_prompt": "a photo of the large custard apple"
+    },
+    {
+        "soure_prompt": "a photo of the nice strawberry",
+        "edit_prompt": "a photo of the nice custard apple"
+    },
+    {
+        "soure_prompt": "a dark photo of the iPod",
+        "edit_prompt": "a dark photo of the desktop computer"
+    },
+    {
+        "soure_prompt": "a cropped photo of a hard disc",
+        "edit_prompt": "a cropped photo of a desktop computer"
+    },
+    {
+        "soure_prompt": "a close-up photo of a computer keyboard",
+        "edit_prompt": "a close-up photo of a desktop computer"
+    },
+    {
+        "soure_prompt": "a rendering of a dial telephone",
+        "edit_prompt": "a rendering of a desktop computer"
+    },
+    {
+        "soure_prompt": "a photo of my laptop",
+        "edit_prompt": "a photo of my dial telephone"
+    },
+    {
+        "soure_prompt": "a photo of the weird desktop computer",
+        "edit_prompt": "a photo of the weird dial telephone"
+    },
+    {
+        "soure_prompt": "a photo of a dirty computer keyboard",
+        "edit_prompt": "a photo of a dirty dial telephone"
+    },
+    {
+        "soure_prompt": "a good photo of the computer keyboard",
+        "edit_prompt": "a good photo of the dial telephone"
+    },
+    {
+        "soure_prompt": "a photo of the weird thunder snake",
+        "edit_prompt": "a photo of the weird diamondback"
+    },
+    {
+        "soure_prompt": "a photo of the small rock python",
+        "edit_prompt": "a photo of the small diamondback"
+    },
+    {
+        "soure_prompt": "a photo of the weird thunder snake",
+        "edit_prompt": "a photo of the weird diamondback"
+    },
+    {
+        "soure_prompt": "a photo of a clean rock python",
+        "edit_prompt": "a photo of a clean diamondback"
+    },
+    {
+        "soure_prompt": "a good photo of the barometer",
+        "edit_prompt": "a good photo of the digital clock"
+    },
+    {
+        "soure_prompt": "a photo of a odometer",
+        "edit_prompt": "a photo of a digital clock"
+    },
+    {
+        "soure_prompt": "a photo of the large odometer",
+        "edit_prompt": "a photo of the large digital clock"
+    },
+    {
+        "soure_prompt": "a photo of a small barometer",
+        "edit_prompt": "a photo of a small digital clock"
+    },
+    {
+        "soure_prompt": "a photo of a clean barometer",
+        "edit_prompt": "a photo of a clean digital watch"
+    },
+    {
+        "soure_prompt": "a photo of a dirty barometer",
+        "edit_prompt": "a photo of a dirty digital watch"
+    },
+    {
+        "soure_prompt": "a photo of the weird barometer",
+        "edit_prompt": "a photo of the weird digital watch"
+    },
+    {
+        "soure_prompt": "a photo of the large barometer",
+        "edit_prompt": "a photo of the large digital watch"
+    },
+    {
+        "soure_prompt": "a photo of a small grey fox",
+        "edit_prompt": "a photo of a small dingo"
+    },
+    {
+        "soure_prompt": "a photo of a dirty Arctic fox",
+        "edit_prompt": "a photo of a dirty dingo"
+    },
+    {
+        "soure_prompt": "a photo of a nice hyena",
+        "edit_prompt": "a photo of a nice dingo"
+    },
+    {
+        "soure_prompt": "a photo of a small Arctic fox",
+        "edit_prompt": "a photo of a small dingo"
+    },
+    {
+        "soure_prompt": "a photo of a small steel drum",
+        "edit_prompt": "a photo of a small drum"
+    },
+    {
+        "soure_prompt": "a close-up photo of the marimba",
+        "edit_prompt": "a close-up photo of the drum"
+    },
+    {
+        "soure_prompt": "a photo of the cool marimba",
+        "edit_prompt": "a photo of the cool drum"
+    },
+    {
+        "soure_prompt": "a cropped photo of a maraca",
+        "edit_prompt": "a cropped photo of a drum"
+    },
+    {
+        "soure_prompt": "a close-up photo of the killer whale",
+        "edit_prompt": "a close-up photo of the dugong"
+    },
+    {
+        "soure_prompt": "the photo of a grey whale",
+        "edit_prompt": "the photo of a dugong"
+    },
+    {
+        "soure_prompt": "a good photo of the killer whale",
+        "edit_prompt": "a good photo of the dugong"
+    },
+    {
+        "soure_prompt": "a photo of the cool killer whale",
+        "edit_prompt": "a photo of the cool dugong"
+    },
+    {
+        "soure_prompt": "a good photo of a coral fungus",
+        "edit_prompt": "a good photo of a earthstar"
+    },
+    {
+        "soure_prompt": "a photo of a small stinkhorn",
+        "edit_prompt": "a photo of a small earthstar"
+    },
+    {
+        "soure_prompt": "a rendering of a coral fungus",
+        "edit_prompt": "a rendering of a earthstar"
+    },
+    {
+        "soure_prompt": "a photo of my gyromitra",
+        "edit_prompt": "a photo of my earthstar"
+    },
+    {
+        "soure_prompt": "a photo of the nice anemone fish",
+        "edit_prompt": "a photo of the nice eel"
+    },
+    {
+        "soure_prompt": "a close-up photo of the goldfish",
+        "edit_prompt": "a close-up photo of the eel"
+    },
+    {
+        "soure_prompt": "a photo of a nice lionfish",
+        "edit_prompt": "a photo of a nice eel"
+    },
+    {
+        "soure_prompt": "a cropped photo of the gar",
+        "edit_prompt": "a cropped photo of the eel"
+    },
+    {
+        "soure_prompt": "a photo of a dirty tree frog",
+        "edit_prompt": "a photo of a dirty eft"
+    },
+    {
+        "soure_prompt": "a rendition of a axolotl",
+        "edit_prompt": "a rendition of a eft"
+    },
+    {
+        "soure_prompt": "a dark photo of the tree frog",
+        "edit_prompt": "a dark photo of the eft"
+    },
+    {
+        "soure_prompt": "a rendition of the bullfrog",
+        "edit_prompt": "a rendition of the eft"
+    },
+    {
+        "soure_prompt": "a photo of my banjo",
+        "edit_prompt": "a photo of my electric guitar"
+    },
+    {
+        "soure_prompt": "a bright photo of the acoustic guitar",
+        "edit_prompt": "a bright photo of the electric guitar"
+    },
+    {
+        "soure_prompt": "a good photo of the violin",
+        "edit_prompt": "a good photo of the electric guitar"
+    },
+    {
+        "soure_prompt": "a photo of a small cello",
+        "edit_prompt": "a photo of a small electric guitar"
+    },
+    {
+        "soure_prompt": "a rendering of a steam locomotive",
+        "edit_prompt": "a rendering of a electric locomotive"
+    },
+    {
+        "soure_prompt": "a dark photo of the steam locomotive",
+        "edit_prompt": "a dark photo of the electric locomotive"
+    },
+    {
+        "soure_prompt": "a photo of a steam locomotive",
+        "edit_prompt": "a photo of a electric locomotive"
+    },
+    {
+        "soure_prompt": "a rendition of the steam locomotive",
+        "edit_prompt": "a rendition of the electric locomotive"
+    },
+    {
+        "soure_prompt": "a photo of a cool hermit crab",
+        "edit_prompt": "a photo of a cool fiddler crab"
+    },
+    {
+        "soure_prompt": "a photo of the small hermit crab",
+        "edit_prompt": "a photo of the small fiddler crab"
+    },
+    {
+        "soure_prompt": "a photo of my Dungeness crab",
+        "edit_prompt": "a photo of my fiddler crab"
+    },
+    {
+        "soure_prompt": "a dark photo of the hermit crab",
+        "edit_prompt": "a dark photo of the fiddler crab"
+    },
+    {
+        "soure_prompt": "a rendering of a strawberry",
+        "edit_prompt": "a rendering of a fig"
+    },
+    {
+        "soure_prompt": "a photo of a small orange",
+        "edit_prompt": "a photo of a small fig"
+    },
+    {
+        "soure_prompt": "a photo of a small pineapple",
+        "edit_prompt": "a photo of a small fig"
+    },
+    {
+        "soure_prompt": "a cropped photo of a pineapple",
+        "edit_prompt": "a cropped photo of a fig"
+    },
+    {
+        "soure_prompt": "a photo of the pickup",
+        "edit_prompt": "a photo of the fire engine"
+    },
+    {
+        "soure_prompt": "a photo of one trailer truck",
+        "edit_prompt": "a photo of one fire engine"
+    },
+    {
+        "soure_prompt": "a rendition of the pickup",
+        "edit_prompt": "a rendition of the fire engine"
+    },
+    {
+        "soure_prompt": "a photo of a clean police van",
+        "edit_prompt": "a photo of a clean fire engine"
+    },
+    {
+        "soure_prompt": "a cropped photo of the canoe",
+        "edit_prompt": "a cropped photo of the fireboat"
+    },
+    {
+        "soure_prompt": "a photo of the weird canoe",
+        "edit_prompt": "a photo of the weird fireboat"
+    },
+    {
+        "soure_prompt": "a cropped photo of the canoe",
+        "edit_prompt": "a cropped photo of the fireboat"
+    },
+    {
+        "soure_prompt": "a photo of the nice canoe",
+        "edit_prompt": "a photo of the nice fireboat"
+    },
+    {
+        "soure_prompt": "a good photo of a oystercatcher",
+        "edit_prompt": "a good photo of a flamingo"
+    },
+    {
+        "soure_prompt": "a photo of my bustard",
+        "edit_prompt": "a photo of my flamingo"
+    },
+    {
+        "soure_prompt": "a photo of the clean oystercatcher",
+        "edit_prompt": "a photo of the clean flamingo"
+    },
+    {
+        "soure_prompt": "a dark photo of the spoonbill",
+        "edit_prompt": "a dark photo of the flamingo"
+    },
+    {
+        "soure_prompt": "a photo of a dirty cornet",
+        "edit_prompt": "a photo of a dirty flute"
+    },
+    {
+        "soure_prompt": "a rendering of a sax",
+        "edit_prompt": "a rendering of a flute"
+    },
+    {
+        "soure_prompt": "a close-up photo of a oboe",
+        "edit_prompt": "a close-up photo of a flute"
+    },
+    {
+        "soure_prompt": "a cropped photo of the French horn",
+        "edit_prompt": "a cropped photo of the flute"
+    },
+    {
+        "soure_prompt": "a photo of the nice cowboy hat",
+        "edit_prompt": "a photo of the nice football helmet"
+    },
+    {
+        "soure_prompt": "the photo of a cowboy hat",
+        "edit_prompt": "the photo of a football helmet"
+    },
+    {
+        "soure_prompt": "a cropped photo of a cowboy hat",
+        "edit_prompt": "a cropped photo of a football helmet"
+    },
+    {
+        "soure_prompt": "a rendition of the shower cap",
+        "edit_prompt": "a rendition of the football helmet"
+    },
+    {
+        "soure_prompt": "a photo of a small anemone fish",
+        "edit_prompt": "a photo of a small gar"
+    },
+    {
+        "soure_prompt": "a photo of the clean lionfish",
+        "edit_prompt": "a photo of the clean gar"
+    },
+    {
+        "soure_prompt": "a photo of the large sturgeon",
+        "edit_prompt": "a photo of the large gar"
+    },
+    {
+        "soure_prompt": "a photo of the nice eel",
+        "edit_prompt": "a photo of the nice gar"
+    },
+    {
+        "soure_prompt": "a close-up photo of a school bus",
+        "edit_prompt": "a close-up photo of a garbage truck"
+    },
+    {
+        "soure_prompt": "a photo of a dirty school bus",
+        "edit_prompt": "a photo of a dirty garbage truck"
+    },
+    {
+        "soure_prompt": "a photo of a dirty school bus",
+        "edit_prompt": "a photo of a dirty garbage truck"
+    },
+    {
+        "soure_prompt": "a photo of one police van",
+        "edit_prompt": "a photo of one garbage truck"
+    },
+    {
+        "soure_prompt": "a cropped photo of the scorpion",
+        "edit_prompt": "a cropped photo of the garden spider"
+    },
+    {
+        "soure_prompt": "a photo of the weird black widow",
+        "edit_prompt": "a photo of the weird garden spider"
+    },
+    {
+        "soure_prompt": "a cropped photo of a black widow",
+        "edit_prompt": "a cropped photo of a garden spider"
+    },
+    {
+        "soure_prompt": "a bright photo of the black widow",
+        "edit_prompt": "a bright photo of the garden spider"
+    },
+    {
+        "soure_prompt": "a good photo of a ibex",
+        "edit_prompt": "a good photo of a gazelle"
+    },
+    {
+        "soure_prompt": "a photo of the water buffalo",
+        "edit_prompt": "a photo of the gazelle"
+    },
+    {
+        "soure_prompt": "a photo of a nice bison",
+        "edit_prompt": "a photo of a nice gazelle"
+    },
+    {
+        "soure_prompt": "a close-up photo of a ibex",
+        "edit_prompt": "a close-up photo of a gazelle"
+    },
+    {
+        "soure_prompt": "a rendition of a lesser panda",
+        "edit_prompt": "a rendition of a giant panda"
+    },
+    {
+        "soure_prompt": "a dark photo of the ice bear",
+        "edit_prompt": "a dark photo of the giant panda"
+    },
+    {
+        "soure_prompt": "a photo of the clean brown bear",
+        "edit_prompt": "a photo of the clean giant panda"
+    },
+    {
+        "soure_prompt": "a photo of a dirty sloth bear",
+        "edit_prompt": "a photo of a dirty giant panda"
+    },
+    {
+        "soure_prompt": "a photo of a small Irish setter",
+        "edit_prompt": "a photo of a small golden retriever"
+    },
+    {
+        "soure_prompt": "a photo of the large English springer",
+        "edit_prompt": "a photo of the large golden retriever"
+    },
+    {
+        "soure_prompt": "a photo of a small cocker spaniel",
+        "edit_prompt": "a photo of a small golden retriever"
+    },
+    {
+        "soure_prompt": "a photo of a dirty English springer",
+        "edit_prompt": "a photo of a dirty golden retriever"
+    },
+    {
+        "soure_prompt": "the photo of a house finch",
+        "edit_prompt": "the photo of a goldfinch"
+    },
+    {
+        "soure_prompt": "a rendition of a house finch",
+        "edit_prompt": "a rendition of a goldfinch"
+    },
+    {
+        "soure_prompt": "a close-up photo of the indigo bunting",
+        "edit_prompt": "a close-up photo of the goldfinch"
+    },
+    {
+        "soure_prompt": "a good photo of the indigo bunting",
+        "edit_prompt": "a good photo of the goldfinch"
+    },
+    {
+        "soure_prompt": "a photo of a dirty sturgeon",
+        "edit_prompt": "a photo of a dirty goldfish"
+    },
+    {
+        "soure_prompt": "a rendition of a gar",
+        "edit_prompt": "a rendition of a goldfish"
+    },
+    {
+        "soure_prompt": "a photo of a dirty lionfish",
+        "edit_prompt": "a photo of a dirty goldfish"
+    },
+    {
+        "soure_prompt": "a good photo of a tench",
+        "edit_prompt": "a good photo of a goldfish"
+    },
+    {
+        "soure_prompt": "a photo of a dirty rugby ball",
+        "edit_prompt": "a photo of a dirty golf ball"
+    },
+    {
+        "soure_prompt": "a photo of one rugby ball",
+        "edit_prompt": "a photo of one golf ball"
+    },
+    {
+        "soure_prompt": "a cropped photo of the rugby ball",
+        "edit_prompt": "a cropped photo of the golf ball"
+    },
+    {
+        "soure_prompt": "a close-up photo of a tennis ball",
+        "edit_prompt": "a close-up photo of a golf ball"
+    },
+    {
+        "soure_prompt": "a good photo of a canoe",
+        "edit_prompt": "a good photo of a gondola"
+    },
+    {
+        "soure_prompt": "a rendition of a canoe",
+        "edit_prompt": "a rendition of a gondola"
+    },
+    {
+        "soure_prompt": "a photo of a clean fireboat",
+        "edit_prompt": "a photo of a clean gondola"
+    },
+    {
+        "soure_prompt": "a rendering of a speedboat",
+        "edit_prompt": "a rendering of a gondola"
+    },
+    {
+        "soure_prompt": "a photo of the large chime",
+        "edit_prompt": "a photo of the large gong"
+    },
+    {
+        "soure_prompt": "a photo of the small marimba",
+        "edit_prompt": "a photo of the small gong"
+    },
+    {
+        "soure_prompt": "a photo of the cool drum",
+        "edit_prompt": "a photo of the cool gong"
+    },
+    {
+        "soure_prompt": "a cropped photo of a maraca",
+        "edit_prompt": "a cropped photo of a gong"
+    },
+    {
+        "soure_prompt": "a photo of my flamingo",
+        "edit_prompt": "a photo of my goose"
+    },
+    {
+        "soure_prompt": "a good photo of the flamingo",
+        "edit_prompt": "a good photo of the goose"
+    },
+    {
+        "soure_prompt": "a photo of a dirty oystercatcher",
+        "edit_prompt": "a photo of a dirty goose"
+    },
+    {
+        "soure_prompt": "a photo of one spoonbill",
+        "edit_prompt": "a photo of one goose"
+    },
+    {
+        "soure_prompt": "the photo of a chimpanzee",
+        "edit_prompt": "the photo of a gorilla"
+    },
+    {
+        "soure_prompt": "a rendition of a orangutan",
+        "edit_prompt": "a rendition of a gorilla"
+    },
+    {
+        "soure_prompt": "a bright photo of the orangutan",
+        "edit_prompt": "a bright photo of the gorilla"
+    },
+    {
+        "soure_prompt": "a photo of a dirty chimpanzee",
+        "edit_prompt": "a photo of a dirty gorilla"
+    },
+    {
+        "soure_prompt": "a photo of the large bald eagle",
+        "edit_prompt": "a photo of the large great grey owl"
+    },
+    {
+        "soure_prompt": "a photo of a bald eagle",
+        "edit_prompt": "a photo of a great grey owl"
+    },
+    {
+        "soure_prompt": "a photo of a cool bald eagle",
+        "edit_prompt": "a photo of a cool great grey owl"
+    },
+    {
+        "soure_prompt": "a good photo of a kite",
+        "edit_prompt": "a good photo of a great grey owl"
+    },
+    {
+        "soure_prompt": "a rendition of a hammerhead",
+        "edit_prompt": "a rendition of a great white shark"
+    },
+    {
+        "soure_prompt": "a rendition of the hammerhead",
+        "edit_prompt": "a rendition of the great white shark"
+    },
+    {
+        "soure_prompt": "a photo of a clean tiger shark",
+        "edit_prompt": "a photo of a clean great white shark"
+    },
+    {
+        "soure_prompt": "a bright photo of the hammerhead",
+        "edit_prompt": "a bright photo of the great white shark"
+    },
+    {
+        "soure_prompt": "a photo of the small thunder snake",
+        "edit_prompt": "a photo of the small green mamba"
+    },
+    {
+        "soure_prompt": "a photo of the weird Indian cobra",
+        "edit_prompt": "a photo of the weird green mamba"
+    },
+    {
+        "soure_prompt": "a photo of the large boa constrictor",
+        "edit_prompt": "a photo of the large green mamba"
+    },
+    {
+        "soure_prompt": "a photo of the king snake",
+        "edit_prompt": "a photo of the green mamba"
+    },
+    {
+        "soure_prompt": "a good photo of the diamondback",
+        "edit_prompt": "a good photo of the green snake"
+    },
+    {
+        "soure_prompt": "a photo of one boa constrictor",
+        "edit_prompt": "a photo of one green snake"
+    },
+    {
+        "soure_prompt": "a photo of the nice Indian cobra",
+        "edit_prompt": "a photo of the nice green snake"
+    },
+    {
+        "soure_prompt": "a photo of the nice diamondback",
+        "edit_prompt": "a photo of the nice green snake"
+    },
+    {
+        "soure_prompt": "a cropped photo of a timber wolf",
+        "edit_prompt": "a cropped photo of a grey fox"
+    },
+    {
+        "soure_prompt": "a photo of the cool red fox",
+        "edit_prompt": "a photo of the cool grey fox"
+    },
+    {
+        "soure_prompt": "a photo of the weird red fox",
+        "edit_prompt": "a photo of the weird grey fox"
+    },
+    {
+        "soure_prompt": "a photo of the clean red fox",
+        "edit_prompt": "a photo of the clean grey fox"
+    },
+    {
+        "soure_prompt": "a photo of the weird sea lion",
+        "edit_prompt": "a photo of the weird grey whale"
+    },
+    {
+        "soure_prompt": "a close-up photo of the sea lion",
+        "edit_prompt": "a close-up photo of the grey whale"
+    },
+    {
+        "soure_prompt": "a good photo of a sea lion",
+        "edit_prompt": "a good photo of a grey whale"
+    },
+    {
+        "soure_prompt": "a rendition of a sea lion",
+        "edit_prompt": "a rendition of a grey whale"
+    },
+    {
+        "soure_prompt": "a photo of a clean long-horned beetle",
+        "edit_prompt": "a photo of a clean ground beetle"
+    },
+    {
+        "soure_prompt": "a photo of the nice ladybug",
+        "edit_prompt": "a photo of the nice ground beetle"
+    },
+    {
+        "soure_prompt": "a photo of a small ladybug",
+        "edit_prompt": "a photo of a small ground beetle"
+    },
+    {
+        "soure_prompt": "a photo of the small ladybug",
+        "edit_prompt": "a photo of the small ground beetle"
+    },
+    {
+        "soure_prompt": "the photo of a squirrel monkey",
+        "edit_prompt": "the photo of a guenon"
+    },
+    {
+        "soure_prompt": "a photo of the small baboon",
+        "edit_prompt": "a photo of the small guenon"
+    },
+    {
+        "soure_prompt": "a close-up photo of the macaque",
+        "edit_prompt": "a close-up photo of the guenon"
+    },
+    {
+        "soure_prompt": "a photo of a baboon",
+        "edit_prompt": "a photo of a guenon"
+    },
+    {
+        "soure_prompt": "a photo of the earthstar",
+        "edit_prompt": "a photo of the gyromitra"
+    },
+    {
+        "soure_prompt": "a cropped photo of the earthstar",
+        "edit_prompt": "a cropped photo of the gyromitra"
+    },
+    {
+        "soure_prompt": "a photo of my earthstar",
+        "edit_prompt": "a photo of my gyromitra"
+    },
+    {
+        "soure_prompt": "a photo of a small coral fungus",
+        "edit_prompt": "a photo of a small gyromitra"
+    },
+    {
+        "soure_prompt": "a photo of a dirty plane",
+        "edit_prompt": "a photo of a dirty hammer"
+    },
+    {
+        "soure_prompt": "a dark photo of the plane",
+        "edit_prompt": "a dark photo of the hammer"
+    },
+    {
+        "soure_prompt": "a close-up photo of the plane",
+        "edit_prompt": "a close-up photo of the hammer"
+    },
+    {
+        "soure_prompt": "a dark photo of the plane",
+        "edit_prompt": "a dark photo of the hammer"
+    },
+    {
+        "soure_prompt": "a photo of a dirty great white shark",
+        "edit_prompt": "a photo of a dirty hammerhead"
+    },
+    {
+        "soure_prompt": "a photo of a great white shark",
+        "edit_prompt": "a photo of a hammerhead"
+    },
+    {
+        "soure_prompt": "a photo of the weird tiger shark",
+        "edit_prompt": "a photo of the weird hammerhead"
+    },
+    {
+        "soure_prompt": "a photo of my great white shark",
+        "edit_prompt": "a photo of my hammerhead"
+    },
+    {
+        "soure_prompt": "a photo of a clean cellular telephone",
+        "edit_prompt": "a photo of a clean hard disc"
+    },
+    {
+        "soure_prompt": "a photo of a nice computer keyboard",
+        "edit_prompt": "a photo of a nice hard disc"
+    },
+    {
+        "soure_prompt": "the photo of a cellular telephone",
+        "edit_prompt": "the photo of a hard disc"
+    },
+    {
+        "soure_prompt": "a photo of a clean cellular telephone",
+        "edit_prompt": "a photo of a clean hard disc"
+    },
+    {
+        "soure_prompt": "a photo of the weird earthstar",
+        "edit_prompt": "a photo of the weird hen-of-the-woods"
+    },
+    {
+        "soure_prompt": "a photo of a small gyromitra",
+        "edit_prompt": "a photo of a small hen-of-the-woods"
+    },
+    {
+        "soure_prompt": "a dark photo of the coral fungus",
+        "edit_prompt": "a dark photo of the hen-of-the-woods"
+    },
+    {
+        "soure_prompt": "a rendering of a bolete",
+        "edit_prompt": "a rendering of a hen-of-the-woods"
+    },
+    {
+        "soure_prompt": "a photo of the clean American lobster",
+        "edit_prompt": "a photo of the clean hermit crab"
+    },
+    {
+        "soure_prompt": "a rendition of a American lobster",
+        "edit_prompt": "a rendition of a hermit crab"
+    },
+    {
+        "soure_prompt": "a photo of a small crayfish",
+        "edit_prompt": "a photo of a small hermit crab"
+    },
+    {
+        "soure_prompt": "a photo of the nice king crab",
+        "edit_prompt": "a photo of the nice hermit crab"
+    },
+    {
+        "soure_prompt": "a bright photo of the Indian cobra",
+        "edit_prompt": "a bright photo of the horned viper"
+    },
+    {
+        "soure_prompt": "a photo of a cool king snake",
+        "edit_prompt": "a photo of a cool horned viper"
+    },
+    {
+        "soure_prompt": "a photo of a nice thunder snake",
+        "edit_prompt": "a photo of a nice horned viper"
+    },
+    {
+        "soure_prompt": "a photo of a cool green snake",
+        "edit_prompt": "a photo of a cool horned viper"
+    },
+    {
+        "soure_prompt": "a good photo of a cheeseburger",
+        "edit_prompt": "a good photo of a hotdog"
+    },
+    {
+        "soure_prompt": "a dark photo of the cheeseburger",
+        "edit_prompt": "a dark photo of the hotdog"
+    },
+    {
+        "soure_prompt": "a photo of a clean cheeseburger",
+        "edit_prompt": "a photo of a clean hotdog"
+    },
+    {
+        "soure_prompt": "a photo of the small cheeseburger",
+        "edit_prompt": "a photo of the small hotdog"
+    },
+    {
+        "soure_prompt": "a photo of a small junco",
+        "edit_prompt": "a photo of a small house finch"
+    },
+    {
+        "soure_prompt": "a photo of a cool junco",
+        "edit_prompt": "a photo of a cool house finch"
+    },
+    {
+        "soure_prompt": "a cropped photo of the goldfinch",
+        "edit_prompt": "a cropped photo of the house finch"
+    },
+    {
+        "soure_prompt": "a rendition of a junco",
+        "edit_prompt": "a rendition of a house finch"
+    },
+    {
+        "soure_prompt": "a photo of the weird red wolf",
+        "edit_prompt": "a photo of the weird hyena"
+    },
+    {
+        "soure_prompt": "a photo of a red fox",
+        "edit_prompt": "a photo of a hyena"
+    },
+    {
+        "soure_prompt": "a photo of the large red fox",
+        "edit_prompt": "a photo of the large hyena"
+    },
+    {
+        "soure_prompt": "a cropped photo of the red wolf",
+        "edit_prompt": "a cropped photo of the hyena"
+    },
+    {
+        "soure_prompt": "a rendition of the computer keyboard",
+        "edit_prompt": "a rendition of the iPod"
+    },
+    {
+        "soure_prompt": "a photo of the large hard disc",
+        "edit_prompt": "a photo of the large iPod"
+    },
+    {
+        "soure_prompt": "a bright photo of the hard disc",
+        "edit_prompt": "a bright photo of the iPod"
+    },
+    {
+        "soure_prompt": "a close-up photo of a computer keyboard",
+        "edit_prompt": "a close-up photo of a iPod"
+    },
+    {
+        "soure_prompt": "a photo of a clean gazelle",
+        "edit_prompt": "a photo of a clean ibex"
+    },
+    {
+        "soure_prompt": "a bright photo of the ox",
+        "edit_prompt": "a bright photo of the ibex"
+    },
+    {
+        "soure_prompt": "a photo of the weird bison",
+        "edit_prompt": "a photo of the weird ibex"
+    },
+    {
+        "soure_prompt": "a photo of one bison",
+        "edit_prompt": "a photo of one ibex"
+    },
+    {
+        "soure_prompt": "a close-up photo of a brown bear",
+        "edit_prompt": "a close-up photo of a ice bear"
+    },
+    {
+        "soure_prompt": "a photo of a brown bear",
+        "edit_prompt": "a photo of a ice bear"
+    },
+    {
+        "soure_prompt": "a photo of a dirty American black bear",
+        "edit_prompt": "a photo of a dirty ice bear"
+    },
+    {
+        "soure_prompt": "a cropped photo of a giant panda",
+        "edit_prompt": "a cropped photo of a ice bear"
+    },
+    {
+        "soure_prompt": "a bright photo of the ibex",
+        "edit_prompt": "a bright photo of the impala"
+    },
+    {
+        "soure_prompt": "a photo of the cool ibex",
+        "edit_prompt": "a photo of the cool impala"
+    },
+    {
+        "soure_prompt": "the photo of a gazelle",
+        "edit_prompt": "the photo of a impala"
+    },
+    {
+        "soure_prompt": "a photo of the small gazelle",
+        "edit_prompt": "a photo of the small impala"
+    },
+    {
+        "soure_prompt": "the photo of a goldfinch",
+        "edit_prompt": "the photo of a indigo bunting"
+    },
+    {
+        "soure_prompt": "a photo of a dirty goldfinch",
+        "edit_prompt": "a photo of a dirty indigo bunting"
+    },
+    {
+        "soure_prompt": "a photo of the weird junco",
+        "edit_prompt": "a photo of the weird indigo bunting"
+    },
+    {
+        "soure_prompt": "a rendering of a junco",
+        "edit_prompt": "a rendering of a indigo bunting"
+    },
+    {
+        "soure_prompt": "a photo of the weird king crab",
+        "edit_prompt": "a photo of the weird isopod"
+    },
+    {
+        "soure_prompt": "a good photo of a hermit crab",
+        "edit_prompt": "a good photo of a isopod"
+    },
+    {
+        "soure_prompt": "a photo of a cool hermit crab",
+        "edit_prompt": "a photo of a cool isopod"
+    },
+    {
+        "soure_prompt": "a dark photo of the American lobster",
+        "edit_prompt": "a dark photo of the isopod"
+    },
+    {
+        "soure_prompt": "a photo of one cheetah",
+        "edit_prompt": "a photo of one jaguar"
+    },
+    {
+        "soure_prompt": "a photo of a cheetah",
+        "edit_prompt": "a photo of a jaguar"
+    },
+    {
+        "soure_prompt": "a rendition of a tiger",
+        "edit_prompt": "a rendition of a jaguar"
+    },
+    {
+        "soure_prompt": "a rendition of the tiger",
+        "edit_prompt": "a rendition of the jaguar"
+    },
+    {
+        "soure_prompt": "a photo of a dirty minivan",
+        "edit_prompt": "a photo of a dirty jeep"
+    },
+    {
+        "soure_prompt": "a photo of one cab",
+        "edit_prompt": "a photo of one jeep"
+    },
+    {
+        "soure_prompt": "a photo of my minivan",
+        "edit_prompt": "a photo of my jeep"
+    },
+    {
+        "soure_prompt": "a cropped photo of the minivan",
+        "edit_prompt": "a cropped photo of the jeep"
+    },
+    {
+        "soure_prompt": "a photo of a dirty indigo bunting",
+        "edit_prompt": "a photo of a dirty junco"
+    },
+    {
+        "soure_prompt": "a photo of the weird house finch",
+        "edit_prompt": "a photo of the weird junco"
+    },
+    {
+        "soure_prompt": "a photo of the goldfinch",
+        "edit_prompt": "a photo of the junco"
+    },
+    {
+        "soure_prompt": "a photo of a dirty house finch",
+        "edit_prompt": "a photo of a dirty junco"
+    },
+    {
+        "soure_prompt": "a photo of a cool sea lion",
+        "edit_prompt": "a photo of a cool killer whale"
+    },
+    {
+        "soure_prompt": "the photo of a grey whale",
+        "edit_prompt": "the photo of a killer whale"
+    },
+    {
+        "soure_prompt": "a photo of the nice grey whale",
+        "edit_prompt": "a photo of the nice killer whale"
+    },
+    {
+        "soure_prompt": "a rendition of a dugong",
+        "edit_prompt": "a rendition of a killer whale"
+    },
+    {
+        "soure_prompt": "a photo of the small crayfish",
+        "edit_prompt": "a photo of the small king crab"
+    },
+    {
+        "soure_prompt": "a cropped photo of the hermit crab",
+        "edit_prompt": "a cropped photo of the king crab"
+    },
+    {
+        "soure_prompt": "a rendition of a crayfish",
+        "edit_prompt": "a rendition of a king crab"
+    },
+    {
+        "soure_prompt": "a rendering of a hermit crab",
+        "edit_prompt": "a rendering of a king crab"
+    },
+    {
+        "soure_prompt": "a photo of a cool black swan",
+        "edit_prompt": "a photo of a cool king penguin"
+    },
+    {
+        "soure_prompt": "a good photo of the pelican",
+        "edit_prompt": "a good photo of the king penguin"
+    },
+    {
+        "soure_prompt": "a photo of the black swan",
+        "edit_prompt": "a photo of the king penguin"
+    },
+    {
+        "soure_prompt": "a photo of a clean black swan",
+        "edit_prompt": "a photo of a clean king penguin"
+    },
+    {
+        "soure_prompt": "a rendering of a horned viper",
+        "edit_prompt": "a rendering of a king snake"
+    },
+    {
+        "soure_prompt": "a photo of a dirty thunder snake",
+        "edit_prompt": "a photo of a dirty king snake"
+    },
+    {
+        "soure_prompt": "a rendition of a green mamba",
+        "edit_prompt": "a rendition of a king snake"
+    },
+    {
+        "soure_prompt": "a photo of the cool diamondback",
+        "edit_prompt": "a photo of the cool king snake"
+    },
+    {
+        "soure_prompt": "a photo of a nice great grey owl",
+        "edit_prompt": "a photo of a nice kite"
+    },
+    {
+        "soure_prompt": "a good photo of a great grey owl",
+        "edit_prompt": "a good photo of a kite"
+    },
+    {
+        "soure_prompt": "a rendering of a bald eagle",
+        "edit_prompt": "a rendering of a kite"
+    },
+    {
+        "soure_prompt": "a photo of the large bald eagle",
+        "edit_prompt": "a photo of the large kite"
+    },
+    {
+        "soure_prompt": "a photo of a long-horned beetle",
+        "edit_prompt": "a photo of a ladybug"
+    },
+    {
+        "soure_prompt": "a photo of a nice long-horned beetle",
+        "edit_prompt": "a photo of a nice ladybug"
+    },
+    {
+        "soure_prompt": "a photo of the small weevil",
+        "edit_prompt": "a photo of the small ladybug"
+    },
+    {
+        "soure_prompt": "a bright photo of the long-horned beetle",
+        "edit_prompt": "a bright photo of the ladybug"
+    },
+    {
+        "soure_prompt": "the photo of a iPod",
+        "edit_prompt": "the photo of a laptop"
+    },
+    {
+        "soure_prompt": "the photo of a iPod",
+        "edit_prompt": "the photo of a laptop"
+    },
+    {
+        "soure_prompt": "a photo of the large cellular telephone",
+        "edit_prompt": "a photo of the large laptop"
+    },
+    {
+        "soure_prompt": "a photo of the computer keyboard",
+        "edit_prompt": "a photo of the laptop"
+    },
+    {
+        "soure_prompt": "a photo of one ladybug",
+        "edit_prompt": "a photo of one leaf beetle"
+    },
+    {
+        "soure_prompt": "a photo of a nice ladybug",
+        "edit_prompt": "a photo of a nice leaf beetle"
+    },
+    {
+        "soure_prompt": "a photo of the nice ladybug",
+        "edit_prompt": "a photo of the nice leaf beetle"
+    },
+    {
+        "soure_prompt": "a photo of the small ladybug",
+        "edit_prompt": "a photo of the small leaf beetle"
+    },
+    {
+        "soure_prompt": "a dark photo of the Granny Smith",
+        "edit_prompt": "a dark photo of the lemon"
+    },
+    {
+        "soure_prompt": "a photo of a cool custard apple",
+        "edit_prompt": "a photo of a cool lemon"
+    },
+    {
+        "soure_prompt": "a photo of a clean banana",
+        "edit_prompt": "a photo of a clean lemon"
+    },
+    {
+        "soure_prompt": "a good photo of the Granny Smith",
+        "edit_prompt": "a good photo of the lemon"
+    },
+    {
+        "soure_prompt": "a photo of a dirty Persian cat",
+        "edit_prompt": "a photo of a dirty leopard"
+    },
+    {
+        "soure_prompt": "a rendering of a tiger",
+        "edit_prompt": "a rendering of a leopard"
+    },
+    {
+        "soure_prompt": "a photo of a nice lion",
+        "edit_prompt": "a photo of a nice leopard"
+    },
+    {
+        "soure_prompt": "a close-up photo of a lion",
+        "edit_prompt": "a close-up photo of a leopard"
+    },
+    {
+        "soure_prompt": "a photo of the large sloth bear",
+        "edit_prompt": "a photo of the large lesser panda"
+    },
+    {
+        "soure_prompt": "a photo of the large American black bear",
+        "edit_prompt": "a photo of the large lesser panda"
+    },
+    {
+        "soure_prompt": "a good photo of a giant panda",
+        "edit_prompt": "a good photo of a lesser panda"
+    },
+    {
+        "soure_prompt": "a good photo of a sloth bear",
+        "edit_prompt": "a good photo of a lesser panda"
+    },
+    {
+        "soure_prompt": "a cropped photo of the gondola",
+        "edit_prompt": "a cropped photo of the lifeboat"
+    },
+    {
+        "soure_prompt": "a photo of one fireboat",
+        "edit_prompt": "a photo of one lifeboat"
+    },
+    {
+        "soure_prompt": "a photo of the large gondola",
+        "edit_prompt": "a photo of the large lifeboat"
+    },
+    {
+        "soure_prompt": "a close-up photo of a gondola",
+        "edit_prompt": "a close-up photo of a lifeboat"
+    },
+    {
+        "soure_prompt": "a rendition of the beach wagon",
+        "edit_prompt": "a rendition of the limousine"
+    },
+    {
+        "soure_prompt": "a photo of one beach wagon",
+        "edit_prompt": "a photo of one limousine"
+    },
+    {
+        "soure_prompt": "a close-up photo of the beach wagon",
+        "edit_prompt": "a close-up photo of the limousine"
+    },
+    {
+        "soure_prompt": "a photo of a cab",
+        "edit_prompt": "a photo of a limousine"
+    },
+    {
+        "soure_prompt": "a photo of a nice jaguar",
+        "edit_prompt": "a photo of a nice lion"
+    },
+    {
+        "soure_prompt": "the photo of a tiger",
+        "edit_prompt": "the photo of a lion"
+    },
+    {
+        "soure_prompt": "a photo of the tiger",
+        "edit_prompt": "a photo of the lion"
+    },
+    {
+        "soure_prompt": "a photo of the clean tabby",
+        "edit_prompt": "a photo of the clean lion"
+    },
+    {
+        "soure_prompt": "a dark photo of the tench",
+        "edit_prompt": "a dark photo of the lionfish"
+    },
+    {
+        "soure_prompt": "a photo of the nice tench",
+        "edit_prompt": "a photo of the nice lionfish"
+    },
+    {
+        "soure_prompt": "a photo of a clean goldfish",
+        "edit_prompt": "a photo of a clean lionfish"
+    },
+    {
+        "soure_prompt": "a rendering of a anemone fish",
+        "edit_prompt": "a rendering of a lionfish"
+    },
+    {
+        "soure_prompt": "a photo of my oystercatcher",
+        "edit_prompt": "a photo of my little blue heron"
+    },
+    {
+        "soure_prompt": "a photo of a dirty spoonbill",
+        "edit_prompt": "a photo of a dirty little blue heron"
+    },
+    {
+        "soure_prompt": "a photo of the cool oystercatcher",
+        "edit_prompt": "a photo of the cool little blue heron"
+    },
+    {
+        "soure_prompt": "a photo of my oystercatcher",
+        "edit_prompt": "a photo of my little blue heron"
+    },
+    {
+        "soure_prompt": "a close-up photo of a leaf beetle",
+        "edit_prompt": "a close-up photo of a long-horned beetle"
+    },
+    {
+        "soure_prompt": "a photo of one tiger beetle",
+        "edit_prompt": "a photo of one long-horned beetle"
+    },
+    {
+        "soure_prompt": "a photo of the nice leaf beetle",
+        "edit_prompt": "a photo of the nice long-horned beetle"
+    },
+    {
+        "soure_prompt": "a photo of one tiger beetle",
+        "edit_prompt": "a photo of one long-horned beetle"
+    },
+    {
+        "soure_prompt": "a photo of the clean sulphur butterfly",
+        "edit_prompt": "a photo of the clean lycaenid"
+    },
+    {
+        "soure_prompt": "a photo of the weird monarch",
+        "edit_prompt": "a photo of the weird lycaenid"
+    },
+    {
+        "soure_prompt": "a photo of the weird admiral",
+        "edit_prompt": "a photo of the weird lycaenid"
+    },
+    {
+        "soure_prompt": "the photo of a cabbage butterfly",
+        "edit_prompt": "the photo of a lycaenid"
+    },
+    {
+        "soure_prompt": "a photo of the weird capuchin",
+        "edit_prompt": "a photo of the weird macaque"
+    },
+    {
+        "soure_prompt": "a photo of the cool squirrel monkey",
+        "edit_prompt": "a photo of the cool macaque"
+    },
+    {
+        "soure_prompt": "a photo of the small squirrel monkey",
+        "edit_prompt": "a photo of the small macaque"
+    },
+    {
+        "soure_prompt": "a photo of one guenon",
+        "edit_prompt": "a photo of one macaque"
+    },
+    {
+        "soure_prompt": "a photo of one gong",
+        "edit_prompt": "a photo of one maraca"
+    },
+    {
+        "soure_prompt": "a dark photo of the steel drum",
+        "edit_prompt": "a dark photo of the maraca"
+    },
+    {
+        "soure_prompt": "a photo of the clean gong",
+        "edit_prompt": "a photo of the clean maraca"
+    },
+    {
+        "soure_prompt": "a photo of the large gong",
+        "edit_prompt": "a photo of the large maraca"
+    },
+    {
+        "soure_prompt": "a photo of the small chime",
+        "edit_prompt": "a photo of the small marimba"
+    },
+    {
+        "soure_prompt": "a bright photo of the steel drum",
+        "edit_prompt": "a bright photo of the marimba"
+    },
+    {
+        "soure_prompt": "a good photo of the chime",
+        "edit_prompt": "a good photo of the marimba"
+    },
+    {
+        "soure_prompt": "a close-up photo of the steel drum",
+        "edit_prompt": "a close-up photo of the marimba"
+    },
+    {
+        "soure_prompt": "a photo of my beer bottle",
+        "edit_prompt": "a photo of my measuring cup"
+    },
+    {
+        "soure_prompt": "a photo of one teapot",
+        "edit_prompt": "a photo of one measuring cup"
+    },
+    {
+        "soure_prompt": "a dark photo of the water bottle",
+        "edit_prompt": "a dark photo of the measuring cup"
+    },
+    {
+        "soure_prompt": "a good photo of a water bottle",
+        "edit_prompt": "a good photo of a measuring cup"
+    },
+    {
+        "soure_prompt": "a photo of a small German shepherd",
+        "edit_prompt": "a photo of a small miniature pinscher"
+    },
+    {
+        "soure_prompt": "a photo of the nice Rottweiler",
+        "edit_prompt": "a photo of the nice miniature pinscher"
+    },
+    {
+        "soure_prompt": "a photo of a small Rottweiler",
+        "edit_prompt": "a photo of a small miniature pinscher"
+    },
+    {
+        "soure_prompt": "a photo of one Rottweiler",
+        "edit_prompt": "a photo of one miniature pinscher"
+    },
+    {
+        "soure_prompt": "a good photo of the ambulance",
+        "edit_prompt": "a good photo of the minivan"
+    },
+    {
+        "soure_prompt": "a rendering of a cab",
+        "edit_prompt": "a rendering of a minivan"
+    },
+    {
+        "soure_prompt": "a photo of the weird trailer truck",
+        "edit_prompt": "a photo of the weird minivan"
+    },
+    {
+        "soure_prompt": "a photo of the weird school bus",
+        "edit_prompt": "a photo of the weird minivan"
+    },
+    {
+        "soure_prompt": "a cropped photo of a lycaenid",
+        "edit_prompt": "a cropped photo of a monarch"
+    },
+    {
+        "soure_prompt": "a photo of the nice cabbage butterfly",
+        "edit_prompt": "a photo of the nice monarch"
+    },
+    {
+        "soure_prompt": "a good photo of the sulphur butterfly",
+        "edit_prompt": "a good photo of the monarch"
+    },
+    {
+        "soure_prompt": "a cropped photo of a ringlet",
+        "edit_prompt": "a cropped photo of a monarch"
+    },
+    {
+        "soure_prompt": "a good photo of a mountain bike",
+        "edit_prompt": "a good photo of a moped"
+    },
+    {
+        "soure_prompt": "a photo of one tricycle",
+        "edit_prompt": "a photo of one moped"
+    },
+    {
+        "soure_prompt": "a photo of a mountain bike",
+        "edit_prompt": "a photo of a moped"
+    },
+    {
+        "soure_prompt": "a rendition of a motor scooter",
+        "edit_prompt": "a rendition of a moped"
+    },
+    {
+        "soure_prompt": "a cropped photo of the mountain bike",
+        "edit_prompt": "a cropped photo of the motor scooter"
+    },
+    {
+        "soure_prompt": "a bright photo of the tricycle",
+        "edit_prompt": "a bright photo of the motor scooter"
+    },
+    {
+        "soure_prompt": "the photo of a moped",
+        "edit_prompt": "the photo of a motor scooter"
+    },
+    {
+        "soure_prompt": "the photo of a moped",
+        "edit_prompt": "the photo of a motor scooter"
+    },
+    {
+        "soure_prompt": "a photo of a dirty unicycle",
+        "edit_prompt": "a photo of a dirty mountain bike"
+    },
+    {
+        "soure_prompt": "a photo of the motor scooter",
+        "edit_prompt": "a photo of the mountain bike"
+    },
+    {
+        "soure_prompt": "a photo of the clean tricycle",
+        "edit_prompt": "a photo of the clean mountain bike"
+    },
+    {
+        "soure_prompt": "the photo of a moped",
+        "edit_prompt": "the photo of a mountain bike"
+    },
+    {
+        "soure_prompt": "a photo of the weird box turtle",
+        "edit_prompt": "a photo of the weird mud turtle"
+    },
+    {
+        "soure_prompt": "a photo of a dirty box turtle",
+        "edit_prompt": "a photo of a dirty mud turtle"
+    },
+    {
+        "soure_prompt": "a cropped photo of the terrapin",
+        "edit_prompt": "a cropped photo of the mud turtle"
+    },
+    {
+        "soure_prompt": "a photo of a cool box turtle",
+        "edit_prompt": "a photo of a cool mud turtle"
+    },
+    {
+        "soure_prompt": "a bright photo of the French horn",
+        "edit_prompt": "a bright photo of the oboe"
+    },
+    {
+        "soure_prompt": "a rendering of a cornet",
+        "edit_prompt": "a rendering of a oboe"
+    },
+    {
+        "soure_prompt": "a close-up photo of a trombone",
+        "edit_prompt": "a close-up photo of a oboe"
+    },
+    {
+        "soure_prompt": "a photo of the small sax",
+        "edit_prompt": "a photo of the small oboe"
+    },
+    {
+        "soure_prompt": "a photo of a nice wall clock",
+        "edit_prompt": "a photo of a nice odometer"
+    },
+    {
+        "soure_prompt": "a bright photo of the wall clock",
+        "edit_prompt": "a bright photo of the odometer"
+    },
+    {
+        "soure_prompt": "a rendering of a digital watch",
+        "edit_prompt": "a rendering of a odometer"
+    },
+    {
+        "soure_prompt": "a photo of the small digital clock",
+        "edit_prompt": "a photo of the small odometer"
+    },
+    {
+        "soure_prompt": "a photo of the small custard apple",
+        "edit_prompt": "a photo of the small orange"
+    },
+    {
+        "soure_prompt": "a photo of the pomegranate",
+        "edit_prompt": "a photo of the orange"
+    },
+    {
+        "soure_prompt": "a photo of a nice strawberry",
+        "edit_prompt": "a photo of a nice orange"
+    },
+    {
+        "soure_prompt": "a close-up photo of the lemon",
+        "edit_prompt": "a close-up photo of the orange"
+    },
+    {
+        "soure_prompt": "a photo of a chimpanzee",
+        "edit_prompt": "a photo of a orangutan"
+    },
+    {
+        "soure_prompt": "a cropped photo of the chimpanzee",
+        "edit_prompt": "a cropped photo of the orangutan"
+    },
+    {
+        "soure_prompt": "a rendition of a chimpanzee",
+        "edit_prompt": "a rendition of a orangutan"
+    },
+    {
+        "soure_prompt": "a photo of a cool chimpanzee",
+        "edit_prompt": "a photo of a cool orangutan"
+    },
+    {
+        "soure_prompt": "a photo of the cool Afghan hound",
+        "edit_prompt": "a photo of the cool otterhound"
+    },
+    {
+        "soure_prompt": "a dark photo of the beagle",
+        "edit_prompt": "a dark photo of the otterhound"
+    },
+    {
+        "soure_prompt": "a photo of a dirty English foxhound",
+        "edit_prompt": "a photo of a dirty otterhound"
+    },
+    {
+        "soure_prompt": "a photo of a beagle",
+        "edit_prompt": "a photo of a otterhound"
+    },
+    {
+        "soure_prompt": "a photo of my ibex",
+        "edit_prompt": "a photo of my ox"
+    },
+    {
+        "soure_prompt": "a dark photo of the gazelle",
+        "edit_prompt": "a dark photo of the ox"
+    },
+    {
+        "soure_prompt": "a rendering of a water buffalo",
+        "edit_prompt": "a rendering of a ox"
+    },
+    {
+        "soure_prompt": "a good photo of a impala",
+        "edit_prompt": "a good photo of a ox"
+    },
+    {
+        "soure_prompt": "the photo of a goose",
+        "edit_prompt": "the photo of a oystercatcher"
+    },
+    {
+        "soure_prompt": "a photo of a clean flamingo",
+        "edit_prompt": "a photo of a clean oystercatcher"
+    },
+    {
+        "soure_prompt": "a rendering of a goose",
+        "edit_prompt": "a rendering of a oystercatcher"
+    },
+    {
+        "soure_prompt": "a photo of the weird black stork",
+        "edit_prompt": "a photo of the weird oystercatcher"
+    },
+    {
+        "soure_prompt": "a photo of a Japanese spaniel",
+        "edit_prompt": "a photo of a papillon"
+    },
+    {
+        "soure_prompt": "a cropped photo of the Chihuahua",
+        "edit_prompt": "a cropped photo of the papillon"
+    },
+    {
+        "soure_prompt": "a photo of the nice Shih-Tzu",
+        "edit_prompt": "a photo of the nice papillon"
+    },
+    {
+        "soure_prompt": "a rendition of the Japanese spaniel",
+        "edit_prompt": "a rendition of the papillon"
+    },
+    {
+        "soure_prompt": "a rendition of a king penguin",
+        "edit_prompt": "a rendition of a pelican"
+    },
+    {
+        "soure_prompt": "a rendition of a king penguin",
+        "edit_prompt": "a rendition of a pelican"
+    },
+    {
+        "soure_prompt": "a rendering of a black swan",
+        "edit_prompt": "a rendering of a pelican"
+    },
+    {
+        "soure_prompt": "a photo of a nice albatross",
+        "edit_prompt": "a photo of a nice pelican"
+    },
+    {
+        "soure_prompt": "a photo of a nice garbage truck",
+        "edit_prompt": "a photo of a nice pickup"
+    },
+    {
+        "soure_prompt": "a photo of my garbage truck",
+        "edit_prompt": "a photo of my pickup"
+    },
+    {
+        "soure_prompt": "a close-up photo of the school bus",
+        "edit_prompt": "a close-up photo of the pickup"
+    },
+    {
+        "soure_prompt": "a photo of the weird fire engine",
+        "edit_prompt": "a photo of the weird pickup"
+    },
+    {
+        "soure_prompt": "a photo of my banana",
+        "edit_prompt": "a photo of my pineapple"
+    },
+    {
+        "soure_prompt": "a photo of a nice strawberry",
+        "edit_prompt": "a photo of a nice pineapple"
+    },
+    {
+        "soure_prompt": "the photo of a pomegranate",
+        "edit_prompt": "the photo of a pineapple"
+    },
+    {
+        "soure_prompt": "a photo of a small orange",
+        "edit_prompt": "a photo of a small pineapple"
+    },
+    {
+        "soure_prompt": "a photo of a small golf ball",
+        "edit_prompt": "a photo of a small ping-pong ball"
+    },
+    {
+        "soure_prompt": "a good photo of the golf ball",
+        "edit_prompt": "a good photo of the ping-pong ball"
+    },
+    {
+        "soure_prompt": "a photo of one soccer ball",
+        "edit_prompt": "a photo of one ping-pong ball"
+    },
+    {
+        "soure_prompt": "a close-up photo of a soccer ball",
+        "edit_prompt": "a close-up photo of a ping-pong ball"
+    },
+    {
+        "soure_prompt": "a photo of a clean plunger",
+        "edit_prompt": "a photo of a clean plane"
+    },
+    {
+        "soure_prompt": "a close-up photo of the plunger",
+        "edit_prompt": "a close-up photo of the plane"
+    },
+    {
+        "soure_prompt": "a good photo of the shovel",
+        "edit_prompt": "a good photo of the plane"
+    },
+    {
+        "soure_prompt": "a photo of a nice shovel",
+        "edit_prompt": "a photo of a nice plane"
+    },
+    {
+        "soure_prompt": "a cropped photo of a purse",
+        "edit_prompt": "a cropped photo of a plastic bag"
+    },
+    {
+        "soure_prompt": "a good photo of the purse",
+        "edit_prompt": "a good photo of the plastic bag"
+    },
+    {
+        "soure_prompt": "the photo of a backpack",
+        "edit_prompt": "the photo of a plastic bag"
+    },
+    {
+        "soure_prompt": "a photo of a nice backpack",
+        "edit_prompt": "a photo of a nice plastic bag"
+    },
+    {
+        "soure_prompt": "a bright photo of the shovel",
+        "edit_prompt": "a bright photo of the plunger"
+    },
+    {
+        "soure_prompt": "a bright photo of the hammer",
+        "edit_prompt": "a bright photo of the plunger"
+    },
+    {
+        "soure_prompt": "a close-up photo of a hammer",
+        "edit_prompt": "a close-up photo of a plunger"
+    },
+    {
+        "soure_prompt": "a bright photo of the plane",
+        "edit_prompt": "a bright photo of the plunger"
+    },
+    {
+        "soure_prompt": "a photo of the garbage truck",
+        "edit_prompt": "a photo of the police van"
+    },
+    {
+        "soure_prompt": "a cropped photo of the school bus",
+        "edit_prompt": "a cropped photo of the police van"
+    },
+    {
+        "soure_prompt": "a photo of a clean pickup",
+        "edit_prompt": "a photo of a clean police van"
+    },
+    {
+        "soure_prompt": "a photo of a clean pickup",
+        "edit_prompt": "a photo of a clean police van"
+    },
+    {
+        "soure_prompt": "a photo of the small lemon",
+        "edit_prompt": "a photo of the small pomegranate"
+    },
+    {
+        "soure_prompt": "a photo of the large pineapple",
+        "edit_prompt": "a photo of the large pomegranate"
+    },
+    {
+        "soure_prompt": "a photo of a pineapple",
+        "edit_prompt": "a photo of a pomegranate"
+    },
+    {
+        "soure_prompt": "a rendition of the strawberry",
+        "edit_prompt": "a rendition of the pomegranate"
+    },
+    {
+        "soure_prompt": "a photo of a dirty ruffed grouse",
+        "edit_prompt": "a photo of a dirty prairie chicken"
+    },
+    {
+        "soure_prompt": "the photo of a ptarmigan",
+        "edit_prompt": "the photo of a prairie chicken"
+    },
+    {
+        "soure_prompt": "a photo of the black grouse",
+        "edit_prompt": "a photo of the prairie chicken"
+    },
+    {
+        "soure_prompt": "a rendering of a ptarmigan",
+        "edit_prompt": "a rendering of a prairie chicken"
+    },
+    {
+        "soure_prompt": "a good photo of the black grouse",
+        "edit_prompt": "a good photo of the ptarmigan"
+    },
+    {
+        "soure_prompt": "a photo of the large ruffed grouse",
+        "edit_prompt": "a photo of the large ptarmigan"
+    },
+    {
+        "soure_prompt": "a photo of a dirty ruffed grouse",
+        "edit_prompt": "a photo of a dirty ptarmigan"
+    },
+    {
+        "soure_prompt": "a photo of the large ruffed grouse",
+        "edit_prompt": "a photo of the large ptarmigan"
+    },
+    {
+        "soure_prompt": "a good photo of a plastic bag",
+        "edit_prompt": "a good photo of a purse"
+    },
+    {
+        "soure_prompt": "a photo of the clean backpack",
+        "edit_prompt": "a photo of the clean purse"
+    },
+    {
+        "soure_prompt": "the photo of a backpack",
+        "edit_prompt": "the photo of a purse"
+    },
+    {
+        "soure_prompt": "a dark photo of the plastic bag",
+        "edit_prompt": "a dark photo of the purse"
+    },
+    {
+        "soure_prompt": "a photo of one gazelle",
+        "edit_prompt": "a photo of one ram"
+    },
+    {
+        "soure_prompt": "a photo of one bison",
+        "edit_prompt": "a photo of one ram"
+    },
+    {
+        "soure_prompt": "a photo of a clean bighorn",
+        "edit_prompt": "a photo of a clean ram"
+    },
+    {
+        "soure_prompt": "a bright photo of the bison",
+        "edit_prompt": "a bright photo of the ram"
+    },
+    {
+        "soure_prompt": "a photo of the cool grey fox",
+        "edit_prompt": "a photo of the cool red fox"
+    },
+    {
+        "soure_prompt": "a photo of the small timber wolf",
+        "edit_prompt": "a photo of the small red fox"
+    },
+    {
+        "soure_prompt": "a good photo of the coyote",
+        "edit_prompt": "a good photo of the red fox"
+    },
+    {
+        "soure_prompt": "a rendition of the white wolf",
+        "edit_prompt": "a rendition of the red fox"
+    },
+    {
+        "soure_prompt": "a photo of the large African hunting dog",
+        "edit_prompt": "a photo of the large red wolf"
+    },
+    {
+        "soure_prompt": "a photo of a cool white wolf",
+        "edit_prompt": "a photo of a cool red wolf"
+    },
+    {
+        "soure_prompt": "a photo of a cool hyena",
+        "edit_prompt": "a photo of a cool red wolf"
+    },
+    {
+        "soure_prompt": "a dark photo of the white wolf",
+        "edit_prompt": "a dark photo of the red wolf"
+    },
+    {
+        "soure_prompt": "a photo of the weird admiral",
+        "edit_prompt": "a photo of the weird ringlet"
+    },
+    {
+        "soure_prompt": "a photo of the weird sulphur butterfly",
+        "edit_prompt": "a photo of the weird ringlet"
+    },
+    {
+        "soure_prompt": "a rendition of a admiral",
+        "edit_prompt": "a rendition of a ringlet"
+    },
+    {
+        "soure_prompt": "a photo of the cool cabbage butterfly",
+        "edit_prompt": "a photo of the cool ringlet"
+    },
+    {
+        "soure_prompt": "a rendition of the king crab",
+        "edit_prompt": "a rendition of the rock crab"
+    },
+    {
+        "soure_prompt": "a photo of my crayfish",
+        "edit_prompt": "a photo of my rock crab"
+    },
+    {
+        "soure_prompt": "a photo of a nice American lobster",
+        "edit_prompt": "a photo of a nice rock crab"
+    },
+    {
+        "soure_prompt": "a photo of a dirty king crab",
+        "edit_prompt": "a photo of a dirty rock crab"
+    },
+    {
+        "soure_prompt": "a photo of a Indian cobra",
+        "edit_prompt": "a photo of a rock python"
+    },
+    {
+        "soure_prompt": "a cropped photo of a boa constrictor",
+        "edit_prompt": "a cropped photo of a rock python"
+    },
+    {
+        "soure_prompt": "a photo of the nice diamondback",
+        "edit_prompt": "a photo of the nice rock python"
+    },
+    {
+        "soure_prompt": "a bright photo of the green mamba",
+        "edit_prompt": "a bright photo of the rock python"
+    },
+    {
+        "soure_prompt": "a photo of the small black grouse",
+        "edit_prompt": "a photo of the small ruffed grouse"
+    },
+    {
+        "soure_prompt": "a photo of the large black grouse",
+        "edit_prompt": "a photo of the large ruffed grouse"
+    },
+    {
+        "soure_prompt": "a cropped photo of the ptarmigan",
+        "edit_prompt": "a cropped photo of the ruffed grouse"
+    },
+    {
+        "soure_prompt": "a cropped photo of a prairie chicken",
+        "edit_prompt": "a cropped photo of a ruffed grouse"
+    },
+    {
+        "soure_prompt": "a close-up photo of a soccer ball",
+        "edit_prompt": "a close-up photo of a rugby ball"
+    },
+    {
+        "soure_prompt": "a photo of my soccer ball",
+        "edit_prompt": "a photo of my rugby ball"
+    },
+    {
+        "soure_prompt": "a photo of a cool golf ball",
+        "edit_prompt": "a photo of a cool rugby ball"
+    },
+    {
+        "soure_prompt": "a close-up photo of the ping-pong ball",
+        "edit_prompt": "a close-up photo of the rugby ball"
+    },
+    {
+        "soure_prompt": "a close-up photo of a flute",
+        "edit_prompt": "a close-up photo of a sax"
+    },
+    {
+        "soure_prompt": "a photo of the clean trombone",
+        "edit_prompt": "a photo of the clean sax"
+    },
+    {
+        "soure_prompt": "a photo of the French horn",
+        "edit_prompt": "a photo of the sax"
+    },
+    {
+        "soure_prompt": "a photo of my bassoon",
+        "edit_prompt": "a photo of my sax"
+    },
+    {
+        "soure_prompt": "a dark photo of the trailer truck",
+        "edit_prompt": "a dark photo of the school bus"
+    },
+    {
+        "soure_prompt": "a photo of the large police van",
+        "edit_prompt": "a photo of the large school bus"
+    },
+    {
+        "soure_prompt": "a photo of one garbage truck",
+        "edit_prompt": "a photo of one school bus"
+    },
+    {
+        "soure_prompt": "a close-up photo of the fire engine",
+        "edit_prompt": "a close-up photo of the school bus"
+    },
+    {
+        "soure_prompt": "a photo of a trimaran",
+        "edit_prompt": "a photo of a schooner"
+    },
+    {
+        "soure_prompt": "a photo of a small trimaran",
+        "edit_prompt": "a photo of a small schooner"
+    },
+    {
+        "soure_prompt": "a photo of the weird catamaran",
+        "edit_prompt": "a photo of the weird schooner"
+    },
+    {
+        "soure_prompt": "a rendering of a catamaran",
+        "edit_prompt": "a rendering of a schooner"
+    },
+    {
+        "soure_prompt": "a photo of my tarantula",
+        "edit_prompt": "a photo of my scorpion"
+    },
+    {
+        "soure_prompt": "a photo of a small black widow",
+        "edit_prompt": "a photo of a small scorpion"
+    },
+    {
+        "soure_prompt": "a photo of the small wolf spider",
+        "edit_prompt": "a photo of the small scorpion"
+    },
+    {
+        "soure_prompt": "a photo of the weird wolf spider",
+        "edit_prompt": "a photo of the weird scorpion"
+    },
+    {
+        "soure_prompt": "a good photo of a hammer",
+        "edit_prompt": "a good photo of a screwdriver"
+    },
+    {
+        "soure_prompt": "a good photo of a plunger",
+        "edit_prompt": "a good photo of a screwdriver"
+    },
+    {
+        "soure_prompt": "a photo of a cool plane",
+        "edit_prompt": "a photo of a cool screwdriver"
+    },
+    {
+        "soure_prompt": "a photo of my shovel",
+        "edit_prompt": "a photo of my screwdriver"
+    },
+    {
+        "soure_prompt": "a photo of a small grey whale",
+        "edit_prompt": "a photo of a small sea lion"
+    },
+    {
+        "soure_prompt": "a rendering of a killer whale",
+        "edit_prompt": "a rendering of a sea lion"
+    },
+    {
+        "soure_prompt": "the photo of a killer whale",
+        "edit_prompt": "the photo of a sea lion"
+    },
+    {
+        "soure_prompt": "a photo of the small dugong",
+        "edit_prompt": "a photo of the small sea lion"
+    },
+    {
+        "soure_prompt": "a photo of a small hammer",
+        "edit_prompt": "a photo of a small shovel"
+    },
+    {
+        "soure_prompt": "a photo of a clean plunger",
+        "edit_prompt": "a photo of a clean shovel"
+    },
+    {
+        "soure_prompt": "a photo of the hammer",
+        "edit_prompt": "a photo of the shovel"
+    },
+    {
+        "soure_prompt": "a photo of the weird plane",
+        "edit_prompt": "a photo of the weird shovel"
+    },
+    {
+        "soure_prompt": "a photo of the weird bathing cap",
+        "edit_prompt": "a photo of the weird shower cap"
+    },
+    {
+        "soure_prompt": "a photo of a nice bonnet",
+        "edit_prompt": "a photo of a nice shower cap"
+    },
+    {
+        "soure_prompt": "the photo of a sombrero",
+        "edit_prompt": "the photo of a shower cap"
+    },
+    {
+        "soure_prompt": "a cropped photo of the bathing cap",
+        "edit_prompt": "a cropped photo of the shower cap"
+    },
+    {
+        "soure_prompt": "a photo of a small rock python",
+        "edit_prompt": "a photo of a small sidewinder"
+    },
+    {
+        "soure_prompt": "a cropped photo of a boa constrictor",
+        "edit_prompt": "a cropped photo of a sidewinder"
+    },
+    {
+        "soure_prompt": "a photo of the nice Indian cobra",
+        "edit_prompt": "a photo of the nice sidewinder"
+    },
+    {
+        "soure_prompt": "a close-up photo of a green snake",
+        "edit_prompt": "a close-up photo of a sidewinder"
+    },
+    {
+        "soure_prompt": "a photo of the weird brown bear",
+        "edit_prompt": "a photo of the weird sloth bear"
+    },
+    {
+        "soure_prompt": "a photo of a nice American black bear",
+        "edit_prompt": "a photo of a nice sloth bear"
+    },
+    {
+        "soure_prompt": "a photo of a cool brown bear",
+        "edit_prompt": "a photo of a cool sloth bear"
+    },
+    {
+        "soure_prompt": "a dark photo of the American black bear",
+        "edit_prompt": "a dark photo of the sloth bear"
+    },
+    {
+        "soure_prompt": "a photo of a cool tiger",
+        "edit_prompt": "a photo of a cool snow leopard"
+    },
+    {
+        "soure_prompt": "a photo of one Persian cat",
+        "edit_prompt": "a photo of one snow leopard"
+    },
+    {
+        "soure_prompt": "a cropped photo of a lion",
+        "edit_prompt": "a cropped photo of a snow leopard"
+    },
+    {
+        "soure_prompt": "a photo of the weird Persian cat",
+        "edit_prompt": "a photo of the weird snow leopard"
+    },
+    {
+        "soure_prompt": "a photo of the nice tennis ball",
+        "edit_prompt": "a photo of the nice soccer ball"
+    },
+    {
+        "soure_prompt": "a good photo of a ping-pong ball",
+        "edit_prompt": "a good photo of a soccer ball"
+    },
+    {
+        "soure_prompt": "a dark photo of the ping-pong ball",
+        "edit_prompt": "a dark photo of the soccer ball"
+    },
+    {
+        "soure_prompt": "a good photo of a tennis ball",
+        "edit_prompt": "a good photo of a soccer ball"
+    },
+    {
+        "soure_prompt": "a photo of a small shower cap",
+        "edit_prompt": "a photo of a small sombrero"
+    },
+    {
+        "soure_prompt": "a cropped photo of a football helmet",
+        "edit_prompt": "a cropped photo of a sombrero"
+    },
+    {
+        "soure_prompt": "a rendering of a cowboy hat",
+        "edit_prompt": "a rendering of a sombrero"
+    },
+    {
+        "soure_prompt": "a photo of the clean cowboy hat",
+        "edit_prompt": "a photo of the clean sombrero"
+    },
+    {
+        "soure_prompt": "a rendering of a zebra",
+        "edit_prompt": "a rendering of a sorrel"
+    },
+    {
+        "soure_prompt": "a rendering of a zebra",
+        "edit_prompt": "a rendering of a sorrel"
+    },
+    {
+        "soure_prompt": "a photo of a cool zebra",
+        "edit_prompt": "a photo of a cool sorrel"
+    },
+    {
+        "soure_prompt": "a cropped photo of the zebra",
+        "edit_prompt": "a cropped photo of the sorrel"
+    },
+    {
+        "soure_prompt": "a good photo of a cauliflower",
+        "edit_prompt": "a good photo of a spaghetti squash"
+    },
+    {
+        "soure_prompt": "a photo of the large cucumber",
+        "edit_prompt": "a photo of the large spaghetti squash"
+    },
+    {
+        "soure_prompt": "a photo of a small cauliflower",
+        "edit_prompt": "a photo of a small spaghetti squash"
+    },
+    {
+        "soure_prompt": "a photo of the weird cardoon",
+        "edit_prompt": "a photo of the weird spaghetti squash"
+    },
+    {
+        "soure_prompt": "a photo of the weird gondola",
+        "edit_prompt": "a photo of the weird speedboat"
+    },
+    {
+        "soure_prompt": "a photo of the nice lifeboat",
+        "edit_prompt": "a photo of the nice speedboat"
+    },
+    {
+        "soure_prompt": "a photo of the lifeboat",
+        "edit_prompt": "a photo of the speedboat"
+    },
+    {
+        "soure_prompt": "a photo of one canoe",
+        "edit_prompt": "a photo of one speedboat"
+    },
+    {
+        "soure_prompt": "a photo of my guenon",
+        "edit_prompt": "a photo of my spider monkey"
+    },
+    {
+        "soure_prompt": "a good photo of a macaque",
+        "edit_prompt": "a good photo of a spider monkey"
+    },
+    {
+        "soure_prompt": "a photo of a dirty squirrel monkey",
+        "edit_prompt": "a photo of a dirty spider monkey"
+    },
+    {
+        "soure_prompt": "a photo of a nice baboon",
+        "edit_prompt": "a photo of a nice spider monkey"
+    },
+    {
+        "soure_prompt": "a photo of the weird oystercatcher",
+        "edit_prompt": "a photo of the weird spoonbill"
+    },
+    {
+        "soure_prompt": "a cropped photo of the oystercatcher",
+        "edit_prompt": "a cropped photo of the spoonbill"
+    },
+    {
+        "soure_prompt": "the photo of a black stork",
+        "edit_prompt": "the photo of a spoonbill"
+    },
+    {
+        "soure_prompt": "a close-up photo of a little blue heron",
+        "edit_prompt": "a close-up photo of a spoonbill"
+    },
+    {
+        "soure_prompt": "a photo of a small ambulance",
+        "edit_prompt": "a photo of a small sports car"
+    },
+    {
+        "soure_prompt": "a close-up photo of a limousine",
+        "edit_prompt": "a close-up photo of a sports car"
+    },
+    {
+        "soure_prompt": "a photo of a dirty jeep",
+        "edit_prompt": "a photo of a dirty sports car"
+    },
+    {
+        "soure_prompt": "a good photo of the jeep",
+        "edit_prompt": "a good photo of the sports car"
+    },
+    {
+        "soure_prompt": "a cropped photo of the common newt",
+        "edit_prompt": "a cropped photo of the spotted salamander"
+    },
+    {
+        "soure_prompt": "a photo of the weird bullfrog",
+        "edit_prompt": "a photo of the weird spotted salamander"
+    },
+    {
+        "soure_prompt": "a close-up photo of a common newt",
+        "edit_prompt": "a close-up photo of a spotted salamander"
+    },
+    {
+        "soure_prompt": "a photo of a small bullfrog",
+        "edit_prompt": "a photo of a small spotted salamander"
+    },
+    {
+        "soure_prompt": "the photo of a guenon",
+        "edit_prompt": "the photo of a squirrel monkey"
+    },
+    {
+        "soure_prompt": "a photo of the clean spider monkey",
+        "edit_prompt": "a photo of the clean squirrel monkey"
+    },
+    {
+        "soure_prompt": "a photo of a dirty macaque",
+        "edit_prompt": "a photo of a dirty squirrel monkey"
+    },
+    {
+        "soure_prompt": "a photo of a clean baboon",
+        "edit_prompt": "a photo of a clean squirrel monkey"
+    },
+    {
+        "soure_prompt": "a photo of a small Yorkshire terrier",
+        "edit_prompt": "a photo of a small standard schnauzer"
+    },
+    {
+        "soure_prompt": "a photo of a nice Border terrier",
+        "edit_prompt": "a photo of a nice standard schnauzer"
+    },
+    {
+        "soure_prompt": "a photo of a clean American Staffordshire terrier",
+        "edit_prompt": "a photo of a clean standard schnauzer"
+    },
+    {
+        "soure_prompt": "a photo of my Border terrier",
+        "edit_prompt": "a photo of my standard schnauzer"
+    },
+    {
+        "soure_prompt": "a photo of the large electric locomotive",
+        "edit_prompt": "a photo of the large steam locomotive"
+    },
+    {
+        "soure_prompt": "a close-up photo of the electric locomotive",
+        "edit_prompt": "a close-up photo of the steam locomotive"
+    },
+    {
+        "soure_prompt": "a photo of a nice electric locomotive",
+        "edit_prompt": "a photo of a nice steam locomotive"
+    },
+    {
+        "soure_prompt": "a photo of one electric locomotive",
+        "edit_prompt": "a photo of one steam locomotive"
+    },
+    {
+        "soure_prompt": "a photo of a clean maraca",
+        "edit_prompt": "a photo of a clean steel drum"
+    },
+    {
+        "soure_prompt": "a close-up photo of the drum",
+        "edit_prompt": "a close-up photo of the steel drum"
+    },
+    {
+        "soure_prompt": "a photo of the small marimba",
+        "edit_prompt": "a photo of the small steel drum"
+    },
+    {
+        "soure_prompt": "the photo of a chime",
+        "edit_prompt": "the photo of a steel drum"
+    },
+    {
+        "soure_prompt": "a photo of the clean bolete",
+        "edit_prompt": "a photo of the clean stinkhorn"
+    },
+    {
+        "soure_prompt": "a photo of a small gyromitra",
+        "edit_prompt": "a photo of a small stinkhorn"
+    },
+    {
+        "soure_prompt": "a rendering of a earthstar",
+        "edit_prompt": "a rendering of a stinkhorn"
+    },
+    {
+        "soure_prompt": "a close-up photo of a coral fungus",
+        "edit_prompt": "a close-up photo of a stinkhorn"
+    },
+    {
+        "soure_prompt": "a photo of the nice barometer",
+        "edit_prompt": "a photo of the nice stopwatch"
+    },
+    {
+        "soure_prompt": "a photo of one digital watch",
+        "edit_prompt": "a photo of one stopwatch"
+    },
+    {
+        "soure_prompt": "a photo of a nice analog clock",
+        "edit_prompt": "a photo of a nice stopwatch"
+    },
+    {
+        "soure_prompt": "a photo of the odometer",
+        "edit_prompt": "a photo of the stopwatch"
+    },
+    {
+        "soure_prompt": "a rendering of a fig",
+        "edit_prompt": "a rendering of a strawberry"
+    },
+    {
+        "soure_prompt": "a photo of the orange",
+        "edit_prompt": "a photo of the strawberry"
+    },
+    {
+        "soure_prompt": "a photo of a pomegranate",
+        "edit_prompt": "a photo of a strawberry"
+    },
+    {
+        "soure_prompt": "a photo of the clean fig",
+        "edit_prompt": "a photo of the clean strawberry"
+    },
+    {
+        "soure_prompt": "a photo of a cool lionfish",
+        "edit_prompt": "a photo of a cool sturgeon"
+    },
+    {
+        "soure_prompt": "a photo of the cool lionfish",
+        "edit_prompt": "a photo of the cool sturgeon"
+    },
+    {
+        "soure_prompt": "a dark photo of the tench",
+        "edit_prompt": "a dark photo of the sturgeon"
+    },
+    {
+        "soure_prompt": "a rendering of a tench",
+        "edit_prompt": "a rendering of a sturgeon"
+    },
+    {
+        "soure_prompt": "a rendering of a monarch",
+        "edit_prompt": "a rendering of a sulphur butterfly"
+    },
+    {
+        "soure_prompt": "a photo of a clean ringlet",
+        "edit_prompt": "a photo of a clean sulphur butterfly"
+    },
+    {
+        "soure_prompt": "a photo of a lycaenid",
+        "edit_prompt": "a photo of a sulphur butterfly"
+    },
+    {
+        "soure_prompt": "a bright photo of the admiral",
+        "edit_prompt": "a bright photo of the sulphur butterfly"
+    },
+    {
+        "soure_prompt": "a photo of the weird tiger",
+        "edit_prompt": "a photo of the weird tabby"
+    },
+    {
+        "soure_prompt": "a cropped photo of a jaguar",
+        "edit_prompt": "a cropped photo of a tabby"
+    },
+    {
+        "soure_prompt": "a photo of the lion",
+        "edit_prompt": "a photo of the tabby"
+    },
+    {
+        "soure_prompt": "a photo of the small Persian cat",
+        "edit_prompt": "a photo of the small tabby"
+    },
+    {
+        "soure_prompt": "a rendering of a scorpion",
+        "edit_prompt": "a rendering of a tarantula"
+    },
+    {
+        "soure_prompt": "a photo of a dirty scorpion",
+        "edit_prompt": "a photo of a dirty tarantula"
+    },
+    {
+        "soure_prompt": "a photo of a cool black widow",
+        "edit_prompt": "a photo of a cool tarantula"
+    },
+    {
+        "soure_prompt": "a cropped photo of a black widow",
+        "edit_prompt": "a cropped photo of a tarantula"
+    },
+    {
+        "soure_prompt": "a photo of a small water bottle",
+        "edit_prompt": "a photo of a small teapot"
+    },
+    {
+        "soure_prompt": "a photo of the clean coffee mug",
+        "edit_prompt": "a photo of the clean teapot"
+    },
+    {
+        "soure_prompt": "a photo of a clean water bottle",
+        "edit_prompt": "a photo of a clean teapot"
+    },
+    {
+        "soure_prompt": "a cropped photo of the water bottle",
+        "edit_prompt": "a cropped photo of the teapot"
+    },
+    {
+        "soure_prompt": "a photo of a cool lionfish",
+        "edit_prompt": "a photo of a cool tench"
+    },
+    {
+        "soure_prompt": "a photo of the clean eel",
+        "edit_prompt": "a photo of the clean tench"
+    },
+    {
+        "soure_prompt": "a photo of a clean goldfish",
+        "edit_prompt": "a photo of a clean tench"
+    },
+    {
+        "soure_prompt": "a photo of a nice sturgeon",
+        "edit_prompt": "a photo of a nice tench"
+    },
+    {
+        "soure_prompt": "a photo of a cool soccer ball",
+        "edit_prompt": "a photo of a cool tennis ball"
+    },
+    {
+        "soure_prompt": "a good photo of a ping-pong ball",
+        "edit_prompt": "a good photo of a tennis ball"
+    },
+    {
+        "soure_prompt": "a photo of the clean golf ball",
+        "edit_prompt": "a photo of the clean tennis ball"
+    },
+    {
+        "soure_prompt": "a photo of a ping-pong ball",
+        "edit_prompt": "a photo of a tennis ball"
+    },
+    {
+        "soure_prompt": "a photo of a dirty box turtle",
+        "edit_prompt": "a photo of a dirty terrapin"
+    },
+    {
+        "soure_prompt": "a bright photo of the box turtle",
+        "edit_prompt": "a bright photo of the terrapin"
+    },
+    {
+        "soure_prompt": "a photo of the small box turtle",
+        "edit_prompt": "a photo of the small terrapin"
+    },
+    {
+        "soure_prompt": "the photo of a box turtle",
+        "edit_prompt": "the photo of a terrapin"
+    },
+    {
+        "soure_prompt": "a photo of a nice Indian cobra",
+        "edit_prompt": "a photo of a nice thunder snake"
+    },
+    {
+        "soure_prompt": "a photo of a horned viper",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "soure_prompt": "a photo of the clean horned viper",
+        "edit_prompt": "a photo of the clean thunder snake"
+    },
+    {
+        "soure_prompt": "a photo of a green mamba",
+        "edit_prompt": "a photo of a thunder snake"
+    },
+    {
+        "soure_prompt": "a photo of the clean Persian cat",
+        "edit_prompt": "a photo of the clean tiger"
+    },
+    {
+        "soure_prompt": "a photo of a cool snow leopard",
+        "edit_prompt": "a photo of a cool tiger"
+    },
+    {
+        "soure_prompt": "a photo of the small leopard",
+        "edit_prompt": "a photo of the small tiger"
+    },
+    {
+        "soure_prompt": "a photo of the jaguar",
+        "edit_prompt": "a photo of the tiger"
+    },
+    {
+        "soure_prompt": "a bright photo of the long-horned beetle",
+        "edit_prompt": "a bright photo of the tiger beetle"
+    },
+    {
+        "soure_prompt": "the photo of a weevil",
+        "edit_prompt": "the photo of a tiger beetle"
+    },
+    {
+        "soure_prompt": "a close-up photo of the ladybug",
+        "edit_prompt": "a close-up photo of the tiger beetle"
+    },
+    {
+        "soure_prompt": "the photo of a leaf beetle",
+        "edit_prompt": "the photo of a tiger beetle"
+    },
+    {
+        "soure_prompt": "a photo of the cool hammerhead",
+        "edit_prompt": "a photo of the cool tiger shark"
+    },
+    {
+        "soure_prompt": "a photo of one great white shark",
+        "edit_prompt": "a photo of one tiger shark"
+    },
+    {
+        "soure_prompt": "a photo of the weird hammerhead",
+        "edit_prompt": "a photo of the weird tiger shark"
+    },
+    {
+        "soure_prompt": "a close-up photo of the great white shark",
+        "edit_prompt": "a close-up photo of the tiger shark"
+    },
+    {
+        "soure_prompt": "a close-up photo of a dingo",
+        "edit_prompt": "a close-up photo of a timber wolf"
+    },
+    {
+        "soure_prompt": "the photo of a grey fox",
+        "edit_prompt": "the photo of a timber wolf"
+    },
+    {
+        "soure_prompt": "a rendition of the Arctic fox",
+        "edit_prompt": "a rendition of the timber wolf"
+    },
+    {
+        "soure_prompt": "a photo of the cool African hunting dog",
+        "edit_prompt": "a photo of the cool timber wolf"
+    },
+    {
+        "soure_prompt": "a photo of a small fire engine",
+        "edit_prompt": "a photo of a small tow truck"
+    },
+    {
+        "soure_prompt": "a photo of one school bus",
+        "edit_prompt": "a photo of one tow truck"
+    },
+    {
+        "soure_prompt": "a rendition of the police van",
+        "edit_prompt": "a rendition of the tow truck"
+    },
+    {
+        "soure_prompt": "a photo of a dirty trailer truck",
+        "edit_prompt": "a photo of a dirty tow truck"
+    },
+    {
+        "soure_prompt": "a photo of the small Japanese spaniel",
+        "edit_prompt": "a photo of the small toy terrier"
+    },
+    {
+        "soure_prompt": "a good photo of a Shih-Tzu",
+        "edit_prompt": "a good photo of a toy terrier"
+    },
+    {
+        "soure_prompt": "a photo of a cool Chihuahua",
+        "edit_prompt": "a photo of a cool toy terrier"
+    },
+    {
+        "soure_prompt": "a rendition of the Japanese spaniel",
+        "edit_prompt": "a rendition of the toy terrier"
+    },
+    {
+        "soure_prompt": "a close-up photo of the pickup",
+        "edit_prompt": "a close-up photo of the trailer truck"
+    },
+    {
+        "soure_prompt": "a close-up photo of a garbage truck",
+        "edit_prompt": "a close-up photo of a trailer truck"
+    },
+    {
+        "soure_prompt": "a bright photo of the tow truck",
+        "edit_prompt": "a bright photo of the trailer truck"
+    },
+    {
+        "soure_prompt": "a rendition of a tow truck",
+        "edit_prompt": "a rendition of a trailer truck"
+    },
+    {
+        "soure_prompt": "a photo of a cool eft",
+        "edit_prompt": "a photo of a cool tree frog"
+    },
+    {
+        "soure_prompt": "a photo of a cool European fire salamander",
+        "edit_prompt": "a photo of a cool tree frog"
+    },
+    {
+        "soure_prompt": "a photo of the nice spotted salamander",
+        "edit_prompt": "a photo of the nice tree frog"
+    },
+    {
+        "soure_prompt": "a good photo of the spotted salamander",
+        "edit_prompt": "a good photo of the tree frog"
+    },
+    {
+        "soure_prompt": "a photo of the small moped",
+        "edit_prompt": "a photo of the small tricycle"
+    },
+    {
+        "soure_prompt": "a photo of a small motor scooter",
+        "edit_prompt": "a photo of a small tricycle"
+    },
+    {
+        "soure_prompt": "a photo of a nice moped",
+        "edit_prompt": "a photo of a nice tricycle"
+    },
+    {
+        "soure_prompt": "a photo of the large mountain bike",
+        "edit_prompt": "a photo of the large tricycle"
+    },
+    {
+        "soure_prompt": "a photo of a clean schooner",
+        "edit_prompt": "a photo of a clean trimaran"
+    },
+    {
+        "soure_prompt": "a photo of a clean catamaran",
+        "edit_prompt": "a photo of a clean trimaran"
+    },
+    {
+        "soure_prompt": "a rendering of a schooner",
+        "edit_prompt": "a rendering of a trimaran"
+    },
+    {
+        "soure_prompt": "a photo of the catamaran",
+        "edit_prompt": "a photo of the trimaran"
+    },
+    {
+        "soure_prompt": "a close-up photo of a bassoon",
+        "edit_prompt": "a close-up photo of a trombone"
+    },
+    {
+        "soure_prompt": "a photo of the bassoon",
+        "edit_prompt": "a photo of the trombone"
+    },
+    {
+        "soure_prompt": "a photo of a dirty oboe",
+        "edit_prompt": "a photo of a dirty trombone"
+    },
+    {
+        "soure_prompt": "a good photo of the sax",
+        "edit_prompt": "a good photo of the trombone"
+    },
+    {
+        "soure_prompt": "a bright photo of the tricycle",
+        "edit_prompt": "a bright photo of the unicycle"
+    },
+    {
+        "soure_prompt": "a cropped photo of the moped",
+        "edit_prompt": "a cropped photo of the unicycle"
+    },
+    {
+        "soure_prompt": "a dark photo of the mountain bike",
+        "edit_prompt": "a dark photo of the unicycle"
+    },
+    {
+        "soure_prompt": "a photo of the small mountain bike",
+        "edit_prompt": "a photo of the small unicycle"
+    },
+    {
+        "soure_prompt": "a photo of one teapot",
+        "edit_prompt": "a photo of one vase"
+    },
+    {
+        "soure_prompt": "a cropped photo of the teapot",
+        "edit_prompt": "a cropped photo of the vase"
+    },
+    {
+        "soure_prompt": "a photo of a cool teapot",
+        "edit_prompt": "a photo of a cool vase"
+    },
+    {
+        "soure_prompt": "a bright photo of the water jug",
+        "edit_prompt": "a bright photo of the vase"
+    },
+    {
+        "soure_prompt": "a bright photo of the cello",
+        "edit_prompt": "a bright photo of the violin"
+    },
+    {
+        "soure_prompt": "a photo of a dirty cello",
+        "edit_prompt": "a photo of a dirty violin"
+    },
+    {
+        "soure_prompt": "a photo of the nice cello",
+        "edit_prompt": "a photo of the nice violin"
+    },
+    {
+        "soure_prompt": "a photo of the clean electric guitar",
+        "edit_prompt": "a photo of the clean violin"
+    },
+    {
+        "soure_prompt": "a bright photo of the barometer",
+        "edit_prompt": "a bright photo of the wall clock"
+    },
+    {
+        "soure_prompt": "a photo of the nice stopwatch",
+        "edit_prompt": "a photo of the nice wall clock"
+    },
+    {
+        "soure_prompt": "a cropped photo of the digital watch",
+        "edit_prompt": "a cropped photo of the wall clock"
+    },
+    {
+        "soure_prompt": "a bright photo of the odometer",
+        "edit_prompt": "a bright photo of the wall clock"
+    },
+    {
+        "soure_prompt": "a good photo of the coffeepot",
+        "edit_prompt": "a good photo of the water bottle"
+    },
+    {
+        "soure_prompt": "a rendition of a water jug",
+        "edit_prompt": "a rendition of a water bottle"
+    },
+    {
+        "soure_prompt": "a photo of one cocktail shaker",
+        "edit_prompt": "a photo of one water bottle"
+    },
+    {
+        "soure_prompt": "a rendition of a coffeepot",
+        "edit_prompt": "a rendition of a water bottle"
+    },
+    {
+        "soure_prompt": "a cropped photo of a bison",
+        "edit_prompt": "a cropped photo of a water buffalo"
+    },
+    {
+        "soure_prompt": "a photo of one ibex",
+        "edit_prompt": "a photo of one water buffalo"
+    },
+    {
+        "soure_prompt": "a photo of the ibex",
+        "edit_prompt": "a photo of the water buffalo"
+    },
+    {
+        "soure_prompt": "a cropped photo of a bison",
+        "edit_prompt": "a cropped photo of a water buffalo"
+    },
+    {
+        "soure_prompt": "a photo of the nice measuring cup",
+        "edit_prompt": "a photo of the nice water jug"
+    },
+    {
+        "soure_prompt": "a rendition of a cocktail shaker",
+        "edit_prompt": "a rendition of a water jug"
+    },
+    {
+        "soure_prompt": "a photo of the weird beer bottle",
+        "edit_prompt": "a photo of the weird water jug"
+    },
+    {
+        "soure_prompt": "a photo of the large measuring cup",
+        "edit_prompt": "a photo of the large water jug"
+    },
+    {
+        "soure_prompt": "a photo of a cool ladybug",
+        "edit_prompt": "a photo of a cool weevil"
+    },
+    {
+        "soure_prompt": "a photo of the weird leaf beetle",
+        "edit_prompt": "a photo of the weird weevil"
+    },
+    {
+        "soure_prompt": "a photo of a cool tiger beetle",
+        "edit_prompt": "a photo of a cool weevil"
+    },
+    {
+        "soure_prompt": "a photo of the large leaf beetle",
+        "edit_prompt": "a photo of the large weevil"
+    },
+    {
+        "soure_prompt": "a photo of the clean coyote",
+        "edit_prompt": "a photo of the clean white wolf"
+    },
+    {
+        "soure_prompt": "a photo of a clean dingo",
+        "edit_prompt": "a photo of a clean white wolf"
+    },
+    {
+        "soure_prompt": "a photo of a cool African hunting dog",
+        "edit_prompt": "a photo of a cool white wolf"
+    },
+    {
+        "soure_prompt": "a photo of one Arctic fox",
+        "edit_prompt": "a photo of one white wolf"
+    },
+    {
+        "soure_prompt": "a photo of the clean teapot",
+        "edit_prompt": "a photo of the clean wine bottle"
+    },
+    {
+        "soure_prompt": "a photo of the vase",
+        "edit_prompt": "a photo of the wine bottle"
+    },
+    {
+        "soure_prompt": "a photo of the large cocktail shaker",
+        "edit_prompt": "a photo of the large wine bottle"
+    },
+    {
+        "soure_prompt": "a good photo of the cocktail shaker",
+        "edit_prompt": "a good photo of the wine bottle"
+    },
+    {
+        "soure_prompt": "the photo of a Border terrier",
+        "edit_prompt": "the photo of a wire-haired fox terrier"
+    },
+    {
+        "soure_prompt": "a bright photo of the Irish terrier",
+        "edit_prompt": "a bright photo of the wire-haired fox terrier"
+    },
+    {
+        "soure_prompt": "a photo of the cool American Staffordshire terrier",
+        "edit_prompt": "a photo of the cool wire-haired fox terrier"
+    },
+    {
+        "soure_prompt": "a rendering of a Irish terrier",
+        "edit_prompt": "a rendering of a wire-haired fox terrier"
+    },
+    {
+        "soure_prompt": "a cropped photo of a tarantula",
+        "edit_prompt": "a cropped photo of a wolf spider"
+    },
+    {
+        "soure_prompt": "a cropped photo of a garden spider",
+        "edit_prompt": "a cropped photo of a wolf spider"
+    },
+    {
+        "soure_prompt": "a photo of the nice black widow",
+        "edit_prompt": "a photo of the nice wolf spider"
+    },
+    {
+        "soure_prompt": "a good photo of a scorpion",
+        "edit_prompt": "a good photo of a wolf spider"
+    },
+    {
+        "soure_prompt": "a photo of a small sorrel",
+        "edit_prompt": "a photo of a small zebra"
+    },
+    {
+        "soure_prompt": "a photo of the cool sorrel",
+        "edit_prompt": "a photo of the cool zebra"
+    },
+    {
+        "soure_prompt": "a photo of the large sorrel",
+        "edit_prompt": "a photo of the large zebra"
+    },
+    {
+        "soure_prompt": "a photo of a sorrel",
+        "edit_prompt": "a photo of a zebra"
+    },
+    {
+        "soure_prompt": "a photo of the cool broccoli",
+        "edit_prompt": "a photo of the cool zucchini"
+    },
+    {
+        "soure_prompt": "a photo of a nice artichoke",
+        "edit_prompt": "a photo of a nice zucchini"
+    },
+    {
+        "soure_prompt": "a photo of a cool cucumber",
+        "edit_prompt": "a photo of a cool zucchini"
+    },
+    {
+        "soure_prompt": "a photo of the small cauliflower",
+        "edit_prompt": "a photo of the small zucchini"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a dog standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a giraffe standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a horse standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a lion standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a rabbit standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a sheep standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a cat standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    },
+    {
+        "soure_prompt": "a monkey standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a leopard standing in the park",
+        "edit_prompt": "a tiger standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a dog standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a giraffe standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a horse standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a lion standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a rabbit standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a sheep standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a cat standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a monkey standing in the park"
+    },
+    {
+        "soure_prompt": "a tiger standing in the park",
+        "edit_prompt": "a leopard standing in the park"
+    }
+]
