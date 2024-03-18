@@ -495,7 +495,7 @@ def get_optimizer(
         optimizer_grouped_parameters.append({
             'params': [p],
             'weight_decay':
-            0.0 if any(nd in n for nd in no_decay) else weight_decay
+            0.0 if len(p.shape) == 1 or any(nd in n for nd in no_decay) else weight_decay
         })
     if optimizer_type == 'BertAdam':
         optimizer = BertAdam(

@@ -115,6 +115,7 @@ class Trainer(object):
         # Build Optimizer
         self._optimizer, self._lr_scheduler = get_optimizer(
             optimizer_type=self.optimizer_type,
+            schedule=args.lr_scheduler,
             learning_rate=args.learning_rate,
             warmup_proportion=args.warmup_proportion,
             max_grad_norm=self.max_grad_norm,
